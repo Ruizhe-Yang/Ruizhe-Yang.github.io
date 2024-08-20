@@ -1,6 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</title>
+    <url>/2024/08/18/003/</url>
+    <content><![CDATA[
+[Testing, Validation, and Verification of Robotic and Autonomous Systems: A Systematic Review](https://dl.acm.org/doi/full/10.1145/3542945)
+
+*作者是KCL的Hugo Araujo。*
+
+`Abstraction`
+> We perform a systematic literature review on testing, validation, and verification of robotic and autonomous systems (RAS). The scope of this review covers peer-reviewed research papers proposing, improving, or evaluating testing techniques, processes, or tools that address the system-level qualities of RAS.
+Our survey is performed based on a rigorous methodology structured in three phases. First, we made use of a set of 26 seed papers (selected by domain experts) and the SERP-TEST taxonomy to design our search query and (domain-specific) taxonomy. Second, we conducted a search in three academic search engines and applied our inclusion and exclusion criteria to the results. Respectively, we made use of related work and domain specialists (50 academics and 15 industry experts) to validate and refine the search query. As a result, we encountered 10,735 studies, out of which 195 were included, reviewed, and coded.
+> Our objective is to answer four research questions, pertaining to (1) the type of models, (2) measures for system performance and testing adequacy, (3) tools and their availability, and (4) evidence of applicability, particularly in industrial contexts. We analyse the results of our coding to identify strengths and gaps in the domain and present recommendations to researchers and practitioners.
+> Our findings show that variants of temporal logics are most widely used for modelling requirements and properties, while variants of state-machines and transition systems are used widely for modelling system behaviour. Other common models concern epistemic logics for specifying requirements and belief-desireintention models for specifying system behaviour. Apart from time and epistemics, other aspects captured in models concern probabilities (e.g., for modelling uncertainty) and continuous trajectories (e.g., for modelling vehicle dynamics and kinematics).
+> Many papers lack any rigorous measure of efficiency, effectiveness, or adequacy for their proposed techniques, processes, or tools. Among those that provide a measure of efficiency, effectiveness, or adequacy, the majority use domain-agnostic generic measures such as number of failures, size of state-space, or verification time were most used. There is a trend in addressing the research gap in this respect by developing domainspecific notions of performance and adequacy. Defining widely accepted rigorous measures of performance and adequacy for each domain is an identified research gap.
+> In terms of tools, the most widely used tools are well-established model-checkers such as Prism and Uppaal, as well as simulation tools such as Gazebo; Matlab/Simulink is another widely used toolset in this domain.
+> Overall, there is very limited evidence of industrial applicability in the papers published in this domain.
+> There is even a gap considering consolidated benchmarks for various types of autonomous systems.
+
+## Introduction
+
+### Motivation-1
+
+Robotic and Autonomous Systems (RAS)机器人和自主系统。本论文涵盖了RAS的广度和系统性二次研究的调研，并对结果进行分析。
+
+### Scope and Audience
+
+受众：研究者和从业者。所调研的RAS研究的范围。
+
+### Research Questions
+
+几个关键名词的含义，包括types of models, efficiency, effectiveness, coverage measures, (public available) tools, evidence of applicability。
+
+### Structure of the Article
+
+本文的其余部分结构如下：在第 2 部分中，我们回顾了相关工作，重点关注相关主题的二手研究（文献调查和评论）。在第 3 部分中，我们定义了本文的范围并解释了此结构化综述的背景。在那里，我们报告了我们开始研究的核心结果集，作为我们搜索的种子，以形成研究。在第 4 部分中，我们回顾了我们用于系统评价的方法；这包括我们的搜索和选择策略的描述、用于编码结果的分类法的开发、我们的数据提取和综合方法。在本节中，我们还反思了对我们研究的威胁。在第 5 部分中，我们展示了我们的编码结果并对其进行分析以回答我们的研究问题。在第 6 部分中，我们反思了我们的分析并为目标受众（即研究人员和从业人员）提供了具体的建议。在第 7 部分中，我们总结了本文并提出了一些未来研究的方向。
+
+## Related Work
+
+[[55]](#55)这项研究的目标是为机器人软件开发人员提供提示，帮助他们根据感兴趣的属性和软件系统选择合适的分析方法。
+
+[[99]](#99) [[181]](#181)概述了自主系统测试和验证面临的挑战以及可用的技术和结果。
+
+[[118]](#118)聚焦了自动驾驶汽车环境中的问题。
+
+[[79]](#79)概述了V&V领域的研究，主要有关机器学习和自动驾驶场景。
+
+[[114]](#114)自动驾驶与软件的挑战，通过采访从业者的角度进行的。
+
+[[180]](#180)汽车行业中使用的神经网络功能安全性评估的三个具体问题。
+
+[[108]](#108)对公开可用的驾驶数据集以及自动驾驶算法的虚拟测试进行了调查。
+
+[[20]](#20)作者提到了自动驾驶功能的复杂性、场景和参数的变化、场景选择和测试生成等挑战。
+
+[[138]](#138)对用于自主机器人系统的形式化规范和验证方法及工具进行了调查。除了此类系统的内部结构之外，还提出了许多正式建模和验证机器人系统运行环境的挑战。
+
+[[89]](#89)概述了集成形式化方法在机器人和自主系统中的优势、劣势、机遇和威胁。
+
+[[207]](#207)对自动驾驶汽车基于覆盖范围的验证、确认和安全保障技术进行了系统的文献综述。
+
+[[178]](#178)对自动驾驶汽车的软件验证和确认进行了广泛而系统的文献综述。
+
+## Background and Rationale
+
+### Motivation-3
+
+结合相关工作，提出了二次研究的几个问题：（1）对现有的机器人和自主系统验证和确认结果进行结构化回顾；（2）讨论了以下四个具体问题：(a) the types of models, (b) measures of efficiency and effectiveness, (c) available tools, and (d) evidence of applicability to large-scale and industrial systems。
+
+### Robotic and Autonomous System
+
+
+
+### Testing and the SERP-Test Taxonomy
+
+## Methodology
+
+### Seed Papers
+
+### Selection Strategy
+
+#### Inclusion Criteria
+
+#### Exclusion Criteria
+
+### Taxonomy
+
+### Search Strategy
+
+#### Initial Query
+
+#### Validated Query
+
+### Overview of the Results
+
+## Results
+
+### RQ1: Models
+
+#### Modelling Properties
+
+#### Modelling System Behaviour or Structure
+
+### RQ2: Effect
+
+#### Measuresfor Interventions
+
+#### Measures for Subject Systems
+
+### RQ3: Tooling
+
+#### Context Tools
+
+#### Effect Tools
+
+### RQ4: Applicability
+
+## Suggestions and Recommendations to Study Audience
+
+### Analysis
+
+#### Domain
+
+#### Cooperation and Connectivity
+
+#### Testing Strategy
+
+### For Researchers
+
+### For Practitioners
+
+## Conclusions
+
+`个人总结`
+
+`参考文献`
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>TOSEM</category>
+        <category>2023</category>
+      </categories>
+      <tags>
+        <tag>Validation &amp; Verification</tag>
+        <tag>Robotics</tag>
+        <tag>RAS</tag>
+        <tag>Review</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</title>
     <url>/2024/08/14/001/</url>
     <content><![CDATA[
@@ -375,8 +524,8 @@ Garousi 等人 [[33]](#33) 对产学研合作面临的挑战进行了文献综�
       </categories>
       <tags>
         <tag>Validation &amp; Verification</tag>
-        <tag>MBSE</tag>
         <tag>Review</tag>
+        <tag>MBSE</tag>
       </tags>
   </entry>
   <entry>
@@ -413,7 +562,7 @@ MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L
 
 ![Transformation synthesis process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png)
 
-图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{f}$是映射的三个中间量。
+图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$是映射的三个中间量。
 
 研究问题：
 
@@ -443,17 +592,30 @@ MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L
 
 ### $\mathcal{T}\mathcal{L}$ Transformation Repersentation
 
-使用$\mathcal{T}\mathcal{L}$语法描述转换过程。
+使用$\mathcal{T}\mathcal{L}$语法描述转换过程。包括集合的划分、符号标识、每个环节的输入输出和$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$符号对应的环节。
 
 ### Natural Language Processing and Machine Learning
 
+介绍了NLP的主要技术类型和划分词义的种类和机器学习的基本概念。
+
 ## Automated MT Requierments Analysis
+
+如果转换过程存在自然语言需求声明，原则上可以应用NLP技术提取有关转换预期映射的一些信息，有助于元模型匹配。
 
 ### Automated Requirements Analysis Using NLP
 
+使用NLP对Gantt2CPM案例进行需求分析。
+首先使用Stanford POS tagger标记需求语句中的词类型，然后构建语法树。创建了CART决策树作为分类器，对需求语句中的关键词类型进行识别。
+
 ### Tool Support for MT Requirements Analysis
 
+在工具中如何使用的说明。
+
 ## Metamodel Correspondence Patterns
+
+{% note flat %}
+这篇文章太长太难，还没看完，先记到这里……
+{% endnote %}
 
 ### Occurrence of Correspondence Patterns in Practice
 
@@ -538,12 +700,12 @@ MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L
 `个人总结`
 
 `参考文献`
-9
-49
-1
-17
-31
-48
+<a id="9">[9]</a>L. Burgueno, J. Cabot, and S. Gerard. 2019. The future of model transformation languages: an open community discussion J. Obj. Technol. 1–11. Retrieved from www.jot.fm/issues/issue_2019_03/article7.pdf.
+<a id="49">[49]</a>K. Lano, Q. Xue, and S. Kolahdouz-Rahimi. 2020. Agile Specification of Code Generators for Model-Driven Engineering. In Proceedings of ICSEA 2020. IARIA, 9–15.
+<a id="1">[1]</a>L. Addazi, A. Cicchetti, J. D. Rocco, D. D. Ruscio, L. Iovino, and A. Pierantonio. 2016. Semantic-based model matching with emfcompare, me workshop, models. CEUR-WS 1706, 40–49.
+<a id="17">[17]</a>S. Fang and K. Lano. Extracting correspondences from metamodels using metamodel matching. In STAF 2019. Retrieved from CEUR-WS.org/vol-2405/02_paper.pdf.
+<a id="31">[31]</a>M. Kessentini, A. Ouni, P. Langer, M. Wimmer, and S. Bechikh. 2014. Search-based metamodel matching with structural and syntactic measures. Journal of Software and Systems 97, 2014 (2014), 1–14.
+<a id="48">[48]</a>K. Lano, S. Fang, and S. Kolahdouz-Rahimi. TL: An abstract specification language for bidirectional transformations. MODELS’20 Comp. Proc. 77 (2020), 1–10.
 ]]></content>
       <categories>
         <category>Academic Papers</category>
@@ -556,119 +718,6 @@ MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L
         <tag>Model Transformations</tag>
         <tag>Requirements Engineering</tag>
         <tag>Automated Software Engineering</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</title>
-    <url>/2024/08/18/003/</url>
-    <content><![CDATA[
-[Testing, Validation, and Verification of Robotic and Autonomous Systems: A Systematic Review](https://dl.acm.org/doi/full/10.1145/3542945)
-
-*作者是KCL的Hugo Araujo。*
-
-`Abstraction`
-> We perform a systematic literature review on testing, validation, and verification of robotic and autonomous systems (RAS). The scope of this review covers peer-reviewed research papers proposing, improving, or evaluating testing techniques, processes, or tools that address the system-level qualities of RAS.
-Our survey is performed based on a rigorous methodology structured in three phases. First, we made use of a set of 26 seed papers (selected by domain experts) and the SERP-TEST taxonomy to design our search query and (domain-specific) taxonomy. Second, we conducted a search in three academic search engines and applied our inclusion and exclusion criteria to the results. Respectively, we made use of related work and domain specialists (50 academics and 15 industry experts) to validate and refine the search query. As a result, we encountered 10,735 studies, out of which 195 were included, reviewed, and coded.
-> Our objective is to answer four research questions, pertaining to (1) the type of models, (2) measures for system performance and testing adequacy, (3) tools and their availability, and (4) evidence of applicability, particularly in industrial contexts. We analyse the results of our coding to identify strengths and gaps in the domain and present recommendations to researchers and practitioners.
-> Our findings show that variants of temporal logics are most widely used for modelling requirements and properties, while variants of state-machines and transition systems are used widely for modelling system behaviour. Other common models concern epistemic logics for specifying requirements and belief-desireintention models for specifying system behaviour. Apart from time and epistemics, other aspects captured in models concern probabilities (e.g., for modelling uncertainty) and continuous trajectories (e.g., for modelling vehicle dynamics and kinematics).
-> Many papers lack any rigorous measure of efficiency, effectiveness, or adequacy for their proposed techniques, processes, or tools. Among those that provide a measure of efficiency, effectiveness, or adequacy, the majority use domain-agnostic generic measures such as number of failures, size of state-space, or verification time were most used. There is a trend in addressing the research gap in this respect by developing domainspecific notions of performance and adequacy. Defining widely accepted rigorous measures of performance and adequacy for each domain is an identified research gap.
-> In terms of tools, the most widely used tools are well-established model-checkers such as Prism and Uppaal, as well as simulation tools such as Gazebo; Matlab/Simulink is another widely used toolset in this domain.
-> Overall, there is very limited evidence of industrial applicability in the papers published in this domain.
-> There is even a gap considering consolidated benchmarks for various types of autonomous systems.
-
-## Introduction
-
-### Motivation-1
-
-### Scope and Audience
-
-### Research Questions
-
-### Structure of the Article
-
-## Related Work
-
-## Background and Rationale
-
-### Motivation-3
-
-### Robotic and Autonomous System
-
-### Testing and the SERP-Test Taxonomy
-
-## Methodology
-
-### Seed Papers
-
-### Selection Strategy
-
-#### Inclusion Criteria
-
-#### Exclusion Criteria
-
-### Taxonomy
-
-### Search Strategy
-
-#### Initial Query
-
-#### Validated Query
-
-### Overview of the Results
-
-## Results
-
-### RQ1: Models
-
-#### Modelling Properties
-
-#### Modelling System Behaviour or Structure
-
-### RQ2: Effect
-
-#### Measuresfor Interventions
-
-#### Measures for Subject Systems
-
-### RQ3: Tooling
-
-#### Context Tools
-
-#### Effect Tools
-
-### RQ4: Applicability
-
-## Suggestions and Recommendations to Study Audience
-
-### Analysis
-
-#### Domain
-
-#### Cooperation and Connectivity
-
-#### Testing Strategy
-
-### For Researchers
-
-### For Practitioners
-
-## Conclusions
-
-`个人总结`
-
-`参考文献`
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TOSEM</category>
-        <category>2023</category>
-      </categories>
-      <tags>
-        <tag>Validation &amp; Verification</tag>
-        <tag>Review</tag>
-        <tag>Robotics</tag>
-        <tag>RAS</tag>
       </tags>
   </entry>
 </search>
