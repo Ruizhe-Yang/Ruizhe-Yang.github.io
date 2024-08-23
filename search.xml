@@ -70,19 +70,35 @@ Robotic and Autonomous Systems (RAS)机器人和自主系统。本论文涵盖�
 
 ### Robotic and Autonomous System
 
-
+RAS定义：
+An autonomous system is an intelligent system that is designed to deal with the physical environment on its own and work for extended periods of time without explicit human intervention. They are built to analyse, learn from, adapt to, and act on the surrounding environment.
 
 ### Testing and the SERP-Test Taxonomy
+
+本文的论文分类方法基于SERP-Test分类法[[68]](#68)，测试分类四个方面：intervention, effect, scope, and context。
+
+- Intervention pertains to the test techniques, their adaptation, and adoption in different context.
+- Effect facet is used to identify the improvement or adaptation in a given practise as well as any insights gained through assessment.
+- The scope specified whether the effect has been materialised in planning, design, execution, or analysis of tests.
+- Context, as its name suggests, specifies the environment where the intervention takes place, in terms of people and their knowledge, the system under test, and the required models and other types of information.
 
 ## Methodology
 
 ### Seed Papers
 
+- 收集初始搜索查询的关键字
+- 完善纳入和排出标准
+- 评估和调整SERP-Test分类法
+
 ### Selection Strategy
 
 #### Inclusion Criteria
 
+纳入标准的规则。
+
 #### Exclusion Criteria
+
+排出标准的规则。
 
 ### Taxonomy
 
