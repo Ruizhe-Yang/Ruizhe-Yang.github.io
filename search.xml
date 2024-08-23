@@ -1,6 +1,385 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</title>
+    <url>/2024/08/14/001/</url>
+    <content><![CDATA[
+[Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review](https://dl.acm.org/doi/full/10.1145/3631976)
+
+*作者来自瑞典Mälardalen大学和Volvo建筑集团。*
+
+`Abstraction`
+
+> In the Systems Engineering (SE) domain there has been a paradigm shift from document-based to model-based system development artefacts; in fact, new methodologies are emerging to meet the increasing complexity of current systems and the corresponding growing need of digital workflows. In this regard, Model-Based Systems Engineering (MBSE) is considered as a key enabler by many central players of the SE community.
+> MBSE has reached an adequate level of maturity, and there exist documented success stories in its adoption in industry. In particular, one significant benefit of utilising MBSE when compared to the traditional manual and document-centric workflows is that models are available from early phases of systems development; these enable a multitude of analyses prior any implementation effort together with other relevant capabilities, like the automation of development tasks. Nonetheless, it is noticeable there is a lack of a common understanding for how formal analyses for the verification and validation (V&V) of systems behaviour, specifically in the early phases of development, could be placed in an MBSE setting.
+> In this article, we report on the planning, execution, and results of a systematic literature review regarding the early V&V of systems behaviour in the context of model-based systems engineering. The review aims to provide a structured representation of the state of the art with respect to motivations, proposed solutions, and limitations. From an initial set of potentially relevant 701 peer-reviewed publications we selected 149 primary studies, which we analysed according to a rigorous data extraction, analysis, and synthesis process. Based on our results, early V&V has usually the goal of checking the quality of a system design to avoid discovering flaws when parts are being concretely realised; SysML is a de facto standard for describing the system under study, while the solutions for the analyses tend to be varied; also V&V analyses tend to target varied properties with a slight predominance of functional concerns, and following the variation mentioned so far the proposed solutions are largely context specific; the proposed approaches are usually presented without explicit limitations, while when limitations are discussed,readiness of the solutions, handling of analysessimplifications/assumptions, and languages/tools integration are among the most frequently mentioned issues.
+> **Based on the survey results and the standard SE practices, we discuss how the current state-of-the-art MBSE supports early V&V of systems behaviour with a special focus on industrial adoption and identify relevant challenges to be researched further.**
+
+## Introduction
+
+系统工程的基本定义、基本流程、关键环节，基于模型的系统工程提出的缘由、基本定义与发展目标。本文通过调研149篇论文，从工业视角中从最先进的技术中得到可用的V&V分析模型，以及从建模角度采用此类分析所需要的先决条件。
+
+系统定义：
+> System Engineering (SE) is defined as “... an integrated set of elements, subsystems, or assemblies that accomplish a defined objective” in the SE handbook by the International Council on Systems Engineering (INCOSE). "[[88]](#88)
+
+系统开发前提：
+> Indeed, standard SE practices put a lot of emphasis on the precondition that starting to build/implement a System of Interest (SoI) should be only done once there exists enough confidence that it will meet stakeholder expectations and needs.[[88]](#88)
+
+MBSE定义：
+> INCOSE defines Model-Based Systems Engineering (MBSE) as “... the formalised application of modelling to support system requirements, design, analysis, verification and validation activities beginning in the conceptual design phase and continuing throughout development and later lifecycle phases”.[[88]](#88)
+
+MBSE名言：
+> To confirm this, the INCOSE 2035 vision states: “The future of Systems Engineering is predominantly Model-Based.” A model is any description of a system that is not the thing-in-itself [[56]](#56). The quote “all models are wrong, but some are useful,” from Box and Draper[[10]](#10), captures a vital essence of modelling.
+
+## Background and Motivation
+
+相比于基于文档的系统工程，MBSE有更强大的推理和评估能力[[36]](#36)。
+
+相比于传统系统工程，MBSE更直观、更容易识别、有更好的追溯性和通过图表编辑的能力[[31]](#31) [[35]](#35)，增加了V&V的机会[^17] [^36]，更好的处理建模的保真度（不过粗也不过细），降低了解决故障和错误的成本。
+
+在早期进行系统建模和分析是系统工程的主要研究阶段。问题：通用建模语言如SysML缺少系统模拟成熟度[[67]](#67) [[94]](#94)。工业工具的互操作性问题限制MBSE的应用[[20]](#20) [[53]](#53)。
+
+### Motivating Example
+
+![Typical MBSE views early in system development.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081401.png)
+
+以建筑设备Construction Equipment (CE)为案例展开说明。早期的V&V可以加快设计和决策，降低大量迭代的风险。用MBSE技术的SE视图，容易更严格地进行分析，通过MBSE进行重用、分析、模拟等，更早地获得有关系统可行性的分析。但系统映射上仍存在差距。
+
+## Related Work
+
+其他类MBSE相关综述。
+
+[[60]](#60) MBSE工具链的调研综述，主要针对SysML，还有工具准备的一些指标，包括集成能力、互操作性和可追溯性等。
+
+[[73]](#73) 嵌入式系统重的MBSE工具，UML、SysML、MARTE相关，论文侧重代码实现。
+
+[[25]](#25) 从语言、工具和方法三方面对MBSE进行分类，SysML是主流，稳健的方法是缺乏的。
+
+[[66]](#66) MBSE多领域建模问题，指出FMI是有前景的，但基于SysML的互操作性和模拟存在问题。
+
+[[94]](#94) 大部分MBSE缺少模拟功能，认为需要扩展实践并质疑符号工具的可行性。
+
+[[41]](#41) MBSE的价值尚未定论。 [[58]](#58) MBSE仍停留在较小的研究群体中。
+
+[[53]](#53) 调研法国工业MBSE从业者，分析积极影响，并提出应将多物理和多学科设计集成到MBSE框架当中。
+
+[[5]](#5) 对机器人和自主系统 Robotic and Autonomous Systems (RAS) 进行文献调研，发现缺乏工业应用，认为系统模型不希望通过低保真度模型给出。
+
+[[2]](#2) 关注UML进行调研，结论：缺乏非功能性测试、缺乏工业或精细评估、对特定领域的描述过于严格、缺乏通用的方法。
+
+[[21]](#21) 研究多学科设计分析和优化Multidisciplinary Design Analysis and Optimisation (MDAO)与MBSE的关系，因为它可以与低保真模型集成并考虑模型不确定性等。
+
+[[86]](#86) 模拟模型验证和测试：运筹学、仿真与计算机科学领域，结果是缺乏通用术语、理论与实践之间缺乏联系等。
+
+## Research Method
+
+遵循[[51]](#51)的研究方法，三阶段：**planning, performing and reporting**。
+
+规划阶段：确定文献中的差距和审查需求（2、3节）；定义推动工作的研究问题（4.1节）；定义审查流程和所涉及的作者的指导方针。
+
+执行阶段：步骤有Search, Selection, Snowball, Definition of data collection table, Data extraction, and Data analysis。确定论文，构建数据收集表，验证提取编码，横纵向分析。
+
+报告阶段：记录审查结果（6节）并对有效性的潜在威胁以及应采用的相应环节策略（5节）。
+
+### Research Questions
+
+提出5个问题：
+
+- 定义：How is early V&V **defined and motivated** in the MBSE literature? 在MBSE文献中，早期V&V是**如何定义和激发**的？
+- 方法：What are the **means for describing system behaviour** at an early stage of development? 在开发早期阶段**描述系统行为的方法**有哪些？
+- 结论：What are the **results of interest** for the early V&V, and what techniques are employed for performing the analysis? 早期V&V**感兴趣的结果**是什么？以及使用哪些技术进行分析？
+- 应用：Which are the **application domains** employing early V&V? 早期V&V的**应用领域**有哪些？
+- 限制：What are the **limitations** of the existing approaches for early V&V? 现有的早期V&V方法有哪些**局限性**？
+
+### Search Process
+
+数据库：The following databases were searched for information: ACM, IEEE, ScienceDirect, and Scopus.
+
+关键字：(“MBSE” OR “Model-based systems engineering” OR “Model based systems engineering”) AND (“Validation” OR “Verification” OR “V&V” OR “Evaluation”) AND (“Behavior” OR “Behaviour”).
+
+### Inclusion Process with Inclusion and Exclusion Criteria
+
+制定了调研范围论文的纳入规则（2条）与排除规则（6条）inclusion criteria (IC) and exclusion criteria (EC)。
+
+### Data Collection and Analysis
+
+介绍了论文统计信息的表格，对应5个问题共计12条。
+横纵分析：纵向分析是对每个特定的问题进行深入探讨（6节）；横向分析侧重跨数据模式和相关性，包括是否采用SysML、工具的许可类型与限制类别（7节）。
+
+## Threats to Validity
+
+参考[[92]](#92)进行有效性分析。
+
+### Data Reproduceability
+
+为了易读性和简洁性，总结了结果并突出显示了选定的特殊结果。开源了统计数据，在[github](https://github.com/BeeCub3/Replicate-package)中。
+
+### External Validity
+
+外部有效性的威胁主要与要分析的论文的检索有关。通过进行8轮snowballing操作检索论文，确保没有论文遗漏。在论文写完后又检索了一遍。
+
+### Internal Validity
+
+内部效度是指任何主要因参与研究的审稿人偏见而产生的威胁。解释了没有偏见的原因，包括提取论文内容后进行重新编码，使用Covidence确保评论之间的一致性。
+
+### Construct Validity
+
+结构效度主要与从看待方式和得出结论之间的关系得出错误结论的风险有关。解释snowballing操作的好处。
+
+### Conclusion Validity
+
+对结论有效性的威胁是指对研究结果进行误解的任何风险。又解释了一下。
+
+## Findings
+
+### Pubiolication Details
+
+![The distribution of the analysed papers as clustered by year and type of publication.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081402.png)
+
+### RQ1 - How Is Early Validation and Verification Motivated and Defined in the Literature for MBSE?
+
+*How Does the Community Define Early V&V?*
+7成认为设计阶段，2成认为需求阶段，1成认为两者都有。
+
+*What Are the Main Motivating Reasons for Doing Early V&V?*
+依次是“在继续实施后确保设计达到所需的水平”、“通过后期缺陷检测降低风险”、“缩短开发时间”、“降低不完整需求的风险”、“在实施前探索系统行为”。
+
+- V&V of design before implementation
+- Reduce risk with late flaw detection
+- Reduce risk for incomplete requirements
+- Explore system behaviour before implementation
+
+*RQ1 discussion*
+总而言之，虽然提取的动机原因存在一些分歧，但人们似乎一致认为，在开发的早期阶段进行V&V是降低开发成本和减少开发生命周期后期缺陷风险的关键。
+提取的数据表明，MBSE 在系统设计中使用分析方法已达到成熟度，具有显著的优势，也可能意味着需求阶段对当前方法的附加功能的需求较低。
+
+*Actionable Insights RQ1*
+From the analysis performed we believe the following action point to be valuable for the community in the context of RQ1:
+
+- Motivations for V&V stakeholders seem to be somewhat unclear or implicit. Seemingly, there is no clear view of the expected value in performing early V&V.**V&V利益相关者的动机似乎有些不清楚或不明显。从表面上看，对于执行早期V&V的期望值没有明确的看法。**
+- Processes typically span several development stages, seen through the divide between requirements and design, yet, there is little discussion on holistic approaches or possible benefits expected by models to bridge stages.**过程通常跨越几个开发阶段，通过需求和设计之间的划分来看，然而，很少有关于整体方法的讨论或者模型预期的可能的好处来跨越阶段。**
+- Artefacts should be used by several domains and users during development, yet there is little discussion on the interoperability or re-use of V&V artefacts.**在开发过程中，工件应该被几个领域和用户使用，但是很少有关于V&V工件的互操作性或重用的讨论。**
+- There is a broad range of definitions (and many papers make no attempt) for early V&V. Subsequently the expected stakeholders tend to diverge in the papers, and there is a vague understanding about how early V&V slots into the overall SE processes and how it can guide development effectively.**早期V&V有各种各样的定义(许多论文没有尝试)。随后，预期的利益相关者往往在论文中出现分歧，并且对于早期V&V如何融入整个SE流程以及它如何有效地指导开发存在模糊的理解。**
+
+### RQ2 - What Are the Means of Describing System Behaviour at an Early Stage of Development?
+
+*How Is System Behaviour Represented in Early V&V?*
+描述系统行为的语言：主流的语言是SysML，占一半，UML也比较多，其余的依次有OCL、Custom language、Simulink、MARTE、AADL、ModelicaML、EAST-ADL、Informal/Nature Language、OWL、Language agnostic、DoDAF等，还有其他自定义的语言。SysML中，活动图和状态机图比用例图和序列图更受欢迎。
+
+*What Language or Formalism Is Utilised for Behaviour Analysis?*
+解决方案中用于执行分析的语言：很大一部分会选其他，其余比较多的依次是SysML、Simulink、Modelica、Petri Net、UPPAAL等。
+
+*If the Description and Analysis Language Differ, Then How Is the Transformation Performed?*
+SysML主要用于表示系统行为，但很少用于分析。大多数时候需要对不同语言和形式间进行转换，将表示语言转换为分析语言。63%的论文使用了自动转换，12.7%使用了半自动转换。
+
+*RQ2 discussion*
+最常被提及的语言是 SysML、Simulink 和 Modelica。 Petri 网图（具有各种形式）、UPPAAL 和其他类似语言也经常被使用。
+从更广泛的角度来看，基于 SysML 和 UML 的语言被广泛用于行为描述，这可能证实了它们作为早期系统建模事实上的标准的地位。
+依靠模型转换来创建分析模型会对这些转换产生相关的依赖性，但对转换可行性的讨论却很少。同样，除了互操作性和可扩展性之外，跨不同语言的一致性管理概念也大多缺失。在工业环境中实施 MBSE 通常会依赖于大型工具链，在工具、标准和用户不断变化的环境中依赖一组模型转换具有相当大的风险。对于不使用转换的语言，许多都是在 Simulink 等高级工具或 Cameo Systems Modeller 或 MagicDraw 等集成 MBSE 工具包中实现的，这暗示这些解决方案与行业需求更紧密地联系在一起。
+
+*Actionable Insights for RQ2*
+From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO2:
+
+- There is little discussion on the transformation details, are they two-way, how oftenshould they be employed, consistency management, coupling, maintainability, etc.**很少有关于转换细节的讨论，它们是双向的吗，它们应该多久被使用一次，一致性管理，耦合，可维护性，等等。**
+- Scalability oflanguages for analysis could be a weak point, top choices are implementedin industrial tools while many academic choices are based on small scale examples.Few solutions present general approaches that can be implemented in more than onelanguage and/or formalism for description or analysis.**用于分析的语言的可扩展性可能是一个弱点，顶级选择是在工业工具中实现的，而许多学术选择是基于小规模的例子。很少有解决方案提出可以用一种以上的语言和/或形式来实现描述或分析的通用方法。**
+- Considering many commonlyused languages like SysML are semi-formal the reliance on specifc notations andlanguages (and per extension tools) reduces generalisability.**用于分析的语言的可扩展性可能是一个弱点，顶级选择是在工业工具中实现的，而许多学术选择是基于小规模的例子。很少有解决方案提出可以用一种以上的语言和/或形式来实现描述或分析的通用方法。**
+
+### RQ3 - What Are the Results of Interest for Authors Performing Early V&V, and What Techniques Are Employed for the Required Analysis?
+
+*What Methods and Techniques Are Used for Analysis?*
+最常见的是模拟，或者分析用的包括静态分析和模型检查。
+
+*What Results Are of Interest for the Authors?*
+主要关注分析反馈的结果。与航空航天或汽车等代表性领域相比，发电厂、运河/水路系统、Web应用程序和医疗系统等领域的词汇量各不相同。尽管如此，我们仍然可以发现一些明显的趋势，例如执行轨迹和预期的功能行为备受关注。同样，通常通过静态分析获得的结果（例如活性、不一致性、无死锁性、可达性等）也经常被报道。一些论文认为，他们的分析方法适用于特定环境下的应用，因此感兴趣的结果可能因使用场景而异。
+
+*What Are the Tools Used for Analysis?*
+与之前关于系统描述和 V&V 分析语言的结果一致，使用的工具数量非常多，而且大多数工具在所分析的论文中只出现过一两次。更常见的类别是集成 MBSE 工具包、图形编程/仿真环境、模型检查器、建模框架和仿真工具包。 最常用的单个工具是 MATLAB/Simulink 及其相应的库和基于 EMF 的解决方案。EMF 是领先的免费/开源建模平台之一，这使其成为学术研究的一个有吸引力的工具/平台。类似地，MATLAB/Simulink 既适用于学术界也适用于工业界，在基于模型的社区中有着丰富的应用历史。除了这些工具之外，许多专有的 SysML 编辑器因其集成的分析功能而被广泛使用，至少部分消除了对描述和分析行为的不同工具的需求。
+
+*RQ3 discussion*
+模拟是迄今为止最常用的分析方法。这或许表明，为了在早期阶段进行有意义的分析，需要有先进的分析方法，尤其是针对动态行为。除了模拟之外，还有更广泛的不同方法可以简化为模型检查或自动审查/检查。
+总体而言，嵌入式系统领域似乎对早期 V&V 的流程和范围有更清晰的认识，这反映在与其他类型的领域相比更紧凑的工具、语言和结果集上。此外，嵌入式系统领域在早期验证实践方面表现出一定的成熟度，在早期 V&V 的观察时间线中，有较早的出版物。
+SysML 和 UML 配置文件等通用语言的半形式化特性的强大灵活性。当然，这种半形式化描述通常需要转换为更结构化的表示形式进行分析，这增加了复杂性并降低了建模的自由度，因为自动转换需要结构化格式。
+Eclipse/EMF、MATLAB/Simulink、Papyrus、OpenModelica 和 UPPAAL 是更常见的报告工具。论文中还介绍了一些不执行语言间转换的工具，如 MagicDraw 和 Cameo Systems Modeler。
+虽然工具与 MBSE 紧密相关，但令人惊讶的是，很少有解决方案声称与工具无关。事实上，如果工具是核心，那么 MBSE 同样会考虑方法、方法论和语言。然而，许多解决方案都依赖于特定于工具的分析，无论解决方案是否广泛。学术工具往往更紧凑、更开放，以获得最佳效果，而工业工具通常应该集成到更大的流程中，而且人们不愿意使用公开可用的工具，因为除了知识产权保护问题外，对于大型企业来说，它很少具有可扩展性和可维护性。因此，许多工具都是针对特定案例的，这一事实导致了已知的互操作性和可维护性问题。
+
+*Actionable Insights RQ3*
+From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO3:
+
+- Tooling should carry much of the weight in terms of MBSE processes, many of the observed tools are disjoint from the overall processes and need to be integrated efcientlywhile few solutions emphasise interoperability.**工具应该在MBSE过程中占很大比重，许多观察到的工具与整个过程脱节，需要有效地集成，而很少有解决方案强调互操作性。**
+- Few solutions discuss approaches that can be adapted or applied in more than onenotation/tool, further reinforcing the vendor lock-in.**很少有解决方案讨论可以在一个以上的旋转/工具中适应或应用的方法，这进一步加强了供应商锁定。**
+- While simulation is the most common analysis method it is rarely discussed for whatconditions and boundaries its results can be considered valid or not, Moreover, how theanalysis should be integrated into decision-making concretely, apart from high-levelobservations, is left unspecifed.**虽然模拟是最常见的分析方法，但很少讨论其结果在什么条件和边界下被认为是有效的，此外，除了高水平的观察之外，如何将分析具体地整合到决策中，也没有具体说明。**
+- The target properties for the proposed early analysis are many with no evident pattern of classifcation or catalogue referenced in the literature.**提议的早期分析的目标属性很多，在文献中没有明显的分类或目录模式。**
+
+### RQ4 - What Are the Results of Interest for Authors Performing Early V&V, and What Techniques Are Employed for the Required Analysis?
+
+*What Is the Reported Domain?*
+论文中观察到的领域众多，其中最突出的是航空航天和航空电子。14 其他存在感很强的领域包括嵌入式系统、信息物理系统、安全关键系统、汽车和铁路。最后，还有一大类领域在论文中只被提及过一次，例如核电站、运河系统、网络应用程序和云计算。
+
+鉴于所开发系统的复杂性和该领域的历史相关性，航空航天有望成为最常被报道和研究的领域之一。事实上，MBSE 有著名的推动者，例如 NASA，他们就该主题开展了高质量的研究。同样，嵌入式系统在形式化方法和模型检查方面也相当成熟，这些方法经常在论文中报道。此外，汽车和铁路行业在基于模型的实践方面有着坚实的基础，并且存在针对汽车的标准，例如 AUTOSAR。信息物理和安全关键系统是比前面提到的更广泛的类别，但我们无论如何都观察到了强大的存在。在这种情况下，CPS 通常受益于模型提供的统一视图（例如，出于集成分析目的），而安全关键系统需要早期分析以提供必要的证据，证明系统将满足所施加的要求。
+
+*Is the Solution Domain Specific?*
+绝大多数论文用于特定领域，少数说领域无关或者领域可扩展。
+
+*How Was the Solution Validated?*
+3成论文在工业环境中进行了评估并展示了影响力。7成的论文使用[[79]](#79)定义的某种形式运行示例来验证解决方案。
+关于早期验证用户的结果与其他类别一致，因为存在很大且显著的分布。这方面的异常值是航空航天（相关领域涉及航空电子）、嵌入式系统、CPS、安全关键系统、铁路和汽车。有趣的是，嵌入式系统领域的解决方案在分析的论文中提出的解决方案方面往往是一致的，而其他领域则并非如此。事实上，在大多数较大的报告领域中，对于预计如何进行早期 V&V，没有共同/共享的观点。例如，在航空航天领域，有需求分析、模拟、可调度性分析、模型检查、图表检查等例子。
+
+*RQ4 discussion*
+正如人们所料，大多数解决方案都是特定领域的，只有大约 11% 的解决方案声称适用于任何领域。事实上，由于在 SE 流程的早期进行分析需要做出假设或管理不确定性，因此解决方案往往是特定领域的，因为需要更精确、更可靠的信息来构建分析。此外，由于许多目标语言或工具通常与某个领域紧密相关，因此需要制定配置文件和约束，以便能够足够严格地应用 SysML 和类似的半正式（通用）语言。
+大约 34% 的分析论文描述了在工业环境中进行的研究，这似乎表明许多解决方案具有工业适用性。事实上，MBSE 是一种具有坚实工业视角的范式，它对各种解决方案提出了许多要求。与这一广泛的工业范围相关，我们还注意到，大多数解决方案都是不同程度地基于示例，较少关注经验测量。事实上，只有少数论文讨论经验证据来支持解决方案，而这些解决方案在很大程度上依赖于对感知到的益处的争论。这些观察结果与之前报道的 MBSE 的弱点一致，即缺乏经验证据。在这方面，我们认为，对于这种性质的解决方案，经验证据可能很难产生，因为测量定义复杂，在工业环境中执行可能具有挑战性，而不会引入偏见和其他有效性威胁的高风险。然而，这是一个反复出现的问题，涉及基于模型的实践，阻碍了更广泛范围内的基于证据的讨论。
+
+*Actionable Insights RQ4*
+From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO4:
+
+- SE at its core pursues customer satisfaction and correct delivery of systems, yet thereare few attempts to measure and compare solutions, and there is a general lack ofbaselines for V&V approaches.**系统工程的核心是追求客户满意和系统的正确交付，但是很少尝试测量和比较解决方案，并且普遍缺乏V&V方法的基线。**
+- MBSE processes are large and map well to complex domains. However many of theexamples included in academic works seem to be too simplistic to be convincinglyadopted in industrial contexts and make no attempt to discuss these concerns.**MBSE过程很大，并且很好地映射到复杂的域。然而，学术著作中的许多例子似乎过于简单，难以令人信服地应用于工业领域，也没有试图讨论这些问题。**
+- MBSE artefacts are often complex and domain-specific. More unified/standard approaches could be very valuable, and a common-ground for different domains couldimprove training and enable easier comparison of methods and solutions.**MBSE人工制品通常是复杂的和特定领域的。更统一/标准的方法可能是非常有价值的，不同领域的共同点可以改善培训，并使方法和解决方案更容易比较。**
+- There is seemingly no clear indication of whom the target user(s) is in the broadercontext of early V&V, further indicating a lack of clear definition and placement in MBSE processes.**在早期V&V的大背景下，似乎没有明确的迹象表明谁是目标用户，这进一步表明在MBSE流程中缺乏明确的定义和定位。**
+
+### RQ5 - What Limitations Do Authors See, if Any, with Their Implemented Solutions?
+
+并非所有作者都指出了他们提出的早期 V&V 方法的局限性。那些确实指出了局限性的作者的结果。最大的局限性是所提出的解决方案尚未完全开发，通常只部分涵盖了作者感兴趣的内容；另一个重大挑战是由于在描述和分析语言或形式主义存在差异时集成语言；报告的其他问题包括缺乏自动化；行为描述语言的表达能力有限是另一个常见的限制
+
+*RQ5 discussion*
+我们注意到，许多所述的限制与开发过程处于早期阶段这一事实直接或间接相关。事实上，如果抽象程度很高和/或已知系统的细节很少，那么分析应该会很有限或很肤浅。不过，作者明确表示，这是解决方案的一个可观察到的缺点，突出了在早期阶段平衡模型的保真度和抽象性的难度。同样，我们注意到许多与工具和学习曲线有关的问题，这些问题是软件和系统建模中常见的问题。
+从更广泛的角度来看，MBSE 和 SE 通常针对整个系统生命周期。许多 MBSE 方法，例如 MagicGrid 为各个生命周期阶段的活动和方法提供了一个框架。有趣的是，只有少数解决方案讨论了将早期 V&V 活动和结果与后期阶段互连的潜在局限性。值得注意的是，虽然一些论文将各个阶段联系起来，但对每个阶段工件之间可追溯性的讨论和应用却很有限。在 INCOSE 等组织提出的愿景中，经常重申未来的建模应该涵盖系统生命周期的所有部分。**然而，如果在各个阶段生成的模型之间没有更复杂的可追溯性手段，就存在引入不一致或与跨工件管理信息相关的额外工作量的风险。** 事实上，这是以文档为中心的开发中发现的问题之一，经常被用作转向基于模型的实践的论据。
+
+*Actionable Insights RQ5*
+From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO5:
+
+- MBSE processes are continuous (and often iterative) methodologies for system refne-ment. The limitations hint at the difculty in managing model fdelity and abstractionto correctly leverage analysis results from considered artefacts.**MBSE过程是系统改造的连续(通常是迭代)方法。这些限制暗示了管理模型交付和抽象的困难，以正确地利用来自被考虑的工件的分析结果。**
+- MBSE artefacts are expected to evolve, therefore the limitations related to integration,abstraction management, and scalability have an important impact.**MBSE工件预计会发展，因此与集成、抽象管理和可伸缩性相关的限制会产生重要的影响。**
+- Often the main stakeholders in MBSE are the engineers, since many of the limitationsare due to the difculty to apply the methods for the corresponding scenario, it can bederived a general lack of prioritisation for usability concerns.**通常，MBSE的主要利益相关者是工程师，因为许多限制是由于难以将方法应用于相应的场景，这可能导致可用性问题的优先级普遍缺乏。**
+- Frequently recurring limitations are due to analytical simplifcations, which seems tocontradict the inherent essence of early V&V, This hints at a missing clear definitionof what early is, and what can be expected from analysis at such a stage.**经常重复出现的局限性是由于分析上的简化，这似乎违背了早期V&V的内在本质，这暗示了早期是什么，以及在这样一个阶段可以从分析中期待什么，缺少一个明确的定义。**
+
+## Horizontal Analysis
+
+### SysML and Simulation
+
+本节只关注使用了SysML的论文。采用模拟的方法倾向于使用SysML，不使用的有4成。
+
+### Tools and Extra Results
+
+当作者对更广泛的反馈感兴趣而不仅仅是 V&V 结果时，他们不太可能使用多种工具进行分析。相反，当作者对 V&V 之外的结果不感兴趣时​​，他们可能会使用更多工具进行分析。也许这可以归因于所提出的解决方案的成熟度：不太成熟的方法可能包括更多软性优势以达到说服目的，而成熟的解决方案则更注重应用场景中衡量的性能。
+
+### License and Development Phase
+
+工具许可在设计阶段往往是专有的，而在需求阶段则更有可能是免费的。 此外，与专有许可相比，涉及两个阶段的解决方案显示出开源和免费工具的（大致）均匀混合。
+
+### Industry, License, and SysML
+
+虽然（如预期的那样）学术解决方案倾向于免费或开源工具，而行业则倾向于专有工具，但我们在三向映射中看到了两个不同的类别。首先，我们注意到，如果 SysML 在学术界使用，那么工具更可能是专有的而不是免费的，而非 SysML 解决方案最有可能是免费或开源的。此外，对于行业而言，非 SysML 解决方案更可能是免费的，而不是专有的。在这种情况下，我们观察到，无论 SysML 在何处使用，所使用的工具更可能是专有的，而如果解决方案不使用 SysML，则许可证更可能是免费或开源的。
+
+### Other Observations form Horizontal Analysis
+
+- SysML 在设计中的使用比在需求中的使用更多。这可能部分是因为需求阶段的解决方案可以正式完成，而不是依赖于 SysML 这样的非正式语言，因此避免了转向更正式的语言进行分析的需要。
+- 模拟在特定领域的解决方案中更为常见，因为 117 个（70.9%）特定领域的解决方案中有 83 个使用了模拟，而非特定领域的解决方案中只有 16 个（43.7%）使用了模拟。
+- 特定领域的解决方案拥有更多的专有许可证，在这方面，特定领域的解决方案可能需要更高级或更专业的软件，从而导致可用的开源或免费解决方案更少。
+- 在工业环境中的 51 个解决方案中，有 32 个（62.7%）使用 SysML，在 98 个学术解决方案中，有 49 个（50%）使用 SysML。我们预计工业和学术之间的差异会更大，尤其是考虑到大多数 SysML 工具都不是免费的或开源的。然而，工业和学术提取的数据相对相似。这进一步加强了 SysML 是 MBSE 的事实标准语言这一观点。
+- 工业环境倾向于使用多种工具，因为在工业环境中，51 个解决方案中有 34 个（66.6%）使用多种工具，而在学术环境中，98 个解决方案中有 52 个（53%）使用多种工具。这种趋势可以通过以下事实来解释：工业环境更有可能需要高级或专门的工具来实现其目的，而一种工具很少能用于所有分析目的。
+- 作者更有可能在学术环境中发现局限性，因为在学术环境中的 98 篇论文中有 64 篇（65.3%）讨论了其解决方案的局限性。相比之下，在工业环境中的 51 篇论文中有 28 篇（54.9%）描述了其环境中的局限性。这可能与学术界和工业界在传播研究成果方面有不同的兴趣有关（例如，讨论开放的挑战与强调成功的实践）。
+- 大多数使用 SysML 的实现无论如何都需要对语言进行某种扩展或转换为另一种语言或形式主义以用于分析目的。因此，在与领域无关的情况下，可能更倾向于采用一种需要较少努力来执行 V&V 分析的行为描述语言。
+
+*Actionable Insights Horizontal analysis*
+From the analysis performed we believe the following action points to be valuable for thecommunity in the context of the horizontal analysis:
+
+- SysML as a language is more dependent on proprietary tooling and extensions withother mechanisms for analysis compared to other languages, reducing the option foranalysis without heavy investment in surrounding technologies.**与其他语言相比，SysML作为一种语言更依赖于专有工具和具有其他分析机制的扩展，这减少了在没有对周围技术进行大量投资的情况下进行分析的选择。**
+- The gap between academia and industry is noticeable in many categories, hinting at agreater misalignment. Particularly, the tools, languages, and methods differ in termsof preferences.**学术界和工业界之间的差距在许多领域都很明显，暗示着更大的错位。特别是，工具、语言和方法在偏好方面有所不同。**
+- Few general purpose solutions utilise simulation, hinting at the need for domain.specifc information for valid simulations. This, in conjunction with the overwhelminguse of simulation as a V&V method, could explain the lack of general approaches.**很少有通用的解决方案利用模拟，这暗示了对有效模拟的领域特定信息的需求。这一点，连同作为V&V方法的模拟的过度使用，可以解释通用方法的缺乏。**
+
+## Discussion and Outlook
+
+### Limitations of Early V&V
+
+多亏了好的工具，集成更先进的工作流程和强大的功能将变得更加容易，正如其他评论中广泛讨论的那样。尽管工具是 MBSE 分类的核心，但直到今天，它仍然是更广泛采用基于模型的实践的关键障碍。工具经常出现的问题，例如互操作性和可扩展性，似乎限制了学术解决方案在工业领域的应用。
+早期开发阶段的另​​一个相关特征是存在强烈的不确定性，被分析的系统需要考虑可能结果的不确定性。特别是，由于使用高抽象层次的模型，不确定性会增加。此外，在处理异构模型和系统时，由于各种类型的不确定性以及具有不确定性的不同模型之间的相互作用，复杂性也增加了。
+文献中讨论了 MBSE 中不确定性的存在和管理 [[7]](#7) [[63]](#63) [[90]](#90)。据这些作者所知，没有具体的指标或方法可以有效地管理 MBSE 中的不确定性。
+似乎缺乏易于获取且富有成效的方法来学习所审查文献中讨论的基于模型的方法。
+
+### Early V&V in the Broader Context of MBSE
+
+人工智能将发挥作用的两个场景：早期开发中的不确定性和为新手提供帮助。
+在审查这些论文时，缺少关于传播在各个生命周期阶段开发的工件以及 SE 生命周期与早期 V&V 活动的关系的讨论。如果不将不确定性或早期模型的演变/细化传播到开发的后期阶段，则很有可能会创建并丢弃此类模型，这通常被称为基于文档的开发的弱点，并且可能不利于重用。
+在 SE 生命周期中更稳健地传播工件的可能解决方案也可以与敏捷 MBSE [[76]](#76) 和 DevOps [[62]](#62) 相关。这些范例被视为数字线程的推动者 [[80]](#80)，并引起了业界越来越多的兴趣。
+另一个相关方面是使用数字孪生 (DT) [[48]](#48)：利用 DT 被视为设计过程中的强大推动者，也是在系统实施之后集成分析的一种手段。
+
+### Empirical Measurements and Benchmarks in MBSE
+
+对于所研究的解决方案类型，没有基准或类似的参考测量，作者通常采用临时或特定案例的指标。
+测量通常仅限于所提出的 V&V 解决方案的质量属性，而没有尝试在 MBSE 环境中测量解决方案的有效性。
+对 MBSE 感知价值的批判性评论发现，采用 MBSE 带来的好处中只有大约 10% 是与任何指标相对照的，测量评估的低比例同样反映在这篇评论中，约为 11%。缺乏适当的 MBSE 使用情况报告指标限制了研究的影响，因为它通常仅限于轶事例子或观察，很难放在更广泛的背景下。
+Garousi 等人 [[33]](#33) 对产学研合作面临的挑战进行了文献综述，发现常见的挑战与学术解决方案在工业环境中的适用性不足以及对有价值解决方案的不同看法有关。此外，Garousi 等人强调，合作的最佳实践是以现实世界的问题为基础进行研究。但研究和实践之间仍然存在相当大的差距。在这方面，一个可能的解决方案是通过对学术界开发的解决方案提出更明确的要求来具体化与 MBSE 相关的工业需求。从工业角度对 MBSE 解决方案定义更严格的要求可能是弥补目前观察到的一些差距的一种手段。
+
+### Barriers for Industrial Adoption of Early V&V in MBSE
+
+![Challenges for industry adoption of Early V&V for system behaviour in MBSE.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081403.png)
+
+*Model Based*
+找到抽象和保真度之间的正确平衡是一个反复出现的挑战，并且通常是在 MBSE 背景下实现成熟的早期 V&V 的先决条件。事实上，从业者本身在论文中大多被忽略，解决方案的整体可用性并不是优先事项。似乎没有明确的观点来解决这个问题，也许是因为 RQ4 中看到的许多领域的广泛应用。 此外，基于模型的实践在很大程度上依赖于工具，并且在提取过程中遇到了许多传统问题，例如互操作性、自动化和可扩展性，这再次证实了该领域以前的工作。学术工具与更重要的工具环境集成的讨论明显不足。正如预期的那样，挑战是重叠的，但当行业越来越多地转向 OSLC15 等标准以促进更标准化的数据交换时，观察到的许多学术解决方案都存在目标非常狭窄、工具和语言独特的问题。此外，行业从业者和学术研究人员之间似乎存在差距，而且为学术界开发的工具可能旨在解决与行业需求不同的其他问题。
+
+*Systems Engineering*
+使用 SE 的大部分行业正在向至少部分采用 MBSE 的方向转变。然而，遗留问题往往是巨大的，不能简单地为了新方法或工作方法而丢弃，但关于如何在 RQ3 数据提取中促进这种集成的讨论却很少。然而，这些解决方案通常是为专家受众设计的，这限制了解决方案的更广泛适用性（特别是因为许多工程师在基于模型的方法方面都是完全的新手）。采用的一大障碍是难以提供 MBSE 方法的可衡量效益。许多解决方案仅限于扩展到周围活动，例如，解决方案缺乏上下游联系。同样，关于如何管理分析模型以促进重复使用和高效的未来决策的讨论很少。可追溯性以及最近的数字线程在很大程度上被忽略了，从而降低了它们的适用性。普遍缺乏与领域无关的和更通用的解决方案阻碍了现有解决方案的采用。
+
+*Validation & Verification*
+解决方案中一个很大的空白是讨论不确定性和分析有效性，这也是 RQ5 中的局限性之一。在开发的早期阶段，所有模型中都存在不确定性，需要付出相当大的努力来缓解和推理，以便正确定位结果并将其用于决策。然而，很少有人讨论如何在解决方案中管理不确定性，以及分析抽象会带来什么影响，这是作者在 RQ5 中报告的更突出的局限性之一。分析有效性也是如此。如果对重复使用感兴趣，那么就需要对何时可以使用方法或模型进行正确分析以及用户如何根据案例确定所考虑的模型是否足够丰富以产生有效的分析结果进行分类。同样，许多解决方案使用自定义工具进行实施，限制了 SE 流程中的集成。特别是，依赖几种特定的工具会增加流程的复杂性，并可能导致供应商锁定增加。
+
+## Conclusions
+
+> This article reports the results of a systematic literature review on early behaviour validation and verification in model-based systems engineering. From a set of 701 papers retrieved through searches and snowballing activities, we selected 149 relevant contributions, we extracted and coded the obtained data, and we performed analyses whose results and findings are presented in the work. In this respect, we notice an increased interest in performing early V&V and observe a broad range of domains in the analysed papers, with a corresponding variety of methods, tools, and languages. Further, we note a strong industrial presence in the literature and several industrial perspective trends that differ from the academic ones. To name a few of our findings, we note that SysML is the most represented language in industry and academia for describing system behaviour. In contrast, the language or formalism for analysis varies between most solutions. Additionally, several limitations are identified, indicating a lack of readiness for the solutions together with the concerns about managing analysis with low-fidelity models. Finally, a significant divide emerges between the academic and industrial implementation of solutions; such a divide is especially observable for SysML, utilised across all contexts but relying on different tooling for the contexts.
+> We contextualise the review findings and discuss the current status of early validation of system behaviour in the context of industrial MBSE adoption. The review is structured according to the needs of the industry to promote the eventual adoption of early V&V and MBSE processes at large. The review provides actionable insights for the five presented research questions to promote further investigation into this area. Furthermore, we distinguish three areas, Model-Based, Systems Engineering, and Validation & Verification, and highlight a set of corresponding barriers for each area, which we feel need to be addressed to promote and support industrial adoption of early V&V techniques. As such, we hope the findings of this review can provide an adequate state-of-the-art view and pave the way for future investigations for researchers and practitioners.
+
+`个人总结`
+
+本文是一篇高质量的MBSE领域综述，综述的结构本身值得借鉴，文章以V&V过程为对象，研究了MSBE的方法、工具、技术和发展等内容，提出了领域研究的若干关键问题和相关质疑，有很高的参考价值，值得反复查阅。
+
+`参考文献`
+
+<a id="88">[88]</a>David D. Walden, Garry J. Roedler, and Kevin Forsberg. 2015. INCOSE systems engineering handbook version 4: updating the reference for practitioners. In Proceedings of the INCOSE Annual International Symposium, Vol. 25. Wiley Online Library, 678–686.
+<a id="56">[56]</a>Edward A. Lee and Marjan Sirjani. 2018. What good are models? In International Conference on Formal Aspects of Component Software. Springer, 3–31.
+<a id="10">[10]</a>George E. P. Box and Norman R. Draper. 1987. Empirical Model-building and Response Surfaces.John Wiley & Sons.
+<a id="31">[31]</a>Sanford Friedenthal, Regina Griego, and Mark Sampson. 2007. INCOSE model based systems engineering (MBSE) initiative. In Proceedings of the INCOSE Annual International Symposium, Vol. 11. sn.
+<a id="35">[35]</a>Iris Graessler and Julian Hentze. 2020. The new V-model of VDI 2206 and its validation. at-Automatisierungstechnik 68, 5 (2020), 312–324.
+<a id="36">[36]</a>Joe Gregory, Lucy Berthoud, Theo Tryfonas, Alain Rossignol, and Ludovic Faure. 2020. The long and winding road: MBSE adoption for functional avionics of spacecraft. J. Syst. Softw. 160 (2020), 110453.
+<a id="17">[17]</a>Joe Gregory, Lucy Berthoud, Theo Tryfonas, Alain Rossignol, and Ludovic Faure. 2020. The long and winding road: MBSE adoption for functional avionics of spacecraft. J. Syst. Softw. 160 (2020), 110453.
+<a id="67">[67]</a>Mara Nikolaidou, George-Dimitrios Kapos, Anargyros Tsadimas, Vassilis Dalakas, and Dimosthenis Anagnostopoulos. 2016. Challenges in SysML model simulation. Adv. Comput. Sci. Int. J. 5, 4 (2016), 49–56.
+<a id="94">[94]</a>Bernard P. Zeigler, Saurabh Mittal, and Mamadou Kaba Traore. 2018. MBSE with/out simulation: State of the art and way forward. Systems 6, 4 (2018), 40.
+<a id="20">[20]</a>M. Chami and J. M. Bruel. 2018. A Survey on MBSE Adoption Challenges. In INCOSE EMEA Sector Systems Engineering Conference (INCOSE EMEASEC’18). 1–16.
+<a id="53">[53]</a>Christopher Laing, Pierre David, Eric Blanco, and Xavier Dorel. 2020. Questioning integration of verification in modelbased systems engineering: An industrial perspective. Comput. Industr. 114 (2020), 103163.
+<a id="60">[60]</a>Junda Ma, Guoxin Wang, Jinzhi Lu, Hans Vangheluwe, Dimitris Kiritsis, and Yan Yan. 2022. Systematic Literature Review of MBSE Tool-Chains. Appl. Sci. 12, 7 (2022), 3431.
+<a id="73">[73]</a>Muhammad Rashid, Muhammad Waseem Anwar, Farooque Azam, and Muhammad Kashif. 2016. Model-based requirements and properties specifications trends for early design verification of embedded systems. In Proceedings of the 11th System of Systems Engineering Conference (SoSE’16). IEEE, 1–7.
+<a id="25">[25]</a>Pierre De Saqui-Sannes, Rob A. Vingerhoeds, Christophe Garion, and Xavier Thirioux. 2022. A taxonomy of MBSE approaches by languages, tools and methods. IEEE Access (2022).
+<a id="66">[66]</a>Christian Nigischer, Sébastien Bougain, Rainer Riegler, Heinz Peter Stanek, and Manfred Grafinger. 2021. Multidomain simulation utilizing SysML: State of the art and future perspectives. Proc. CIRP 100 (2021), 319–324.
+<a id="41">[41]</a>Kaitlin Henderson and Alejandro Salado. 2021. Value and benefits of model-based systems engineering (MBSE): Evidence from the literature. Syst. Eng. 24, 1 (2021), 51–66.
+<a id="5">[5]</a>Hugo Araujo, Mohammad Reza Mousavi, and Mahsa Varshosaz. 2022. Testing, validation, and verification of robotic and autonomous systems: A systematic review. ACM Trans. Softw. Eng. Methodol. (2022).
+<a id="2">[2]</a>T. Ahmad, J. Iqbal, A. Ashraf, D. Truscan, and I. Porres. 2019. Model-based testing using UML activity diagrams: A systematic mapping study. Computer Science Review 33 (2019), 98–112.
+<a id="21">[21]</a>Jean-Charles Chaudemar and Pierre de Saqui-Sannes. 2021. Mbse and mdao for early validation of design decisions: A bibliography survey. In Proceedings of the IEEE International Systems Conference (SysCon’21). IEEE, 1–8.
+<a id="86">[86]</a>Naoum Tsioptsias, Antuela Tako, and Stewart Robinson. 2016. Model validation and testing in simulation: A literature review. In Proceedings of the 5th Student Conference on Operational Research (SCOR’16). Schloss Dagstuhl-LeibnizZentrum fuer Informatik.
+<a id="58">[58]</a>Zihang Li, Jinzhi Lu, Guoxin Wang, Lei Feng, Didem Gurdur Broo, and Dimitris Kiritsis. 2021. A Bibliometric Analysis on Model-based Systems Engineering. In Proceedings of the IEEE International Symposium on Systems Engineering (ISSE’21). IEEE, 1–8.
+<a id="51">[51]</a>Barbara Kitchenham, Rialette Pretorius, David Budgen, O. Pearl Brereton, Mark Turner, Mahmood Niazi, and Stephen Linkman. 2010. Systematic literature reviews in software engineering—A tertiary study. Inf. Softw. Technol. 52, 8 (2010), 792–805.
+<a id="92">[92]</a>Claes Wohlin, Per Runeson, Martin Höst, Magnus C. Ohlsson, Björn Regnell, and Anders Wesslén. 2012. Experimentation in Software Engineering. Springer Science & Business Media.
+<a id="79">[79]</a>Mary Shaw. 2002. What makes good research in software engineering?Int. J. Softw. Tools Technol. Transf. 4, 1 (2002), 1–7.
+<a id="7">[7]</a>Johan Bergelin, Antonio Cicchetti, and Emil Lundin. 2022. Early validation of heterogeneous battery systems in the railway domain. In Proceedings of the IEEE International Systems Conference (SysCon’22). IEEE, 1–8.
+<a id="63">[63]</a>Yaroslav Menshenin, Carolina Moreno, Yana Brovar, and Clement Fortin. 2021. Integration of MBSE and PLM: Complexity and uncertainty. Int. J. Prod. Lifecycle Manage. 13, 1 (2021), 66–88.
+<a id="90">[90]</a>James R. Williams, Frank R. Burton, Richard F. Paige, and Fiona A. C. Polack. 2012. Sensitivity analysisin model-driven engineering. In International Conference on Model Driven Engineering Languages and Systems. Springer, 743–758.
+<a id="76">[76]</a>Bill Schindel and Rick Dove. 2016. Introduction to the agile systems engineering life cycle MBSE pattern. In Proceedings of the INCOSE Annual International Symposium, Vol. 26. Wiley Online Library, 725–742.
+<a id="62">[62]</a>John T. J. Mathieson, Thomas Mazzuchi, and Shahram Sarkani. 2020. The systems engineering DevOps lemniscate and model-based system operations. IEEE Syst. J. 15, 3 (2020), 3980–3991.
+<a id="80">[80]</a>Victor Singh and Karen E. Willcox. 2018. Engineering design with digital thread. AIAA J. 56, 11 (2018), 4515–4528.
+<a id="48">[48]</a>David Jones, Chris Snider, Aydin Nassehi, Jason Yon, and Ben Hicks. 2020. Characterising the digital twin: A systematic literature review. CIRP J. Manufact. Sci. Technol. 29 (2020), 36–52.
+<a id="33">[33]</a>Vahid Garousi, Kai Petersen, and Baris Ozkan. 2016. Challenges and best practices in industry-academia collaborations in software engineering: A systematic literature review. Inf. Softw. Technol. 79 (2016), 106–127.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>TOSEM</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>Validation &amp; Verification</tag>
+        <tag>MBSE</tag>
+        <tag>Review</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
     <url>/2024/08/17/002/</url>
     <content><![CDATA[
@@ -455,388 +834,83 @@ An autonomous system is an intelligent system that is designed to deal with the 
       </categories>
       <tags>
         <tag>Validation &amp; Verification</tag>
+        <tag>Review</tag>
         <tag>Robotics</tag>
         <tag>RAS</tag>
-        <tag>Review</tag>
       </tags>
   </entry>
   <entry>
-    <title>笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</title>
-    <url>/2024/08/14/001/</url>
+    <title>笔记：What makes a good modeling research contribution?</title>
+    <url>/2024/08/23/004/</url>
     <content><![CDATA[
-[Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review](https://dl.acm.org/doi/full/10.1145/3631976)
+[What makes a good modeling research contribution?]([论文来源](https://link.springer.com/article/10.1007/s10270-024-01177-x))
 
-*作者来自瑞典Mälardalen大学和Volvo建筑集团。*
+*作者是Richard F. Paige。*
 
 `Abstraction`
 
-> In the Systems Engineering (SE) domain there has been a paradigm shift from document-based to model-based system development artefacts; in fact, new methodologies are emerging to meet the increasing complexity of current systems and the corresponding growing need of digital workflows. In this regard, Model-Based Systems Engineering (MBSE) is considered as a key enabler by many central players of the SE community.
-> MBSE has reached an adequate level of maturity, and there exist documented success stories in its adoption in industry. In particular, one significant benefit of utilising MBSE when compared to the traditional manual and document-centric workflows is that models are available from early phases of systems development; these enable a multitude of analyses prior any implementation effort together with other relevant capabilities, like the automation of development tasks. Nonetheless, it is noticeable there is a lack of a common understanding for how formal analyses for the verification and validation (V&V) of systems behaviour, specifically in the early phases of development, could be placed in an MBSE setting.
-> In this article, we report on the planning, execution, and results of a systematic literature review regarding the early V&V of systems behaviour in the context of model-based systems engineering. The review aims to provide a structured representation of the state of the art with respect to motivations, proposed solutions, and limitations. From an initial set of potentially relevant 701 peer-reviewed publications we selected 149 primary studies, which we analysed according to a rigorous data extraction, analysis, and synthesis process. Based on our results, early V&V has usually the goal of checking the quality of a system design to avoid discovering flaws when parts are being concretely realised; SysML is a de facto standard for describing the system under study, while the solutions for the analyses tend to be varied; also V&V analyses tend to target varied properties with a slight predominance of functional concerns, and following the variation mentioned so far the proposed solutions are largely context specific; the proposed approaches are usually presented without explicit limitations, while when limitations are discussed,readiness of the solutions, handling of analysessimplifications/assumptions, and languages/tools integration are among the most frequently mentioned issues.
-> **Based on the survey results and the standard SE practices, we discuss how the current state-of-the-art MBSE supports early V&V of systems behaviour with a special focus on industrial adoption and identify relevant challenges to be researched further.**
+> The modeling field is rapidly evolving and expanding to address new research topics and to connect with new disciplines. As such, what constituted a good modeling research contribution ten years ago may not be the same today. We try to distill some insights of what we (and the community we aim to represent) consider today as key elements of a good research paper in the field of software and systems modeling. Such insights—which will need to evolve and adapt with time—will be useful not just for authors of new papers, but also for reviewers and editors.
 
 ## Introduction
 
-系统工程的基本定义、基本流程、关键环节，基于模型的系统工程提出的缘由、基本定义与发展目标。本文通过调研149篇论文，从工业视角中从最先进的技术中得到可用的V&V分析模型，以及从建模角度采用此类分析所需要的先决条件。
+关于如何撰写优秀软件工程论文的具体建议：针对特定章节的撰写建议[[1]]、不同类型的软件工程论文 [[5]]，甚至关于如何以更符合软件工程审阅者期望的方式撰写论文的建议 [[3]]。
 
-系统定义：
-> System Engineering (SE) is defined as “... an integrated set of elements, subsystems, or assemblies that accomplish a defined objective” in the SE handbook by the International Council on Systems Engineering (INCOSE). "[[88]](#88)
+## Types of contributions to the modeling field
 
-系统开发前提：
-> Indeed, standard SE practices put a lot of emphasis on the precondition that starting to build/implement a System of Interest (SoI) should be only done once there exists enough confidence that it will meet stakeholder expectations and needs.[[88]](#88)
+常见的论文关注的问题：
 
-MBSE定义：
-> INCOSE defines Model-Based Systems Engineering (MBSE) as “... the formalised application of modelling to support system requirements, design, analysis, verification and validation activities beginning in the conceptual design phase and continuing throughout development and later lifecycle phases”.[[88]](#88)
+- how large is the community that the paper aims to address?
+- how much potential impact is there in the result?
+- how complex is the challenge the paper addresses?
+- how substantial is the validation3, e.g., is there an industrial element to the validation?
+- how distant is the topic of the paper from what we typically see in the modeling venues?
+- how readable is the contribution?
+- how relevant are the examples?
+- and finally, how clear and persuasive is the motivation for the research presented in the paper?
 
-MBSE名言：
-> To confirm this, the INCOSE 2035 vision states: “The future of Systems Engineering is predominantly Model-Based.” A model is any description of a system that is not the thing-in-itself [[56]](#56). The quote “all models are wrong, but some are useful,” from Box and Draper[[10]](#10), captures a vital essence of modelling.
+此外，明确研究的正面作用和负面作用也很重要。
+下面将介绍六种具体类型。
 
-## Background and Motivation
+### The contribution is a model
 
-相比于基于文档的系统工程，MBSE有更强大的推理和评估能力[[36]](#36)。
+仅凭一个模型肯定不行。这个新模型能告诉我们关于建模领域的什么？它能帮助我们回答哪些我们以前无法回答的问题？
 
-相比于传统系统工程，MBSE更直观、更容易识别、有更好的追溯性和通过图表编辑的能力[[31]](#31) [[35]](#35)，增加了V&V的机会[^17] [^36]，更好的处理建模的保真度（不过粗也不过细），降低了解决故障和错误的成本。
+### The contribution is a language
 
-在早期进行系统建模和分析是系统工程的主要研究阶段。问题：通用建模语言如SysML缺少系统模拟成熟度[[67]](#67) [[94]](#94)。工业工具的互操作性问题限制MBSE的应用[[20]](#20) [[53]](#53)。
+仅凭一个元模型也不行，需要完整的工作。
 
-### Motivating Example
+### The contribution is a core modeling technique
 
-![Typical MBSE views early in system development.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081401.png)
+这些论文介绍了模型分析（模型验证、确认或测试技术等）或操作技术（模型合并、模型到模型转换、代码生成器等）。或将它们组合起来作为特定建模方法的一部分。这可能是我们多年来看到最多提案的类别。因此，在这一类别中，原创性更难实现，而证明新贡献确实有必要则更为重要。
+例如，很难相信建模社区需要一种新的模型转换方法，除非它与具有非常具体要求的新语言、领域或应用程序相关联。
 
-以建筑设备Construction Equipment (CE)为案例展开说明。早期的V&V可以加快设计和决策，降低大量迭代的风险。用MBSE技术的SE视图，容易更严格地进行分析，通过MBSE进行重用、分析、模拟等，更早地获得有关系统可行性的分析。但系统映射上仍存在差距。
+### The contribution is a modeling application
 
-## Related Work
+仅仅证明建模（或 MDE 或建模工具）可以应用于问题是不够的——相反，必须令人信服地证明建模提供了一些附加值，一些可以量化或以可重复的方式捕获的好处。
 
-其他类MBSE相关综述。
+### The contribution is a (new) modeling domain
 
-[[60]](#60) MBSE工具链的调研综述，主要针对SysML，还有工具准备的一些指标，包括集成能力、互操作性和可追溯性等。
+ 除了单个应用程序（见上文），这里的目标是为新的工程或科学领域提供一些初步支持，然后这些支持可以发展成为该领域的一套完整的建模解决方案和应用程序。
 
-[[73]](#73) 嵌入式系统重的MBSE工具，UML、SysML、MARTE相关，论文侧重代码实现。
+### The contribution is a modeling tool
 
-[[25]](#25) 从语言、工具和方法三方面对MBSE进行分类，SysML是主流，稳健的方法是缺乏的。
+这些工具贡献不应只是研究工作的副产品或简单的一次性原型，而应是一种成熟、可用且广泛的工具，有可能对建模社区产生重大而积极的影响（通过吸引更多用户、促进更多项目采用建模实践等）。
 
-[[66]](#66) MBSE多领域建模问题，指出FMI是有前景的，但基于SysML的互操作性和模拟存在问题。
+## A community effort
 
-[[94]](#94) 大部分MBSE缺少模拟功能，认为需要扩展实践并质疑符号工具的可行性。
-
-[[41]](#41) MBSE的价值尚未定论。 [[58]](#58) MBSE仍停留在较小的研究群体中。
-
-[[53]](#53) 调研法国工业MBSE从业者，分析积极影响，并提出应将多物理和多学科设计集成到MBSE框架当中。
-
-[[5]](#5) 对机器人和自主系统 Robotic and Autonomous Systems (RAS) 进行文献调研，发现缺乏工业应用，认为系统模型不希望通过低保真度模型给出。
-
-[[2]](#2) 关注UML进行调研，结论：缺乏非功能性测试、缺乏工业或精细评估、对特定领域的描述过于严格、缺乏通用的方法。
-
-[[21]](#21) 研究多学科设计分析和优化Multidisciplinary Design Analysis and Optimisation (MDAO)与MBSE的关系，因为它可以与低保真模型集成并考虑模型不确定性等。
-
-[[86]](#86) 模拟模型验证和测试：运筹学、仿真与计算机科学领域，结果是缺乏通用术语、理论与实践之间缺乏联系等。
-
-## Research Method
-
-遵循[[51]](#51)的研究方法，三阶段：**planning, performing and reporting**。
-
-规划阶段：确定文献中的差距和审查需求（2、3节）；定义推动工作的研究问题（4.1节）；定义审查流程和所涉及的作者的指导方针。
-
-执行阶段：步骤有Search, Selection, Snowball, Definition of data collection table, Data extraction, and Data analysis。确定论文，构建数据收集表，验证提取编码，横纵向分析。
-
-报告阶段：记录审查结果（6节）并对有效性的潜在威胁以及应采用的相应环节策略（5节）。
-
-### Research Questions
-
-提出5个问题：
-
-- 定义：How is early V&V **defined and motivated** in the MBSE literature? 在MBSE文献中，早期V&V是**如何定义和激发**的？
-- 方法：What are the **means for describing system behaviour** at an early stage of development? 在开发早期阶段**描述系统行为的方法**有哪些？
-- 结论：What are the **results of interest** for the early V&V, and what techniques are employed for performing the analysis? 早期V&V**感兴趣的结果**是什么？以及使用哪些技术进行分析？
-- 应用：Which are the **application domains** employing early V&V? 早期V&V的**应用领域**有哪些？
-- 限制：What are the **limitations** of the existing approaches for early V&V? 现有的早期V&V方法有哪些**局限性**？
-
-### Search Process
-
-数据库：The following databases were searched for information: ACM, IEEE, ScienceDirect, and Scopus.
-
-关键字：(“MBSE” OR “Model-based systems engineering” OR “Model based systems engineering”) AND (“Validation” OR “Verification” OR “V&V” OR “Evaluation”) AND (“Behavior” OR “Behaviour”).
-
-### Inclusion Process with Inclusion and Exclusion Criteria
-
-制定了调研范围论文的纳入规则（2条）与排除规则（6条）inclusion criteria (IC) and exclusion criteria (EC)。
-
-### Data Collection and Analysis
-
-介绍了论文统计信息的表格，对应5个问题共计12条。
-横纵分析：纵向分析是对每个特定的问题进行深入探讨（6节）；横向分析侧重跨数据模式和相关性，包括是否采用SysML、工具的许可类型与限制类别（7节）。
-
-## Threats to Validity
-
-参考[[92]](#92)进行有效性分析。
-
-### Data Reproduceability
-
-为了易读性和简洁性，总结了结果并突出显示了选定的特殊结果。开源了统计数据，在[github](https://github.com/BeeCub3/Replicate-package)中。
-
-### External Validity
-
-外部有效性的威胁主要与要分析的论文的检索有关。通过进行8轮snowballing操作检索论文，确保没有论文遗漏。在论文写完后又检索了一遍。
-
-### Internal Validity
-
-内部效度是指任何主要因参与研究的审稿人偏见而产生的威胁。解释了没有偏见的原因，包括提取论文内容后进行重新编码，使用Covidence确保评论之间的一致性。
-
-### Construct Validity
-
-结构效度主要与从看待方式和得出结论之间的关系得出错误结论的风险有关。解释snowballing操作的好处。
-
-### Conclusion Validity
-
-对结论有效性的威胁是指对研究结果进行误解的任何风险。又解释了一下。
-
-## Findings
-
-### Pubiolication Details
-
-![The distribution of the analysed papers as clustered by year and type of publication.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081402.png)
-
-### RQ1 - How Is Early Validation and Verification Motivated and Defined in the Literature for MBSE?
-
-*How Does the Community Define Early V&V?*
-7成认为设计阶段，2成认为需求阶段，1成认为两者都有。
-
-*What Are the Main Motivating Reasons for Doing Early V&V?*
-依次是“在继续实施后确保设计达到所需的水平”、“通过后期缺陷检测降低风险”、“缩短开发时间”、“降低不完整需求的风险”、“在实施前探索系统行为”。
-
-- V&V of design before implementation
-- Reduce risk with late flaw detection
-- Reduce risk for incomplete requirements
-- Explore system behaviour before implementation
-
-*RQ1 discussion*
-总而言之，虽然提取的动机原因存在一些分歧，但人们似乎一致认为，在开发的早期阶段进行V&V是降低开发成本和减少开发生命周期后期缺陷风险的关键。
-提取的数据表明，MBSE 在系统设计中使用分析方法已达到成熟度，具有显著的优势，也可能意味着需求阶段对当前方法的附加功能的需求较低。
-
-*Actionable Insights RQ1*
-From the analysis performed we believe the following action point to be valuable for the community in the context of RQ1:
-
-- Motivations for V&V stakeholders seem to be somewhat unclear or implicit. Seemingly, there is no clear view of the expected value in performing early V&V.**V&V利益相关者的动机似乎有些不清楚或不明显。从表面上看，对于执行早期V&V的期望值没有明确的看法。**
-- Processes typically span several development stages, seen through the divide between requirements and design, yet, there is little discussion on holistic approaches or possible benefits expected by models to bridge stages.**过程通常跨越几个开发阶段，通过需求和设计之间的划分来看，然而，很少有关于整体方法的讨论或者模型预期的可能的好处来跨越阶段。**
-- Artefacts should be used by several domains and users during development, yet there is little discussion on the interoperability or re-use of V&V artefacts.**在开发过程中，工件应该被几个领域和用户使用，但是很少有关于V&V工件的互操作性或重用的讨论。**
-- There is a broad range of definitions (and many papers make no attempt) for early V&V. Subsequently the expected stakeholders tend to diverge in the papers, and there is a vague understanding about how early V&V slots into the overall SE processes and how it can guide development effectively.**早期V&V有各种各样的定义(许多论文没有尝试)。随后，预期的利益相关者往往在论文中出现分歧，并且对于早期V&V如何融入整个SE流程以及它如何有效地指导开发存在模糊的理解。**
-
-### RQ2 - What Are the Means of Describing System Behaviour at an Early Stage of Development?
-
-*How Is System Behaviour Represented in Early V&V?*
-描述系统行为的语言：主流的语言是SysML，占一半，UML也比较多，其余的依次有OCL、Custom language、Simulink、MARTE、AADL、ModelicaML、EAST-ADL、Informal/Nature Language、OWL、Language agnostic、DoDAF等，还有其他自定义的语言。SysML中，活动图和状态机图比用例图和序列图更受欢迎。
-
-*What Language or Formalism Is Utilised for Behaviour Analysis?*
-解决方案中用于执行分析的语言：很大一部分会选其他，其余比较多的依次是SysML、Simulink、Modelica、Petri Net、UPPAAL等。
-
-*If the Description and Analysis Language Differ, Then How Is the Transformation Performed?*
-SysML主要用于表示系统行为，但很少用于分析。大多数时候需要对不同语言和形式间进行转换，将表示语言转换为分析语言。63%的论文使用了自动转换，12.7%使用了半自动转换。
-
-*RQ2 discussion*
-最常被提及的语言是 SysML、Simulink 和 Modelica。 Petri 网图（具有各种形式）、UPPAAL 和其他类似语言也经常被使用。
-从更广泛的角度来看，基于 SysML 和 UML 的语言被广泛用于行为描述，这可能证实了它们作为早期系统建模事实上的标准的地位。
-依靠模型转换来创建分析模型会对这些转换产生相关的依赖性，但对转换可行性的讨论却很少。同样，除了互操作性和可扩展性之外，跨不同语言的一致性管理概念也大多缺失。在工业环境中实施 MBSE 通常会依赖于大型工具链，在工具、标准和用户不断变化的环境中依赖一组模型转换具有相当大的风险。对于不使用转换的语言，许多都是在 Simulink 等高级工具或 Cameo Systems Modeller 或 MagicDraw 等集成 MBSE 工具包中实现的，这暗示这些解决方案与行业需求更紧密地联系在一起。
-
-*Actionable Insights for RQ2*
-From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO2:
-
-- There is little discussion on the transformation details, are they two-way, how oftenshould they be employed, consistency management, coupling, maintainability, etc.**很少有关于转换细节的讨论，它们是双向的吗，它们应该多久被使用一次，一致性管理，耦合，可维护性，等等。**
-- Scalability oflanguages for analysis could be a weak point, top choices are implementedin industrial tools while many academic choices are based on small scale examples.Few solutions present general approaches that can be implemented in more than onelanguage and/or formalism for description or analysis.**用于分析的语言的可扩展性可能是一个弱点，顶级选择是在工业工具中实现的，而许多学术选择是基于小规模的例子。很少有解决方案提出可以用一种以上的语言和/或形式来实现描述或分析的通用方法。**
-- Considering many commonlyused languages like SysML are semi-formal the reliance on specifc notations andlanguages (and per extension tools) reduces generalisability.**用于分析的语言的可扩展性可能是一个弱点，顶级选择是在工业工具中实现的，而许多学术选择是基于小规模的例子。很少有解决方案提出可以用一种以上的语言和/或形式来实现描述或分析的通用方法。**
-
-### RQ3 - What Are the Results of Interest for Authors Performing Early V&V, and What Techniques Are Employed for the Required Analysis?
-
-*What Methods and Techniques Are Used for Analysis?*
-最常见的是模拟，或者分析用的包括静态分析和模型检查。
-
-*What Results Are of Interest for the Authors?*
-主要关注分析反馈的结果。与航空航天或汽车等代表性领域相比，发电厂、运河/水路系统、Web应用程序和医疗系统等领域的词汇量各不相同。尽管如此，我们仍然可以发现一些明显的趋势，例如执行轨迹和预期的功能行为备受关注。同样，通常通过静态分析获得的结果（例如活性、不一致性、无死锁性、可达性等）也经常被报道。一些论文认为，他们的分析方法适用于特定环境下的应用，因此感兴趣的结果可能因使用场景而异。
-
-*What Are the Tools Used for Analysis?*
-与之前关于系统描述和 V&V 分析语言的结果一致，使用的工具数量非常多，而且大多数工具在所分析的论文中只出现过一两次。更常见的类别是集成 MBSE 工具包、图形编程/仿真环境、模型检查器、建模框架和仿真工具包。 最常用的单个工具是 MATLAB/Simulink 及其相应的库和基于 EMF 的解决方案。EMF 是领先的免费/开源建模平台之一，这使其成为学术研究的一个有吸引力的工具/平台。类似地，MATLAB/Simulink 既适用于学术界也适用于工业界，在基于模型的社区中有着丰富的应用历史。除了这些工具之外，许多专有的 SysML 编辑器因其集成的分析功能而被广泛使用，至少部分消除了对描述和分析行为的不同工具的需求。
-
-*RQ3 discussion*
-模拟是迄今为止最常用的分析方法。这或许表明，为了在早期阶段进行有意义的分析，需要有先进的分析方法，尤其是针对动态行为。除了模拟之外，还有更广泛的不同方法可以简化为模型检查或自动审查/检查。
-总体而言，嵌入式系统领域似乎对早期 V&V 的流程和范围有更清晰的认识，这反映在与其他类型的领域相比更紧凑的工具、语言和结果集上。此外，嵌入式系统领域在早期验证实践方面表现出一定的成熟度，在早期 V&V 的观察时间线中，有较早的出版物。
-SysML 和 UML 配置文件等通用语言的半形式化特性的强大灵活性。当然，这种半形式化描述通常需要转换为更结构化的表示形式进行分析，这增加了复杂性并降低了建模的自由度，因为自动转换需要结构化格式。
-Eclipse/EMF、MATLAB/Simulink、Papyrus、OpenModelica 和 UPPAAL 是更常见的报告工具。论文中还介绍了一些不执行语言间转换的工具，如 MagicDraw 和 Cameo Systems Modeler。
-虽然工具与 MBSE 紧密相关，但令人惊讶的是，很少有解决方案声称与工具无关。事实上，如果工具是核心，那么 MBSE 同样会考虑方法、方法论和语言。然而，许多解决方案都依赖于特定于工具的分析，无论解决方案是否广泛。学术工具往往更紧凑、更开放，以获得最佳效果，而工业工具通常应该集成到更大的流程中，而且人们不愿意使用公开可用的工具，因为除了知识产权保护问题外，对于大型企业来说，它很少具有可扩展性和可维护性。因此，许多工具都是针对特定案例的，这一事实导致了已知的互操作性和可维护性问题。
-
-*Actionable Insights RQ3*
-From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO3:
-
-- Tooling should carry much of the weight in terms of MBSE processes, many of the observed tools are disjoint from the overall processes and need to be integrated efcientlywhile few solutions emphasise interoperability.**工具应该在MBSE过程中占很大比重，许多观察到的工具与整个过程脱节，需要有效地集成，而很少有解决方案强调互操作性。**
-- Few solutions discuss approaches that can be adapted or applied in more than onenotation/tool, further reinforcing the vendor lock-in.**很少有解决方案讨论可以在一个以上的旋转/工具中适应或应用的方法，这进一步加强了供应商锁定。**
-- While simulation is the most common analysis method it is rarely discussed for whatconditions and boundaries its results can be considered valid or not, Moreover, how theanalysis should be integrated into decision-making concretely, apart from high-levelobservations, is left unspecifed.**虽然模拟是最常见的分析方法，但很少讨论其结果在什么条件和边界下被认为是有效的，此外，除了高水平的观察之外，如何将分析具体地整合到决策中，也没有具体说明。**
-- The target properties for the proposed early analysis are many with no evident pattern of classifcation or catalogue referenced in the literature.**提议的早期分析的目标属性很多，在文献中没有明显的分类或目录模式。**
-
-### RQ4 - What Are the Results of Interest for Authors Performing Early V&V, and What Techniques Are Employed for the Required Analysis?
-
-*What Is the Reported Domain?*
-论文中观察到的领域众多，其中最突出的是航空航天和航空电子。14 其他存在感很强的领域包括嵌入式系统、信息物理系统、安全关键系统、汽车和铁路。最后，还有一大类领域在论文中只被提及过一次，例如核电站、运河系统、网络应用程序和云计算。
-
-鉴于所开发系统的复杂性和该领域的历史相关性，航空航天有望成为最常被报道和研究的领域之一。事实上，MBSE 有著名的推动者，例如 NASA，他们就该主题开展了高质量的研究。同样，嵌入式系统在形式化方法和模型检查方面也相当成熟，这些方法经常在论文中报道。此外，汽车和铁路行业在基于模型的实践方面有着坚实的基础，并且存在针对汽车的标准，例如 AUTOSAR。信息物理和安全关键系统是比前面提到的更广泛的类别，但我们无论如何都观察到了强大的存在。在这种情况下，CPS 通常受益于模型提供的统一视图（例如，出于集成分析目的），而安全关键系统需要早期分析以提供必要的证据，证明系统将满足所施加的要求。
-
-*Is the Solution Domain Specific?*
-绝大多数论文用于特定领域，少数说领域无关或者领域可扩展。
-
-*How Was the Solution Validated?*
-3成论文在工业环境中进行了评估并展示了影响力。7成的论文使用[[79]](#79)定义的某种形式运行示例来验证解决方案。
-关于早期验证用户的结果与其他类别一致，因为存在很大且显著的分布。这方面的异常值是航空航天（相关领域涉及航空电子）、嵌入式系统、CPS、安全关键系统、铁路和汽车。有趣的是，嵌入式系统领域的解决方案在分析的论文中提出的解决方案方面往往是一致的，而其他领域则并非如此。事实上，在大多数较大的报告领域中，对于预计如何进行早期 V&V，没有共同/共享的观点。例如，在航空航天领域，有需求分析、模拟、可调度性分析、模型检查、图表检查等例子。
-
-*RQ4 discussion*
-正如人们所料，大多数解决方案都是特定领域的，只有大约 11% 的解决方案声称适用于任何领域。事实上，由于在 SE 流程的早期进行分析需要做出假设或管理不确定性，因此解决方案往往是特定领域的，因为需要更精确、更可靠的信息来构建分析。此外，由于许多目标语言或工具通常与某个领域紧密相关，因此需要制定配置文件和约束，以便能够足够严格地应用 SysML 和类似的半正式（通用）语言。
-大约 34% 的分析论文描述了在工业环境中进行的研究，这似乎表明许多解决方案具有工业适用性。事实上，MBSE 是一种具有坚实工业视角的范式，它对各种解决方案提出了许多要求。与这一广泛的工业范围相关，我们还注意到，大多数解决方案都是不同程度地基于示例，较少关注经验测量。事实上，只有少数论文讨论经验证据来支持解决方案，而这些解决方案在很大程度上依赖于对感知到的益处的争论。这些观察结果与之前报道的 MBSE 的弱点一致，即缺乏经验证据。在这方面，我们认为，对于这种性质的解决方案，经验证据可能很难产生，因为测量定义复杂，在工业环境中执行可能具有挑战性，而不会引入偏见和其他有效性威胁的高风险。然而，这是一个反复出现的问题，涉及基于模型的实践，阻碍了更广泛范围内的基于证据的讨论。
-
-*Actionable Insights RQ4*
-From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO4:
-
-- SE at its core pursues customer satisfaction and correct delivery of systems, yet thereare few attempts to measure and compare solutions, and there is a general lack ofbaselines for V&V approaches.**系统工程的核心是追求客户满意和系统的正确交付，但是很少尝试测量和比较解决方案，并且普遍缺乏V&V方法的基线。**
-- MBSE processes are large and map well to complex domains. However many of theexamples included in academic works seem to be too simplistic to be convincinglyadopted in industrial contexts and make no attempt to discuss these concerns.**MBSE过程很大，并且很好地映射到复杂的域。然而，学术著作中的许多例子似乎过于简单，难以令人信服地应用于工业领域，也没有试图讨论这些问题。**
-- MBSE artefacts are often complex and domain-specific. More unified/standard approaches could be very valuable, and a common-ground for different domains couldimprove training and enable easier comparison of methods and solutions.**MBSE人工制品通常是复杂的和特定领域的。更统一/标准的方法可能是非常有价值的，不同领域的共同点可以改善培训，并使方法和解决方案更容易比较。**
-- There is seemingly no clear indication of whom the target user(s) is in the broadercontext of early V&V, further indicating a lack of clear definition and placement in MBSE processes.**在早期V&V的大背景下，似乎没有明确的迹象表明谁是目标用户，这进一步表明在MBSE流程中缺乏明确的定义和定位。**
-
-### RQ5 - What Limitations Do Authors See, if Any, with Their Implemented Solutions?
-
-并非所有作者都指出了他们提出的早期 V&V 方法的局限性。那些确实指出了局限性的作者的结果。最大的局限性是所提出的解决方案尚未完全开发，通常只部分涵盖了作者感兴趣的内容；另一个重大挑战是由于在描述和分析语言或形式主义存在差异时集成语言；报告的其他问题包括缺乏自动化；行为描述语言的表达能力有限是另一个常见的限制
-
-*RQ5 discussion*
-我们注意到，许多所述的限制与开发过程处于早期阶段这一事实直接或间接相关。事实上，如果抽象程度很高和/或已知系统的细节很少，那么分析应该会很有限或很肤浅。不过，作者明确表示，这是解决方案的一个可观察到的缺点，突出了在早期阶段平衡模型的保真度和抽象性的难度。同样，我们注意到许多与工具和学习曲线有关的问题，这些问题是软件和系统建模中常见的问题。
-从更广泛的角度来看，MBSE 和 SE 通常针对整个系统生命周期。许多 MBSE 方法，例如 MagicGrid 为各个生命周期阶段的活动和方法提供了一个框架。有趣的是，只有少数解决方案讨论了将早期 V&V 活动和结果与后期阶段互连的潜在局限性。值得注意的是，虽然一些论文将各个阶段联系起来，但对每个阶段工件之间可追溯性的讨论和应用却很有限。在 INCOSE 等组织提出的愿景中，经常重申未来的建模应该涵盖系统生命周期的所有部分。**然而，如果在各个阶段生成的模型之间没有更复杂的可追溯性手段，就存在引入不一致或与跨工件管理信息相关的额外工作量的风险。** 事实上，这是以文档为中心的开发中发现的问题之一，经常被用作转向基于模型的实践的论据。
-
-*Actionable Insights RQ5*
-From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO5:
-
-- MBSE processes are continuous (and often iterative) methodologies for system refne-ment. The limitations hint at the difculty in managing model fdelity and abstractionto correctly leverage analysis results from considered artefacts.**MBSE过程是系统改造的连续(通常是迭代)方法。这些限制暗示了管理模型交付和抽象的困难，以正确地利用来自被考虑的工件的分析结果。**
-- MBSE artefacts are expected to evolve, therefore the limitations related to integration,abstraction management, and scalability have an important impact.**MBSE工件预计会发展，因此与集成、抽象管理和可伸缩性相关的限制会产生重要的影响。**
-- Often the main stakeholders in MBSE are the engineers, since many of the limitationsare due to the difculty to apply the methods for the corresponding scenario, it can bederived a general lack of prioritisation for usability concerns.**通常，MBSE的主要利益相关者是工程师，因为许多限制是由于难以将方法应用于相应的场景，这可能导致可用性问题的优先级普遍缺乏。**
-- Frequently recurring limitations are due to analytical simplifcations, which seems tocontradict the inherent essence of early V&V, This hints at a missing clear definitionof what early is, and what can be expected from analysis at such a stage.**经常重复出现的局限性是由于分析上的简化，这似乎违背了早期V&V的内在本质，这暗示了早期是什么，以及在这样一个阶段可以从分析中期待什么，缺少一个明确的定义。**
-
-## Horizontal Analysis
-
-### SysML and Simulation
-
-本节只关注使用了SysML的论文。采用模拟的方法倾向于使用SysML，不使用的有4成。
-
-### Tools and Extra Results
-
-当作者对更广泛的反馈感兴趣而不仅仅是 V&V 结果时，他们不太可能使用多种工具进行分析。相反，当作者对 V&V 之外的结果不感兴趣时​​，他们可能会使用更多工具进行分析。也许这可以归因于所提出的解决方案的成熟度：不太成熟的方法可能包括更多软性优势以达到说服目的，而成熟的解决方案则更注重应用场景中衡量的性能。
-
-### License and Development Phase
-
-工具许可在设计阶段往往是专有的，而在需求阶段则更有可能是免费的。 此外，与专有许可相比，涉及两个阶段的解决方案显示出开源和免费工具的（大致）均匀混合。
-
-### Industry, License, and SysML
-
-虽然（如预期的那样）学术解决方案倾向于免费或开源工具，而行业则倾向于专有工具，但我们在三向映射中看到了两个不同的类别。首先，我们注意到，如果 SysML 在学术界使用，那么工具更可能是专有的而不是免费的，而非 SysML 解决方案最有可能是免费或开源的。此外，对于行业而言，非 SysML 解决方案更可能是免费的，而不是专有的。在这种情况下，我们观察到，无论 SysML 在何处使用，所使用的工具更可能是专有的，而如果解决方案不使用 SysML，则许可证更可能是免费或开源的。
-
-### Other Observations form Horizontal Analysis
-
-- SysML 在设计中的使用比在需求中的使用更多。这可能部分是因为需求阶段的解决方案可以正式完成，而不是依赖于 SysML 这样的非正式语言，因此避免了转向更正式的语言进行分析的需要。
-- 模拟在特定领域的解决方案中更为常见，因为 117 个（70.9%）特定领域的解决方案中有 83 个使用了模拟，而非特定领域的解决方案中只有 16 个（43.7%）使用了模拟。
-- 特定领域的解决方案拥有更多的专有许可证，在这方面，特定领域的解决方案可能需要更高级或更专业的软件，从而导致可用的开源或免费解决方案更少。
-- 在工业环境中的 51 个解决方案中，有 32 个（62.7%）使用 SysML，在 98 个学术解决方案中，有 49 个（50%）使用 SysML。我们预计工业和学术之间的差异会更大，尤其是考虑到大多数 SysML 工具都不是免费的或开源的。然而，工业和学术提取的数据相对相似。这进一步加强了 SysML 是 MBSE 的事实标准语言这一观点。
-- 工业环境倾向于使用多种工具，因为在工业环境中，51 个解决方案中有 34 个（66.6%）使用多种工具，而在学术环境中，98 个解决方案中有 52 个（53%）使用多种工具。这种趋势可以通过以下事实来解释：工业环境更有可能需要高级或专门的工具来实现其目的，而一种工具很少能用于所有分析目的。
-- 作者更有可能在学术环境中发现局限性，因为在学术环境中的 98 篇论文中有 64 篇（65.3%）讨论了其解决方案的局限性。相比之下，在工业环境中的 51 篇论文中有 28 篇（54.9%）描述了其环境中的局限性。这可能与学术界和工业界在传播研究成果方面有不同的兴趣有关（例如，讨论开放的挑战与强调成功的实践）。
-- 大多数使用 SysML 的实现无论如何都需要对语言进行某种扩展或转换为另一种语言或形式主义以用于分析目的。因此，在与领域无关的情况下，可能更倾向于采用一种需要较少努力来执行 V&V 分析的行为描述语言。
-
-*Actionable Insights Horizontal analysis*
-From the analysis performed we believe the following action points to be valuable for thecommunity in the context of the horizontal analysis:
-
-- SysML as a language is more dependent on proprietary tooling and extensions withother mechanisms for analysis compared to other languages, reducing the option foranalysis without heavy investment in surrounding technologies.**与其他语言相比，SysML作为一种语言更依赖于专有工具和具有其他分析机制的扩展，这减少了在没有对周围技术进行大量投资的情况下进行分析的选择。**
-- The gap between academia and industry is noticeable in many categories, hinting at agreater misalignment. Particularly, the tools, languages, and methods differ in termsof preferences.**学术界和工业界之间的差距在许多领域都很明显，暗示着更大的错位。特别是，工具、语言和方法在偏好方面有所不同。**
-- Few general purpose solutions utilise simulation, hinting at the need for domain.specifc information for valid simulations. This, in conjunction with the overwhelminguse of simulation as a V&V method, could explain the lack of general approaches.**很少有通用的解决方案利用模拟，这暗示了对有效模拟的领域特定信息的需求。这一点，连同作为V&V方法的模拟的过度使用，可以解释通用方法的缺乏。**
-
-## Discussion and Outlook
-
-### Limitations of Early V&V
-
-多亏了好的工具，集成更先进的工作流程和强大的功能将变得更加容易，正如其他评论中广泛讨论的那样。尽管工具是 MBSE 分类的核心，但直到今天，它仍然是更广泛采用基于模型的实践的关键障碍。工具经常出现的问题，例如互操作性和可扩展性，似乎限制了学术解决方案在工业领域的应用。
-早期开发阶段的另​​一个相关特征是存在强烈的不确定性，被分析的系统需要考虑可能结果的不确定性。特别是，由于使用高抽象层次的模型，不确定性会增加。此外，在处理异构模型和系统时，由于各种类型的不确定性以及具有不确定性的不同模型之间的相互作用，复杂性也增加了。
-文献中讨论了 MBSE 中不确定性的存在和管理 [[7]](#7) [[63]](#63) [[90]](#90)。据这些作者所知，没有具体的指标或方法可以有效地管理 MBSE 中的不确定性。
-似乎缺乏易于获取且富有成效的方法来学习所审查文献中讨论的基于模型的方法。
-
-### Early V&V in the Broader Context of MBSE
-
-人工智能将发挥作用的两个场景：早期开发中的不确定性和为新手提供帮助。
-在审查这些论文时，缺少关于传播在各个生命周期阶段开发的工件以及 SE 生命周期与早期 V&V 活动的关系的讨论。如果不将不确定性或早期模型的演变/细化传播到开发的后期阶段，则很有可能会创建并丢弃此类模型，这通常被称为基于文档的开发的弱点，并且可能不利于重用。
-在 SE 生命周期中更稳健地传播工件的可能解决方案也可以与敏捷 MBSE [[76]](#76) 和 DevOps [[62]](#62) 相关。这些范例被视为数字线程的推动者 [[80]](#80)，并引起了业界越来越多的兴趣。
-另一个相关方面是使用数字孪生 (DT) [[48]](#48)：利用 DT 被视为设计过程中的强大推动者，也是在系统实施之后集成分析的一种手段。
-
-### Empirical Measurements and Benchmarks in MBSE
-
-对于所研究的解决方案类型，没有基准或类似的参考测量，作者通常采用临时或特定案例的指标。
-测量通常仅限于所提出的 V&V 解决方案的质量属性，而没有尝试在 MBSE 环境中测量解决方案的有效性。
-对 MBSE 感知价值的批判性评论发现，采用 MBSE 带来的好处中只有大约 10% 是与任何指标相对照的，测量评估的低比例同样反映在这篇评论中，约为 11%。缺乏适当的 MBSE 使用情况报告指标限制了研究的影响，因为它通常仅限于轶事例子或观察，很难放在更广泛的背景下。
-Garousi 等人 [[33]](#33) 对产学研合作面临的挑战进行了文献综述，发现常见的挑战与学术解决方案在工业环境中的适用性不足以及对有价值解决方案的不同看法有关。此外，Garousi 等人强调，合作的最佳实践是以现实世界的问题为基础进行研究。但研究和实践之间仍然存在相当大的差距。在这方面，一个可能的解决方案是通过对学术界开发的解决方案提出更明确的要求来具体化与 MBSE 相关的工业需求。从工业角度对 MBSE 解决方案定义更严格的要求可能是弥补目前观察到的一些差距的一种手段。
-
-### Barriers for Industrial Adoption of Early V&V in MBSE
-
-![Challenges for industry adoption of Early V&V for system behaviour in MBSE.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081403.png)
-
-*Model Based*
-找到抽象和保真度之间的正确平衡是一个反复出现的挑战，并且通常是在 MBSE 背景下实现成熟的早期 V&V 的先决条件。事实上，从业者本身在论文中大多被忽略，解决方案的整体可用性并不是优先事项。似乎没有明确的观点来解决这个问题，也许是因为 RQ4 中看到的许多领域的广泛应用。 此外，基于模型的实践在很大程度上依赖于工具，并且在提取过程中遇到了许多传统问题，例如互操作性、自动化和可扩展性，这再次证实了该领域以前的工作。学术工具与更重要的工具环境集成的讨论明显不足。正如预期的那样，挑战是重叠的，但当行业越来越多地转向 OSLC15 等标准以促进更标准化的数据交换时，观察到的许多学术解决方案都存在目标非常狭窄、工具和语言独特的问题。此外，行业从业者和学术研究人员之间似乎存在差距，而且为学术界开发的工具可能旨在解决与行业需求不同的其他问题。
-
-*Systems Engineering*
-使用 SE 的大部分行业正在向至少部分采用 MBSE 的方向转变。然而，遗留问题往往是巨大的，不能简单地为了新方法或工作方法而丢弃，但关于如何在 RQ3 数据提取中促进这种集成的讨论却很少。然而，这些解决方案通常是为专家受众设计的，这限制了解决方案的更广泛适用性（特别是因为许多工程师在基于模型的方法方面都是完全的新手）。采用的一大障碍是难以提供 MBSE 方法的可衡量效益。许多解决方案仅限于扩展到周围活动，例如，解决方案缺乏上下游联系。同样，关于如何管理分析模型以促进重复使用和高效的未来决策的讨论很少。可追溯性以及最近的数字线程在很大程度上被忽略了，从而降低了它们的适用性。普遍缺乏与领域无关的和更通用的解决方案阻碍了现有解决方案的采用。
-
-*Validation & Verification*
-解决方案中一个很大的空白是讨论不确定性和分析有效性，这也是 RQ5 中的局限性之一。在开发的早期阶段，所有模型中都存在不确定性，需要付出相当大的努力来缓解和推理，以便正确定位结果并将其用于决策。然而，很少有人讨论如何在解决方案中管理不确定性，以及分析抽象会带来什么影响，这是作者在 RQ5 中报告的更突出的局限性之一。分析有效性也是如此。如果对重复使用感兴趣，那么就需要对何时可以使用方法或模型进行正确分析以及用户如何根据案例确定所考虑的模型是否足够丰富以产生有效的分析结果进行分类。同样，许多解决方案使用自定义工具进行实施，限制了 SE 流程中的集成。特别是，依赖几种特定的工具会增加流程的复杂性，并可能导致供应商锁定增加。
-
-## Conclusions
-
-> This article reports the results of a systematic literature review on early behaviour validation and verification in model-based systems engineering. From a set of 701 papers retrieved through searches and snowballing activities, we selected 149 relevant contributions, we extracted and coded the obtained data, and we performed analyses whose results and findings are presented in the work. In this respect, we notice an increased interest in performing early V&V and observe a broad range of domains in the analysed papers, with a corresponding variety of methods, tools, and languages. Further, we note a strong industrial presence in the literature and several industrial perspective trends that differ from the academic ones. To name a few of our findings, we note that SysML is the most represented language in industry and academia for describing system behaviour. In contrast, the language or formalism for analysis varies between most solutions. Additionally, several limitations are identified, indicating a lack of readiness for the solutions together with the concerns about managing analysis with low-fidelity models. Finally, a significant divide emerges between the academic and industrial implementation of solutions; such a divide is especially observable for SysML, utilised across all contexts but relying on different tooling for the contexts.
-> We contextualise the review findings and discuss the current status of early validation of system behaviour in the context of industrial MBSE adoption. The review is structured according to the needs of the industry to promote the eventual adoption of early V&V and MBSE processes at large. The review provides actionable insights for the five presented research questions to promote further investigation into this area. Furthermore, we distinguish three areas, Model-Based, Systems Engineering, and Validation & Verification, and highlight a set of corresponding barriers for each area, which we feel need to be addressed to promote and support industrial adoption of early V&V techniques. As such, we hope the findings of this review can provide an adequate state-of-the-art view and pave the way for future investigations for researchers and practitioners.
+就社区建设问题进行了介绍。
 
 `个人总结`
-
-本文是一篇高质量的MBSE领域综述，综述的结构本身值得借鉴，文章以V&V过程为对象，研究了MSBE的方法、工具、技术和发展等内容，提出了领域研究的若干关键问题和相关质疑，有很高的参考价值，值得反复查阅。
-
-`参考文献`
-
-<a id="88">[88]</a>David D. Walden, Garry J. Roedler, and Kevin Forsberg. 2015. INCOSE systems engineering handbook version 4: updating the reference for practitioners. In Proceedings of the INCOSE Annual International Symposium, Vol. 25. Wiley Online Library, 678–686.
-<a id="56">[56]</a>Edward A. Lee and Marjan Sirjani. 2018. What good are models? In International Conference on Formal Aspects of Component Software. Springer, 3–31.
-<a id="10">[10]</a>George E. P. Box and Norman R. Draper. 1987. Empirical Model-building and Response Surfaces.John Wiley & Sons.
-<a id="31">[31]</a>Sanford Friedenthal, Regina Griego, and Mark Sampson. 2007. INCOSE model based systems engineering (MBSE) initiative. In Proceedings of the INCOSE Annual International Symposium, Vol. 11. sn.
-<a id="35">[35]</a>Iris Graessler and Julian Hentze. 2020. The new V-model of VDI 2206 and its validation. at-Automatisierungstechnik 68, 5 (2020), 312–324.
-<a id="36">[36]</a>Joe Gregory, Lucy Berthoud, Theo Tryfonas, Alain Rossignol, and Ludovic Faure. 2020. The long and winding road: MBSE adoption for functional avionics of spacecraft. J. Syst. Softw. 160 (2020), 110453.
-<a id="17">[17]</a>Joe Gregory, Lucy Berthoud, Theo Tryfonas, Alain Rossignol, and Ludovic Faure. 2020. The long and winding road: MBSE adoption for functional avionics of spacecraft. J. Syst. Softw. 160 (2020), 110453.
-<a id="67">[67]</a>Mara Nikolaidou, George-Dimitrios Kapos, Anargyros Tsadimas, Vassilis Dalakas, and Dimosthenis Anagnostopoulos. 2016. Challenges in SysML model simulation. Adv. Comput. Sci. Int. J. 5, 4 (2016), 49–56.
-<a id="94">[94]</a>Bernard P. Zeigler, Saurabh Mittal, and Mamadou Kaba Traore. 2018. MBSE with/out simulation: State of the art and way forward. Systems 6, 4 (2018), 40.
-<a id="20">[20]</a>M. Chami and J. M. Bruel. 2018. A Survey on MBSE Adoption Challenges. In INCOSE EMEA Sector Systems Engineering Conference (INCOSE EMEASEC’18). 1–16.
-<a id="53">[53]</a>Christopher Laing, Pierre David, Eric Blanco, and Xavier Dorel. 2020. Questioning integration of verification in modelbased systems engineering: An industrial perspective. Comput. Industr. 114 (2020), 103163.
-<a id="60">[60]</a>Junda Ma, Guoxin Wang, Jinzhi Lu, Hans Vangheluwe, Dimitris Kiritsis, and Yan Yan. 2022. Systematic Literature Review of MBSE Tool-Chains. Appl. Sci. 12, 7 (2022), 3431.
-<a id="73">[73]</a>Muhammad Rashid, Muhammad Waseem Anwar, Farooque Azam, and Muhammad Kashif. 2016. Model-based requirements and properties specifications trends for early design verification of embedded systems. In Proceedings of the 11th System of Systems Engineering Conference (SoSE’16). IEEE, 1–7.
-<a id="25">[25]</a>Pierre De Saqui-Sannes, Rob A. Vingerhoeds, Christophe Garion, and Xavier Thirioux. 2022. A taxonomy of MBSE approaches by languages, tools and methods. IEEE Access (2022).
-<a id="66">[66]</a>Christian Nigischer, Sébastien Bougain, Rainer Riegler, Heinz Peter Stanek, and Manfred Grafinger. 2021. Multidomain simulation utilizing SysML: State of the art and future perspectives. Proc. CIRP 100 (2021), 319–324.
-<a id="41">[41]</a>Kaitlin Henderson and Alejandro Salado. 2021. Value and benefits of model-based systems engineering (MBSE): Evidence from the literature. Syst. Eng. 24, 1 (2021), 51–66.
-<a id="5">[5]</a>Hugo Araujo, Mohammad Reza Mousavi, and Mahsa Varshosaz. 2022. Testing, validation, and verification of robotic and autonomous systems: A systematic review. ACM Trans. Softw. Eng. Methodol. (2022).
-<a id="2">[2]</a>T. Ahmad, J. Iqbal, A. Ashraf, D. Truscan, and I. Porres. 2019. Model-based testing using UML activity diagrams: A systematic mapping study. Computer Science Review 33 (2019), 98–112.
-<a id="21">[21]</a>Jean-Charles Chaudemar and Pierre de Saqui-Sannes. 2021. Mbse and mdao for early validation of design decisions: A bibliography survey. In Proceedings of the IEEE International Systems Conference (SysCon’21). IEEE, 1–8.
-<a id="86">[86]</a>Naoum Tsioptsias, Antuela Tako, and Stewart Robinson. 2016. Model validation and testing in simulation: A literature review. In Proceedings of the 5th Student Conference on Operational Research (SCOR’16). Schloss Dagstuhl-LeibnizZentrum fuer Informatik.
-<a id="58">[58]</a>Zihang Li, Jinzhi Lu, Guoxin Wang, Lei Feng, Didem Gurdur Broo, and Dimitris Kiritsis. 2021. A Bibliometric Analysis on Model-based Systems Engineering. In Proceedings of the IEEE International Symposium on Systems Engineering (ISSE’21). IEEE, 1–8.
-<a id="51">[51]</a>Barbara Kitchenham, Rialette Pretorius, David Budgen, O. Pearl Brereton, Mark Turner, Mahmood Niazi, and Stephen Linkman. 2010. Systematic literature reviews in software engineering—A tertiary study. Inf. Softw. Technol. 52, 8 (2010), 792–805.
-<a id="92">[92]</a>Claes Wohlin, Per Runeson, Martin Höst, Magnus C. Ohlsson, Björn Regnell, and Anders Wesslén. 2012. Experimentation in Software Engineering. Springer Science & Business Media.
-<a id="79">[79]</a>Mary Shaw. 2002. What makes good research in software engineering?Int. J. Softw. Tools Technol. Transf. 4, 1 (2002), 1–7.
-<a id="7">[7]</a>Johan Bergelin, Antonio Cicchetti, and Emil Lundin. 2022. Early validation of heterogeneous battery systems in the railway domain. In Proceedings of the IEEE International Systems Conference (SysCon’22). IEEE, 1–8.
-<a id="63">[63]</a>Yaroslav Menshenin, Carolina Moreno, Yana Brovar, and Clement Fortin. 2021. Integration of MBSE and PLM: Complexity and uncertainty. Int. J. Prod. Lifecycle Manage. 13, 1 (2021), 66–88.
-<a id="90">[90]</a>James R. Williams, Frank R. Burton, Richard F. Paige, and Fiona A. C. Polack. 2012. Sensitivity analysisin model-driven engineering. In International Conference on Model Driven Engineering Languages and Systems. Springer, 743–758.
-<a id="76">[76]</a>Bill Schindel and Rick Dove. 2016. Introduction to the agile systems engineering life cycle MBSE pattern. In Proceedings of the INCOSE Annual International Symposium, Vol. 26. Wiley Online Library, 725–742.
-<a id="62">[62]</a>John T. J. Mathieson, Thomas Mazzuchi, and Shahram Sarkani. 2020. The systems engineering DevOps lemniscate and model-based system operations. IEEE Syst. J. 15, 3 (2020), 3980–3991.
-<a id="80">[80]</a>Victor Singh and Karen E. Willcox. 2018. Engineering design with digital thread. AIAA J. 56, 11 (2018), 4515–4528.
-<a id="48">[48]</a>David Jones, Chris Snider, Aydin Nassehi, Jason Yon, and Ben Hicks. 2020. Characterising the digital twin: A systematic literature review. CIRP J. Manufact. Sci. Technol. 29 (2020), 36–52.
-<a id="33">[33]</a>Vahid Garousi, Kai Petersen, and Baris Ozkan. 2016. Challenges and best practices in industry-academia collaborations in software engineering: A systematic literature review. Inf. Softw. Technol. 79 (2016), 106–127.
+作者就SoSyM期刊中的一些研究进行了分类和评估，从审稿人的角度分析一篇文章应具备哪些要素。
 ]]></content>
       <categories>
         <category>Academic Papers</category>
         <category>Journal</category>
-        <category>TOSEM</category>
+        <category>SoSyM</category>
         <category>2024</category>
       </categories>
       <tags>
-        <tag>Validation &amp; Verification</tag>
-        <tag>Review</tag>
-        <tag>MBSE</tag>
+        <tag>Insights</tag>
       </tags>
   </entry>
 </search>
