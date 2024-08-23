@@ -1,6 +1,466 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
+    <url>/2024/08/17/002/</url>
+    <content><![CDATA[
+[Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example](https://dl.acm.org/doi/abs/10.1145/3471907)
+
+*作者是KCL的Kevin Lano。*
+
+`Abstraction`
+
+> In this article, we address how the production of model transformations (MT) can be accelerated by automation of transformation synthesis from requirements, examples, and metamodels. We introduce a synthesis process based on metamodel matching, correspondence patterns between metamodels, and completeness and consistency analysis of matches. We describe how the limitations of metamodel matching can be addressed by combining matching with automated requirements analysis and model transformation by example (MTBE) techniques.
+> We show that in practical examples a large percentage of required transformation functionality can usually be constructed automatically, thus potentially reducing development effort. We also evaluate the efficiency of synthesised transformations.
+> Our novel contributions are:
+>
+> - The concept of correspondence patterns between metamodels of a transformation.
+> - Requirements analysis of transformations using natural language processing (NLP) and machine learning (ML).
+> - Symbolic MTBE using “predictive specification” to infer transformations from examples.
+> - Transformation generation in multiple MT languages and in Java, from an abstract intermediate language.
+
+## Introduction
+
+Model Transformations (MT)是MDE的关键要素。大型手动转换成本高管理难[[9]](#9) [[49]](#49)。元模型匹配技术[[1]](#1) [[17]](#17) [[31]](#31)。
+
+四个困难：1、匹配方法只能找到一种转换，但实际上有多种；2、穷举搜索复杂度高；3、无法检测源和目标的关系；4、通常只处理单一语言转换的场景。
+
+- (i) many different transformations may be possible between two given metamodels, and a matching approach typically only detects a single transformation;
+- (ii) exhaustive search for possible matches becomes infeasible even for cases of moderate size (around 25 to 30 metaclasses in the combined metamodels);
+- (iii) detailed functional relationships between source and target data, such as applications of specific numeric or string functions, cannot normally be detected;
+- (iv) the process is usually directed to and optimised for producing transformations in a single MT language.
+
+MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L}$[[48]](#48)处理4的问题。
+
+![Transformation synthesis process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png)
+
+图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$是映射的三个中间量。
+
+研究问题：
+
+- RQ1 : To what extent can automated metamodel matching be combined with interactive enhancement of matchings to accurately capture the mapping rules of an intended transformation?匹配的程度
+- RQ2 : Can automated requirements analysis using NLP/ML and MTBE techniques improve the accuracy of the approach compared to stand-alone metamodel matching?本文的NLP+MTBE技术能否提高准确性
+- RQ3 : Can the combined approach engineer transformations with appropriate correspondence and design patterns?
+- RQ4 : Can the combined approach produce efficiently executable transformations?
+
+### Illustrative Example: Gantt2CPM
+
+本文用到的一个例子：甘特图到CPM网络。介绍了该MT的原则。
+
+## Scope and bcakground
+
+### Scope of the Approach
+
+对于M2M问题，根据[[55]](#55)进行分类：
+
+- (General) migration 抽象层级相同但元模型不同
+- Evolution migration 一个元模型版本变更
+- Refinement 高抽象层级向低抽象层级映射
+- Abstaction 低抽象层级向高抽象层级映射
+- Code generation 从设计规范模型生成代码
+- Semantic mapping 将源模型映射到有形式化语义的模型
+- Bidirectional(Bx) 双向映射，支持模型同步和变更传播
+- Refactoring 单个模型转换
+
+### $\mathcal{T}\mathcal{L}$ Transformation Repersentation
+
+使用$\mathcal{T}\mathcal{L}$语法描述转换过程。包括集合的划分、符号标识、每个环节的输入输出和$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$符号对应的环节。
+
+### Natural Language Processing and Machine Learning
+
+介绍了NLP的主要技术类型和划分词义的种类和机器学习的基本概念。
+
+## Automated MT Requierments Analysis
+
+如果转换过程存在自然语言需求声明，原则上可以应用NLP技术提取有关转换预期映射的一些信息，有助于元模型匹配。
+
+### Automated Requirements Analysis Using NLP
+
+使用NLP对Gantt2CPM案例进行需求分析。
+首先使用Stanford POS tagger标记需求语句中的词类型，然后构建语法树。创建了CART决策树作为分类器，对需求语句中的关键词类型进行识别。
+
+### Tool Support for MT Requirements Analysis
+
+在工具中如何使用的说明。
+
+## Metamodel Correspondence Patterns
+
+{% note flat %}
+这篇文章太长太难，还没看完，先记到这里……
+{% endnote %}
+
+### Occurrence of Correspondence Patterns in Practice
+
+### Catalogue of Correspondence Patterns
+
+### Correspondence Patterns in Gantt2CPM
+
+### Tool Support for Recognising Correspondence Patterns
+
+## Metamodel Matching Techniques
+
+### Metamodel Matching Concepts
+
+### Similarity Measures for Metamodel Matching
+
+### Metamodel Matching for the Gantt2CPM Case
+
+### Tool Support for Metamodel Matching
+
+## Transformation Correction and Enhancement
+
+### Completeness and Consistency Analysis
+
+### Specification Enhancement for the Gantt2CPM Case
+
+## MTBE Using Perdictive Specification
+
+### Empirical Study of Transformation Mappings and Conditions
+
+### Correction and Extension of Transformations using MTBE
+
+### MTBEfortheGantt2CPMCase
+
+### Tool Support for MTBE
+
+## Transformation Synthesis
+
+### Synthesis of UML-RSDS and Java
+
+### Transformation Synthesis for the Gantt2CPM Case
+
+### Tool Support for Transformation Synthesis
+
+## Evaluation
+
+### RQ1:Correspondence Recognition
+
+### RQ2:Contributions of Automated Requirements Analysis and MTBE
+
+### RQ3:Transformation Design
+
+### RQ4:Transformation Efficiency
+
+## Threats to Validity
+
+### Threats to Internal Validity
+
+### Threats to External Validity
+
+### Threats to Construct Validity
+
+### Threats to Content Validity
+
+### Threats to Conclusion Validity
+
+## Related and Future Work
+
+### Automated Requirements Engineering
+
+### MTBE Approaches
+
+### Correspondence Patterns
+
+### Metamodel Matching Approaches
+
+### Summary
+
+### Limitations and Future Work
+
+## Conclusions
+
+`个人总结`
+
+`参考文献`
+<a id="9">[9]</a>L. Burgueno, J. Cabot, and S. Gerard. 2019. The future of model transformation languages: an open community discussion J. Obj. Technol. 1–11. Retrieved from www.jot.fm/issues/issue_2019_03/article7.pdf.
+<a id="49">[49]</a>K. Lano, Q. Xue, and S. Kolahdouz-Rahimi. 2020. Agile Specification of Code Generators for Model-Driven Engineering. In Proceedings of ICSEA 2020. IARIA, 9–15.
+<a id="1">[1]</a>L. Addazi, A. Cicchetti, J. D. Rocco, D. D. Ruscio, L. Iovino, and A. Pierantonio. 2016. Semantic-based model matching with emfcompare, me workshop, models. CEUR-WS 1706, 40–49.
+<a id="17">[17]</a>S. Fang and K. Lano. Extracting correspondences from metamodels using metamodel matching. In STAF 2019. Retrieved from CEUR-WS.org/vol-2405/02_paper.pdf.
+<a id="31">[31]</a>M. Kessentini, A. Ouni, P. Langer, M. Wimmer, and S. Bechikh. 2014. Search-based metamodel matching with structural and syntactic measures. Journal of Software and Systems 97, 2014 (2014), 1–14.
+<a id="48">[48]</a>K. Lano, S. Fang, and S. Kolahdouz-Rahimi. TL: An abstract specification language for bidirectional transformations. MODELS’20 Comp. Proc. 77 (2020), 1–10.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>TOSEM</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>Model Transformations</tag>
+        <tag>Requirements Engineering</tag>
+        <tag>Automated Software Engineering</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</title>
+    <url>/2024/08/23/003/</url>
+    <content><![CDATA[
+[Testing, Validation, and Verification of Robotic and Autonomous Systems: A Systematic Review](https://dl.acm.org/doi/full/10.1145/3542945)
+
+*作者是KCL的Hugo Araujo。*
+
+`Abstraction`
+> We perform a systematic literature review on testing, validation, and verification of robotic and autonomous systems (RAS). The scope of this review covers peer-reviewed research papers proposing, improving, or evaluating testing techniques, processes, or tools that address the system-level qualities of RAS.
+Our survey is performed based on a rigorous methodology structured in three phases. First, we made use of a set of 26 seed papers (selected by domain experts) and the SERP-TEST taxonomy to design our search query and (domain-specific) taxonomy. Second, we conducted a search in three academic search engines and applied our inclusion and exclusion criteria to the results. Respectively, we made use of related work and domain specialists (50 academics and 15 industry experts) to validate and refine the search query. As a result, we encountered 10,735 studies, out of which 195 were included, reviewed, and coded.
+> Our objective is to answer four research questions, pertaining to (1) the type of models, (2) measures for system performance and testing adequacy, (3) tools and their availability, and (4) evidence of applicability, particularly in industrial contexts. We analyse the results of our coding to identify strengths and gaps in the domain and present recommendations to researchers and practitioners.
+> Our findings show that variants of temporal logics are most widely used for modelling requirements and properties, while variants of state-machines and transition systems are used widely for modelling system behaviour. Other common models concern epistemic logics for specifying requirements and belief-desireintention models for specifying system behaviour. Apart from time and epistemics, other aspects captured in models concern probabilities (e.g., for modelling uncertainty) and continuous trajectories (e.g., for modelling vehicle dynamics and kinematics).
+> Many papers lack any rigorous measure of efficiency, effectiveness, or adequacy for their proposed techniques, processes, or tools. Among those that provide a measure of efficiency, effectiveness, or adequacy, the majority use domain-agnostic generic measures such as number of failures, size of state-space, or verification time were most used. There is a trend in addressing the research gap in this respect by developing domainspecific notions of performance and adequacy. Defining widely accepted rigorous measures of performance and adequacy for each domain is an identified research gap.
+> In terms of tools, the most widely used tools are well-established model-checkers such as Prism and Uppaal, as well as simulation tools such as Gazebo; Matlab/Simulink is another widely used toolset in this domain.
+> Overall, there is very limited evidence of industrial applicability in the papers published in this domain.
+> There is even a gap considering consolidated benchmarks for various types of autonomous systems.
+
+## Introduction
+
+### Motivation-1
+
+Robotic and Autonomous Systems (RAS)机器人和自主系统。本论文涵盖了RAS的广度和系统性二次研究的调研，并对结果进行分析。
+
+### Scope and Audience
+
+受众：研究者和从业者。所调研的RAS研究的范围。
+
+### Research Questions
+
+几个关键名词的含义，包括types of models, efficiency, effectiveness, coverage measures, (public available) tools, evidence of applicability。
+
+### Structure of the Article
+
+本文的其余部分结构如下：在第 2 部分中，我们回顾了相关工作，重点关注相关主题的二手研究（文献调查和评论）。在第 3 部分中，我们定义了本文的范围并解释了此结构化综述的背景。在那里，我们报告了我们开始研究的核心结果集，作为我们搜索的种子，以形成研究。在第 4 部分中，我们回顾了我们用于系统评价的方法；这包括我们的搜索和选择策略的描述、用于编码结果的分类法的开发、我们的数据提取和综合方法。在本节中，我们还反思了对我们研究的威胁。在第 5 部分中，我们展示了我们的编码结果并对其进行分析以回答我们的研究问题。在第 6 部分中，我们反思了我们的分析并为目标受众（即研究人员和从业人员）提供了具体的建议。在第 7 部分中，我们总结了本文并提出了一些未来研究的方向。
+
+## Related Work
+
+[[55]](#55)这项研究的目标是为机器人软件开发人员提供提示，帮助他们根据感兴趣的属性和软件系统选择合适的分析方法。
+
+[[99]](#99) [[181]](#181)概述了自主系统测试和验证面临的挑战以及可用的技术和结果。
+
+[[118]](#118)聚焦了自动驾驶汽车环境中的问题。
+
+[[79]](#79)概述了V&V领域的研究，主要有关机器学习和自动驾驶场景。
+
+[[114]](#114)自动驾驶与软件的挑战，通过采访从业者的角度进行的。
+
+[[180]](#180)汽车行业中使用的神经网络功能安全性评估的三个具体问题。
+
+[[108]](#108)对公开可用的驾驶数据集以及自动驾驶算法的虚拟测试进行了调查。
+
+[[20]](#20)作者提到了自动驾驶功能的复杂性、场景和参数的变化、场景选择和测试生成等挑战。
+
+[[138]](#138)对用于自主机器人系统的形式化规范和验证方法及工具进行了调查。除了此类系统的内部结构之外，还提出了许多正式建模和验证机器人系统运行环境的挑战。
+
+[[89]](#89)概述了集成形式化方法在机器人和自主系统中的优势、劣势、机遇和威胁。
+
+[[207]](#207)对自动驾驶汽车基于覆盖范围的验证、确认和安全保障技术进行了系统的文献综述。
+
+[[178]](#178)对自动驾驶汽车的软件验证和确认进行了广泛而系统的文献综述。
+
+## Background and Rationale
+
+### Motivation-3
+
+结合相关工作，提出了二次研究的几个问题：（1）对现有的机器人和自主系统验证和确认结果进行结构化回顾；（2）讨论了以下四个具体问题：(a) the types of models, (b) measures of efficiency and effectiveness, (c) available tools, and (d) evidence of applicability to large-scale and industrial systems。
+
+### Robotic and Autonomous System
+
+RAS定义：
+An autonomous system is an intelligent system that is designed to deal with the physical environment on its own and work for extended periods of time without explicit human intervention. They are built to analyse, learn from, adapt to, and act on the surrounding environment.
+
+### Testing and the SERP-Test Taxonomy
+
+![Illustration of taxonomy.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082301.png)
+
+本文的论文分类方法基于SERP-Test分类法[[68]](#68)，测试分类四个方面：intervention, effect, scope, and context。
+
+- Intervention pertains to the test techniques, their adaptation, and adoption in different context.
+- Effect facet is used to identify the improvement or adaptation in a given practise as well as any insights gained through assessment.
+- The scope specified whether the effect has been materialised in planning, design, execution, or analysis of tests.
+- Context, as its name suggests, specifies the environment where the intervention takes place, in terms of people and their knowledge, the system under test, and the required models and other types of information.
+
+## Methodology
+
+### Seed Papers
+
+- 收集初始搜索查询的关键字
+- 完善纳入和排出标准
+- 评估和调整SERP-Test分类法
+
+### Selection Strategy
+
+#### Inclusion Criteria
+
+纳入标准的规则。
+
+#### Exclusion Criteria
+
+排出标准的规则。
+
+### Taxonomy
+
+介绍基于SERP-Test分类法的具体的分类原则。
+
+### Search Strategy
+
+#### Initial Query
+
+关键词搜索。
+
+#### Validated Query
+
+对搜索完的结果进行验证。
+
+### Overview of the Results
+
+![Relevant and included papers by year.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082302.png)
+
+最后确定了195篇论文。
+
+## Results
+
+### RQ1: Models
+
+关注用于描述RAS的模型和形式类型及其在测试干预中的属性。
+
+#### Modelling Properties
+
+表一关注表示属性的模型。不到三分之一使用模型或逻辑来描述系统的属性，这类算形式模型。所有属性语言都是领域无关的。
+
+#### Modelling System Behaviour or Structure
+
+表二关注描述RAS行为或结构的模型。三分之一采用定性模型。
+
+### RQ2: Effect
+
+评估各种测试干预措施的efficiency (testing time or resources), effectiveness (testing quality), and coverage (testing adequacy)的指标。
+
+#### Measuresfor Interventions
+
+大多数其他概念仅用于单一干预措施。
+
+#### Measures for Subject Systems
+
+### RQ3: Tooling
+
+#### Context Tools
+
+模拟工具是最常用的工具之一；它们的实用性来自于一种成本较低的可视化方法，可以直观地显示设计和流程是否令人满意。中间件 ROS 与 3D 模拟器 Gazebo 相结合，形成了最流行的机器人模拟工具。此外，Simulink 是 MATLAB 的图形扩展，是动态系统建模和仿真最常用的工具。此外，形式化验证工具也得到了广泛应用，其中最突出的是模型检查器。统计模型检查器 Prism 提供对马尔可夫链或概率自动机中随机系统的建模和分析。至于定性模型，UPPAAL 为定时自动机模型提供了形式化验证，但可以扩展以使用数据类型。
+
+#### Effect Tools
+
+关注了哪些工具是否开源的问题和使用领域。
+
+### RQ4: Applicability
+
+我们的观察发现，工业界对干预措施的评估存在很大差距；只有 20 项干预措施在工业背景下进行了评估。可以理解的是，大多数案例研究都是在学术环境中进行的。其中，约有一半使用了小规模模型，这些模型通常不能代表真实系统。另一半将他们提出的干预措施应用于大规模主题和数据集，包括物理系统。
+
+## Suggestions and Recommendations to Study Audience
+
+在本节中，我们将分析前几节的结果，以确定我们的研究问题和两个目标受众群体（研究人员和从业者）的相对优势和劣势。我们将从我们的分析中为研究人员和从业者提出建议，以此结束本节。
+
+### Analysis
+
+#### Domain
+
+针对RAS特定子领域的测试、验证和确认。
+
+……跳过对表8的介绍……
+
+- 在所有子领域中，大多数模型都是正式的和定量的，并且在使用定性和非正式模型进行测试方面可以发现很大的差距（最明显的是在飞行器和移动机器人子领域）。
+- 在所有研究的子领域中，在使用有效性、效率和覆盖率的精确概念方面存在明显差距。其中，一些通用的有效性和效率概念（如测试时间和状态空间大小）以及覆盖率概念（如节点和转换覆盖率）是量化效果的最常用度量。常见的、更复杂的有效性、效率和充分性度量，如平均故障检测百分比 (APFD) ，似乎尚未在 RAS 领域被采用或扩展到 RAS 领域。我们确实看到最近出现了一些针对特定领域的有效性和覆盖率概念的趋势；几乎所有这些概念都已应用于自动驾驶汽车领域，但其中大多数也可以调整以适用于其他领域。
+- 在测试 RAS 的工具支持方面存在相当大的差距。开源工具很少，主要是在自动驾驶汽车和飞行器子域中。没有开源工具支持移动机器人系统的特定领域方面。专有工具也存在同样的模式，但差距更大。在所审查的文献中，开发或使用的公共（但不是开源）工具非常少。
+- 在使用工业案例研究评估 RAS 测试干预措施方面，所有子领域也存在非常严重的差距。最值得注意的例外是少数案例研究，主要是在自动驾驶汽车和飞行器子领域，是在工业环境中进行的。许多干预措施使用小型案例研究，大多没有任何特定的应用子领域（例如，使用移动机器人的通用模型）；在这些情况下，模型不包含足够的细节来成为一般基准的一部分。还有一些基于无人机和无人驾驶飞机的小型案例研究进行评估。
+
+*Analysis for Researchers*
+**Gaps:** 在我们对所研究子域的分析中，我们发现在处理海洋和海底 RAS 方面存在明显差距。此外，在处理飞行器和移动机器人方面也存在相对薄弱之处。此外，在处理非正式和定性模型方面，各个子域之间也存在相对薄弱之处。开发一套通用的有效性和效率概念来比较不同的干预措施是一项值得研究的挑战，文献中在针对特定领域量身定制这些概念方面存在差距。同样的观察结果也适用于测试充分性的概念。工具，尤其是针对特定子域量身定制的工具，是所有干预措施的普遍弱点。此外，在工业环境中应用干预措施是一项突出的挑战。
+**Strengths:** 道路车辆子域在所有研究问题中都具有相当大的优势。此外，针对通用 RAS 系统开发的干预措施远多于针对子域的特定关注点的干预措施。形式化和定量模型是迄今为止最强大的干预措施，无论是在技术研究数量还是在执行的评估方面，即使在工业领域也是如此。
+
+*Analysis for Practitioners*
+**Gaps:** **由于大多数提出的干预措施尚未在工业背景下进行评估，因此评估它们的适用性（包括研究学习曲线和培训等因素）仍然是一个巨大的差距。**
+**Strengths:** 由于形式化和定量模型具有优势，开发此类模型提供了一个起点，可以从已开发和研究的干预措施中受益。道路车辆领域肯定有更成熟的实践可供借鉴，但我们可以设想，通过调整特定领域的方面，其他子领域也可能受益于这些优势。
+
+#### Cooperation and Connectivity
+
+验证方法对于自主系统的广泛部署和公众接受至关重要。由于通信协议、控制软件（例如，用于合作规则）和系统动态之间的密切交互，对此类方法的需求在网络服务支持的功能中得到了加强。现有的（手动）分析技术通常无法扩展到这些功能的巨大设计空间和输入空间，因此，在这项工作中，我们调查了文献中发现的自动验证技术。
+
+总体而言，这是一个 RAS 测试研究不足的领域，文献中很少关注合作和连接场景的测试。对于文献中报道的极少数干预措施，几乎没有任何效率或有效性的证据。 少数报告的评估仅在小规模案例研究中进行，并且没有附带开源工具。
+
+……跳过对表9的介绍……
+
+- 关于用于分析 RAS 中合作场景的模型，我们注意到形式概率模型（基于时间逻辑、过程代数和时间自动机的变体）是最常用的模型类型。这些模型通常用于检查合作场景的抽象模型。非正式模型使用较少，仅作为模拟工具的输入。在这种情况下，定性和非正式模型使用得很少。
+- 大多数有效性和效率概念都是通用概念，例如技术的状态空间大小、验证时间和测试覆盖率以及被测系统的死锁自由度和时间逻辑公式满足的概率。使用领域特定效率和有效性概念的唯一例外涉及群体的聚集时间和人机交互的有效性。
+- 显然缺乏用于测试 RAS 中的合作和群体场景的工具。唯一的例外是公共模型检查工具和用于联网无人机的模拟工具。
+- 很少有研究评估他们在工业规模案例研究和基准上的干预措施。
+
+*Analysis for Researchers*
+**Gaps:** 对纳入的研究进行分析表明，在 RAS 的合作场景中，通信网络和协议的作用及其对 RAS 系统的功能、安全性和可靠性的影响研究严重不足。将通信中可用的知识体系与 RAS 的测试和验证相结合显然是未来研究的领域。现有的研究非常少，没有提供与合作方面和新兴合作行为相关的领域特定效率和有效性衡量标准。此外，缺乏足够的证据表明这些策略已应用于工业规模的案例研究和基准。
+**Strengths:** 抽象理论在群体参数化模型检验方面确实有优势。除此之外，没有其他集中的优势领域。
+
+*Analysis for Practitioners*
+**Gaps:** **如上所述，我们认为，协作机器人和群体机器人的研究成果还不够成熟，无法应用于实践。即使是现有技术也尚未应用于许多工业案例研究，目前也没有稳定的工具集。与研究人员合作定义有意义的效率和有效性概念，并提供基准和工业案例研究，可能会带来有影响力的未来研究议程。**
+**Strengths:** 在测试合作和群体 RAS 场景时没有实际的优势领域。
+
+#### Testing Strategy
+
+到目前为止，最广泛使用的策略是形式验证，其次是模拟和运行时监控。基于模型的测试是研究最少的策略。
+
+……跳过对表10的介绍……
+
+- 到目前为止，定量测试技术是研究最广泛的策略（这也是领域和连接方面的常见观察结果）。
+- 在用于评估干预措施的措施中，效率是最常用的，有效性紧随其后。然而，很少有干预措施使用覆盖率的概念进行评估。值得注意的是，对于运行时监控，只有两篇出版物采用了效率指标。
+- 基于模型的测试和运行时监控工具严重缺乏。对于模拟和形式验证，在工具支持方面似乎有相当大的优势。
+- 大约54%的干预措施使用小规模案例研究进行评估，而只有10%的干预措施在工业背景下评估其策略，这表明存在明显差距。
+
+### For Researchers
+
+如前几节所述，许多效率和有效性措施都非常通用，而且在适合 RAS 子域的领域特定措施方面也存在相对差距。缺乏领域特定建模语言和运行时验证方法数量有限表明 RAS 测试策略还有改进的空间。
+
+另一个相当大的差距是使用定量规范语言来指定系统所需的属性；由于 RAS 固有的异质性，我们需要有属性语言来涵盖离散和连续动态以及随机和认知方面的组合等方面，这些方面可用于对与环境和用户有关的行为方面进行建模。此外，一些研究使用了 Gazebo 和 USARSim 等模拟工具的非正式模拟模型。一种合适的中间立场可能是半正式和特定领域的模型，例如在 Matlab/Simulink 中构建的模型。最后，缺乏公共工具是文献中观察到的一大缺陷。很少有技术附带工具，而且用于测试 RAS 的公共工具也很少。
+
+### For Practitioners
+
+最大的差距是缺乏对现有干预措施的工业评估。在工业背景下和工业复杂系统中应用的干预措施非常少。不幸的是，干预措施的数量太少，无法得出任何有意义的趋势，也无法表明在工业环境中适用的强有力证据。在提出的干预措施中，大多数要么涉及基于模拟的测试，要么将其验证结果与某些模拟工具（主要基于 ROS-Gazebo 集成）联系起来。
+基于搜索的测试和交互测试是两种在工业环境中使用的值得注意的技术。在工业环境中采用的模型中，可以提到状态机和故障树的变体。在这方面的一项值得注意的研究是在工业环境中比较监督控制、演绎和归纳（模型检查）验证技术。人源和信息源是测试干预的另一个方面，这一方面研究严重不足。我们注意到，最近有一种趋势，即将用户研究（就人机交互和人机交互而言）与传统测试、验证和确认技术相结合。此外，在定义和评估测试流程方面也存在差距，特别是在工业环境中。显然，缺乏行业和领域专家对模型和技术的投入，导致大多数干预措施都使用通用且相对简单的建模技术和属性语言。与工业合作伙伴共同生产可以丰富这些方面，并产生能够处理工业 RAS 的异质性和复杂性的模型。
+
+## Conclusions
+
+关注的四个问题：
+
+- (1) What are the types of models used for testing RAS?用于测试 RAS 的模型类型有哪些？**答：** 有大量正式和非正式模型用于测试 RAS。特别是，有大量关于使用通用属性规范语言（如线性时间逻辑）和定性建模语言（如状态机变体、UML 图、Petri 网和过程代数）的文献。定量建模语言存在明显差距，无法捕捉 RAS 的复杂性和异构性。还缺乏可以捕捉 RAS 各个子域领域知识的领域特定语言。
+- (2) Which efficiency and effectiveness measures were introduced or used to evaluate RAS testing interventions?引入或使用了哪些效率和有效性措施来评估 RAS 测试干预措施？**答：** 我们观察到，在衡量测试干预措施的有效性和效率以及充分性的严格且被广泛接受的指标方面存在差距。与前面的项目类似，文献中使用的那些措施非常通用，与 RAS 的特定领域方面无关。因此，在定义和评估 RAS 测试干预措施的效率、有效性和充分性的严格（领域特定）措施方面存在差距和研究机会。
+- (3) What are the interventions supported by (publicly available) tools in this domain?该领域（公开可用的）工具支持哪些干预措施？**答：** 有相当多的干预措施依赖公共工具来实施或评估其干预措施。然而，很少有研究将他们提出/评估的干预措施以公开可用的工具形式提供给公众使用。因此，在提供数据集和公共工具以进一步发展该领域方面存在相当大的差距。
+- (4) Which interventions have evidence of applicability to large-scale and industrial systems?哪些干预措施有证据表明适用于大规模和工业系统？**答：** 在工业环境中评估的测试干预措施屈指可数。还有一些其他干预措施使用了一些真实的机器人或自主系统，但在学术环境中。这表明，未来学术界和工业界在 RAS 测试干预措施的工业评估中合作的重要性。
+
+`个人总结`
+对19年以来的RAS领域论文有比较好的分类，讨论了研究内容、技术手段、领域开展情况等问题，由于RAS在工业中应用较少，结论是比较悲观的。对于使用工具的调研比较有参考意义。
+
+`参考文献`
+<a id="55">[55]</a>A. Cortesi, P. Ferrara, and N. Chaki. 2013. Static analysis techniques for robotics software verification. In IEEE 44th International Symposium on Robotics. IEEE, 1–6.
+<a id="99">[99]</a>Philipp Helle, Wladimir Schamai, and Carsten Strobel. 2016. Testing of autonomous systems—Challenges and current state-of-the-art. INCOSE Int. Sympos. 26, 1 (2016), 571–584. DOI:https://doi.org/10.1002/j.2334-5837.2016.00179.x
+<a id="118">[118]</a>Philip Koopman and Michael Wagner. 2016. Challenges in autonomous vehicle testing and validation. SAE Int. J.Transport. Saf. 4 (04 2016), 15–24. DOI:https://doi.org/10.4271/2016-01-0128
+<a id="79">[79]</a>Shenjian Gao and Yanwen Tan. 2017. Paving the Way for Self-driving Cars - Software Testing for Safety-critical Systems Based on Machine Learning: A Systematic Mapping Study and a Survey. Blekinge Tekniska Högsola.
+<a id="114">[114]</a>A. Knauss, J. Schroder, C. Berger, and H. Eriksson. 2017. Software-related challenges of testing automated vehicles. In IEEE/ACM 39th International Conference on Software Engineering Companion (ICSE-C). IEEE, 328–330.
+<a id="180">[180]</a>Q. Rao and J. Frtunikj. 2018. Deep learning for self-driving cars: Chances and challenges. In IEEE/ACM 1st International Workshop on Software Engineering for AI in Autonomous Systems (SEFAIAS). IEEE, 35–38.
+<a id="108">[108]</a>Y. Kang, H. Yin, and C. Berger. 2019. Test your self-driving algorithm: An overview of publicly available driving datasets and virtual testing environments. IEEE Trans. Intell. Vehic. 4, 2 (2019), 171–185.
+<a id="20">[20]</a> Halil Beglerovic, Steffen Metzner, and Martin Horn. 2018. Challenges for the Validation and Testing of Automated Driving Functions. (Jan. 2018). DOI:https://doi.org/10.1007/978-3-319-66972-4_15
+<a id="138">[138]</a>Matt Luckcuck, Marie Farrell, Louise A. Dennis, Clare Dixon, and Michael Fisher. 2019. Formal specification and verification of autonomous robotic systems: A survey. ACM Comput. Surv. 52, 5 (2019), 100:1–100:41. DOI:https:// doi.org/10.1145/3342355
+<a id="89">[89]</a>Mario Gleirscher, Simon Foster, and Jim Woodcock. 2020. New opportunities for integrated formal methods. ACM Comput. Surv. 52, 6 (2020), 117:1–117:36. DOI:https://doi.org/10.1145/3357231
+<a id="207">[207]</a>Zaid Tahir and Rob Alexander. 2020. Coverage based testing for V&V and safety assurance of self-driving autonomous vehicles: A systematic literature review. In IEEE International Conference on Artificial Intelligence Testing (AITest). IEEE, 23–30. DOI:https://doi.org/10.1109/AITEST49225.2020.00011
+<a id="178">[178]</a>Nijat Rajabli, Francesco Flammini, Roberto Nardone, and Valeria Vittorini. 2021. Software verification and validation of safe autonomous cars: A systematic literature review. IEEE Access 9 (2021), 4797–4819. DOI:https://doi.org/10.1109/ ACCESS.2020.3048047
+<a id="68">[68]</a>Emelie Engström, Kai Petersen, Nauman bin Ali, and Elizabeth Bjarnason. 2017. SERP-test: A taxonomy for supporting industry–academia communication. Softw. Qual. J. 25 (2017), 1269–1305.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>TOSEM</category>
+        <category>2023</category>
+      </categories>
+      <tags>
+        <tag>Validation &amp; Verification</tag>
+        <tag>Robotics</tag>
+        <tag>RAS</tag>
+        <tag>Review</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</title>
     <url>/2024/08/14/001/</url>
     <content><![CDATA[
@@ -375,464 +835,8 @@ Garousi 等人 [[33]](#33) 对产学研合作面临的挑战进行了文献综�
       </categories>
       <tags>
         <tag>Validation &amp; Verification</tag>
+        <tag>Review</tag>
         <tag>MBSE</tag>
-        <tag>Review</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
-    <url>/2024/08/17/002/</url>
-    <content><![CDATA[
-[Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example](https://dl.acm.org/doi/abs/10.1145/3471907)
-
-*作者是KCL的Kevin Lano。*
-
-`Abstraction`
-
-> In this article, we address how the production of model transformations (MT) can be accelerated by automation of transformation synthesis from requirements, examples, and metamodels. We introduce a synthesis process based on metamodel matching, correspondence patterns between metamodels, and completeness and consistency analysis of matches. We describe how the limitations of metamodel matching can be addressed by combining matching with automated requirements analysis and model transformation by example (MTBE) techniques.
-> We show that in practical examples a large percentage of required transformation functionality can usually be constructed automatically, thus potentially reducing development effort. We also evaluate the efficiency of synthesised transformations.
-> Our novel contributions are:
->
-> - The concept of correspondence patterns between metamodels of a transformation.
-> - Requirements analysis of transformations using natural language processing (NLP) and machine learning (ML).
-> - Symbolic MTBE using “predictive specification” to infer transformations from examples.
-> - Transformation generation in multiple MT languages and in Java, from an abstract intermediate language.
-
-## Introduction
-
-Model Transformations (MT)是MDE的关键要素。大型手动转换成本高管理难[[9]](#9) [[49]](#49)。元模型匹配技术[[1]](#1) [[17]](#17) [[31]](#31)。
-
-四个困难：1、匹配方法只能找到一种转换，但实际上有多种；2、穷举搜索复杂度高；3、无法检测源和目标的关系；4、通常只处理单一语言转换的场景。
-
-- (i) many different transformations may be possible between two given metamodels, and a matching approach typically only detects a single transformation;
-- (ii) exhaustive search for possible matches becomes infeasible even for cases of moderate size (around 25 to 30 metaclasses in the combined metamodels);
-- (iii) detailed functional relationships between source and target data, such as applications of specific numeric or string functions, cannot normally be detected;
-- (iv) the process is usually directed to and optimised for producing transformations in a single MT language.
-
-MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L}$[[48]](#48)处理4的问题。
-
-![Transformation synthesis process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png)
-
-图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$是映射的三个中间量。
-
-研究问题：
-
-- RQ1 : To what extent can automated metamodel matching be combined with interactive enhancement of matchings to accurately capture the mapping rules of an intended transformation?匹配的程度
-- RQ2 : Can automated requirements analysis using NLP/ML and MTBE techniques improve the accuracy of the approach compared to stand-alone metamodel matching?本文的NLP+MTBE技术能否提高准确性
-- RQ3 : Can the combined approach engineer transformations with appropriate correspondence and design patterns?
-- RQ4 : Can the combined approach produce efficiently executable transformations?
-
-### Illustrative Example: Gantt2CPM
-
-本文用到的一个例子：甘特图到CPM网络。介绍了该MT的原则。
-
-## Scope and bcakground
-
-### Scope of the Approach
-
-对于M2M问题，根据[[55]](#55)进行分类：
-
-- (General) migration 抽象层级相同但元模型不同
-- Evolution migration 一个元模型版本变更
-- Refinement 高抽象层级向低抽象层级映射
-- Abstaction 低抽象层级向高抽象层级映射
-- Code generation 从设计规范模型生成代码
-- Semantic mapping 将源模型映射到有形式化语义的模型
-- Bidirectional(Bx) 双向映射，支持模型同步和变更传播
-- Refactoring 单个模型转换
-
-### $\mathcal{T}\mathcal{L}$ Transformation Repersentation
-
-使用$\mathcal{T}\mathcal{L}$语法描述转换过程。包括集合的划分、符号标识、每个环节的输入输出和$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$符号对应的环节。
-
-### Natural Language Processing and Machine Learning
-
-介绍了NLP的主要技术类型和划分词义的种类和机器学习的基本概念。
-
-## Automated MT Requierments Analysis
-
-如果转换过程存在自然语言需求声明，原则上可以应用NLP技术提取有关转换预期映射的一些信息，有助于元模型匹配。
-
-### Automated Requirements Analysis Using NLP
-
-使用NLP对Gantt2CPM案例进行需求分析。
-首先使用Stanford POS tagger标记需求语句中的词类型，然后构建语法树。创建了CART决策树作为分类器，对需求语句中的关键词类型进行识别。
-
-### Tool Support for MT Requirements Analysis
-
-在工具中如何使用的说明。
-
-## Metamodel Correspondence Patterns
-
-{% note flat %}
-这篇文章太长太难，还没看完，先记到这里……
-{% endnote %}
-
-### Occurrence of Correspondence Patterns in Practice
-
-### Catalogue of Correspondence Patterns
-
-### Correspondence Patterns in Gantt2CPM
-
-### Tool Support for Recognising Correspondence Patterns
-
-## Metamodel Matching Techniques
-
-### Metamodel Matching Concepts
-
-### Similarity Measures for Metamodel Matching
-
-### Metamodel Matching for the Gantt2CPM Case
-
-### Tool Support for Metamodel Matching
-
-## Transformation Correction and Enhancement
-
-### Completeness and Consistency Analysis
-
-### Specification Enhancement for the Gantt2CPM Case
-
-## MTBE Using Perdictive Specification
-
-### Empirical Study of Transformation Mappings and Conditions
-
-### Correction and Extension of Transformations using MTBE
-
-### MTBEfortheGantt2CPMCase
-
-### Tool Support for MTBE
-
-## Transformation Synthesis
-
-### Synthesis of UML-RSDS and Java
-
-### Transformation Synthesis for the Gantt2CPM Case
-
-### Tool Support for Transformation Synthesis
-
-## Evaluation
-
-### RQ1:Correspondence Recognition
-
-### RQ2:Contributions of Automated Requirements Analysis and MTBE
-
-### RQ3:Transformation Design
-
-### RQ4:Transformation Efficiency
-
-## Threats to Validity
-
-### Threats to Internal Validity
-
-### Threats to External Validity
-
-### Threats to Construct Validity
-
-### Threats to Content Validity
-
-### Threats to Conclusion Validity
-
-## Related and Future Work
-
-### Automated Requirements Engineering
-
-### MTBE Approaches
-
-### Correspondence Patterns
-
-### Metamodel Matching Approaches
-
-### Summary
-
-### Limitations and Future Work
-
-## Conclusions
-
-`个人总结`
-
-`参考文献`
-<a id="9">[9]</a>L. Burgueno, J. Cabot, and S. Gerard. 2019. The future of model transformation languages: an open community discussion J. Obj. Technol. 1–11. Retrieved from www.jot.fm/issues/issue_2019_03/article7.pdf.
-<a id="49">[49]</a>K. Lano, Q. Xue, and S. Kolahdouz-Rahimi. 2020. Agile Specification of Code Generators for Model-Driven Engineering. In Proceedings of ICSEA 2020. IARIA, 9–15.
-<a id="1">[1]</a>L. Addazi, A. Cicchetti, J. D. Rocco, D. D. Ruscio, L. Iovino, and A. Pierantonio. 2016. Semantic-based model matching with emfcompare, me workshop, models. CEUR-WS 1706, 40–49.
-<a id="17">[17]</a>S. Fang and K. Lano. Extracting correspondences from metamodels using metamodel matching. In STAF 2019. Retrieved from CEUR-WS.org/vol-2405/02_paper.pdf.
-<a id="31">[31]</a>M. Kessentini, A. Ouni, P. Langer, M. Wimmer, and S. Bechikh. 2014. Search-based metamodel matching with structural and syntactic measures. Journal of Software and Systems 97, 2014 (2014), 1–14.
-<a id="48">[48]</a>K. Lano, S. Fang, and S. Kolahdouz-Rahimi. TL: An abstract specification language for bidirectional transformations. MODELS’20 Comp. Proc. 77 (2020), 1–10.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TOSEM</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MDE</tag>
-        <tag>Model Transformations</tag>
-        <tag>Requirements Engineering</tag>
-        <tag>Automated Software Engineering</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</title>
-    <url>/2024/08/18/003/</url>
-    <content><![CDATA[
-[Testing, Validation, and Verification of Robotic and Autonomous Systems: A Systematic Review](https://dl.acm.org/doi/full/10.1145/3542945)
-
-*作者是KCL的Hugo Araujo。*
-
-`Abstraction`
-> We perform a systematic literature review on testing, validation, and verification of robotic and autonomous systems (RAS). The scope of this review covers peer-reviewed research papers proposing, improving, or evaluating testing techniques, processes, or tools that address the system-level qualities of RAS.
-Our survey is performed based on a rigorous methodology structured in three phases. First, we made use of a set of 26 seed papers (selected by domain experts) and the SERP-TEST taxonomy to design our search query and (domain-specific) taxonomy. Second, we conducted a search in three academic search engines and applied our inclusion and exclusion criteria to the results. Respectively, we made use of related work and domain specialists (50 academics and 15 industry experts) to validate and refine the search query. As a result, we encountered 10,735 studies, out of which 195 were included, reviewed, and coded.
-> Our objective is to answer four research questions, pertaining to (1) the type of models, (2) measures for system performance and testing adequacy, (3) tools and their availability, and (4) evidence of applicability, particularly in industrial contexts. We analyse the results of our coding to identify strengths and gaps in the domain and present recommendations to researchers and practitioners.
-> Our findings show that variants of temporal logics are most widely used for modelling requirements and properties, while variants of state-machines and transition systems are used widely for modelling system behaviour. Other common models concern epistemic logics for specifying requirements and belief-desireintention models for specifying system behaviour. Apart from time and epistemics, other aspects captured in models concern probabilities (e.g., for modelling uncertainty) and continuous trajectories (e.g., for modelling vehicle dynamics and kinematics).
-> Many papers lack any rigorous measure of efficiency, effectiveness, or adequacy for their proposed techniques, processes, or tools. Among those that provide a measure of efficiency, effectiveness, or adequacy, the majority use domain-agnostic generic measures such as number of failures, size of state-space, or verification time were most used. There is a trend in addressing the research gap in this respect by developing domainspecific notions of performance and adequacy. Defining widely accepted rigorous measures of performance and adequacy for each domain is an identified research gap.
-> In terms of tools, the most widely used tools are well-established model-checkers such as Prism and Uppaal, as well as simulation tools such as Gazebo; Matlab/Simulink is another widely used toolset in this domain.
-> Overall, there is very limited evidence of industrial applicability in the papers published in this domain.
-> There is even a gap considering consolidated benchmarks for various types of autonomous systems.
-
-## Introduction
-
-### Motivation-1
-
-Robotic and Autonomous Systems (RAS)机器人和自主系统。本论文涵盖了RAS的广度和系统性二次研究的调研，并对结果进行分析。
-
-### Scope and Audience
-
-受众：研究者和从业者。所调研的RAS研究的范围。
-
-### Research Questions
-
-几个关键名词的含义，包括types of models, efficiency, effectiveness, coverage measures, (public available) tools, evidence of applicability。
-
-### Structure of the Article
-
-本文的其余部分结构如下：在第 2 部分中，我们回顾了相关工作，重点关注相关主题的二手研究（文献调查和评论）。在第 3 部分中，我们定义了本文的范围并解释了此结构化综述的背景。在那里，我们报告了我们开始研究的核心结果集，作为我们搜索的种子，以形成研究。在第 4 部分中，我们回顾了我们用于系统评价的方法；这包括我们的搜索和选择策略的描述、用于编码结果的分类法的开发、我们的数据提取和综合方法。在本节中，我们还反思了对我们研究的威胁。在第 5 部分中，我们展示了我们的编码结果并对其进行分析以回答我们的研究问题。在第 6 部分中，我们反思了我们的分析并为目标受众（即研究人员和从业人员）提供了具体的建议。在第 7 部分中，我们总结了本文并提出了一些未来研究的方向。
-
-## Related Work
-
-[[55]](#55)这项研究的目标是为机器人软件开发人员提供提示，帮助他们根据感兴趣的属性和软件系统选择合适的分析方法。
-
-[[99]](#99) [[181]](#181)概述了自主系统测试和验证面临的挑战以及可用的技术和结果。
-
-[[118]](#118)聚焦了自动驾驶汽车环境中的问题。
-
-[[79]](#79)概述了V&V领域的研究，主要有关机器学习和自动驾驶场景。
-
-[[114]](#114)自动驾驶与软件的挑战，通过采访从业者的角度进行的。
-
-[[180]](#180)汽车行业中使用的神经网络功能安全性评估的三个具体问题。
-
-[[108]](#108)对公开可用的驾驶数据集以及自动驾驶算法的虚拟测试进行了调查。
-
-[[20]](#20)作者提到了自动驾驶功能的复杂性、场景和参数的变化、场景选择和测试生成等挑战。
-
-[[138]](#138)对用于自主机器人系统的形式化规范和验证方法及工具进行了调查。除了此类系统的内部结构之外，还提出了许多正式建模和验证机器人系统运行环境的挑战。
-
-[[89]](#89)概述了集成形式化方法在机器人和自主系统中的优势、劣势、机遇和威胁。
-
-[[207]](#207)对自动驾驶汽车基于覆盖范围的验证、确认和安全保障技术进行了系统的文献综述。
-
-[[178]](#178)对自动驾驶汽车的软件验证和确认进行了广泛而系统的文献综述。
-
-## Background and Rationale
-
-### Motivation-3
-
-结合相关工作，提出了二次研究的几个问题：（1）对现有的机器人和自主系统验证和确认结果进行结构化回顾；（2）讨论了以下四个具体问题：(a) the types of models, (b) measures of efficiency and effectiveness, (c) available tools, and (d) evidence of applicability to large-scale and industrial systems。
-
-### Robotic and Autonomous System
-
-RAS定义：
-An autonomous system is an intelligent system that is designed to deal with the physical environment on its own and work for extended periods of time without explicit human intervention. They are built to analyse, learn from, adapt to, and act on the surrounding environment.
-
-### Testing and the SERP-Test Taxonomy
-
-本文的论文分类方法基于SERP-Test分类法[[68]](#68)，测试分类四个方面：intervention, effect, scope, and context。
-
-- Intervention pertains to the test techniques, their adaptation, and adoption in different context.
-- Effect facet is used to identify the improvement or adaptation in a given practise as well as any insights gained through assessment.
-- The scope specified whether the effect has been materialised in planning, design, execution, or analysis of tests.
-- Context, as its name suggests, specifies the environment where the intervention takes place, in terms of people and their knowledge, the system under test, and the required models and other types of information.
-
-## Methodology
-
-### Seed Papers
-
-- 收集初始搜索查询的关键字
-- 完善纳入和排出标准
-- 评估和调整SERP-Test分类法
-
-### Selection Strategy
-
-#### Inclusion Criteria
-
-纳入标准的规则。
-
-#### Exclusion Criteria
-
-排出标准的规则。
-
-### Taxonomy
-
-介绍基于SERP-Test分类法的具体的分类原则。
-
-### Search Strategy
-
-#### Initial Query
-
-关键词搜索。
-
-#### Validated Query
-
-对搜索完的结果进行验证。
-
-### Overview of the Results
-
-最后确定了195篇论文。
-
-## Results
-
-### RQ1: Models
-
-关注用于描述RAS的模型和形式类型及其在测试干预中的属性。
-
-#### Modelling Properties
-
-表一关注表示属性的模型。不到三分之一使用模型或逻辑来描述系统的属性，这类算形式模型。所有属性语言都是领域无关的。
-
-#### Modelling System Behaviour or Structure
-
-表二关注描述RAS行为或结构的模型。三分之一采用定性模型。
-
-### RQ2: Effect
-
-评估各种测试干预措施的efficiency (testing time or resources), effectiveness (testing quality), and coverage (testing adequacy)的指标。
-
-#### Measuresfor Interventions
-
-大多数其他概念仅用于单一干预措施。
-
-#### Measures for Subject Systems
-
-### RQ3: Tooling
-
-#### Context Tools
-
-模拟工具是最常用的工具之一；它们的实用性来自于一种成本较低的可视化方法，可以直观地显示设计和流程是否令人满意。中间件 ROS 与 3D 模拟器 Gazebo 相结合，形成了最流行的机器人模拟工具。此外，Simulink 是 MATLAB 的图形扩展，是动态系统建模和仿真最常用的工具。此外，形式化验证工具也得到了广泛应用，其中最突出的是模型检查器。统计模型检查器 Prism 提供对马尔可夫链或概率自动机中随机系统的建模和分析。至于定性模型，UPPAAL 为定时自动机模型提供了形式化验证，但可以扩展以使用数据类型。
-
-#### Effect Tools
-
-关注了哪些工具是否开源的问题和使用领域。
-
-### RQ4: Applicability
-
-我们的观察发现，工业界对干预措施的评估存在很大差距；只有 20 项干预措施在工业背景下进行了评估。可以理解的是，大多数案例研究都是在学术环境中进行的。其中，约有一半使用了小规模模型，这些模型通常不能代表真实系统。另一半将他们提出的干预措施应用于大规模主题和数据集，包括物理系统。
-
-## Suggestions and Recommendations to Study Audience
-
-在本节中，我们将分析前几节的结果，以确定我们的研究问题和两个目标受众群体（研究人员和从业者）的相对优势和劣势。我们将从我们的分析中为研究人员和从业者提出建议，以此结束本节。
-
-### Analysis
-
-#### Domain
-
-针对RAS特定子领域的测试、验证和确认。
-
-……跳过对表8的介绍……
-
-- 在所有子领域中，大多数模型都是正式的和定量的，并且在使用定性和非正式模型进行测试方面可以发现很大的差距（最明显的是在飞行器和移动机器人子领域）。
-- 在所有研究的子领域中，在使用有效性、效率和覆盖率的精确概念方面存在明显差距。其中，一些通用的有效性和效率概念（如测试时间和状态空间大小）以及覆盖率概念（如节点和转换覆盖率）是量化效果的最常用度量。常见的、更复杂的有效性、效率和充分性度量，如平均故障检测百分比 (APFD) ，似乎尚未在 RAS 领域被采用或扩展到 RAS 领域。我们确实看到最近出现了一些针对特定领域的有效性和覆盖率概念的趋势；几乎所有这些概念都已应用于自动驾驶汽车领域，但其中大多数也可以调整以适用于其他领域。
-- 在测试 RAS 的工具支持方面存在相当大的差距。开源工具很少，主要是在自动驾驶汽车和飞行器子域中。没有开源工具支持移动机器人系统的特定领域方面。专有工具也存在同样的模式，但差距更大。在所审查的文献中，开发或使用的公共（但不是开源）工具非常少。
-- 在使用工业案例研究评估 RAS 测试干预措施方面，所有子领域也存在非常严重的差距。最值得注意的例外是少数案例研究，主要是在自动驾驶汽车和飞行器子领域，是在工业环境中进行的。许多干预措施使用小型案例研究，大多没有任何特定的应用子领域（例如，使用移动机器人的通用模型）；在这些情况下，模型不包含足够的细节来成为一般基准的一部分。还有一些基于无人机和无人驾驶飞机的小型案例研究进行评估。
-
-*Analysis for Researchers*
-**Gaps:** 在我们对所研究子域的分析中，我们发现在处理海洋和海底 RAS 方面存在明显差距。此外，在处理飞行器和移动机器人方面也存在相对薄弱之处。此外，在处理非正式和定性模型方面，各个子域之间也存在相对薄弱之处。开发一套通用的有效性和效率概念来比较不同的干预措施是一项值得研究的挑战，文献中在针对特定领域量身定制这些概念方面存在差距。同样的观察结果也适用于测试充分性的概念。工具，尤其是针对特定子域量身定制的工具，是所有干预措施的普遍弱点。此外，在工业环境中应用干预措施是一项突出的挑战。
-**Strengths:** 道路车辆子域在所有研究问题中都具有相当大的优势。此外，针对通用 RAS 系统开发的干预措施远多于针对子域的特定关注点的干预措施。形式化和定量模型是迄今为止最强大的干预措施，无论是在技术研究数量还是在执行的评估方面，即使在工业领域也是如此。
-
-*Analysis for Practitioners*
-**Gaps:** **由于大多数提出的干预措施尚未在工业背景下进行评估，因此评估它们的适用性（包括研究学习曲线和培训等因素）仍然是一个巨大的差距。**
-**Strengths:** 由于形式化和定量模型具有优势，开发此类模型提供了一个起点，可以从已开发和研究的干预措施中受益。道路车辆领域肯定有更成熟的实践可供借鉴，但我们可以设想，通过调整特定领域的方面，其他子领域也可能受益于这些优势。
-
-#### Cooperation and Connectivity
-
-验证方法对于自主系统的广泛部署和公众接受至关重要。由于通信协议、控制软件（例如，用于合作规则）和系统动态之间的密切交互，对此类方法的需求在网络服务支持的功能中得到了加强。现有的（手动）分析技术通常无法扩展到这些功能的巨大设计空间和输入空间，因此，在这项工作中，我们调查了文献中发现的自动验证技术。
-
-总体而言，这是一个 RAS 测试研究不足的领域，文献中很少关注合作和连接场景的测试。对于文献中报道的极少数干预措施，几乎没有任何效率或有效性的证据。 少数报告的评估仅在小规模案例研究中进行，并且没有附带开源工具。
-
-……跳过对表9的介绍……
-
-- 关于用于分析 RAS 中合作场景的模型，我们注意到形式概率模型（基于时间逻辑、过程代数和时间自动机的变体）是最常用的模型类型。这些模型通常用于检查合作场景的抽象模型。非正式模型使用较少，仅作为模拟工具的输入。在这种情况下，定性和非正式模型使用得很少。
-- 大多数有效性和效率概念都是通用概念，例如技术的状态空间大小、验证时间和测试覆盖率以及被测系统的死锁自由度和时间逻辑公式满足的概率。使用领域特定效率和有效性概念的唯一例外涉及群体的聚集时间和人机交互的有效性。
-- 显然缺乏用于测试 RAS 中的合作和群体场景的工具。唯一的例外是公共模型检查工具和用于联网无人机的模拟工具。
-- 很少有研究评估他们在工业规模案例研究和基准上的干预措施。
-
-*Analysis for Researchers*
-**Gaps:** 对纳入的研究进行分析表明，在 RAS 的合作场景中，通信网络和协议的作用及其对 RAS 系统的功能、安全性和可靠性的影响研究严重不足。将通信中可用的知识体系与 RAS 的测试和验证相结合显然是未来研究的领域。现有的研究非常少，没有提供与合作方面和新兴合作行为相关的领域特定效率和有效性衡量标准。此外，缺乏足够的证据表明这些策略已应用于工业规模的案例研究和基准。
-**Strengths:** 抽象理论在群体参数化模型检验方面确实有优势。除此之外，没有其他集中的优势领域。
-
-*Analysis for Practitioners*
-**Gaps:** **如上所述，我们认为，协作机器人和群体机器人的研究成果还不够成熟，无法应用于实践。即使是现有技术也尚未应用于许多工业案例研究，目前也没有稳定的工具集。与研究人员合作定义有意义的效率和有效性概念，并提供基准和工业案例研究，可能会带来有影响力的未来研究议程。**
-**Strengths:** 在测试合作和群体 RAS 场景时没有实际的优势领域。
-
-#### Testing Strategy
-
-到目前为止，最广泛使用的策略是形式验证，其次是模拟和运行时监控。基于模型的测试是研究最少的策略。
-
-……跳过对表10的介绍……
-
-- 到目前为止，定量测试技术是研究最广泛的策略（这也是领域和连接方面的常见观察结果）。
-- 在用于评估干预措施的措施中，效率是最常用的，有效性紧随其后。然而，很少有干预措施使用覆盖率的概念进行评估。值得注意的是，对于运行时监控，只有两篇出版物采用了效率指标。
-- 基于模型的测试和运行时监控工具严重缺乏。对于模拟和形式验证，在工具支持方面似乎有相当大的优势。
-- 大约54%的干预措施使用小规模案例研究进行评估，而只有10%的干预措施在工业背景下评估其策略，这表明存在明显差距。
-
-### For Researchers
-
-如前几节所述，许多效率和有效性措施都非常通用，而且在适合 RAS 子域的领域特定措施方面也存在相对差距。缺乏领域特定建模语言和运行时验证方法数量有限表明 RAS 测试策略还有改进的空间。
-
-另一个相当大的差距是使用定量规范语言来指定系统所需的属性；由于 RAS 固有的异质性，我们需要有属性语言来涵盖离散和连续动态以及随机和认知方面的组合等方面，这些方面可用于对与环境和用户有关的行为方面进行建模。此外，一些研究使用了 Gazebo 和 USARSim 等模拟工具的非正式模拟模型。一种合适的中间立场可能是半正式和特定领域的模型，例如在 Matlab/Simulink 中构建的模型。最后，缺乏公共工具是文献中观察到的一大缺陷。很少有技术附带工具，而且用于测试 RAS 的公共工具也很少。
-
-### For Practitioners
-
-最大的差距是缺乏对现有干预措施的工业评估。在工业背景下和工业复杂系统中应用的干预措施非常少。不幸的是，干预措施的数量太少，无法得出任何有意义的趋势，也无法表明在工业环境中适用的强有力证据。在提出的干预措施中，大多数要么涉及基于模拟的测试，要么将其验证结果与某些模拟工具（主要基于 ROS-Gazebo 集成）联系起来。
-基于搜索的测试和交互测试是两种在工业环境中使用的值得注意的技术。在工业环境中采用的模型中，可以提到状态机和故障树的变体。在这方面的一项值得注意的研究是在工业环境中比较监督控制、演绎和归纳（模型检查）验证技术。人源和信息源是测试干预的另一个方面，这一方面研究严重不足。我们注意到，最近有一种趋势，即将用户研究（就人机交互和人机交互而言）与传统测试、验证和确认技术相结合。此外，在定义和评估测试流程方面也存在差距，特别是在工业环境中。显然，缺乏行业和领域专家对模型和技术的投入，导致大多数干预措施都使用通用且相对简单的建模技术和属性语言。与工业合作伙伴共同生产可以丰富这些方面，并产生能够处理工业 RAS 的异质性和复杂性的模型。
-
-## Conclusions
-
-关注的四个问题：
-
-- (1) What are the types of models used for testing RAS?用于测试 RAS 的模型类型有哪些？**答：** 有大量正式和非正式模型用于测试 RAS。特别是，有大量关于使用通用属性规范语言（如线性时间逻辑）和定性建模语言（如状态机变体、UML 图、Petri 网和过程代数）的文献。定量建模语言存在明显差距，无法捕捉 RAS 的复杂性和异构性。还缺乏可以捕捉 RAS 各个子域领域知识的领域特定语言。
-- (2) Which efficiency and effectiveness measures were introduced or used to evaluate RAS testing interventions?引入或使用了哪些效率和有效性措施来评估 RAS 测试干预措施？**答：** 我们观察到，在衡量测试干预措施的有效性和效率以及充分性的严格且被广泛接受的指标方面存在差距。与前面的项目类似，文献中使用的那些措施非常通用，与 RAS 的特定领域方面无关。因此，在定义和评估 RAS 测试干预措施的效率、有效性和充分性的严格（领域特定）措施方面存在差距和研究机会。
-- (3) What are the interventions supported by (publicly available) tools in this domain?该领域（公开可用的）工具支持哪些干预措施？**答：** 有相当多的干预措施依赖公共工具来实施或评估其干预措施。然而，很少有研究将他们提出/评估的干预措施以公开可用的工具形式提供给公众使用。因此，在提供数据集和公共工具以进一步发展该领域方面存在相当大的差距。
-- (4) Which interventions have evidence of applicability to large-scale and industrial systems?哪些干预措施有证据表明适用于大规模和工业系统？**答：** 在工业环境中评估的测试干预措施屈指可数。还有一些其他干预措施使用了一些真实的机器人或自主系统，但在学术环境中。这表明，未来学术界和工业界在 RAS 测试干预措施的工业评估中合作的重要性。
-
-`个人总结`
-对19年以来的RAS领域论文有比较好的分类，讨论了研究内容、技术手段、领域开展情况等问题，由于RAS在工业中应用较少，结论是比较悲观的。对于使用工具的调研比较有参考意义。
-
-`参考文献`
-<a id="55">[55]</a>A. Cortesi, P. Ferrara, and N. Chaki. 2013. Static analysis techniques for robotics software verification. In IEEE 44th International Symposium on Robotics. IEEE, 1–6.
-<a id="99">[99]</a>Philipp Helle, Wladimir Schamai, and Carsten Strobel. 2016. Testing of autonomous systems—Challenges and current state-of-the-art. INCOSE Int. Sympos. 26, 1 (2016), 571–584. DOI:https://doi.org/10.1002/j.2334-5837.2016.00179.x
-<a id="118">[118]</a>Philip Koopman and Michael Wagner. 2016. Challenges in autonomous vehicle testing and validation. SAE Int. J.Transport. Saf. 4 (04 2016), 15–24. DOI:https://doi.org/10.4271/2016-01-0128
-<a id="79">[79]</a>Shenjian Gao and Yanwen Tan. 2017. Paving the Way for Self-driving Cars - Software Testing for Safety-critical Systems Based on Machine Learning: A Systematic Mapping Study and a Survey. Blekinge Tekniska Högsola.
-<a id="114">[114]</a>A. Knauss, J. Schroder, C. Berger, and H. Eriksson. 2017. Software-related challenges of testing automated vehicles. In IEEE/ACM 39th International Conference on Software Engineering Companion (ICSE-C). IEEE, 328–330.
-<a id="180">[180]</a>Q. Rao and J. Frtunikj. 2018. Deep learning for self-driving cars: Chances and challenges. In IEEE/ACM 1st International Workshop on Software Engineering for AI in Autonomous Systems (SEFAIAS). IEEE, 35–38.
-<a id="108">[108]</a>Y. Kang, H. Yin, and C. Berger. 2019. Test your self-driving algorithm: An overview of publicly available driving datasets and virtual testing environments. IEEE Trans. Intell. Vehic. 4, 2 (2019), 171–185.
-<a id="20">[20]</a> Halil Beglerovic, Steffen Metzner, and Martin Horn. 2018. Challenges for the Validation and Testing of Automated Driving Functions. (Jan. 2018). DOI:https://doi.org/10.1007/978-3-319-66972-4_15
-<a id="138">[138]</a>Matt Luckcuck, Marie Farrell, Louise A. Dennis, Clare Dixon, and Michael Fisher. 2019. Formal specification and verification of autonomous robotic systems: A survey. ACM Comput. Surv. 52, 5 (2019), 100:1–100:41. DOI:https:// doi.org/10.1145/3342355
-<a id="89">[89]</a>Mario Gleirscher, Simon Foster, and Jim Woodcock. 2020. New opportunities for integrated formal methods. ACM Comput. Surv. 52, 6 (2020), 117:1–117:36. DOI:https://doi.org/10.1145/3357231
-<a id="207">[207]</a>Zaid Tahir and Rob Alexander. 2020. Coverage based testing for V&V and safety assurance of self-driving autonomous vehicles: A systematic literature review. In IEEE International Conference on Artificial Intelligence Testing (AITest). IEEE, 23–30. DOI:https://doi.org/10.1109/AITEST49225.2020.00011
-<a id="178">[178]</a>Nijat Rajabli, Francesco Flammini, Roberto Nardone, and Valeria Vittorini. 2021. Software verification and validation of safe autonomous cars: A systematic literature review. IEEE Access 9 (2021), 4797–4819. DOI:https://doi.org/10.1109/ ACCESS.2020.3048047
-<a id="68">[68]</a>Emelie Engström, Kai Petersen, Nauman bin Ali, and Elizabeth Bjarnason. 2017. SERP-test: A taxonomy for supporting industry–academia communication. Softw. Qual. J. 25 (2017), 1269–1305.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TOSEM</category>
-        <category>2023</category>
-      </categories>
-      <tags>
-        <tag>Validation &amp; Verification</tag>
-        <tag>Review</tag>
-        <tag>Robotics</tag>
-        <tag>RAS</tag>
       </tags>
   </entry>
 </search>
