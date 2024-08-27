@@ -572,231 +572,6 @@ Garousi 等人 [[33]](#33) 对产学研合作面临的挑战进行了文献综�
       </tags>
   </entry>
   <entry>
-    <title>笔记：What makes a good modeling research contribution?</title>
-    <url>/2024/08/23/004/</url>
-    <content><![CDATA[
-[What makes a good modeling research contribution?]([论文来源](https://link.springer.com/article/10.1007/s10270-024-01177-x))
-
-*作者是Richard F. Paige。*
-
-`Abstraction`
-
-> The modeling field is rapidly evolving and expanding to address new research topics and to connect with new disciplines. As such, what constituted a good modeling research contribution ten years ago may not be the same today. We try to distill some insights of what we (and the community we aim to represent) consider today as key elements of a good research paper in the field of software and systems modeling. Such insights—which will need to evolve and adapt with time—will be useful not just for authors of new papers, but also for reviewers and editors.
-
-## Introduction
-
-关于如何撰写优秀软件工程论文的具体建议：针对特定章节的撰写建议[[1]](#1)、不同类型的软件工程论文[[5]](#5)，甚至关于如何以更符合软件工程审阅者期望的方式撰写论文的建议[[3]](#3)。
-
-## Types of contributions to the modeling field
-
-常见的论文关注的问题：
-
-- how large is the community that the paper aims to address?
-- how much potential impact is there in the result?
-- how complex is the challenge the paper addresses?
-- how substantial is the validation3, e.g., is there an industrial element to the validation?
-- how distant is the topic of the paper from what we typically see in the modeling venues?
-- how readable is the contribution?
-- how relevant are the examples?
-- and finally, how clear and persuasive is the motivation for the research presented in the paper?
-
-此外，明确研究的正面作用和负面作用也很重要。
-下面将介绍六种具体类型。
-
-### The contribution is a model
-
-仅凭一个模型肯定不行。这个新模型能告诉我们关于建模领域的什么？它能帮助我们回答哪些我们以前无法回答的问题？
-
-### The contribution is a language
-
-仅凭一个元模型也不行，需要完整的工作。
-
-### The contribution is a core modeling technique
-
-这些论文介绍了模型分析（模型验证、确认或测试技术等）或操作技术（模型合并、模型到模型转换、代码生成器等）。或将它们组合起来作为特定建模方法的一部分。这可能是我们多年来看到最多提案的类别。因此，在这一类别中，原创性更难实现，而证明新贡献确实有必要则更为重要。
-例如，很难相信建模社区需要一种新的模型转换方法，除非它与具有非常具体要求的新语言、领域或应用程序相关联。
-
-### The contribution is a modeling application
-
-仅仅证明建模（或 MDE 或建模工具）可以应用于问题是不够的——相反，必须令人信服地证明建模提供了一些附加值，一些可以量化或以可重复的方式捕获的好处。
-
-### The contribution is a (new) modeling domain
-
- 除了单个应用程序（见上文），这里的目标是为新的工程或科学领域提供一些初步支持，然后这些支持可以发展成为该领域的一套完整的建模解决方案和应用程序。
-
-### The contribution is a modeling tool
-
-这些工具贡献不应只是研究工作的副产品或简单的一次性原型，而应是一种成熟、可用且广泛的工具，有可能对建模社区产生重大而积极的影响（通过吸引更多用户、促进更多项目采用建模实践等）。
-
-## A community effort
-
-就社区建设问题进行了介绍。
-
-`个人总结`
-作者就SoSyM期刊中的一些研究进行了分类和评估，从审稿人的角度分析一篇文章应具备哪些要素。
-
-`参考文献`
-
-<a id="1">[1]</a>Anthony, L.: Writing research article introductions in software engineering: How accurate is a standard model? IEEE Trans. Prof.Commun. 42(1), 38–46 (1999)
-<a id="5">[5]</a>Montesi, M., Lago, P.: Software engineering article types: an analysis of the literature. J. Syst. Softw. 81(10), 1694–1714 (2008)
-<a id="3">[3]</a>Ernst, N.A., Carver, J.C., Mendez, D., Torchiano, M.: Understanding peer review of software engineering papers. Empir. Softw. Eng. 26, 1–29 (2021)]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>SoSyM</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>Insights</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering</title>
-    <url>/2024/08/23/005/</url>
-    <content><![CDATA[
-[Design ontology for cognitive thread supporting traceability management in model-based systems engineering](https://www.sciencedirect.com/science/article/pii/S2452414X24000633)
-
-作者来自王国新和鲁金直团队
-
-`Abstraction`
-
-> Industrial information integration engineering (IIIE) is an interdisciplinary field to facilitate the industrial information integration process. In the age of complex and large-scale systems, model-based systems engineering (MBSE) is widely adopted in industry to support IIIE. Traceability management is considered the foundation of information management in MBSE. However, a lack of integration between stakeholders, development processes, and models can decrease the effectiveness and efficiency of the system development. A modified MBSE toolchain prototype has been developed to implement traceability management; however, a lack of formal and structured specifications makes it difficult to describe the complex topology in traceability management scenarios using this MBSE toolchain, such as creating traceability between heterogeneous models, which leads to poor reusability of this MBSE toolchain in other traceability management scenarios. To formalize traceability management scenarios using the MBSE toolchain, a cognitive thread (CT) ontology is developed in this study. The CT ontology is a specification expressing the information of stakeholders, models, and development processes for traceability management, providing the cognition capability to analyze the interrelationships between them. Based on the implementation of the modified MBSE toolchain, the concepts and interrelationships in the CT ontology are identified. The CT ontology is designed to develop the MBSE toolchain prototype for building, managing, and analyzing traceability in various traceability management scenarios. A case study of an adaptive cruise control system design is used to evaluate the completeness of the CT ontology through qualitative and quantitative analyses. The results demonstrate that the proposed CT ontology formalizes the information related to traceability management while using the proposed MBSE toolchain and can also be used in common traceability management scenarios to design other complex engineered systems.
-
-## Introduction
-
-Industrial information integration engineering (IIIE)工业信息集成工程的概念。Digital Thread (DT)数字线程被认为是实现MBSE的下一个信息管理和集成范例。它可以看做是将产品生命周期的各个阶段产生的信息链接到决策的框架中[[10]](#10)，信息的可追溯性管理就显得很重要。
-
-可追溯性管理的问题：可追溯性管理场景的形式化应该是实现功能的先决条件；应妥善管理和分析模型与数据、开发过程与利益攸关者之间的依赖关系。
-
-本文的主要贡献：设计了一个认知线程本体Cognitive thread (CT) ontology，与其他方法相比，CT本体可以为追溯性的构建和分析过程提供语义描述。CT概念参考[[19]](#19)。具体特点：
-
-- (1) 将利益相关者、开发过程和系统工件之间的概念和相互关系形式化；
-- (2) 提供基于预定义推理规则的认知能力。这些规则是基于利益相关者、开发过程和系统工件之间的相互关系制定的。认知能力可帮助利益相关者分析和理解协同设计中开发过程与模型和数据之间的复杂依赖关系，从而选择最佳设计。
-
-在先前的一项研究 [[20]](#20) 中，开发了一个 MBSE 工具链来支持协同设计。为了实现可追溯性管理，我们改进了此工具链作为 CT 本体形式化的基础，其中包括以下四个方面：
-
-- (1) 系统工件的开放生命周期协作服务 (OSLC) 服务，例如领域特定建模 (DSM)、数据等；
-- (2) 从 DSM 模型生成的基于 Web 的流程管理系统 (WPMS)；
-- (3) 统一身份验证系统；
-- (4) OSLC 服务管理系统 (OSMS)。基于MBSE工具链的实现，识别了CT本体中的概念和相互关系，并以自适应巡航控制（ACC）系统设计的MBSE工具链为例，通过定性和定量的测量，评估了CT本体的完备性。
-
-## Related Work
-
-### Concept and state of the art of traceability management
-
-The IEEE standard glossary of software engineering terminology defines traceability as the “degree to which a relationship can be established between two or more products of the development process” [[30]](#30).
-尽管在 MBSE 领域中，对可追溯性或可追溯性管理尚无统一的定义，但用于开发工程系统的可追溯性概念与软件工程中的可追溯性概念类似。The International Council on Systems Engineering (INCOSE) defines traceability in the MBSE field as “a discernible association between two or more logical entities such as requirements, system elements, verifications, or tasks”[[32]](#32).
-
-- 设计结构矩阵式可追溯性管理的最常用方法，但依赖额外的工具集。
-- 模型转换是另一种方法，但大部分仅支持单向转换。（Guo等[[41]](#41)设计了代码生成语言语法来实现MBSE与Simulink模型之间的可追溯性。Kharrat等[[42]](#42)扩展了系统建模语言(SysML)配置文件，设计了一种模型转换方法来实现SysML与计算机辅助设计(CAD)模型之间的可追溯性。）
-- 一些DSM工具链被视为是潜在解决方案。DSM 是一种工程方法，通过模型和一组形式化元模型来描述特定领域系统的信息。 这些工具链促进了不同领域模型之间的可追溯性。在本研究中，我们专注于 MBSE 工具链开发以支持可追溯性管理。
-
-### Ontology design for traceability management in MBSE
-
-本体是指对象的类型及其属性和关系，它们代表了领域特定知识。在MBSE实践中，本体用于形式化系统开发和工件的系统信息。由于工程系统的固有特性，各种设计活动和利益相关者之间的迭代和交互也增加了产品实现过程的复杂性。（信息不全且混乱）
-
-### Cognitive thread for traceability management
-
-数字线程的概念来自F35战斗机[[58]](#58) [[59]](#59)。
-T. D. West et al [[60]](#60) considered it as “a framework for merging the conceptual models of the system with the discipline-specific engineering models of various system elements”.
-最近，研究人员试图利用语义技术增强 DT 的认知能力。下一代 DT 的范式被提议为 CT [[19]](#19)，它是一种具有增强语义能力的 DT，可以形式化模型与数据、开发过程和组织之间的相互关系。还有一些其他研究利用知识图谱用于描述语义间的拓扑关系。
-
-### Summary
-
-几个动机：
-
-- 为了形式化MBSE工具链，应开发描述MBSE工具链本身的本体模型。
-- 工业界和学术界目标不同，本体还需要支持过程管理和工具操作。
-- 使用CT能增强知识表达能力，现有方法没有在模型领域的分析。
-
-## Research design
-
-![Overview of research design.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082304.png)
-
-如图所示，第一步确定可追溯性管理场景；第二步，采用系统思维支持CT本体设计，解决工具链中的问题；第三步基于CT本体，修改当前的MBSE工具链以支持可追溯性管理场景；第四步，通过ACC系统设计案例，对原型进行评估。
-
-### Problem statement
-
-在[[20]](#20) [[51]](#51)中开发了航空发动机仿真案例。利益相关者使用 DSM 模型来形式化开发流程和系统工件。 然后，将 DSM 模型转换为一个 WPMS，以部署技术资源并在 Simulink 中为不同的利益相关者实现自动联合仿真。本研究的步骤：
-
-- 定义追溯性和追溯性管理的概念。[[19]](#19)
-- 定义场景。
-- 定义场景相关实体。
-- 定义实体之间的相互关系。
-- 使用工具链实例化。
-- 案例研究评估。
-
-### Prototype strategy for cognitive thread ontology design
-
-![Overview of the MBSE toolchain prototype.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082305.png)
-
-如图所示，（a）用Excel提取需求，用MetaGraph和KARMA体系建模，使用代码生成器将DSM模型转换为本体，基于此联合Simulink进行仿真。（b）开发OSLC适配器，通过特定的映射规则将数据转换为相应OSLC服务。（c）编译器加载DSM模型中的流程模型以生成WPMS。（d）统一身份验证系统提供数据访问控制。（e）最后，开发OSMS（Neo4j）来存储和分析WPMS中OSLC服务和开发流程之间的追溯性。
-
-### Evaluation based on case study
-
-提出了一个ACC系统设计案例，验证工具链的可行性与有效性。
-（1）工具链原型开发：定义了4个指标。
-（2）评估问题分析：提出了7个问题。
-定量方法方面，参考SPIRIT框架[[68]](#68)分析三个方面：模型互操作性、开发流程利益攸关者之间的沟通程度、追溯认知推理分析的能力。
-
-## Ontology of cognitive thread for traceability management in MBSE
-
-![CT ontology for traceability management.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082306.png)
-
-本节介绍CT本体的具体内容，对应第一个图的第二步。
-
-### Ontology formalizing models
-
-DSM 模型是基于 GOPPRR-E 建模方法生成的。
-
-### Ontology formalizing development process
-
-### Ontology formalizing stakeholders
-
-### Ontology formalizing scenarios of traceability management
-
-## Case study
-
-### Scenario definition
-
-### Models and data supporting ACC system design
-
-### OSMS supporting traceability construction and analysis
-
-### Unified authentication system supporting authority management
-
-## Discussion and evaluation
-
-### Qualitative evaluation
-
-### Quantitative evaluation
-
-### Scalability discussion
-
-### Limitations
-
-## Conclusions
-
-`个人总结`
-[[]](#)
-
-`参考文献`
-<a id="1">[1]</a>
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>JII</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Traceability management</tag>
-        <tag>Cognitive thread</tag>
-        <tag>Digital thread</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</title>
     <url>/2024/08/23/003/</url>
     <content><![CDATA[
@@ -1062,6 +837,257 @@ An autonomous system is an intelligent system that is designed to deal with the 
         <tag>Review</tag>
         <tag>Robotics</tag>
         <tag>RAS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering</title>
+    <url>/2024/08/23/005/</url>
+    <content><![CDATA[
+[Design ontology for cognitive thread supporting traceability management in model-based systems engineering](https://www.sciencedirect.com/science/article/pii/S2452414X24000633)
+
+作者来自王国新和鲁金直团队
+
+`Abstraction`
+
+> Industrial information integration engineering (IIIE) is an interdisciplinary field to facilitate the industrial information integration process. In the age of complex and large-scale systems, model-based systems engineering (MBSE) is widely adopted in industry to support IIIE. Traceability management is considered the foundation of information management in MBSE. However, a lack of integration between stakeholders, development processes, and models can decrease the effectiveness and efficiency of the system development. A modified MBSE toolchain prototype has been developed to implement traceability management; however, a lack of formal and structured specifications makes it difficult to describe the complex topology in traceability management scenarios using this MBSE toolchain, such as creating traceability between heterogeneous models, which leads to poor reusability of this MBSE toolchain in other traceability management scenarios. To formalize traceability management scenarios using the MBSE toolchain, a cognitive thread (CT) ontology is developed in this study. The CT ontology is a specification expressing the information of stakeholders, models, and development processes for traceability management, providing the cognition capability to analyze the interrelationships between them. Based on the implementation of the modified MBSE toolchain, the concepts and interrelationships in the CT ontology are identified. The CT ontology is designed to develop the MBSE toolchain prototype for building, managing, and analyzing traceability in various traceability management scenarios. A case study of an adaptive cruise control system design is used to evaluate the completeness of the CT ontology through qualitative and quantitative analyses. The results demonstrate that the proposed CT ontology formalizes the information related to traceability management while using the proposed MBSE toolchain and can also be used in common traceability management scenarios to design other complex engineered systems.
+
+## Introduction
+
+Industrial information integration engineering (IIIE)工业信息集成工程的概念。Digital Thread (DT)数字线程被认为是实现MBSE的下一个信息管理和集成范例。它可以看做是将产品生命周期的各个阶段产生的信息链接到决策的框架中[[10]](#10)，信息的可追溯性管理就显得很重要。
+
+可追溯性管理的问题：可追溯性管理场景的形式化应该是实现功能的先决条件；应妥善管理和分析模型与数据、开发过程与利益攸关者之间的依赖关系。
+
+本文的主要贡献：设计了一个认知线程本体Cognitive thread (CT) ontology，与其他方法相比，CT本体可以为追溯性的构建和分析过程提供语义描述。CT概念参考[[19]](#19)。具体特点：
+
+- (1) 将利益相关者、开发过程和系统工件之间的概念和相互关系形式化；
+- (2) 提供基于预定义推理规则的认知能力。这些规则是基于利益相关者、开发过程和系统工件之间的相互关系制定的。认知能力可帮助利益相关者分析和理解协同设计中开发过程与模型和数据之间的复杂依赖关系，从而选择最佳设计。
+
+在先前的一项研究 [[20]](#20) 中，开发了一个 MBSE 工具链来支持协同设计。为了实现可追溯性管理，我们改进了此工具链作为 CT 本体形式化的基础，其中包括以下四个方面：
+
+- (1) 系统工件的开放生命周期协作服务 (OSLC) 服务，例如领域特定建模 (DSM)、数据等；
+- (2) 从 DSM 模型生成的基于 Web 的流程管理系统 (WPMS)；
+- (3) 统一身份验证系统；
+- (4) OSLC 服务管理系统 (OSMS)。基于MBSE工具链的实现，识别了CT本体中的概念和相互关系，并以自适应巡航控制（ACC）系统设计的MBSE工具链为例，通过定性和定量的测量，评估了CT本体的完备性。
+
+## Related Work
+
+### Concept and state of the art of traceability management
+
+The IEEE standard glossary of software engineering terminology defines traceability as the “degree to which a relationship can be established between two or more products of the development process” [[30]](#30).
+尽管在 MBSE 领域中，对可追溯性或可追溯性管理尚无统一的定义，但用于开发工程系统的可追溯性概念与软件工程中的可追溯性概念类似。The International Council on Systems Engineering (INCOSE) defines traceability in the MBSE field as “a discernible association between two or more logical entities such as requirements, system elements, verifications, or tasks”[[32]](#32).
+
+- 设计结构矩阵式可追溯性管理的最常用方法，但依赖额外的工具集。
+- 模型转换是另一种方法，但大部分仅支持单向转换。（Guo等[[41]](#41)设计了代码生成语言语法来实现MBSE与Simulink模型之间的可追溯性。Kharrat等[[42]](#42)扩展了系统建模语言(SysML)配置文件，设计了一种模型转换方法来实现SysML与计算机辅助设计(CAD)模型之间的可追溯性。）
+- 一些DSM工具链被视为是潜在解决方案。DSM 是一种工程方法，通过模型和一组形式化元模型来描述特定领域系统的信息。 这些工具链促进了不同领域模型之间的可追溯性。在本研究中，我们专注于 MBSE 工具链开发以支持可追溯性管理。
+
+### Ontology design for traceability management in MBSE
+
+本体是指对象的类型及其属性和关系，它们代表了领域特定知识。在MBSE实践中，本体用于形式化系统开发和工件的系统信息。由于工程系统的固有特性，各种设计活动和利益相关者之间的迭代和交互也增加了产品实现过程的复杂性。（信息不全且混乱）
+
+### Cognitive thread for traceability management
+
+数字线程的概念来自F35战斗机[[58]](#58) [[59]](#59)。
+T. D. West et al [[60]](#60) considered it as “a framework for merging the conceptual models of the system with the discipline-specific engineering models of various system elements”.
+最近，研究人员试图利用语义技术增强 DT 的认知能力。下一代 DT 的范式被提议为 CT [[19]](#19)，它是一种具有增强语义能力的 DT，可以形式化模型与数据、开发过程和组织之间的相互关系。还有一些其他研究利用知识图谱用于描述语义间的拓扑关系。
+
+### Summary
+
+几个动机：
+
+- 为了形式化MBSE工具链，应开发描述MBSE工具链本身的本体模型。
+- 工业界和学术界目标不同，本体还需要支持过程管理和工具操作。
+- 使用CT能增强知识表达能力，现有方法没有在模型领域的分析。
+
+## Research design
+
+![Overview of research design.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082304.png)
+
+如图所示，第一步确定可追溯性管理场景；第二步，采用系统思维支持CT本体设计，解决工具链中的问题；第三步基于CT本体，修改当前的MBSE工具链以支持可追溯性管理场景；第四步，通过ACC系统设计案例，对原型进行评估。
+
+### Problem statement
+
+在[[20]](#20) [[51]](#51)中开发了航空发动机仿真案例。利益相关者使用 DSM 模型来形式化开发流程和系统工件。 然后，将 DSM 模型转换为一个 WPMS，以部署技术资源并在 Simulink 中为不同的利益相关者实现自动联合仿真。本研究的步骤：
+
+- 定义追溯性和追溯性管理的概念。[[19]](#19)
+- 定义场景。
+- 定义场景相关实体。
+- 定义实体之间的相互关系。
+- 使用工具链实例化。
+- 案例研究评估。
+
+### Prototype strategy for cognitive thread ontology design
+
+![Overview of the MBSE toolchain prototype.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082305.png)
+
+如图所示，（a）用Excel提取需求，用MetaGraph和KARMA体系建模，使用代码生成器将DSM模型转换为本体，基于此联合Simulink进行仿真。（b）开发OSLC适配器，通过特定的映射规则将数据转换为相应OSLC服务。（c）编译器加载DSM模型中的流程模型以生成WPMS。（d）统一身份验证系统提供数据访问控制。（e）最后，开发OSMS（Neo4j）来存储和分析WPMS中OSLC服务和开发流程之间的追溯性。
+
+### Evaluation based on case study
+
+提出了一个ACC系统设计案例，验证工具链的可行性与有效性。
+（1）工具链原型开发：定义了4个指标。
+（2）评估问题分析：提出了7个问题。
+定量方法方面，参考SPIRIT框架[[68]](#68)分析三个方面：模型互操作性、开发流程利益攸关者之间的沟通程度、追溯认知推理分析的能力。
+
+## Ontology of cognitive thread for traceability management in MBSE
+
+![CT ontology for traceability management.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082306.png)
+
+本节介绍CT本体的具体内容，对应第一个图的第二步。
+
+### Ontology formalizing models
+
+![Fig. 4. Mapping process between OSLC services and models.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082701.png)
+
+本节主要关注模型信息。在提出的 MBSE 工具链中，结构化需求文档被视为非正式模型，DSM 模型是描述性模型，Simulink 模型是分析性模型。DSM 模型是基于 GOPPRR-E 建模方法生成的。基于 OSLC 核心规范[[22]](#22)开发了需求表、DSM 模型和 Simulink 模型的 OSLC 服务，以支持数据集成和互操作。为了描述OSLC服务，使用OWL语言进行形式化[[71]](#71)。论文讲述了以上三者之间的映射方法，具体方式如图4左侧描述。
+
+### Ontology formalizing development process
+
+本节主要关注开发过程的结构信息。采用的是BPMN开发流程。
+
+### Ontology formalizing stakeholders
+
+本节主要关注的是利益攸关者的结构信息。
+
+### Ontology formalizing scenarios of traceability management
+
+在已知模型、过程和利益攸关者信息后，本节关注可追溯性管理。包括四个部分：OSLC模型间追溯管理、OSLC模型与过程模型间追溯管理、OSLC模型与利益攸关者间追溯管理、过程模型与利益攸关者间追溯管理。
+
+## Case study
+
+### Scenario definition
+
+![Fig. 5. ACC system design process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082702.png)
+
+ACC是一种基于车辆的外部行驶环境，如前方车辆的速度和距离，来适应常规控制的避碰系统。为了验证所提出的CT本体的完整性，以ACC系统设计为例对MBSE工具链原型进行了评估。案例如图5所示。
+
+### Models and data supporting ACC system design
+
+介绍了DSM的元模型组成和DSM模型在MetaGraph软件中的对应效果。建模方法用的是OOSEM[[26]](#26)。用CarSim做了一个Simulink ACC FMU模型。OSCL服务可以触发Simulink运行并获取Simulink中的数据。
+
+### OSMS supporting traceability construction and analysis
+
+![Fig. 10. OSMS supporting traceability management.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082703.png)
+
+图10展示了可追溯管理软件OSMS的架构。
+
+- 10(a)中：利益攸关者可以通过OSLC服务绑定到WPMS的工作任务来操纵设计模型。例如，WPMS中的涉众需求定义工作任务链接到在Excel中查询需求项的相关OSLC服务。在WPMS中，需求工程师操纵OSLC服务来修改Excel表格中的涉众需求，例如将最小安全驾驶距离从35米更改为40米。
+- 在图10(b)所示的服务管理模块中，所有OSLC服务都集成到OSMS中以构建可追溯性。使用递归算法来发现并遍历所有OSLC服务，直到OSLC资源不再链接到另一个OSLC服务URI。
+- 在图10(c)中，在可追溯性构建模块中建立了OSLC服务与过程模型之间的可追溯性。
+
+### Unified authentication system supporting authority management
+
+## Discussion and evaluation
+
+### Qualitative evaluation
+
+### Quantitative evaluation
+
+### Scalability discussion
+
+### Limitations
+
+## Conclusions
+
+> For facilitating the industrial information integration process to support IIIE, the traceability management in MBSE implementation should be first considered. In this paper, we propose a CT ontology for traceability management in an MBSE toolchain that is developed based on an MBSE toolchain prototype and formalizes models, stakeholders, and development processes, as well as traceability management scenarios. Through a case study of an ACC system, the completeness of the CT ontology is evaluated by qualitative and quantitative analyses of the proposed MBSE toolchain. The results demonstrate that the CT ontology helps stakeholders manage and analyze traceability between heterogeneous models in the development process. To improve the efficiency of information integration, more discipline information can be considered and integrated into the proposed CT ontology in the future. Besides, we intend to extend the ontology of the CT to support other complex scenarios during MBSE implementation, such as automatic change management and consistency management for MBSE models.
+
+`个人总结`
+
+
+`参考文献`
+[[]](#)
+
+<a id="1">[1]</a>
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>JII</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Traceability management</tag>
+        <tag>Cognitive thread</tag>
+        <tag>Digital thread</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：What makes a good modeling research contribution?</title>
+    <url>/2024/08/23/004/</url>
+    <content><![CDATA[
+[What makes a good modeling research contribution?]([论文来源](https://link.springer.com/article/10.1007/s10270-024-01177-x))
+
+*作者是Richard F. Paige。*
+
+`Abstraction`
+
+> The modeling field is rapidly evolving and expanding to address new research topics and to connect with new disciplines. As such, what constituted a good modeling research contribution ten years ago may not be the same today. We try to distill some insights of what we (and the community we aim to represent) consider today as key elements of a good research paper in the field of software and systems modeling. Such insights—which will need to evolve and adapt with time—will be useful not just for authors of new papers, but also for reviewers and editors.
+
+## Introduction
+
+关于如何撰写优秀软件工程论文的具体建议：针对特定章节的撰写建议[[1]](#1)、不同类型的软件工程论文[[5]](#5)，甚至关于如何以更符合软件工程审阅者期望的方式撰写论文的建议[[3]](#3)。
+
+## Types of contributions to the modeling field
+
+常见的论文关注的问题：
+
+- how large is the community that the paper aims to address?
+- how much potential impact is there in the result?
+- how complex is the challenge the paper addresses?
+- how substantial is the validation3, e.g., is there an industrial element to the validation?
+- how distant is the topic of the paper from what we typically see in the modeling venues?
+- how readable is the contribution?
+- how relevant are the examples?
+- and finally, how clear and persuasive is the motivation for the research presented in the paper?
+
+此外，明确研究的正面作用和负面作用也很重要。
+下面将介绍六种具体类型。
+
+### The contribution is a model
+
+仅凭一个模型肯定不行。这个新模型能告诉我们关于建模领域的什么？它能帮助我们回答哪些我们以前无法回答的问题？
+
+### The contribution is a language
+
+仅凭一个元模型也不行，需要完整的工作。
+
+### The contribution is a core modeling technique
+
+这些论文介绍了模型分析（模型验证、确认或测试技术等）或操作技术（模型合并、模型到模型转换、代码生成器等）。或将它们组合起来作为特定建模方法的一部分。这可能是我们多年来看到最多提案的类别。因此，在这一类别中，原创性更难实现，而证明新贡献确实有必要则更为重要。
+例如，很难相信建模社区需要一种新的模型转换方法，除非它与具有非常具体要求的新语言、领域或应用程序相关联。
+
+### The contribution is a modeling application
+
+仅仅证明建模（或 MDE 或建模工具）可以应用于问题是不够的——相反，必须令人信服地证明建模提供了一些附加值，一些可以量化或以可重复的方式捕获的好处。
+
+### The contribution is a (new) modeling domain
+
+ 除了单个应用程序（见上文），这里的目标是为新的工程或科学领域提供一些初步支持，然后这些支持可以发展成为该领域的一套完整的建模解决方案和应用程序。
+
+### The contribution is a modeling tool
+
+这些工具贡献不应只是研究工作的副产品或简单的一次性原型，而应是一种成熟、可用且广泛的工具，有可能对建模社区产生重大而积极的影响（通过吸引更多用户、促进更多项目采用建模实践等）。
+
+## A community effort
+
+就社区建设问题进行了介绍。
+
+`个人总结`
+作者就SoSyM期刊中的一些研究进行了分类和评估，从审稿人的角度分析一篇文章应具备哪些要素。
+
+`参考文献`
+
+<a id="1">[1]</a>Anthony, L.: Writing research article introductions in software engineering: How accurate is a standard model? IEEE Trans. Prof.Commun. 42(1), 38–46 (1999)
+<a id="5">[5]</a>Montesi, M., Lago, P.: Software engineering article types: an analysis of the literature. J. Syst. Softw. 81(10), 1694–1714 (2008)
+<a id="3">[3]</a>Ernst, N.A., Carver, J.C., Mendez, D., Torchiano, M.: Understanding peer review of software engineering papers. Empir. Softw. Eng. 26, 1–29 (2021)]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>SoSyM</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>Insights</tag>
       </tags>
   </entry>
 </search>
