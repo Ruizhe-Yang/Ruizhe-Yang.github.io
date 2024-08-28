@@ -1,0 +1,294 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Domain-specific languages for the automated generation of datasets for industry 4.0 applications 作者来自西班牙坎布里亚大学 Abstraction  Data collected in Industry 4.0 applications must be converted into tabular d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2024/08/28/006/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="Domain-specific languages for the automated generation of datasets for industry 4.0 applications 作者来自西班牙坎布里亚大学 Abstraction  Data collected in Industry 4.0 applications must be converted into tabular d">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082801.png">
+<meta property="article:published_time" content="2024-08-28T08:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-28T09:48:15.096Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="MBSE">
+<meta property="article:tag" content="DSL">
+<meta property="article:tag" content="Metamodel">
+<meta property="article:tag" content="Industry 4.0">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082801.png"><link rel="shortcut icon" href="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F2.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2024/08/28/006/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-28 17:48:15'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082801.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F3.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-08-28T08:00:00.000Z" title="Created 2024-08-28 16:00:00">2024-08-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-08-28T09:48:15.096Z" title="Updated 2024-08-28 17:48:15">2024-08-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/">Journal</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/JII/">JII</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/JII/2024/">2024</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>9mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S2452414X24001018">Domain-specific languages for the automated generation of datasets for industry 4.0 applications</a></p>
+<p><em>作者来自西班牙坎布里亚大学</em></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>Data collected in Industry 4.0 applications must be converted into tabular datasets before they can be processed by analysis algorithms, as in any data analysis system. To perform this transformation, data scientists have to write complex and long scripts, which can be a cumbersome process. To overcome this limitation, a language called Lavoisier was recently created to facilitate the creation of datasets. This language provides high-level primitives to select data from an object-oriented data model describing data available in a context. However, industrial engineers might not be used to deal with this kind of model. So, this work introduces a new set of languages that adapt Lavoisier to work with fishbone diagrams, which might be more suitable in industrial settings. These new languages keep the benefits of Lavoisier, reducing dataset creation complexity by 40% and up to 80%, and outperforming Lavoisier in some cases.</p>
+</blockquote>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>本文重点关注那些旨在利用构成现代装配线的不同互连元素收集的大量数据的工业4.0应用。MES (Manufacturing Execution System)。然后可以对这些大量数据进行分析，以改进制造过程及其输出产品。Zero-Defect Manufacturing (ZDM) 。</p>
+<p>数据集是一种基于表的格式，与所分析的每个元素相关联的所有数据必须放在该表的一行中。然而，这种格式的数据并不常见，因为它通常存储在关系数据库、XML或JSON文件中。在这些表示中，数据不是表格式的，而是链接的，通常是分层的。例如，关于制造产品的数据可以链接到其组件的数据。类似地，每个组件的数据可能连接到其子组件的数据，依此类推。因此，在将这些分层数据用作数据分析算法的输入之前，我们需要将它们扁平化，以便将它们排列成表中特定行的列。</p>
+<p>为了执行平坦化任务，数据科学家通常用SQL、R或Pandas等语言编写复杂而冗长的脚本。为了缓解这些问题，一种叫做Lavoisier的语言最近被开发出来<a href="#52">[52]</a> <a href="#53">[53]</a>。这种语言提供了高级原语来创建数据集，这些数据集关注于必须选择哪些数据，而忽略了必须如何重新排列这些数据以使它们适合数据集的细节。</p>
+<p>另一方面，工业工程师被用来处理鱼骨图，它允许表示因果关系，通常用于工业环境中的质量控制，并且可以用于指定领域数据之间的影响关系。因此，在工业4.0上下文中，更希望Lavoisier能够使用鱼骨图而不是面向对象的领域模型。</p>
+<p>这项工作提出了一个模型驱动的过程，使Lavoisier适应于使用鱼骨图。为了构建这个过程，我们首先创建了一种新的鱼骨模型，称为面向数据的鱼骨模型，其中原因可以连接到领域数据。为此，我们用Lavoisier语句增强鱼骨模型，这样每个原因都可以连接到表征这种原因的领域数据子集。接下来，我们设计了一种名为Papin的新语言来选择应该使用鱼骨图的哪些原因来构建具体的数据集。最后，Papin解释器处理这个选择并自动生成所需的数据集。因此，工业工程师可以使用Papin直接从(面向数据的)鱼骨图创建数据集，而不是从面向对象的领域模型。</p>
+<p>通过将面向数据的鱼骨模型和Papin语言应用于五个外部案例研究，评估了这些语言的表达能力。</p>
+<p>这项工作扩展了以前在一次会议上提出的贡献在这一贡献中，作为主要区别，本文包括了对我们方法的表达性和有效性的更详尽的评估(第5节)，以及对所呈现语言如何实现的更详细的描述(第4节)。此外，我们扩展了相关工作部分，包括propositionalization和Multi-Relational Data Mining (MRDM)以及工业4.0和ETL过程中的建模语言。</p>
+<h2 id="Background-and-motivation"><a href="#Background-and-motivation" class="headerlink" title="Background and motivation"></a>Background and motivation</h2><h3 id="Software-language-engineering-via-metamodelling"><a href="#Software-language-engineering-via-metamodelling" class="headerlink" title="Software language engineering via metamodelling"></a>Software language engineering via metamodelling</h3><p>DSL语言比General Purpose Language (GPL)的强制性更低。DSL允许使用包含来自应用领域的术语和自定义语法。介绍元模型技术。</p>
+<h3 id="Running-example-Falling-band"><a href="#Running-example-Falling-band" class="headerlink" title="Running example: Falling band"></a>Running example: Falling band</h3><p>作为贯穿本文的运行示例，我们将以一家汽车行业供应商公司的驱动半轴生产为例。在这些检查中，汽车制造商发现，有时车轮一侧的箍松开，引起不同的问题。该公司希望分析在驱动半轴生产过程中收集的数据，以找到这个问题的原因。</p>
+<h3 id="Data-mining-processes"><a href="#Data-mining-processes" class="headerlink" title="Data mining processes"></a>Data mining processes</h3><p>KDD(Knowledge Discovery in Databases) <a href="#65">[65]</a> 我们将以KDD过程为基础，解释作为数据挖掘过程一部分的不同阶段。绘制了一个流程图介绍KDD过程，分别是bussis questions, data sources selection, domain data model, algorithm selection, data reshaping, data preparation, algorithm execution, results reports。</p>
+<h3 id="The-dataset-generation-problem"><a href="#The-dataset-generation-problem" class="headerlink" title="The dataset generation problem"></a>The dataset generation problem</h3><p>关注其中的data reshaping问题。大多数数据分析算法只能处理以具体表格格式提供的数据，在数据科学社区中称为数据集。在这种格式中，属于要分析的单个实体的所有数据必须放在同一个表行中，我们将其命名为一个实体，一行约束。然而，域数据通常以链接和嵌套元素的图的形式提供，如JSON等。为了创建数据集，数据科学家编写复杂而冗长的脚本，其中使用不同的低级操作链(如过滤器、连接、pivot或聚合)转换原始数据，以满足一个实体、一行约束。</p>
+<p>读者可以很容易地注意到，与示例大小相比，这个脚本相当复杂，并且如果紧缩的数量增加，它有明显的可伸缩性问题。这个问题并不是SQL语言所特有的，在使用R或Pandas等其他替代语言时也会出现类似的情况。因此，数据集创建成为一个劳动密集型且容易出错的过程。</p>
+<h3 id="Lavoisier"><a href="#Lavoisier" class="headerlink" title="Lavoisier"></a>Lavoisier</h3><p>为了克服这个问题，最近发展了一种叫做Lavoisier<a href="#52">[52]</a> <a href="#71">[71]</a> 的语言。Lavoisier是一种用于数据集创建的声明性语言，它提供了一组高级原语，其目标是指定数据集中必须包含哪些数据，而不必详细说明所选数据必须如何转换才能安排为数据集。</p>
+<p>通过使用拉瓦锡，与用于此目的的其他语言(如SQL或Pandas)相比，生成数据集所需的操作总数减少了~ 40%，脚本大小减少了~ 60%。因此，作为一个初步假设，我们认为拉瓦锡可能有助于工业4.0的数据选择。然而，我们很快意识到，我们所在地区公司的大多数工业工程师并不熟悉面向对象的数据模型，也不熟悉一般的数据模型。</p>
+<p>因此，我们分析了这些公司中通常使用的模型类型，以及这些模型是否可以用作我们方法中面向对象数据模型的替代品。在几个备选方案中，例如描述装配线的图，我们发现了一种模型类型，称为鱼骨图，它为我们的目标提供了三个有趣的元素:(1)它为相当数量的工程师所知;(2)它有一个非常容易理解的符号;(3)可用于表示域数据之间的因果关系。因此，当我们在工业4.0环境中工作时，我们决定使用这些鱼骨图来取代我们原始解决方案的面向对象数据模型。</p>
+<h3 id="Fishbone-diagrams"><a href="#Fishbone-diagrams" class="headerlink" title="Fishbone diagrams"></a>Fishbone diagrams</h3><p>结合案例介绍了鱼骨图的基本概念。</p>
+<h3 id="Problem-statement"><a href="#Problem-statement" class="headerlink" title="Problem statement"></a>Problem statement</h3><p>Lavoisier是面向对象的，鱼骨图是面向数据的，需要进行一个结合。</p>
+<h2 id="Dataset-generation-from-fishbone-diagrams"><a href="#Dataset-generation-from-fishbone-diagrams" class="headerlink" title="Dataset generation from fishbone diagrams"></a>Dataset generation from fishbone diagrams</h2><h3 id="Solution-overview"><a href="#Solution-overview" class="headerlink" title="Solution overview"></a>Solution overview</h3><p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082801.png" alt="Fig. 7. Overview of our solution."></p>
+<p>工业工程师先创建鱼骨图，数据工程师创建面向对象领域模型，并鼓励彼此检查。数据工程师创建Data-Oriented Fishbone diagram(DOF) DOF重塑了质量控制鱼骨图，并将原因与表征这些原因的数据联系起来。原因和领域数据之间的连接是使用我们称为data feeders的特殊代码块建立的。最后，工业工程师会使用名为Papin的语言制作数据集。</p>
+<h3 id="Data-oriented-fishbone-models"><a href="#Data-oriented-fishbone-models" class="headerlink" title="Data-oriented fishbone models"></a>Data-oriented fishbone models</h3><p>DOF将原鱼骨图和面向对象的数据连接起来，连接器是data feeder，它由path和Lavoisier Expression组成。后文介绍了DOF的代码含义和作用。</p>
+<h3 id="Papin-Dataset-specification-by-cause-selection"><a href="#Papin-Dataset-specification-by-cause-selection" class="headerlink" title="Papin: Dataset specification by cause selection"></a>Papin: Dataset specification by cause selection</h3><p>在建立DOF后，我们使用Papin来指定该模型的原因，该模型应该包含在用于分析DOF效应的数据集中。</p>
+<p>Papin规范的解释程序：</p>
+<ul>
+<li><ol>
+<li>对于Papin规范选择的每个类别或原因，我们遍历它以提取其数据链接的原因。</li>
+</ol>
+</li>
+<li><ol>
+<li>每个数据链接的原因都使用Lavoisier解释器求值，它为每个原因返回一个数据集。</li>
+</ol>
+</li>
+<li><ol>
+<li>所有这些数据集都使用主类的标识符作为数据集行之间的匹配属性进行合并。</li>
+</ol>
+</li>
+<li><ol>
+<li>结果数据集被写入CSV文件。</li>
+</ol>
+</li>
+</ul>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082802.png" alt="Fig. 8. Elements of our model-driven environment."></p>
+<p>图8提供了组成模型驱动的基础结构的不同元素的方案。该基础设施包括:</p>
+<ul>
+<li><ol>
+<li>我们为三种特定于领域的语言提供了相应的编辑器和解析器;</li>
+</ol>
+</li>
+<li><ol>
+<li>使用Ecore指定的面向对象领域模型;</li>
+</ol>
+</li>
+<li><ol>
+<li>通过领域模型检索的领域数据，因此必须符合该模型;</li>
+</ol>
+</li>
+<li><ol>
+<li>Papin解释器，它生成包含所需输出数据集的CSV文件;</li>
+</ol>
+</li>
+<li><ol>
+<li>Lavoisier解释器，它由Papin解释器调用来处理data feeder的Lavoisier表达式。</li>
+</ol>
+</li>
+</ul>
+<p>模型驱动工具的结构介绍。其中DOF工具的语法是用Xtext创建的。</p>
+<h2 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h2><p>这些语言有两个主要目标:(1)提高在创建数据集时执行工作的抽象级别;(2)避免业内人士不得不处理他们不熟悉的模型格式来创建数据集。</p>
+<p>我们通过分析三个不同的因素来验证这些目标是否已经实现:(1)语言表达性，也就是说，所创建的语言是否可以有效地用于不同的工业4.0问题;(2)工业工程师能否有效处理Papin规范;(3)使用dof和Papin生成数据集可以节省多少意外复杂度。</p>
+<p>下面，我们首先描述对语言表现力的评价。然后，我们描述了一个小实验，我们进行了检查工业工程师是否能够理解和创建Papin规范，我们分析了它的结果。接下来，我们将详细介绍我们所遵循的过程，以评估由于dof和Papin可以消除多少意外复杂性，并讨论执行该过程后收集的结果。最后，我们评论和分析了对我们的结果有效性的潜在威胁。</p>
+<h3 id="Expressiveness"><a href="#Expressiveness" class="headerlink" title="Expressiveness"></a>Expressiveness</h3><h3 id="Experiments-with-industrial-engineers"><a href="#Experiments-with-industrial-engineers" class="headerlink" title="Experiments with industrial engineers"></a>Experiments with industrial engineers</h3><h3 id="Accidental-complexity-reduction"><a href="#Accidental-complexity-reduction" class="headerlink" title="Accidental complexity reduction"></a>Accidental complexity reduction</h3><h4 id="Evaluation-procedure"><a href="#Evaluation-procedure" class="headerlink" title="Evaluation procedure"></a>Evaluation procedure</h4><h4 id="Evaluation-results"><a href="#Evaluation-results" class="headerlink" title="Evaluation results"></a>Evaluation results</h4><h3 id="Threats-to-validity"><a href="#Threats-to-validity" class="headerlink" title="Threats to validity"></a>Threats to validity</h3><h4 id="Expressiveness-2"><a href="#Expressiveness-2" class="headerlink" title="Expressiveness - 2"></a>Expressiveness - 2</h4><h4 id="Experiments-with-industrial-engineers-2"><a href="#Experiments-with-industrial-engineers-2" class="headerlink" title="Experiments with industrial engineers - 2"></a>Experiments with industrial engineers - 2</h4><h4 id="Accidental-complexity-reduction-2"><a href="#Accidental-complexity-reduction-2" class="headerlink" title="Accidental complexity reduction - 2"></a>Accidental complexity reduction - 2</h4><h2 id="Related-work"><a href="#Related-work" class="headerlink" title="Related work"></a>Related work</h2><h3 id="Fishbone-diagrams-and-data-models"><a href="#Fishbone-diagrams-and-data-models" class="headerlink" title="Fishbone diagrams and data models"></a>Fishbone diagrams and data models</h3><h3 id="Models-in-Industry-4-0"><a href="#Models-in-Industry-4-0" class="headerlink" title="Models in Industry 4.0"></a>Models in Industry 4.0</h3><h4 id="Languages-for-data-modeling"><a href="#Languages-for-data-modeling" class="headerlink" title="Languages for data modeling"></a>Languages for data modeling</h4><h4 id="Well-known-modeling-languages-in-industry"><a href="#Well-known-modeling-languages-in-industry" class="headerlink" title="Well-known modeling languages in industry"></a>Well-known modeling languages in industry</h4><h4 id="Dataset-generation"><a href="#Dataset-generation" class="headerlink" title="Dataset generation"></a>Dataset generation</h4><h3 id="Datasets-and-ETL-processes"><a href="#Datasets-and-ETL-processes" class="headerlink" title="Datasets and ETL processes"></a>Datasets and ETL processes</h3><h2 id="Summary-and-future-work"><a href="#Summary-and-future-work" class="headerlink" title="Summary and future work"></a>Summary and future work</h2><p><code>个人总结</code></p>
+<p><code>参考文献</code></p>
+<p><a href="#">[]</a><br><a id="">[]</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2024/08/28/006/">https://ruizhe-yang.github.io/2024/08/28/006/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MBSE/">MBSE</a><a class="post-meta__tags" href="/tags/DSL/">DSL</a><a class="post-meta__tags" href="/tags/Metamodel/">Metamodel</a><a class="post-meta__tags" href="/tags/Industry-4-0/">Industry 4.0</a></div><div class="post_share"><div class="social-share" data-image="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082801.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/08/27/005/" title="笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082304.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2024/08/14/001/" title="笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081402.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-14</div><div class="title">笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</div></div></a></div><div><a href="/2024/08/27/005/" title="笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082304.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-27</div><div class="title">笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://b23.tv/3cRMvn8" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Background-and-motivation"><span class="toc-number">2.</span> <span class="toc-text">Background and motivation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Software-language-engineering-via-metamodelling"><span class="toc-number">2.1.</span> <span class="toc-text">Software language engineering via metamodelling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Running-example-Falling-band"><span class="toc-number">2.2.</span> <span class="toc-text">Running example: Falling band</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-mining-processes"><span class="toc-number">2.3.</span> <span class="toc-text">Data mining processes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-dataset-generation-problem"><span class="toc-number">2.4.</span> <span class="toc-text">The dataset generation problem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lavoisier"><span class="toc-number">2.5.</span> <span class="toc-text">Lavoisier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fishbone-diagrams"><span class="toc-number">2.6.</span> <span class="toc-text">Fishbone diagrams</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Problem-statement"><span class="toc-number">2.7.</span> <span class="toc-text">Problem statement</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dataset-generation-from-fishbone-diagrams"><span class="toc-number">3.</span> <span class="toc-text">Dataset generation from fishbone diagrams</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-overview"><span class="toc-number">3.1.</span> <span class="toc-text">Solution overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-oriented-fishbone-models"><span class="toc-number">3.2.</span> <span class="toc-text">Data-oriented fishbone models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Papin-Dataset-specification-by-cause-selection"><span class="toc-number">3.3.</span> <span class="toc-text">Papin: Dataset specification by cause selection</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Implementation"><span class="toc-number">4.</span> <span class="toc-text">Implementation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Evaluation"><span class="toc-number">5.</span> <span class="toc-text">Evaluation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Expressiveness"><span class="toc-number">5.1.</span> <span class="toc-text">Expressiveness</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Experiments-with-industrial-engineers"><span class="toc-number">5.2.</span> <span class="toc-text">Experiments with industrial engineers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Accidental-complexity-reduction"><span class="toc-number">5.3.</span> <span class="toc-text">Accidental complexity reduction</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Evaluation-procedure"><span class="toc-number">5.3.1.</span> <span class="toc-text">Evaluation procedure</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Evaluation-results"><span class="toc-number">5.3.2.</span> <span class="toc-text">Evaluation results</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Threats-to-validity"><span class="toc-number">5.4.</span> <span class="toc-text">Threats to validity</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Expressiveness-2"><span class="toc-number">5.4.1.</span> <span class="toc-text">Expressiveness - 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Experiments-with-industrial-engineers-2"><span class="toc-number">5.4.2.</span> <span class="toc-text">Experiments with industrial engineers - 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Accidental-complexity-reduction-2"><span class="toc-number">5.4.3.</span> <span class="toc-text">Accidental complexity reduction - 2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Related-work"><span class="toc-number">6.</span> <span class="toc-text">Related work</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fishbone-diagrams-and-data-models"><span class="toc-number">6.1.</span> <span class="toc-text">Fishbone diagrams and data models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Models-in-Industry-4-0"><span class="toc-number">6.2.</span> <span class="toc-text">Models in Industry 4.0</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Languages-for-data-modeling"><span class="toc-number">6.2.1.</span> <span class="toc-text">Languages for data modeling</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Well-known-modeling-languages-in-industry"><span class="toc-number">6.2.2.</span> <span class="toc-text">Well-known modeling languages in industry</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dataset-generation"><span class="toc-number">6.2.3.</span> <span class="toc-text">Dataset generation</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Datasets-and-ETL-processes"><span class="toc-number">6.3.</span> <span class="toc-text">Datasets and ETL processes</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary-and-future-work"><span class="toc-number">7.</span> <span class="toc-text">Summary and future work</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/08/28/006/" title="笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082801.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications"/></a><div class="content"><a class="title" href="/2024/08/28/006/" title="笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications">笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications</a><time datetime="2024-08-28T08:00:00.000Z" title="Created 2024-08-28 16:00:00">2024-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/27/005/" title="笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082304.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering"/></a><div class="content"><a class="title" href="/2024/08/27/005/" title="笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering">笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering</a><time datetime="2024-08-27T12:00:00.000Z" title="Created 2024-08-27 20:00:00">2024-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/23/004/" title="笔记：What makes a good modeling research contribution?"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082303.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：What makes a good modeling research contribution?"/></a><div class="content"><a class="title" href="/2024/08/23/004/" title="笔记：What makes a good modeling research contribution?">笔记：What makes a good modeling research contribution?</a><time datetime="2024-08-23T08:00:00.000Z" title="Created 2024-08-23 16:00:00">2024-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/23/003/" title="笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082301.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review"/></a><div class="content"><a class="title" href="/2024/08/23/003/" title="笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review">笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</a><time datetime="2024-08-23T05:00:00.000Z" title="Created 2024-08-23 13:00:00">2024-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/17/002/" title="笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example"/></a><div class="content"><a class="title" href="/2024/08/17/002/" title="笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example">笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</a><time datetime="2024-08-17T14:00:00.000Z" title="Created 2024-08-17 22:00:00">2024-08-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: '9316308ebc857641f30321c9d1e00a20',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

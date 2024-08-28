@@ -1,6 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>笔记：What makes a good modeling research contribution?</title>
+    <url>/2024/08/23/004/</url>
+    <content><![CDATA[
+[What makes a good modeling research contribution?]([论文来源](https://link.springer.com/article/10.1007/s10270-024-01177-x))
+
+*作者是Richard F. Paige。*
+
+`Abstraction`
+
+> The modeling field is rapidly evolving and expanding to address new research topics and to connect with new disciplines. As such, what constituted a good modeling research contribution ten years ago may not be the same today. We try to distill some insights of what we (and the community we aim to represent) consider today as key elements of a good research paper in the field of software and systems modeling. Such insights—which will need to evolve and adapt with time—will be useful not just for authors of new papers, but also for reviewers and editors.
+
+## Introduction
+
+关于如何撰写优秀软件工程论文的具体建议：针对特定章节的撰写建议[[1]](#1)、不同类型的软件工程论文[[5]](#5)，甚至关于如何以更符合软件工程审阅者期望的方式撰写论文的建议[[3]](#3)。
+
+## Types of contributions to the modeling field
+
+常见的论文关注的问题：
+
+- how large is the community that the paper aims to address?
+- how much potential impact is there in the result?
+- how complex is the challenge the paper addresses?
+- how substantial is the validation3, e.g., is there an industrial element to the validation?
+- how distant is the topic of the paper from what we typically see in the modeling venues?
+- how readable is the contribution?
+- how relevant are the examples?
+- and finally, how clear and persuasive is the motivation for the research presented in the paper?
+
+此外，明确研究的正面作用和负面作用也很重要。
+下面将介绍六种具体类型。
+
+### The contribution is a model
+
+仅凭一个模型肯定不行。这个新模型能告诉我们关于建模领域的什么？它能帮助我们回答哪些我们以前无法回答的问题？
+
+### The contribution is a language
+
+仅凭一个元模型也不行，需要完整的工作。
+
+### The contribution is a core modeling technique
+
+这些论文介绍了模型分析（模型验证、确认或测试技术等）或操作技术（模型合并、模型到模型转换、代码生成器等）。或将它们组合起来作为特定建模方法的一部分。这可能是我们多年来看到最多提案的类别。因此，在这一类别中，原创性更难实现，而证明新贡献确实有必要则更为重要。
+例如，很难相信建模社区需要一种新的模型转换方法，除非它与具有非常具体要求的新语言、领域或应用程序相关联。
+
+### The contribution is a modeling application
+
+仅仅证明建模（或 MDE 或建模工具）可以应用于问题是不够的——相反，必须令人信服地证明建模提供了一些附加值，一些可以量化或以可重复的方式捕获的好处。
+
+### The contribution is a (new) modeling domain
+
+ 除了单个应用程序（见上文），这里的目标是为新的工程或科学领域提供一些初步支持，然后这些支持可以发展成为该领域的一套完整的建模解决方案和应用程序。
+
+### The contribution is a modeling tool
+
+这些工具贡献不应只是研究工作的副产品或简单的一次性原型，而应是一种成熟、可用且广泛的工具，有可能对建模社区产生重大而积极的影响（通过吸引更多用户、促进更多项目采用建模实践等）。
+
+## A community effort
+
+就社区建设问题进行了介绍。
+
+`个人总结`
+作者就SoSyM期刊中的一些研究进行了分类和评估，从审稿人的角度分析一篇文章应具备哪些要素。
+
+`参考文献`
+
+<a id="1">[1]</a>Anthony, L.: Writing research article introductions in software engineering: How accurate is a standard model? IEEE Trans. Prof.Commun. 42(1), 38–46 (1999)
+<a id="5">[5]</a>Montesi, M., Lago, P.: Software engineering article types: an analysis of the literature. J. Syst. Softw. 81(10), 1694–1714 (2008)
+<a id="3">[3]</a>Ernst, N.A., Carver, J.C., Mendez, D., Torchiano, M.: Understanding peer review of software engineering papers. Empir. Softw. Eng. 26, 1–29 (2021)]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>SoSyM</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>Insights</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</title>
     <url>/2024/08/14/001/</url>
     <content><![CDATA[
@@ -840,85 +919,6 @@ An autonomous system is an intelligent system that is designed to deal with the 
       </tags>
   </entry>
   <entry>
-    <title>笔记：What makes a good modeling research contribution?</title>
-    <url>/2024/08/23/004/</url>
-    <content><![CDATA[
-[What makes a good modeling research contribution?]([论文来源](https://link.springer.com/article/10.1007/s10270-024-01177-x))
-
-*作者是Richard F. Paige。*
-
-`Abstraction`
-
-> The modeling field is rapidly evolving and expanding to address new research topics and to connect with new disciplines. As such, what constituted a good modeling research contribution ten years ago may not be the same today. We try to distill some insights of what we (and the community we aim to represent) consider today as key elements of a good research paper in the field of software and systems modeling. Such insights—which will need to evolve and adapt with time—will be useful not just for authors of new papers, but also for reviewers and editors.
-
-## Introduction
-
-关于如何撰写优秀软件工程论文的具体建议：针对特定章节的撰写建议[[1]](#1)、不同类型的软件工程论文[[5]](#5)，甚至关于如何以更符合软件工程审阅者期望的方式撰写论文的建议[[3]](#3)。
-
-## Types of contributions to the modeling field
-
-常见的论文关注的问题：
-
-- how large is the community that the paper aims to address?
-- how much potential impact is there in the result?
-- how complex is the challenge the paper addresses?
-- how substantial is the validation3, e.g., is there an industrial element to the validation?
-- how distant is the topic of the paper from what we typically see in the modeling venues?
-- how readable is the contribution?
-- how relevant are the examples?
-- and finally, how clear and persuasive is the motivation for the research presented in the paper?
-
-此外，明确研究的正面作用和负面作用也很重要。
-下面将介绍六种具体类型。
-
-### The contribution is a model
-
-仅凭一个模型肯定不行。这个新模型能告诉我们关于建模领域的什么？它能帮助我们回答哪些我们以前无法回答的问题？
-
-### The contribution is a language
-
-仅凭一个元模型也不行，需要完整的工作。
-
-### The contribution is a core modeling technique
-
-这些论文介绍了模型分析（模型验证、确认或测试技术等）或操作技术（模型合并、模型到模型转换、代码生成器等）。或将它们组合起来作为特定建模方法的一部分。这可能是我们多年来看到最多提案的类别。因此，在这一类别中，原创性更难实现，而证明新贡献确实有必要则更为重要。
-例如，很难相信建模社区需要一种新的模型转换方法，除非它与具有非常具体要求的新语言、领域或应用程序相关联。
-
-### The contribution is a modeling application
-
-仅仅证明建模（或 MDE 或建模工具）可以应用于问题是不够的——相反，必须令人信服地证明建模提供了一些附加值，一些可以量化或以可重复的方式捕获的好处。
-
-### The contribution is a (new) modeling domain
-
- 除了单个应用程序（见上文），这里的目标是为新的工程或科学领域提供一些初步支持，然后这些支持可以发展成为该领域的一套完整的建模解决方案和应用程序。
-
-### The contribution is a modeling tool
-
-这些工具贡献不应只是研究工作的副产品或简单的一次性原型，而应是一种成熟、可用且广泛的工具，有可能对建模社区产生重大而积极的影响（通过吸引更多用户、促进更多项目采用建模实践等）。
-
-## A community effort
-
-就社区建设问题进行了介绍。
-
-`个人总结`
-作者就SoSyM期刊中的一些研究进行了分类和评估，从审稿人的角度分析一篇文章应具备哪些要素。
-
-`参考文献`
-
-<a id="1">[1]</a>Anthony, L.: Writing research article introductions in software engineering: How accurate is a standard model? IEEE Trans. Prof.Commun. 42(1), 38–46 (1999)
-<a id="5">[5]</a>Montesi, M., Lago, P.: Software engineering article types: an analysis of the literature. J. Syst. Softw. 81(10), 1694–1714 (2008)
-<a id="3">[3]</a>Ernst, N.A., Carver, J.C., Mendez, D., Torchiano, M.: Understanding peer review of software engineering papers. Empir. Softw. Eng. 26, 1–29 (2021)]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>SoSyM</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>Insights</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering</title>
     <url>/2024/08/27/005/</url>
     <content><![CDATA[
@@ -1141,6 +1141,168 @@ ACC是一种基于车辆的外部行驶环境，如前方车辆的速度和距�
         <tag>MetaGraph</tag>
         <tag>KARMA</tag>
         <tag>Simulink</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications</title>
+    <url>/2024/08/28/006/</url>
+    <content><![CDATA[
+[Domain-specific languages for the automated generation of datasets for industry 4.0 applications](https://www.sciencedirect.com/science/article/pii/S2452414X24001018)
+
+*作者来自西班牙坎布里亚大学*
+
+`Abstraction`
+
+> Data collected in Industry 4.0 applications must be converted into tabular datasets before they can be processed by analysis algorithms, as in any data analysis system. To perform this transformation, data scientists have to write complex and long scripts, which can be a cumbersome process. To overcome this limitation, a language called Lavoisier was recently created to facilitate the creation of datasets. This language provides high-level primitives to select data from an object-oriented data model describing data available in a context. However, industrial engineers might not be used to deal with this kind of model. So, this work introduces a new set of languages that adapt Lavoisier to work with fishbone diagrams, which might be more suitable in industrial settings. These new languages keep the benefits of Lavoisier, reducing dataset creation complexity by 40% and up to 80%, and outperforming Lavoisier in some cases.
+
+## Introduction
+
+本文重点关注那些旨在利用构成现代装配线的不同互连元素收集的大量数据的工业4.0应用。MES (Manufacturing Execution System)。然后可以对这些大量数据进行分析，以改进制造过程及其输出产品。Zero-Defect Manufacturing (ZDM) 。
+
+数据集是一种基于表的格式，与所分析的每个元素相关联的所有数据必须放在该表的一行中。然而，这种格式的数据并不常见，因为它通常存储在关系数据库、XML或JSON文件中。在这些表示中，数据不是表格式的，而是链接的，通常是分层的。例如，关于制造产品的数据可以链接到其组件的数据。类似地，每个组件的数据可能连接到其子组件的数据，依此类推。因此，在将这些分层数据用作数据分析算法的输入之前，我们需要将它们扁平化，以便将它们排列成表中特定行的列。
+
+为了执行平坦化任务，数据科学家通常用SQL、R或Pandas等语言编写复杂而冗长的脚本。为了缓解这些问题，一种叫做Lavoisier的语言最近被开发出来[[52]](#52) [[53]](#53)。这种语言提供了高级原语来创建数据集，这些数据集关注于必须选择哪些数据，而忽略了必须如何重新排列这些数据以使它们适合数据集的细节。
+
+另一方面，工业工程师被用来处理鱼骨图，它允许表示因果关系，通常用于工业环境中的质量控制，并且可以用于指定领域数据之间的影响关系。因此，在工业4.0上下文中，更希望Lavoisier能够使用鱼骨图而不是面向对象的领域模型。
+
+这项工作提出了一个模型驱动的过程，使Lavoisier适应于使用鱼骨图。为了构建这个过程，我们首先创建了一种新的鱼骨模型，称为面向数据的鱼骨模型，其中原因可以连接到领域数据。为此，我们用Lavoisier语句增强鱼骨模型，这样每个原因都可以连接到表征这种原因的领域数据子集。接下来，我们设计了一种名为Papin的新语言来选择应该使用鱼骨图的哪些原因来构建具体的数据集。最后，Papin解释器处理这个选择并自动生成所需的数据集。因此，工业工程师可以使用Papin直接从(面向数据的)鱼骨图创建数据集，而不是从面向对象的领域模型。
+
+通过将面向数据的鱼骨模型和Papin语言应用于五个外部案例研究，评估了这些语言的表达能力。
+
+这项工作扩展了以前在一次会议上提出的贡献在这一贡献中，作为主要区别，本文包括了对我们方法的表达性和有效性的更详尽的评估(第5节)，以及对所呈现语言如何实现的更详细的描述(第4节)。此外，我们扩展了相关工作部分，包括propositionalization和Multi-Relational Data Mining (MRDM)以及工业4.0和ETL过程中的建模语言。
+
+## Background and motivation
+
+### Software language engineering via metamodelling
+
+DSL语言比General Purpose Language (GPL)的强制性更低。DSL允许使用包含来自应用领域的术语和自定义语法。介绍元模型技术。
+
+### Running example: Falling band
+
+作为贯穿本文的运行示例，我们将以一家汽车行业供应商公司的驱动半轴生产为例。在这些检查中，汽车制造商发现，有时车轮一侧的箍松开，引起不同的问题。该公司希望分析在驱动半轴生产过程中收集的数据，以找到这个问题的原因。
+
+### Data mining processes
+
+KDD(Knowledge Discovery in Databases) [[65]](#65) 我们将以KDD过程为基础，解释作为数据挖掘过程一部分的不同阶段。绘制了一个流程图介绍KDD过程，分别是bussis questions, data sources selection, domain data model, algorithm selection, data reshaping, data preparation, algorithm execution, results reports。
+
+### The dataset generation problem
+
+关注其中的data reshaping问题。大多数数据分析算法只能处理以具体表格格式提供的数据，在数据科学社区中称为数据集。在这种格式中，属于要分析的单个实体的所有数据必须放在同一个表行中，我们将其命名为一个实体，一行约束。然而，域数据通常以链接和嵌套元素的图的形式提供，如JSON等。为了创建数据集，数据科学家编写复杂而冗长的脚本，其中使用不同的低级操作链(如过滤器、连接、pivot或聚合)转换原始数据，以满足一个实体、一行约束。
+
+读者可以很容易地注意到，与示例大小相比，这个脚本相当复杂，并且如果紧缩的数量增加，它有明显的可伸缩性问题。这个问题并不是SQL语言所特有的，在使用R或Pandas等其他替代语言时也会出现类似的情况。因此，数据集创建成为一个劳动密集型且容易出错的过程。
+
+### Lavoisier
+
+为了克服这个问题，最近发展了一种叫做Lavoisier[[52]](#52) [[71]](#71) 的语言。Lavoisier是一种用于数据集创建的声明性语言，它提供了一组高级原语，其目标是指定数据集中必须包含哪些数据，而不必详细说明所选数据必须如何转换才能安排为数据集。
+
+通过使用拉瓦锡，与用于此目的的其他语言(如SQL或Pandas)相比，生成数据集所需的操作总数减少了~ 40%，脚本大小减少了~ 60%。因此，作为一个初步假设，我们认为拉瓦锡可能有助于工业4.0的数据选择。然而，我们很快意识到，我们所在地区公司的大多数工业工程师并不熟悉面向对象的数据模型，也不熟悉一般的数据模型。
+
+因此，我们分析了这些公司中通常使用的模型类型，以及这些模型是否可以用作我们方法中面向对象数据模型的替代品。在几个备选方案中，例如描述装配线的图，我们发现了一种模型类型，称为鱼骨图，它为我们的目标提供了三个有趣的元素:(1)它为相当数量的工程师所知;(2)它有一个非常容易理解的符号;(3)可用于表示域数据之间的因果关系。因此，当我们在工业4.0环境中工作时，我们决定使用这些鱼骨图来取代我们原始解决方案的面向对象数据模型。
+
+### Fishbone diagrams
+
+结合案例介绍了鱼骨图的基本概念。
+
+### Problem statement
+
+Lavoisier是面向对象的，鱼骨图是面向数据的，需要进行一个结合。
+
+## Dataset generation from fishbone diagrams
+
+### Solution overview
+
+![Fig. 7. Overview of our solution.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082801.png)
+
+工业工程师先创建鱼骨图，数据工程师创建面向对象领域模型，并鼓励彼此检查。数据工程师创建Data-Oriented Fishbone diagram(DOF) DOF重塑了质量控制鱼骨图，并将原因与表征这些原因的数据联系起来。原因和领域数据之间的连接是使用我们称为data feeders的特殊代码块建立的。最后，工业工程师会使用名为Papin的语言制作数据集。
+
+### Data-oriented fishbone models
+
+DOF将原鱼骨图和面向对象的数据连接起来，连接器是data feeder，它由path和Lavoisier Expression组成。后文介绍了DOF的代码含义和作用。
+
+### Papin: Dataset specification by cause selection
+
+在建立DOF后，我们使用Papin来指定该模型的原因，该模型应该包含在用于分析DOF效应的数据集中。
+
+Papin规范的解释程序：
+
+- 1. 对于Papin规范选择的每个类别或原因，我们遍历它以提取其数据链接的原因。
+- 2. 每个数据链接的原因都使用Lavoisier解释器求值，它为每个原因返回一个数据集。
+- 3. 所有这些数据集都使用主类的标识符作为数据集行之间的匹配属性进行合并。
+- 4. 结果数据集被写入CSV文件。
+
+## Implementation
+
+![Fig. 8. Elements of our model-driven environment.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082802.png)
+
+图8提供了组成模型驱动的基础结构的不同元素的方案。该基础设施包括:
+
+- 1. 我们为三种特定于领域的语言提供了相应的编辑器和解析器;
+- 2. 使用Ecore指定的面向对象领域模型;
+- 3. 通过领域模型检索的领域数据，因此必须符合该模型;
+- 4. Papin解释器，它生成包含所需输出数据集的CSV文件;
+- 5. Lavoisier解释器，它由Papin解释器调用来处理data feeder的Lavoisier表达式。
+
+模型驱动工具的结构介绍。其中DOF工具的语法是用Xtext创建的。
+
+## Evaluation
+
+这些语言有两个主要目标:(1)提高在创建数据集时执行工作的抽象级别;(2)避免业内人士不得不处理他们不熟悉的模型格式来创建数据集。
+
+我们通过分析三个不同的因素来验证这些目标是否已经实现:(1)语言表达性，也就是说，所创建的语言是否可以有效地用于不同的工业4.0问题;(2)工业工程师能否有效处理Papin规范;(3)使用dof和Papin生成数据集可以节省多少意外复杂度。
+
+下面，我们首先描述对语言表现力的评价。然后，我们描述了一个小实验，我们进行了检查工业工程师是否能够理解和创建Papin规范，我们分析了它的结果。接下来，我们将详细介绍我们所遵循的过程，以评估由于dof和Papin可以消除多少意外复杂性，并讨论执行该过程后收集的结果。最后，我们评论和分析了对我们的结果有效性的潜在威胁。
+
+### Expressiveness
+
+### Experiments with industrial engineers
+
+### Accidental complexity reduction
+
+#### Evaluation procedure
+
+#### Evaluation results
+
+### Threats to validity
+
+#### Expressiveness - 2
+
+#### Experiments with industrial engineers - 2
+
+#### Accidental complexity reduction - 2
+
+## Related work
+
+### Fishbone diagrams and data models
+
+### Models in Industry 4.0
+
+#### Languages for data modeling
+
+#### Well-known modeling languages in industry
+
+#### Dataset generation
+
+### Datasets and ETL processes
+
+## Summary and future work
+
+`个人总结`
+
+`参考文献`
+
+[[]](#)
+<a id="">[]</a>]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>JII</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>DSL</tag>
+        <tag>Metamodel</tag>
+        <tag>Industry 4.0</tag>
       </tags>
   </entry>
 </search>
