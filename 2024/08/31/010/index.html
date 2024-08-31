@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="在这个载人航天不断飞翔的时代，对航天器的可靠性和可维护性的改进有着强烈的需求。成功航天器的主要驱动力之一是坚固而多功能的推进系统。推进系统的设计需要在性能、可靠性和成本之间取得适当的平衡。本研究的重点是可靠性。本研究提出了一个基于模型的框架，使用系统建模语言 (SysML) 进行故障模式、影响和危害性分析 (FMECA)。该框架以传统火箭发动机 RS-25（以前称为航天飞机主发动机 (SSME)）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2024/08/31/010/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="在这个载人航天不断飞翔的时代，对航天器的可靠性和可维护性的改进有着强烈的需求。成功航天器的主要驱动力之一是坚固而多功能的推进系统。推进系统的设计需要在性能、可靠性和成本之间取得适当的平衡。本研究的重点是可靠性。本研究提出了一个基于模型的框架，使用系统建模语言 (SysML) 进行故障模式、影响和危害性分析 (FMECA)。该框架以传统火箭发动机 RS-25（以前称为航天飞机主发动机 (SSME)）">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png">
+<meta property="article:published_time" content="2024-08-31T06:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-31T05:52:26.769Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="MBSE">
+<meta property="article:tag" content="Rocket Engine">
+<meta property="article:tag" content="SysML">
+<meta property="article:tag" content="Simulation">
+<meta property="article:tag" content="FMEA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png"><link rel="shortcut icon" href="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F2.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2024/08/31/010/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-31 13:52:26'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">21</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F3.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-08-31T06:00:00.000Z" title="Created 2024-08-31 14:00:00">2024-08-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-08-31T05:52:26.769Z" title="Updated 2024-08-31 13:52:26">2024-08-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Artical/">Artical</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Artical/AIAA-SCITECH-Forum/">AIAA SCITECH Forum</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Artical/AIAA-SCITECH-Forum/2021/">2021</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">3.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>11mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>在这个载人航天不断飞翔的时代，对航天器的可靠性和可维护性的改进有着强烈的需求。成功航天器的主要驱动力之一是坚固而多功能的推进系统。推进系统的设计需要在性能、可靠性和成本之间取得适当的平衡。本研究的重点是可靠性。本研究提出了一个基于模型的框架，使用系统建模语言 (SysML) 进行故障模式、影响和危害性分析 (FMECA)。该框架以传统火箭发动机 RS-25（以前称为航天飞机主发动机 (SSME)）为例。将航天飞机时代的 SSME 用于太空发射系统 (SLS) 任务的目标是必须进行升级以降低发动机成本。此外，升级将需要重新认证发动机以进行载人发射。之所以选择这款发动机进行研究，是为了通过基于模型的故障模式、影响和危害性分析 (MBFMECA) 实现重新认证。因此，在基于模型的系统工程 (MBSE) 的背景下，MBFMECA 已经开发并详细阐述。提议的框架将补充正在进行的 RS-25 发动机可负担性研究工作。</p>
+<p>故障模式和影响分析 (FMEA) 是一种用于识别导致系统故障的潜在问题及其原因的过程。FMEA 标准最初由 MIL-STD-1629 定义。自诞生以来，在 FMEA 中添加了方面危害性分析 (CA)，催生了故障模式、影响和危害性分析 (FMECA) 。FMEA 和 FMECA 通常可以互换使用，因为 FMECA 是 FMEA 的扩展。但是，为了转向 FMECA，编写一份主要 FMEA 报告非常重要。主要 FMEA 有助于评估故障的原因和影响，而 FMECA 有助于量化和确定与故障相关的风险的优先级。在火箭发动机的背景下，满足可靠性要求是实现任务保证的关键里程碑。任务保证的一个重要元素是包含隐式 FMECA 的 FMEA 报告。全面、完善的 FMEA 可确保最高安全性并提高任务的可靠性。</p>
+<p>Izygon 等人 <a href="#6">[6]</a> 首次在可靠性谱中使用 MBSE，他们开发了一个基于模型的框架，用于级联蒸馏系统 (CDS) 的 FMEA，CDS 是 NASA 约翰逊航天中心开发的先进水回收系统 (WRS)。此外，Huang 等人 <a href="#8">[8]</a> 以及 Hansen 和 Huang <a href="#5">[5]</a> 发起了用于燃气发生器循环液体发动机的 MBFMEA 框架的开发。这些研究包括一个基于模型的综合框架，用于主要 FMEA，该框架进一步扩展以得出 FMECA。这些研究探讨的 MBFMEA 的主要好处包括提高 FMEA 使用和任务执行的有效性、增强 FMEA 内容的全面性以及实现知识重用。过渡到基于模型的平台有助于实现设计灵活性，并将可靠性活动集成到 SE 活动中，例如需求分析、权衡研究以及验证和确认。</p>
+<p><strong>1、建模语言：SysML</strong><br>RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这是一种用于管理复杂工程系统的 SE 活动的图形建模语言。SysML 提供了执行各种 SE 活动的语义基础，例如行为分析、需求可追溯性、性能分析、模拟和需求分析。语义封装在九种类型的 SysML 图中：需求图、块定义图、内部框图、用例图、活动图、序列图、状态机图、参数和包图。为了促进 MBFMECA，安全性和可靠性分析工具包集成到 SysML <a href="#15">[15]</a> 中。本研究使用此 MBSE 工具包为 RS-25 发动机的 MBFMECA 开发初始基础。</p>
+<p><strong>2、RS-25 SysML Model</strong><br><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png" alt="Figure 2. Block Definition Diagram representing major components of RS-25 engine in the context of affordability."></p>
+<p>为了建立 MBFMECA 的初始框架，主要 RS-25 发动机组件被组织成三个层次。结构架构封装在块定义图 (BDD) 中，如图 2 所示。顶级系统架构在 BDD 中表示。架构的上下文来自与 RS-25 发动机的主要成本削减目标相关的组件。RS-25 发动机通过组合抽象为燃烧装置、控制器、涡轮泵、管道、电气传感器和线束以及阀门和执行器。这些组件进一步抽象为子系统组件，如图 2 所示。考虑深入研究发动机架构的细节很有吸引力。然而，从建模的角度来看，保持基础模型简单和通用很重要。例如，通过图 2 中表达的结构视图，可以看出该架构在一般意义上也适用于液体火箭发动机。随着系统经历系统生命周期的不同阶段，可以完善此基础模型。</p>
+<p><strong>3、Requirements Allocation</strong><br><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083103.png" alt="Figure 3. Requirement diagram with requirements associated with major components of the RS-25 engine."></p>
+<p>如介绍中所述，可靠性活动通常面临缺乏需求可追溯性的挑战。这可以通过开发 SysML 模型来克服。因此，从现有文献<a href="#16">[16]</a>中综合了 RS-25 发动机及其组件的功能需求。然后将这些需求转换为 SysML 需求图，如图 3 所示。然后通过“满足”关联将这些需求连接到 RS-25 发动机的相应组件。通过这种关联，组件被约束为满足相关要求。这使得在系统生命周期的任何时间点都可以进行需求可追溯性。</p>
+<p>目前，SSME（引用的是两篇远古论文）已有大量 FMEA 数据可用。参考文献 <a href="#13">[13]</a> <a href="#17">[17]</a> 中的故障信息和不满意状况报告 (UCR) 用于为 RS-25 发动机创建 MBFMECA。从 SSME 时代开始，人们了解到发动机的故障模式基本上可以分为泄漏、裂纹、侵蚀、磨损、凹痕和损坏、污染、分层和破损部件、电气、缺失或多余部件、扭矩振动和超程、松动部件以及公差或间隙问题。利用 SysML 中的安全性和可靠性分析器工具包，创建了这些故障模式。然后根据这些组件的 UCR 信息以及相关故障模式评估和创建潜在故障模式的原因和影响。此外，使用工具包中的 FMEA 表生成功能，生成了 FMEA 表，以可视化适合图 2 所示的 RS-25 发动机结构视图的 FMEA 报告。（表不放了）</p>
+<p><strong>结果与讨论</strong><br><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083104.png" alt="Figure 4. FMEA table for the Combustion Devices."></p>
+<p>创建故障模式和影响并分配严重程度后，在 SysML 中为 RS-25 发动机的组件生成了 FMEA 表。图 4 表示燃烧装置的 FMEA 表。表中表示了七个故障项 F-1 至 F-7，分别对应于主燃烧室 (MCC)、热气歧管 (HGM)、热交换器 (HE)、主喷射器 (MI)、喷嘴 (N)、燃料预燃室 (FPB) 和氧化剂预燃室 (OPB)。‘分类’列表示故障性质，可以是机械的、电气的或软件的。‘项目’列显示分配给相应故障模式的组件（在 BDD 中创建）。所有燃烧装置都由不同严重程度的故障模式‘裂纹’组成。MCC 和 HGM 存在故障模式‘泄漏’。对于 FPB 和 OPB 观察到故障模式“侵蚀”，对于 MI 和 HE 分别观察到故障模式“松动部件”和“间隙问题”。可以观察到，MCC、HGM 和 MI 中的裂缝导致了灾难性的故障，需要成为在整个系统生命周期中跟踪的重要故障项目。对于 HGM，泄漏导致发动机损失，这使其成为一种重要的故障模式，需要严格的缓解措施。虽然故障模式可能对不同的组件相同，但影响和原因可能有所不同。影响和原因在 FMEA 表中是独立的。由于这是基础框架，因此局部和最终影响的定义更为广泛。但是，这些可以随着系统在系统生命周期中的进展而得到细化。</p>
+<p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083105.png" alt="Figure 5. FMEA table for the Turbopumps"></p>
+<p>与燃烧装置类似，图 5 表示涡轮泵的 FMEA 表。表中表示了四个故障项 F-8 至 F11，分别对应于高压燃料涡轮泵 (HPFTP)、高压氧化剂涡轮泵 (HPFTP)、低压燃料涡轮泵 (LPFTP) 和低压氧化剂涡轮泵 (LPOTP)。在 HPFTP、HPOTP 和 LPOTP 中观察到故障模式“磨损”。虽然这种故障模式对于 LPOTP 不太严重，但据观察，在 HPOTP 的情况下，它可能导致发动机故障，在 HPFTP 的情况下，它可能导致车辆故障。还可以观察到，在 HPOTP 的情况下，故障模式“分层和破损部件”和“扭矩、振动和过度行程”导致车辆故障。这表明这些故障模式是系统在生命周期过程中预期的重要故障项，应在设计生命周期的初始阶段设计适当的缓解措施。</p>
+<p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083106.png" alt="Figure 6. FMEA table for all other components of RS-25 engine expressed in structural view in Figure 2."></p>
+<p>图 6 表示故障项目 F-12 至 F-15 的 FMEA 表，分别对应于组件阀门和执行器、电气传感器和线束、管道（管道、管子和歧管的泛化）和控制器。这些故障模式的严重程度本质上很小。随着系统在设计生命周期中不断进步，架构的复杂性会增加，这可以得到改进。在这个基础框架的范围内，这些组件的故障信息已被广泛列出，适用于图 2 中表示的 RS25 架构的顶层层次结构。如前所述，开发 MBFMECA 的目标之一是确保系统组件在整个系统生命周期中能够追溯到需求。通过需求图（图 3），可以将 RS-25 架构（图 2）的组件与功能需求相关联。此外，这些组件还与 FMEA 表“项目”列中的故障模式相关联（图 4、5 和 6）。因此，现在可以生成一个表格来了解可靠性覆盖率分析和相关要求。</p>
+<p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083107.png" alt="Figure 7. Safety and Reliability Coverage Analysis Structure for Combustion Devices and Turbopumps of the RS-25 engine."></p>
+<p>图 7 表示在 SysML 中创建的安全性和可靠性覆盖率分析结构。‘设计元素’列包含 RS-25 引擎架构中包含的组件（图 2），‘可靠性分析覆盖’列表示为组件创建的适当故障项（图 4、5 和 6），‘满足’列包含与组件相关的功能需求信息（图 3）。此功能可以克服在开发 RS-25 引擎等复杂系统时经常遇到的 SE 活动不同步性质。实际上，这也有助于在设计生命周期的早期利用安全性和可靠性活动规划。当系统需要进行设计更改或升级时，需求通常会发生变化。通过安全性和可靠性覆盖率分析，还可以以省时的方式查看设计变更场景中受影响的需求。总体而言，组件、故障信息和受影响需求的视图使得在实施之前执行设计变更的功效分析成为可能。从今以后，这方面有助于实现 RS-25 发动机的高效可负担性框架。</p>
+<p><strong>结论</strong><br>本文提出的 RS-25 发动机 MBFMECA 模型将成为改进发动机可靠性活动的初始基础框架之一。这项工作将 SSME 的传统 FMEA 数据提升到基于模型的 FMECA 平台。这种范式转变将能够为新型 RS-25 发动机的生产提供更高效的 FMEA 方法。此外，当采用不同的先进制造技术（例如增材制造）制造较新版本的 RS-25 发动机时，它将有助于评估权衡利弊。由于该平台基于现有的 SSME 故障数据，它将有助于创建一个强大的框架来评估实施较新技术对 RS-25 发动机生产重启的影响。在 NASA 为新型 RS-25 组件（例如涡轮泵）实施 FMEA 的现有文献背景下，应扩展提出的 MBFMECA，以便在未来的设计变更场景中实现此类实施活动的自动化。基础 MBFMECA 的未来研究方向包括： • 创建额外的 SysML 图表，以对已识别的故障模式的危险性等级进行建模。这将需要修改并从主要 MBFMECA 模型创建新的 SysML 图表和范例。</p>
+<ul>
+<li>根据危险性等级对发动机的风险和最终影响进行定性评估。</li>
+<li>提出简单的纠正措施（定性或定量）以减轻或降低风险的影响。</li>
+<li>针对设计变更场景自动生成完整而全面的 FMECA 报告。</li>
+</ul>
+<p>进一步的发展还包括集成基于模型的故障树分析 (FTA)，包括火箭发动机的成本考虑方面，并评估设计变更对 RS-25 发动机的影响。这些未来的发展涉及“做得更好”和“专注于提高效率和保真度”方面的设想里程碑（图 1），以实现可负担性。总体而言，将使用可执行的 SysML 模型同时分析性能、可靠性和成本方面。因此，整体努力将能够为 RS-25 引擎提供一个经济实惠的框架，该框架是在 MBSE 频谱内构思的。</p>
+<p><code>参考文献</code><br><a id="6">[6]</a>Izygon, M., Wagner, H., Okon, S., Wang, L., Sargusingh, M., and Evans, J. “Facilitating R&amp;M in Spaceflight Systems with MBSE.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2016-April, 2016, pp. 1–6.<a target="_blank" rel="noopener" href="https://doi.org/10.1109/RAMS.2016.7448031">https://doi.org/10.1109/RAMS.2016.7448031</a>.<br><a id="8">[8]</a>Huang, Z., Swalgen, S., Davidz, H., and Murray, J. “MBSE-Assisted FMEA Approach - Challenges and Opportunities.” Proceedings - Annual Reliability and Maintainability Symposium, 2017, pp. 1–8. <a target="_blank" rel="noopener" href="https://doi.org/10.1109/RAM.2017.7889722">https://doi.org/10.1109/RAM.2017.7889722</a>.<br><a id="5">[5]</a>Hansen, R., and Huang, Z. “Toward FMEA and MBSE Integration.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2018-January, 2018. <a target="_blank" rel="noopener" href="https://doi.org/10.1109/RAM.2018.8463084">https://doi.org/10.1109/RAM.2018.8463084</a>.<br><a id="15">[15]</a>Biggs, G., Post, K., Armonas, A., Yakymets, N., Juknevicius, T., and Berres, A. “OMG Standard for Integrating Safety and Reliability Analysis into MBSE: Concepts and Applications.” INCOSE International Symposium, Vol. 29, No. 1, 2019, pp. 159–173. <a target="_blank" rel="noopener" href="https://doi.org/10.1002/j.2334-5837.2019.00595.x">https://doi.org/10.1002/j.2334-5837.2019.00595.x</a>.<br><a id="16">[16]</a>“Space Shuttle Main Engine Orientation, Space Transportation Training System Data.” BC98-04, Rocketdyne Propulsion and Power, Boeing, 1998.<br><a id="13">[13]</a>Tischer, A. E., and Glover, R. C. “Studies and Analyses of the Space Shuttle Main Engine.” NASA-CR-183593, 1987.<br><a id="17">[17]</a>Glover, R. C., Kelley, B. A., and Tischer, A. E. “Studies and Analyses of the Space Shuttle Main Engine: SSME (Space Shuttle Main Engine) Failure Data Review, Diagnostic Survey and Ssme Diagnostic Evaluation.” NASA-CR-178993, 1986.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2024/08/31/010/">https://ruizhe-yang.github.io/2024/08/31/010/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MBSE/">MBSE</a><a class="post-meta__tags" href="/tags/Rocket-Engine/">Rocket Engine</a><a class="post-meta__tags" href="/tags/SysML/">SysML</a><a class="post-meta__tags" href="/tags/Simulation/">Simulation</a><a class="post-meta__tags" href="/tags/FMEA/">FMEA</a></div><div class="post_share"><div class="social-share" data-image="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/08/31/011/" title="小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083101.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2024/08/29/008/" title="小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083002.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-29</div><div class="title">小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</div></div></a></div><div><a href="/2024/08/29/007/" title="小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-29</div><div class="title">小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</div></div></a></div><div><a href="/2024/08/30/009/" title="小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083004.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-30</div><div class="title">小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</div></div></a></div><div><a href="/2024/08/31/011/" title="小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083101.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-31</div><div class="title">小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</div></div></a></div><div><a href="/2024/08/14/001/" title="笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081402.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-14</div><div class="title">笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</div></div></a></div><div><a href="/2024/08/27/005/" title="笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082304.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-27</div><div class="title">笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">21</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://b23.tv/3cRMvn8" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/08/31/010/" title="小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML"/></a><div class="content"><a class="title" href="/2024/08/31/010/" title="小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML">小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</a><time datetime="2024-08-31T06:00:00.000Z" title="Created 2024-08-31 14:00:00">2024-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/31/011/" title="小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083101.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability"/></a><div class="content"><a class="title" href="/2024/08/31/011/" title="小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability">小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</a><time datetime="2024-08-31T04:00:00.000Z" title="Created 2024-08-31 12:00:00">2024-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/30/009/" title="小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083004.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components"/></a><div class="content"><a class="title" href="/2024/08/30/009/" title="小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components">小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</a><time datetime="2024-08-30T14:00:00.000Z" title="Created 2024-08-30 22:00:00">2024-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/29/008/" title="小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083002.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)"/></a><div class="content"><a class="title" href="/2024/08/29/008/" title="小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)">小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</a><time datetime="2024-08-29T13:00:00.000Z" title="Created 2024-08-29 21:00:00">2024-08-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/29/007/" title="小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering"/></a><div class="content"><a class="title" href="/2024/08/29/007/" title="小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering">小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</a><time datetime="2024-08-29T12:00:00.000Z" title="Created 2024-08-29 20:00:00">2024-08-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: '3056aa925ad61988bf953f4c79873734',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
