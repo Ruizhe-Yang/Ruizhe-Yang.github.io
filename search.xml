@@ -1,6 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
+    <url>/2024/08/17/002/</url>
+    <content><![CDATA[
+[Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example](https://dl.acm.org/doi/abs/10.1145/3471907)
+
+*作者是KCL的Kevin Lano。*
+
+`Abstraction`
+
+> In this article, we address how the production of model transformations (MT) can be accelerated by automation of transformation synthesis from requirements, examples, and metamodels. We introduce a synthesis process based on metamodel matching, correspondence patterns between metamodels, and completeness and consistency analysis of matches. We describe how the limitations of metamodel matching can be addressed by combining matching with automated requirements analysis and model transformation by example (MTBE) techniques.
+> We show that in practical examples a large percentage of required transformation functionality can usually be constructed automatically, thus potentially reducing development effort. We also evaluate the efficiency of synthesised transformations.
+> Our novel contributions are:
+>
+> - The concept of correspondence patterns between metamodels of a transformation.
+> - Requirements analysis of transformations using natural language processing (NLP) and machine learning (ML).
+> - Symbolic MTBE using “predictive specification” to infer transformations from examples.
+> - Transformation generation in multiple MT languages and in Java, from an abstract intermediate language.
+
+## Introduction
+
+Model Transformations (MT)是MDE的关键要素。大型手动转换成本高管理难[[9]](#9) [[49]](#49)。元模型匹配技术[[1]](#1) [[17]](#17) [[31]](#31)。
+
+四个困难：1、匹配方法只能找到一种转换，但实际上有多种；2、穷举搜索复杂度高；3、无法检测源和目标的关系；4、通常只处理单一语言转换的场景。
+
+- (i) many different transformations may be possible between two given metamodels, and a matching approach typically only detects a single transformation;
+- (ii) exhaustive search for possible matches becomes infeasible even for cases of moderate size (around 25 to 30 metaclasses in the combined metamodels);
+- (iii) detailed functional relationships between source and target data, such as applications of specific numeric or string functions, cannot normally be detected;
+- (iv) the process is usually directed to and optimised for producing transformations in a single MT language.
+
+MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L}$[[48]](#48)处理4的问题。
+
+![Transformation synthesis process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png)
+
+图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$是映射的三个中间量。
+
+研究问题：
+
+- RQ1 : To what extent can automated metamodel matching be combined with interactive enhancement of matchings to accurately capture the mapping rules of an intended transformation?匹配的程度
+- RQ2 : Can automated requirements analysis using NLP/ML and MTBE techniques improve the accuracy of the approach compared to stand-alone metamodel matching?本文的NLP+MTBE技术能否提高准确性
+- RQ3 : Can the combined approach engineer transformations with appropriate correspondence and design patterns?
+- RQ4 : Can the combined approach produce efficiently executable transformations?
+
+### Illustrative Example: Gantt2CPM
+
+本文用到的一个例子：甘特图到CPM网络。介绍了该MT的原则。
+
+## Scope and bcakground
+
+### Scope of the Approach
+
+对于M2M问题，根据[[55]](#55)进行分类：
+
+- (General) migration 抽象层级相同但元模型不同
+- Evolution migration 一个元模型版本变更
+- Refinement 高抽象层级向低抽象层级映射
+- Abstaction 低抽象层级向高抽象层级映射
+- Code generation 从设计规范模型生成代码
+- Semantic mapping 将源模型映射到有形式化语义的模型
+- Bidirectional(Bx) 双向映射，支持模型同步和变更传播
+- Refactoring 单个模型转换
+
+### $\mathcal{T}\mathcal{L}$ Transformation Repersentation
+
+使用$\mathcal{T}\mathcal{L}$语法描述转换过程。包括集合的划分、符号标识、每个环节的输入输出和$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$符号对应的环节。
+
+### Natural Language Processing and Machine Learning
+
+介绍了NLP的主要技术类型和划分词义的种类和机器学习的基本概念。
+
+## Automated MT Requierments Analysis
+
+如果转换过程存在自然语言需求声明，原则上可以应用NLP技术提取有关转换预期映射的一些信息，有助于元模型匹配。
+
+### Automated Requirements Analysis Using NLP
+
+使用NLP对Gantt2CPM案例进行需求分析。
+首先使用Stanford POS tagger标记需求语句中的词类型，然后构建语法树。创建了CART决策树作为分类器，对需求语句中的关键词类型进行识别。
+
+### Tool Support for MT Requirements Analysis
+
+在工具中如何使用的说明。
+
+## Metamodel Correspondence Patterns
+
+{% note flat %}
+这篇文章太长太难，还没看完，先记到这里……
+{% endnote %}
+
+### Occurrence of Correspondence Patterns in Practice
+
+### Catalogue of Correspondence Patterns
+
+### Correspondence Patterns in Gantt2CPM
+
+### Tool Support for Recognising Correspondence Patterns
+
+## Metamodel Matching Techniques
+
+### Metamodel Matching Concepts
+
+### Similarity Measures for Metamodel Matching
+
+### Metamodel Matching for the Gantt2CPM Case
+
+### Tool Support for Metamodel Matching
+
+## Transformation Correction and Enhancement
+
+### Completeness and Consistency Analysis
+
+### Specification Enhancement for the Gantt2CPM Case
+
+## MTBE Using Perdictive Specification
+
+### Empirical Study of Transformation Mappings and Conditions
+
+### Correction and Extension of Transformations using MTBE
+
+### MTBEfortheGantt2CPMCase
+
+### Tool Support for MTBE
+
+## Transformation Synthesis
+
+### Synthesis of UML-RSDS and Java
+
+### Transformation Synthesis for the Gantt2CPM Case
+
+### Tool Support for Transformation Synthesis
+
+## Evaluation
+
+### RQ1:Correspondence Recognition
+
+### RQ2:Contributions of Automated Requirements Analysis and MTBE
+
+### RQ3:Transformation Design
+
+### RQ4:Transformation Efficiency
+
+## Threats to Validity
+
+### Threats to Internal Validity
+
+### Threats to External Validity
+
+### Threats to Construct Validity
+
+### Threats to Content Validity
+
+### Threats to Conclusion Validity
+
+## Related and Future Work
+
+### Automated Requirements Engineering
+
+### MTBE Approaches
+
+### Correspondence Patterns
+
+### Metamodel Matching Approaches
+
+### Summary
+
+### Limitations and Future Work
+
+## Conclusions
+
+`个人总结`
+
+`参考文献`
+<a id="9">[9]</a>L. Burgueno, J. Cabot, and S. Gerard. 2019. The future of model transformation languages: an open community discussion J. Obj. Technol. 1–11. Retrieved from www.jot.fm/issues/issue_2019_03/article7.pdf.
+<a id="49">[49]</a>K. Lano, Q. Xue, and S. Kolahdouz-Rahimi. 2020. Agile Specification of Code Generators for Model-Driven Engineering. In Proceedings of ICSEA 2020. IARIA, 9–15.
+<a id="1">[1]</a>L. Addazi, A. Cicchetti, J. D. Rocco, D. D. Ruscio, L. Iovino, and A. Pierantonio. 2016. Semantic-based model matching with emfcompare, me workshop, models. CEUR-WS 1706, 40–49.
+<a id="17">[17]</a>S. Fang and K. Lano. Extracting correspondences from metamodels using metamodel matching. In STAF 2019. Retrieved from CEUR-WS.org/vol-2405/02_paper.pdf.
+<a id="31">[31]</a>M. Kessentini, A. Ouni, P. Langer, M. Wimmer, and S. Bechikh. 2014. Search-based metamodel matching with structural and syntactic measures. Journal of Software and Systems 97, 2014 (2014), 1–14.
+<a id="48">[48]</a>K. Lano, S. Fang, and S. Kolahdouz-Rahimi. TL: An abstract specification language for bidirectional transformations. MODELS’20 Comp. Proc. 77 (2020), 1–10.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>TOSEM</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>Model Transformations</tag>
+        <tag>Requirements Engineering</tag>
+        <tag>Automated Software Engineering</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</title>
     <url>/2024/08/14/001/</url>
     <content><![CDATA[
@@ -648,198 +840,6 @@ An autonomous system is an intelligent system that is designed to deal with the 
       </tags>
   </entry>
   <entry>
-    <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
-    <url>/2024/08/17/002/</url>
-    <content><![CDATA[
-[Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example](https://dl.acm.org/doi/abs/10.1145/3471907)
-
-*作者是KCL的Kevin Lano。*
-
-`Abstraction`
-
-> In this article, we address how the production of model transformations (MT) can be accelerated by automation of transformation synthesis from requirements, examples, and metamodels. We introduce a synthesis process based on metamodel matching, correspondence patterns between metamodels, and completeness and consistency analysis of matches. We describe how the limitations of metamodel matching can be addressed by combining matching with automated requirements analysis and model transformation by example (MTBE) techniques.
-> We show that in practical examples a large percentage of required transformation functionality can usually be constructed automatically, thus potentially reducing development effort. We also evaluate the efficiency of synthesised transformations.
-> Our novel contributions are:
->
-> - The concept of correspondence patterns between metamodels of a transformation.
-> - Requirements analysis of transformations using natural language processing (NLP) and machine learning (ML).
-> - Symbolic MTBE using “predictive specification” to infer transformations from examples.
-> - Transformation generation in multiple MT languages and in Java, from an abstract intermediate language.
-
-## Introduction
-
-Model Transformations (MT)是MDE的关键要素。大型手动转换成本高管理难[[9]](#9) [[49]](#49)。元模型匹配技术[[1]](#1) [[17]](#17) [[31]](#31)。
-
-四个困难：1、匹配方法只能找到一种转换，但实际上有多种；2、穷举搜索复杂度高；3、无法检测源和目标的关系；4、通常只处理单一语言转换的场景。
-
-- (i) many different transformations may be possible between two given metamodels, and a matching approach typically only detects a single transformation;
-- (ii) exhaustive search for possible matches becomes infeasible even for cases of moderate size (around 25 to 30 metaclasses in the combined metamodels);
-- (iii) detailed functional relationships between source and target data, such as applications of specific numeric or string functions, cannot normally be detected;
-- (iv) the process is usually directed to and optimised for producing transformations in a single MT language.
-
-MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L}$[[48]](#48)处理4的问题。
-
-![Transformation synthesis process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png)
-
-图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$是映射的三个中间量。
-
-研究问题：
-
-- RQ1 : To what extent can automated metamodel matching be combined with interactive enhancement of matchings to accurately capture the mapping rules of an intended transformation?匹配的程度
-- RQ2 : Can automated requirements analysis using NLP/ML and MTBE techniques improve the accuracy of the approach compared to stand-alone metamodel matching?本文的NLP+MTBE技术能否提高准确性
-- RQ3 : Can the combined approach engineer transformations with appropriate correspondence and design patterns?
-- RQ4 : Can the combined approach produce efficiently executable transformations?
-
-### Illustrative Example: Gantt2CPM
-
-本文用到的一个例子：甘特图到CPM网络。介绍了该MT的原则。
-
-## Scope and bcakground
-
-### Scope of the Approach
-
-对于M2M问题，根据[[55]](#55)进行分类：
-
-- (General) migration 抽象层级相同但元模型不同
-- Evolution migration 一个元模型版本变更
-- Refinement 高抽象层级向低抽象层级映射
-- Abstaction 低抽象层级向高抽象层级映射
-- Code generation 从设计规范模型生成代码
-- Semantic mapping 将源模型映射到有形式化语义的模型
-- Bidirectional(Bx) 双向映射，支持模型同步和变更传播
-- Refactoring 单个模型转换
-
-### $\mathcal{T}\mathcal{L}$ Transformation Repersentation
-
-使用$\mathcal{T}\mathcal{L}$语法描述转换过程。包括集合的划分、符号标识、每个环节的输入输出和$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$符号对应的环节。
-
-### Natural Language Processing and Machine Learning
-
-介绍了NLP的主要技术类型和划分词义的种类和机器学习的基本概念。
-
-## Automated MT Requierments Analysis
-
-如果转换过程存在自然语言需求声明，原则上可以应用NLP技术提取有关转换预期映射的一些信息，有助于元模型匹配。
-
-### Automated Requirements Analysis Using NLP
-
-使用NLP对Gantt2CPM案例进行需求分析。
-首先使用Stanford POS tagger标记需求语句中的词类型，然后构建语法树。创建了CART决策树作为分类器，对需求语句中的关键词类型进行识别。
-
-### Tool Support for MT Requirements Analysis
-
-在工具中如何使用的说明。
-
-## Metamodel Correspondence Patterns
-
-{% note flat %}
-这篇文章太长太难，还没看完，先记到这里……
-{% endnote %}
-
-### Occurrence of Correspondence Patterns in Practice
-
-### Catalogue of Correspondence Patterns
-
-### Correspondence Patterns in Gantt2CPM
-
-### Tool Support for Recognising Correspondence Patterns
-
-## Metamodel Matching Techniques
-
-### Metamodel Matching Concepts
-
-### Similarity Measures for Metamodel Matching
-
-### Metamodel Matching for the Gantt2CPM Case
-
-### Tool Support for Metamodel Matching
-
-## Transformation Correction and Enhancement
-
-### Completeness and Consistency Analysis
-
-### Specification Enhancement for the Gantt2CPM Case
-
-## MTBE Using Perdictive Specification
-
-### Empirical Study of Transformation Mappings and Conditions
-
-### Correction and Extension of Transformations using MTBE
-
-### MTBEfortheGantt2CPMCase
-
-### Tool Support for MTBE
-
-## Transformation Synthesis
-
-### Synthesis of UML-RSDS and Java
-
-### Transformation Synthesis for the Gantt2CPM Case
-
-### Tool Support for Transformation Synthesis
-
-## Evaluation
-
-### RQ1:Correspondence Recognition
-
-### RQ2:Contributions of Automated Requirements Analysis and MTBE
-
-### RQ3:Transformation Design
-
-### RQ4:Transformation Efficiency
-
-## Threats to Validity
-
-### Threats to Internal Validity
-
-### Threats to External Validity
-
-### Threats to Construct Validity
-
-### Threats to Content Validity
-
-### Threats to Conclusion Validity
-
-## Related and Future Work
-
-### Automated Requirements Engineering
-
-### MTBE Approaches
-
-### Correspondence Patterns
-
-### Metamodel Matching Approaches
-
-### Summary
-
-### Limitations and Future Work
-
-## Conclusions
-
-`个人总结`
-
-`参考文献`
-<a id="9">[9]</a>L. Burgueno, J. Cabot, and S. Gerard. 2019. The future of model transformation languages: an open community discussion J. Obj. Technol. 1–11. Retrieved from www.jot.fm/issues/issue_2019_03/article7.pdf.
-<a id="49">[49]</a>K. Lano, Q. Xue, and S. Kolahdouz-Rahimi. 2020. Agile Specification of Code Generators for Model-Driven Engineering. In Proceedings of ICSEA 2020. IARIA, 9–15.
-<a id="1">[1]</a>L. Addazi, A. Cicchetti, J. D. Rocco, D. D. Ruscio, L. Iovino, and A. Pierantonio. 2016. Semantic-based model matching with emfcompare, me workshop, models. CEUR-WS 1706, 40–49.
-<a id="17">[17]</a>S. Fang and K. Lano. Extracting correspondences from metamodels using metamodel matching. In STAF 2019. Retrieved from CEUR-WS.org/vol-2405/02_paper.pdf.
-<a id="31">[31]</a>M. Kessentini, A. Ouni, P. Langer, M. Wimmer, and S. Bechikh. 2014. Search-based metamodel matching with structural and syntactic measures. Journal of Software and Systems 97, 2014 (2014), 1–14.
-<a id="48">[48]</a>K. Lano, S. Fang, and S. Kolahdouz-Rahimi. TL: An abstract specification language for bidirectional transformations. MODELS’20 Comp. Proc. 77 (2020), 1–10.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TOSEM</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MDE</tag>
-        <tag>Model Transformations</tag>
-        <tag>Requirements Engineering</tag>
-        <tag>Automated Software Engineering</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记：What makes a good modeling research contribution?</title>
     <url>/2024/08/23/004/</url>
     <content><![CDATA[
@@ -1144,6 +1144,61 @@ ACC是一种基于车辆的外部行驶环境，如前方车辆的速度和距�
       </tags>
   </entry>
   <entry>
+    <title>小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</title>
+    <url>/2024/08/29/007/</url>
+    <content><![CDATA[
+`小记`
+
+*作者来自马德里理工大学（西班牙）。*
+
+本文的目的是介绍马德里波利特海姆大学目前的研究，以提高小型空间发射器在初步概念阶段的设计效率，该研究基于MBSE方法中的一种新方法，该方法引入了高效和快速的模拟，通过寻找设计重量的最佳平衡来降低成本。在过去的十年中，基于模型的系统工程(MBSE)和并行工程(CE)方法和过程的实施提高了卫星设计的效率，减少了设计时间。
+
+卫星的设计是基于子系统的纯粹功能分析分解，而空间发射器则需要更多的物理分析，因为其组件相互依赖的设计影响很大，需要大量的密集模拟和计算能力。这些仿真的计算时间要求使得卫星并行工程方法在空间发射装置设计中的应用效率低下。一种新的MBSE方法引入了高效和快速的模拟，可以填补现有的空白。
+
+过去几年，由于虚拟建模可靠性的提高，系统仿真软件方法在所有工程领域的数量显著增加。它们的主要优势是缩短了开发时间，降低了与硬件错误相关的成本，在模拟世界和现实世界之间建立了桥梁。由于其历史背景，现有的关于模型和仿真 (M&S) 的文献在航天器设计中非常广泛。早期的建模和仿真支持了太空时代的发展，测试是验证空气动力学、控制律和结构设计的主要方法。随着当前计算能力的提高，它们在航天器设计中的应用已经扩展到流体动力学、推进、结构、制导、导航和控制 (GN&C)、飞行物理、飞行轨迹、飞行器分段和有效载荷部署的模拟[[12]](#12)。然而，关于将所有这些模型和模拟器集成以分析总体发射器设计和初步开发阶段的交易的 M&S 文献几乎不存在。**我们可以找到与将专门为卫星设计开发的 MBSE 方法和并行工程流程应用于航天发射器设计所面临的困难相关的文献，以及有关 NASA 和 ESA 现有模拟器的描述。**这两个航天机构的模拟器都是多体软件，这意味着创建不同的互连软件块来模拟不同的动态，但由于其不同的计算目标，它们之间存在非常有趣的差异。
+
+美国宇航局的模拟器[[13]](#13)由马歇尔太空飞行中心 (MSFC) 的先进概念办公室 (ACO) 建造，由一套自动化的三套工具组成，分别为用于系统重量和尺寸的 INTROS（综合火箭尺寸）、用于结构设计的 LVA（运载火箭分析）和 POST II（模拟轨迹优化程序）。该模拟器提供实验设计 (DOE) 功能，可创建替代模型来分析参数敏感性，确定特定任务的关注领域 [[14]](#14)。
+ESA 的模拟器[[15]](#15)，DCAP（动态和控制分析包），由结构和机制部门开发。它是一套计算机程序软件，提供建模、模拟和分析动态和控制性能的能力，并与其他专业软件（如 NASTRAN、CATIA、MATLAB/Symulink）链接，可以在单个模拟中详细重现大多数关键子系统和学科，从而促进并行工程流程。
+NASA 和 ESA 模拟器均在初步设计阶段使用，并且都具有相似的软件架构，但用途不同。然而，它们似乎都与系统工程流程、要求和系统架构无关。
+
+通过上述分析，我们确定了微型和纳米卫星市场领域的航天发射器最佳概念设计面临的三个主要挑战：
+
+- **多学科设计优化方法主要侧重于重量优化，建模和成本分析从属于重量或侧重于业务分析。**
+- **模型和仿真方法更侧重于重现子系统性能，与定义系统需求和架构的过程无关。**
+- **MBSE 方法允许通过为每个子系统指定功能并定义功能之间以及系统与环境之间的接口来定义功能架构，但它们没有考虑到航天发射器设计更多地基于物理仿真分析而不是卫星设计中应用的功能分解这一事实。**
+
+本研究将回答的主要问题是，是否有可能通过在 MBSE 框架中集成多学科模拟器和成本估算模型来概念性地设计小型竞争性太空发射器，从而在经典系统工程方法中引入广泛的模拟，确定每个子系统定义中的关键设计驱动因素，从而实现其优化，从而减少所需的设计循环数量。
+
+![Fig 2. System engineering Wee Diagram](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png)
+
+这种方法将用图 2 中的新 Wee 图取代经典 V 形图，其中在分解阶段包括建模和仿真，以确定根据定义的需求驱动设计的关键参数。这些参数将在设计阶段进行交换以找到基于快速设计/制造/测试循环的优化解决方案。在集成阶段，将根据模拟器的预测值对测试结果进行分析，以对其进行验证，然后再进入最终的系统集成和验证阶段。
+
+![Fig 3. Space Launcher conceptual design MBSE&S framework](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082902.png)
+
+为此，目前正在使用 Python 代码模块开发太空发射器初步设计模拟器工具（RoTMoS - 火箭和弹道模块化模拟器），涵盖初步设计阶段太空发射器设计所涉及的主要学科：发射轨迹、推进、制导、导航和控制 (GN&C)、空气动力学、负载、应力、质量特性和成本。开发此工具的目的是达到一定的保真度，以便设计实验，分析参数对重量和成本结果的敏感性。模拟器模块将通过任务用例（UPM-Sat 程序）集成到 MBSE 工具（Eclipse CapellaTM）中，遵循空间任务分析与设计 (SMED) 方法，以根据模拟器结果构建优化的太空发射器系统架构和功能。MBSE&S 总体框架如图 3 所示。
+
+最后文章总结了自2021年来的相关研究进展。
+
+`参考文献`
+<a id="12">[12]</a>L. B. Rainey. Space Modeling and Simulation: Roles and Applications throughout the System Life Cycle, El Segundo, California The Aerospace Press. AIAA. 2004.
+<a id="13">[13]</a>E. Waters, J. Garcia, G. Threet, A. Philips. "NASA Advanced Concepts Office, Earth-to-Orbit Team Design Process and Tools." AIAA SPACE 2013 Conference and Exposition, American Institute of Aeronautics and Astronautics.
+<a id="14">[14]</a>M. R. Zwack, P. D. Dees, J. B. Holt. "Application of Design of Experiments and Surrogate Modeling within the NASA Advanced Concepts Office, Earth-to-Orbit Design Process." AIAA Space 2016, American Institute of Aeronautics and Astronautics. 2016.
+<a id="15">[15]</a>G. Baldesi, M. Toso. "European Space Agency’s Launcher Multibody Dynamics Simulator used for System and Subsystem Level Analyses." CEAS Space Journal, 3(1), 27-48. 2012.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>SECESA</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</title>
     <url>/2024/08/29/008/</url>
     <content><![CDATA[
@@ -1413,61 +1468,6 @@ propositionalization社区已经研究了从分层和嵌套数据生成数据集
       </tags>
   </entry>
   <entry>
-    <title>小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</title>
-    <url>/2024/08/29/007/</url>
-    <content><![CDATA[
-`小记`
-
-*作者来自马德里理工大学（西班牙）。*
-
-本文的目的是介绍马德里波利特海姆大学目前的研究，以提高小型空间发射器在初步概念阶段的设计效率，该研究基于MBSE方法中的一种新方法，该方法引入了高效和快速的模拟，通过寻找设计重量的最佳平衡来降低成本。在过去的十年中，基于模型的系统工程(MBSE)和并行工程(CE)方法和过程的实施提高了卫星设计的效率，减少了设计时间。
-
-卫星的设计是基于子系统的纯粹功能分析分解，而空间发射器则需要更多的物理分析，因为其组件相互依赖的设计影响很大，需要大量的密集模拟和计算能力。这些仿真的计算时间要求使得卫星并行工程方法在空间发射装置设计中的应用效率低下。一种新的MBSE方法引入了高效和快速的模拟，可以填补现有的空白。
-
-过去几年，由于虚拟建模可靠性的提高，系统仿真软件方法在所有工程领域的数量显著增加。它们的主要优势是缩短了开发时间，降低了与硬件错误相关的成本，在模拟世界和现实世界之间建立了桥梁。由于其历史背景，现有的关于模型和仿真 (M&S) 的文献在航天器设计中非常广泛。早期的建模和仿真支持了太空时代的发展，测试是验证空气动力学、控制律和结构设计的主要方法。随着当前计算能力的提高，它们在航天器设计中的应用已经扩展到流体动力学、推进、结构、制导、导航和控制 (GN&C)、飞行物理、飞行轨迹、飞行器分段和有效载荷部署的模拟[[12]](#12)。然而，关于将所有这些模型和模拟器集成以分析总体发射器设计和初步开发阶段的交易的 M&S 文献几乎不存在。**我们可以找到与将专门为卫星设计开发的 MBSE 方法和并行工程流程应用于航天发射器设计所面临的困难相关的文献，以及有关 NASA 和 ESA 现有模拟器的描述。**这两个航天机构的模拟器都是多体软件，这意味着创建不同的互连软件块来模拟不同的动态，但由于其不同的计算目标，它们之间存在非常有趣的差异。
-
-美国宇航局的模拟器[[13]](#13)由马歇尔太空飞行中心 (MSFC) 的先进概念办公室 (ACO) 建造，由一套自动化的三套工具组成，分别为用于系统重量和尺寸的 INTROS（综合火箭尺寸）、用于结构设计的 LVA（运载火箭分析）和 POST II（模拟轨迹优化程序）。该模拟器提供实验设计 (DOE) 功能，可创建替代模型来分析参数敏感性，确定特定任务的关注领域 [[14]](#14)。
-ESA 的模拟器[[15]](#15)，DCAP（动态和控制分析包），由结构和机制部门开发。它是一套计算机程序软件，提供建模、模拟和分析动态和控制性能的能力，并与其他专业软件（如 NASTRAN、CATIA、MATLAB/Symulink）链接，可以在单个模拟中详细重现大多数关键子系统和学科，从而促进并行工程流程。
-NASA 和 ESA 模拟器均在初步设计阶段使用，并且都具有相似的软件架构，但用途不同。然而，它们似乎都与系统工程流程、要求和系统架构无关。
-
-通过上述分析，我们确定了微型和纳米卫星市场领域的航天发射器最佳概念设计面临的三个主要挑战：
-
-- **多学科设计优化方法主要侧重于重量优化，建模和成本分析从属于重量或侧重于业务分析。**
-- **模型和仿真方法更侧重于重现子系统性能，与定义系统需求和架构的过程无关。**
-- **MBSE 方法允许通过为每个子系统指定功能并定义功能之间以及系统与环境之间的接口来定义功能架构，但它们没有考虑到航天发射器设计更多地基于物理仿真分析而不是卫星设计中应用的功能分解这一事实。**
-
-本研究将回答的主要问题是，是否有可能通过在 MBSE 框架中集成多学科模拟器和成本估算模型来概念性地设计小型竞争性太空发射器，从而在经典系统工程方法中引入广泛的模拟，确定每个子系统定义中的关键设计驱动因素，从而实现其优化，从而减少所需的设计循环数量。
-
-![Fig 2. System engineering Wee Diagram](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png)
-
-这种方法将用图 2 中的新 Wee 图取代经典 V 形图，其中在分解阶段包括建模和仿真，以确定根据定义的需求驱动设计的关键参数。这些参数将在设计阶段进行交换以找到基于快速设计/制造/测试循环的优化解决方案。在集成阶段，将根据模拟器的预测值对测试结果进行分析，以对其进行验证，然后再进入最终的系统集成和验证阶段。
-
-![Fig 3. Space Launcher conceptual design MBSE&S framework](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082902.png)
-
-为此，目前正在使用 Python 代码模块开发太空发射器初步设计模拟器工具（RoTMoS - 火箭和弹道模块化模拟器），涵盖初步设计阶段太空发射器设计所涉及的主要学科：发射轨迹、推进、制导、导航和控制 (GN&C)、空气动力学、负载、应力、质量特性和成本。开发此工具的目的是达到一定的保真度，以便设计实验，分析参数对重量和成本结果的敏感性。模拟器模块将通过任务用例（UPM-Sat 程序）集成到 MBSE 工具（Eclipse CapellaTM）中，遵循空间任务分析与设计 (SMED) 方法，以根据模拟器结果构建优化的太空发射器系统架构和功能。MBSE&S 总体框架如图 3 所示。
-
-最后文章总结了自2021年来的相关研究进展。
-
-`参考文献`
-<a id="12">[12]</a>L. B. Rainey. Space Modeling and Simulation: Roles and Applications throughout the System Life Cycle, El Segundo, California The Aerospace Press. AIAA. 2004.
-<a id="13">[13]</a>E. Waters, J. Garcia, G. Threet, A. Philips. "NASA Advanced Concepts Office, Earth-to-Orbit Team Design Process and Tools." AIAA SPACE 2013 Conference and Exposition, American Institute of Aeronautics and Astronautics.
-<a id="14">[14]</a>M. R. Zwack, P. D. Dees, J. B. Holt. "Application of Design of Experiments and Surrogate Modeling within the NASA Advanced Concepts Office, Earth-to-Orbit Design Process." AIAA Space 2016, American Institute of Aeronautics and Astronautics. 2016.
-<a id="15">[15]</a>G. Baldesi, M. Toso. "European Space Agency’s Launcher Multibody Dynamics Simulator used for System and Subsystem Level Analyses." CEAS Space Journal, 3(1), 27-48. 2012.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>SECESA</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</title>
     <url>/2024/08/30/009/</url>
     <content><![CDATA[
@@ -1519,6 +1519,79 @@ MBSE 还帮助支持了 NASA 的可靠性设计 (DFR) 和基于模型的任务�
         <tag>Rocket Engine</tag>
         <tag>SysML</tag>
         <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</title>
+    <url>/2024/08/31/010/</url>
+    <content><![CDATA[
+在这个载人航天不断飞翔的时代，对航天器的可靠性和可维护性的改进有着强烈的需求。成功航天器的主要驱动力之一是坚固而多功能的推进系统。推进系统的设计需要在性能、可靠性和成本之间取得适当的平衡。本研究的重点是可靠性。本研究提出了一个基于模型的框架，使用系统建模语言 (SysML) 进行故障模式、影响和危害性分析 (FMECA)。该框架以传统火箭发动机 RS-25（以前称为航天飞机主发动机 (SSME)）为例。将航天飞机时代的 SSME 用于太空发射系统 (SLS) 任务的目标是必须进行升级以降低发动机成本。此外，升级将需要重新认证发动机以进行载人发射。之所以选择这款发动机进行研究，是为了通过基于模型的故障模式、影响和危害性分析 (MBFMECA) 实现重新认证。因此，在基于模型的系统工程 (MBSE) 的背景下，MBFMECA 已经开发并详细阐述。提议的框架将补充正在进行的 RS-25 发动机可负担性研究工作。
+
+故障模式和影响分析 (FMEA) 是一种用于识别导致系统故障的潜在问题及其原因的过程。FMEA 标准最初由 MIL-STD-1629 定义。自诞生以来，在 FMEA 中添加了方面危害性分析 (CA)，催生了故障模式、影响和危害性分析 (FMECA) 。FMEA 和 FMECA 通常可以互换使用，因为 FMECA 是 FMEA 的扩展。但是，为了转向 FMECA，编写一份主要 FMEA 报告非常重要。主要 FMEA 有助于评估故障的原因和影响，而 FMECA 有助于量化和确定与故障相关的风险的优先级。在火箭发动机的背景下，满足可靠性要求是实现任务保证的关键里程碑。任务保证的一个重要元素是包含隐式 FMECA 的 FMEA 报告。全面、完善的 FMEA 可确保最高安全性并提高任务的可靠性。
+
+Izygon 等人 [[6]](#6) 首次在可靠性谱中使用 MBSE，他们开发了一个基于模型的框架，用于级联蒸馏系统 (CDS) 的 FMEA，CDS 是 NASA 约翰逊航天中心开发的先进水回收系统 (WRS)。此外，Huang 等人 [[8]](#8) 以及 Hansen 和 Huang [[5]](#5) 发起了用于燃气发生器循环液体发动机的 MBFMEA 框架的开发。这些研究包括一个基于模型的综合框架，用于主要 FMEA，该框架进一步扩展以得出 FMECA。这些研究探讨的 MBFMEA 的主要好处包括提高 FMEA 使用和任务执行的有效性、增强 FMEA 内容的全面性以及实现知识重用。过渡到基于模型的平台有助于实现设计灵活性，并将可靠性活动集成到 SE 活动中，例如需求分析、权衡研究以及验证和确认。
+
+**1、建模语言：SysML**
+RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这是一种用于管理复杂工程系统的 SE 活动的图形建模语言。SysML 提供了执行各种 SE 活动的语义基础，例如行为分析、需求可追溯性、性能分析、模拟和需求分析。语义封装在九种类型的 SysML 图中：需求图、块定义图、内部框图、用例图、活动图、序列图、状态机图、参数和包图。为了促进 MBFMECA，安全性和可靠性分析工具包集成到 SysML [[15]](#15) 中。本研究使用此 MBSE 工具包为 RS-25 发动机的 MBFMECA 开发初始基础。
+
+**2、RS-25 SysML Model**
+![Figure 2. Block Definition Diagram representing major components of RS-25 engine in the context of affordability.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png)
+
+为了建立 MBFMECA 的初始框架，主要 RS-25 发动机组件被组织成三个层次。结构架构封装在块定义图 (BDD) 中，如图 2 所示。顶级系统架构在 BDD 中表示。架构的上下文来自与 RS-25 发动机的主要成本削减目标相关的组件。RS-25 发动机通过组合抽象为燃烧装置、控制器、涡轮泵、管道、电气传感器和线束以及阀门和执行器。这些组件进一步抽象为子系统组件，如图 2 所示。考虑深入研究发动机架构的细节很有吸引力。然而，从建模的角度来看，保持基础模型简单和通用很重要。例如，通过图 2 中表达的结构视图，可以看出该架构在一般意义上也适用于液体火箭发动机。随着系统经历系统生命周期的不同阶段，可以完善此基础模型。
+
+**3、Requirements Allocation**
+![Figure 3. Requirement diagram with requirements associated with major components of the RS-25 engine.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083103.png)
+
+如介绍中所述，可靠性活动通常面临缺乏需求可追溯性的挑战。这可以通过开发 SysML 模型来克服。因此，从现有文献[[16]](#16)中综合了 RS-25 发动机及其组件的功能需求。然后将这些需求转换为 SysML 需求图，如图 3 所示。然后通过“满足”关联将这些需求连接到 RS-25 发动机的相应组件。通过这种关联，组件被约束为满足相关要求。这使得在系统生命周期的任何时间点都可以进行需求可追溯性。
+
+目前，SSME（引用的是两篇远古论文）已有大量 FMEA 数据可用。参考文献 [[13]](#13) [[17]](#17) 中的故障信息和不满意状况报告 (UCR) 用于为 RS-25 发动机创建 MBFMECA。从 SSME 时代开始，人们了解到发动机的故障模式基本上可以分为泄漏、裂纹、侵蚀、磨损、凹痕和损坏、污染、分层和破损部件、电气、缺失或多余部件、扭矩振动和超程、松动部件以及公差或间隙问题。利用 SysML 中的安全性和可靠性分析器工具包，创建了这些故障模式。然后根据这些组件的 UCR 信息以及相关故障模式评估和创建潜在故障模式的原因和影响。此外，使用工具包中的 FMEA 表生成功能，生成了 FMEA 表，以可视化适合图 2 所示的 RS-25 发动机结构视图的 FMEA 报告。（表不放了）
+
+**结果与讨论**
+![Figure 4. FMEA table for the Combustion Devices.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083104.png)
+
+创建故障模式和影响并分配严重程度后，在 SysML 中为 RS-25 发动机的组件生成了 FMEA 表。图 4 表示燃烧装置的 FMEA 表。表中表示了七个故障项 F-1 至 F-7，分别对应于主燃烧室 (MCC)、热气歧管 (HGM)、热交换器 (HE)、主喷射器 (MI)、喷嘴 (N)、燃料预燃室 (FPB) 和氧化剂预燃室 (OPB)。‘分类’列表示故障性质，可以是机械的、电气的或软件的。‘项目’列显示分配给相应故障模式的组件（在 BDD 中创建）。所有燃烧装置都由不同严重程度的故障模式‘裂纹’组成。MCC 和 HGM 存在故障模式‘泄漏’。对于 FPB 和 OPB 观察到故障模式“侵蚀”，对于 MI 和 HE 分别观察到故障模式“松动部件”和“间隙问题”。可以观察到，MCC、HGM 和 MI 中的裂缝导致了灾难性的故障，需要成为在整个系统生命周期中跟踪的重要故障项目。对于 HGM，泄漏导致发动机损失，这使其成为一种重要的故障模式，需要严格的缓解措施。虽然故障模式可能对不同的组件相同，但影响和原因可能有所不同。影响和原因在 FMEA 表中是独立的。由于这是基础框架，因此局部和最终影响的定义更为广泛。但是，这些可以随着系统在系统生命周期中的进展而得到细化。
+
+![Figure 5. FMEA table for the Turbopumps](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083105.png)
+
+与燃烧装置类似，图 5 表示涡轮泵的 FMEA 表。表中表示了四个故障项 F-8 至 F11，分别对应于高压燃料涡轮泵 (HPFTP)、高压氧化剂涡轮泵 (HPFTP)、低压燃料涡轮泵 (LPFTP) 和低压氧化剂涡轮泵 (LPOTP)。在 HPFTP、HPOTP 和 LPOTP 中观察到故障模式“磨损”。虽然这种故障模式对于 LPOTP 不太严重，但据观察，在 HPOTP 的情况下，它可能导致发动机故障，在 HPFTP 的情况下，它可能导致车辆故障。还可以观察到，在 HPOTP 的情况下，故障模式“分层和破损部件”和“扭矩、振动和过度行程”导致车辆故障。这表明这些故障模式是系统在生命周期过程中预期的重要故障项，应在设计生命周期的初始阶段设计适当的缓解措施。
+
+![Figure 6. FMEA table for all other components of RS-25 engine expressed in structural view in Figure 2.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083106.png)
+
+图 6 表示故障项目 F-12 至 F-15 的 FMEA 表，分别对应于组件阀门和执行器、电气传感器和线束、管道（管道、管子和歧管的泛化）和控制器。这些故障模式的严重程度本质上很小。随着系统在设计生命周期中不断进步，架构的复杂性会增加，这可以得到改进。在这个基础框架的范围内，这些组件的故障信息已被广泛列出，适用于图 2 中表示的 RS25 架构的顶层层次结构。如前所述，开发 MBFMECA 的目标之一是确保系统组件在整个系统生命周期中能够追溯到需求。通过需求图（图 3），可以将 RS-25 架构（图 2）的组件与功能需求相关联。此外，这些组件还与 FMEA 表“项目”列中的故障模式相关联（图 4、5 和 6）。因此，现在可以生成一个表格来了解可靠性覆盖率分析和相关要求。
+
+![Figure 7. Safety and Reliability Coverage Analysis Structure for Combustion Devices and Turbopumps of the RS-25 engine.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083107.png)
+
+图 7 表示在 SysML 中创建的安全性和可靠性覆盖率分析结构。‘设计元素’列包含 RS-25 引擎架构中包含的组件（图 2），‘可靠性分析覆盖’列表示为组件创建的适当故障项（图 4、5 和 6），‘满足’列包含与组件相关的功能需求信息（图 3）。此功能可以克服在开发 RS-25 引擎等复杂系统时经常遇到的 SE 活动不同步性质。实际上，这也有助于在设计生命周期的早期利用安全性和可靠性活动规划。当系统需要进行设计更改或升级时，需求通常会发生变化。通过安全性和可靠性覆盖率分析，还可以以省时的方式查看设计变更场景中受影响的需求。总体而言，组件、故障信息和受影响需求的视图使得在实施之前执行设计变更的功效分析成为可能。从今以后，这方面有助于实现 RS-25 发动机的高效可负担性框架。
+
+**结论**
+本文提出的 RS-25 发动机 MBFMECA 模型将成为改进发动机可靠性活动的初始基础框架之一。这项工作将 SSME 的传统 FMEA 数据提升到基于模型的 FMECA 平台。这种范式转变将能够为新型 RS-25 发动机的生产提供更高效的 FMEA 方法。此外，当采用不同的先进制造技术（例如增材制造）制造较新版本的 RS-25 发动机时，它将有助于评估权衡利弊。由于该平台基于现有的 SSME 故障数据，它将有助于创建一个强大的框架来评估实施较新技术对 RS-25 发动机生产重启的影响。在 NASA 为新型 RS-25 组件（例如涡轮泵）实施 FMEA 的现有文献背景下，应扩展提出的 MBFMECA，以便在未来的设计变更场景中实现此类实施活动的自动化。基础 MBFMECA 的未来研究方向包括： • 创建额外的 SysML 图表，以对已识别的故障模式的危险性等级进行建模。这将需要修改并从主要 MBFMECA 模型创建新的 SysML 图表和范例。
+
+- 根据危险性等级对发动机的风险和最终影响进行定性评估。
+- 提出简单的纠正措施（定性或定量）以减轻或降低风险的影响。
+- 针对设计变更场景自动生成完整而全面的 FMECA 报告。
+
+进一步的发展还包括集成基于模型的故障树分析 (FTA)，包括火箭发动机的成本考虑方面，并评估设计变更对 RS-25 发动机的影响。这些未来的发展涉及“做得更好”和“专注于提高效率和保真度”方面的设想里程碑（图 1），以实现可负担性。总体而言，将使用可执行的 SysML 模型同时分析性能、可靠性和成本方面。因此，整体努力将能够为 RS-25 引擎提供一个经济实惠的框架，该框架是在 MBSE 频谱内构思的。
+
+`参考文献`
+<a id="6">[6]</a>Izygon, M., Wagner, H., Okon, S., Wang, L., Sargusingh, M., and Evans, J. “Facilitating R&M in Spaceflight Systems with MBSE.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2016-April, 2016, pp. 1–6.https://doi.org/10.1109/RAMS.2016.7448031.
+<a id="8">[8]</a>Huang, Z., Swalgen, S., Davidz, H., and Murray, J. “MBSE-Assisted FMEA Approach - Challenges and Opportunities.” Proceedings - Annual Reliability and Maintainability Symposium, 2017, pp. 1–8. https://doi.org/10.1109/RAM.2017.7889722.
+<a id="5">[5]</a>Hansen, R., and Huang, Z. “Toward FMEA and MBSE Integration.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2018-January, 2018. https://doi.org/10.1109/RAM.2018.8463084.
+<a id="15">[15]</a>Biggs, G., Post, K., Armonas, A., Yakymets, N., Juknevicius, T., and Berres, A. “OMG Standard for Integrating Safety and Reliability Analysis into MBSE: Concepts and Applications.” INCOSE International Symposium, Vol. 29, No. 1, 2019, pp. 159–173. https://doi.org/10.1002/j.2334-5837.2019.00595.x.
+<a id="16">[16]</a>“Space Shuttle Main Engine Orientation, Space Transportation Training System Data.” BC98-04, Rocketdyne Propulsion and Power, Boeing, 1998.
+<a id="13">[13]</a>Tischer, A. E., and Glover, R. C. “Studies and Analyses of the Space Shuttle Main Engine.” NASA-CR-183593, 1987.
+<a id="17">[17]</a>Glover, R. C., Kelley, B. A., and Tischer, A. E. “Studies and Analyses of the Space Shuttle Main Engine: SSME (Space Shuttle Main Engine) Failure Data Review, Diagnostic Survey and Ssme Diagnostic Evaluation.” NASA-CR-178993, 1986.]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Artical</category>
+        <category>AIAA SCITECH Forum</category>
+        <category>2021</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+        <tag>FMEA</tag>
       </tags>
   </entry>
   <entry>
@@ -1597,83 +1670,13 @@ FMEA的三种使用场景：（1）新设计、新技术或新过程；（2）�
 ]]></content>
       <categories>
         <category>Book</category>
+        <category>Handbook</category>
         <category>AIAG &amp; VDA</category>
       </categories>
       <tags>
         <tag>FMEA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</title>
-    <url>/2024/08/31/010/</url>
-    <content><![CDATA[
-在这个载人航天不断飞翔的时代，对航天器的可靠性和可维护性的改进有着强烈的需求。成功航天器的主要驱动力之一是坚固而多功能的推进系统。推进系统的设计需要在性能、可靠性和成本之间取得适当的平衡。本研究的重点是可靠性。本研究提出了一个基于模型的框架，使用系统建模语言 (SysML) 进行故障模式、影响和危害性分析 (FMECA)。该框架以传统火箭发动机 RS-25（以前称为航天飞机主发动机 (SSME)）为例。将航天飞机时代的 SSME 用于太空发射系统 (SLS) 任务的目标是必须进行升级以降低发动机成本。此外，升级将需要重新认证发动机以进行载人发射。之所以选择这款发动机进行研究，是为了通过基于模型的故障模式、影响和危害性分析 (MBFMECA) 实现重新认证。因此，在基于模型的系统工程 (MBSE) 的背景下，MBFMECA 已经开发并详细阐述。提议的框架将补充正在进行的 RS-25 发动机可负担性研究工作。
-
-故障模式和影响分析 (FMEA) 是一种用于识别导致系统故障的潜在问题及其原因的过程。FMEA 标准最初由 MIL-STD-1629 定义。自诞生以来，在 FMEA 中添加了方面危害性分析 (CA)，催生了故障模式、影响和危害性分析 (FMECA) 。FMEA 和 FMECA 通常可以互换使用，因为 FMECA 是 FMEA 的扩展。但是，为了转向 FMECA，编写一份主要 FMEA 报告非常重要。主要 FMEA 有助于评估故障的原因和影响，而 FMECA 有助于量化和确定与故障相关的风险的优先级。在火箭发动机的背景下，满足可靠性要求是实现任务保证的关键里程碑。任务保证的一个重要元素是包含隐式 FMECA 的 FMEA 报告。全面、完善的 FMEA 可确保最高安全性并提高任务的可靠性。
-
-Izygon 等人 [[6]](#6) 首次在可靠性谱中使用 MBSE，他们开发了一个基于模型的框架，用于级联蒸馏系统 (CDS) 的 FMEA，CDS 是 NASA 约翰逊航天中心开发的先进水回收系统 (WRS)。此外，Huang 等人 [[8]](#8) 以及 Hansen 和 Huang [[5]](#5) 发起了用于燃气发生器循环液体发动机的 MBFMEA 框架的开发。这些研究包括一个基于模型的综合框架，用于主要 FMEA，该框架进一步扩展以得出 FMECA。这些研究探讨的 MBFMEA 的主要好处包括提高 FMEA 使用和任务执行的有效性、增强 FMEA 内容的全面性以及实现知识重用。过渡到基于模型的平台有助于实现设计灵活性，并将可靠性活动集成到 SE 活动中，例如需求分析、权衡研究以及验证和确认。
-
-**1、建模语言：SysML**
-RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这是一种用于管理复杂工程系统的 SE 活动的图形建模语言。SysML 提供了执行各种 SE 活动的语义基础，例如行为分析、需求可追溯性、性能分析、模拟和需求分析。语义封装在九种类型的 SysML 图中：需求图、块定义图、内部框图、用例图、活动图、序列图、状态机图、参数和包图。为了促进 MBFMECA，安全性和可靠性分析工具包集成到 SysML [[15]](#15) 中。本研究使用此 MBSE 工具包为 RS-25 发动机的 MBFMECA 开发初始基础。
-
-**2、RS-25 SysML Model**
-![Figure 2. Block Definition Diagram representing major components of RS-25 engine in the context of affordability.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png)
-
-为了建立 MBFMECA 的初始框架，主要 RS-25 发动机组件被组织成三个层次。结构架构封装在块定义图 (BDD) 中，如图 2 所示。顶级系统架构在 BDD 中表示。架构的上下文来自与 RS-25 发动机的主要成本削减目标相关的组件。RS-25 发动机通过组合抽象为燃烧装置、控制器、涡轮泵、管道、电气传感器和线束以及阀门和执行器。这些组件进一步抽象为子系统组件，如图 2 所示。考虑深入研究发动机架构的细节很有吸引力。然而，从建模的角度来看，保持基础模型简单和通用很重要。例如，通过图 2 中表达的结构视图，可以看出该架构在一般意义上也适用于液体火箭发动机。随着系统经历系统生命周期的不同阶段，可以完善此基础模型。
-
-**3、Requirements Allocation**
-![Figure 3. Requirement diagram with requirements associated with major components of the RS-25 engine.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083103.png)
-
-如介绍中所述，可靠性活动通常面临缺乏需求可追溯性的挑战。这可以通过开发 SysML 模型来克服。因此，从现有文献[[16]](#16)中综合了 RS-25 发动机及其组件的功能需求。然后将这些需求转换为 SysML 需求图，如图 3 所示。然后通过“满足”关联将这些需求连接到 RS-25 发动机的相应组件。通过这种关联，组件被约束为满足相关要求。这使得在系统生命周期的任何时间点都可以进行需求可追溯性。
-
-目前，SSME（引用的是两篇远古论文）已有大量 FMEA 数据可用。参考文献 [[13]](#13) [[17]](#17) 中的故障信息和不满意状况报告 (UCR) 用于为 RS-25 发动机创建 MBFMECA。从 SSME 时代开始，人们了解到发动机的故障模式基本上可以分为泄漏、裂纹、侵蚀、磨损、凹痕和损坏、污染、分层和破损部件、电气、缺失或多余部件、扭矩振动和超程、松动部件以及公差或间隙问题。利用 SysML 中的安全性和可靠性分析器工具包，创建了这些故障模式。然后根据这些组件的 UCR 信息以及相关故障模式评估和创建潜在故障模式的原因和影响。此外，使用工具包中的 FMEA 表生成功能，生成了 FMEA 表，以可视化适合图 2 所示的 RS-25 发动机结构视图的 FMEA 报告。（表不放了）
-
-**结果与讨论**
-![Figure 4. FMEA table for the Combustion Devices.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083104.png)
-
-创建故障模式和影响并分配严重程度后，在 SysML 中为 RS-25 发动机的组件生成了 FMEA 表。图 4 表示燃烧装置的 FMEA 表。表中表示了七个故障项 F-1 至 F-7，分别对应于主燃烧室 (MCC)、热气歧管 (HGM)、热交换器 (HE)、主喷射器 (MI)、喷嘴 (N)、燃料预燃室 (FPB) 和氧化剂预燃室 (OPB)。‘分类’列表示故障性质，可以是机械的、电气的或软件的。‘项目’列显示分配给相应故障模式的组件（在 BDD 中创建）。所有燃烧装置都由不同严重程度的故障模式‘裂纹’组成。MCC 和 HGM 存在故障模式‘泄漏’。对于 FPB 和 OPB 观察到故障模式“侵蚀”，对于 MI 和 HE 分别观察到故障模式“松动部件”和“间隙问题”。可以观察到，MCC、HGM 和 MI 中的裂缝导致了灾难性的故障，需要成为在整个系统生命周期中跟踪的重要故障项目。对于 HGM，泄漏导致发动机损失，这使其成为一种重要的故障模式，需要严格的缓解措施。虽然故障模式可能对不同的组件相同，但影响和原因可能有所不同。影响和原因在 FMEA 表中是独立的。由于这是基础框架，因此局部和最终影响的定义更为广泛。但是，这些可以随着系统在系统生命周期中的进展而得到细化。
-
-![Figure 5. FMEA table for the Turbopumps](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083105.png)
-
-与燃烧装置类似，图 5 表示涡轮泵的 FMEA 表。表中表示了四个故障项 F-8 至 F11，分别对应于高压燃料涡轮泵 (HPFTP)、高压氧化剂涡轮泵 (HPFTP)、低压燃料涡轮泵 (LPFTP) 和低压氧化剂涡轮泵 (LPOTP)。在 HPFTP、HPOTP 和 LPOTP 中观察到故障模式“磨损”。虽然这种故障模式对于 LPOTP 不太严重，但据观察，在 HPOTP 的情况下，它可能导致发动机故障，在 HPFTP 的情况下，它可能导致车辆故障。还可以观察到，在 HPOTP 的情况下，故障模式“分层和破损部件”和“扭矩、振动和过度行程”导致车辆故障。这表明这些故障模式是系统在生命周期过程中预期的重要故障项，应在设计生命周期的初始阶段设计适当的缓解措施。
-
-![Figure 6. FMEA table for all other components of RS-25 engine expressed in structural view in Figure 2.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083106.png)
-
-图 6 表示故障项目 F-12 至 F-15 的 FMEA 表，分别对应于组件阀门和执行器、电气传感器和线束、管道（管道、管子和歧管的泛化）和控制器。这些故障模式的严重程度本质上很小。随着系统在设计生命周期中不断进步，架构的复杂性会增加，这可以得到改进。在这个基础框架的范围内，这些组件的故障信息已被广泛列出，适用于图 2 中表示的 RS25 架构的顶层层次结构。如前所述，开发 MBFMECA 的目标之一是确保系统组件在整个系统生命周期中能够追溯到需求。通过需求图（图 3），可以将 RS-25 架构（图 2）的组件与功能需求相关联。此外，这些组件还与 FMEA 表“项目”列中的故障模式相关联（图 4、5 和 6）。因此，现在可以生成一个表格来了解可靠性覆盖率分析和相关要求。
-
-![Figure 7. Safety and Reliability Coverage Analysis Structure for Combustion Devices and Turbopumps of the RS-25 engine.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083107.png)
-
-图 7 表示在 SysML 中创建的安全性和可靠性覆盖率分析结构。‘设计元素’列包含 RS-25 引擎架构中包含的组件（图 2），‘可靠性分析覆盖’列表示为组件创建的适当故障项（图 4、5 和 6），‘满足’列包含与组件相关的功能需求信息（图 3）。此功能可以克服在开发 RS-25 引擎等复杂系统时经常遇到的 SE 活动不同步性质。实际上，这也有助于在设计生命周期的早期利用安全性和可靠性活动规划。当系统需要进行设计更改或升级时，需求通常会发生变化。通过安全性和可靠性覆盖率分析，还可以以省时的方式查看设计变更场景中受影响的需求。总体而言，组件、故障信息和受影响需求的视图使得在实施之前执行设计变更的功效分析成为可能。从今以后，这方面有助于实现 RS-25 发动机的高效可负担性框架。
-
-**结论**
-本文提出的 RS-25 发动机 MBFMECA 模型将成为改进发动机可靠性活动的初始基础框架之一。这项工作将 SSME 的传统 FMEA 数据提升到基于模型的 FMECA 平台。这种范式转变将能够为新型 RS-25 发动机的生产提供更高效的 FMEA 方法。此外，当采用不同的先进制造技术（例如增材制造）制造较新版本的 RS-25 发动机时，它将有助于评估权衡利弊。由于该平台基于现有的 SSME 故障数据，它将有助于创建一个强大的框架来评估实施较新技术对 RS-25 发动机生产重启的影响。在 NASA 为新型 RS-25 组件（例如涡轮泵）实施 FMEA 的现有文献背景下，应扩展提出的 MBFMECA，以便在未来的设计变更场景中实现此类实施活动的自动化。基础 MBFMECA 的未来研究方向包括： • 创建额外的 SysML 图表，以对已识别的故障模式的危险性等级进行建模。这将需要修改并从主要 MBFMECA 模型创建新的 SysML 图表和范例。
-
-- 根据危险性等级对发动机的风险和最终影响进行定性评估。
-- 提出简单的纠正措施（定性或定量）以减轻或降低风险的影响。
-- 针对设计变更场景自动生成完整而全面的 FMECA 报告。
-
-进一步的发展还包括集成基于模型的故障树分析 (FTA)，包括火箭发动机的成本考虑方面，并评估设计变更对 RS-25 发动机的影响。这些未来的发展涉及“做得更好”和“专注于提高效率和保真度”方面的设想里程碑（图 1），以实现可负担性。总体而言，将使用可执行的 SysML 模型同时分析性能、可靠性和成本方面。因此，整体努力将能够为 RS-25 引擎提供一个经济实惠的框架，该框架是在 MBSE 频谱内构思的。
-
-`参考文献`
-<a id="6">[6]</a>Izygon, M., Wagner, H., Okon, S., Wang, L., Sargusingh, M., and Evans, J. “Facilitating R&M in Spaceflight Systems with MBSE.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2016-April, 2016, pp. 1–6.https://doi.org/10.1109/RAMS.2016.7448031.
-<a id="8">[8]</a>Huang, Z., Swalgen, S., Davidz, H., and Murray, J. “MBSE-Assisted FMEA Approach - Challenges and Opportunities.” Proceedings - Annual Reliability and Maintainability Symposium, 2017, pp. 1–8. https://doi.org/10.1109/RAM.2017.7889722.
-<a id="5">[5]</a>Hansen, R., and Huang, Z. “Toward FMEA and MBSE Integration.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2018-January, 2018. https://doi.org/10.1109/RAM.2018.8463084.
-<a id="15">[15]</a>Biggs, G., Post, K., Armonas, A., Yakymets, N., Juknevicius, T., and Berres, A. “OMG Standard for Integrating Safety and Reliability Analysis into MBSE: Concepts and Applications.” INCOSE International Symposium, Vol. 29, No. 1, 2019, pp. 159–173. https://doi.org/10.1002/j.2334-5837.2019.00595.x.
-<a id="16">[16]</a>“Space Shuttle Main Engine Orientation, Space Transportation Training System Data.” BC98-04, Rocketdyne Propulsion and Power, Boeing, 1998.
-<a id="13">[13]</a>Tischer, A. E., and Glover, R. C. “Studies and Analyses of the Space Shuttle Main Engine.” NASA-CR-183593, 1987.
-<a id="17">[17]</a>Glover, R. C., Kelley, B. A., and Tischer, A. E. “Studies and Analyses of the Space Shuttle Main Engine: SSME (Space Shuttle Main Engine) Failure Data Review, Diagnostic Survey and Ssme Diagnostic Evaluation.” NASA-CR-178993, 1986.]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Artical</category>
-        <category>AIAA SCITECH Forum</category>
-        <category>2021</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-        <tag>FMEA</tag>
+        <tag>Safety</tag>
+        <tag>Management</tag>
       </tags>
   </entry>
   <entry>
