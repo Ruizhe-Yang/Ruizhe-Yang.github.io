@@ -1,198 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
-    <url>/2024/08/17/002/</url>
-    <content><![CDATA[
-[Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example](https://dl.acm.org/doi/abs/10.1145/3471907)
-
-*作者是KCL的Kevin Lano。*
-
-`Abstraction`
-
-> In this article, we address how the production of model transformations (MT) can be accelerated by automation of transformation synthesis from requirements, examples, and metamodels. We introduce a synthesis process based on metamodel matching, correspondence patterns between metamodels, and completeness and consistency analysis of matches. We describe how the limitations of metamodel matching can be addressed by combining matching with automated requirements analysis and model transformation by example (MTBE) techniques.
-> We show that in practical examples a large percentage of required transformation functionality can usually be constructed automatically, thus potentially reducing development effort. We also evaluate the efficiency of synthesised transformations.
-> Our novel contributions are:
->
-> - The concept of correspondence patterns between metamodels of a transformation.
-> - Requirements analysis of transformations using natural language processing (NLP) and machine learning (ML).
-> - Symbolic MTBE using “predictive specification” to infer transformations from examples.
-> - Transformation generation in multiple MT languages and in Java, from an abstract intermediate language.
-
-## Introduction
-
-Model Transformations (MT)是MDE的关键要素。大型手动转换成本高管理难[[9]](#9) [[49]](#49)。元模型匹配技术[[1]](#1) [[17]](#17) [[31]](#31)。
-
-四个困难：1、匹配方法只能找到一种转换，但实际上有多种；2、穷举搜索复杂度高；3、无法检测源和目标的关系；4、通常只处理单一语言转换的场景。
-
-- (i) many different transformations may be possible between two given metamodels, and a matching approach typically only detects a single transformation;
-- (ii) exhaustive search for possible matches becomes infeasible even for cases of moderate size (around 25 to 30 metaclasses in the combined metamodels);
-- (iii) detailed functional relationships between source and target data, such as applications of specific numeric or string functions, cannot normally be detected;
-- (iv) the process is usually directed to and optimised for producing transformations in a single MT language.
-
-MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L}$[[48]](#48)处理4的问题。
-
-![Transformation synthesis process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png)
-
-图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$是映射的三个中间量。
-
-研究问题：
-
-- RQ1 : To what extent can automated metamodel matching be combined with interactive enhancement of matchings to accurately capture the mapping rules of an intended transformation?匹配的程度
-- RQ2 : Can automated requirements analysis using NLP/ML and MTBE techniques improve the accuracy of the approach compared to stand-alone metamodel matching?本文的NLP+MTBE技术能否提高准确性
-- RQ3 : Can the combined approach engineer transformations with appropriate correspondence and design patterns?
-- RQ4 : Can the combined approach produce efficiently executable transformations?
-
-### Illustrative Example: Gantt2CPM
-
-本文用到的一个例子：甘特图到CPM网络。介绍了该MT的原则。
-
-## Scope and bcakground
-
-### Scope of the Approach
-
-对于M2M问题，根据[[55]](#55)进行分类：
-
-- (General) migration 抽象层级相同但元模型不同
-- Evolution migration 一个元模型版本变更
-- Refinement 高抽象层级向低抽象层级映射
-- Abstaction 低抽象层级向高抽象层级映射
-- Code generation 从设计规范模型生成代码
-- Semantic mapping 将源模型映射到有形式化语义的模型
-- Bidirectional(Bx) 双向映射，支持模型同步和变更传播
-- Refactoring 单个模型转换
-
-### $\mathcal{T}\mathcal{L}$ Transformation Repersentation
-
-使用$\mathcal{T}\mathcal{L}$语法描述转换过程。包括集合的划分、符号标识、每个环节的输入输出和$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$符号对应的环节。
-
-### Natural Language Processing and Machine Learning
-
-介绍了NLP的主要技术类型和划分词义的种类和机器学习的基本概念。
-
-## Automated MT Requierments Analysis
-
-如果转换过程存在自然语言需求声明，原则上可以应用NLP技术提取有关转换预期映射的一些信息，有助于元模型匹配。
-
-### Automated Requirements Analysis Using NLP
-
-使用NLP对Gantt2CPM案例进行需求分析。
-首先使用Stanford POS tagger标记需求语句中的词类型，然后构建语法树。创建了CART决策树作为分类器，对需求语句中的关键词类型进行识别。
-
-### Tool Support for MT Requirements Analysis
-
-在工具中如何使用的说明。
-
-## Metamodel Correspondence Patterns
-
-{% note flat %}
-这篇文章太长太难，还没看完，先记到这里……
-{% endnote %}
-
-### Occurrence of Correspondence Patterns in Practice
-
-### Catalogue of Correspondence Patterns
-
-### Correspondence Patterns in Gantt2CPM
-
-### Tool Support for Recognising Correspondence Patterns
-
-## Metamodel Matching Techniques
-
-### Metamodel Matching Concepts
-
-### Similarity Measures for Metamodel Matching
-
-### Metamodel Matching for the Gantt2CPM Case
-
-### Tool Support for Metamodel Matching
-
-## Transformation Correction and Enhancement
-
-### Completeness and Consistency Analysis
-
-### Specification Enhancement for the Gantt2CPM Case
-
-## MTBE Using Perdictive Specification
-
-### Empirical Study of Transformation Mappings and Conditions
-
-### Correction and Extension of Transformations using MTBE
-
-### MTBEfortheGantt2CPMCase
-
-### Tool Support for MTBE
-
-## Transformation Synthesis
-
-### Synthesis of UML-RSDS and Java
-
-### Transformation Synthesis for the Gantt2CPM Case
-
-### Tool Support for Transformation Synthesis
-
-## Evaluation
-
-### RQ1:Correspondence Recognition
-
-### RQ2:Contributions of Automated Requirements Analysis and MTBE
-
-### RQ3:Transformation Design
-
-### RQ4:Transformation Efficiency
-
-## Threats to Validity
-
-### Threats to Internal Validity
-
-### Threats to External Validity
-
-### Threats to Construct Validity
-
-### Threats to Content Validity
-
-### Threats to Conclusion Validity
-
-## Related and Future Work
-
-### Automated Requirements Engineering
-
-### MTBE Approaches
-
-### Correspondence Patterns
-
-### Metamodel Matching Approaches
-
-### Summary
-
-### Limitations and Future Work
-
-## Conclusions
-
-`个人总结`
-
-`参考文献`
-<a id="9">[9]</a>L. Burgueno, J. Cabot, and S. Gerard. 2019. The future of model transformation languages: an open community discussion J. Obj. Technol. 1–11. Retrieved from www.jot.fm/issues/issue_2019_03/article7.pdf.
-<a id="49">[49]</a>K. Lano, Q. Xue, and S. Kolahdouz-Rahimi. 2020. Agile Specification of Code Generators for Model-Driven Engineering. In Proceedings of ICSEA 2020. IARIA, 9–15.
-<a id="1">[1]</a>L. Addazi, A. Cicchetti, J. D. Rocco, D. D. Ruscio, L. Iovino, and A. Pierantonio. 2016. Semantic-based model matching with emfcompare, me workshop, models. CEUR-WS 1706, 40–49.
-<a id="17">[17]</a>S. Fang and K. Lano. Extracting correspondences from metamodels using metamodel matching. In STAF 2019. Retrieved from CEUR-WS.org/vol-2405/02_paper.pdf.
-<a id="31">[31]</a>M. Kessentini, A. Ouni, P. Langer, M. Wimmer, and S. Bechikh. 2014. Search-based metamodel matching with structural and syntactic measures. Journal of Software and Systems 97, 2014 (2014), 1–14.
-<a id="48">[48]</a>K. Lano, S. Fang, and S. Kolahdouz-Rahimi. TL: An abstract specification language for bidirectional transformations. MODELS’20 Comp. Proc. 77 (2020), 1–10.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TOSEM</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MDE</tag>
-        <tag>Model Transformations</tag>
-        <tag>Requirements Engineering</tag>
-        <tag>Automated Software Engineering</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</title>
     <url>/2024/08/14/001/</url>
     <content><![CDATA[
@@ -572,6 +380,85 @@ Garousi 等人 [[33]](#33) 对产学研合作面临的挑战进行了文献综�
       </tags>
   </entry>
   <entry>
+    <title>笔记：What makes a good modeling research contribution?</title>
+    <url>/2024/08/23/004/</url>
+    <content><![CDATA[
+[What makes a good modeling research contribution?]([论文来源](https://link.springer.com/article/10.1007/s10270-024-01177-x))
+
+*作者是Richard F. Paige。*
+
+`Abstraction`
+
+> The modeling field is rapidly evolving and expanding to address new research topics and to connect with new disciplines. As such, what constituted a good modeling research contribution ten years ago may not be the same today. We try to distill some insights of what we (and the community we aim to represent) consider today as key elements of a good research paper in the field of software and systems modeling. Such insights—which will need to evolve and adapt with time—will be useful not just for authors of new papers, but also for reviewers and editors.
+
+## Introduction
+
+关于如何撰写优秀软件工程论文的具体建议：针对特定章节的撰写建议[[1]](#1)、不同类型的软件工程论文[[5]](#5)，甚至关于如何以更符合软件工程审阅者期望的方式撰写论文的建议[[3]](#3)。
+
+## Types of contributions to the modeling field
+
+常见的论文关注的问题：
+
+- how large is the community that the paper aims to address?
+- how much potential impact is there in the result?
+- how complex is the challenge the paper addresses?
+- how substantial is the validation3, e.g., is there an industrial element to the validation?
+- how distant is the topic of the paper from what we typically see in the modeling venues?
+- how readable is the contribution?
+- how relevant are the examples?
+- and finally, how clear and persuasive is the motivation for the research presented in the paper?
+
+此外，明确研究的正面作用和负面作用也很重要。
+下面将介绍六种具体类型。
+
+### The contribution is a model
+
+仅凭一个模型肯定不行。这个新模型能告诉我们关于建模领域的什么？它能帮助我们回答哪些我们以前无法回答的问题？
+
+### The contribution is a language
+
+仅凭一个元模型也不行，需要完整的工作。
+
+### The contribution is a core modeling technique
+
+这些论文介绍了模型分析（模型验证、确认或测试技术等）或操作技术（模型合并、模型到模型转换、代码生成器等）。或将它们组合起来作为特定建模方法的一部分。这可能是我们多年来看到最多提案的类别。因此，在这一类别中，原创性更难实现，而证明新贡献确实有必要则更为重要。
+例如，很难相信建模社区需要一种新的模型转换方法，除非它与具有非常具体要求的新语言、领域或应用程序相关联。
+
+### The contribution is a modeling application
+
+仅仅证明建模（或 MDE 或建模工具）可以应用于问题是不够的——相反，必须令人信服地证明建模提供了一些附加值，一些可以量化或以可重复的方式捕获的好处。
+
+### The contribution is a (new) modeling domain
+
+ 除了单个应用程序（见上文），这里的目标是为新的工程或科学领域提供一些初步支持，然后这些支持可以发展成为该领域的一套完整的建模解决方案和应用程序。
+
+### The contribution is a modeling tool
+
+这些工具贡献不应只是研究工作的副产品或简单的一次性原型，而应是一种成熟、可用且广泛的工具，有可能对建模社区产生重大而积极的影响（通过吸引更多用户、促进更多项目采用建模实践等）。
+
+## A community effort
+
+就社区建设问题进行了介绍。
+
+`个人总结`
+作者就SoSyM期刊中的一些研究进行了分类和评估，从审稿人的角度分析一篇文章应具备哪些要素。
+
+`参考文献`
+
+<a id="1">[1]</a>Anthony, L.: Writing research article introductions in software engineering: How accurate is a standard model? IEEE Trans. Prof.Commun. 42(1), 38–46 (1999)
+<a id="5">[5]</a>Montesi, M., Lago, P.: Software engineering article types: an analysis of the literature. J. Syst. Softw. 81(10), 1694–1714 (2008)
+<a id="3">[3]</a>Ernst, N.A., Carver, J.C., Mendez, D., Torchiano, M.: Understanding peer review of software engineering papers. Empir. Softw. Eng. 26, 1–29 (2021)]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>SoSyM</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>Insights</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</title>
     <url>/2024/08/23/003/</url>
     <content><![CDATA[
@@ -840,307 +727,195 @@ An autonomous system is an intelligent system that is designed to deal with the 
       </tags>
   </entry>
   <entry>
-    <title>笔记：What makes a good modeling research contribution?</title>
-    <url>/2024/08/23/004/</url>
+    <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
+    <url>/2024/08/17/002/</url>
     <content><![CDATA[
-[What makes a good modeling research contribution?]([论文来源](https://link.springer.com/article/10.1007/s10270-024-01177-x))
+[Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example](https://dl.acm.org/doi/abs/10.1145/3471907)
 
-*作者是Richard F. Paige。*
+*作者是KCL的Kevin Lano。*
 
 `Abstraction`
 
-> The modeling field is rapidly evolving and expanding to address new research topics and to connect with new disciplines. As such, what constituted a good modeling research contribution ten years ago may not be the same today. We try to distill some insights of what we (and the community we aim to represent) consider today as key elements of a good research paper in the field of software and systems modeling. Such insights—which will need to evolve and adapt with time—will be useful not just for authors of new papers, but also for reviewers and editors.
+> In this article, we address how the production of model transformations (MT) can be accelerated by automation of transformation synthesis from requirements, examples, and metamodels. We introduce a synthesis process based on metamodel matching, correspondence patterns between metamodels, and completeness and consistency analysis of matches. We describe how the limitations of metamodel matching can be addressed by combining matching with automated requirements analysis and model transformation by example (MTBE) techniques.
+> We show that in practical examples a large percentage of required transformation functionality can usually be constructed automatically, thus potentially reducing development effort. We also evaluate the efficiency of synthesised transformations.
+> Our novel contributions are:
+>
+> - The concept of correspondence patterns between metamodels of a transformation.
+> - Requirements analysis of transformations using natural language processing (NLP) and machine learning (ML).
+> - Symbolic MTBE using “predictive specification” to infer transformations from examples.
+> - Transformation generation in multiple MT languages and in Java, from an abstract intermediate language.
 
 ## Introduction
 
-关于如何撰写优秀软件工程论文的具体建议：针对特定章节的撰写建议[[1]](#1)、不同类型的软件工程论文[[5]](#5)，甚至关于如何以更符合软件工程审阅者期望的方式撰写论文的建议[[3]](#3)。
+Model Transformations (MT)是MDE的关键要素。大型手动转换成本高管理难[[9]](#9) [[49]](#49)。元模型匹配技术[[1]](#1) [[17]](#17) [[31]](#31)。
 
-## Types of contributions to the modeling field
+四个困难：1、匹配方法只能找到一种转换，但实际上有多种；2、穷举搜索复杂度高；3、无法检测源和目标的关系；4、通常只处理单一语言转换的场景。
 
-常见的论文关注的问题：
+- (i) many different transformations may be possible between two given metamodels, and a matching approach typically only detects a single transformation;
+- (ii) exhaustive search for possible matches becomes infeasible even for cases of moderate size (around 25 to 30 metaclasses in the combined metamodels);
+- (iii) detailed functional relationships between source and target data, such as applications of specific numeric or string functions, cannot normally be detected;
+- (iv) the process is usually directed to and optimised for producing transformations in a single MT language.
 
-- how large is the community that the paper aims to address?
-- how much potential impact is there in the result?
-- how complex is the challenge the paper addresses?
-- how substantial is the validation3, e.g., is there an industrial element to the validation?
-- how distant is the topic of the paper from what we typically see in the modeling venues?
-- how readable is the contribution?
-- how relevant are the examples?
-- and finally, how clear and persuasive is the motivation for the research presented in the paper?
+MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L}$[[48]](#48)处理4的问题。
 
-此外，明确研究的正面作用和负面作用也很重要。
-下面将介绍六种具体类型。
+![Transformation synthesis process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png)
 
-### The contribution is a model
+图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$是映射的三个中间量。
 
-仅凭一个模型肯定不行。这个新模型能告诉我们关于建模领域的什么？它能帮助我们回答哪些我们以前无法回答的问题？
+研究问题：
 
-### The contribution is a language
+- RQ1 : To what extent can automated metamodel matching be combined with interactive enhancement of matchings to accurately capture the mapping rules of an intended transformation?匹配的程度
+- RQ2 : Can automated requirements analysis using NLP/ML and MTBE techniques improve the accuracy of the approach compared to stand-alone metamodel matching?本文的NLP+MTBE技术能否提高准确性
+- RQ3 : Can the combined approach engineer transformations with appropriate correspondence and design patterns?
+- RQ4 : Can the combined approach produce efficiently executable transformations?
 
-仅凭一个元模型也不行，需要完整的工作。
+### Illustrative Example: Gantt2CPM
 
-### The contribution is a core modeling technique
+本文用到的一个例子：甘特图到CPM网络。介绍了该MT的原则。
 
-这些论文介绍了模型分析（模型验证、确认或测试技术等）或操作技术（模型合并、模型到模型转换、代码生成器等）。或将它们组合起来作为特定建模方法的一部分。这可能是我们多年来看到最多提案的类别。因此，在这一类别中，原创性更难实现，而证明新贡献确实有必要则更为重要。
-例如，很难相信建模社区需要一种新的模型转换方法，除非它与具有非常具体要求的新语言、领域或应用程序相关联。
+## Scope and bcakground
 
-### The contribution is a modeling application
+### Scope of the Approach
 
-仅仅证明建模（或 MDE 或建模工具）可以应用于问题是不够的——相反，必须令人信服地证明建模提供了一些附加值，一些可以量化或以可重复的方式捕获的好处。
+对于M2M问题，根据[[55]](#55)进行分类：
 
-### The contribution is a (new) modeling domain
+- (General) migration 抽象层级相同但元模型不同
+- Evolution migration 一个元模型版本变更
+- Refinement 高抽象层级向低抽象层级映射
+- Abstaction 低抽象层级向高抽象层级映射
+- Code generation 从设计规范模型生成代码
+- Semantic mapping 将源模型映射到有形式化语义的模型
+- Bidirectional(Bx) 双向映射，支持模型同步和变更传播
+- Refactoring 单个模型转换
 
- 除了单个应用程序（见上文），这里的目标是为新的工程或科学领域提供一些初步支持，然后这些支持可以发展成为该领域的一套完整的建模解决方案和应用程序。
+### $\mathcal{T}\mathcal{L}$ Transformation Repersentation
 
-### The contribution is a modeling tool
+使用$\mathcal{T}\mathcal{L}$语法描述转换过程。包括集合的划分、符号标识、每个环节的输入输出和$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$符号对应的环节。
 
-这些工具贡献不应只是研究工作的副产品或简单的一次性原型，而应是一种成熟、可用且广泛的工具，有可能对建模社区产生重大而积极的影响（通过吸引更多用户、促进更多项目采用建模实践等）。
+### Natural Language Processing and Machine Learning
 
-## A community effort
+介绍了NLP的主要技术类型和划分词义的种类和机器学习的基本概念。
 
-就社区建设问题进行了介绍。
+## Automated MT Requierments Analysis
 
-`个人总结`
-作者就SoSyM期刊中的一些研究进行了分类和评估，从审稿人的角度分析一篇文章应具备哪些要素。
+如果转换过程存在自然语言需求声明，原则上可以应用NLP技术提取有关转换预期映射的一些信息，有助于元模型匹配。
 
-`参考文献`
+### Automated Requirements Analysis Using NLP
 
-<a id="1">[1]</a>Anthony, L.: Writing research article introductions in software engineering: How accurate is a standard model? IEEE Trans. Prof.Commun. 42(1), 38–46 (1999)
-<a id="5">[5]</a>Montesi, M., Lago, P.: Software engineering article types: an analysis of the literature. J. Syst. Softw. 81(10), 1694–1714 (2008)
-<a id="3">[3]</a>Ernst, N.A., Carver, J.C., Mendez, D., Torchiano, M.: Understanding peer review of software engineering papers. Empir. Softw. Eng. 26, 1–29 (2021)]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>SoSyM</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>Insights</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering</title>
-    <url>/2024/08/27/005/</url>
-    <content><![CDATA[
-[Design ontology for cognitive thread supporting traceability management in model-based systems engineering](https://www.sciencedirect.com/science/article/pii/S2452414X24000633)
+使用NLP对Gantt2CPM案例进行需求分析。
+首先使用Stanford POS tagger标记需求语句中的词类型，然后构建语法树。创建了CART决策树作为分类器，对需求语句中的关键词类型进行识别。
 
-*作者来自王国新和鲁金直团队。*
+### Tool Support for MT Requirements Analysis
 
-`Abstraction`
+在工具中如何使用的说明。
 
-> Industrial information integration engineering (IIIE) is an interdisciplinary field to facilitate the industrial information integration process. In the age of complex and large-scale systems, model-based systems engineering (MBSE) is widely adopted in industry to support IIIE. Traceability management is considered the foundation of information management in MBSE. However, a lack of integration between stakeholders, development processes, and models can decrease the effectiveness and efficiency of the system development. A modified MBSE toolchain prototype has been developed to implement traceability management; however, a lack of formal and structured specifications makes it difficult to describe the complex topology in traceability management scenarios using this MBSE toolchain, such as creating traceability between heterogeneous models, which leads to poor reusability of this MBSE toolchain in other traceability management scenarios. To formalize traceability management scenarios using the MBSE toolchain, a cognitive thread (CT) ontology is developed in this study. The CT ontology is a specification expressing the information of stakeholders, models, and development processes for traceability management, providing the cognition capability to analyze the interrelationships between them. Based on the implementation of the modified MBSE toolchain, the concepts and interrelationships in the CT ontology are identified. The CT ontology is designed to develop the MBSE toolchain prototype for building, managing, and analyzing traceability in various traceability management scenarios. A case study of an adaptive cruise control system design is used to evaluate the completeness of the CT ontology through qualitative and quantitative analyses. The results demonstrate that the proposed CT ontology formalizes the information related to traceability management while using the proposed MBSE toolchain and can also be used in common traceability management scenarios to design other complex engineered systems.
+## Metamodel Correspondence Patterns
 
-## Introduction
+{% note flat %}
+这篇文章太长太难，还没看完，先记到这里……
+{% endnote %}
 
-Industrial information integration engineering (IIIE)工业信息集成工程的概念。Digital Thread (DT)数字线程被认为是实现MBSE的下一个信息管理和集成范例。它可以看做是将产品生命周期的各个阶段产生的信息链接到决策的框架中[[10]](#10)，信息的可追溯性管理就显得很重要。
+### Occurrence of Correspondence Patterns in Practice
 
-可追溯性管理的问题：可追溯性管理场景的形式化应该是实现功能的先决条件；应妥善管理和分析模型与数据、开发过程与利益攸关者之间的依赖关系。
+### Catalogue of Correspondence Patterns
 
-本文的主要贡献：设计了一个认知线程本体Cognitive thread (CT) ontology，与其他方法相比，CT本体可以为追溯性的构建和分析过程提供语义描述。CT概念参考[[19]](#19)。具体特点：
+### Correspondence Patterns in Gantt2CPM
 
-- (1) 将利益相关者、开发过程和系统工件之间的概念和相互关系形式化；
-- (2) 提供基于预定义推理规则的认知能力。这些规则是基于利益相关者、开发过程和系统工件之间的相互关系制定的。认知能力可帮助利益相关者分析和理解协同设计中开发过程与模型和数据之间的复杂依赖关系，从而选择最佳设计。
+### Tool Support for Recognising Correspondence Patterns
 
-在先前的一项研究 [[20]](#20) 中，开发了一个 MBSE 工具链来支持协同设计。为了实现可追溯性管理，我们改进了此工具链作为 CT 本体形式化的基础，其中包括以下四个方面：
+## Metamodel Matching Techniques
 
-- (1) 系统工件的开放生命周期协作服务 (OSLC) 服务，例如领域特定建模 (DSM)、数据等；
-- (2) 从 DSM 模型生成的基于 Web 的流程管理系统 (WPMS)；
-- (3) 统一身份验证系统；
-- (4) OSLC 服务管理系统 (OSMS)。基于MBSE工具链的实现，识别了CT本体中的概念和相互关系，并以自适应巡航控制（ACC）系统设计的MBSE工具链为例，通过定性和定量的测量，评估了CT本体的完备性。
+### Metamodel Matching Concepts
 
-## Related Work
+### Similarity Measures for Metamodel Matching
 
-### Concept and state of the art of traceability management
+### Metamodel Matching for the Gantt2CPM Case
 
-The IEEE standard glossary of software engineering terminology defines traceability as the “degree to which a relationship can be established between two or more products of the development process” [[30]](#30).
-尽管在 MBSE 领域中，对可追溯性或可追溯性管理尚无统一的定义，但用于开发工程系统的可追溯性概念与软件工程中的可追溯性概念类似。The International Council on Systems Engineering (INCOSE) defines traceability in the MBSE field as “a discernible association between two or more logical entities such as requirements, system elements, verifications, or tasks”[[32]](#32).
+### Tool Support for Metamodel Matching
 
-- 设计结构矩阵式可追溯性管理的最常用方法，但依赖额外的工具集。
-- 模型转换是另一种方法，但大部分仅支持单向转换。（Guo等[[41]](#41)设计了代码生成语言语法来实现MBSE与Simulink模型之间的可追溯性。Kharrat等[[42]](#42)扩展了系统建模语言(SysML)配置文件，设计了一种模型转换方法来实现SysML与计算机辅助设计(CAD)模型之间的可追溯性。）
-- 一些DSM工具链被视为是潜在解决方案。DSM 是一种工程方法，通过模型和一组形式化元模型来描述特定领域系统的信息。 这些工具链促进了不同领域模型之间的可追溯性。在本研究中，我们专注于 MBSE 工具链开发以支持可追溯性管理。
+## Transformation Correction and Enhancement
 
-### Ontology design for traceability management in MBSE
+### Completeness and Consistency Analysis
 
-本体是指对象的类型及其属性和关系，它们代表了领域特定知识。在MBSE实践中，本体用于形式化系统开发和工件的系统信息。由于工程系统的固有特性，各种设计活动和利益相关者之间的迭代和交互也增加了产品实现过程的复杂性。（信息不全且混乱）
+### Specification Enhancement for the Gantt2CPM Case
 
-### Cognitive thread for traceability management
+## MTBE Using Perdictive Specification
 
-数字线程的概念来自F35战斗机[[58]](#58) [[59]](#59)。
-T. D. West et al [[60]](#60) considered it as “a framework for merging the conceptual models of the system with the discipline-specific engineering models of various system elements”.
-最近，研究人员试图利用语义技术增强 DT 的认知能力。下一代 DT 的范式被提议为 CT [[19]](#19)，它是一种具有增强语义能力的 DT，可以形式化模型与数据、开发过程和组织之间的相互关系。还有一些其他研究利用知识图谱用于描述语义间的拓扑关系。
+### Empirical Study of Transformation Mappings and Conditions
+
+### Correction and Extension of Transformations using MTBE
+
+### MTBEfortheGantt2CPMCase
+
+### Tool Support for MTBE
+
+## Transformation Synthesis
+
+### Synthesis of UML-RSDS and Java
+
+### Transformation Synthesis for the Gantt2CPM Case
+
+### Tool Support for Transformation Synthesis
+
+## Evaluation
+
+### RQ1:Correspondence Recognition
+
+### RQ2:Contributions of Automated Requirements Analysis and MTBE
+
+### RQ3:Transformation Design
+
+### RQ4:Transformation Efficiency
+
+## Threats to Validity
+
+### Threats to Internal Validity
+
+### Threats to External Validity
+
+### Threats to Construct Validity
+
+### Threats to Content Validity
+
+### Threats to Conclusion Validity
+
+## Related and Future Work
+
+### Automated Requirements Engineering
+
+### MTBE Approaches
+
+### Correspondence Patterns
+
+### Metamodel Matching Approaches
 
 ### Summary
 
-几个动机：
-
-- 为了形式化MBSE工具链，应开发描述MBSE工具链本身的本体模型。
-- 工业界和学术界目标不同，本体还需要支持过程管理和工具操作。
-- 使用CT能增强知识表达能力，现有方法没有在模型领域的分析。
-
-## Research design
-
-![Overview of research design.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082304.png)
-
-如图所示，第一步确定可追溯性管理场景；第二步，采用系统思维支持CT本体设计，解决工具链中的问题；第三步基于CT本体，修改当前的MBSE工具链以支持可追溯性管理场景；第四步，通过ACC系统设计案例，对原型进行评估。
-
-### Problem statement
-
-在[[20]](#20) [[51]](#51)中开发了航空发动机仿真案例。利益相关者使用 DSM 模型来形式化开发流程和系统工件。 然后，将 DSM 模型转换为一个 WPMS，以部署技术资源并在 Simulink 中为不同的利益相关者实现自动联合仿真。本研究的步骤：
-
-- 定义追溯性和追溯性管理的概念。[[19]](#19)
-- 定义场景。
-- 定义场景相关实体。
-- 定义实体之间的相互关系。
-- 使用工具链实例化。
-- 案例研究评估。
-
-### Prototype strategy for cognitive thread ontology design
-
-![Overview of the MBSE toolchain prototype.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082305.png)
-
-如图所示，（a）用Excel提取需求，用MetaGraph和KARMA体系建模，使用代码生成器将DSM模型转换为本体，基于此联合Simulink进行仿真。（b）开发OSLC适配器，通过特定的映射规则将数据转换为相应OSLC服务。（c）编译器加载DSM模型中的流程模型以生成WPMS。（d）统一身份验证系统提供数据访问控制。（e）最后，开发OSMS（Neo4j）来存储和分析WPMS中OSLC服务和开发流程之间的追溯性。
-
-### Evaluation based on case study
-
-提出了一个ACC系统设计案例，验证工具链的可行性与有效性。
-（1）工具链原型开发：定义了4个指标。
-（2）评估问题分析：提出了7个问题。
-定量方法方面，参考SPIRIT框架[[68]](#68)分析三个方面：模型互操作性、开发流程利益攸关者之间的沟通程度、追溯认知推理分析的能力。
-
-## Ontology of cognitive thread for traceability management in MBSE
-
-![CT ontology for traceability management.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082306.png)
-
-本节介绍CT本体的具体内容，对应第一个图的第二步。
-
-### Ontology formalizing models
-
-![Fig. 4. Mapping process between OSLC services and models.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082701.png)
-
-本节主要关注模型信息。在提出的 MBSE 工具链中，结构化需求文档被视为非正式模型，DSM 模型是描述性模型，Simulink 模型是分析性模型。DSM 模型是基于 GOPPRR-E 建模方法生成的。基于 OSLC 核心规范[[22]](#22)开发了需求表、DSM 模型和 Simulink 模型的 OSLC 服务，以支持数据集成和互操作。为了描述OSLC服务，使用OWL语言进行形式化[[71]](#71)。论文讲述了以上三者之间的映射方法，具体方式如图4左侧描述。
-
-### Ontology formalizing development process
-
-本节主要关注开发过程的结构信息。采用的是BPMN开发流程。
-
-### Ontology formalizing stakeholders
-
-本节主要关注的是利益攸关者的结构信息。
-
-### Ontology formalizing scenarios of traceability management
-
-在已知模型、过程和利益攸关者信息后，本节关注可追溯性管理。包括四个部分：OSLC模型间追溯管理、OSLC模型与过程模型间追溯管理、OSLC模型与利益攸关者间追溯管理、过程模型与利益攸关者间追溯管理。
-
-## Case study
-
-### Scenario definition
-
-![Fig. 5. ACC system design process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082702.png)
-
-ACC是一种基于车辆的外部行驶环境，如前方车辆的速度和距离，来适应常规控制的避碰系统。为了验证所提出的CT本体的完整性，以ACC系统设计为例对MBSE工具链原型进行了评估。案例如图5所示。
-
-### Models and data supporting ACC system design
-
-介绍了DSM的元模型组成和DSM模型在MetaGraph软件中的对应效果。建模方法用的是OOSEM[[26]](#26)。用CarSim做了一个Simulink ACC FMU模型。OSCL服务可以触发Simulink运行并获取Simulink中的数据。
-
-### OSMS supporting traceability construction and analysis
-
-![Fig. 10. OSMS supporting traceability management.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082703.png)
-
-图10展示了可追溯管理软件OSMS的架构。
-
-- 10(a)中：利益攸关者可以通过OSLC服务绑定到WPMS的工作任务来操纵设计模型。例如，WPMS中的涉众需求定义工作任务链接到在Excel中查询需求项的相关OSLC服务。在WPMS中，需求工程师操纵OSLC服务来修改Excel表格中的涉众需求，例如将最小安全驾驶距离从35米更改为40米。
-- 在图10(b)所示的服务管理模块中，所有OSLC服务都集成到OSMS中以构建可追溯性。使用递归算法来发现并遍历所有OSLC服务，直到OSLC资源不再链接到另一个OSLC服务URI。
-- 在图10(c)中，在可追溯性构建模块中建立了OSLC服务与过程模型之间的可追溯性。
-- 在图10(d)中，使用可追溯性分析模块分析OSLC服务与流程之间的可追溯性。
-- 推理结果如10(e)：
-- - 场景Pattern1对应于基于创建OSLC服务的工具名称查询单个OSLC服务的领域问题①。推理模式是具有给定工具名称Simulink的OSLC服务。推理结果显示所有的OSLC服务都具有可追溯性，并且是由Simulink创建的，例如Simulink模型中的子系统ACCV2_Motor_Left和ACCV2_PIDController。
-- - 场景Pattern2对应于基于名称查询单个OSLC服务的领域问题②。推理模式是具有给定名称或ID REQ-REA-1的OSLC服务。推理结果显示了需求表中利益相关者需求的Excel行OSLC服务。
-- - 场景模式3对应于基于相应工作任务的顺序查询任何直接相关的OSLC服务的领域问题③。推理模式由两个相关的OSLC服务和开发过程中的两个相关工作任务组成。其中一个OSLC服务有一个给定的ID UseCase_6460，它对应于在高速公路上驾驶时提供帮助的用例。推理结果表明，在此用例的基础上，设计了四个有效性度量的对象实例，如DSM模型中的Cost。
-- - 场景模式4对应于领域问题④，为案例研究中的特定模型元素或数据查询任何相关的OSLC服务。推理模式指定了一个链，其中包括两个OSLC服务作为该链的源和目标。
-- - 场景模式5对应于基于名称查询任何直接相关的OSLC服务的领域问题⑤。推理模式由两个相关的OSLC服务组成，其中一个具有需求REQ-REA-1的给定ID。推理结果表明，该需求与DSM模型中的需求块Requirement_Diagram_1bae5_object_Object_Requirement_ee86相关。需求块有一个本地标签需求和属性文本，值为在驾驶车辆时通过提供自动驾驶辅助来增强驾驶。
-
-### Unified authentication system supporting authority management
-
-做了一个用户认证系统。
-
-## Discussion and evaluation
-
-### Qualitative evaluation
-
-通过OSLC服务，WPMS支持过程和模型中任务之间的可跟踪性管理。OSMS支持模型之间的可追溯性构建、分析和可视化。统一的认证系统管理模型和涉众之间的可追溯性。通过CT本体，形式化了与MBSE工具链相关的模型、开发过程和涉众之间的拓扑关系，提高了MBSE工具链开发的效率和可追溯性管理场景下的语义互操作性。
-六个定性分析的问题：
-
-- 提高跟踪环节生成的自动化水平
-- 支持跟踪链接的存储
-- 支持可视化(表示)跟踪链接
-- 支持创建、删除、修改
-- 促进可追溯性信息的交换
-- 对获得的可追溯性信息进行分析
-
-### Quantitative evaluation
-
-以ACC系统设计为例说明模型数量。包括模型互操作性、推理分析可追溯性的能力和利益攸关者之间的交互等级。
-
-### Scalability discussion
-
-内部效度和外部效度是案例研究方法的两个重要方面[[73]](#73)。案例研究的内部有效性是指由于在可追溯性管理场景中使用所提出的工具链和CT本体而提高的效率；案例研究的外部有效性是指所提出的工具链和CT本体可以在其他可追溯性管理场景中复制的程度，代表了该案例研究的可扩展性。
-
-从工具链的角度来看，尽管航空航天领域复杂系统的设计方法、设计过程和设计目标可能与自适应巡航控制系统不同，但所使用的设计工具是相似的。在提出的工具链原型中，采用的建模工具MetaGraph可用于开发DSM模型。这些DSM模型可以用来表示SysML和其他建模语言所需的模型信息，并且可以进一步转换为不同建模工具所需的专有格式(例如Matlab中的.m脚本)。因此，我们可以推断，本文案例研究中的可追溯性管理场景可以复制到航空航天领域的其他可追溯性管理场景中。
-
-从本体设计的角度来看，CT本体的设计目的是形式化可追溯性管理场景中模型、开发过程、涉众及其相互关系的概念。该本体提供了一个独立于领域的表示，促进了可追溯性管理场景中相关概念的统一表示，从而确保设计过程中涉及的所有涉众共享对这些场景的共同理解。
-
-### Limitations
-
-四个局限性：
-
-- 未考虑工作任务动态变化对可追溯性管理场景的影响。因此，未来将开发一种动态编排方法来支持部署在WPMS中的工作任务的重新配置。
-- 设计的CT本体受限于本研究开发的MBSE工具链。不包括可追溯性管理的其他场景，例如集成CAD模型信息或物联网(IoT)数据的场景。
-- 本研究通过一个ACC系统设计案例验证了CT本体的完备性。CT本体功能的形式化验证将在未来使用OWL进行开发。
-- 还有其他可行的技术解决方案可以用于实现CT本体。由于KARMA语言与特定于领域的建模语言具有很强的语义兼容性，一个有希望的途径可能涉及探索特定于领域的建模语言(如SysML、UPDM或eastern-adl)与CT本体的潜在集成。
+### Limitations and Future Work
 
 ## Conclusions
 
-> For facilitating the industrial information integration process to support IIIE, the traceability management in MBSE implementation should be first considered. In this paper, we propose a CT ontology for traceability management in an MBSE toolchain that is developed based on an MBSE toolchain prototype and formalizes models, stakeholders, and development processes, as well as traceability management scenarios. Through a case study of an ACC system, the completeness of the CT ontology is evaluated by qualitative and quantitative analyses of the proposed MBSE toolchain. The results demonstrate that the CT ontology helps stakeholders manage and analyze traceability between heterogeneous models in the development process. To improve the efficiency of information integration, more discipline information can be considered and integrated into the proposed CT ontology in the future. Besides, we intend to extend the ontology of the CT to support other complex scenarios during MBSE implementation, such as automatic change management and consistency management for MBSE models.
-
 `个人总结`
 
-本篇文章提出了一套工具链以实现模型的可追溯性管理（增删改查），模型是MetaGraph搭建的DSM，仿真用的是Simulink，两者独立创建并通过算法实现关联，通过一套图数据库进行存储管理。通过图4的部分能了解KARMA的工作机制。对OSLC的工作机理不熟悉。DSM和Simulink中间用的FMU链接，FMU用CarSim生成，其设计和DSM没有之间关联。追溯性识别用的是Pattern匹配。写作方面比较规范，可以借鉴。工具链不开源。
-
 `参考文献`
-
-<a id="10">[10]</a>V. Singh, K.E. Willcox, Engineering design with digital thread, AIAA J. 56 (11) (2018) 4515–4528.
-<a id="19">[19]</a>S. Wu, J. Lu, Z. Hu, P. Yang, G. Wang, D. Kiritsis, Cognitive thread supports system of systems for complex system development, in: 2021 16th International Conference of System of Systems Engineering, SoSE, IEEE, 2021, pp. 82–87.
-<a id="20">[20]</a>J. Lu, J. Wang, D. Chen, J. Wang, M. Törngren, A service-oriented tool-chain for model-based systems engineering of aero-engines, IEEE Access 6 (2018) 50443–50458
-<a id="30">[30]</a>IEEE, IEEE standard glossary of software engineering terminology, IEEE Std 610.12-1990, 1990, pp. 1–84, http://dx.doi.org/10.1109/IEEESTD.1990.101064.
-<a id="32">[32]</a>I.C. on Systems Engineering (Ed.), INCOSE Systems Engineering Handbook, vol.2.0, 2000.
-<a id="41">[41]</a>J. Guo, G. Wang, J. Lu, J. Ma, M. Törngren, General modeling language supporting model transformations of MBSE (part 2), in: INCOSE International Symposium, vol. 30, (1) Wiley Online Library, 2020, pp. 1460–1473.
-<a id="42">[42]</a>M. Kharrat, O. Penas, R. Plateaux, J.-Y. Choley, H. Trabelsi, J. Louati, M. Haddar, Integration of electromagnetic constraints as of the conceptual design through an MBSE approach, IEEE Syst. J. 15 (1) (2020) 747–758.
-<a id="58">[58]</a>D.A. Kinard, F-35 digital thread and advanced manufacturing, in: 2018 Aviat. Technol. Integr. Oper. Conf, From Concept to Cockpit, The F-35 Lightning II, 2018, pp. 1–19, http://dx.doi.org/10.2514/6.2018-3369.
-<a id="59">[59]</a>M.A. Bone, M.R. Blackburn, D.H. Rhodes, D.N. Cohen, J.A. Guerrero, Transforming systems engineering through digital engineering, J. Def. Model. Simul. 16 (4) (2019) 339–355.
-<a id="60">[60]</a>T.D. West, M. Blackburn, Is digital thread/digital twin affordable? A systemic assessment of the cost of DoD’s latest manhattan project, Procedia Comput. Sci. 114 (2017) 47–56.
-<a id="51">[51]</a>J. Lu, G. Wang, M. Törngren, Design ontology in a case study for cosimulation in a model-based systems engineering tool-chain, IEEE Syst. J. 14 (1) (2019) 1297–1308
-<a id="68">[68]</a>J. Lu, D. Chen, J. Wang, M. Torngren, Towards a service-oriented framework for MBSE tool-chain development, in: 2018 13th Annual Conference on System of Systems Engineering, SoSE, IEEE, 2018, pp. 568–575, http://dx.doi.org/10.1109/SYSOSE.2018.8428746.
-<a id="22">[22]</a>D. Johnson, S. Speicher, Open services for lifecycle collaboration-core specification version 2.0, 2013, http://open-services.net/.
-<a id="71">[71]</a>D.L. McGuinness, F.v. Harmelen, OWL web ontology language overview, http: //www.w3.org/TR/owl-features/.
-<a id="26">[26]</a>H. Lykins, S. Friedenthal, A. Meilich, 4.4.4 Adapting UML for an object oriented systems engineering method (OOSEM), in: INCOSE International Symposium, vol.10, (1) Wiley Online Library, 2000, pp. 490–497.
-<a id="73">[73]</a>N. Salkind, Internal and external validity, SAGE Dict. Quant. Manag. Res. (2011) 148–149.
+<a id="9">[9]</a>L. Burgueno, J. Cabot, and S. Gerard. 2019. The future of model transformation languages: an open community discussion J. Obj. Technol. 1–11. Retrieved from www.jot.fm/issues/issue_2019_03/article7.pdf.
+<a id="49">[49]</a>K. Lano, Q. Xue, and S. Kolahdouz-Rahimi. 2020. Agile Specification of Code Generators for Model-Driven Engineering. In Proceedings of ICSEA 2020. IARIA, 9–15.
+<a id="1">[1]</a>L. Addazi, A. Cicchetti, J. D. Rocco, D. D. Ruscio, L. Iovino, and A. Pierantonio. 2016. Semantic-based model matching with emfcompare, me workshop, models. CEUR-WS 1706, 40–49.
+<a id="17">[17]</a>S. Fang and K. Lano. Extracting correspondences from metamodels using metamodel matching. In STAF 2019. Retrieved from CEUR-WS.org/vol-2405/02_paper.pdf.
+<a id="31">[31]</a>M. Kessentini, A. Ouni, P. Langer, M. Wimmer, and S. Bechikh. 2014. Search-based metamodel matching with structural and syntactic measures. Journal of Software and Systems 97, 2014 (2014), 1–14.
+<a id="48">[48]</a>K. Lano, S. Fang, and S. Kolahdouz-Rahimi. TL: An abstract specification language for bidirectional transformations. MODELS’20 Comp. Proc. 77 (2020), 1–10.
 ]]></content>
       <categories>
         <category>Academic Papers</category>
         <category>Journal</category>
-        <category>JII</category>
-        <category>2024</category>
+        <category>TOSEM</category>
+        <category>2022</category>
       </categories>
       <tags>
-        <tag>MBSE</tag>
-        <tag>Traceability management</tag>
-        <tag>Cognitive thread</tag>
-        <tag>Digital thread</tag>
-        <tag>OSLC</tag>
-        <tag>MetaGraph</tag>
-        <tag>KARMA</tag>
-        <tag>Simulink</tag>
+        <tag>MDE</tag>
+        <tag>Model Transformations</tag>
+        <tag>Requirements Engineering</tag>
+        <tag>Automated Software Engineering</tag>
       </tags>
   </entry>
   <entry>
@@ -1190,52 +965,6 @@ NASA 和 ESA 模拟器均在初步设计阶段使用，并且都具有相似的�
         <category>Conference</category>
         <category>SECESA</category>
         <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</title>
-    <url>/2024/08/29/008/</url>
-    <content><![CDATA[
-*作者来自阿拉巴马大学亨茨维尔分校（美国）。*
-
-本次阅读关注涉及SysML的部分，不关注增材制造（AM）有关的内容。本文展示了一种分析火箭组件 MCC 表面粗糙度的方法，以及该表面粗糙度如何影响火箭发动机的性能。创建了 MATLAB 子程序来评估损失和性能，并运行在 SysML 中开发的基于模型的框架。然后使用 SSME 数据验证了该模型[[30]](#30)。
-
-在进行这项研究时，我们更好地了解了使用 AM 升级火箭发动机部件与火箭性能之间的权衡。在此过程中，还展示了基于模型的方法的功能。 在可负担性方面，如果工程师要做出明智的决策，需求可追溯性至关重要。例如，使用此模型的制造工程师可以更好地估计 AM 部件需要多少后处理才能满足性能要求。这可以进一步缩短部件的交付周期，或减轻试验台上的潜在故障，从而减少认证发动机的时间。此外，本文探讨的方面是建立一种全面的以模型为中心的可负担性方法，确保系统整个生命周期阶段的可追溯性和一致性。最后，这将有助于在系统生命周期的早期设想以故障为中心的方面，优化测试-失败-修复周期所花费的时间，实现可负担性。 可负担性和重新认证传统火箭发动机的问题取决于测试-失败-修复周期所花费的时间。 使用 AM 可以缩短重新认证的准备时间，但是实施 AM 而不显著降低性能是一项持续的挑战。可以考虑 AM 来设计新的火箭发动机，但是，RS-25 等传统火箭发动机无法进行大量重新设计以适应 AM 的使用。此外，在进行升级时，预测整个系统的可靠性变化非常重要，这需要采用以模型为中心的方法。这将有助于以整体方式评估设计变更对系统的影响。虽然正在进行研究以建立基于模型的框架来跟踪可靠性变化，但执行交易的能力也将补充跟踪可靠性变化的努力，这对测试-失败-修复周期具有重要影响。本文中传达的分析结果将有助于开发一种方法，该方法可以评估 RS-25、其生产重启和重新认证的增材制造零件的可行性和实用性。由于基于模型的方法通常适用于多种火箭发动机架构，这些技术也可应用于其他液体火箭发动机和先进的推进系统，如核热推进（NTP）。
-
-![Fig. 1 The Affordability Modeling Framework for the RS-25 Engine. [18]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
-
-基于模型的 RS-25 可负担性框架的开发是一项正在进行的研究工作 [[18]](#18) [[19]](#19) [[20]](#20) [[21]](#21)。可负担性框架如图 1 所示。它由四个方面组成，以实现可负担性：基于为 RS-25 发动机设定的成本降低目标开发的结构模型 [[20]](#20)；基于 104.5% 功率水平 SSME 数据开发的系统组件和性能模型 [[18]](#18)；正在为测试规划和可靠性开发的功能和行为模型 [[19]](#19) [[20]](#20) [[21]](#21)；以及其他工程分析模型，正在同时开发，首先是 RS-25 发动机的基于模型的故障模式、影响和危害性分析 (FMECA) [[19]](#19)。系统建模语言 (SysML) 用于利用 MBSE 实现可负担性框架。SysML 是一种图形建模语言，提供执行 SE 活动的语义。随后，本研究将利用 SysML 开发基于模型的范例，用于分析 AM 对 RS-25 发动机 MCC 的 SE 优势，这将有利于生产重启。本文的范围将涵盖可负担性建模框架的功能和行为模型以及其他工程分析模型（表面粗糙度的影响）以及系统和组件性能模型（用于估计 109% 功率水平的表面粗糙度影响的性能模型）。
-
-Implementation in SysML and Results
-根据方法论部分中描述的步骤，在 MATLAB 中开发了不同的子程序。开发的子程序被纳入 SysML 中基于 RS-25 模型的可负担性框架 。创建了一个参数图 (par) 来使用开发的子程序执行分析，如图 4 所示。par 包装了开发的 MATLAB 子程序，用于使用三种方法（能量平衡、直接压力损失和 Fanno 流）捕获结果。
-
-![Fig. 4. RS-25 engine surface roughness analysis parametric diagram in SysML.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083002.png)
-
-组件鉴定的一个重要方面是评估组件测试和分析是否满足系统要求。因此，正在进行的分析分别与 RS-25 发动机和 MCC 的系统和组件级要求相关联。这封装在需求图 (req) 中，并与 [[20]](#20) 中开发的结构架构中的组件相关联，如图 5 所示
-
-![Fig. 5. Requirement diagram (req) representing RS-25 engine and MCC requirements and its association to the structural architecture.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083003.png)
-
-代表 RS-25 发动机和 MCC 的 \<\< block >> 由表示为执行分析而开发的 MATLAB 子程序的约束组成，值表示基于方程 (1) – (17) 的输入和输出。一旦确定了 par 和 req，就会在 SysML 中创建 RS-25 发动机块的不同实例，这些实例表示不同的 AM 过程以及表 1 中列出的相关表面粗糙度值。
-
-`参考文献`
-
-<a id="18">[18]</a>Bower, A. J., and Thomas, D. “An Affordability Model Framework for the RS-25 Liquid Rocket Engine.” 2018 Joint Propulsion Conference, 2018, pp. 1–9. https://doi.org/10.2514/6.2018-4460.
-<a id="19">[19]</a>Lakshmipuram Raghu, S., and Thomas, L. D. “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine Using SysML.” AIAA Scitech 2021 Forum, 2021. https://doi.org/10.2514/6.2021-0305.
-<a id="20">[20]</a>Lakshmipuram Raghu, S., and Thomas, L. “Modeling Behavior Elements for the RS-25 Engine Using SysML for Improved Affordability.” AIAA Propulsion and Energy 2021 Forum, 2021, pp. 1–12. https://doi.org/10.2514/6.2021-3578.
-<a id="21">[21]</a>Lakshmipuram Raghu, S., Tudor, M., Thomas, L. D., and Wang, G. “MBSE Utilization for Additive Manufactured Rocket Propulsion Components.” 2022 IEEE Aerospace Conference, 2022. https://doi.org/10.1109/AERO53065.2022.9843586
-<a id="30">[30]</a>Nickerson, G. R., and Dang, L. D. Performance Predictions for an SSME Configuration with an Enlarged Throat. Publication NASA-CR-178743. 1985.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Artical</category>
-        <category>AIAA SCITECH Forum</category>
-        <category>2023</category>
       </categories>
       <tags>
         <tag>MBSE</tag>
@@ -1468,6 +1197,52 @@ propositionalization社区已经研究了从分层和嵌套数据生成数据集
       </tags>
   </entry>
   <entry>
+    <title>小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</title>
+    <url>/2024/08/29/008/</url>
+    <content><![CDATA[
+*作者来自阿拉巴马大学亨茨维尔分校（美国）。*
+
+本次阅读关注涉及SysML的部分，不关注增材制造（AM）有关的内容。本文展示了一种分析火箭组件 MCC 表面粗糙度的方法，以及该表面粗糙度如何影响火箭发动机的性能。创建了 MATLAB 子程序来评估损失和性能，并运行在 SysML 中开发的基于模型的框架。然后使用 SSME 数据验证了该模型[[30]](#30)。
+
+在进行这项研究时，我们更好地了解了使用 AM 升级火箭发动机部件与火箭性能之间的权衡。在此过程中，还展示了基于模型的方法的功能。 在可负担性方面，如果工程师要做出明智的决策，需求可追溯性至关重要。例如，使用此模型的制造工程师可以更好地估计 AM 部件需要多少后处理才能满足性能要求。这可以进一步缩短部件的交付周期，或减轻试验台上的潜在故障，从而减少认证发动机的时间。此外，本文探讨的方面是建立一种全面的以模型为中心的可负担性方法，确保系统整个生命周期阶段的可追溯性和一致性。最后，这将有助于在系统生命周期的早期设想以故障为中心的方面，优化测试-失败-修复周期所花费的时间，实现可负担性。 可负担性和重新认证传统火箭发动机的问题取决于测试-失败-修复周期所花费的时间。 使用 AM 可以缩短重新认证的准备时间，但是实施 AM 而不显著降低性能是一项持续的挑战。可以考虑 AM 来设计新的火箭发动机，但是，RS-25 等传统火箭发动机无法进行大量重新设计以适应 AM 的使用。此外，在进行升级时，预测整个系统的可靠性变化非常重要，这需要采用以模型为中心的方法。这将有助于以整体方式评估设计变更对系统的影响。虽然正在进行研究以建立基于模型的框架来跟踪可靠性变化，但执行交易的能力也将补充跟踪可靠性变化的努力，这对测试-失败-修复周期具有重要影响。本文中传达的分析结果将有助于开发一种方法，该方法可以评估 RS-25、其生产重启和重新认证的增材制造零件的可行性和实用性。由于基于模型的方法通常适用于多种火箭发动机架构，这些技术也可应用于其他液体火箭发动机和先进的推进系统，如核热推进（NTP）。
+
+![Fig. 1 The Affordability Modeling Framework for the RS-25 Engine. [18]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
+
+基于模型的 RS-25 可负担性框架的开发是一项正在进行的研究工作 [[18]](#18) [[19]](#19) [[20]](#20) [[21]](#21)。可负担性框架如图 1 所示。它由四个方面组成，以实现可负担性：基于为 RS-25 发动机设定的成本降低目标开发的结构模型 [[20]](#20)；基于 104.5% 功率水平 SSME 数据开发的系统组件和性能模型 [[18]](#18)；正在为测试规划和可靠性开发的功能和行为模型 [[19]](#19) [[20]](#20) [[21]](#21)；以及其他工程分析模型，正在同时开发，首先是 RS-25 发动机的基于模型的故障模式、影响和危害性分析 (FMECA) [[19]](#19)。系统建模语言 (SysML) 用于利用 MBSE 实现可负担性框架。SysML 是一种图形建模语言，提供执行 SE 活动的语义。随后，本研究将利用 SysML 开发基于模型的范例，用于分析 AM 对 RS-25 发动机 MCC 的 SE 优势，这将有利于生产重启。本文的范围将涵盖可负担性建模框架的功能和行为模型以及其他工程分析模型（表面粗糙度的影响）以及系统和组件性能模型（用于估计 109% 功率水平的表面粗糙度影响的性能模型）。
+
+Implementation in SysML and Results
+根据方法论部分中描述的步骤，在 MATLAB 中开发了不同的子程序。开发的子程序被纳入 SysML 中基于 RS-25 模型的可负担性框架 。创建了一个参数图 (par) 来使用开发的子程序执行分析，如图 4 所示。par 包装了开发的 MATLAB 子程序，用于使用三种方法（能量平衡、直接压力损失和 Fanno 流）捕获结果。
+
+![Fig. 4. RS-25 engine surface roughness analysis parametric diagram in SysML.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083002.png)
+
+组件鉴定的一个重要方面是评估组件测试和分析是否满足系统要求。因此，正在进行的分析分别与 RS-25 发动机和 MCC 的系统和组件级要求相关联。这封装在需求图 (req) 中，并与 [[20]](#20) 中开发的结构架构中的组件相关联，如图 5 所示
+
+![Fig. 5. Requirement diagram (req) representing RS-25 engine and MCC requirements and its association to the structural architecture.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083003.png)
+
+代表 RS-25 发动机和 MCC 的 \<\< block >> 由表示为执行分析而开发的 MATLAB 子程序的约束组成，值表示基于方程 (1) – (17) 的输入和输出。一旦确定了 par 和 req，就会在 SysML 中创建 RS-25 发动机块的不同实例，这些实例表示不同的 AM 过程以及表 1 中列出的相关表面粗糙度值。
+
+`参考文献`
+
+<a id="18">[18]</a>Bower, A. J., and Thomas, D. “An Affordability Model Framework for the RS-25 Liquid Rocket Engine.” 2018 Joint Propulsion Conference, 2018, pp. 1–9. https://doi.org/10.2514/6.2018-4460.
+<a id="19">[19]</a>Lakshmipuram Raghu, S., and Thomas, L. D. “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine Using SysML.” AIAA Scitech 2021 Forum, 2021. https://doi.org/10.2514/6.2021-0305.
+<a id="20">[20]</a>Lakshmipuram Raghu, S., and Thomas, L. “Modeling Behavior Elements for the RS-25 Engine Using SysML for Improved Affordability.” AIAA Propulsion and Energy 2021 Forum, 2021, pp. 1–12. https://doi.org/10.2514/6.2021-3578.
+<a id="21">[21]</a>Lakshmipuram Raghu, S., Tudor, M., Thomas, L. D., and Wang, G. “MBSE Utilization for Additive Manufactured Rocket Propulsion Components.” 2022 IEEE Aerospace Conference, 2022. https://doi.org/10.1109/AERO53065.2022.9843586
+<a id="30">[30]</a>Nickerson, G. R., and Dang, L. D. Performance Predictions for an SSME Configuration with an Enlarged Throat. Publication NASA-CR-178743. 1985.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Artical</category>
+        <category>AIAA SCITECH Forum</category>
+        <category>2023</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</title>
     <url>/2024/08/30/009/</url>
     <content><![CDATA[
@@ -1595,6 +1370,27 @@ RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这�
       </tags>
   </entry>
   <entry>
+    <title>小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</title>
+    <url>/2024/08/31/011/</url>
+    <content><![CDATA[
+为运载火箭（如太空发射系统 (SLS)）开发复杂推进系统的成功之路取决于性能、可靠性和成本之间的最佳平衡。在过去十年中，复杂推进系统的技术和创新应用超越了运载火箭的开发，转向提高可负担性和安全性。因此，本研究旨在补充正在进行的努力，即为 RS-25 发动机建立一个基于模型的平台，以实现可负担性。该发动机被选为研究候选是因为需要重启生产，采用新技术并降低成本。利用基于模型的系统工程 (MBSE) 的范例，结构架构和基于模型的平台用于执行故障模式、影响和危害性分析 (FMECA) 之前已在系统建模语言 (SysML) 中建模和开发。本研究的重点是扩展基于模型的可靠性框架，以包括 RS-25 发动机的行为方面（发动机性能、测试策略、设计变更实施和结果等）。我们已经详细说明了逐步的努力并讨论了结果，以开发 RS-25 发动机的全面可负担性平台。
+
+主要介绍了用SysML创建RS-25的一些图的内容。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Artical</category>
+        <category>AIAA Propulsion and Energy Forum</category>
+        <category>2021</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记【待续】：Failure Mode and Effects Analysis (FMEA Handbook)</title>
     <url>/2024/09/02/012/</url>
     <content><![CDATA[
@@ -1680,24 +1476,228 @@ FMEA的三种使用场景：（1）新设计、新技术或新过程；（2）�
       </tags>
   </entry>
   <entry>
-    <title>小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</title>
-    <url>/2024/08/31/011/</url>
+    <title>笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering</title>
+    <url>/2024/08/27/005/</url>
     <content><![CDATA[
-为运载火箭（如太空发射系统 (SLS)）开发复杂推进系统的成功之路取决于性能、可靠性和成本之间的最佳平衡。在过去十年中，复杂推进系统的技术和创新应用超越了运载火箭的开发，转向提高可负担性和安全性。因此，本研究旨在补充正在进行的努力，即为 RS-25 发动机建立一个基于模型的平台，以实现可负担性。该发动机被选为研究候选是因为需要重启生产，采用新技术并降低成本。利用基于模型的系统工程 (MBSE) 的范例，结构架构和基于模型的平台用于执行故障模式、影响和危害性分析 (FMECA) 之前已在系统建模语言 (SysML) 中建模和开发。本研究的重点是扩展基于模型的可靠性框架，以包括 RS-25 发动机的行为方面（发动机性能、测试策略、设计变更实施和结果等）。我们已经详细说明了逐步的努力并讨论了结果，以开发 RS-25 发动机的全面可负担性平台。
+[Design ontology for cognitive thread supporting traceability management in model-based systems engineering](https://www.sciencedirect.com/science/article/pii/S2452414X24000633)
 
-主要介绍了用SysML创建RS-25的一些图的内容。
+*作者来自王国新和鲁金直团队。*
+
+`Abstraction`
+
+> Industrial information integration engineering (IIIE) is an interdisciplinary field to facilitate the industrial information integration process. In the age of complex and large-scale systems, model-based systems engineering (MBSE) is widely adopted in industry to support IIIE. Traceability management is considered the foundation of information management in MBSE. However, a lack of integration between stakeholders, development processes, and models can decrease the effectiveness and efficiency of the system development. A modified MBSE toolchain prototype has been developed to implement traceability management; however, a lack of formal and structured specifications makes it difficult to describe the complex topology in traceability management scenarios using this MBSE toolchain, such as creating traceability between heterogeneous models, which leads to poor reusability of this MBSE toolchain in other traceability management scenarios. To formalize traceability management scenarios using the MBSE toolchain, a cognitive thread (CT) ontology is developed in this study. The CT ontology is a specification expressing the information of stakeholders, models, and development processes for traceability management, providing the cognition capability to analyze the interrelationships between them. Based on the implementation of the modified MBSE toolchain, the concepts and interrelationships in the CT ontology are identified. The CT ontology is designed to develop the MBSE toolchain prototype for building, managing, and analyzing traceability in various traceability management scenarios. A case study of an adaptive cruise control system design is used to evaluate the completeness of the CT ontology through qualitative and quantitative analyses. The results demonstrate that the proposed CT ontology formalizes the information related to traceability management while using the proposed MBSE toolchain and can also be used in common traceability management scenarios to design other complex engineered systems.
+
+## Introduction
+
+Industrial information integration engineering (IIIE)工业信息集成工程的概念。Digital Thread (DT)数字线程被认为是实现MBSE的下一个信息管理和集成范例。它可以看做是将产品生命周期的各个阶段产生的信息链接到决策的框架中[[10]](#10)，信息的可追溯性管理就显得很重要。
+
+可追溯性管理的问题：可追溯性管理场景的形式化应该是实现功能的先决条件；应妥善管理和分析模型与数据、开发过程与利益攸关者之间的依赖关系。
+
+本文的主要贡献：设计了一个认知线程本体Cognitive thread (CT) ontology，与其他方法相比，CT本体可以为追溯性的构建和分析过程提供语义描述。CT概念参考[[19]](#19)。具体特点：
+
+- (1) 将利益相关者、开发过程和系统工件之间的概念和相互关系形式化；
+- (2) 提供基于预定义推理规则的认知能力。这些规则是基于利益相关者、开发过程和系统工件之间的相互关系制定的。认知能力可帮助利益相关者分析和理解协同设计中开发过程与模型和数据之间的复杂依赖关系，从而选择最佳设计。
+
+在先前的一项研究 [[20]](#20) 中，开发了一个 MBSE 工具链来支持协同设计。为了实现可追溯性管理，我们改进了此工具链作为 CT 本体形式化的基础，其中包括以下四个方面：
+
+- (1) 系统工件的开放生命周期协作服务 (OSLC) 服务，例如领域特定建模 (DSM)、数据等；
+- (2) 从 DSM 模型生成的基于 Web 的流程管理系统 (WPMS)；
+- (3) 统一身份验证系统；
+- (4) OSLC 服务管理系统 (OSMS)。基于MBSE工具链的实现，识别了CT本体中的概念和相互关系，并以自适应巡航控制（ACC）系统设计的MBSE工具链为例，通过定性和定量的测量，评估了CT本体的完备性。
+
+## Related Work
+
+### Concept and state of the art of traceability management
+
+The IEEE standard glossary of software engineering terminology defines traceability as the “degree to which a relationship can be established between two or more products of the development process” [[30]](#30).
+尽管在 MBSE 领域中，对可追溯性或可追溯性管理尚无统一的定义，但用于开发工程系统的可追溯性概念与软件工程中的可追溯性概念类似。The International Council on Systems Engineering (INCOSE) defines traceability in the MBSE field as “a discernible association between two or more logical entities such as requirements, system elements, verifications, or tasks”[[32]](#32).
+
+- 设计结构矩阵式可追溯性管理的最常用方法，但依赖额外的工具集。
+- 模型转换是另一种方法，但大部分仅支持单向转换。（Guo等[[41]](#41)设计了代码生成语言语法来实现MBSE与Simulink模型之间的可追溯性。Kharrat等[[42]](#42)扩展了系统建模语言(SysML)配置文件，设计了一种模型转换方法来实现SysML与计算机辅助设计(CAD)模型之间的可追溯性。）
+- 一些DSM工具链被视为是潜在解决方案。DSM 是一种工程方法，通过模型和一组形式化元模型来描述特定领域系统的信息。 这些工具链促进了不同领域模型之间的可追溯性。在本研究中，我们专注于 MBSE 工具链开发以支持可追溯性管理。
+
+### Ontology design for traceability management in MBSE
+
+本体是指对象的类型及其属性和关系，它们代表了领域特定知识。在MBSE实践中，本体用于形式化系统开发和工件的系统信息。由于工程系统的固有特性，各种设计活动和利益相关者之间的迭代和交互也增加了产品实现过程的复杂性。（信息不全且混乱）
+
+### Cognitive thread for traceability management
+
+数字线程的概念来自F35战斗机[[58]](#58) [[59]](#59)。
+T. D. West et al [[60]](#60) considered it as “a framework for merging the conceptual models of the system with the discipline-specific engineering models of various system elements”.
+最近，研究人员试图利用语义技术增强 DT 的认知能力。下一代 DT 的范式被提议为 CT [[19]](#19)，它是一种具有增强语义能力的 DT，可以形式化模型与数据、开发过程和组织之间的相互关系。还有一些其他研究利用知识图谱用于描述语义间的拓扑关系。
+
+### Summary
+
+几个动机：
+
+- 为了形式化MBSE工具链，应开发描述MBSE工具链本身的本体模型。
+- 工业界和学术界目标不同，本体还需要支持过程管理和工具操作。
+- 使用CT能增强知识表达能力，现有方法没有在模型领域的分析。
+
+## Research design
+
+![Overview of research design.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082304.png)
+
+如图所示，第一步确定可追溯性管理场景；第二步，采用系统思维支持CT本体设计，解决工具链中的问题；第三步基于CT本体，修改当前的MBSE工具链以支持可追溯性管理场景；第四步，通过ACC系统设计案例，对原型进行评估。
+
+### Problem statement
+
+在[[20]](#20) [[51]](#51)中开发了航空发动机仿真案例。利益相关者使用 DSM 模型来形式化开发流程和系统工件。 然后，将 DSM 模型转换为一个 WPMS，以部署技术资源并在 Simulink 中为不同的利益相关者实现自动联合仿真。本研究的步骤：
+
+- 定义追溯性和追溯性管理的概念。[[19]](#19)
+- 定义场景。
+- 定义场景相关实体。
+- 定义实体之间的相互关系。
+- 使用工具链实例化。
+- 案例研究评估。
+
+### Prototype strategy for cognitive thread ontology design
+
+![Overview of the MBSE toolchain prototype.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082305.png)
+
+如图所示，（a）用Excel提取需求，用MetaGraph和KARMA体系建模，使用代码生成器将DSM模型转换为本体，基于此联合Simulink进行仿真。（b）开发OSLC适配器，通过特定的映射规则将数据转换为相应OSLC服务。（c）编译器加载DSM模型中的流程模型以生成WPMS。（d）统一身份验证系统提供数据访问控制。（e）最后，开发OSMS（Neo4j）来存储和分析WPMS中OSLC服务和开发流程之间的追溯性。
+
+### Evaluation based on case study
+
+提出了一个ACC系统设计案例，验证工具链的可行性与有效性。
+（1）工具链原型开发：定义了4个指标。
+（2）评估问题分析：提出了7个问题。
+定量方法方面，参考SPIRIT框架[[68]](#68)分析三个方面：模型互操作性、开发流程利益攸关者之间的沟通程度、追溯认知推理分析的能力。
+
+## Ontology of cognitive thread for traceability management in MBSE
+
+![CT ontology for traceability management.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082306.png)
+
+本节介绍CT本体的具体内容，对应第一个图的第二步。
+
+### Ontology formalizing models
+
+![Fig. 4. Mapping process between OSLC services and models.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082701.png)
+
+本节主要关注模型信息。在提出的 MBSE 工具链中，结构化需求文档被视为非正式模型，DSM 模型是描述性模型，Simulink 模型是分析性模型。DSM 模型是基于 GOPPRR-E 建模方法生成的。基于 OSLC 核心规范[[22]](#22)开发了需求表、DSM 模型和 Simulink 模型的 OSLC 服务，以支持数据集成和互操作。为了描述OSLC服务，使用OWL语言进行形式化[[71]](#71)。论文讲述了以上三者之间的映射方法，具体方式如图4左侧描述。
+
+### Ontology formalizing development process
+
+本节主要关注开发过程的结构信息。采用的是BPMN开发流程。
+
+### Ontology formalizing stakeholders
+
+本节主要关注的是利益攸关者的结构信息。
+
+### Ontology formalizing scenarios of traceability management
+
+在已知模型、过程和利益攸关者信息后，本节关注可追溯性管理。包括四个部分：OSLC模型间追溯管理、OSLC模型与过程模型间追溯管理、OSLC模型与利益攸关者间追溯管理、过程模型与利益攸关者间追溯管理。
+
+## Case study
+
+### Scenario definition
+
+![Fig. 5. ACC system design process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082702.png)
+
+ACC是一种基于车辆的外部行驶环境，如前方车辆的速度和距离，来适应常规控制的避碰系统。为了验证所提出的CT本体的完整性，以ACC系统设计为例对MBSE工具链原型进行了评估。案例如图5所示。
+
+### Models and data supporting ACC system design
+
+介绍了DSM的元模型组成和DSM模型在MetaGraph软件中的对应效果。建模方法用的是OOSEM[[26]](#26)。用CarSim做了一个Simulink ACC FMU模型。OSCL服务可以触发Simulink运行并获取Simulink中的数据。
+
+### OSMS supporting traceability construction and analysis
+
+![Fig. 10. OSMS supporting traceability management.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082703.png)
+
+图10展示了可追溯管理软件OSMS的架构。
+
+- 10(a)中：利益攸关者可以通过OSLC服务绑定到WPMS的工作任务来操纵设计模型。例如，WPMS中的涉众需求定义工作任务链接到在Excel中查询需求项的相关OSLC服务。在WPMS中，需求工程师操纵OSLC服务来修改Excel表格中的涉众需求，例如将最小安全驾驶距离从35米更改为40米。
+- 在图10(b)所示的服务管理模块中，所有OSLC服务都集成到OSMS中以构建可追溯性。使用递归算法来发现并遍历所有OSLC服务，直到OSLC资源不再链接到另一个OSLC服务URI。
+- 在图10(c)中，在可追溯性构建模块中建立了OSLC服务与过程模型之间的可追溯性。
+- 在图10(d)中，使用可追溯性分析模块分析OSLC服务与流程之间的可追溯性。
+- 推理结果如10(e)：
+- - 场景Pattern1对应于基于创建OSLC服务的工具名称查询单个OSLC服务的领域问题①。推理模式是具有给定工具名称Simulink的OSLC服务。推理结果显示所有的OSLC服务都具有可追溯性，并且是由Simulink创建的，例如Simulink模型中的子系统ACCV2_Motor_Left和ACCV2_PIDController。
+- - 场景Pattern2对应于基于名称查询单个OSLC服务的领域问题②。推理模式是具有给定名称或ID REQ-REA-1的OSLC服务。推理结果显示了需求表中利益相关者需求的Excel行OSLC服务。
+- - 场景模式3对应于基于相应工作任务的顺序查询任何直接相关的OSLC服务的领域问题③。推理模式由两个相关的OSLC服务和开发过程中的两个相关工作任务组成。其中一个OSLC服务有一个给定的ID UseCase_6460，它对应于在高速公路上驾驶时提供帮助的用例。推理结果表明，在此用例的基础上，设计了四个有效性度量的对象实例，如DSM模型中的Cost。
+- - 场景模式4对应于领域问题④，为案例研究中的特定模型元素或数据查询任何相关的OSLC服务。推理模式指定了一个链，其中包括两个OSLC服务作为该链的源和目标。
+- - 场景模式5对应于基于名称查询任何直接相关的OSLC服务的领域问题⑤。推理模式由两个相关的OSLC服务组成，其中一个具有需求REQ-REA-1的给定ID。推理结果表明，该需求与DSM模型中的需求块Requirement_Diagram_1bae5_object_Object_Requirement_ee86相关。需求块有一个本地标签需求和属性文本，值为在驾驶车辆时通过提供自动驾驶辅助来增强驾驶。
+
+### Unified authentication system supporting authority management
+
+做了一个用户认证系统。
+
+## Discussion and evaluation
+
+### Qualitative evaluation
+
+通过OSLC服务，WPMS支持过程和模型中任务之间的可跟踪性管理。OSMS支持模型之间的可追溯性构建、分析和可视化。统一的认证系统管理模型和涉众之间的可追溯性。通过CT本体，形式化了与MBSE工具链相关的模型、开发过程和涉众之间的拓扑关系，提高了MBSE工具链开发的效率和可追溯性管理场景下的语义互操作性。
+六个定性分析的问题：
+
+- 提高跟踪环节生成的自动化水平
+- 支持跟踪链接的存储
+- 支持可视化(表示)跟踪链接
+- 支持创建、删除、修改
+- 促进可追溯性信息的交换
+- 对获得的可追溯性信息进行分析
+
+### Quantitative evaluation
+
+以ACC系统设计为例说明模型数量。包括模型互操作性、推理分析可追溯性的能力和利益攸关者之间的交互等级。
+
+### Scalability discussion
+
+内部效度和外部效度是案例研究方法的两个重要方面[[73]](#73)。案例研究的内部有效性是指由于在可追溯性管理场景中使用所提出的工具链和CT本体而提高的效率；案例研究的外部有效性是指所提出的工具链和CT本体可以在其他可追溯性管理场景中复制的程度，代表了该案例研究的可扩展性。
+
+从工具链的角度来看，尽管航空航天领域复杂系统的设计方法、设计过程和设计目标可能与自适应巡航控制系统不同，但所使用的设计工具是相似的。在提出的工具链原型中，采用的建模工具MetaGraph可用于开发DSM模型。这些DSM模型可以用来表示SysML和其他建模语言所需的模型信息，并且可以进一步转换为不同建模工具所需的专有格式(例如Matlab中的.m脚本)。因此，我们可以推断，本文案例研究中的可追溯性管理场景可以复制到航空航天领域的其他可追溯性管理场景中。
+
+从本体设计的角度来看，CT本体的设计目的是形式化可追溯性管理场景中模型、开发过程、涉众及其相互关系的概念。该本体提供了一个独立于领域的表示，促进了可追溯性管理场景中相关概念的统一表示，从而确保设计过程中涉及的所有涉众共享对这些场景的共同理解。
+
+### Limitations
+
+四个局限性：
+
+- 未考虑工作任务动态变化对可追溯性管理场景的影响。因此，未来将开发一种动态编排方法来支持部署在WPMS中的工作任务的重新配置。
+- 设计的CT本体受限于本研究开发的MBSE工具链。不包括可追溯性管理的其他场景，例如集成CAD模型信息或物联网(IoT)数据的场景。
+- 本研究通过一个ACC系统设计案例验证了CT本体的完备性。CT本体功能的形式化验证将在未来使用OWL进行开发。
+- 还有其他可行的技术解决方案可以用于实现CT本体。由于KARMA语言与特定于领域的建模语言具有很强的语义兼容性，一个有希望的途径可能涉及探索特定于领域的建模语言(如SysML、UPDM或eastern-adl)与CT本体的潜在集成。
+
+## Conclusions
+
+> For facilitating the industrial information integration process to support IIIE, the traceability management in MBSE implementation should be first considered. In this paper, we propose a CT ontology for traceability management in an MBSE toolchain that is developed based on an MBSE toolchain prototype and formalizes models, stakeholders, and development processes, as well as traceability management scenarios. Through a case study of an ACC system, the completeness of the CT ontology is evaluated by qualitative and quantitative analyses of the proposed MBSE toolchain. The results demonstrate that the CT ontology helps stakeholders manage and analyze traceability between heterogeneous models in the development process. To improve the efficiency of information integration, more discipline information can be considered and integrated into the proposed CT ontology in the future. Besides, we intend to extend the ontology of the CT to support other complex scenarios during MBSE implementation, such as automatic change management and consistency management for MBSE models.
+
+`个人总结`
+
+本篇文章提出了一套工具链以实现模型的可追溯性管理（增删改查），模型是MetaGraph搭建的DSM，仿真用的是Simulink，两者独立创建并通过算法实现关联，通过一套图数据库进行存储管理。通过图4的部分能了解KARMA的工作机制。对OSLC的工作机理不熟悉。DSM和Simulink中间用的FMU链接，FMU用CarSim生成，其设计和DSM没有之间关联。追溯性识别用的是Pattern匹配。写作方面比较规范，可以借鉴。工具链不开源。
+
+`参考文献`
+
+<a id="10">[10]</a>V. Singh, K.E. Willcox, Engineering design with digital thread, AIAA J. 56 (11) (2018) 4515–4528.
+<a id="19">[19]</a>S. Wu, J. Lu, Z. Hu, P. Yang, G. Wang, D. Kiritsis, Cognitive thread supports system of systems for complex system development, in: 2021 16th International Conference of System of Systems Engineering, SoSE, IEEE, 2021, pp. 82–87.
+<a id="20">[20]</a>J. Lu, J. Wang, D. Chen, J. Wang, M. Törngren, A service-oriented tool-chain for model-based systems engineering of aero-engines, IEEE Access 6 (2018) 50443–50458
+<a id="30">[30]</a>IEEE, IEEE standard glossary of software engineering terminology, IEEE Std 610.12-1990, 1990, pp. 1–84, http://dx.doi.org/10.1109/IEEESTD.1990.101064.
+<a id="32">[32]</a>I.C. on Systems Engineering (Ed.), INCOSE Systems Engineering Handbook, vol.2.0, 2000.
+<a id="41">[41]</a>J. Guo, G. Wang, J. Lu, J. Ma, M. Törngren, General modeling language supporting model transformations of MBSE (part 2), in: INCOSE International Symposium, vol. 30, (1) Wiley Online Library, 2020, pp. 1460–1473.
+<a id="42">[42]</a>M. Kharrat, O. Penas, R. Plateaux, J.-Y. Choley, H. Trabelsi, J. Louati, M. Haddar, Integration of electromagnetic constraints as of the conceptual design through an MBSE approach, IEEE Syst. J. 15 (1) (2020) 747–758.
+<a id="58">[58]</a>D.A. Kinard, F-35 digital thread and advanced manufacturing, in: 2018 Aviat. Technol. Integr. Oper. Conf, From Concept to Cockpit, The F-35 Lightning II, 2018, pp. 1–19, http://dx.doi.org/10.2514/6.2018-3369.
+<a id="59">[59]</a>M.A. Bone, M.R. Blackburn, D.H. Rhodes, D.N. Cohen, J.A. Guerrero, Transforming systems engineering through digital engineering, J. Def. Model. Simul. 16 (4) (2019) 339–355.
+<a id="60">[60]</a>T.D. West, M. Blackburn, Is digital thread/digital twin affordable? A systemic assessment of the cost of DoD’s latest manhattan project, Procedia Comput. Sci. 114 (2017) 47–56.
+<a id="51">[51]</a>J. Lu, G. Wang, M. Törngren, Design ontology in a case study for cosimulation in a model-based systems engineering tool-chain, IEEE Syst. J. 14 (1) (2019) 1297–1308
+<a id="68">[68]</a>J. Lu, D. Chen, J. Wang, M. Torngren, Towards a service-oriented framework for MBSE tool-chain development, in: 2018 13th Annual Conference on System of Systems Engineering, SoSE, IEEE, 2018, pp. 568–575, http://dx.doi.org/10.1109/SYSOSE.2018.8428746.
+<a id="22">[22]</a>D. Johnson, S. Speicher, Open services for lifecycle collaboration-core specification version 2.0, 2013, http://open-services.net/.
+<a id="71">[71]</a>D.L. McGuinness, F.v. Harmelen, OWL web ontology language overview, http: //www.w3.org/TR/owl-features/.
+<a id="26">[26]</a>H. Lykins, S. Friedenthal, A. Meilich, 4.4.4 Adapting UML for an object oriented systems engineering method (OOSEM), in: INCOSE International Symposium, vol.10, (1) Wiley Online Library, 2000, pp. 490–497.
+<a id="73">[73]</a>N. Salkind, Internal and external validity, SAGE Dict. Quant. Manag. Res. (2011) 148–149.
 ]]></content>
       <categories>
         <category>Academic Papers</category>
-        <category>Artical</category>
-        <category>AIAA Propulsion and Energy Forum</category>
-        <category>2021</category>
+        <category>Journal</category>
+        <category>JII</category>
+        <category>2024</category>
       </categories>
       <tags>
         <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
+        <tag>Traceability management</tag>
+        <tag>Cognitive thread</tag>
+        <tag>Digital thread</tag>
+        <tag>OSLC</tag>
+        <tag>MetaGraph</tag>
+        <tag>KARMA</tag>
+        <tag>Simulink</tag>
       </tags>
   </entry>
 </search>
