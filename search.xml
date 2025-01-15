@@ -1,198 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
-    <url>/2024/08/17/002/</url>
-    <content><![CDATA[
-[Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example](https://dl.acm.org/doi/abs/10.1145/3471907)
-
-*作者是KCL的Kevin Lano。*
-
-`Abstraction`
-
-> In this article, we address how the production of model transformations (MT) can be accelerated by automation of transformation synthesis from requirements, examples, and metamodels. We introduce a synthesis process based on metamodel matching, correspondence patterns between metamodels, and completeness and consistency analysis of matches. We describe how the limitations of metamodel matching can be addressed by combining matching with automated requirements analysis and model transformation by example (MTBE) techniques.
-> We show that in practical examples a large percentage of required transformation functionality can usually be constructed automatically, thus potentially reducing development effort. We also evaluate the efficiency of synthesised transformations.
-> Our novel contributions are:
->
-> - The concept of correspondence patterns between metamodels of a transformation.
-> - Requirements analysis of transformations using natural language processing (NLP) and machine learning (ML).
-> - Symbolic MTBE using “predictive specification” to infer transformations from examples.
-> - Transformation generation in multiple MT languages and in Java, from an abstract intermediate language.
-
-## Introduction
-
-Model Transformations (MT)是MDE的关键要素。大型手动转换成本高管理难[[9]](#9) [[49]](#49)。元模型匹配技术[[1]](#1) [[17]](#17) [[31]](#31)。
-
-四个困难：1、匹配方法只能找到一种转换，但实际上有多种；2、穷举搜索复杂度高；3、无法检测源和目标的关系；4、通常只处理单一语言转换的场景。
-
-- (i) many different transformations may be possible between two given metamodels, and a matching approach typically only detects a single transformation;
-- (ii) exhaustive search for possible matches becomes infeasible even for cases of moderate size (around 25 to 30 metaclasses in the combined metamodels);
-- (iii) detailed functional relationships between source and target data, such as applications of specific numeric or string functions, cannot normally be detected;
-- (iv) the process is usually directed to and optimised for producing transformations in a single MT language.
-
-MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L}$[[48]](#48)处理4的问题。
-
-![Transformation synthesis process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png)
-
-图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$是映射的三个中间量。
-
-研究问题：
-
-- RQ1 : To what extent can automated metamodel matching be combined with interactive enhancement of matchings to accurately capture the mapping rules of an intended transformation?匹配的程度
-- RQ2 : Can automated requirements analysis using NLP/ML and MTBE techniques improve the accuracy of the approach compared to stand-alone metamodel matching?本文的NLP+MTBE技术能否提高准确性
-- RQ3 : Can the combined approach engineer transformations with appropriate correspondence and design patterns?
-- RQ4 : Can the combined approach produce efficiently executable transformations?
-
-### Illustrative Example: Gantt2CPM
-
-本文用到的一个例子：甘特图到CPM网络。介绍了该MT的原则。
-
-## Scope and bcakground
-
-### Scope of the Approach
-
-对于M2M问题，根据[[55]](#55)进行分类：
-
-- (General) migration 抽象层级相同但元模型不同
-- Evolution migration 一个元模型版本变更
-- Refinement 高抽象层级向低抽象层级映射
-- Abstaction 低抽象层级向高抽象层级映射
-- Code generation 从设计规范模型生成代码
-- Semantic mapping 将源模型映射到有形式化语义的模型
-- Bidirectional(Bx) 双向映射，支持模型同步和变更传播
-- Refactoring 单个模型转换
-
-### $\mathcal{T}\mathcal{L}$ Transformation Repersentation
-
-使用$\mathcal{T}\mathcal{L}$语法描述转换过程。包括集合的划分、符号标识、每个环节的输入输出和$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$符号对应的环节。
-
-### Natural Language Processing and Machine Learning
-
-介绍了NLP的主要技术类型和划分词义的种类和机器学习的基本概念。
-
-## Automated MT Requierments Analysis
-
-如果转换过程存在自然语言需求声明，原则上可以应用NLP技术提取有关转换预期映射的一些信息，有助于元模型匹配。
-
-### Automated Requirements Analysis Using NLP
-
-使用NLP对Gantt2CPM案例进行需求分析。
-首先使用Stanford POS tagger标记需求语句中的词类型，然后构建语法树。创建了CART决策树作为分类器，对需求语句中的关键词类型进行识别。
-
-### Tool Support for MT Requirements Analysis
-
-在工具中如何使用的说明。
-
-## Metamodel Correspondence Patterns
-
-{% note flat %}
-这篇文章太长太难，还没看完，先记到这里……
-{% endnote %}
-
-### Occurrence of Correspondence Patterns in Practice
-
-### Catalogue of Correspondence Patterns
-
-### Correspondence Patterns in Gantt2CPM
-
-### Tool Support for Recognising Correspondence Patterns
-
-## Metamodel Matching Techniques
-
-### Metamodel Matching Concepts
-
-### Similarity Measures for Metamodel Matching
-
-### Metamodel Matching for the Gantt2CPM Case
-
-### Tool Support for Metamodel Matching
-
-## Transformation Correction and Enhancement
-
-### Completeness and Consistency Analysis
-
-### Specification Enhancement for the Gantt2CPM Case
-
-## MTBE Using Perdictive Specification
-
-### Empirical Study of Transformation Mappings and Conditions
-
-### Correction and Extension of Transformations using MTBE
-
-### MTBEfortheGantt2CPMCase
-
-### Tool Support for MTBE
-
-## Transformation Synthesis
-
-### Synthesis of UML-RSDS and Java
-
-### Transformation Synthesis for the Gantt2CPM Case
-
-### Tool Support for Transformation Synthesis
-
-## Evaluation
-
-### RQ1:Correspondence Recognition
-
-### RQ2:Contributions of Automated Requirements Analysis and MTBE
-
-### RQ3:Transformation Design
-
-### RQ4:Transformation Efficiency
-
-## Threats to Validity
-
-### Threats to Internal Validity
-
-### Threats to External Validity
-
-### Threats to Construct Validity
-
-### Threats to Content Validity
-
-### Threats to Conclusion Validity
-
-## Related and Future Work
-
-### Automated Requirements Engineering
-
-### MTBE Approaches
-
-### Correspondence Patterns
-
-### Metamodel Matching Approaches
-
-### Summary
-
-### Limitations and Future Work
-
-## Conclusions
-
-`个人总结`
-
-`参考文献`
-<a id="9">[9]</a>L. Burgueno, J. Cabot, and S. Gerard. 2019. The future of model transformation languages: an open community discussion J. Obj. Technol. 1–11. Retrieved from www.jot.fm/issues/issue_2019_03/article7.pdf.
-<a id="49">[49]</a>K. Lano, Q. Xue, and S. Kolahdouz-Rahimi. 2020. Agile Specification of Code Generators for Model-Driven Engineering. In Proceedings of ICSEA 2020. IARIA, 9–15.
-<a id="1">[1]</a>L. Addazi, A. Cicchetti, J. D. Rocco, D. D. Ruscio, L. Iovino, and A. Pierantonio. 2016. Semantic-based model matching with emfcompare, me workshop, models. CEUR-WS 1706, 40–49.
-<a id="17">[17]</a>S. Fang and K. Lano. Extracting correspondences from metamodels using metamodel matching. In STAF 2019. Retrieved from CEUR-WS.org/vol-2405/02_paper.pdf.
-<a id="31">[31]</a>M. Kessentini, A. Ouni, P. Langer, M. Wimmer, and S. Bechikh. 2014. Search-based metamodel matching with structural and syntactic measures. Journal of Software and Systems 97, 2014 (2014), 1–14.
-<a id="48">[48]</a>K. Lano, S. Fang, and S. Kolahdouz-Rahimi. TL: An abstract specification language for bidirectional transformations. MODELS’20 Comp. Proc. 77 (2020), 1–10.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TOSEM</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MDE</tag>
-        <tag>Model Transformations</tag>
-        <tag>Requirements Engineering</tag>
-        <tag>Automated Software Engineering</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</title>
     <url>/2024/08/23/003/</url>
     <content><![CDATA[
@@ -458,6 +266,198 @@ An autonomous system is an intelligent system that is designed to deal with the 
         <tag>Robotics</tag>
         <tag>RAS</tag>
         <tag>Review</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
+    <url>/2024/08/17/002/</url>
+    <content><![CDATA[
+[Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example](https://dl.acm.org/doi/abs/10.1145/3471907)
+
+*作者是KCL的Kevin Lano。*
+
+`Abstraction`
+
+> In this article, we address how the production of model transformations (MT) can be accelerated by automation of transformation synthesis from requirements, examples, and metamodels. We introduce a synthesis process based on metamodel matching, correspondence patterns between metamodels, and completeness and consistency analysis of matches. We describe how the limitations of metamodel matching can be addressed by combining matching with automated requirements analysis and model transformation by example (MTBE) techniques.
+> We show that in practical examples a large percentage of required transformation functionality can usually be constructed automatically, thus potentially reducing development effort. We also evaluate the efficiency of synthesised transformations.
+> Our novel contributions are:
+>
+> - The concept of correspondence patterns between metamodels of a transformation.
+> - Requirements analysis of transformations using natural language processing (NLP) and machine learning (ML).
+> - Symbolic MTBE using “predictive specification” to infer transformations from examples.
+> - Transformation generation in multiple MT languages and in Java, from an abstract intermediate language.
+
+## Introduction
+
+Model Transformations (MT)是MDE的关键要素。大型手动转换成本高管理难[[9]](#9) [[49]](#49)。元模型匹配技术[[1]](#1) [[17]](#17) [[31]](#31)。
+
+四个困难：1、匹配方法只能找到一种转换，但实际上有多种；2、穷举搜索复杂度高；3、无法检测源和目标的关系；4、通常只处理单一语言转换的场景。
+
+- (i) many different transformations may be possible between two given metamodels, and a matching approach typically only detects a single transformation;
+- (ii) exhaustive search for possible matches becomes infeasible even for cases of moderate size (around 25 to 30 metaclasses in the combined metamodels);
+- (iii) detailed functional relationships between source and target data, such as applications of specific numeric or string functions, cannot normally be detected;
+- (iv) the process is usually directed to and optimised for producing transformations in a single MT language.
+
+MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L}$[[48]](#48)处理4的问题。
+
+![Transformation synthesis process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png)
+
+图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$是映射的三个中间量。
+
+研究问题：
+
+- RQ1 : To what extent can automated metamodel matching be combined with interactive enhancement of matchings to accurately capture the mapping rules of an intended transformation?匹配的程度
+- RQ2 : Can automated requirements analysis using NLP/ML and MTBE techniques improve the accuracy of the approach compared to stand-alone metamodel matching?本文的NLP+MTBE技术能否提高准确性
+- RQ3 : Can the combined approach engineer transformations with appropriate correspondence and design patterns?
+- RQ4 : Can the combined approach produce efficiently executable transformations?
+
+### Illustrative Example: Gantt2CPM
+
+本文用到的一个例子：甘特图到CPM网络。介绍了该MT的原则。
+
+## Scope and bcakground
+
+### Scope of the Approach
+
+对于M2M问题，根据[[55]](#55)进行分类：
+
+- (General) migration 抽象层级相同但元模型不同
+- Evolution migration 一个元模型版本变更
+- Refinement 高抽象层级向低抽象层级映射
+- Abstaction 低抽象层级向高抽象层级映射
+- Code generation 从设计规范模型生成代码
+- Semantic mapping 将源模型映射到有形式化语义的模型
+- Bidirectional(Bx) 双向映射，支持模型同步和变更传播
+- Refactoring 单个模型转换
+
+### $\mathcal{T}\mathcal{L}$ Transformation Repersentation
+
+使用$\mathcal{T}\mathcal{L}$语法描述转换过程。包括集合的划分、符号标识、每个环节的输入输出和$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$符号对应的环节。
+
+### Natural Language Processing and Machine Learning
+
+介绍了NLP的主要技术类型和划分词义的种类和机器学习的基本概念。
+
+## Automated MT Requierments Analysis
+
+如果转换过程存在自然语言需求声明，原则上可以应用NLP技术提取有关转换预期映射的一些信息，有助于元模型匹配。
+
+### Automated Requirements Analysis Using NLP
+
+使用NLP对Gantt2CPM案例进行需求分析。
+首先使用Stanford POS tagger标记需求语句中的词类型，然后构建语法树。创建了CART决策树作为分类器，对需求语句中的关键词类型进行识别。
+
+### Tool Support for MT Requirements Analysis
+
+在工具中如何使用的说明。
+
+## Metamodel Correspondence Patterns
+
+{% note flat %}
+这篇文章太长太难，还没看完，先记到这里……
+{% endnote %}
+
+### Occurrence of Correspondence Patterns in Practice
+
+### Catalogue of Correspondence Patterns
+
+### Correspondence Patterns in Gantt2CPM
+
+### Tool Support for Recognising Correspondence Patterns
+
+## Metamodel Matching Techniques
+
+### Metamodel Matching Concepts
+
+### Similarity Measures for Metamodel Matching
+
+### Metamodel Matching for the Gantt2CPM Case
+
+### Tool Support for Metamodel Matching
+
+## Transformation Correction and Enhancement
+
+### Completeness and Consistency Analysis
+
+### Specification Enhancement for the Gantt2CPM Case
+
+## MTBE Using Perdictive Specification
+
+### Empirical Study of Transformation Mappings and Conditions
+
+### Correction and Extension of Transformations using MTBE
+
+### MTBEfortheGantt2CPMCase
+
+### Tool Support for MTBE
+
+## Transformation Synthesis
+
+### Synthesis of UML-RSDS and Java
+
+### Transformation Synthesis for the Gantt2CPM Case
+
+### Tool Support for Transformation Synthesis
+
+## Evaluation
+
+### RQ1:Correspondence Recognition
+
+### RQ2:Contributions of Automated Requirements Analysis and MTBE
+
+### RQ3:Transformation Design
+
+### RQ4:Transformation Efficiency
+
+## Threats to Validity
+
+### Threats to Internal Validity
+
+### Threats to External Validity
+
+### Threats to Construct Validity
+
+### Threats to Content Validity
+
+### Threats to Conclusion Validity
+
+## Related and Future Work
+
+### Automated Requirements Engineering
+
+### MTBE Approaches
+
+### Correspondence Patterns
+
+### Metamodel Matching Approaches
+
+### Summary
+
+### Limitations and Future Work
+
+## Conclusions
+
+`个人总结`
+
+`参考文献`
+<a id="9">[9]</a>L. Burgueno, J. Cabot, and S. Gerard. 2019. The future of model transformation languages: an open community discussion J. Obj. Technol. 1–11. Retrieved from www.jot.fm/issues/issue_2019_03/article7.pdf.
+<a id="49">[49]</a>K. Lano, Q. Xue, and S. Kolahdouz-Rahimi. 2020. Agile Specification of Code Generators for Model-Driven Engineering. In Proceedings of ICSEA 2020. IARIA, 9–15.
+<a id="1">[1]</a>L. Addazi, A. Cicchetti, J. D. Rocco, D. D. Ruscio, L. Iovino, and A. Pierantonio. 2016. Semantic-based model matching with emfcompare, me workshop, models. CEUR-WS 1706, 40–49.
+<a id="17">[17]</a>S. Fang and K. Lano. Extracting correspondences from metamodels using metamodel matching. In STAF 2019. Retrieved from CEUR-WS.org/vol-2405/02_paper.pdf.
+<a id="31">[31]</a>M. Kessentini, A. Ouni, P. Langer, M. Wimmer, and S. Bechikh. 2014. Search-based metamodel matching with structural and syntactic measures. Journal of Software and Systems 97, 2014 (2014), 1–14.
+<a id="48">[48]</a>K. Lano, S. Fang, and S. Kolahdouz-Rahimi. TL: An abstract specification language for bidirectional transformations. MODELS’20 Comp. Proc. 77 (2020), 1–10.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>TOSEM</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>Model Transformations</tag>
+        <tag>Requirements Engineering</tag>
+        <tag>Automated Software Engineering</tag>
       </tags>
   </entry>
   <entry>
@@ -1144,6 +1144,61 @@ ACC是一种基于车辆的外部行驶环境，如前方车辆的速度和距�
       </tags>
   </entry>
   <entry>
+    <title>小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</title>
+    <url>/2024/08/29/007/</url>
+    <content><![CDATA[
+`小记`
+
+*作者来自马德里理工大学（西班牙）。*
+
+本文的目的是介绍马德里波利特海姆大学目前的研究，以提高小型空间发射器在初步概念阶段的设计效率，该研究基于MBSE方法中的一种新方法，该方法引入了高效和快速的模拟，通过寻找设计重量的最佳平衡来降低成本。在过去的十年中，基于模型的系统工程(MBSE)和并行工程(CE)方法和过程的实施提高了卫星设计的效率，减少了设计时间。
+
+卫星的设计是基于子系统的纯粹功能分析分解，而空间发射器则需要更多的物理分析，因为其组件相互依赖的设计影响很大，需要大量的密集模拟和计算能力。这些仿真的计算时间要求使得卫星并行工程方法在空间发射装置设计中的应用效率低下。一种新的MBSE方法引入了高效和快速的模拟，可以填补现有的空白。
+
+过去几年，由于虚拟建模可靠性的提高，系统仿真软件方法在所有工程领域的数量显著增加。它们的主要优势是缩短了开发时间，降低了与硬件错误相关的成本，在模拟世界和现实世界之间建立了桥梁。由于其历史背景，现有的关于模型和仿真 (M&S) 的文献在航天器设计中非常广泛。早期的建模和仿真支持了太空时代的发展，测试是验证空气动力学、控制律和结构设计的主要方法。随着当前计算能力的提高，它们在航天器设计中的应用已经扩展到流体动力学、推进、结构、制导、导航和控制 (GN&C)、飞行物理、飞行轨迹、飞行器分段和有效载荷部署的模拟[[12]](#12)。然而，关于将所有这些模型和模拟器集成以分析总体发射器设计和初步开发阶段的交易的 M&S 文献几乎不存在。**我们可以找到与将专门为卫星设计开发的 MBSE 方法和并行工程流程应用于航天发射器设计所面临的困难相关的文献，以及有关 NASA 和 ESA 现有模拟器的描述。**这两个航天机构的模拟器都是多体软件，这意味着创建不同的互连软件块来模拟不同的动态，但由于其不同的计算目标，它们之间存在非常有趣的差异。
+
+美国宇航局的模拟器[[13]](#13)由马歇尔太空飞行中心 (MSFC) 的先进概念办公室 (ACO) 建造，由一套自动化的三套工具组成，分别为用于系统重量和尺寸的 INTROS（综合火箭尺寸）、用于结构设计的 LVA（运载火箭分析）和 POST II（模拟轨迹优化程序）。该模拟器提供实验设计 (DOE) 功能，可创建替代模型来分析参数敏感性，确定特定任务的关注领域 [[14]](#14)。
+ESA 的模拟器[[15]](#15)，DCAP（动态和控制分析包），由结构和机制部门开发。它是一套计算机程序软件，提供建模、模拟和分析动态和控制性能的能力，并与其他专业软件（如 NASTRAN、CATIA、MATLAB/Symulink）链接，可以在单个模拟中详细重现大多数关键子系统和学科，从而促进并行工程流程。
+NASA 和 ESA 模拟器均在初步设计阶段使用，并且都具有相似的软件架构，但用途不同。然而，它们似乎都与系统工程流程、要求和系统架构无关。
+
+通过上述分析，我们确定了微型和纳米卫星市场领域的航天发射器最佳概念设计面临的三个主要挑战：
+
+- **多学科设计优化方法主要侧重于重量优化，建模和成本分析从属于重量或侧重于业务分析。**
+- **模型和仿真方法更侧重于重现子系统性能，与定义系统需求和架构的过程无关。**
+- **MBSE 方法允许通过为每个子系统指定功能并定义功能之间以及系统与环境之间的接口来定义功能架构，但它们没有考虑到航天发射器设计更多地基于物理仿真分析而不是卫星设计中应用的功能分解这一事实。**
+
+本研究将回答的主要问题是，是否有可能通过在 MBSE 框架中集成多学科模拟器和成本估算模型来概念性地设计小型竞争性太空发射器，从而在经典系统工程方法中引入广泛的模拟，确定每个子系统定义中的关键设计驱动因素，从而实现其优化，从而减少所需的设计循环数量。
+
+![Fig 2. System engineering Wee Diagram](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png)
+
+这种方法将用图 2 中的新 Wee 图取代经典 V 形图，其中在分解阶段包括建模和仿真，以确定根据定义的需求驱动设计的关键参数。这些参数将在设计阶段进行交换以找到基于快速设计/制造/测试循环的优化解决方案。在集成阶段，将根据模拟器的预测值对测试结果进行分析，以对其进行验证，然后再进入最终的系统集成和验证阶段。
+
+![Fig 3. Space Launcher conceptual design MBSE&S framework](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082902.png)
+
+为此，目前正在使用 Python 代码模块开发太空发射器初步设计模拟器工具（RoTMoS - 火箭和弹道模块化模拟器），涵盖初步设计阶段太空发射器设计所涉及的主要学科：发射轨迹、推进、制导、导航和控制 (GN&C)、空气动力学、负载、应力、质量特性和成本。开发此工具的目的是达到一定的保真度，以便设计实验，分析参数对重量和成本结果的敏感性。模拟器模块将通过任务用例（UPM-Sat 程序）集成到 MBSE 工具（Eclipse CapellaTM）中，遵循空间任务分析与设计 (SMED) 方法，以根据模拟器结果构建优化的太空发射器系统架构和功能。MBSE&S 总体框架如图 3 所示。
+
+最后文章总结了自2021年来的相关研究进展。
+
+`参考文献`
+<a id="12">[12]</a>L. B. Rainey. Space Modeling and Simulation: Roles and Applications throughout the System Life Cycle, El Segundo, California The Aerospace Press. AIAA. 2004.
+<a id="13">[13]</a>E. Waters, J. Garcia, G. Threet, A. Philips. "NASA Advanced Concepts Office, Earth-to-Orbit Team Design Process and Tools." AIAA SPACE 2013 Conference and Exposition, American Institute of Aeronautics and Astronautics.
+<a id="14">[14]</a>M. R. Zwack, P. D. Dees, J. B. Holt. "Application of Design of Experiments and Surrogate Modeling within the NASA Advanced Concepts Office, Earth-to-Orbit Design Process." AIAA Space 2016, American Institute of Aeronautics and Astronautics. 2016.
+<a id="15">[15]</a>G. Baldesi, M. Toso. "European Space Agency’s Launcher Multibody Dynamics Simulator used for System and Subsystem Level Analyses." CEAS Space Journal, 3(1), 27-48. 2012.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>SECESA</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications</title>
     <url>/2024/08/28/006/</url>
     <content><![CDATA[
@@ -1367,61 +1422,6 @@ propositionalization社区已经研究了从分层和嵌套数据生成数据集
       </tags>
   </entry>
   <entry>
-    <title>小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</title>
-    <url>/2024/08/29/007/</url>
-    <content><![CDATA[
-`小记`
-
-*作者来自马德里理工大学（西班牙）。*
-
-本文的目的是介绍马德里波利特海姆大学目前的研究，以提高小型空间发射器在初步概念阶段的设计效率，该研究基于MBSE方法中的一种新方法，该方法引入了高效和快速的模拟，通过寻找设计重量的最佳平衡来降低成本。在过去的十年中，基于模型的系统工程(MBSE)和并行工程(CE)方法和过程的实施提高了卫星设计的效率，减少了设计时间。
-
-卫星的设计是基于子系统的纯粹功能分析分解，而空间发射器则需要更多的物理分析，因为其组件相互依赖的设计影响很大，需要大量的密集模拟和计算能力。这些仿真的计算时间要求使得卫星并行工程方法在空间发射装置设计中的应用效率低下。一种新的MBSE方法引入了高效和快速的模拟，可以填补现有的空白。
-
-过去几年，由于虚拟建模可靠性的提高，系统仿真软件方法在所有工程领域的数量显著增加。它们的主要优势是缩短了开发时间，降低了与硬件错误相关的成本，在模拟世界和现实世界之间建立了桥梁。由于其历史背景，现有的关于模型和仿真 (M&S) 的文献在航天器设计中非常广泛。早期的建模和仿真支持了太空时代的发展，测试是验证空气动力学、控制律和结构设计的主要方法。随着当前计算能力的提高，它们在航天器设计中的应用已经扩展到流体动力学、推进、结构、制导、导航和控制 (GN&C)、飞行物理、飞行轨迹、飞行器分段和有效载荷部署的模拟[[12]](#12)。然而，关于将所有这些模型和模拟器集成以分析总体发射器设计和初步开发阶段的交易的 M&S 文献几乎不存在。**我们可以找到与将专门为卫星设计开发的 MBSE 方法和并行工程流程应用于航天发射器设计所面临的困难相关的文献，以及有关 NASA 和 ESA 现有模拟器的描述。**这两个航天机构的模拟器都是多体软件，这意味着创建不同的互连软件块来模拟不同的动态，但由于其不同的计算目标，它们之间存在非常有趣的差异。
-
-美国宇航局的模拟器[[13]](#13)由马歇尔太空飞行中心 (MSFC) 的先进概念办公室 (ACO) 建造，由一套自动化的三套工具组成，分别为用于系统重量和尺寸的 INTROS（综合火箭尺寸）、用于结构设计的 LVA（运载火箭分析）和 POST II（模拟轨迹优化程序）。该模拟器提供实验设计 (DOE) 功能，可创建替代模型来分析参数敏感性，确定特定任务的关注领域 [[14]](#14)。
-ESA 的模拟器[[15]](#15)，DCAP（动态和控制分析包），由结构和机制部门开发。它是一套计算机程序软件，提供建模、模拟和分析动态和控制性能的能力，并与其他专业软件（如 NASTRAN、CATIA、MATLAB/Symulink）链接，可以在单个模拟中详细重现大多数关键子系统和学科，从而促进并行工程流程。
-NASA 和 ESA 模拟器均在初步设计阶段使用，并且都具有相似的软件架构，但用途不同。然而，它们似乎都与系统工程流程、要求和系统架构无关。
-
-通过上述分析，我们确定了微型和纳米卫星市场领域的航天发射器最佳概念设计面临的三个主要挑战：
-
-- **多学科设计优化方法主要侧重于重量优化，建模和成本分析从属于重量或侧重于业务分析。**
-- **模型和仿真方法更侧重于重现子系统性能，与定义系统需求和架构的过程无关。**
-- **MBSE 方法允许通过为每个子系统指定功能并定义功能之间以及系统与环境之间的接口来定义功能架构，但它们没有考虑到航天发射器设计更多地基于物理仿真分析而不是卫星设计中应用的功能分解这一事实。**
-
-本研究将回答的主要问题是，是否有可能通过在 MBSE 框架中集成多学科模拟器和成本估算模型来概念性地设计小型竞争性太空发射器，从而在经典系统工程方法中引入广泛的模拟，确定每个子系统定义中的关键设计驱动因素，从而实现其优化，从而减少所需的设计循环数量。
-
-![Fig 2. System engineering Wee Diagram](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png)
-
-这种方法将用图 2 中的新 Wee 图取代经典 V 形图，其中在分解阶段包括建模和仿真，以确定根据定义的需求驱动设计的关键参数。这些参数将在设计阶段进行交换以找到基于快速设计/制造/测试循环的优化解决方案。在集成阶段，将根据模拟器的预测值对测试结果进行分析，以对其进行验证，然后再进入最终的系统集成和验证阶段。
-
-![Fig 3. Space Launcher conceptual design MBSE&S framework](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082902.png)
-
-为此，目前正在使用 Python 代码模块开发太空发射器初步设计模拟器工具（RoTMoS - 火箭和弹道模块化模拟器），涵盖初步设计阶段太空发射器设计所涉及的主要学科：发射轨迹、推进、制导、导航和控制 (GN&C)、空气动力学、负载、应力、质量特性和成本。开发此工具的目的是达到一定的保真度，以便设计实验，分析参数对重量和成本结果的敏感性。模拟器模块将通过任务用例（UPM-Sat 程序）集成到 MBSE 工具（Eclipse CapellaTM）中，遵循空间任务分析与设计 (SMED) 方法，以根据模拟器结果构建优化的太空发射器系统架构和功能。MBSE&S 总体框架如图 3 所示。
-
-最后文章总结了自2021年来的相关研究进展。
-
-`参考文献`
-<a id="12">[12]</a>L. B. Rainey. Space Modeling and Simulation: Roles and Applications throughout the System Life Cycle, El Segundo, California The Aerospace Press. AIAA. 2004.
-<a id="13">[13]</a>E. Waters, J. Garcia, G. Threet, A. Philips. "NASA Advanced Concepts Office, Earth-to-Orbit Team Design Process and Tools." AIAA SPACE 2013 Conference and Exposition, American Institute of Aeronautics and Astronautics.
-<a id="14">[14]</a>M. R. Zwack, P. D. Dees, J. B. Holt. "Application of Design of Experiments and Surrogate Modeling within the NASA Advanced Concepts Office, Earth-to-Orbit Design Process." AIAA Space 2016, American Institute of Aeronautics and Astronautics. 2016.
-<a id="15">[15]</a>G. Baldesi, M. Toso. "European Space Agency’s Launcher Multibody Dynamics Simulator used for System and Subsystem Level Analyses." CEAS Space Journal, 3(1), 27-48. 2012.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>SECESA</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</title>
     <url>/2024/08/29/008/</url>
     <content><![CDATA[
@@ -1459,6 +1459,81 @@ Implementation in SysML and Results
         <category>Artical</category>
         <category>AIAA SCITECH Forum</category>
         <category>2023</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</title>
+    <url>/2024/08/30/009/</url>
+    <content><![CDATA[
+`Abstraction`
+基于模型的系统工程 (MBSE) 已在美国宇航局的各种航天计划中得到越来越广泛的应用，例如人类登陆火星现场资源利用 (ISRU) 和地月栖息地架构、商业载人计划 (CCP) 和太空发射系统 (SLS)。最近，MBSE 还帮助支持了美国宇航局的可靠性设计 (DFR) 和任务保障活动。MBSE 的使用有助于在数字环境中可视化整个系统的开发。对于火箭推进系统的开发，利用 MBSE 有助于找到以全面和连贯的方式在整个生命周期内降低成本、进度和风险的方法。为了在竞争激烈的太空竞赛环境中实现可负担性，重要的是要利用增材制造 (AM) 等较新的制造技术。在火箭推进系统的开发中，AM 为通常很复杂的火箭发动机设计提供了新的设计和性能机会。与传统生产技术相比，增材制造火箭推进元件的根本优势在于缩短了交货时间并降低了成本。增材制造设计有助于实现复杂的形状和几何形状，而使用传统生产方法生产这些形状和几何形状通常具有挑战性且成本高昂。
+在火箭推进系统开发的背景下，AM 提供了实现技术和经济上可行的新型发动机设计的技术机会。NASA 的增材制造演示发动机 (AMDE) 等重大努力在火箭推进发动机的生产中采用了增材制造。另一方面，MBSE 提供了在数字环境中可视化设计变更影响的能力。**因此，本研究的目的是评估利用适合增材制造火箭推进元件环境的 MBSE 的好处。对当前最先进的增材制造火箭推进元件进行了文献综述，并确定了利用 MBSE 的潜在机会。**此外，还探索了一个设计示例（RS-25 或航天飞机主发动机），以展示本研究中研究理念的好处。选择设计示例是由于需要重新启动发动机生产以供 NASA 未来的发射清单使用。最后，在缩短发动机测试-失败-修复（重新设计、再制造、重新测试和重新认证）周期时间的范围内对本研究的结果进行了定性评估。
+
+在管理和增强系统工程 (SE) 流程应用的新技术适应性方面，基于模型的系统工程 (MBSE) 在 NASA 内部得到了越来越多的接受和关注 [[19]](#19)。MBSE 是建模的形式化应用，用于支持各种基于系统工程 (SE) 的活动，例如系统需求、设计、分析、验证和跨系统生命周期阶段的确认。在 MBSE 中，模型取代文档成为 SE 流程的主要工件。因此，MBSE 有助于实现高效沟通、管理复杂性、增加多学科知识捕获、创建需求可追溯性并降低风险 [[20]](#20)。
+
+对于火箭发动机，NASA 的 MBSE 注入和现代化计划 - MIAMI [[19]](#19) 曾探索过 MBSE 的使用。据观察，利用 MBSE 有助于实现：
+
+- 自动化验证和确认 (V&V) 过程；
+- 保持对需求的可追溯性；
+- 节省后处理测试数据的时间。
+
+MBSE 还帮助支持了 NASA 的可靠性设计 (DFR) 和基于模型的任务保障活动 (MBMA) 。因此，利用 MBSE 进行 RS25 发动机生产重启的测试-失败-修复，有助于评估可负担性选项（查看设计变更对发动机的影响），从而推断出最小化开发成本的潜在途径。
+
+![Figure 1. The Affordability Modeling Framework for the RS-25 engine [6]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
+
+实现 RS-25 发动机的经济性是一项正在进行的研究工作的一部分。图 1 展示[[6]](#6)了实现 RS-25 经济性的设想框架。为了评估经济性，重要的是同时查看系统架构（组成）、性能、安全性和可靠性以及风险的各个方面。因此，RS-25 经济性模型框架分为四个相互依赖的方面：
+
+- 结构模型[[30]](#30)
+- 系统和组件性能模型
+- 功能和行为模型[[33]](#33)
+- 其他工程分析模型
+
+**结论：**
+本研究的总体目标是展示 MBSE 在增材制造火箭推进部件中的应用。本文在 MBSE 和 AM 应用范围内对近期文献进行了全面总结。利用 RS-25 发动机计划升级的设计示例，展示了开发可负担性框架的先前工作以及随后将 MBSE 机会应用于可负担性框架。针对 AM 技术带来的挑战和 MBSE 提供的机会（第 2 节），确定了利用 MBSE 实现可负担性的可能途径并展示了应用方法。虽然设计示例用于演示目的。所提出的模型本质上是通用的，有可能适合多种液体火箭发动机设计。此外，还展示了通用形状如何代表发动机部件的多种几何形状并提供测试可靠性。
+
+对液体火箭发动机中代表性部件的结构裕度进行分析的最终结果是部件可靠性或部件故障概率信息。在生命周期设计阶段的早期获得这些信息对可负担性模型框架的其他一些方面大有裨益，例如在生命周期早期执行 FMECA。同时展示了一种扩展结构裕度效用以告知可靠性的方法。可靠性信息也可以追溯到基于模型的 FMECA，以评估风险。值得注意的是，所需的工作是同时利用一个或多个单一事实来源进行的，这表明 MBSE 可用于增材制造火箭推进元件。本质上，这个单一事实来源（RS-25 可负担性模型）也可以改进和开发，以探索其他用途（例如生产和成本）及其对可负担性的影响。
+
+本研究以活动图 (act) 的形式展示了测试策略开发中的操作流程。介绍了每个单独操作的可执行文件开发，包括脚本和运行其他软件包 (FEA 包) 的实例。当前的重点是将这些以行为模型呈现的模型转换为完全可执行的 SysML 模型，这将有助于查看 RS-25 发动机的可负担性选项，旨在最大限度地减少发动机测试-失败-修复周期中发生故障和修复的概率。实现这一转变的研究包括：将 FEA 信息应用于神经网络，以及对设备设施和控制要求进行建模 (NASA-STD6033)。因此，这也需要为 RS-25 发动机执行特定的 AM 设计变更信息，以便进一步实施。
+
+`参考文献`
+<a id="19">[19]</a>J. B. Holladay, J. Knizhnik, K. J. Weiland, A. Stein, T. Sanders, and P. Schwindt, “MBSE Infusion and Modernization Initiative (MIAMI): ‘Hot’ Benefits for Real NASA Applications,” in 2019 IEEE Aerospace Conference, 2019, vol. 2019-March, pp. 1–14, doi: 10.1109/AERO.2019.8741795.
+<a id="20">[20]</a>S. Friedenthal, A. Moore, and R. Steiner, A Practical Guide to SysML: The Systems Modeling Language, 3rd ed. Waltham, MA, MA: Morgan Kaufmann, 2015.
+<a id="6">[6]</a>A. J. Bower and D. Thomas, “An Affordability Model Framework for the RS-25 Liquid Rocket Engine,” in 2018 Joint Propulsion Conference, 2018, pp. 1–9, doi: 10.2514/6.2018-4460.
+<a id="30">[30]</a>S. Lakshmipuram Raghu and L. D. Thomas, “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine using SysML,” in AIAA Scitech 2021 Forum, 2021, doi: 10.2514/6.2021-0305.
+<a id="33">[33]</a>S. Lakshmipuram Raghu and L. Thomas, “Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability,” AIAA Propulsion and Energy 2021 Forum, pp. 1–12, Aug. 2021, doi: 10.2514/6.2021-3578.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>AERO</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</title>
+    <url>/2024/08/31/011/</url>
+    <content><![CDATA[
+为运载火箭（如太空发射系统 (SLS)）开发复杂推进系统的成功之路取决于性能、可靠性和成本之间的最佳平衡。在过去十年中，复杂推进系统的技术和创新应用超越了运载火箭的开发，转向提高可负担性和安全性。因此，本研究旨在补充正在进行的努力，即为 RS-25 发动机建立一个基于模型的平台，以实现可负担性。该发动机被选为研究候选是因为需要重启生产，采用新技术并降低成本。利用基于模型的系统工程 (MBSE) 的范例，结构架构和基于模型的平台用于执行故障模式、影响和危害性分析 (FMECA) 之前已在系统建模语言 (SysML) 中建模和开发。本研究的重点是扩展基于模型的可靠性框架，以包括 RS-25 发动机的行为方面（发动机性能、测试策略、设计变更实施和结果等）。我们已经详细说明了逐步的努力并讨论了结果，以开发 RS-25 发动机的全面可负担性平台。
+
+主要介绍了用SysML创建RS-25的一些图的内容。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Artical</category>
+        <category>AIAA Propulsion and Energy Forum</category>
+        <category>2021</category>
       </categories>
       <tags>
         <tag>MBSE</tag>
@@ -1638,15 +1713,7 @@ Concretely, we discuss the context, ambitions, and challenges that led to the in
 
 ## Introduction
 
-[[]](#)
 
-<a id="">[]</a>
-
-## Conclusions
-
-`个人总结`
-
-`参考文献`
 ]]></content>
       <categories>
         <category>Academic Papers</category>
@@ -1657,81 +1724,6 @@ Concretely, we discuss the context, ambitions, and challenges that led to the in
       <tags>
         <tag>MBSE</tag>
         <tag>Model Federation</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</title>
-    <url>/2024/08/31/011/</url>
-    <content><![CDATA[
-为运载火箭（如太空发射系统 (SLS)）开发复杂推进系统的成功之路取决于性能、可靠性和成本之间的最佳平衡。在过去十年中，复杂推进系统的技术和创新应用超越了运载火箭的开发，转向提高可负担性和安全性。因此，本研究旨在补充正在进行的努力，即为 RS-25 发动机建立一个基于模型的平台，以实现可负担性。该发动机被选为研究候选是因为需要重启生产，采用新技术并降低成本。利用基于模型的系统工程 (MBSE) 的范例，结构架构和基于模型的平台用于执行故障模式、影响和危害性分析 (FMECA) 之前已在系统建模语言 (SysML) 中建模和开发。本研究的重点是扩展基于模型的可靠性框架，以包括 RS-25 发动机的行为方面（发动机性能、测试策略、设计变更实施和结果等）。我们已经详细说明了逐步的努力并讨论了结果，以开发 RS-25 发动机的全面可负担性平台。
-
-主要介绍了用SysML创建RS-25的一些图的内容。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Artical</category>
-        <category>AIAA Propulsion and Energy Forum</category>
-        <category>2021</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</title>
-    <url>/2024/08/30/009/</url>
-    <content><![CDATA[
-`Abstraction`
-基于模型的系统工程 (MBSE) 已在美国宇航局的各种航天计划中得到越来越广泛的应用，例如人类登陆火星现场资源利用 (ISRU) 和地月栖息地架构、商业载人计划 (CCP) 和太空发射系统 (SLS)。最近，MBSE 还帮助支持了美国宇航局的可靠性设计 (DFR) 和任务保障活动。MBSE 的使用有助于在数字环境中可视化整个系统的开发。对于火箭推进系统的开发，利用 MBSE 有助于找到以全面和连贯的方式在整个生命周期内降低成本、进度和风险的方法。为了在竞争激烈的太空竞赛环境中实现可负担性，重要的是要利用增材制造 (AM) 等较新的制造技术。在火箭推进系统的开发中，AM 为通常很复杂的火箭发动机设计提供了新的设计和性能机会。与传统生产技术相比，增材制造火箭推进元件的根本优势在于缩短了交货时间并降低了成本。增材制造设计有助于实现复杂的形状和几何形状，而使用传统生产方法生产这些形状和几何形状通常具有挑战性且成本高昂。
-在火箭推进系统开发的背景下，AM 提供了实现技术和经济上可行的新型发动机设计的技术机会。NASA 的增材制造演示发动机 (AMDE) 等重大努力在火箭推进发动机的生产中采用了增材制造。另一方面，MBSE 提供了在数字环境中可视化设计变更影响的能力。**因此，本研究的目的是评估利用适合增材制造火箭推进元件环境的 MBSE 的好处。对当前最先进的增材制造火箭推进元件进行了文献综述，并确定了利用 MBSE 的潜在机会。**此外，还探索了一个设计示例（RS-25 或航天飞机主发动机），以展示本研究中研究理念的好处。选择设计示例是由于需要重新启动发动机生产以供 NASA 未来的发射清单使用。最后，在缩短发动机测试-失败-修复（重新设计、再制造、重新测试和重新认证）周期时间的范围内对本研究的结果进行了定性评估。
-
-在管理和增强系统工程 (SE) 流程应用的新技术适应性方面，基于模型的系统工程 (MBSE) 在 NASA 内部得到了越来越多的接受和关注 [[19]](#19)。MBSE 是建模的形式化应用，用于支持各种基于系统工程 (SE) 的活动，例如系统需求、设计、分析、验证和跨系统生命周期阶段的确认。在 MBSE 中，模型取代文档成为 SE 流程的主要工件。因此，MBSE 有助于实现高效沟通、管理复杂性、增加多学科知识捕获、创建需求可追溯性并降低风险 [[20]](#20)。
-
-对于火箭发动机，NASA 的 MBSE 注入和现代化计划 - MIAMI [[19]](#19) 曾探索过 MBSE 的使用。据观察，利用 MBSE 有助于实现：
-
-- 自动化验证和确认 (V&V) 过程；
-- 保持对需求的可追溯性；
-- 节省后处理测试数据的时间。
-
-MBSE 还帮助支持了 NASA 的可靠性设计 (DFR) 和基于模型的任务保障活动 (MBMA) 。因此，利用 MBSE 进行 RS25 发动机生产重启的测试-失败-修复，有助于评估可负担性选项（查看设计变更对发动机的影响），从而推断出最小化开发成本的潜在途径。
-
-![Figure 1. The Affordability Modeling Framework for the RS-25 engine [6]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
-
-实现 RS-25 发动机的经济性是一项正在进行的研究工作的一部分。图 1 展示[[6]](#6)了实现 RS-25 经济性的设想框架。为了评估经济性，重要的是同时查看系统架构（组成）、性能、安全性和可靠性以及风险的各个方面。因此，RS-25 经济性模型框架分为四个相互依赖的方面：
-
-- 结构模型[[30]](#30)
-- 系统和组件性能模型
-- 功能和行为模型[[33]](#33)
-- 其他工程分析模型
-
-**结论：**
-本研究的总体目标是展示 MBSE 在增材制造火箭推进部件中的应用。本文在 MBSE 和 AM 应用范围内对近期文献进行了全面总结。利用 RS-25 发动机计划升级的设计示例，展示了开发可负担性框架的先前工作以及随后将 MBSE 机会应用于可负担性框架。针对 AM 技术带来的挑战和 MBSE 提供的机会（第 2 节），确定了利用 MBSE 实现可负担性的可能途径并展示了应用方法。虽然设计示例用于演示目的。所提出的模型本质上是通用的，有可能适合多种液体火箭发动机设计。此外，还展示了通用形状如何代表发动机部件的多种几何形状并提供测试可靠性。
-
-对液体火箭发动机中代表性部件的结构裕度进行分析的最终结果是部件可靠性或部件故障概率信息。在生命周期设计阶段的早期获得这些信息对可负担性模型框架的其他一些方面大有裨益，例如在生命周期早期执行 FMECA。同时展示了一种扩展结构裕度效用以告知可靠性的方法。可靠性信息也可以追溯到基于模型的 FMECA，以评估风险。值得注意的是，所需的工作是同时利用一个或多个单一事实来源进行的，这表明 MBSE 可用于增材制造火箭推进元件。本质上，这个单一事实来源（RS-25 可负担性模型）也可以改进和开发，以探索其他用途（例如生产和成本）及其对可负担性的影响。
-
-本研究以活动图 (act) 的形式展示了测试策略开发中的操作流程。介绍了每个单独操作的可执行文件开发，包括脚本和运行其他软件包 (FEA 包) 的实例。当前的重点是将这些以行为模型呈现的模型转换为完全可执行的 SysML 模型，这将有助于查看 RS-25 发动机的可负担性选项，旨在最大限度地减少发动机测试-失败-修复周期中发生故障和修复的概率。实现这一转变的研究包括：将 FEA 信息应用于神经网络，以及对设备设施和控制要求进行建模 (NASA-STD6033)。因此，这也需要为 RS-25 发动机执行特定的 AM 设计变更信息，以便进一步实施。
-
-`参考文献`
-<a id="19">[19]</a>J. B. Holladay, J. Knizhnik, K. J. Weiland, A. Stein, T. Sanders, and P. Schwindt, “MBSE Infusion and Modernization Initiative (MIAMI): ‘Hot’ Benefits for Real NASA Applications,” in 2019 IEEE Aerospace Conference, 2019, vol. 2019-March, pp. 1–14, doi: 10.1109/AERO.2019.8741795.
-<a id="20">[20]</a>S. Friedenthal, A. Moore, and R. Steiner, A Practical Guide to SysML: The Systems Modeling Language, 3rd ed. Waltham, MA, MA: Morgan Kaufmann, 2015.
-<a id="6">[6]</a>A. J. Bower and D. Thomas, “An Affordability Model Framework for the RS-25 Liquid Rocket Engine,” in 2018 Joint Propulsion Conference, 2018, pp. 1–9, doi: 10.2514/6.2018-4460.
-<a id="30">[30]</a>S. Lakshmipuram Raghu and L. D. Thomas, “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine using SysML,” in AIAA Scitech 2021 Forum, 2021, doi: 10.2514/6.2021-0305.
-<a id="33">[33]</a>S. Lakshmipuram Raghu and L. Thomas, “Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability,” AIAA Propulsion and Energy 2021 Forum, pp. 1–12, Aug. 2021, doi: 10.2514/6.2021-3578.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>AERO</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
       </tags>
   </entry>
 </search>
