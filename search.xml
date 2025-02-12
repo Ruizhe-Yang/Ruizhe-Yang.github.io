@@ -193,310 +193,6 @@ MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L
       </tags>
   </entry>
   <entry>
-    <title>笔记：What makes a good modeling research contribution?</title>
-    <url>/2024/08/23/004/</url>
-    <content><![CDATA[
-[What makes a good modeling research contribution?]([论文来源](https://link.springer.com/article/10.1007/s10270-024-01177-x))
-
-*作者是Richard F. Paige。*
-
-`Abstraction`
-
-> The modeling field is rapidly evolving and expanding to address new research topics and to connect with new disciplines. As such, what constituted a good modeling research contribution ten years ago may not be the same today. We try to distill some insights of what we (and the community we aim to represent) consider today as key elements of a good research paper in the field of software and systems modeling. Such insights—which will need to evolve and adapt with time—will be useful not just for authors of new papers, but also for reviewers and editors.
-
-## Introduction
-
-关于如何撰写优秀软件工程论文的具体建议：针对特定章节的撰写建议[[1]](#1)、不同类型的软件工程论文[[5]](#5)，甚至关于如何以更符合软件工程审阅者期望的方式撰写论文的建议[[3]](#3)。
-
-## Types of contributions to the modeling field
-
-常见的论文关注的问题：
-
-- how large is the community that the paper aims to address?
-- how much potential impact is there in the result?
-- how complex is the challenge the paper addresses?
-- how substantial is the validation3, e.g., is there an industrial element to the validation?
-- how distant is the topic of the paper from what we typically see in the modeling venues?
-- how readable is the contribution?
-- how relevant are the examples?
-- and finally, how clear and persuasive is the motivation for the research presented in the paper?
-
-此外，明确研究的正面作用和负面作用也很重要。
-下面将介绍六种具体类型。
-
-### The contribution is a model
-
-仅凭一个模型肯定不行。这个新模型能告诉我们关于建模领域的什么？它能帮助我们回答哪些我们以前无法回答的问题？
-
-### The contribution is a language
-
-仅凭一个元模型也不行，需要完整的工作。
-
-### The contribution is a core modeling technique
-
-这些论文介绍了模型分析（模型验证、确认或测试技术等）或操作技术（模型合并、模型到模型转换、代码生成器等）。或将它们组合起来作为特定建模方法的一部分。这可能是我们多年来看到最多提案的类别。因此，在这一类别中，原创性更难实现，而证明新贡献确实有必要则更为重要。
-例如，很难相信建模社区需要一种新的模型转换方法，除非它与具有非常具体要求的新语言、领域或应用程序相关联。
-
-### The contribution is a modeling application
-
-仅仅证明建模（或 MDE 或建模工具）可以应用于问题是不够的——相反，必须令人信服地证明建模提供了一些附加值，一些可以量化或以可重复的方式捕获的好处。
-
-### The contribution is a (new) modeling domain
-
- 除了单个应用程序（见上文），这里的目标是为新的工程或科学领域提供一些初步支持，然后这些支持可以发展成为该领域的一套完整的建模解决方案和应用程序。
-
-### The contribution is a modeling tool
-
-这些工具贡献不应只是研究工作的副产品或简单的一次性原型，而应是一种成熟、可用且广泛的工具，有可能对建模社区产生重大而积极的影响（通过吸引更多用户、促进更多项目采用建模实践等）。
-
-## A community effort
-
-就社区建设问题进行了介绍。
-
-`个人总结`
-作者就SoSyM期刊中的一些研究进行了分类和评估，从审稿人的角度分析一篇文章应具备哪些要素。
-
-`参考文献`
-
-<a id="1">[1]</a>Anthony, L.: Writing research article introductions in software engineering: How accurate is a standard model? IEEE Trans. Prof.Commun. 42(1), 38–46 (1999)
-<a id="5">[5]</a>Montesi, M., Lago, P.: Software engineering article types: an analysis of the literature. J. Syst. Softw. 81(10), 1694–1714 (2008)
-<a id="3">[3]</a>Ernst, N.A., Carver, J.C., Mendez, D., Torchiano, M.: Understanding peer review of software engineering papers. Empir. Softw. Eng. 26, 1–29 (2021)]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>SoSyM</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>Insights</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering</title>
-    <url>/2024/08/27/005/</url>
-    <content><![CDATA[
-[Design ontology for cognitive thread supporting traceability management in model-based systems engineering](https://www.sciencedirect.com/science/article/pii/S2452414X24000633)
-
-*作者来自王国新和鲁金直团队。*
-
-`Abstraction`
-
-> Industrial information integration engineering (IIIE) is an interdisciplinary field to facilitate the industrial information integration process. In the age of complex and large-scale systems, model-based systems engineering (MBSE) is widely adopted in industry to support IIIE. Traceability management is considered the foundation of information management in MBSE. However, a lack of integration between stakeholders, development processes, and models can decrease the effectiveness and efficiency of the system development. A modified MBSE toolchain prototype has been developed to implement traceability management; however, a lack of formal and structured specifications makes it difficult to describe the complex topology in traceability management scenarios using this MBSE toolchain, such as creating traceability between heterogeneous models, which leads to poor reusability of this MBSE toolchain in other traceability management scenarios. To formalize traceability management scenarios using the MBSE toolchain, a cognitive thread (CT) ontology is developed in this study. The CT ontology is a specification expressing the information of stakeholders, models, and development processes for traceability management, providing the cognition capability to analyze the interrelationships between them. Based on the implementation of the modified MBSE toolchain, the concepts and interrelationships in the CT ontology are identified. The CT ontology is designed to develop the MBSE toolchain prototype for building, managing, and analyzing traceability in various traceability management scenarios. A case study of an adaptive cruise control system design is used to evaluate the completeness of the CT ontology through qualitative and quantitative analyses. The results demonstrate that the proposed CT ontology formalizes the information related to traceability management while using the proposed MBSE toolchain and can also be used in common traceability management scenarios to design other complex engineered systems.
-
-## Introduction
-
-Industrial information integration engineering (IIIE)工业信息集成工程的概念。Digital Thread (DT)数字线程被认为是实现MBSE的下一个信息管理和集成范例。它可以看做是将产品生命周期的各个阶段产生的信息链接到决策的框架中[[10]](#10)，信息的可追溯性管理就显得很重要。
-
-可追溯性管理的问题：可追溯性管理场景的形式化应该是实现功能的先决条件；应妥善管理和分析模型与数据、开发过程与利益攸关者之间的依赖关系。
-
-本文的主要贡献：设计了一个认知线程本体Cognitive thread (CT) ontology，与其他方法相比，CT本体可以为追溯性的构建和分析过程提供语义描述。CT概念参考[[19]](#19)。具体特点：
-
-- (1) 将利益相关者、开发过程和系统工件之间的概念和相互关系形式化；
-- (2) 提供基于预定义推理规则的认知能力。这些规则是基于利益相关者、开发过程和系统工件之间的相互关系制定的。认知能力可帮助利益相关者分析和理解协同设计中开发过程与模型和数据之间的复杂依赖关系，从而选择最佳设计。
-
-在先前的一项研究 [[20]](#20) 中，开发了一个 MBSE 工具链来支持协同设计。为了实现可追溯性管理，我们改进了此工具链作为 CT 本体形式化的基础，其中包括以下四个方面：
-
-- (1) 系统工件的开放生命周期协作服务 (OSLC) 服务，例如领域特定建模 (DSM)、数据等；
-- (2) 从 DSM 模型生成的基于 Web 的流程管理系统 (WPMS)；
-- (3) 统一身份验证系统；
-- (4) OSLC 服务管理系统 (OSMS)。基于MBSE工具链的实现，识别了CT本体中的概念和相互关系，并以自适应巡航控制（ACC）系统设计的MBSE工具链为例，通过定性和定量的测量，评估了CT本体的完备性。
-
-## Related Work
-
-### Concept and state of the art of traceability management
-
-The IEEE standard glossary of software engineering terminology defines traceability as the “degree to which a relationship can be established between two or more products of the development process” [[30]](#30).
-尽管在 MBSE 领域中，对可追溯性或可追溯性管理尚无统一的定义，但用于开发工程系统的可追溯性概念与软件工程中的可追溯性概念类似。The International Council on Systems Engineering (INCOSE) defines traceability in the MBSE field as “a discernible association between two or more logical entities such as requirements, system elements, verifications, or tasks”[[32]](#32).
-
-- 设计结构矩阵式可追溯性管理的最常用方法，但依赖额外的工具集。
-- 模型转换是另一种方法，但大部分仅支持单向转换。（Guo等[[41]](#41)设计了代码生成语言语法来实现MBSE与Simulink模型之间的可追溯性。Kharrat等[[42]](#42)扩展了系统建模语言(SysML)配置文件，设计了一种模型转换方法来实现SysML与计算机辅助设计(CAD)模型之间的可追溯性。）
-- 一些DSM工具链被视为是潜在解决方案。DSM 是一种工程方法，通过模型和一组形式化元模型来描述特定领域系统的信息。 这些工具链促进了不同领域模型之间的可追溯性。在本研究中，我们专注于 MBSE 工具链开发以支持可追溯性管理。
-
-### Ontology design for traceability management in MBSE
-
-本体是指对象的类型及其属性和关系，它们代表了领域特定知识。在MBSE实践中，本体用于形式化系统开发和工件的系统信息。由于工程系统的固有特性，各种设计活动和利益相关者之间的迭代和交互也增加了产品实现过程的复杂性。（信息不全且混乱）
-
-### Cognitive thread for traceability management
-
-数字线程的概念来自F35战斗机[[58]](#58) [[59]](#59)。
-T. D. West et al [[60]](#60) considered it as “a framework for merging the conceptual models of the system with the discipline-specific engineering models of various system elements”.
-最近，研究人员试图利用语义技术增强 DT 的认知能力。下一代 DT 的范式被提议为 CT [[19]](#19)，它是一种具有增强语义能力的 DT，可以形式化模型与数据、开发过程和组织之间的相互关系。还有一些其他研究利用知识图谱用于描述语义间的拓扑关系。
-
-### Summary
-
-几个动机：
-
-- 为了形式化MBSE工具链，应开发描述MBSE工具链本身的本体模型。
-- 工业界和学术界目标不同，本体还需要支持过程管理和工具操作。
-- 使用CT能增强知识表达能力，现有方法没有在模型领域的分析。
-
-## Research design
-
-![Overview of research design.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082304.png)
-
-如图所示，第一步确定可追溯性管理场景；第二步，采用系统思维支持CT本体设计，解决工具链中的问题；第三步基于CT本体，修改当前的MBSE工具链以支持可追溯性管理场景；第四步，通过ACC系统设计案例，对原型进行评估。
-
-### Problem statement
-
-在[[20]](#20) [[51]](#51)中开发了航空发动机仿真案例。利益相关者使用 DSM 模型来形式化开发流程和系统工件。 然后，将 DSM 模型转换为一个 WPMS，以部署技术资源并在 Simulink 中为不同的利益相关者实现自动联合仿真。本研究的步骤：
-
-- 定义追溯性和追溯性管理的概念。[[19]](#19)
-- 定义场景。
-- 定义场景相关实体。
-- 定义实体之间的相互关系。
-- 使用工具链实例化。
-- 案例研究评估。
-
-### Prototype strategy for cognitive thread ontology design
-
-![Overview of the MBSE toolchain prototype.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082305.png)
-
-如图所示，（a）用Excel提取需求，用MetaGraph和KARMA体系建模，使用代码生成器将DSM模型转换为本体，基于此联合Simulink进行仿真。（b）开发OSLC适配器，通过特定的映射规则将数据转换为相应OSLC服务。（c）编译器加载DSM模型中的流程模型以生成WPMS。（d）统一身份验证系统提供数据访问控制。（e）最后，开发OSMS（Neo4j）来存储和分析WPMS中OSLC服务和开发流程之间的追溯性。
-
-### Evaluation based on case study
-
-提出了一个ACC系统设计案例，验证工具链的可行性与有效性。
-（1）工具链原型开发：定义了4个指标。
-（2）评估问题分析：提出了7个问题。
-定量方法方面，参考SPIRIT框架[[68]](#68)分析三个方面：模型互操作性、开发流程利益攸关者之间的沟通程度、追溯认知推理分析的能力。
-
-## Ontology of cognitive thread for traceability management in MBSE
-
-![CT ontology for traceability management.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082306.png)
-
-本节介绍CT本体的具体内容，对应第一个图的第二步。
-
-### Ontology formalizing models
-
-![Fig. 4. Mapping process between OSLC services and models.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082701.png)
-
-本节主要关注模型信息。在提出的 MBSE 工具链中，结构化需求文档被视为非正式模型，DSM 模型是描述性模型，Simulink 模型是分析性模型。DSM 模型是基于 GOPPRR-E 建模方法生成的。基于 OSLC 核心规范[[22]](#22)开发了需求表、DSM 模型和 Simulink 模型的 OSLC 服务，以支持数据集成和互操作。为了描述OSLC服务，使用OWL语言进行形式化[[71]](#71)。论文讲述了以上三者之间的映射方法，具体方式如图4左侧描述。
-
-### Ontology formalizing development process
-
-本节主要关注开发过程的结构信息。采用的是BPMN开发流程。
-
-### Ontology formalizing stakeholders
-
-本节主要关注的是利益攸关者的结构信息。
-
-### Ontology formalizing scenarios of traceability management
-
-在已知模型、过程和利益攸关者信息后，本节关注可追溯性管理。包括四个部分：OSLC模型间追溯管理、OSLC模型与过程模型间追溯管理、OSLC模型与利益攸关者间追溯管理、过程模型与利益攸关者间追溯管理。
-
-## Case study
-
-### Scenario definition
-
-![Fig. 5. ACC system design process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082702.png)
-
-ACC是一种基于车辆的外部行驶环境，如前方车辆的速度和距离，来适应常规控制的避碰系统。为了验证所提出的CT本体的完整性，以ACC系统设计为例对MBSE工具链原型进行了评估。案例如图5所示。
-
-### Models and data supporting ACC system design
-
-介绍了DSM的元模型组成和DSM模型在MetaGraph软件中的对应效果。建模方法用的是OOSEM[[26]](#26)。用CarSim做了一个Simulink ACC FMU模型。OSCL服务可以触发Simulink运行并获取Simulink中的数据。
-
-### OSMS supporting traceability construction and analysis
-
-![Fig. 10. OSMS supporting traceability management.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082703.png)
-
-图10展示了可追溯管理软件OSMS的架构。
-
-- 10(a)中：利益攸关者可以通过OSLC服务绑定到WPMS的工作任务来操纵设计模型。例如，WPMS中的涉众需求定义工作任务链接到在Excel中查询需求项的相关OSLC服务。在WPMS中，需求工程师操纵OSLC服务来修改Excel表格中的涉众需求，例如将最小安全驾驶距离从35米更改为40米。
-- 在图10(b)所示的服务管理模块中，所有OSLC服务都集成到OSMS中以构建可追溯性。使用递归算法来发现并遍历所有OSLC服务，直到OSLC资源不再链接到另一个OSLC服务URI。
-- 在图10(c)中，在可追溯性构建模块中建立了OSLC服务与过程模型之间的可追溯性。
-- 在图10(d)中，使用可追溯性分析模块分析OSLC服务与流程之间的可追溯性。
-- 推理结果如10(e)：
-- - 场景Pattern1对应于基于创建OSLC服务的工具名称查询单个OSLC服务的领域问题①。推理模式是具有给定工具名称Simulink的OSLC服务。推理结果显示所有的OSLC服务都具有可追溯性，并且是由Simulink创建的，例如Simulink模型中的子系统ACCV2_Motor_Left和ACCV2_PIDController。
-- - 场景Pattern2对应于基于名称查询单个OSLC服务的领域问题②。推理模式是具有给定名称或ID REQ-REA-1的OSLC服务。推理结果显示了需求表中利益相关者需求的Excel行OSLC服务。
-- - 场景模式3对应于基于相应工作任务的顺序查询任何直接相关的OSLC服务的领域问题③。推理模式由两个相关的OSLC服务和开发过程中的两个相关工作任务组成。其中一个OSLC服务有一个给定的ID UseCase_6460，它对应于在高速公路上驾驶时提供帮助的用例。推理结果表明，在此用例的基础上，设计了四个有效性度量的对象实例，如DSM模型中的Cost。
-- - 场景模式4对应于领域问题④，为案例研究中的特定模型元素或数据查询任何相关的OSLC服务。推理模式指定了一个链，其中包括两个OSLC服务作为该链的源和目标。
-- - 场景模式5对应于基于名称查询任何直接相关的OSLC服务的领域问题⑤。推理模式由两个相关的OSLC服务组成，其中一个具有需求REQ-REA-1的给定ID。推理结果表明，该需求与DSM模型中的需求块Requirement_Diagram_1bae5_object_Object_Requirement_ee86相关。需求块有一个本地标签需求和属性文本，值为在驾驶车辆时通过提供自动驾驶辅助来增强驾驶。
-
-### Unified authentication system supporting authority management
-
-做了一个用户认证系统。
-
-## Discussion and evaluation
-
-### Qualitative evaluation
-
-通过OSLC服务，WPMS支持过程和模型中任务之间的可跟踪性管理。OSMS支持模型之间的可追溯性构建、分析和可视化。统一的认证系统管理模型和涉众之间的可追溯性。通过CT本体，形式化了与MBSE工具链相关的模型、开发过程和涉众之间的拓扑关系，提高了MBSE工具链开发的效率和可追溯性管理场景下的语义互操作性。
-六个定性分析的问题：
-
-- 提高跟踪环节生成的自动化水平
-- 支持跟踪链接的存储
-- 支持可视化(表示)跟踪链接
-- 支持创建、删除、修改
-- 促进可追溯性信息的交换
-- 对获得的可追溯性信息进行分析
-
-### Quantitative evaluation
-
-以ACC系统设计为例说明模型数量。包括模型互操作性、推理分析可追溯性的能力和利益攸关者之间的交互等级。
-
-### Scalability discussion
-
-内部效度和外部效度是案例研究方法的两个重要方面[[73]](#73)。案例研究的内部有效性是指由于在可追溯性管理场景中使用所提出的工具链和CT本体而提高的效率；案例研究的外部有效性是指所提出的工具链和CT本体可以在其他可追溯性管理场景中复制的程度，代表了该案例研究的可扩展性。
-
-从工具链的角度来看，尽管航空航天领域复杂系统的设计方法、设计过程和设计目标可能与自适应巡航控制系统不同，但所使用的设计工具是相似的。在提出的工具链原型中，采用的建模工具MetaGraph可用于开发DSM模型。这些DSM模型可以用来表示SysML和其他建模语言所需的模型信息，并且可以进一步转换为不同建模工具所需的专有格式(例如Matlab中的.m脚本)。因此，我们可以推断，本文案例研究中的可追溯性管理场景可以复制到航空航天领域的其他可追溯性管理场景中。
-
-从本体设计的角度来看，CT本体的设计目的是形式化可追溯性管理场景中模型、开发过程、涉众及其相互关系的概念。该本体提供了一个独立于领域的表示，促进了可追溯性管理场景中相关概念的统一表示，从而确保设计过程中涉及的所有涉众共享对这些场景的共同理解。
-
-### Limitations
-
-四个局限性：
-
-- 未考虑工作任务动态变化对可追溯性管理场景的影响。因此，未来将开发一种动态编排方法来支持部署在WPMS中的工作任务的重新配置。
-- 设计的CT本体受限于本研究开发的MBSE工具链。不包括可追溯性管理的其他场景，例如集成CAD模型信息或物联网(IoT)数据的场景。
-- 本研究通过一个ACC系统设计案例验证了CT本体的完备性。CT本体功能的形式化验证将在未来使用OWL进行开发。
-- 还有其他可行的技术解决方案可以用于实现CT本体。由于KARMA语言与特定于领域的建模语言具有很强的语义兼容性，一个有希望的途径可能涉及探索特定于领域的建模语言(如SysML、UPDM或eastern-adl)与CT本体的潜在集成。
-
-## Conclusions
-
-> For facilitating the industrial information integration process to support IIIE, the traceability management in MBSE implementation should be first considered. In this paper, we propose a CT ontology for traceability management in an MBSE toolchain that is developed based on an MBSE toolchain prototype and formalizes models, stakeholders, and development processes, as well as traceability management scenarios. Through a case study of an ACC system, the completeness of the CT ontology is evaluated by qualitative and quantitative analyses of the proposed MBSE toolchain. The results demonstrate that the CT ontology helps stakeholders manage and analyze traceability between heterogeneous models in the development process. To improve the efficiency of information integration, more discipline information can be considered and integrated into the proposed CT ontology in the future. Besides, we intend to extend the ontology of the CT to support other complex scenarios during MBSE implementation, such as automatic change management and consistency management for MBSE models.
-
-`个人总结`
-
-本篇文章提出了一套工具链以实现模型的可追溯性管理（增删改查），模型是MetaGraph搭建的DSM，仿真用的是Simulink，两者独立创建并通过算法实现关联，通过一套图数据库进行存储管理。通过图4的部分能了解KARMA的工作机制。对OSLC的工作机理不熟悉。DSM和Simulink中间用的FMU链接，FMU用CarSim生成，其设计和DSM没有之间关联。追溯性识别用的是Pattern匹配。写作方面比较规范，可以借鉴。工具链不开源。
-
-`参考文献`
-
-<a id="10">[10]</a>V. Singh, K.E. Willcox, Engineering design with digital thread, AIAA J. 56 (11) (2018) 4515–4528.
-<a id="19">[19]</a>S. Wu, J. Lu, Z. Hu, P. Yang, G. Wang, D. Kiritsis, Cognitive thread supports system of systems for complex system development, in: 2021 16th International Conference of System of Systems Engineering, SoSE, IEEE, 2021, pp. 82–87.
-<a id="20">[20]</a>J. Lu, J. Wang, D. Chen, J. Wang, M. Törngren, A service-oriented tool-chain for model-based systems engineering of aero-engines, IEEE Access 6 (2018) 50443–50458
-<a id="30">[30]</a>IEEE, IEEE standard glossary of software engineering terminology, IEEE Std 610.12-1990, 1990, pp. 1–84, http://dx.doi.org/10.1109/IEEESTD.1990.101064.
-<a id="32">[32]</a>I.C. on Systems Engineering (Ed.), INCOSE Systems Engineering Handbook, vol.2.0, 2000.
-<a id="41">[41]</a>J. Guo, G. Wang, J. Lu, J. Ma, M. Törngren, General modeling language supporting model transformations of MBSE (part 2), in: INCOSE International Symposium, vol. 30, (1) Wiley Online Library, 2020, pp. 1460–1473.
-<a id="42">[42]</a>M. Kharrat, O. Penas, R. Plateaux, J.-Y. Choley, H. Trabelsi, J. Louati, M. Haddar, Integration of electromagnetic constraints as of the conceptual design through an MBSE approach, IEEE Syst. J. 15 (1) (2020) 747–758.
-<a id="58">[58]</a>D.A. Kinard, F-35 digital thread and advanced manufacturing, in: 2018 Aviat. Technol. Integr. Oper. Conf, From Concept to Cockpit, The F-35 Lightning II, 2018, pp. 1–19, http://dx.doi.org/10.2514/6.2018-3369.
-<a id="59">[59]</a>M.A. Bone, M.R. Blackburn, D.H. Rhodes, D.N. Cohen, J.A. Guerrero, Transforming systems engineering through digital engineering, J. Def. Model. Simul. 16 (4) (2019) 339–355.
-<a id="60">[60]</a>T.D. West, M. Blackburn, Is digital thread/digital twin affordable? A systemic assessment of the cost of DoD’s latest manhattan project, Procedia Comput. Sci. 114 (2017) 47–56.
-<a id="51">[51]</a>J. Lu, G. Wang, M. Törngren, Design ontology in a case study for cosimulation in a model-based systems engineering tool-chain, IEEE Syst. J. 14 (1) (2019) 1297–1308
-<a id="68">[68]</a>J. Lu, D. Chen, J. Wang, M. Torngren, Towards a service-oriented framework for MBSE tool-chain development, in: 2018 13th Annual Conference on System of Systems Engineering, SoSE, IEEE, 2018, pp. 568–575, http://dx.doi.org/10.1109/SYSOSE.2018.8428746.
-<a id="22">[22]</a>D. Johnson, S. Speicher, Open services for lifecycle collaboration-core specification version 2.0, 2013, http://open-services.net/.
-<a id="71">[71]</a>D.L. McGuinness, F.v. Harmelen, OWL web ontology language overview, http: //www.w3.org/TR/owl-features/.
-<a id="26">[26]</a>H. Lykins, S. Friedenthal, A. Meilich, 4.4.4 Adapting UML for an object oriented systems engineering method (OOSEM), in: INCOSE International Symposium, vol.10, (1) Wiley Online Library, 2000, pp. 490–497.
-<a id="73">[73]</a>N. Salkind, Internal and external validity, SAGE Dict. Quant. Manag. Res. (2011) 148–149.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>JII</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Traceability management</tag>
-        <tag>Cognitive thread</tag>
-        <tag>Digital thread</tag>
-        <tag>OSLC</tag>
-        <tag>MetaGraph</tag>
-        <tag>KARMA</tag>
-        <tag>Simulink</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</title>
     <url>/2024/08/14/001/</url>
     <content><![CDATA[
@@ -870,9 +566,581 @@ Garousi 等人 [[33]](#33) 对产学研合作面临的挑战进行了文献综�
         <category>2024</category>
       </categories>
       <tags>
+        <tag>Validation &amp; Verification</tag>
         <tag>MBSE</tag>
+        <tag>Review</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</title>
+    <url>/2024/08/23/003/</url>
+    <content><![CDATA[
+[Testing, Validation, and Verification of Robotic and Autonomous Systems: A Systematic Review](https://dl.acm.org/doi/full/10.1145/3542945)
+
+*作者是KCL的Hugo Araujo。*
+
+`Abstraction`
+> We perform a systematic literature review on testing, validation, and verification of robotic and autonomous systems (RAS). The scope of this review covers peer-reviewed research papers proposing, improving, or evaluating testing techniques, processes, or tools that address the system-level qualities of RAS.
+Our survey is performed based on a rigorous methodology structured in three phases. First, we made use of a set of 26 seed papers (selected by domain experts) and the SERP-TEST taxonomy to design our search query and (domain-specific) taxonomy. Second, we conducted a search in three academic search engines and applied our inclusion and exclusion criteria to the results. Respectively, we made use of related work and domain specialists (50 academics and 15 industry experts) to validate and refine the search query. As a result, we encountered 10,735 studies, out of which 195 were included, reviewed, and coded.
+> Our objective is to answer four research questions, pertaining to (1) the type of models, (2) measures for system performance and testing adequacy, (3) tools and their availability, and (4) evidence of applicability, particularly in industrial contexts. We analyse the results of our coding to identify strengths and gaps in the domain and present recommendations to researchers and practitioners.
+> Our findings show that variants of temporal logics are most widely used for modelling requirements and properties, while variants of state-machines and transition systems are used widely for modelling system behaviour. Other common models concern epistemic logics for specifying requirements and belief-desireintention models for specifying system behaviour. Apart from time and epistemics, other aspects captured in models concern probabilities (e.g., for modelling uncertainty) and continuous trajectories (e.g., for modelling vehicle dynamics and kinematics).
+> Many papers lack any rigorous measure of efficiency, effectiveness, or adequacy for their proposed techniques, processes, or tools. Among those that provide a measure of efficiency, effectiveness, or adequacy, the majority use domain-agnostic generic measures such as number of failures, size of state-space, or verification time were most used. There is a trend in addressing the research gap in this respect by developing domainspecific notions of performance and adequacy. Defining widely accepted rigorous measures of performance and adequacy for each domain is an identified research gap.
+> In terms of tools, the most widely used tools are well-established model-checkers such as Prism and Uppaal, as well as simulation tools such as Gazebo; Matlab/Simulink is another widely used toolset in this domain.
+> Overall, there is very limited evidence of industrial applicability in the papers published in this domain.
+> There is even a gap considering consolidated benchmarks for various types of autonomous systems.
+
+## Introduction
+
+### Motivation-1
+
+Robotic and Autonomous Systems (RAS)机器人和自主系统。本论文涵盖了RAS的广度和系统性二次研究的调研，并对结果进行分析。
+
+### Scope and Audience
+
+受众：研究者和从业者。所调研的RAS研究的范围。
+
+### Research Questions
+
+几个关键名词的含义，包括types of models, efficiency, effectiveness, coverage measures, (public available) tools, evidence of applicability。
+
+### Structure of the Article
+
+本文的其余部分结构如下：在第 2 部分中，我们回顾了相关工作，重点关注相关主题的二手研究（文献调查和评论）。在第 3 部分中，我们定义了本文的范围并解释了此结构化综述的背景。在那里，我们报告了我们开始研究的核心结果集，作为我们搜索的种子，以形成研究。在第 4 部分中，我们回顾了我们用于系统评价的方法；这包括我们的搜索和选择策略的描述、用于编码结果的分类法的开发、我们的数据提取和综合方法。在本节中，我们还反思了对我们研究的威胁。在第 5 部分中，我们展示了我们的编码结果并对其进行分析以回答我们的研究问题。在第 6 部分中，我们反思了我们的分析并为目标受众（即研究人员和从业人员）提供了具体的建议。在第 7 部分中，我们总结了本文并提出了一些未来研究的方向。
+
+## Related Work
+
+[[55]](#55)这项研究的目标是为机器人软件开发人员提供提示，帮助他们根据感兴趣的属性和软件系统选择合适的分析方法。
+
+[[99]](#99) [[181]](#181)概述了自主系统测试和验证面临的挑战以及可用的技术和结果。
+
+[[118]](#118)聚焦了自动驾驶汽车环境中的问题。
+
+[[79]](#79)概述了V&V领域的研究，主要有关机器学习和自动驾驶场景。
+
+[[114]](#114)自动驾驶与软件的挑战，通过采访从业者的角度进行的。
+
+[[180]](#180)汽车行业中使用的神经网络功能安全性评估的三个具体问题。
+
+[[108]](#108)对公开可用的驾驶数据集以及自动驾驶算法的虚拟测试进行了调查。
+
+[[20]](#20)作者提到了自动驾驶功能的复杂性、场景和参数的变化、场景选择和测试生成等挑战。
+
+[[138]](#138)对用于自主机器人系统的形式化规范和验证方法及工具进行了调查。除了此类系统的内部结构之外，还提出了许多正式建模和验证机器人系统运行环境的挑战。
+
+[[89]](#89)概述了集成形式化方法在机器人和自主系统中的优势、劣势、机遇和威胁。
+
+[[207]](#207)对自动驾驶汽车基于覆盖范围的验证、确认和安全保障技术进行了系统的文献综述。
+
+[[178]](#178)对自动驾驶汽车的软件验证和确认进行了广泛而系统的文献综述。
+
+## Background and Rationale
+
+### Motivation-3
+
+结合相关工作，提出了二次研究的几个问题：（1）对现有的机器人和自主系统验证和确认结果进行结构化回顾；（2）讨论了以下四个具体问题：(a) the types of models, (b) measures of efficiency and effectiveness, (c) available tools, and (d) evidence of applicability to large-scale and industrial systems。
+
+### Robotic and Autonomous System
+
+RAS定义：
+An autonomous system is an intelligent system that is designed to deal with the physical environment on its own and work for extended periods of time without explicit human intervention. They are built to analyse, learn from, adapt to, and act on the surrounding environment.
+
+### Testing and the SERP-Test Taxonomy
+
+![Illustration of taxonomy.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082301.png)
+
+本文的论文分类方法基于SERP-Test分类法[[68]](#68)，测试分类四个方面：intervention, effect, scope, and context。
+
+- Intervention pertains to the test techniques, their adaptation, and adoption in different context.
+- Effect facet is used to identify the improvement or adaptation in a given practise as well as any insights gained through assessment.
+- The scope specified whether the effect has been materialised in planning, design, execution, or analysis of tests.
+- Context, as its name suggests, specifies the environment where the intervention takes place, in terms of people and their knowledge, the system under test, and the required models and other types of information.
+
+## Methodology
+
+### Seed Papers
+
+- 收集初始搜索查询的关键字
+- 完善纳入和排出标准
+- 评估和调整SERP-Test分类法
+
+### Selection Strategy
+
+#### Inclusion Criteria
+
+纳入标准的规则。
+
+#### Exclusion Criteria
+
+排出标准的规则。
+
+### Taxonomy
+
+介绍基于SERP-Test分类法的具体的分类原则。
+
+### Search Strategy
+
+#### Initial Query
+
+关键词搜索。
+
+#### Validated Query
+
+对搜索完的结果进行验证。
+
+### Overview of the Results
+
+![Relevant and included papers by year.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082302.png)
+
+最后确定了195篇论文。
+
+## Results
+
+### RQ1: Models
+
+关注用于描述RAS的模型和形式类型及其在测试干预中的属性。
+
+#### Modelling Properties
+
+表一关注表示属性的模型。不到三分之一使用模型或逻辑来描述系统的属性，这类算形式模型。所有属性语言都是领域无关的。
+
+#### Modelling System Behaviour or Structure
+
+表二关注描述RAS行为或结构的模型。三分之一采用定性模型。
+
+### RQ2: Effect
+
+评估各种测试干预措施的efficiency (testing time or resources), effectiveness (testing quality), and coverage (testing adequacy)的指标。
+
+#### Measuresfor Interventions
+
+大多数其他概念仅用于单一干预措施。
+
+#### Measures for Subject Systems
+
+### RQ3: Tooling
+
+#### Context Tools
+
+模拟工具是最常用的工具之一；它们的实用性来自于一种成本较低的可视化方法，可以直观地显示设计和流程是否令人满意。中间件 ROS 与 3D 模拟器 Gazebo 相结合，形成了最流行的机器人模拟工具。此外，Simulink 是 MATLAB 的图形扩展，是动态系统建模和仿真最常用的工具。此外，形式化验证工具也得到了广泛应用，其中最突出的是模型检查器。统计模型检查器 Prism 提供对马尔可夫链或概率自动机中随机系统的建模和分析。至于定性模型，UPPAAL 为定时自动机模型提供了形式化验证，但可以扩展以使用数据类型。
+
+#### Effect Tools
+
+关注了哪些工具是否开源的问题和使用领域。
+
+### RQ4: Applicability
+
+我们的观察发现，工业界对干预措施的评估存在很大差距；只有 20 项干预措施在工业背景下进行了评估。可以理解的是，大多数案例研究都是在学术环境中进行的。其中，约有一半使用了小规模模型，这些模型通常不能代表真实系统。另一半将他们提出的干预措施应用于大规模主题和数据集，包括物理系统。
+
+## Suggestions and Recommendations to Study Audience
+
+在本节中，我们将分析前几节的结果，以确定我们的研究问题和两个目标受众群体（研究人员和从业者）的相对优势和劣势。我们将从我们的分析中为研究人员和从业者提出建议，以此结束本节。
+
+### Analysis
+
+#### Domain
+
+针对RAS特定子领域的测试、验证和确认。
+
+……跳过对表8的介绍……
+
+- 在所有子领域中，大多数模型都是正式的和定量的，并且在使用定性和非正式模型进行测试方面可以发现很大的差距（最明显的是在飞行器和移动机器人子领域）。
+- 在所有研究的子领域中，在使用有效性、效率和覆盖率的精确概念方面存在明显差距。其中，一些通用的有效性和效率概念（如测试时间和状态空间大小）以及覆盖率概念（如节点和转换覆盖率）是量化效果的最常用度量。常见的、更复杂的有效性、效率和充分性度量，如平均故障检测百分比 (APFD) ，似乎尚未在 RAS 领域被采用或扩展到 RAS 领域。我们确实看到最近出现了一些针对特定领域的有效性和覆盖率概念的趋势；几乎所有这些概念都已应用于自动驾驶汽车领域，但其中大多数也可以调整以适用于其他领域。
+- 在测试 RAS 的工具支持方面存在相当大的差距。开源工具很少，主要是在自动驾驶汽车和飞行器子域中。没有开源工具支持移动机器人系统的特定领域方面。专有工具也存在同样的模式，但差距更大。在所审查的文献中，开发或使用的公共（但不是开源）工具非常少。
+- 在使用工业案例研究评估 RAS 测试干预措施方面，所有子领域也存在非常严重的差距。最值得注意的例外是少数案例研究，主要是在自动驾驶汽车和飞行器子领域，是在工业环境中进行的。许多干预措施使用小型案例研究，大多没有任何特定的应用子领域（例如，使用移动机器人的通用模型）；在这些情况下，模型不包含足够的细节来成为一般基准的一部分。还有一些基于无人机和无人驾驶飞机的小型案例研究进行评估。
+
+*Analysis for Researchers*
+**Gaps:** 在我们对所研究子域的分析中，我们发现在处理海洋和海底 RAS 方面存在明显差距。此外，在处理飞行器和移动机器人方面也存在相对薄弱之处。此外，在处理非正式和定性模型方面，各个子域之间也存在相对薄弱之处。开发一套通用的有效性和效率概念来比较不同的干预措施是一项值得研究的挑战，文献中在针对特定领域量身定制这些概念方面存在差距。同样的观察结果也适用于测试充分性的概念。工具，尤其是针对特定子域量身定制的工具，是所有干预措施的普遍弱点。此外，在工业环境中应用干预措施是一项突出的挑战。
+**Strengths:** 道路车辆子域在所有研究问题中都具有相当大的优势。此外，针对通用 RAS 系统开发的干预措施远多于针对子域的特定关注点的干预措施。形式化和定量模型是迄今为止最强大的干预措施，无论是在技术研究数量还是在执行的评估方面，即使在工业领域也是如此。
+
+*Analysis for Practitioners*
+**Gaps:** **由于大多数提出的干预措施尚未在工业背景下进行评估，因此评估它们的适用性（包括研究学习曲线和培训等因素）仍然是一个巨大的差距。**
+**Strengths:** 由于形式化和定量模型具有优势，开发此类模型提供了一个起点，可以从已开发和研究的干预措施中受益。道路车辆领域肯定有更成熟的实践可供借鉴，但我们可以设想，通过调整特定领域的方面，其他子领域也可能受益于这些优势。
+
+#### Cooperation and Connectivity
+
+验证方法对于自主系统的广泛部署和公众接受至关重要。由于通信协议、控制软件（例如，用于合作规则）和系统动态之间的密切交互，对此类方法的需求在网络服务支持的功能中得到了加强。现有的（手动）分析技术通常无法扩展到这些功能的巨大设计空间和输入空间，因此，在这项工作中，我们调查了文献中发现的自动验证技术。
+
+总体而言，这是一个 RAS 测试研究不足的领域，文献中很少关注合作和连接场景的测试。对于文献中报道的极少数干预措施，几乎没有任何效率或有效性的证据。 少数报告的评估仅在小规模案例研究中进行，并且没有附带开源工具。
+
+……跳过对表9的介绍……
+
+- 关于用于分析 RAS 中合作场景的模型，我们注意到形式概率模型（基于时间逻辑、过程代数和时间自动机的变体）是最常用的模型类型。这些模型通常用于检查合作场景的抽象模型。非正式模型使用较少，仅作为模拟工具的输入。在这种情况下，定性和非正式模型使用得很少。
+- 大多数有效性和效率概念都是通用概念，例如技术的状态空间大小、验证时间和测试覆盖率以及被测系统的死锁自由度和时间逻辑公式满足的概率。使用领域特定效率和有效性概念的唯一例外涉及群体的聚集时间和人机交互的有效性。
+- 显然缺乏用于测试 RAS 中的合作和群体场景的工具。唯一的例外是公共模型检查工具和用于联网无人机的模拟工具。
+- 很少有研究评估他们在工业规模案例研究和基准上的干预措施。
+
+*Analysis for Researchers*
+**Gaps:** 对纳入的研究进行分析表明，在 RAS 的合作场景中，通信网络和协议的作用及其对 RAS 系统的功能、安全性和可靠性的影响研究严重不足。将通信中可用的知识体系与 RAS 的测试和验证相结合显然是未来研究的领域。现有的研究非常少，没有提供与合作方面和新兴合作行为相关的领域特定效率和有效性衡量标准。此外，缺乏足够的证据表明这些策略已应用于工业规模的案例研究和基准。
+**Strengths:** 抽象理论在群体参数化模型检验方面确实有优势。除此之外，没有其他集中的优势领域。
+
+*Analysis for Practitioners*
+**Gaps:** **如上所述，我们认为，协作机器人和群体机器人的研究成果还不够成熟，无法应用于实践。即使是现有技术也尚未应用于许多工业案例研究，目前也没有稳定的工具集。与研究人员合作定义有意义的效率和有效性概念，并提供基准和工业案例研究，可能会带来有影响力的未来研究议程。**
+**Strengths:** 在测试合作和群体 RAS 场景时没有实际的优势领域。
+
+#### Testing Strategy
+
+到目前为止，最广泛使用的策略是形式验证，其次是模拟和运行时监控。基于模型的测试是研究最少的策略。
+
+……跳过对表10的介绍……
+
+- 到目前为止，定量测试技术是研究最广泛的策略（这也是领域和连接方面的常见观察结果）。
+- 在用于评估干预措施的措施中，效率是最常用的，有效性紧随其后。然而，很少有干预措施使用覆盖率的概念进行评估。值得注意的是，对于运行时监控，只有两篇出版物采用了效率指标。
+- 基于模型的测试和运行时监控工具严重缺乏。对于模拟和形式验证，在工具支持方面似乎有相当大的优势。
+- 大约54%的干预措施使用小规模案例研究进行评估，而只有10%的干预措施在工业背景下评估其策略，这表明存在明显差距。
+
+### For Researchers
+
+如前几节所述，许多效率和有效性措施都非常通用，而且在适合 RAS 子域的领域特定措施方面也存在相对差距。缺乏领域特定建模语言和运行时验证方法数量有限表明 RAS 测试策略还有改进的空间。
+
+另一个相当大的差距是使用定量规范语言来指定系统所需的属性；由于 RAS 固有的异质性，我们需要有属性语言来涵盖离散和连续动态以及随机和认知方面的组合等方面，这些方面可用于对与环境和用户有关的行为方面进行建模。此外，一些研究使用了 Gazebo 和 USARSim 等模拟工具的非正式模拟模型。一种合适的中间立场可能是半正式和特定领域的模型，例如在 Matlab/Simulink 中构建的模型。最后，缺乏公共工具是文献中观察到的一大缺陷。很少有技术附带工具，而且用于测试 RAS 的公共工具也很少。
+
+### For Practitioners
+
+最大的差距是缺乏对现有干预措施的工业评估。在工业背景下和工业复杂系统中应用的干预措施非常少。不幸的是，干预措施的数量太少，无法得出任何有意义的趋势，也无法表明在工业环境中适用的强有力证据。在提出的干预措施中，大多数要么涉及基于模拟的测试，要么将其验证结果与某些模拟工具（主要基于 ROS-Gazebo 集成）联系起来。
+基于搜索的测试和交互测试是两种在工业环境中使用的值得注意的技术。在工业环境中采用的模型中，可以提到状态机和故障树的变体。在这方面的一项值得注意的研究是在工业环境中比较监督控制、演绎和归纳（模型检查）验证技术。人源和信息源是测试干预的另一个方面，这一方面研究严重不足。我们注意到，最近有一种趋势，即将用户研究（就人机交互和人机交互而言）与传统测试、验证和确认技术相结合。此外，在定义和评估测试流程方面也存在差距，特别是在工业环境中。显然，缺乏行业和领域专家对模型和技术的投入，导致大多数干预措施都使用通用且相对简单的建模技术和属性语言。与工业合作伙伴共同生产可以丰富这些方面，并产生能够处理工业 RAS 的异质性和复杂性的模型。
+
+## Conclusions
+
+关注的四个问题：
+
+- (1) What are the types of models used for testing RAS?用于测试 RAS 的模型类型有哪些？**答：** 有大量正式和非正式模型用于测试 RAS。特别是，有大量关于使用通用属性规范语言（如线性时间逻辑）和定性建模语言（如状态机变体、UML 图、Petri 网和过程代数）的文献。定量建模语言存在明显差距，无法捕捉 RAS 的复杂性和异构性。还缺乏可以捕捉 RAS 各个子域领域知识的领域特定语言。
+- (2) Which efficiency and effectiveness measures were introduced or used to evaluate RAS testing interventions?引入或使用了哪些效率和有效性措施来评估 RAS 测试干预措施？**答：** 我们观察到，在衡量测试干预措施的有效性和效率以及充分性的严格且被广泛接受的指标方面存在差距。与前面的项目类似，文献中使用的那些措施非常通用，与 RAS 的特定领域方面无关。因此，在定义和评估 RAS 测试干预措施的效率、有效性和充分性的严格（领域特定）措施方面存在差距和研究机会。
+- (3) What are the interventions supported by (publicly available) tools in this domain?该领域（公开可用的）工具支持哪些干预措施？**答：** 有相当多的干预措施依赖公共工具来实施或评估其干预措施。然而，很少有研究将他们提出/评估的干预措施以公开可用的工具形式提供给公众使用。因此，在提供数据集和公共工具以进一步发展该领域方面存在相当大的差距。
+- (4) Which interventions have evidence of applicability to large-scale and industrial systems?哪些干预措施有证据表明适用于大规模和工业系统？**答：** 在工业环境中评估的测试干预措施屈指可数。还有一些其他干预措施使用了一些真实的机器人或自主系统，但在学术环境中。这表明，未来学术界和工业界在 RAS 测试干预措施的工业评估中合作的重要性。
+
+`个人总结`
+对19年以来的RAS领域论文有比较好的分类，讨论了研究内容、技术手段、领域开展情况等问题，由于RAS在工业中应用较少，结论是比较悲观的。对于使用工具的调研比较有参考意义。
+
+`参考文献`
+<a id="55">[55]</a>A. Cortesi, P. Ferrara, and N. Chaki. 2013. Static analysis techniques for robotics software verification. In IEEE 44th International Symposium on Robotics. IEEE, 1–6.
+<a id="99">[99]</a>Philipp Helle, Wladimir Schamai, and Carsten Strobel. 2016. Testing of autonomous systems—Challenges and current state-of-the-art. INCOSE Int. Sympos. 26, 1 (2016), 571–584. DOI:https://doi.org/10.1002/j.2334-5837.2016.00179.x
+<a id="118">[118]</a>Philip Koopman and Michael Wagner. 2016. Challenges in autonomous vehicle testing and validation. SAE Int. J.Transport. Saf. 4 (04 2016), 15–24. DOI:https://doi.org/10.4271/2016-01-0128
+<a id="79">[79]</a>Shenjian Gao and Yanwen Tan. 2017. Paving the Way for Self-driving Cars - Software Testing for Safety-critical Systems Based on Machine Learning: A Systematic Mapping Study and a Survey. Blekinge Tekniska Högsola.
+<a id="114">[114]</a>A. Knauss, J. Schroder, C. Berger, and H. Eriksson. 2017. Software-related challenges of testing automated vehicles. In IEEE/ACM 39th International Conference on Software Engineering Companion (ICSE-C). IEEE, 328–330.
+<a id="180">[180]</a>Q. Rao and J. Frtunikj. 2018. Deep learning for self-driving cars: Chances and challenges. In IEEE/ACM 1st International Workshop on Software Engineering for AI in Autonomous Systems (SEFAIAS). IEEE, 35–38.
+<a id="108">[108]</a>Y. Kang, H. Yin, and C. Berger. 2019. Test your self-driving algorithm: An overview of publicly available driving datasets and virtual testing environments. IEEE Trans. Intell. Vehic. 4, 2 (2019), 171–185.
+<a id="20">[20]</a> Halil Beglerovic, Steffen Metzner, and Martin Horn. 2018. Challenges for the Validation and Testing of Automated Driving Functions. (Jan. 2018). DOI:https://doi.org/10.1007/978-3-319-66972-4_15
+<a id="138">[138]</a>Matt Luckcuck, Marie Farrell, Louise A. Dennis, Clare Dixon, and Michael Fisher. 2019. Formal specification and verification of autonomous robotic systems: A survey. ACM Comput. Surv. 52, 5 (2019), 100:1–100:41. DOI:https:// doi.org/10.1145/3342355
+<a id="89">[89]</a>Mario Gleirscher, Simon Foster, and Jim Woodcock. 2020. New opportunities for integrated formal methods. ACM Comput. Surv. 52, 6 (2020), 117:1–117:36. DOI:https://doi.org/10.1145/3357231
+<a id="207">[207]</a>Zaid Tahir and Rob Alexander. 2020. Coverage based testing for V&V and safety assurance of self-driving autonomous vehicles: A systematic literature review. In IEEE International Conference on Artificial Intelligence Testing (AITest). IEEE, 23–30. DOI:https://doi.org/10.1109/AITEST49225.2020.00011
+<a id="178">[178]</a>Nijat Rajabli, Francesco Flammini, Roberto Nardone, and Valeria Vittorini. 2021. Software verification and validation of safe autonomous cars: A systematic literature review. IEEE Access 9 (2021), 4797–4819. DOI:https://doi.org/10.1109/ ACCESS.2020.3048047
+<a id="68">[68]</a>Emelie Engström, Kai Petersen, Nauman bin Ali, and Elizabeth Bjarnason. 2017. SERP-test: A taxonomy for supporting industry–academia communication. Softw. Qual. J. 25 (2017), 1269–1305.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>TOSEM</category>
+        <category>2023</category>
+      </categories>
+      <tags>
         <tag>Validation &amp; Verification</tag>
         <tag>Review</tag>
+        <tag>Robotics</tag>
+        <tag>RAS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：What makes a good modeling research contribution?</title>
+    <url>/2024/08/23/004/</url>
+    <content><![CDATA[
+[What makes a good modeling research contribution?]([论文来源](https://link.springer.com/article/10.1007/s10270-024-01177-x))
+
+*作者是Richard F. Paige。*
+
+`Abstraction`
+
+> The modeling field is rapidly evolving and expanding to address new research topics and to connect with new disciplines. As such, what constituted a good modeling research contribution ten years ago may not be the same today. We try to distill some insights of what we (and the community we aim to represent) consider today as key elements of a good research paper in the field of software and systems modeling. Such insights—which will need to evolve and adapt with time—will be useful not just for authors of new papers, but also for reviewers and editors.
+
+## Introduction
+
+关于如何撰写优秀软件工程论文的具体建议：针对特定章节的撰写建议[[1]](#1)、不同类型的软件工程论文[[5]](#5)，甚至关于如何以更符合软件工程审阅者期望的方式撰写论文的建议[[3]](#3)。
+
+## Types of contributions to the modeling field
+
+常见的论文关注的问题：
+
+- how large is the community that the paper aims to address?
+- how much potential impact is there in the result?
+- how complex is the challenge the paper addresses?
+- how substantial is the validation3, e.g., is there an industrial element to the validation?
+- how distant is the topic of the paper from what we typically see in the modeling venues?
+- how readable is the contribution?
+- how relevant are the examples?
+- and finally, how clear and persuasive is the motivation for the research presented in the paper?
+
+此外，明确研究的正面作用和负面作用也很重要。
+下面将介绍六种具体类型。
+
+### The contribution is a model
+
+仅凭一个模型肯定不行。这个新模型能告诉我们关于建模领域的什么？它能帮助我们回答哪些我们以前无法回答的问题？
+
+### The contribution is a language
+
+仅凭一个元模型也不行，需要完整的工作。
+
+### The contribution is a core modeling technique
+
+这些论文介绍了模型分析（模型验证、确认或测试技术等）或操作技术（模型合并、模型到模型转换、代码生成器等）。或将它们组合起来作为特定建模方法的一部分。这可能是我们多年来看到最多提案的类别。因此，在这一类别中，原创性更难实现，而证明新贡献确实有必要则更为重要。
+例如，很难相信建模社区需要一种新的模型转换方法，除非它与具有非常具体要求的新语言、领域或应用程序相关联。
+
+### The contribution is a modeling application
+
+仅仅证明建模（或 MDE 或建模工具）可以应用于问题是不够的——相反，必须令人信服地证明建模提供了一些附加值，一些可以量化或以可重复的方式捕获的好处。
+
+### The contribution is a (new) modeling domain
+
+ 除了单个应用程序（见上文），这里的目标是为新的工程或科学领域提供一些初步支持，然后这些支持可以发展成为该领域的一套完整的建模解决方案和应用程序。
+
+### The contribution is a modeling tool
+
+这些工具贡献不应只是研究工作的副产品或简单的一次性原型，而应是一种成熟、可用且广泛的工具，有可能对建模社区产生重大而积极的影响（通过吸引更多用户、促进更多项目采用建模实践等）。
+
+## A community effort
+
+就社区建设问题进行了介绍。
+
+`个人总结`
+作者就SoSyM期刊中的一些研究进行了分类和评估，从审稿人的角度分析一篇文章应具备哪些要素。
+
+`参考文献`
+
+<a id="1">[1]</a>Anthony, L.: Writing research article introductions in software engineering: How accurate is a standard model? IEEE Trans. Prof.Commun. 42(1), 38–46 (1999)
+<a id="5">[5]</a>Montesi, M., Lago, P.: Software engineering article types: an analysis of the literature. J. Syst. Softw. 81(10), 1694–1714 (2008)
+<a id="3">[3]</a>Ernst, N.A., Carver, J.C., Mendez, D., Torchiano, M.: Understanding peer review of software engineering papers. Empir. Softw. Eng. 26, 1–29 (2021)]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>SoSyM</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>Insights</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering</title>
+    <url>/2024/08/27/005/</url>
+    <content><![CDATA[
+[Design ontology for cognitive thread supporting traceability management in model-based systems engineering](https://www.sciencedirect.com/science/article/pii/S2452414X24000633)
+
+*作者来自王国新和鲁金直团队。*
+
+`Abstraction`
+
+> Industrial information integration engineering (IIIE) is an interdisciplinary field to facilitate the industrial information integration process. In the age of complex and large-scale systems, model-based systems engineering (MBSE) is widely adopted in industry to support IIIE. Traceability management is considered the foundation of information management in MBSE. However, a lack of integration between stakeholders, development processes, and models can decrease the effectiveness and efficiency of the system development. A modified MBSE toolchain prototype has been developed to implement traceability management; however, a lack of formal and structured specifications makes it difficult to describe the complex topology in traceability management scenarios using this MBSE toolchain, such as creating traceability between heterogeneous models, which leads to poor reusability of this MBSE toolchain in other traceability management scenarios. To formalize traceability management scenarios using the MBSE toolchain, a cognitive thread (CT) ontology is developed in this study. The CT ontology is a specification expressing the information of stakeholders, models, and development processes for traceability management, providing the cognition capability to analyze the interrelationships between them. Based on the implementation of the modified MBSE toolchain, the concepts and interrelationships in the CT ontology are identified. The CT ontology is designed to develop the MBSE toolchain prototype for building, managing, and analyzing traceability in various traceability management scenarios. A case study of an adaptive cruise control system design is used to evaluate the completeness of the CT ontology through qualitative and quantitative analyses. The results demonstrate that the proposed CT ontology formalizes the information related to traceability management while using the proposed MBSE toolchain and can also be used in common traceability management scenarios to design other complex engineered systems.
+
+## Introduction
+
+Industrial information integration engineering (IIIE)工业信息集成工程的概念。Digital Thread (DT)数字线程被认为是实现MBSE的下一个信息管理和集成范例。它可以看做是将产品生命周期的各个阶段产生的信息链接到决策的框架中[[10]](#10)，信息的可追溯性管理就显得很重要。
+
+可追溯性管理的问题：可追溯性管理场景的形式化应该是实现功能的先决条件；应妥善管理和分析模型与数据、开发过程与利益攸关者之间的依赖关系。
+
+本文的主要贡献：设计了一个认知线程本体Cognitive thread (CT) ontology，与其他方法相比，CT本体可以为追溯性的构建和分析过程提供语义描述。CT概念参考[[19]](#19)。具体特点：
+
+- (1) 将利益相关者、开发过程和系统工件之间的概念和相互关系形式化；
+- (2) 提供基于预定义推理规则的认知能力。这些规则是基于利益相关者、开发过程和系统工件之间的相互关系制定的。认知能力可帮助利益相关者分析和理解协同设计中开发过程与模型和数据之间的复杂依赖关系，从而选择最佳设计。
+
+在先前的一项研究 [[20]](#20) 中，开发了一个 MBSE 工具链来支持协同设计。为了实现可追溯性管理，我们改进了此工具链作为 CT 本体形式化的基础，其中包括以下四个方面：
+
+- (1) 系统工件的开放生命周期协作服务 (OSLC) 服务，例如领域特定建模 (DSM)、数据等；
+- (2) 从 DSM 模型生成的基于 Web 的流程管理系统 (WPMS)；
+- (3) 统一身份验证系统；
+- (4) OSLC 服务管理系统 (OSMS)。基于MBSE工具链的实现，识别了CT本体中的概念和相互关系，并以自适应巡航控制（ACC）系统设计的MBSE工具链为例，通过定性和定量的测量，评估了CT本体的完备性。
+
+## Related Work
+
+### Concept and state of the art of traceability management
+
+The IEEE standard glossary of software engineering terminology defines traceability as the “degree to which a relationship can be established between two or more products of the development process” [[30]](#30).
+尽管在 MBSE 领域中，对可追溯性或可追溯性管理尚无统一的定义，但用于开发工程系统的可追溯性概念与软件工程中的可追溯性概念类似。The International Council on Systems Engineering (INCOSE) defines traceability in the MBSE field as “a discernible association between two or more logical entities such as requirements, system elements, verifications, or tasks”[[32]](#32).
+
+- 设计结构矩阵式可追溯性管理的最常用方法，但依赖额外的工具集。
+- 模型转换是另一种方法，但大部分仅支持单向转换。（Guo等[[41]](#41)设计了代码生成语言语法来实现MBSE与Simulink模型之间的可追溯性。Kharrat等[[42]](#42)扩展了系统建模语言(SysML)配置文件，设计了一种模型转换方法来实现SysML与计算机辅助设计(CAD)模型之间的可追溯性。）
+- 一些DSM工具链被视为是潜在解决方案。DSM 是一种工程方法，通过模型和一组形式化元模型来描述特定领域系统的信息。 这些工具链促进了不同领域模型之间的可追溯性。在本研究中，我们专注于 MBSE 工具链开发以支持可追溯性管理。
+
+### Ontology design for traceability management in MBSE
+
+本体是指对象的类型及其属性和关系，它们代表了领域特定知识。在MBSE实践中，本体用于形式化系统开发和工件的系统信息。由于工程系统的固有特性，各种设计活动和利益相关者之间的迭代和交互也增加了产品实现过程的复杂性。（信息不全且混乱）
+
+### Cognitive thread for traceability management
+
+数字线程的概念来自F35战斗机[[58]](#58) [[59]](#59)。
+T. D. West et al [[60]](#60) considered it as “a framework for merging the conceptual models of the system with the discipline-specific engineering models of various system elements”.
+最近，研究人员试图利用语义技术增强 DT 的认知能力。下一代 DT 的范式被提议为 CT [[19]](#19)，它是一种具有增强语义能力的 DT，可以形式化模型与数据、开发过程和组织之间的相互关系。还有一些其他研究利用知识图谱用于描述语义间的拓扑关系。
+
+### Summary
+
+几个动机：
+
+- 为了形式化MBSE工具链，应开发描述MBSE工具链本身的本体模型。
+- 工业界和学术界目标不同，本体还需要支持过程管理和工具操作。
+- 使用CT能增强知识表达能力，现有方法没有在模型领域的分析。
+
+## Research design
+
+![Overview of research design.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082304.png)
+
+如图所示，第一步确定可追溯性管理场景；第二步，采用系统思维支持CT本体设计，解决工具链中的问题；第三步基于CT本体，修改当前的MBSE工具链以支持可追溯性管理场景；第四步，通过ACC系统设计案例，对原型进行评估。
+
+### Problem statement
+
+在[[20]](#20) [[51]](#51)中开发了航空发动机仿真案例。利益相关者使用 DSM 模型来形式化开发流程和系统工件。 然后，将 DSM 模型转换为一个 WPMS，以部署技术资源并在 Simulink 中为不同的利益相关者实现自动联合仿真。本研究的步骤：
+
+- 定义追溯性和追溯性管理的概念。[[19]](#19)
+- 定义场景。
+- 定义场景相关实体。
+- 定义实体之间的相互关系。
+- 使用工具链实例化。
+- 案例研究评估。
+
+### Prototype strategy for cognitive thread ontology design
+
+![Overview of the MBSE toolchain prototype.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082305.png)
+
+如图所示，（a）用Excel提取需求，用MetaGraph和KARMA体系建模，使用代码生成器将DSM模型转换为本体，基于此联合Simulink进行仿真。（b）开发OSLC适配器，通过特定的映射规则将数据转换为相应OSLC服务。（c）编译器加载DSM模型中的流程模型以生成WPMS。（d）统一身份验证系统提供数据访问控制。（e）最后，开发OSMS（Neo4j）来存储和分析WPMS中OSLC服务和开发流程之间的追溯性。
+
+### Evaluation based on case study
+
+提出了一个ACC系统设计案例，验证工具链的可行性与有效性。
+（1）工具链原型开发：定义了4个指标。
+（2）评估问题分析：提出了7个问题。
+定量方法方面，参考SPIRIT框架[[68]](#68)分析三个方面：模型互操作性、开发流程利益攸关者之间的沟通程度、追溯认知推理分析的能力。
+
+## Ontology of cognitive thread for traceability management in MBSE
+
+![CT ontology for traceability management.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082306.png)
+
+本节介绍CT本体的具体内容，对应第一个图的第二步。
+
+### Ontology formalizing models
+
+![Fig. 4. Mapping process between OSLC services and models.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082701.png)
+
+本节主要关注模型信息。在提出的 MBSE 工具链中，结构化需求文档被视为非正式模型，DSM 模型是描述性模型，Simulink 模型是分析性模型。DSM 模型是基于 GOPPRR-E 建模方法生成的。基于 OSLC 核心规范[[22]](#22)开发了需求表、DSM 模型和 Simulink 模型的 OSLC 服务，以支持数据集成和互操作。为了描述OSLC服务，使用OWL语言进行形式化[[71]](#71)。论文讲述了以上三者之间的映射方法，具体方式如图4左侧描述。
+
+### Ontology formalizing development process
+
+本节主要关注开发过程的结构信息。采用的是BPMN开发流程。
+
+### Ontology formalizing stakeholders
+
+本节主要关注的是利益攸关者的结构信息。
+
+### Ontology formalizing scenarios of traceability management
+
+在已知模型、过程和利益攸关者信息后，本节关注可追溯性管理。包括四个部分：OSLC模型间追溯管理、OSLC模型与过程模型间追溯管理、OSLC模型与利益攸关者间追溯管理、过程模型与利益攸关者间追溯管理。
+
+## Case study
+
+### Scenario definition
+
+![Fig. 5. ACC system design process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082702.png)
+
+ACC是一种基于车辆的外部行驶环境，如前方车辆的速度和距离，来适应常规控制的避碰系统。为了验证所提出的CT本体的完整性，以ACC系统设计为例对MBSE工具链原型进行了评估。案例如图5所示。
+
+### Models and data supporting ACC system design
+
+介绍了DSM的元模型组成和DSM模型在MetaGraph软件中的对应效果。建模方法用的是OOSEM[[26]](#26)。用CarSim做了一个Simulink ACC FMU模型。OSCL服务可以触发Simulink运行并获取Simulink中的数据。
+
+### OSMS supporting traceability construction and analysis
+
+![Fig. 10. OSMS supporting traceability management.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082703.png)
+
+图10展示了可追溯管理软件OSMS的架构。
+
+- 10(a)中：利益攸关者可以通过OSLC服务绑定到WPMS的工作任务来操纵设计模型。例如，WPMS中的涉众需求定义工作任务链接到在Excel中查询需求项的相关OSLC服务。在WPMS中，需求工程师操纵OSLC服务来修改Excel表格中的涉众需求，例如将最小安全驾驶距离从35米更改为40米。
+- 在图10(b)所示的服务管理模块中，所有OSLC服务都集成到OSMS中以构建可追溯性。使用递归算法来发现并遍历所有OSLC服务，直到OSLC资源不再链接到另一个OSLC服务URI。
+- 在图10(c)中，在可追溯性构建模块中建立了OSLC服务与过程模型之间的可追溯性。
+- 在图10(d)中，使用可追溯性分析模块分析OSLC服务与流程之间的可追溯性。
+- 推理结果如10(e)：
+- - 场景Pattern1对应于基于创建OSLC服务的工具名称查询单个OSLC服务的领域问题①。推理模式是具有给定工具名称Simulink的OSLC服务。推理结果显示所有的OSLC服务都具有可追溯性，并且是由Simulink创建的，例如Simulink模型中的子系统ACCV2_Motor_Left和ACCV2_PIDController。
+- - 场景Pattern2对应于基于名称查询单个OSLC服务的领域问题②。推理模式是具有给定名称或ID REQ-REA-1的OSLC服务。推理结果显示了需求表中利益相关者需求的Excel行OSLC服务。
+- - 场景模式3对应于基于相应工作任务的顺序查询任何直接相关的OSLC服务的领域问题③。推理模式由两个相关的OSLC服务和开发过程中的两个相关工作任务组成。其中一个OSLC服务有一个给定的ID UseCase_6460，它对应于在高速公路上驾驶时提供帮助的用例。推理结果表明，在此用例的基础上，设计了四个有效性度量的对象实例，如DSM模型中的Cost。
+- - 场景模式4对应于领域问题④，为案例研究中的特定模型元素或数据查询任何相关的OSLC服务。推理模式指定了一个链，其中包括两个OSLC服务作为该链的源和目标。
+- - 场景模式5对应于基于名称查询任何直接相关的OSLC服务的领域问题⑤。推理模式由两个相关的OSLC服务组成，其中一个具有需求REQ-REA-1的给定ID。推理结果表明，该需求与DSM模型中的需求块Requirement_Diagram_1bae5_object_Object_Requirement_ee86相关。需求块有一个本地标签需求和属性文本，值为在驾驶车辆时通过提供自动驾驶辅助来增强驾驶。
+
+### Unified authentication system supporting authority management
+
+做了一个用户认证系统。
+
+## Discussion and evaluation
+
+### Qualitative evaluation
+
+通过OSLC服务，WPMS支持过程和模型中任务之间的可跟踪性管理。OSMS支持模型之间的可追溯性构建、分析和可视化。统一的认证系统管理模型和涉众之间的可追溯性。通过CT本体，形式化了与MBSE工具链相关的模型、开发过程和涉众之间的拓扑关系，提高了MBSE工具链开发的效率和可追溯性管理场景下的语义互操作性。
+六个定性分析的问题：
+
+- 提高跟踪环节生成的自动化水平
+- 支持跟踪链接的存储
+- 支持可视化(表示)跟踪链接
+- 支持创建、删除、修改
+- 促进可追溯性信息的交换
+- 对获得的可追溯性信息进行分析
+
+### Quantitative evaluation
+
+以ACC系统设计为例说明模型数量。包括模型互操作性、推理分析可追溯性的能力和利益攸关者之间的交互等级。
+
+### Scalability discussion
+
+内部效度和外部效度是案例研究方法的两个重要方面[[73]](#73)。案例研究的内部有效性是指由于在可追溯性管理场景中使用所提出的工具链和CT本体而提高的效率；案例研究的外部有效性是指所提出的工具链和CT本体可以在其他可追溯性管理场景中复制的程度，代表了该案例研究的可扩展性。
+
+从工具链的角度来看，尽管航空航天领域复杂系统的设计方法、设计过程和设计目标可能与自适应巡航控制系统不同，但所使用的设计工具是相似的。在提出的工具链原型中，采用的建模工具MetaGraph可用于开发DSM模型。这些DSM模型可以用来表示SysML和其他建模语言所需的模型信息，并且可以进一步转换为不同建模工具所需的专有格式(例如Matlab中的.m脚本)。因此，我们可以推断，本文案例研究中的可追溯性管理场景可以复制到航空航天领域的其他可追溯性管理场景中。
+
+从本体设计的角度来看，CT本体的设计目的是形式化可追溯性管理场景中模型、开发过程、涉众及其相互关系的概念。该本体提供了一个独立于领域的表示，促进了可追溯性管理场景中相关概念的统一表示，从而确保设计过程中涉及的所有涉众共享对这些场景的共同理解。
+
+### Limitations
+
+四个局限性：
+
+- 未考虑工作任务动态变化对可追溯性管理场景的影响。因此，未来将开发一种动态编排方法来支持部署在WPMS中的工作任务的重新配置。
+- 设计的CT本体受限于本研究开发的MBSE工具链。不包括可追溯性管理的其他场景，例如集成CAD模型信息或物联网(IoT)数据的场景。
+- 本研究通过一个ACC系统设计案例验证了CT本体的完备性。CT本体功能的形式化验证将在未来使用OWL进行开发。
+- 还有其他可行的技术解决方案可以用于实现CT本体。由于KARMA语言与特定于领域的建模语言具有很强的语义兼容性，一个有希望的途径可能涉及探索特定于领域的建模语言(如SysML、UPDM或eastern-adl)与CT本体的潜在集成。
+
+## Conclusions
+
+> For facilitating the industrial information integration process to support IIIE, the traceability management in MBSE implementation should be first considered. In this paper, we propose a CT ontology for traceability management in an MBSE toolchain that is developed based on an MBSE toolchain prototype and formalizes models, stakeholders, and development processes, as well as traceability management scenarios. Through a case study of an ACC system, the completeness of the CT ontology is evaluated by qualitative and quantitative analyses of the proposed MBSE toolchain. The results demonstrate that the CT ontology helps stakeholders manage and analyze traceability between heterogeneous models in the development process. To improve the efficiency of information integration, more discipline information can be considered and integrated into the proposed CT ontology in the future. Besides, we intend to extend the ontology of the CT to support other complex scenarios during MBSE implementation, such as automatic change management and consistency management for MBSE models.
+
+`个人总结`
+
+本篇文章提出了一套工具链以实现模型的可追溯性管理（增删改查），模型是MetaGraph搭建的DSM，仿真用的是Simulink，两者独立创建并通过算法实现关联，通过一套图数据库进行存储管理。通过图4的部分能了解KARMA的工作机制。对OSLC的工作机理不熟悉。DSM和Simulink中间用的FMU链接，FMU用CarSim生成，其设计和DSM没有之间关联。追溯性识别用的是Pattern匹配。写作方面比较规范，可以借鉴。工具链不开源。
+
+`参考文献`
+
+<a id="10">[10]</a>V. Singh, K.E. Willcox, Engineering design with digital thread, AIAA J. 56 (11) (2018) 4515–4528.
+<a id="19">[19]</a>S. Wu, J. Lu, Z. Hu, P. Yang, G. Wang, D. Kiritsis, Cognitive thread supports system of systems for complex system development, in: 2021 16th International Conference of System of Systems Engineering, SoSE, IEEE, 2021, pp. 82–87.
+<a id="20">[20]</a>J. Lu, J. Wang, D. Chen, J. Wang, M. Törngren, A service-oriented tool-chain for model-based systems engineering of aero-engines, IEEE Access 6 (2018) 50443–50458
+<a id="30">[30]</a>IEEE, IEEE standard glossary of software engineering terminology, IEEE Std 610.12-1990, 1990, pp. 1–84, http://dx.doi.org/10.1109/IEEESTD.1990.101064.
+<a id="32">[32]</a>I.C. on Systems Engineering (Ed.), INCOSE Systems Engineering Handbook, vol.2.0, 2000.
+<a id="41">[41]</a>J. Guo, G. Wang, J. Lu, J. Ma, M. Törngren, General modeling language supporting model transformations of MBSE (part 2), in: INCOSE International Symposium, vol. 30, (1) Wiley Online Library, 2020, pp. 1460–1473.
+<a id="42">[42]</a>M. Kharrat, O. Penas, R. Plateaux, J.-Y. Choley, H. Trabelsi, J. Louati, M. Haddar, Integration of electromagnetic constraints as of the conceptual design through an MBSE approach, IEEE Syst. J. 15 (1) (2020) 747–758.
+<a id="58">[58]</a>D.A. Kinard, F-35 digital thread and advanced manufacturing, in: 2018 Aviat. Technol. Integr. Oper. Conf, From Concept to Cockpit, The F-35 Lightning II, 2018, pp. 1–19, http://dx.doi.org/10.2514/6.2018-3369.
+<a id="59">[59]</a>M.A. Bone, M.R. Blackburn, D.H. Rhodes, D.N. Cohen, J.A. Guerrero, Transforming systems engineering through digital engineering, J. Def. Model. Simul. 16 (4) (2019) 339–355.
+<a id="60">[60]</a>T.D. West, M. Blackburn, Is digital thread/digital twin affordable? A systemic assessment of the cost of DoD’s latest manhattan project, Procedia Comput. Sci. 114 (2017) 47–56.
+<a id="51">[51]</a>J. Lu, G. Wang, M. Törngren, Design ontology in a case study for cosimulation in a model-based systems engineering tool-chain, IEEE Syst. J. 14 (1) (2019) 1297–1308
+<a id="68">[68]</a>J. Lu, D. Chen, J. Wang, M. Torngren, Towards a service-oriented framework for MBSE tool-chain development, in: 2018 13th Annual Conference on System of Systems Engineering, SoSE, IEEE, 2018, pp. 568–575, http://dx.doi.org/10.1109/SYSOSE.2018.8428746.
+<a id="22">[22]</a>D. Johnson, S. Speicher, Open services for lifecycle collaboration-core specification version 2.0, 2013, http://open-services.net/.
+<a id="71">[71]</a>D.L. McGuinness, F.v. Harmelen, OWL web ontology language overview, http: //www.w3.org/TR/owl-features/.
+<a id="26">[26]</a>H. Lykins, S. Friedenthal, A. Meilich, 4.4.4 Adapting UML for an object oriented systems engineering method (OOSEM), in: INCOSE International Symposium, vol.10, (1) Wiley Online Library, 2000, pp. 490–497.
+<a id="73">[73]</a>N. Salkind, Internal and external validity, SAGE Dict. Quant. Manag. Res. (2011) 148–149.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>JII</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Traceability management</tag>
+        <tag>Cognitive thread</tag>
+        <tag>Digital thread</tag>
+        <tag>OSLC</tag>
+        <tag>MetaGraph</tag>
+        <tag>KARMA</tag>
+        <tag>Simulink</tag>
       </tags>
   </entry>
   <entry>
@@ -1348,6 +1616,30 @@ RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这�
       </tags>
   </entry>
   <entry>
+    <title>笔记：Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt</title>
+    <url>/2025/01/14/013/</url>
+    <content><![CDATA[
+[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://ieeexplore.ieee.org/document/9592422)
+**2021 MODELS Best Paper Award, Practice & Innovation Track**
+`Abstraction`
+
+> Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
+
+本文介绍了一种名为CaMCOA Studio的软件工具，是由约克大学为劳斯莱斯开发的基于模型的引擎控制系统模型管理平台。整个论文只有四张图，声称用户可以使用但是没有开源代码，所使用的工具链全部都是开源工具（主要是Epsilon和Sirius）。论文分别介绍了几个问题：metamodel创建问题、Sirius的功能问题、模型管理中的EGL、ETL、EVL、ECL使用等，实现了一个Simulink和EMF的模型转换，（原文4.B节）其中，EMF2Simulink使用的是ETL+Simulink driver的组合，Simulink2EMF使用的是CaMCOA先转XML，后转EMF。后文还讨论了多人协同开发等一系列工程问题。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2021</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Sirius</tag>
+        <tag>Epsilon</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Failure Mode and Effects Analysis (FMEA Handbook)</title>
     <url>/2024/09/02/012/</url>
     <content><![CDATA[
@@ -1433,295 +1725,27 @@ FMEA的三种使用场景：（1）新设计、新技术或新过程；（2）�
       </tags>
   </entry>
   <entry>
-    <title>笔记：Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt</title>
-    <url>/2025/01/14/013/</url>
+    <title>笔记：Advancing Domain-Specific High-Integrity Model-Based Tools:Insights and Future Pathways</title>
+    <url>/2025/02/12/014/</url>
     <content><![CDATA[
-[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://ieeexplore.ieee.org/document/9592422)
-**2021 MODELS Best Paper Award, Practice & Innovation Track**
+[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://dl.acm.org/doi/abs/10.1145/3640310.3674094)
+
 `Abstraction`
 
 > Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
 
-本文介绍了一种名为CaMCOA Studio的软件工具，是由约克大学为劳斯莱斯开发的基于模型的引擎控制系统模型管理平台。整个论文只有四张图，声称用户可以使用但是没有开源代码，所使用的工具链全部都是开源工具（主要是Epsilon和Sirius）。论文分别介绍了几个问题：metamodel创建问题、Sirius的功能问题、模型管理中的EGL、ETL、EVL、ECL使用等，实现了一个Simulink和EMF的模型转换，（原文4.B节）其中，EMF2Simulink使用的是ETL+Simulink driver的组合，Simulink2EMF使用的是CaMCOA先转XML，后转EMF。后文还讨论了多人协同开发等一系列工程问题。
+本文是接着21年论文对CaMCOA Studio介绍的延续，介绍了这种联合Simulink和Sirius的MBSE工具，这篇展示了更多信息。第二节指出一个模型要在不同的抽象层级中表示，也就是NDSM、PDDM、EAM等，他们要在同一个平台上应对这些不同信息层级的模型，并处理追溯性、兼容性等问题。第三节介绍了一些挑战，有软件性能、模型间索引、版本变更带来的模型迁移。第四节汇总了一些代码开发的心得和经验。第五节结合了将软件迁移到Web端的可能性，如使用Sirius Web或GLSP。第六节提出了在云端创建的设想。总体上是对CaMCOA项目的更详细更全面的汇总报告和工具介绍。
 ]]></content>
       <categories>
         <category>Academic Papers</category>
         <category>Conference</category>
         <category>MODELS</category>
-        <category>2021</category>
+        <category>2024</category>
       </categories>
       <tags>
         <tag>MBSE</tag>
         <tag>Sirius</tag>
         <tag>Epsilon</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</title>
-    <url>/2024/08/23/003/</url>
-    <content><![CDATA[
-[Testing, Validation, and Verification of Robotic and Autonomous Systems: A Systematic Review](https://dl.acm.org/doi/full/10.1145/3542945)
-
-*作者是KCL的Hugo Araujo。*
-
-`Abstraction`
-> We perform a systematic literature review on testing, validation, and verification of robotic and autonomous systems (RAS). The scope of this review covers peer-reviewed research papers proposing, improving, or evaluating testing techniques, processes, or tools that address the system-level qualities of RAS.
-Our survey is performed based on a rigorous methodology structured in three phases. First, we made use of a set of 26 seed papers (selected by domain experts) and the SERP-TEST taxonomy to design our search query and (domain-specific) taxonomy. Second, we conducted a search in three academic search engines and applied our inclusion and exclusion criteria to the results. Respectively, we made use of related work and domain specialists (50 academics and 15 industry experts) to validate and refine the search query. As a result, we encountered 10,735 studies, out of which 195 were included, reviewed, and coded.
-> Our objective is to answer four research questions, pertaining to (1) the type of models, (2) measures for system performance and testing adequacy, (3) tools and their availability, and (4) evidence of applicability, particularly in industrial contexts. We analyse the results of our coding to identify strengths and gaps in the domain and present recommendations to researchers and practitioners.
-> Our findings show that variants of temporal logics are most widely used for modelling requirements and properties, while variants of state-machines and transition systems are used widely for modelling system behaviour. Other common models concern epistemic logics for specifying requirements and belief-desireintention models for specifying system behaviour. Apart from time and epistemics, other aspects captured in models concern probabilities (e.g., for modelling uncertainty) and continuous trajectories (e.g., for modelling vehicle dynamics and kinematics).
-> Many papers lack any rigorous measure of efficiency, effectiveness, or adequacy for their proposed techniques, processes, or tools. Among those that provide a measure of efficiency, effectiveness, or adequacy, the majority use domain-agnostic generic measures such as number of failures, size of state-space, or verification time were most used. There is a trend in addressing the research gap in this respect by developing domainspecific notions of performance and adequacy. Defining widely accepted rigorous measures of performance and adequacy for each domain is an identified research gap.
-> In terms of tools, the most widely used tools are well-established model-checkers such as Prism and Uppaal, as well as simulation tools such as Gazebo; Matlab/Simulink is another widely used toolset in this domain.
-> Overall, there is very limited evidence of industrial applicability in the papers published in this domain.
-> There is even a gap considering consolidated benchmarks for various types of autonomous systems.
-
-## Introduction
-
-### Motivation-1
-
-Robotic and Autonomous Systems (RAS)机器人和自主系统。本论文涵盖了RAS的广度和系统性二次研究的调研，并对结果进行分析。
-
-### Scope and Audience
-
-受众：研究者和从业者。所调研的RAS研究的范围。
-
-### Research Questions
-
-几个关键名词的含义，包括types of models, efficiency, effectiveness, coverage measures, (public available) tools, evidence of applicability。
-
-### Structure of the Article
-
-本文的其余部分结构如下：在第 2 部分中，我们回顾了相关工作，重点关注相关主题的二手研究（文献调查和评论）。在第 3 部分中，我们定义了本文的范围并解释了此结构化综述的背景。在那里，我们报告了我们开始研究的核心结果集，作为我们搜索的种子，以形成研究。在第 4 部分中，我们回顾了我们用于系统评价的方法；这包括我们的搜索和选择策略的描述、用于编码结果的分类法的开发、我们的数据提取和综合方法。在本节中，我们还反思了对我们研究的威胁。在第 5 部分中，我们展示了我们的编码结果并对其进行分析以回答我们的研究问题。在第 6 部分中，我们反思了我们的分析并为目标受众（即研究人员和从业人员）提供了具体的建议。在第 7 部分中，我们总结了本文并提出了一些未来研究的方向。
-
-## Related Work
-
-[[55]](#55)这项研究的目标是为机器人软件开发人员提供提示，帮助他们根据感兴趣的属性和软件系统选择合适的分析方法。
-
-[[99]](#99) [[181]](#181)概述了自主系统测试和验证面临的挑战以及可用的技术和结果。
-
-[[118]](#118)聚焦了自动驾驶汽车环境中的问题。
-
-[[79]](#79)概述了V&V领域的研究，主要有关机器学习和自动驾驶场景。
-
-[[114]](#114)自动驾驶与软件的挑战，通过采访从业者的角度进行的。
-
-[[180]](#180)汽车行业中使用的神经网络功能安全性评估的三个具体问题。
-
-[[108]](#108)对公开可用的驾驶数据集以及自动驾驶算法的虚拟测试进行了调查。
-
-[[20]](#20)作者提到了自动驾驶功能的复杂性、场景和参数的变化、场景选择和测试生成等挑战。
-
-[[138]](#138)对用于自主机器人系统的形式化规范和验证方法及工具进行了调查。除了此类系统的内部结构之外，还提出了许多正式建模和验证机器人系统运行环境的挑战。
-
-[[89]](#89)概述了集成形式化方法在机器人和自主系统中的优势、劣势、机遇和威胁。
-
-[[207]](#207)对自动驾驶汽车基于覆盖范围的验证、确认和安全保障技术进行了系统的文献综述。
-
-[[178]](#178)对自动驾驶汽车的软件验证和确认进行了广泛而系统的文献综述。
-
-## Background and Rationale
-
-### Motivation-3
-
-结合相关工作，提出了二次研究的几个问题：（1）对现有的机器人和自主系统验证和确认结果进行结构化回顾；（2）讨论了以下四个具体问题：(a) the types of models, (b) measures of efficiency and effectiveness, (c) available tools, and (d) evidence of applicability to large-scale and industrial systems。
-
-### Robotic and Autonomous System
-
-RAS定义：
-An autonomous system is an intelligent system that is designed to deal with the physical environment on its own and work for extended periods of time without explicit human intervention. They are built to analyse, learn from, adapt to, and act on the surrounding environment.
-
-### Testing and the SERP-Test Taxonomy
-
-![Illustration of taxonomy.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082301.png)
-
-本文的论文分类方法基于SERP-Test分类法[[68]](#68)，测试分类四个方面：intervention, effect, scope, and context。
-
-- Intervention pertains to the test techniques, their adaptation, and adoption in different context.
-- Effect facet is used to identify the improvement or adaptation in a given practise as well as any insights gained through assessment.
-- The scope specified whether the effect has been materialised in planning, design, execution, or analysis of tests.
-- Context, as its name suggests, specifies the environment where the intervention takes place, in terms of people and their knowledge, the system under test, and the required models and other types of information.
-
-## Methodology
-
-### Seed Papers
-
-- 收集初始搜索查询的关键字
-- 完善纳入和排出标准
-- 评估和调整SERP-Test分类法
-
-### Selection Strategy
-
-#### Inclusion Criteria
-
-纳入标准的规则。
-
-#### Exclusion Criteria
-
-排出标准的规则。
-
-### Taxonomy
-
-介绍基于SERP-Test分类法的具体的分类原则。
-
-### Search Strategy
-
-#### Initial Query
-
-关键词搜索。
-
-#### Validated Query
-
-对搜索完的结果进行验证。
-
-### Overview of the Results
-
-![Relevant and included papers by year.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082302.png)
-
-最后确定了195篇论文。
-
-## Results
-
-### RQ1: Models
-
-关注用于描述RAS的模型和形式类型及其在测试干预中的属性。
-
-#### Modelling Properties
-
-表一关注表示属性的模型。不到三分之一使用模型或逻辑来描述系统的属性，这类算形式模型。所有属性语言都是领域无关的。
-
-#### Modelling System Behaviour or Structure
-
-表二关注描述RAS行为或结构的模型。三分之一采用定性模型。
-
-### RQ2: Effect
-
-评估各种测试干预措施的efficiency (testing time or resources), effectiveness (testing quality), and coverage (testing adequacy)的指标。
-
-#### Measuresfor Interventions
-
-大多数其他概念仅用于单一干预措施。
-
-#### Measures for Subject Systems
-
-### RQ3: Tooling
-
-#### Context Tools
-
-模拟工具是最常用的工具之一；它们的实用性来自于一种成本较低的可视化方法，可以直观地显示设计和流程是否令人满意。中间件 ROS 与 3D 模拟器 Gazebo 相结合，形成了最流行的机器人模拟工具。此外，Simulink 是 MATLAB 的图形扩展，是动态系统建模和仿真最常用的工具。此外，形式化验证工具也得到了广泛应用，其中最突出的是模型检查器。统计模型检查器 Prism 提供对马尔可夫链或概率自动机中随机系统的建模和分析。至于定性模型，UPPAAL 为定时自动机模型提供了形式化验证，但可以扩展以使用数据类型。
-
-#### Effect Tools
-
-关注了哪些工具是否开源的问题和使用领域。
-
-### RQ4: Applicability
-
-我们的观察发现，工业界对干预措施的评估存在很大差距；只有 20 项干预措施在工业背景下进行了评估。可以理解的是，大多数案例研究都是在学术环境中进行的。其中，约有一半使用了小规模模型，这些模型通常不能代表真实系统。另一半将他们提出的干预措施应用于大规模主题和数据集，包括物理系统。
-
-## Suggestions and Recommendations to Study Audience
-
-在本节中，我们将分析前几节的结果，以确定我们的研究问题和两个目标受众群体（研究人员和从业者）的相对优势和劣势。我们将从我们的分析中为研究人员和从业者提出建议，以此结束本节。
-
-### Analysis
-
-#### Domain
-
-针对RAS特定子领域的测试、验证和确认。
-
-……跳过对表8的介绍……
-
-- 在所有子领域中，大多数模型都是正式的和定量的，并且在使用定性和非正式模型进行测试方面可以发现很大的差距（最明显的是在飞行器和移动机器人子领域）。
-- 在所有研究的子领域中，在使用有效性、效率和覆盖率的精确概念方面存在明显差距。其中，一些通用的有效性和效率概念（如测试时间和状态空间大小）以及覆盖率概念（如节点和转换覆盖率）是量化效果的最常用度量。常见的、更复杂的有效性、效率和充分性度量，如平均故障检测百分比 (APFD) ，似乎尚未在 RAS 领域被采用或扩展到 RAS 领域。我们确实看到最近出现了一些针对特定领域的有效性和覆盖率概念的趋势；几乎所有这些概念都已应用于自动驾驶汽车领域，但其中大多数也可以调整以适用于其他领域。
-- 在测试 RAS 的工具支持方面存在相当大的差距。开源工具很少，主要是在自动驾驶汽车和飞行器子域中。没有开源工具支持移动机器人系统的特定领域方面。专有工具也存在同样的模式，但差距更大。在所审查的文献中，开发或使用的公共（但不是开源）工具非常少。
-- 在使用工业案例研究评估 RAS 测试干预措施方面，所有子领域也存在非常严重的差距。最值得注意的例外是少数案例研究，主要是在自动驾驶汽车和飞行器子领域，是在工业环境中进行的。许多干预措施使用小型案例研究，大多没有任何特定的应用子领域（例如，使用移动机器人的通用模型）；在这些情况下，模型不包含足够的细节来成为一般基准的一部分。还有一些基于无人机和无人驾驶飞机的小型案例研究进行评估。
-
-*Analysis for Researchers*
-**Gaps:** 在我们对所研究子域的分析中，我们发现在处理海洋和海底 RAS 方面存在明显差距。此外，在处理飞行器和移动机器人方面也存在相对薄弱之处。此外，在处理非正式和定性模型方面，各个子域之间也存在相对薄弱之处。开发一套通用的有效性和效率概念来比较不同的干预措施是一项值得研究的挑战，文献中在针对特定领域量身定制这些概念方面存在差距。同样的观察结果也适用于测试充分性的概念。工具，尤其是针对特定子域量身定制的工具，是所有干预措施的普遍弱点。此外，在工业环境中应用干预措施是一项突出的挑战。
-**Strengths:** 道路车辆子域在所有研究问题中都具有相当大的优势。此外，针对通用 RAS 系统开发的干预措施远多于针对子域的特定关注点的干预措施。形式化和定量模型是迄今为止最强大的干预措施，无论是在技术研究数量还是在执行的评估方面，即使在工业领域也是如此。
-
-*Analysis for Practitioners*
-**Gaps:** **由于大多数提出的干预措施尚未在工业背景下进行评估，因此评估它们的适用性（包括研究学习曲线和培训等因素）仍然是一个巨大的差距。**
-**Strengths:** 由于形式化和定量模型具有优势，开发此类模型提供了一个起点，可以从已开发和研究的干预措施中受益。道路车辆领域肯定有更成熟的实践可供借鉴，但我们可以设想，通过调整特定领域的方面，其他子领域也可能受益于这些优势。
-
-#### Cooperation and Connectivity
-
-验证方法对于自主系统的广泛部署和公众接受至关重要。由于通信协议、控制软件（例如，用于合作规则）和系统动态之间的密切交互，对此类方法的需求在网络服务支持的功能中得到了加强。现有的（手动）分析技术通常无法扩展到这些功能的巨大设计空间和输入空间，因此，在这项工作中，我们调查了文献中发现的自动验证技术。
-
-总体而言，这是一个 RAS 测试研究不足的领域，文献中很少关注合作和连接场景的测试。对于文献中报道的极少数干预措施，几乎没有任何效率或有效性的证据。 少数报告的评估仅在小规模案例研究中进行，并且没有附带开源工具。
-
-……跳过对表9的介绍……
-
-- 关于用于分析 RAS 中合作场景的模型，我们注意到形式概率模型（基于时间逻辑、过程代数和时间自动机的变体）是最常用的模型类型。这些模型通常用于检查合作场景的抽象模型。非正式模型使用较少，仅作为模拟工具的输入。在这种情况下，定性和非正式模型使用得很少。
-- 大多数有效性和效率概念都是通用概念，例如技术的状态空间大小、验证时间和测试覆盖率以及被测系统的死锁自由度和时间逻辑公式满足的概率。使用领域特定效率和有效性概念的唯一例外涉及群体的聚集时间和人机交互的有效性。
-- 显然缺乏用于测试 RAS 中的合作和群体场景的工具。唯一的例外是公共模型检查工具和用于联网无人机的模拟工具。
-- 很少有研究评估他们在工业规模案例研究和基准上的干预措施。
-
-*Analysis for Researchers*
-**Gaps:** 对纳入的研究进行分析表明，在 RAS 的合作场景中，通信网络和协议的作用及其对 RAS 系统的功能、安全性和可靠性的影响研究严重不足。将通信中可用的知识体系与 RAS 的测试和验证相结合显然是未来研究的领域。现有的研究非常少，没有提供与合作方面和新兴合作行为相关的领域特定效率和有效性衡量标准。此外，缺乏足够的证据表明这些策略已应用于工业规模的案例研究和基准。
-**Strengths:** 抽象理论在群体参数化模型检验方面确实有优势。除此之外，没有其他集中的优势领域。
-
-*Analysis for Practitioners*
-**Gaps:** **如上所述，我们认为，协作机器人和群体机器人的研究成果还不够成熟，无法应用于实践。即使是现有技术也尚未应用于许多工业案例研究，目前也没有稳定的工具集。与研究人员合作定义有意义的效率和有效性概念，并提供基准和工业案例研究，可能会带来有影响力的未来研究议程。**
-**Strengths:** 在测试合作和群体 RAS 场景时没有实际的优势领域。
-
-#### Testing Strategy
-
-到目前为止，最广泛使用的策略是形式验证，其次是模拟和运行时监控。基于模型的测试是研究最少的策略。
-
-……跳过对表10的介绍……
-
-- 到目前为止，定量测试技术是研究最广泛的策略（这也是领域和连接方面的常见观察结果）。
-- 在用于评估干预措施的措施中，效率是最常用的，有效性紧随其后。然而，很少有干预措施使用覆盖率的概念进行评估。值得注意的是，对于运行时监控，只有两篇出版物采用了效率指标。
-- 基于模型的测试和运行时监控工具严重缺乏。对于模拟和形式验证，在工具支持方面似乎有相当大的优势。
-- 大约54%的干预措施使用小规模案例研究进行评估，而只有10%的干预措施在工业背景下评估其策略，这表明存在明显差距。
-
-### For Researchers
-
-如前几节所述，许多效率和有效性措施都非常通用，而且在适合 RAS 子域的领域特定措施方面也存在相对差距。缺乏领域特定建模语言和运行时验证方法数量有限表明 RAS 测试策略还有改进的空间。
-
-另一个相当大的差距是使用定量规范语言来指定系统所需的属性；由于 RAS 固有的异质性，我们需要有属性语言来涵盖离散和连续动态以及随机和认知方面的组合等方面，这些方面可用于对与环境和用户有关的行为方面进行建模。此外，一些研究使用了 Gazebo 和 USARSim 等模拟工具的非正式模拟模型。一种合适的中间立场可能是半正式和特定领域的模型，例如在 Matlab/Simulink 中构建的模型。最后，缺乏公共工具是文献中观察到的一大缺陷。很少有技术附带工具，而且用于测试 RAS 的公共工具也很少。
-
-### For Practitioners
-
-最大的差距是缺乏对现有干预措施的工业评估。在工业背景下和工业复杂系统中应用的干预措施非常少。不幸的是，干预措施的数量太少，无法得出任何有意义的趋势，也无法表明在工业环境中适用的强有力证据。在提出的干预措施中，大多数要么涉及基于模拟的测试，要么将其验证结果与某些模拟工具（主要基于 ROS-Gazebo 集成）联系起来。
-基于搜索的测试和交互测试是两种在工业环境中使用的值得注意的技术。在工业环境中采用的模型中，可以提到状态机和故障树的变体。在这方面的一项值得注意的研究是在工业环境中比较监督控制、演绎和归纳（模型检查）验证技术。人源和信息源是测试干预的另一个方面，这一方面研究严重不足。我们注意到，最近有一种趋势，即将用户研究（就人机交互和人机交互而言）与传统测试、验证和确认技术相结合。此外，在定义和评估测试流程方面也存在差距，特别是在工业环境中。显然，缺乏行业和领域专家对模型和技术的投入，导致大多数干预措施都使用通用且相对简单的建模技术和属性语言。与工业合作伙伴共同生产可以丰富这些方面，并产生能够处理工业 RAS 的异质性和复杂性的模型。
-
-## Conclusions
-
-关注的四个问题：
-
-- (1) What are the types of models used for testing RAS?用于测试 RAS 的模型类型有哪些？**答：** 有大量正式和非正式模型用于测试 RAS。特别是，有大量关于使用通用属性规范语言（如线性时间逻辑）和定性建模语言（如状态机变体、UML 图、Petri 网和过程代数）的文献。定量建模语言存在明显差距，无法捕捉 RAS 的复杂性和异构性。还缺乏可以捕捉 RAS 各个子域领域知识的领域特定语言。
-- (2) Which efficiency and effectiveness measures were introduced or used to evaluate RAS testing interventions?引入或使用了哪些效率和有效性措施来评估 RAS 测试干预措施？**答：** 我们观察到，在衡量测试干预措施的有效性和效率以及充分性的严格且被广泛接受的指标方面存在差距。与前面的项目类似，文献中使用的那些措施非常通用，与 RAS 的特定领域方面无关。因此，在定义和评估 RAS 测试干预措施的效率、有效性和充分性的严格（领域特定）措施方面存在差距和研究机会。
-- (3) What are the interventions supported by (publicly available) tools in this domain?该领域（公开可用的）工具支持哪些干预措施？**答：** 有相当多的干预措施依赖公共工具来实施或评估其干预措施。然而，很少有研究将他们提出/评估的干预措施以公开可用的工具形式提供给公众使用。因此，在提供数据集和公共工具以进一步发展该领域方面存在相当大的差距。
-- (4) Which interventions have evidence of applicability to large-scale and industrial systems?哪些干预措施有证据表明适用于大规模和工业系统？**答：** 在工业环境中评估的测试干预措施屈指可数。还有一些其他干预措施使用了一些真实的机器人或自主系统，但在学术环境中。这表明，未来学术界和工业界在 RAS 测试干预措施的工业评估中合作的重要性。
-
-`个人总结`
-对19年以来的RAS领域论文有比较好的分类，讨论了研究内容、技术手段、领域开展情况等问题，由于RAS在工业中应用较少，结论是比较悲观的。对于使用工具的调研比较有参考意义。
-
-`参考文献`
-<a id="55">[55]</a>A. Cortesi, P. Ferrara, and N. Chaki. 2013. Static analysis techniques for robotics software verification. In IEEE 44th International Symposium on Robotics. IEEE, 1–6.
-<a id="99">[99]</a>Philipp Helle, Wladimir Schamai, and Carsten Strobel. 2016. Testing of autonomous systems—Challenges and current state-of-the-art. INCOSE Int. Sympos. 26, 1 (2016), 571–584. DOI:https://doi.org/10.1002/j.2334-5837.2016.00179.x
-<a id="118">[118]</a>Philip Koopman and Michael Wagner. 2016. Challenges in autonomous vehicle testing and validation. SAE Int. J.Transport. Saf. 4 (04 2016), 15–24. DOI:https://doi.org/10.4271/2016-01-0128
-<a id="79">[79]</a>Shenjian Gao and Yanwen Tan. 2017. Paving the Way for Self-driving Cars - Software Testing for Safety-critical Systems Based on Machine Learning: A Systematic Mapping Study and a Survey. Blekinge Tekniska Högsola.
-<a id="114">[114]</a>A. Knauss, J. Schroder, C. Berger, and H. Eriksson. 2017. Software-related challenges of testing automated vehicles. In IEEE/ACM 39th International Conference on Software Engineering Companion (ICSE-C). IEEE, 328–330.
-<a id="180">[180]</a>Q. Rao and J. Frtunikj. 2018. Deep learning for self-driving cars: Chances and challenges. In IEEE/ACM 1st International Workshop on Software Engineering for AI in Autonomous Systems (SEFAIAS). IEEE, 35–38.
-<a id="108">[108]</a>Y. Kang, H. Yin, and C. Berger. 2019. Test your self-driving algorithm: An overview of publicly available driving datasets and virtual testing environments. IEEE Trans. Intell. Vehic. 4, 2 (2019), 171–185.
-<a id="20">[20]</a> Halil Beglerovic, Steffen Metzner, and Martin Horn. 2018. Challenges for the Validation and Testing of Automated Driving Functions. (Jan. 2018). DOI:https://doi.org/10.1007/978-3-319-66972-4_15
-<a id="138">[138]</a>Matt Luckcuck, Marie Farrell, Louise A. Dennis, Clare Dixon, and Michael Fisher. 2019. Formal specification and verification of autonomous robotic systems: A survey. ACM Comput. Surv. 52, 5 (2019), 100:1–100:41. DOI:https:// doi.org/10.1145/3342355
-<a id="89">[89]</a>Mario Gleirscher, Simon Foster, and Jim Woodcock. 2020. New opportunities for integrated formal methods. ACM Comput. Surv. 52, 6 (2020), 117:1–117:36. DOI:https://doi.org/10.1145/3357231
-<a id="207">[207]</a>Zaid Tahir and Rob Alexander. 2020. Coverage based testing for V&V and safety assurance of self-driving autonomous vehicles: A systematic literature review. In IEEE International Conference on Artificial Intelligence Testing (AITest). IEEE, 23–30. DOI:https://doi.org/10.1109/AITEST49225.2020.00011
-<a id="178">[178]</a>Nijat Rajabli, Francesco Flammini, Roberto Nardone, and Valeria Vittorini. 2021. Software verification and validation of safe autonomous cars: A systematic literature review. IEEE Access 9 (2021), 4797–4819. DOI:https://doi.org/10.1109/ ACCESS.2020.3048047
-<a id="68">[68]</a>Emelie Engström, Kai Petersen, Nauman bin Ali, and Elizabeth Bjarnason. 2017. SERP-test: A taxonomy for supporting industry–academia communication. Softw. Qual. J. 25 (2017), 1269–1305.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TOSEM</category>
-        <category>2023</category>
-      </categories>
-      <tags>
-        <tag>Validation &amp; Verification</tag>
-        <tag>Review</tag>
-        <tag>Robotics</tag>
-        <tag>RAS</tag>
       </tags>
   </entry>
 </search>
