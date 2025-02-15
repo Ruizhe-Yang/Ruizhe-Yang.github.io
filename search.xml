@@ -1,274 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</title>
-    <url>/2024/08/23/003/</url>
-    <content><![CDATA[
-[Testing, Validation, and Verification of Robotic and Autonomous Systems: A Systematic Review](https://dl.acm.org/doi/full/10.1145/3542945)
-
-*作者是KCL的Hugo Araujo。*
-
-`Abstraction`
-> We perform a systematic literature review on testing, validation, and verification of robotic and autonomous systems (RAS). The scope of this review covers peer-reviewed research papers proposing, improving, or evaluating testing techniques, processes, or tools that address the system-level qualities of RAS.
-Our survey is performed based on a rigorous methodology structured in three phases. First, we made use of a set of 26 seed papers (selected by domain experts) and the SERP-TEST taxonomy to design our search query and (domain-specific) taxonomy. Second, we conducted a search in three academic search engines and applied our inclusion and exclusion criteria to the results. Respectively, we made use of related work and domain specialists (50 academics and 15 industry experts) to validate and refine the search query. As a result, we encountered 10,735 studies, out of which 195 were included, reviewed, and coded.
-> Our objective is to answer four research questions, pertaining to (1) the type of models, (2) measures for system performance and testing adequacy, (3) tools and their availability, and (4) evidence of applicability, particularly in industrial contexts. We analyse the results of our coding to identify strengths and gaps in the domain and present recommendations to researchers and practitioners.
-> Our findings show that variants of temporal logics are most widely used for modelling requirements and properties, while variants of state-machines and transition systems are used widely for modelling system behaviour. Other common models concern epistemic logics for specifying requirements and belief-desireintention models for specifying system behaviour. Apart from time and epistemics, other aspects captured in models concern probabilities (e.g., for modelling uncertainty) and continuous trajectories (e.g., for modelling vehicle dynamics and kinematics).
-> Many papers lack any rigorous measure of efficiency, effectiveness, or adequacy for their proposed techniques, processes, or tools. Among those that provide a measure of efficiency, effectiveness, or adequacy, the majority use domain-agnostic generic measures such as number of failures, size of state-space, or verification time were most used. There is a trend in addressing the research gap in this respect by developing domainspecific notions of performance and adequacy. Defining widely accepted rigorous measures of performance and adequacy for each domain is an identified research gap.
-> In terms of tools, the most widely used tools are well-established model-checkers such as Prism and Uppaal, as well as simulation tools such as Gazebo; Matlab/Simulink is another widely used toolset in this domain.
-> Overall, there is very limited evidence of industrial applicability in the papers published in this domain.
-> There is even a gap considering consolidated benchmarks for various types of autonomous systems.
-
-## Introduction
-
-### Motivation-1
-
-Robotic and Autonomous Systems (RAS)机器人和自主系统。本论文涵盖了RAS的广度和系统性二次研究的调研，并对结果进行分析。
-
-### Scope and Audience
-
-受众：研究者和从业者。所调研的RAS研究的范围。
-
-### Research Questions
-
-几个关键名词的含义，包括types of models, efficiency, effectiveness, coverage measures, (public available) tools, evidence of applicability。
-
-### Structure of the Article
-
-本文的其余部分结构如下：在第 2 部分中，我们回顾了相关工作，重点关注相关主题的二手研究（文献调查和评论）。在第 3 部分中，我们定义了本文的范围并解释了此结构化综述的背景。在那里，我们报告了我们开始研究的核心结果集，作为我们搜索的种子，以形成研究。在第 4 部分中，我们回顾了我们用于系统评价的方法；这包括我们的搜索和选择策略的描述、用于编码结果的分类法的开发、我们的数据提取和综合方法。在本节中，我们还反思了对我们研究的威胁。在第 5 部分中，我们展示了我们的编码结果并对其进行分析以回答我们的研究问题。在第 6 部分中，我们反思了我们的分析并为目标受众（即研究人员和从业人员）提供了具体的建议。在第 7 部分中，我们总结了本文并提出了一些未来研究的方向。
-
-## Related Work
-
-[[55]](#55)这项研究的目标是为机器人软件开发人员提供提示，帮助他们根据感兴趣的属性和软件系统选择合适的分析方法。
-
-[[99]](#99) [[181]](#181)概述了自主系统测试和验证面临的挑战以及可用的技术和结果。
-
-[[118]](#118)聚焦了自动驾驶汽车环境中的问题。
-
-[[79]](#79)概述了V&V领域的研究，主要有关机器学习和自动驾驶场景。
-
-[[114]](#114)自动驾驶与软件的挑战，通过采访从业者的角度进行的。
-
-[[180]](#180)汽车行业中使用的神经网络功能安全性评估的三个具体问题。
-
-[[108]](#108)对公开可用的驾驶数据集以及自动驾驶算法的虚拟测试进行了调查。
-
-[[20]](#20)作者提到了自动驾驶功能的复杂性、场景和参数的变化、场景选择和测试生成等挑战。
-
-[[138]](#138)对用于自主机器人系统的形式化规范和验证方法及工具进行了调查。除了此类系统的内部结构之外，还提出了许多正式建模和验证机器人系统运行环境的挑战。
-
-[[89]](#89)概述了集成形式化方法在机器人和自主系统中的优势、劣势、机遇和威胁。
-
-[[207]](#207)对自动驾驶汽车基于覆盖范围的验证、确认和安全保障技术进行了系统的文献综述。
-
-[[178]](#178)对自动驾驶汽车的软件验证和确认进行了广泛而系统的文献综述。
-
-## Background and Rationale
-
-### Motivation-3
-
-结合相关工作，提出了二次研究的几个问题：（1）对现有的机器人和自主系统验证和确认结果进行结构化回顾；（2）讨论了以下四个具体问题：(a) the types of models, (b) measures of efficiency and effectiveness, (c) available tools, and (d) evidence of applicability to large-scale and industrial systems。
-
-### Robotic and Autonomous System
-
-RAS定义：
-An autonomous system is an intelligent system that is designed to deal with the physical environment on its own and work for extended periods of time without explicit human intervention. They are built to analyse, learn from, adapt to, and act on the surrounding environment.
-
-### Testing and the SERP-Test Taxonomy
-
-![Illustration of taxonomy.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082301.png)
-
-本文的论文分类方法基于SERP-Test分类法[[68]](#68)，测试分类四个方面：intervention, effect, scope, and context。
-
-- Intervention pertains to the test techniques, their adaptation, and adoption in different context.
-- Effect facet is used to identify the improvement or adaptation in a given practise as well as any insights gained through assessment.
-- The scope specified whether the effect has been materialised in planning, design, execution, or analysis of tests.
-- Context, as its name suggests, specifies the environment where the intervention takes place, in terms of people and their knowledge, the system under test, and the required models and other types of information.
-
-## Methodology
-
-### Seed Papers
-
-- 收集初始搜索查询的关键字
-- 完善纳入和排出标准
-- 评估和调整SERP-Test分类法
-
-### Selection Strategy
-
-#### Inclusion Criteria
-
-纳入标准的规则。
-
-#### Exclusion Criteria
-
-排出标准的规则。
-
-### Taxonomy
-
-介绍基于SERP-Test分类法的具体的分类原则。
-
-### Search Strategy
-
-#### Initial Query
-
-关键词搜索。
-
-#### Validated Query
-
-对搜索完的结果进行验证。
-
-### Overview of the Results
-
-![Relevant and included papers by year.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082302.png)
-
-最后确定了195篇论文。
-
-## Results
-
-### RQ1: Models
-
-关注用于描述RAS的模型和形式类型及其在测试干预中的属性。
-
-#### Modelling Properties
-
-表一关注表示属性的模型。不到三分之一使用模型或逻辑来描述系统的属性，这类算形式模型。所有属性语言都是领域无关的。
-
-#### Modelling System Behaviour or Structure
-
-表二关注描述RAS行为或结构的模型。三分之一采用定性模型。
-
-### RQ2: Effect
-
-评估各种测试干预措施的efficiency (testing time or resources), effectiveness (testing quality), and coverage (testing adequacy)的指标。
-
-#### Measuresfor Interventions
-
-大多数其他概念仅用于单一干预措施。
-
-#### Measures for Subject Systems
-
-### RQ3: Tooling
-
-#### Context Tools
-
-模拟工具是最常用的工具之一；它们的实用性来自于一种成本较低的可视化方法，可以直观地显示设计和流程是否令人满意。中间件 ROS 与 3D 模拟器 Gazebo 相结合，形成了最流行的机器人模拟工具。此外，Simulink 是 MATLAB 的图形扩展，是动态系统建模和仿真最常用的工具。此外，形式化验证工具也得到了广泛应用，其中最突出的是模型检查器。统计模型检查器 Prism 提供对马尔可夫链或概率自动机中随机系统的建模和分析。至于定性模型，UPPAAL 为定时自动机模型提供了形式化验证，但可以扩展以使用数据类型。
-
-#### Effect Tools
-
-关注了哪些工具是否开源的问题和使用领域。
-
-### RQ4: Applicability
-
-我们的观察发现，工业界对干预措施的评估存在很大差距；只有 20 项干预措施在工业背景下进行了评估。可以理解的是，大多数案例研究都是在学术环境中进行的。其中，约有一半使用了小规模模型，这些模型通常不能代表真实系统。另一半将他们提出的干预措施应用于大规模主题和数据集，包括物理系统。
-
-## Suggestions and Recommendations to Study Audience
-
-在本节中，我们将分析前几节的结果，以确定我们的研究问题和两个目标受众群体（研究人员和从业者）的相对优势和劣势。我们将从我们的分析中为研究人员和从业者提出建议，以此结束本节。
-
-### Analysis
-
-#### Domain
-
-针对RAS特定子领域的测试、验证和确认。
-
-……跳过对表8的介绍……
-
-- 在所有子领域中，大多数模型都是正式的和定量的，并且在使用定性和非正式模型进行测试方面可以发现很大的差距（最明显的是在飞行器和移动机器人子领域）。
-- 在所有研究的子领域中，在使用有效性、效率和覆盖率的精确概念方面存在明显差距。其中，一些通用的有效性和效率概念（如测试时间和状态空间大小）以及覆盖率概念（如节点和转换覆盖率）是量化效果的最常用度量。常见的、更复杂的有效性、效率和充分性度量，如平均故障检测百分比 (APFD) ，似乎尚未在 RAS 领域被采用或扩展到 RAS 领域。我们确实看到最近出现了一些针对特定领域的有效性和覆盖率概念的趋势；几乎所有这些概念都已应用于自动驾驶汽车领域，但其中大多数也可以调整以适用于其他领域。
-- 在测试 RAS 的工具支持方面存在相当大的差距。开源工具很少，主要是在自动驾驶汽车和飞行器子域中。没有开源工具支持移动机器人系统的特定领域方面。专有工具也存在同样的模式，但差距更大。在所审查的文献中，开发或使用的公共（但不是开源）工具非常少。
-- 在使用工业案例研究评估 RAS 测试干预措施方面，所有子领域也存在非常严重的差距。最值得注意的例外是少数案例研究，主要是在自动驾驶汽车和飞行器子领域，是在工业环境中进行的。许多干预措施使用小型案例研究，大多没有任何特定的应用子领域（例如，使用移动机器人的通用模型）；在这些情况下，模型不包含足够的细节来成为一般基准的一部分。还有一些基于无人机和无人驾驶飞机的小型案例研究进行评估。
-
-*Analysis for Researchers*
-**Gaps:** 在我们对所研究子域的分析中，我们发现在处理海洋和海底 RAS 方面存在明显差距。此外，在处理飞行器和移动机器人方面也存在相对薄弱之处。此外，在处理非正式和定性模型方面，各个子域之间也存在相对薄弱之处。开发一套通用的有效性和效率概念来比较不同的干预措施是一项值得研究的挑战，文献中在针对特定领域量身定制这些概念方面存在差距。同样的观察结果也适用于测试充分性的概念。工具，尤其是针对特定子域量身定制的工具，是所有干预措施的普遍弱点。此外，在工业环境中应用干预措施是一项突出的挑战。
-**Strengths:** 道路车辆子域在所有研究问题中都具有相当大的优势。此外，针对通用 RAS 系统开发的干预措施远多于针对子域的特定关注点的干预措施。形式化和定量模型是迄今为止最强大的干预措施，无论是在技术研究数量还是在执行的评估方面，即使在工业领域也是如此。
-
-*Analysis for Practitioners*
-**Gaps:** **由于大多数提出的干预措施尚未在工业背景下进行评估，因此评估它们的适用性（包括研究学习曲线和培训等因素）仍然是一个巨大的差距。**
-**Strengths:** 由于形式化和定量模型具有优势，开发此类模型提供了一个起点，可以从已开发和研究的干预措施中受益。道路车辆领域肯定有更成熟的实践可供借鉴，但我们可以设想，通过调整特定领域的方面，其他子领域也可能受益于这些优势。
-
-#### Cooperation and Connectivity
-
-验证方法对于自主系统的广泛部署和公众接受至关重要。由于通信协议、控制软件（例如，用于合作规则）和系统动态之间的密切交互，对此类方法的需求在网络服务支持的功能中得到了加强。现有的（手动）分析技术通常无法扩展到这些功能的巨大设计空间和输入空间，因此，在这项工作中，我们调查了文献中发现的自动验证技术。
-
-总体而言，这是一个 RAS 测试研究不足的领域，文献中很少关注合作和连接场景的测试。对于文献中报道的极少数干预措施，几乎没有任何效率或有效性的证据。 少数报告的评估仅在小规模案例研究中进行，并且没有附带开源工具。
-
-……跳过对表9的介绍……
-
-- 关于用于分析 RAS 中合作场景的模型，我们注意到形式概率模型（基于时间逻辑、过程代数和时间自动机的变体）是最常用的模型类型。这些模型通常用于检查合作场景的抽象模型。非正式模型使用较少，仅作为模拟工具的输入。在这种情况下，定性和非正式模型使用得很少。
-- 大多数有效性和效率概念都是通用概念，例如技术的状态空间大小、验证时间和测试覆盖率以及被测系统的死锁自由度和时间逻辑公式满足的概率。使用领域特定效率和有效性概念的唯一例外涉及群体的聚集时间和人机交互的有效性。
-- 显然缺乏用于测试 RAS 中的合作和群体场景的工具。唯一的例外是公共模型检查工具和用于联网无人机的模拟工具。
-- 很少有研究评估他们在工业规模案例研究和基准上的干预措施。
-
-*Analysis for Researchers*
-**Gaps:** 对纳入的研究进行分析表明，在 RAS 的合作场景中，通信网络和协议的作用及其对 RAS 系统的功能、安全性和可靠性的影响研究严重不足。将通信中可用的知识体系与 RAS 的测试和验证相结合显然是未来研究的领域。现有的研究非常少，没有提供与合作方面和新兴合作行为相关的领域特定效率和有效性衡量标准。此外，缺乏足够的证据表明这些策略已应用于工业规模的案例研究和基准。
-**Strengths:** 抽象理论在群体参数化模型检验方面确实有优势。除此之外，没有其他集中的优势领域。
-
-*Analysis for Practitioners*
-**Gaps:** **如上所述，我们认为，协作机器人和群体机器人的研究成果还不够成熟，无法应用于实践。即使是现有技术也尚未应用于许多工业案例研究，目前也没有稳定的工具集。与研究人员合作定义有意义的效率和有效性概念，并提供基准和工业案例研究，可能会带来有影响力的未来研究议程。**
-**Strengths:** 在测试合作和群体 RAS 场景时没有实际的优势领域。
-
-#### Testing Strategy
-
-到目前为止，最广泛使用的策略是形式验证，其次是模拟和运行时监控。基于模型的测试是研究最少的策略。
-
-……跳过对表10的介绍……
-
-- 到目前为止，定量测试技术是研究最广泛的策略（这也是领域和连接方面的常见观察结果）。
-- 在用于评估干预措施的措施中，效率是最常用的，有效性紧随其后。然而，很少有干预措施使用覆盖率的概念进行评估。值得注意的是，对于运行时监控，只有两篇出版物采用了效率指标。
-- 基于模型的测试和运行时监控工具严重缺乏。对于模拟和形式验证，在工具支持方面似乎有相当大的优势。
-- 大约54%的干预措施使用小规模案例研究进行评估，而只有10%的干预措施在工业背景下评估其策略，这表明存在明显差距。
-
-### For Researchers
-
-如前几节所述，许多效率和有效性措施都非常通用，而且在适合 RAS 子域的领域特定措施方面也存在相对差距。缺乏领域特定建模语言和运行时验证方法数量有限表明 RAS 测试策略还有改进的空间。
-
-另一个相当大的差距是使用定量规范语言来指定系统所需的属性；由于 RAS 固有的异质性，我们需要有属性语言来涵盖离散和连续动态以及随机和认知方面的组合等方面，这些方面可用于对与环境和用户有关的行为方面进行建模。此外，一些研究使用了 Gazebo 和 USARSim 等模拟工具的非正式模拟模型。一种合适的中间立场可能是半正式和特定领域的模型，例如在 Matlab/Simulink 中构建的模型。最后，缺乏公共工具是文献中观察到的一大缺陷。很少有技术附带工具，而且用于测试 RAS 的公共工具也很少。
-
-### For Practitioners
-
-最大的差距是缺乏对现有干预措施的工业评估。在工业背景下和工业复杂系统中应用的干预措施非常少。不幸的是，干预措施的数量太少，无法得出任何有意义的趋势，也无法表明在工业环境中适用的强有力证据。在提出的干预措施中，大多数要么涉及基于模拟的测试，要么将其验证结果与某些模拟工具（主要基于 ROS-Gazebo 集成）联系起来。
-基于搜索的测试和交互测试是两种在工业环境中使用的值得注意的技术。在工业环境中采用的模型中，可以提到状态机和故障树的变体。在这方面的一项值得注意的研究是在工业环境中比较监督控制、演绎和归纳（模型检查）验证技术。人源和信息源是测试干预的另一个方面，这一方面研究严重不足。我们注意到，最近有一种趋势，即将用户研究（就人机交互和人机交互而言）与传统测试、验证和确认技术相结合。此外，在定义和评估测试流程方面也存在差距，特别是在工业环境中。显然，缺乏行业和领域专家对模型和技术的投入，导致大多数干预措施都使用通用且相对简单的建模技术和属性语言。与工业合作伙伴共同生产可以丰富这些方面，并产生能够处理工业 RAS 的异质性和复杂性的模型。
-
-## Conclusions
-
-关注的四个问题：
-
-- (1) What are the types of models used for testing RAS?用于测试 RAS 的模型类型有哪些？**答：** 有大量正式和非正式模型用于测试 RAS。特别是，有大量关于使用通用属性规范语言（如线性时间逻辑）和定性建模语言（如状态机变体、UML 图、Petri 网和过程代数）的文献。定量建模语言存在明显差距，无法捕捉 RAS 的复杂性和异构性。还缺乏可以捕捉 RAS 各个子域领域知识的领域特定语言。
-- (2) Which efficiency and effectiveness measures were introduced or used to evaluate RAS testing interventions?引入或使用了哪些效率和有效性措施来评估 RAS 测试干预措施？**答：** 我们观察到，在衡量测试干预措施的有效性和效率以及充分性的严格且被广泛接受的指标方面存在差距。与前面的项目类似，文献中使用的那些措施非常通用，与 RAS 的特定领域方面无关。因此，在定义和评估 RAS 测试干预措施的效率、有效性和充分性的严格（领域特定）措施方面存在差距和研究机会。
-- (3) What are the interventions supported by (publicly available) tools in this domain?该领域（公开可用的）工具支持哪些干预措施？**答：** 有相当多的干预措施依赖公共工具来实施或评估其干预措施。然而，很少有研究将他们提出/评估的干预措施以公开可用的工具形式提供给公众使用。因此，在提供数据集和公共工具以进一步发展该领域方面存在相当大的差距。
-- (4) Which interventions have evidence of applicability to large-scale and industrial systems?哪些干预措施有证据表明适用于大规模和工业系统？**答：** 在工业环境中评估的测试干预措施屈指可数。还有一些其他干预措施使用了一些真实的机器人或自主系统，但在学术环境中。这表明，未来学术界和工业界在 RAS 测试干预措施的工业评估中合作的重要性。
-
-`个人总结`
-对19年以来的RAS领域论文有比较好的分类，讨论了研究内容、技术手段、领域开展情况等问题，由于RAS在工业中应用较少，结论是比较悲观的。对于使用工具的调研比较有参考意义。
-
-`参考文献`
-<a id="55">[55]</a>A. Cortesi, P. Ferrara, and N. Chaki. 2013. Static analysis techniques for robotics software verification. In IEEE 44th International Symposium on Robotics. IEEE, 1–6.
-<a id="99">[99]</a>Philipp Helle, Wladimir Schamai, and Carsten Strobel. 2016. Testing of autonomous systems—Challenges and current state-of-the-art. INCOSE Int. Sympos. 26, 1 (2016), 571–584. DOI:https://doi.org/10.1002/j.2334-5837.2016.00179.x
-<a id="118">[118]</a>Philip Koopman and Michael Wagner. 2016. Challenges in autonomous vehicle testing and validation. SAE Int. J.Transport. Saf. 4 (04 2016), 15–24. DOI:https://doi.org/10.4271/2016-01-0128
-<a id="79">[79]</a>Shenjian Gao and Yanwen Tan. 2017. Paving the Way for Self-driving Cars - Software Testing for Safety-critical Systems Based on Machine Learning: A Systematic Mapping Study and a Survey. Blekinge Tekniska Högsola.
-<a id="114">[114]</a>A. Knauss, J. Schroder, C. Berger, and H. Eriksson. 2017. Software-related challenges of testing automated vehicles. In IEEE/ACM 39th International Conference on Software Engineering Companion (ICSE-C). IEEE, 328–330.
-<a id="180">[180]</a>Q. Rao and J. Frtunikj. 2018. Deep learning for self-driving cars: Chances and challenges. In IEEE/ACM 1st International Workshop on Software Engineering for AI in Autonomous Systems (SEFAIAS). IEEE, 35–38.
-<a id="108">[108]</a>Y. Kang, H. Yin, and C. Berger. 2019. Test your self-driving algorithm: An overview of publicly available driving datasets and virtual testing environments. IEEE Trans. Intell. Vehic. 4, 2 (2019), 171–185.
-<a id="20">[20]</a> Halil Beglerovic, Steffen Metzner, and Martin Horn. 2018. Challenges for the Validation and Testing of Automated Driving Functions. (Jan. 2018). DOI:https://doi.org/10.1007/978-3-319-66972-4_15
-<a id="138">[138]</a>Matt Luckcuck, Marie Farrell, Louise A. Dennis, Clare Dixon, and Michael Fisher. 2019. Formal specification and verification of autonomous robotic systems: A survey. ACM Comput. Surv. 52, 5 (2019), 100:1–100:41. DOI:https:// doi.org/10.1145/3342355
-<a id="89">[89]</a>Mario Gleirscher, Simon Foster, and Jim Woodcock. 2020. New opportunities for integrated formal methods. ACM Comput. Surv. 52, 6 (2020), 117:1–117:36. DOI:https://doi.org/10.1145/3357231
-<a id="207">[207]</a>Zaid Tahir and Rob Alexander. 2020. Coverage based testing for V&V and safety assurance of self-driving autonomous vehicles: A systematic literature review. In IEEE International Conference on Artificial Intelligence Testing (AITest). IEEE, 23–30. DOI:https://doi.org/10.1109/AITEST49225.2020.00011
-<a id="178">[178]</a>Nijat Rajabli, Francesco Flammini, Roberto Nardone, and Valeria Vittorini. 2021. Software verification and validation of safe autonomous cars: A systematic literature review. IEEE Access 9 (2021), 4797–4819. DOI:https://doi.org/10.1109/ ACCESS.2020.3048047
-<a id="68">[68]</a>Emelie Engström, Kai Petersen, Nauman bin Ali, and Elizabeth Bjarnason. 2017. SERP-test: A taxonomy for supporting industry–academia communication. Softw. Qual. J. 25 (2017), 1269–1305.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TOSEM</category>
-        <category>2023</category>
-      </categories>
-      <tags>
-        <tag>Validation &amp; Verification</tag>
-        <tag>Robotics</tag>
-        <tag>RAS</tag>
-        <tag>Review</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</title>
     <url>/2024/08/14/001/</url>
     <content><![CDATA[
@@ -643,8 +375,8 @@ Garousi 等人 [[33]](#33) 对产学研合作面临的挑战进行了文献综�
       </categories>
       <tags>
         <tag>Validation &amp; Verification</tag>
-        <tag>Review</tag>
         <tag>MBSE</tag>
+        <tag>Review</tag>
       </tags>
   </entry>
   <entry>
@@ -916,255 +648,6 @@ MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L
       </categories>
       <tags>
         <tag>Insights</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</title>
-    <url>/2024/08/31/010/</url>
-    <content><![CDATA[
-在这个载人航天不断飞翔的时代，对航天器的可靠性和可维护性的改进有着强烈的需求。成功航天器的主要驱动力之一是坚固而多功能的推进系统。推进系统的设计需要在性能、可靠性和成本之间取得适当的平衡。本研究的重点是可靠性。本研究提出了一个基于模型的框架，使用系统建模语言 (SysML) 进行故障模式、影响和危害性分析 (FMECA)。该框架以传统火箭发动机 RS-25（以前称为航天飞机主发动机 (SSME)）为例。将航天飞机时代的 SSME 用于太空发射系统 (SLS) 任务的目标是必须进行升级以降低发动机成本。此外，升级将需要重新认证发动机以进行载人发射。之所以选择这款发动机进行研究，是为了通过基于模型的故障模式、影响和危害性分析 (MBFMECA) 实现重新认证。因此，在基于模型的系统工程 (MBSE) 的背景下，MBFMECA 已经开发并详细阐述。提议的框架将补充正在进行的 RS-25 发动机可负担性研究工作。
-
-故障模式和影响分析 (FMEA) 是一种用于识别导致系统故障的潜在问题及其原因的过程。FMEA 标准最初由 MIL-STD-1629 定义。自诞生以来，在 FMEA 中添加了方面危害性分析 (CA)，催生了故障模式、影响和危害性分析 (FMECA) 。FMEA 和 FMECA 通常可以互换使用，因为 FMECA 是 FMEA 的扩展。但是，为了转向 FMECA，编写一份主要 FMEA 报告非常重要。主要 FMEA 有助于评估故障的原因和影响，而 FMECA 有助于量化和确定与故障相关的风险的优先级。在火箭发动机的背景下，满足可靠性要求是实现任务保证的关键里程碑。任务保证的一个重要元素是包含隐式 FMECA 的 FMEA 报告。全面、完善的 FMEA 可确保最高安全性并提高任务的可靠性。
-
-Izygon 等人 [[6]](#6) 首次在可靠性谱中使用 MBSE，他们开发了一个基于模型的框架，用于级联蒸馏系统 (CDS) 的 FMEA，CDS 是 NASA 约翰逊航天中心开发的先进水回收系统 (WRS)。此外，Huang 等人 [[8]](#8) 以及 Hansen 和 Huang [[5]](#5) 发起了用于燃气发生器循环液体发动机的 MBFMEA 框架的开发。这些研究包括一个基于模型的综合框架，用于主要 FMEA，该框架进一步扩展以得出 FMECA。这些研究探讨的 MBFMEA 的主要好处包括提高 FMEA 使用和任务执行的有效性、增强 FMEA 内容的全面性以及实现知识重用。过渡到基于模型的平台有助于实现设计灵活性，并将可靠性活动集成到 SE 活动中，例如需求分析、权衡研究以及验证和确认。
-
-**1、建模语言：SysML**
-RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这是一种用于管理复杂工程系统的 SE 活动的图形建模语言。SysML 提供了执行各种 SE 活动的语义基础，例如行为分析、需求可追溯性、性能分析、模拟和需求分析。语义封装在九种类型的 SysML 图中：需求图、块定义图、内部框图、用例图、活动图、序列图、状态机图、参数和包图。为了促进 MBFMECA，安全性和可靠性分析工具包集成到 SysML [[15]](#15) 中。本研究使用此 MBSE 工具包为 RS-25 发动机的 MBFMECA 开发初始基础。
-
-**2、RS-25 SysML Model**
-![Figure 2. Block Definition Diagram representing major components of RS-25 engine in the context of affordability.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png)
-
-为了建立 MBFMECA 的初始框架，主要 RS-25 发动机组件被组织成三个层次。结构架构封装在块定义图 (BDD) 中，如图 2 所示。顶级系统架构在 BDD 中表示。架构的上下文来自与 RS-25 发动机的主要成本削减目标相关的组件。RS-25 发动机通过组合抽象为燃烧装置、控制器、涡轮泵、管道、电气传感器和线束以及阀门和执行器。这些组件进一步抽象为子系统组件，如图 2 所示。考虑深入研究发动机架构的细节很有吸引力。然而，从建模的角度来看，保持基础模型简单和通用很重要。例如，通过图 2 中表达的结构视图，可以看出该架构在一般意义上也适用于液体火箭发动机。随着系统经历系统生命周期的不同阶段，可以完善此基础模型。
-
-**3、Requirements Allocation**
-![Figure 3. Requirement diagram with requirements associated with major components of the RS-25 engine.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083103.png)
-
-如介绍中所述，可靠性活动通常面临缺乏需求可追溯性的挑战。这可以通过开发 SysML 模型来克服。因此，从现有文献[[16]](#16)中综合了 RS-25 发动机及其组件的功能需求。然后将这些需求转换为 SysML 需求图，如图 3 所示。然后通过“满足”关联将这些需求连接到 RS-25 发动机的相应组件。通过这种关联，组件被约束为满足相关要求。这使得在系统生命周期的任何时间点都可以进行需求可追溯性。
-
-目前，SSME（引用的是两篇远古论文）已有大量 FMEA 数据可用。参考文献 [[13]](#13) [[17]](#17) 中的故障信息和不满意状况报告 (UCR) 用于为 RS-25 发动机创建 MBFMECA。从 SSME 时代开始，人们了解到发动机的故障模式基本上可以分为泄漏、裂纹、侵蚀、磨损、凹痕和损坏、污染、分层和破损部件、电气、缺失或多余部件、扭矩振动和超程、松动部件以及公差或间隙问题。利用 SysML 中的安全性和可靠性分析器工具包，创建了这些故障模式。然后根据这些组件的 UCR 信息以及相关故障模式评估和创建潜在故障模式的原因和影响。此外，使用工具包中的 FMEA 表生成功能，生成了 FMEA 表，以可视化适合图 2 所示的 RS-25 发动机结构视图的 FMEA 报告。（表不放了）
-
-**结果与讨论**
-![Figure 4. FMEA table for the Combustion Devices.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083104.png)
-
-创建故障模式和影响并分配严重程度后，在 SysML 中为 RS-25 发动机的组件生成了 FMEA 表。图 4 表示燃烧装置的 FMEA 表。表中表示了七个故障项 F-1 至 F-7，分别对应于主燃烧室 (MCC)、热气歧管 (HGM)、热交换器 (HE)、主喷射器 (MI)、喷嘴 (N)、燃料预燃室 (FPB) 和氧化剂预燃室 (OPB)。‘分类’列表示故障性质，可以是机械的、电气的或软件的。‘项目’列显示分配给相应故障模式的组件（在 BDD 中创建）。所有燃烧装置都由不同严重程度的故障模式‘裂纹’组成。MCC 和 HGM 存在故障模式‘泄漏’。对于 FPB 和 OPB 观察到故障模式“侵蚀”，对于 MI 和 HE 分别观察到故障模式“松动部件”和“间隙问题”。可以观察到，MCC、HGM 和 MI 中的裂缝导致了灾难性的故障，需要成为在整个系统生命周期中跟踪的重要故障项目。对于 HGM，泄漏导致发动机损失，这使其成为一种重要的故障模式，需要严格的缓解措施。虽然故障模式可能对不同的组件相同，但影响和原因可能有所不同。影响和原因在 FMEA 表中是独立的。由于这是基础框架，因此局部和最终影响的定义更为广泛。但是，这些可以随着系统在系统生命周期中的进展而得到细化。
-
-![Figure 5. FMEA table for the Turbopumps](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083105.png)
-
-与燃烧装置类似，图 5 表示涡轮泵的 FMEA 表。表中表示了四个故障项 F-8 至 F11，分别对应于高压燃料涡轮泵 (HPFTP)、高压氧化剂涡轮泵 (HPFTP)、低压燃料涡轮泵 (LPFTP) 和低压氧化剂涡轮泵 (LPOTP)。在 HPFTP、HPOTP 和 LPOTP 中观察到故障模式“磨损”。虽然这种故障模式对于 LPOTP 不太严重，但据观察，在 HPOTP 的情况下，它可能导致发动机故障，在 HPFTP 的情况下，它可能导致车辆故障。还可以观察到，在 HPOTP 的情况下，故障模式“分层和破损部件”和“扭矩、振动和过度行程”导致车辆故障。这表明这些故障模式是系统在生命周期过程中预期的重要故障项，应在设计生命周期的初始阶段设计适当的缓解措施。
-
-![Figure 6. FMEA table for all other components of RS-25 engine expressed in structural view in Figure 2.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083106.png)
-
-图 6 表示故障项目 F-12 至 F-15 的 FMEA 表，分别对应于组件阀门和执行器、电气传感器和线束、管道（管道、管子和歧管的泛化）和控制器。这些故障模式的严重程度本质上很小。随着系统在设计生命周期中不断进步，架构的复杂性会增加，这可以得到改进。在这个基础框架的范围内，这些组件的故障信息已被广泛列出，适用于图 2 中表示的 RS25 架构的顶层层次结构。如前所述，开发 MBFMECA 的目标之一是确保系统组件在整个系统生命周期中能够追溯到需求。通过需求图（图 3），可以将 RS-25 架构（图 2）的组件与功能需求相关联。此外，这些组件还与 FMEA 表“项目”列中的故障模式相关联（图 4、5 和 6）。因此，现在可以生成一个表格来了解可靠性覆盖率分析和相关要求。
-
-![Figure 7. Safety and Reliability Coverage Analysis Structure for Combustion Devices and Turbopumps of the RS-25 engine.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083107.png)
-
-图 7 表示在 SysML 中创建的安全性和可靠性覆盖率分析结构。‘设计元素’列包含 RS-25 引擎架构中包含的组件（图 2），‘可靠性分析覆盖’列表示为组件创建的适当故障项（图 4、5 和 6），‘满足’列包含与组件相关的功能需求信息（图 3）。此功能可以克服在开发 RS-25 引擎等复杂系统时经常遇到的 SE 活动不同步性质。实际上，这也有助于在设计生命周期的早期利用安全性和可靠性活动规划。当系统需要进行设计更改或升级时，需求通常会发生变化。通过安全性和可靠性覆盖率分析，还可以以省时的方式查看设计变更场景中受影响的需求。总体而言，组件、故障信息和受影响需求的视图使得在实施之前执行设计变更的功效分析成为可能。从今以后，这方面有助于实现 RS-25 发动机的高效可负担性框架。
-
-**结论**
-本文提出的 RS-25 发动机 MBFMECA 模型将成为改进发动机可靠性活动的初始基础框架之一。这项工作将 SSME 的传统 FMEA 数据提升到基于模型的 FMECA 平台。这种范式转变将能够为新型 RS-25 发动机的生产提供更高效的 FMEA 方法。此外，当采用不同的先进制造技术（例如增材制造）制造较新版本的 RS-25 发动机时，它将有助于评估权衡利弊。由于该平台基于现有的 SSME 故障数据，它将有助于创建一个强大的框架来评估实施较新技术对 RS-25 发动机生产重启的影响。在 NASA 为新型 RS-25 组件（例如涡轮泵）实施 FMEA 的现有文献背景下，应扩展提出的 MBFMECA，以便在未来的设计变更场景中实现此类实施活动的自动化。基础 MBFMECA 的未来研究方向包括： • 创建额外的 SysML 图表，以对已识别的故障模式的危险性等级进行建模。这将需要修改并从主要 MBFMECA 模型创建新的 SysML 图表和范例。
-
-- 根据危险性等级对发动机的风险和最终影响进行定性评估。
-- 提出简单的纠正措施（定性或定量）以减轻或降低风险的影响。
-- 针对设计变更场景自动生成完整而全面的 FMECA 报告。
-
-进一步的发展还包括集成基于模型的故障树分析 (FTA)，包括火箭发动机的成本考虑方面，并评估设计变更对 RS-25 发动机的影响。这些未来的发展涉及“做得更好”和“专注于提高效率和保真度”方面的设想里程碑（图 1），以实现可负担性。总体而言，将使用可执行的 SysML 模型同时分析性能、可靠性和成本方面。因此，整体努力将能够为 RS-25 引擎提供一个经济实惠的框架，该框架是在 MBSE 频谱内构思的。
-
-`参考文献`
-<a id="6">[6]</a>Izygon, M., Wagner, H., Okon, S., Wang, L., Sargusingh, M., and Evans, J. “Facilitating R&M in Spaceflight Systems with MBSE.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2016-April, 2016, pp. 1–6.https://doi.org/10.1109/RAMS.2016.7448031.
-<a id="8">[8]</a>Huang, Z., Swalgen, S., Davidz, H., and Murray, J. “MBSE-Assisted FMEA Approach - Challenges and Opportunities.” Proceedings - Annual Reliability and Maintainability Symposium, 2017, pp. 1–8. https://doi.org/10.1109/RAM.2017.7889722.
-<a id="5">[5]</a>Hansen, R., and Huang, Z. “Toward FMEA and MBSE Integration.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2018-January, 2018. https://doi.org/10.1109/RAM.2018.8463084.
-<a id="15">[15]</a>Biggs, G., Post, K., Armonas, A., Yakymets, N., Juknevicius, T., and Berres, A. “OMG Standard for Integrating Safety and Reliability Analysis into MBSE: Concepts and Applications.” INCOSE International Symposium, Vol. 29, No. 1, 2019, pp. 159–173. https://doi.org/10.1002/j.2334-5837.2019.00595.x.
-<a id="16">[16]</a>“Space Shuttle Main Engine Orientation, Space Transportation Training System Data.” BC98-04, Rocketdyne Propulsion and Power, Boeing, 1998.
-<a id="13">[13]</a>Tischer, A. E., and Glover, R. C. “Studies and Analyses of the Space Shuttle Main Engine.” NASA-CR-183593, 1987.
-<a id="17">[17]</a>Glover, R. C., Kelley, B. A., and Tischer, A. E. “Studies and Analyses of the Space Shuttle Main Engine: SSME (Space Shuttle Main Engine) Failure Data Review, Diagnostic Survey and Ssme Diagnostic Evaluation.” NASA-CR-178993, 1986.]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Artical</category>
-        <category>AIAA SCITECH Forum</category>
-        <category>2021</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-        <tag>FMEA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</title>
-    <url>/2024/08/29/007/</url>
-    <content><![CDATA[
-`小记`
-
-*作者来自马德里理工大学（西班牙）。*
-
-本文的目的是介绍马德里波利特海姆大学目前的研究，以提高小型空间发射器在初步概念阶段的设计效率，该研究基于MBSE方法中的一种新方法，该方法引入了高效和快速的模拟，通过寻找设计重量的最佳平衡来降低成本。在过去的十年中，基于模型的系统工程(MBSE)和并行工程(CE)方法和过程的实施提高了卫星设计的效率，减少了设计时间。
-
-卫星的设计是基于子系统的纯粹功能分析分解，而空间发射器则需要更多的物理分析，因为其组件相互依赖的设计影响很大，需要大量的密集模拟和计算能力。这些仿真的计算时间要求使得卫星并行工程方法在空间发射装置设计中的应用效率低下。一种新的MBSE方法引入了高效和快速的模拟，可以填补现有的空白。
-
-过去几年，由于虚拟建模可靠性的提高，系统仿真软件方法在所有工程领域的数量显著增加。它们的主要优势是缩短了开发时间，降低了与硬件错误相关的成本，在模拟世界和现实世界之间建立了桥梁。由于其历史背景，现有的关于模型和仿真 (M&S) 的文献在航天器设计中非常广泛。早期的建模和仿真支持了太空时代的发展，测试是验证空气动力学、控制律和结构设计的主要方法。随着当前计算能力的提高，它们在航天器设计中的应用已经扩展到流体动力学、推进、结构、制导、导航和控制 (GN&C)、飞行物理、飞行轨迹、飞行器分段和有效载荷部署的模拟[[12]](#12)。然而，关于将所有这些模型和模拟器集成以分析总体发射器设计和初步开发阶段的交易的 M&S 文献几乎不存在。**我们可以找到与将专门为卫星设计开发的 MBSE 方法和并行工程流程应用于航天发射器设计所面临的困难相关的文献，以及有关 NASA 和 ESA 现有模拟器的描述。**这两个航天机构的模拟器都是多体软件，这意味着创建不同的互连软件块来模拟不同的动态，但由于其不同的计算目标，它们之间存在非常有趣的差异。
-
-美国宇航局的模拟器[[13]](#13)由马歇尔太空飞行中心 (MSFC) 的先进概念办公室 (ACO) 建造，由一套自动化的三套工具组成，分别为用于系统重量和尺寸的 INTROS（综合火箭尺寸）、用于结构设计的 LVA（运载火箭分析）和 POST II（模拟轨迹优化程序）。该模拟器提供实验设计 (DOE) 功能，可创建替代模型来分析参数敏感性，确定特定任务的关注领域 [[14]](#14)。
-ESA 的模拟器[[15]](#15)，DCAP（动态和控制分析包），由结构和机制部门开发。它是一套计算机程序软件，提供建模、模拟和分析动态和控制性能的能力，并与其他专业软件（如 NASTRAN、CATIA、MATLAB/Symulink）链接，可以在单个模拟中详细重现大多数关键子系统和学科，从而促进并行工程流程。
-NASA 和 ESA 模拟器均在初步设计阶段使用，并且都具有相似的软件架构，但用途不同。然而，它们似乎都与系统工程流程、要求和系统架构无关。
-
-通过上述分析，我们确定了微型和纳米卫星市场领域的航天发射器最佳概念设计面临的三个主要挑战：
-
-- **多学科设计优化方法主要侧重于重量优化，建模和成本分析从属于重量或侧重于业务分析。**
-- **模型和仿真方法更侧重于重现子系统性能，与定义系统需求和架构的过程无关。**
-- **MBSE 方法允许通过为每个子系统指定功能并定义功能之间以及系统与环境之间的接口来定义功能架构，但它们没有考虑到航天发射器设计更多地基于物理仿真分析而不是卫星设计中应用的功能分解这一事实。**
-
-本研究将回答的主要问题是，是否有可能通过在 MBSE 框架中集成多学科模拟器和成本估算模型来概念性地设计小型竞争性太空发射器，从而在经典系统工程方法中引入广泛的模拟，确定每个子系统定义中的关键设计驱动因素，从而实现其优化，从而减少所需的设计循环数量。
-
-![Fig 2. System engineering Wee Diagram](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png)
-
-这种方法将用图 2 中的新 Wee 图取代经典 V 形图，其中在分解阶段包括建模和仿真，以确定根据定义的需求驱动设计的关键参数。这些参数将在设计阶段进行交换以找到基于快速设计/制造/测试循环的优化解决方案。在集成阶段，将根据模拟器的预测值对测试结果进行分析，以对其进行验证，然后再进入最终的系统集成和验证阶段。
-
-![Fig 3. Space Launcher conceptual design MBSE&S framework](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082902.png)
-
-为此，目前正在使用 Python 代码模块开发太空发射器初步设计模拟器工具（RoTMoS - 火箭和弹道模块化模拟器），涵盖初步设计阶段太空发射器设计所涉及的主要学科：发射轨迹、推进、制导、导航和控制 (GN&C)、空气动力学、负载、应力、质量特性和成本。开发此工具的目的是达到一定的保真度，以便设计实验，分析参数对重量和成本结果的敏感性。模拟器模块将通过任务用例（UPM-Sat 程序）集成到 MBSE 工具（Eclipse CapellaTM）中，遵循空间任务分析与设计 (SMED) 方法，以根据模拟器结果构建优化的太空发射器系统架构和功能。MBSE&S 总体框架如图 3 所示。
-
-最后文章总结了自2021年来的相关研究进展。
-
-`参考文献`
-<a id="12">[12]</a>L. B. Rainey. Space Modeling and Simulation: Roles and Applications throughout the System Life Cycle, El Segundo, California The Aerospace Press. AIAA. 2004.
-<a id="13">[13]</a>E. Waters, J. Garcia, G. Threet, A. Philips. "NASA Advanced Concepts Office, Earth-to-Orbit Team Design Process and Tools." AIAA SPACE 2013 Conference and Exposition, American Institute of Aeronautics and Astronautics.
-<a id="14">[14]</a>M. R. Zwack, P. D. Dees, J. B. Holt. "Application of Design of Experiments and Surrogate Modeling within the NASA Advanced Concepts Office, Earth-to-Orbit Design Process." AIAA Space 2016, American Institute of Aeronautics and Astronautics. 2016.
-<a id="15">[15]</a>G. Baldesi, M. Toso. "European Space Agency’s Launcher Multibody Dynamics Simulator used for System and Subsystem Level Analyses." CEAS Space Journal, 3(1), 27-48. 2012.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>SECESA</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</title>
-    <url>/2024/08/30/009/</url>
-    <content><![CDATA[
-`Abstraction`
-基于模型的系统工程 (MBSE) 已在美国宇航局的各种航天计划中得到越来越广泛的应用，例如人类登陆火星现场资源利用 (ISRU) 和地月栖息地架构、商业载人计划 (CCP) 和太空发射系统 (SLS)。最近，MBSE 还帮助支持了美国宇航局的可靠性设计 (DFR) 和任务保障活动。MBSE 的使用有助于在数字环境中可视化整个系统的开发。对于火箭推进系统的开发，利用 MBSE 有助于找到以全面和连贯的方式在整个生命周期内降低成本、进度和风险的方法。为了在竞争激烈的太空竞赛环境中实现可负担性，重要的是要利用增材制造 (AM) 等较新的制造技术。在火箭推进系统的开发中，AM 为通常很复杂的火箭发动机设计提供了新的设计和性能机会。与传统生产技术相比，增材制造火箭推进元件的根本优势在于缩短了交货时间并降低了成本。增材制造设计有助于实现复杂的形状和几何形状，而使用传统生产方法生产这些形状和几何形状通常具有挑战性且成本高昂。
-在火箭推进系统开发的背景下，AM 提供了实现技术和经济上可行的新型发动机设计的技术机会。NASA 的增材制造演示发动机 (AMDE) 等重大努力在火箭推进发动机的生产中采用了增材制造。另一方面，MBSE 提供了在数字环境中可视化设计变更影响的能力。**因此，本研究的目的是评估利用适合增材制造火箭推进元件环境的 MBSE 的好处。对当前最先进的增材制造火箭推进元件进行了文献综述，并确定了利用 MBSE 的潜在机会。**此外，还探索了一个设计示例（RS-25 或航天飞机主发动机），以展示本研究中研究理念的好处。选择设计示例是由于需要重新启动发动机生产以供 NASA 未来的发射清单使用。最后，在缩短发动机测试-失败-修复（重新设计、再制造、重新测试和重新认证）周期时间的范围内对本研究的结果进行了定性评估。
-
-在管理和增强系统工程 (SE) 流程应用的新技术适应性方面，基于模型的系统工程 (MBSE) 在 NASA 内部得到了越来越多的接受和关注 [[19]](#19)。MBSE 是建模的形式化应用，用于支持各种基于系统工程 (SE) 的活动，例如系统需求、设计、分析、验证和跨系统生命周期阶段的确认。在 MBSE 中，模型取代文档成为 SE 流程的主要工件。因此，MBSE 有助于实现高效沟通、管理复杂性、增加多学科知识捕获、创建需求可追溯性并降低风险 [[20]](#20)。
-
-对于火箭发动机，NASA 的 MBSE 注入和现代化计划 - MIAMI [[19]](#19) 曾探索过 MBSE 的使用。据观察，利用 MBSE 有助于实现：
-
-- 自动化验证和确认 (V&V) 过程；
-- 保持对需求的可追溯性；
-- 节省后处理测试数据的时间。
-
-MBSE 还帮助支持了 NASA 的可靠性设计 (DFR) 和基于模型的任务保障活动 (MBMA) 。因此，利用 MBSE 进行 RS25 发动机生产重启的测试-失败-修复，有助于评估可负担性选项（查看设计变更对发动机的影响），从而推断出最小化开发成本的潜在途径。
-
-![Figure 1. The Affordability Modeling Framework for the RS-25 engine [6]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
-
-实现 RS-25 发动机的经济性是一项正在进行的研究工作的一部分。图 1 展示[[6]](#6)了实现 RS-25 经济性的设想框架。为了评估经济性，重要的是同时查看系统架构（组成）、性能、安全性和可靠性以及风险的各个方面。因此，RS-25 经济性模型框架分为四个相互依赖的方面：
-
-- 结构模型[[30]](#30)
-- 系统和组件性能模型
-- 功能和行为模型[[33]](#33)
-- 其他工程分析模型
-
-**结论：**
-本研究的总体目标是展示 MBSE 在增材制造火箭推进部件中的应用。本文在 MBSE 和 AM 应用范围内对近期文献进行了全面总结。利用 RS-25 发动机计划升级的设计示例，展示了开发可负担性框架的先前工作以及随后将 MBSE 机会应用于可负担性框架。针对 AM 技术带来的挑战和 MBSE 提供的机会（第 2 节），确定了利用 MBSE 实现可负担性的可能途径并展示了应用方法。虽然设计示例用于演示目的。所提出的模型本质上是通用的，有可能适合多种液体火箭发动机设计。此外，还展示了通用形状如何代表发动机部件的多种几何形状并提供测试可靠性。
-
-对液体火箭发动机中代表性部件的结构裕度进行分析的最终结果是部件可靠性或部件故障概率信息。在生命周期设计阶段的早期获得这些信息对可负担性模型框架的其他一些方面大有裨益，例如在生命周期早期执行 FMECA。同时展示了一种扩展结构裕度效用以告知可靠性的方法。可靠性信息也可以追溯到基于模型的 FMECA，以评估风险。值得注意的是，所需的工作是同时利用一个或多个单一事实来源进行的，这表明 MBSE 可用于增材制造火箭推进元件。本质上，这个单一事实来源（RS-25 可负担性模型）也可以改进和开发，以探索其他用途（例如生产和成本）及其对可负担性的影响。
-
-本研究以活动图 (act) 的形式展示了测试策略开发中的操作流程。介绍了每个单独操作的可执行文件开发，包括脚本和运行其他软件包 (FEA 包) 的实例。当前的重点是将这些以行为模型呈现的模型转换为完全可执行的 SysML 模型，这将有助于查看 RS-25 发动机的可负担性选项，旨在最大限度地减少发动机测试-失败-修复周期中发生故障和修复的概率。实现这一转变的研究包括：将 FEA 信息应用于神经网络，以及对设备设施和控制要求进行建模 (NASA-STD6033)。因此，这也需要为 RS-25 发动机执行特定的 AM 设计变更信息，以便进一步实施。
-
-`参考文献`
-<a id="19">[19]</a>J. B. Holladay, J. Knizhnik, K. J. Weiland, A. Stein, T. Sanders, and P. Schwindt, “MBSE Infusion and Modernization Initiative (MIAMI): ‘Hot’ Benefits for Real NASA Applications,” in 2019 IEEE Aerospace Conference, 2019, vol. 2019-March, pp. 1–14, doi: 10.1109/AERO.2019.8741795.
-<a id="20">[20]</a>S. Friedenthal, A. Moore, and R. Steiner, A Practical Guide to SysML: The Systems Modeling Language, 3rd ed. Waltham, MA, MA: Morgan Kaufmann, 2015.
-<a id="6">[6]</a>A. J. Bower and D. Thomas, “An Affordability Model Framework for the RS-25 Liquid Rocket Engine,” in 2018 Joint Propulsion Conference, 2018, pp. 1–9, doi: 10.2514/6.2018-4460.
-<a id="30">[30]</a>S. Lakshmipuram Raghu and L. D. Thomas, “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine using SysML,” in AIAA Scitech 2021 Forum, 2021, doi: 10.2514/6.2021-0305.
-<a id="33">[33]</a>S. Lakshmipuram Raghu and L. Thomas, “Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability,” AIAA Propulsion and Energy 2021 Forum, pp. 1–12, Aug. 2021, doi: 10.2514/6.2021-3578.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>AERO</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</title>
-    <url>/2024/08/29/008/</url>
-    <content><![CDATA[
-*作者来自阿拉巴马大学亨茨维尔分校（美国）。*
-
-本次阅读关注涉及SysML的部分，不关注增材制造（AM）有关的内容。本文展示了一种分析火箭组件 MCC 表面粗糙度的方法，以及该表面粗糙度如何影响火箭发动机的性能。创建了 MATLAB 子程序来评估损失和性能，并运行在 SysML 中开发的基于模型的框架。然后使用 SSME 数据验证了该模型[[30]](#30)。
-
-在进行这项研究时，我们更好地了解了使用 AM 升级火箭发动机部件与火箭性能之间的权衡。在此过程中，还展示了基于模型的方法的功能。 在可负担性方面，如果工程师要做出明智的决策，需求可追溯性至关重要。例如，使用此模型的制造工程师可以更好地估计 AM 部件需要多少后处理才能满足性能要求。这可以进一步缩短部件的交付周期，或减轻试验台上的潜在故障，从而减少认证发动机的时间。此外，本文探讨的方面是建立一种全面的以模型为中心的可负担性方法，确保系统整个生命周期阶段的可追溯性和一致性。最后，这将有助于在系统生命周期的早期设想以故障为中心的方面，优化测试-失败-修复周期所花费的时间，实现可负担性。 可负担性和重新认证传统火箭发动机的问题取决于测试-失败-修复周期所花费的时间。 使用 AM 可以缩短重新认证的准备时间，但是实施 AM 而不显著降低性能是一项持续的挑战。可以考虑 AM 来设计新的火箭发动机，但是，RS-25 等传统火箭发动机无法进行大量重新设计以适应 AM 的使用。此外，在进行升级时，预测整个系统的可靠性变化非常重要，这需要采用以模型为中心的方法。这将有助于以整体方式评估设计变更对系统的影响。虽然正在进行研究以建立基于模型的框架来跟踪可靠性变化，但执行交易的能力也将补充跟踪可靠性变化的努力，这对测试-失败-修复周期具有重要影响。本文中传达的分析结果将有助于开发一种方法，该方法可以评估 RS-25、其生产重启和重新认证的增材制造零件的可行性和实用性。由于基于模型的方法通常适用于多种火箭发动机架构，这些技术也可应用于其他液体火箭发动机和先进的推进系统，如核热推进（NTP）。
-
-![Fig. 1 The Affordability Modeling Framework for the RS-25 Engine. [18]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
-
-基于模型的 RS-25 可负担性框架的开发是一项正在进行的研究工作 [[18]](#18) [[19]](#19) [[20]](#20) [[21]](#21)。可负担性框架如图 1 所示。它由四个方面组成，以实现可负担性：基于为 RS-25 发动机设定的成本降低目标开发的结构模型 [[20]](#20)；基于 104.5% 功率水平 SSME 数据开发的系统组件和性能模型 [[18]](#18)；正在为测试规划和可靠性开发的功能和行为模型 [[19]](#19) [[20]](#20) [[21]](#21)；以及其他工程分析模型，正在同时开发，首先是 RS-25 发动机的基于模型的故障模式、影响和危害性分析 (FMECA) [[19]](#19)。系统建模语言 (SysML) 用于利用 MBSE 实现可负担性框架。SysML 是一种图形建模语言，提供执行 SE 活动的语义。随后，本研究将利用 SysML 开发基于模型的范例，用于分析 AM 对 RS-25 发动机 MCC 的 SE 优势，这将有利于生产重启。本文的范围将涵盖可负担性建模框架的功能和行为模型以及其他工程分析模型（表面粗糙度的影响）以及系统和组件性能模型（用于估计 109% 功率水平的表面粗糙度影响的性能模型）。
-
-Implementation in SysML and Results
-根据方法论部分中描述的步骤，在 MATLAB 中开发了不同的子程序。开发的子程序被纳入 SysML 中基于 RS-25 模型的可负担性框架 。创建了一个参数图 (par) 来使用开发的子程序执行分析，如图 4 所示。par 包装了开发的 MATLAB 子程序，用于使用三种方法（能量平衡、直接压力损失和 Fanno 流）捕获结果。
-
-![Fig. 4. RS-25 engine surface roughness analysis parametric diagram in SysML.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083002.png)
-
-组件鉴定的一个重要方面是评估组件测试和分析是否满足系统要求。因此，正在进行的分析分别与 RS-25 发动机和 MCC 的系统和组件级要求相关联。这封装在需求图 (req) 中，并与 [[20]](#20) 中开发的结构架构中的组件相关联，如图 5 所示
-
-![Fig. 5. Requirement diagram (req) representing RS-25 engine and MCC requirements and its association to the structural architecture.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083003.png)
-
-代表 RS-25 发动机和 MCC 的 \<\< block >> 由表示为执行分析而开发的 MATLAB 子程序的约束组成，值表示基于方程 (1) – (17) 的输入和输出。一旦确定了 par 和 req，就会在 SysML 中创建 RS-25 发动机块的不同实例，这些实例表示不同的 AM 过程以及表 1 中列出的相关表面粗糙度值。
-
-`参考文献`
-
-<a id="18">[18]</a>Bower, A. J., and Thomas, D. “An Affordability Model Framework for the RS-25 Liquid Rocket Engine.” 2018 Joint Propulsion Conference, 2018, pp. 1–9. https://doi.org/10.2514/6.2018-4460.
-<a id="19">[19]</a>Lakshmipuram Raghu, S., and Thomas, L. D. “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine Using SysML.” AIAA Scitech 2021 Forum, 2021. https://doi.org/10.2514/6.2021-0305.
-<a id="20">[20]</a>Lakshmipuram Raghu, S., and Thomas, L. “Modeling Behavior Elements for the RS-25 Engine Using SysML for Improved Affordability.” AIAA Propulsion and Energy 2021 Forum, 2021, pp. 1–12. https://doi.org/10.2514/6.2021-3578.
-<a id="21">[21]</a>Lakshmipuram Raghu, S., Tudor, M., Thomas, L. D., and Wang, G. “MBSE Utilization for Additive Manufactured Rocket Propulsion Components.” 2022 IEEE Aerospace Conference, 2022. https://doi.org/10.1109/AERO53065.2022.9843586
-<a id="30">[30]</a>Nickerson, G. R., and Dang, L. D. Performance Predictions for an SSME Configuration with an Enlarged Throat. Publication NASA-CR-178743. 1985.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Artical</category>
-        <category>AIAA SCITECH Forum</category>
-        <category>2023</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</title>
-    <url>/2024/08/31/011/</url>
-    <content><![CDATA[
-为运载火箭（如太空发射系统 (SLS)）开发复杂推进系统的成功之路取决于性能、可靠性和成本之间的最佳平衡。在过去十年中，复杂推进系统的技术和创新应用超越了运载火箭的开发，转向提高可负担性和安全性。因此，本研究旨在补充正在进行的努力，即为 RS-25 发动机建立一个基于模型的平台，以实现可负担性。该发动机被选为研究候选是因为需要重启生产，采用新技术并降低成本。利用基于模型的系统工程 (MBSE) 的范例，结构架构和基于模型的平台用于执行故障模式、影响和危害性分析 (FMECA) 之前已在系统建模语言 (SysML) 中建模和开发。本研究的重点是扩展基于模型的可靠性框架，以包括 RS-25 发动机的行为方面（发动机性能、测试策略、设计变更实施和结果等）。我们已经详细说明了逐步的努力并讨论了结果，以开发 RS-25 发动机的全面可负担性平台。
-
-主要介绍了用SysML创建RS-25的一些图的内容。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Artical</category>
-        <category>AIAA Propulsion and Energy Forum</category>
-        <category>2021</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
       </tags>
   </entry>
   <entry>
@@ -1616,54 +1099,499 @@ propositionalization社区已经研究了从分层和嵌套数据生成数据集
       </tags>
   </entry>
   <entry>
-    <title>笔记：Automation in Model-Driven Engineering:A look back, and ahead</title>
-    <url>/2025/02/13/015/</url>
+    <title>笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</title>
+    <url>/2024/08/23/003/</url>
     <content><![CDATA[
-[Automation in Model-Driven Engineering: A look back, and ahead](https://dl.acm.org/doi/abs/10.1145/3712008)
+[Testing, Validation, and Verification of Robotic and Autonomous Systems: A Systematic Review](https://dl.acm.org/doi/full/10.1145/3542945)
+
+*作者是KCL的Hugo Araujo。*
 
 `Abstraction`
+> We perform a systematic literature review on testing, validation, and verification of robotic and autonomous systems (RAS). The scope of this review covers peer-reviewed research papers proposing, improving, or evaluating testing techniques, processes, or tools that address the system-level qualities of RAS.
+Our survey is performed based on a rigorous methodology structured in three phases. First, we made use of a set of 26 seed papers (selected by domain experts) and the SERP-TEST taxonomy to design our search query and (domain-specific) taxonomy. Second, we conducted a search in three academic search engines and applied our inclusion and exclusion criteria to the results. Respectively, we made use of related work and domain specialists (50 academics and 15 industry experts) to validate and refine the search query. As a result, we encountered 10,735 studies, out of which 195 were included, reviewed, and coded.
+> Our objective is to answer four research questions, pertaining to (1) the type of models, (2) measures for system performance and testing adequacy, (3) tools and their availability, and (4) evidence of applicability, particularly in industrial contexts. We analyse the results of our coding to identify strengths and gaps in the domain and present recommendations to researchers and practitioners.
+> Our findings show that variants of temporal logics are most widely used for modelling requirements and properties, while variants of state-machines and transition systems are used widely for modelling system behaviour. Other common models concern epistemic logics for specifying requirements and belief-desireintention models for specifying system behaviour. Apart from time and epistemics, other aspects captured in models concern probabilities (e.g., for modelling uncertainty) and continuous trajectories (e.g., for modelling vehicle dynamics and kinematics).
+> Many papers lack any rigorous measure of efficiency, effectiveness, or adequacy for their proposed techniques, processes, or tools. Among those that provide a measure of efficiency, effectiveness, or adequacy, the majority use domain-agnostic generic measures such as number of failures, size of state-space, or verification time were most used. There is a trend in addressing the research gap in this respect by developing domainspecific notions of performance and adequacy. Defining widely accepted rigorous measures of performance and adequacy for each domain is an identified research gap.
+> In terms of tools, the most widely used tools are well-established model-checkers such as Prism and Uppaal, as well as simulation tools such as Gazebo; Matlab/Simulink is another widely used toolset in this domain.
+> Overall, there is very limited evidence of industrial applicability in the papers published in this domain.
+> There is even a gap considering consolidated benchmarks for various types of autonomous systems.
 
-> Model-Driven Engineering (MDE) provides a huge body of knowledge of automation for many different engineering tasks, especially those involving transitioning from design to implementation. With the huge progress made in Artificial Intelligence (AI), questions arise about the future of MDE, such as how existing MDE techniques and technologies can be improved or how other activities that currently lack dedicated support can also be automated. However, at the same time, it has to be revisited where and how models should be used to keep the engineers in the loop for creating, operating, and maintaining complex systems. To trigger dedicated research on these open points, we discuss the history of automation in MDE and present perspectives on how automation in MDE can be further improved and which obstacles have to be overcome in both the medium and long-term.
+## Introduction
 
-![纵轴对应MDE能实现的功能，横轴对应所属技术领域](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/25021301.png)
+### Motivation-1
 
-一篇综述性质的文章，一方面回顾了典型的MDE技术，一方面做了技术展望。
-回顾方面如图所示，该文章按照建模、模型验证、模型管理等类型对功能进行了分类（2.1节），然后介绍了几种MDE的技术类型（这个分类挺让人迷惑的，没看懂这么分有什么意义，可能是想突出AI和LLM）（2.2节）。从第三节开始介绍对AI的思考，介绍了个别工作，其余的都是设想，本质上是技术驱动不是工程需求。提出了几个其他的工程需求：标准不统一、性能提升，也是常见的问题。
+Robotic and Autonomous Systems (RAS)机器人和自主系统。本论文涵盖了RAS的广度和系统性二次研究的调研，并对结果进行分析。
+
+### Scope and Audience
+
+受众：研究者和从业者。所调研的RAS研究的范围。
+
+### Research Questions
+
+几个关键名词的含义，包括types of models, efficiency, effectiveness, coverage measures, (public available) tools, evidence of applicability。
+
+### Structure of the Article
+
+本文的其余部分结构如下：在第 2 部分中，我们回顾了相关工作，重点关注相关主题的二手研究（文献调查和评论）。在第 3 部分中，我们定义了本文的范围并解释了此结构化综述的背景。在那里，我们报告了我们开始研究的核心结果集，作为我们搜索的种子，以形成研究。在第 4 部分中，我们回顾了我们用于系统评价的方法；这包括我们的搜索和选择策略的描述、用于编码结果的分类法的开发、我们的数据提取和综合方法。在本节中，我们还反思了对我们研究的威胁。在第 5 部分中，我们展示了我们的编码结果并对其进行分析以回答我们的研究问题。在第 6 部分中，我们反思了我们的分析并为目标受众（即研究人员和从业人员）提供了具体的建议。在第 7 部分中，我们总结了本文并提出了一些未来研究的方向。
+
+## Related Work
+
+[[55]](#55)这项研究的目标是为机器人软件开发人员提供提示，帮助他们根据感兴趣的属性和软件系统选择合适的分析方法。
+
+[[99]](#99) [[181]](#181)概述了自主系统测试和验证面临的挑战以及可用的技术和结果。
+
+[[118]](#118)聚焦了自动驾驶汽车环境中的问题。
+
+[[79]](#79)概述了V&V领域的研究，主要有关机器学习和自动驾驶场景。
+
+[[114]](#114)自动驾驶与软件的挑战，通过采访从业者的角度进行的。
+
+[[180]](#180)汽车行业中使用的神经网络功能安全性评估的三个具体问题。
+
+[[108]](#108)对公开可用的驾驶数据集以及自动驾驶算法的虚拟测试进行了调查。
+
+[[20]](#20)作者提到了自动驾驶功能的复杂性、场景和参数的变化、场景选择和测试生成等挑战。
+
+[[138]](#138)对用于自主机器人系统的形式化规范和验证方法及工具进行了调查。除了此类系统的内部结构之外，还提出了许多正式建模和验证机器人系统运行环境的挑战。
+
+[[89]](#89)概述了集成形式化方法在机器人和自主系统中的优势、劣势、机遇和威胁。
+
+[[207]](#207)对自动驾驶汽车基于覆盖范围的验证、确认和安全保障技术进行了系统的文献综述。
+
+[[178]](#178)对自动驾驶汽车的软件验证和确认进行了广泛而系统的文献综述。
+
+## Background and Rationale
+
+### Motivation-3
+
+结合相关工作，提出了二次研究的几个问题：（1）对现有的机器人和自主系统验证和确认结果进行结构化回顾；（2）讨论了以下四个具体问题：(a) the types of models, (b) measures of efficiency and effectiveness, (c) available tools, and (d) evidence of applicability to large-scale and industrial systems。
+
+### Robotic and Autonomous System
+
+RAS定义：
+An autonomous system is an intelligent system that is designed to deal with the physical environment on its own and work for extended periods of time without explicit human intervention. They are built to analyse, learn from, adapt to, and act on the surrounding environment.
+
+### Testing and the SERP-Test Taxonomy
+
+![Illustration of taxonomy.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082301.png)
+
+本文的论文分类方法基于SERP-Test分类法[[68]](#68)，测试分类四个方面：intervention, effect, scope, and context。
+
+- Intervention pertains to the test techniques, their adaptation, and adoption in different context.
+- Effect facet is used to identify the improvement or adaptation in a given practise as well as any insights gained through assessment.
+- The scope specified whether the effect has been materialised in planning, design, execution, or analysis of tests.
+- Context, as its name suggests, specifies the environment where the intervention takes place, in terms of people and their knowledge, the system under test, and the required models and other types of information.
+
+## Methodology
+
+### Seed Papers
+
+- 收集初始搜索查询的关键字
+- 完善纳入和排出标准
+- 评估和调整SERP-Test分类法
+
+### Selection Strategy
+
+#### Inclusion Criteria
+
+纳入标准的规则。
+
+#### Exclusion Criteria
+
+排出标准的规则。
+
+### Taxonomy
+
+介绍基于SERP-Test分类法的具体的分类原则。
+
+### Search Strategy
+
+#### Initial Query
+
+关键词搜索。
+
+#### Validated Query
+
+对搜索完的结果进行验证。
+
+### Overview of the Results
+
+![Relevant and included papers by year.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082302.png)
+
+最后确定了195篇论文。
+
+## Results
+
+### RQ1: Models
+
+关注用于描述RAS的模型和形式类型及其在测试干预中的属性。
+
+#### Modelling Properties
+
+表一关注表示属性的模型。不到三分之一使用模型或逻辑来描述系统的属性，这类算形式模型。所有属性语言都是领域无关的。
+
+#### Modelling System Behaviour or Structure
+
+表二关注描述RAS行为或结构的模型。三分之一采用定性模型。
+
+### RQ2: Effect
+
+评估各种测试干预措施的efficiency (testing time or resources), effectiveness (testing quality), and coverage (testing adequacy)的指标。
+
+#### Measuresfor Interventions
+
+大多数其他概念仅用于单一干预措施。
+
+#### Measures for Subject Systems
+
+### RQ3: Tooling
+
+#### Context Tools
+
+模拟工具是最常用的工具之一；它们的实用性来自于一种成本较低的可视化方法，可以直观地显示设计和流程是否令人满意。中间件 ROS 与 3D 模拟器 Gazebo 相结合，形成了最流行的机器人模拟工具。此外，Simulink 是 MATLAB 的图形扩展，是动态系统建模和仿真最常用的工具。此外，形式化验证工具也得到了广泛应用，其中最突出的是模型检查器。统计模型检查器 Prism 提供对马尔可夫链或概率自动机中随机系统的建模和分析。至于定性模型，UPPAAL 为定时自动机模型提供了形式化验证，但可以扩展以使用数据类型。
+
+#### Effect Tools
+
+关注了哪些工具是否开源的问题和使用领域。
+
+### RQ4: Applicability
+
+我们的观察发现，工业界对干预措施的评估存在很大差距；只有 20 项干预措施在工业背景下进行了评估。可以理解的是，大多数案例研究都是在学术环境中进行的。其中，约有一半使用了小规模模型，这些模型通常不能代表真实系统。另一半将他们提出的干预措施应用于大规模主题和数据集，包括物理系统。
+
+## Suggestions and Recommendations to Study Audience
+
+在本节中，我们将分析前几节的结果，以确定我们的研究问题和两个目标受众群体（研究人员和从业者）的相对优势和劣势。我们将从我们的分析中为研究人员和从业者提出建议，以此结束本节。
+
+### Analysis
+
+#### Domain
+
+针对RAS特定子领域的测试、验证和确认。
+
+……跳过对表8的介绍……
+
+- 在所有子领域中，大多数模型都是正式的和定量的，并且在使用定性和非正式模型进行测试方面可以发现很大的差距（最明显的是在飞行器和移动机器人子领域）。
+- 在所有研究的子领域中，在使用有效性、效率和覆盖率的精确概念方面存在明显差距。其中，一些通用的有效性和效率概念（如测试时间和状态空间大小）以及覆盖率概念（如节点和转换覆盖率）是量化效果的最常用度量。常见的、更复杂的有效性、效率和充分性度量，如平均故障检测百分比 (APFD) ，似乎尚未在 RAS 领域被采用或扩展到 RAS 领域。我们确实看到最近出现了一些针对特定领域的有效性和覆盖率概念的趋势；几乎所有这些概念都已应用于自动驾驶汽车领域，但其中大多数也可以调整以适用于其他领域。
+- 在测试 RAS 的工具支持方面存在相当大的差距。开源工具很少，主要是在自动驾驶汽车和飞行器子域中。没有开源工具支持移动机器人系统的特定领域方面。专有工具也存在同样的模式，但差距更大。在所审查的文献中，开发或使用的公共（但不是开源）工具非常少。
+- 在使用工业案例研究评估 RAS 测试干预措施方面，所有子领域也存在非常严重的差距。最值得注意的例外是少数案例研究，主要是在自动驾驶汽车和飞行器子领域，是在工业环境中进行的。许多干预措施使用小型案例研究，大多没有任何特定的应用子领域（例如，使用移动机器人的通用模型）；在这些情况下，模型不包含足够的细节来成为一般基准的一部分。还有一些基于无人机和无人驾驶飞机的小型案例研究进行评估。
+
+*Analysis for Researchers*
+**Gaps:** 在我们对所研究子域的分析中，我们发现在处理海洋和海底 RAS 方面存在明显差距。此外，在处理飞行器和移动机器人方面也存在相对薄弱之处。此外，在处理非正式和定性模型方面，各个子域之间也存在相对薄弱之处。开发一套通用的有效性和效率概念来比较不同的干预措施是一项值得研究的挑战，文献中在针对特定领域量身定制这些概念方面存在差距。同样的观察结果也适用于测试充分性的概念。工具，尤其是针对特定子域量身定制的工具，是所有干预措施的普遍弱点。此外，在工业环境中应用干预措施是一项突出的挑战。
+**Strengths:** 道路车辆子域在所有研究问题中都具有相当大的优势。此外，针对通用 RAS 系统开发的干预措施远多于针对子域的特定关注点的干预措施。形式化和定量模型是迄今为止最强大的干预措施，无论是在技术研究数量还是在执行的评估方面，即使在工业领域也是如此。
+
+*Analysis for Practitioners*
+**Gaps:** **由于大多数提出的干预措施尚未在工业背景下进行评估，因此评估它们的适用性（包括研究学习曲线和培训等因素）仍然是一个巨大的差距。**
+**Strengths:** 由于形式化和定量模型具有优势，开发此类模型提供了一个起点，可以从已开发和研究的干预措施中受益。道路车辆领域肯定有更成熟的实践可供借鉴，但我们可以设想，通过调整特定领域的方面，其他子领域也可能受益于这些优势。
+
+#### Cooperation and Connectivity
+
+验证方法对于自主系统的广泛部署和公众接受至关重要。由于通信协议、控制软件（例如，用于合作规则）和系统动态之间的密切交互，对此类方法的需求在网络服务支持的功能中得到了加强。现有的（手动）分析技术通常无法扩展到这些功能的巨大设计空间和输入空间，因此，在这项工作中，我们调查了文献中发现的自动验证技术。
+
+总体而言，这是一个 RAS 测试研究不足的领域，文献中很少关注合作和连接场景的测试。对于文献中报道的极少数干预措施，几乎没有任何效率或有效性的证据。 少数报告的评估仅在小规模案例研究中进行，并且没有附带开源工具。
+
+……跳过对表9的介绍……
+
+- 关于用于分析 RAS 中合作场景的模型，我们注意到形式概率模型（基于时间逻辑、过程代数和时间自动机的变体）是最常用的模型类型。这些模型通常用于检查合作场景的抽象模型。非正式模型使用较少，仅作为模拟工具的输入。在这种情况下，定性和非正式模型使用得很少。
+- 大多数有效性和效率概念都是通用概念，例如技术的状态空间大小、验证时间和测试覆盖率以及被测系统的死锁自由度和时间逻辑公式满足的概率。使用领域特定效率和有效性概念的唯一例外涉及群体的聚集时间和人机交互的有效性。
+- 显然缺乏用于测试 RAS 中的合作和群体场景的工具。唯一的例外是公共模型检查工具和用于联网无人机的模拟工具。
+- 很少有研究评估他们在工业规模案例研究和基准上的干预措施。
+
+*Analysis for Researchers*
+**Gaps:** 对纳入的研究进行分析表明，在 RAS 的合作场景中，通信网络和协议的作用及其对 RAS 系统的功能、安全性和可靠性的影响研究严重不足。将通信中可用的知识体系与 RAS 的测试和验证相结合显然是未来研究的领域。现有的研究非常少，没有提供与合作方面和新兴合作行为相关的领域特定效率和有效性衡量标准。此外，缺乏足够的证据表明这些策略已应用于工业规模的案例研究和基准。
+**Strengths:** 抽象理论在群体参数化模型检验方面确实有优势。除此之外，没有其他集中的优势领域。
+
+*Analysis for Practitioners*
+**Gaps:** **如上所述，我们认为，协作机器人和群体机器人的研究成果还不够成熟，无法应用于实践。即使是现有技术也尚未应用于许多工业案例研究，目前也没有稳定的工具集。与研究人员合作定义有意义的效率和有效性概念，并提供基准和工业案例研究，可能会带来有影响力的未来研究议程。**
+**Strengths:** 在测试合作和群体 RAS 场景时没有实际的优势领域。
+
+#### Testing Strategy
+
+到目前为止，最广泛使用的策略是形式验证，其次是模拟和运行时监控。基于模型的测试是研究最少的策略。
+
+……跳过对表10的介绍……
+
+- 到目前为止，定量测试技术是研究最广泛的策略（这也是领域和连接方面的常见观察结果）。
+- 在用于评估干预措施的措施中，效率是最常用的，有效性紧随其后。然而，很少有干预措施使用覆盖率的概念进行评估。值得注意的是，对于运行时监控，只有两篇出版物采用了效率指标。
+- 基于模型的测试和运行时监控工具严重缺乏。对于模拟和形式验证，在工具支持方面似乎有相当大的优势。
+- 大约54%的干预措施使用小规模案例研究进行评估，而只有10%的干预措施在工业背景下评估其策略，这表明存在明显差距。
+
+### For Researchers
+
+如前几节所述，许多效率和有效性措施都非常通用，而且在适合 RAS 子域的领域特定措施方面也存在相对差距。缺乏领域特定建模语言和运行时验证方法数量有限表明 RAS 测试策略还有改进的空间。
+
+另一个相当大的差距是使用定量规范语言来指定系统所需的属性；由于 RAS 固有的异质性，我们需要有属性语言来涵盖离散和连续动态以及随机和认知方面的组合等方面，这些方面可用于对与环境和用户有关的行为方面进行建模。此外，一些研究使用了 Gazebo 和 USARSim 等模拟工具的非正式模拟模型。一种合适的中间立场可能是半正式和特定领域的模型，例如在 Matlab/Simulink 中构建的模型。最后，缺乏公共工具是文献中观察到的一大缺陷。很少有技术附带工具，而且用于测试 RAS 的公共工具也很少。
+
+### For Practitioners
+
+最大的差距是缺乏对现有干预措施的工业评估。在工业背景下和工业复杂系统中应用的干预措施非常少。不幸的是，干预措施的数量太少，无法得出任何有意义的趋势，也无法表明在工业环境中适用的强有力证据。在提出的干预措施中，大多数要么涉及基于模拟的测试，要么将其验证结果与某些模拟工具（主要基于 ROS-Gazebo 集成）联系起来。
+基于搜索的测试和交互测试是两种在工业环境中使用的值得注意的技术。在工业环境中采用的模型中，可以提到状态机和故障树的变体。在这方面的一项值得注意的研究是在工业环境中比较监督控制、演绎和归纳（模型检查）验证技术。人源和信息源是测试干预的另一个方面，这一方面研究严重不足。我们注意到，最近有一种趋势，即将用户研究（就人机交互和人机交互而言）与传统测试、验证和确认技术相结合。此外，在定义和评估测试流程方面也存在差距，特别是在工业环境中。显然，缺乏行业和领域专家对模型和技术的投入，导致大多数干预措施都使用通用且相对简单的建模技术和属性语言。与工业合作伙伴共同生产可以丰富这些方面，并产生能够处理工业 RAS 的异质性和复杂性的模型。
+
+## Conclusions
+
+关注的四个问题：
+
+- (1) What are the types of models used for testing RAS?用于测试 RAS 的模型类型有哪些？**答：** 有大量正式和非正式模型用于测试 RAS。特别是，有大量关于使用通用属性规范语言（如线性时间逻辑）和定性建模语言（如状态机变体、UML 图、Petri 网和过程代数）的文献。定量建模语言存在明显差距，无法捕捉 RAS 的复杂性和异构性。还缺乏可以捕捉 RAS 各个子域领域知识的领域特定语言。
+- (2) Which efficiency and effectiveness measures were introduced or used to evaluate RAS testing interventions?引入或使用了哪些效率和有效性措施来评估 RAS 测试干预措施？**答：** 我们观察到，在衡量测试干预措施的有效性和效率以及充分性的严格且被广泛接受的指标方面存在差距。与前面的项目类似，文献中使用的那些措施非常通用，与 RAS 的特定领域方面无关。因此，在定义和评估 RAS 测试干预措施的效率、有效性和充分性的严格（领域特定）措施方面存在差距和研究机会。
+- (3) What are the interventions supported by (publicly available) tools in this domain?该领域（公开可用的）工具支持哪些干预措施？**答：** 有相当多的干预措施依赖公共工具来实施或评估其干预措施。然而，很少有研究将他们提出/评估的干预措施以公开可用的工具形式提供给公众使用。因此，在提供数据集和公共工具以进一步发展该领域方面存在相当大的差距。
+- (4) Which interventions have evidence of applicability to large-scale and industrial systems?哪些干预措施有证据表明适用于大规模和工业系统？**答：** 在工业环境中评估的测试干预措施屈指可数。还有一些其他干预措施使用了一些真实的机器人或自主系统，但在学术环境中。这表明，未来学术界和工业界在 RAS 测试干预措施的工业评估中合作的重要性。
+
+`个人总结`
+对19年以来的RAS领域论文有比较好的分类，讨论了研究内容、技术手段、领域开展情况等问题，由于RAS在工业中应用较少，结论是比较悲观的。对于使用工具的调研比较有参考意义。
+
+`参考文献`
+<a id="55">[55]</a>A. Cortesi, P. Ferrara, and N. Chaki. 2013. Static analysis techniques for robotics software verification. In IEEE 44th International Symposium on Robotics. IEEE, 1–6.
+<a id="99">[99]</a>Philipp Helle, Wladimir Schamai, and Carsten Strobel. 2016. Testing of autonomous systems—Challenges and current state-of-the-art. INCOSE Int. Sympos. 26, 1 (2016), 571–584. DOI:https://doi.org/10.1002/j.2334-5837.2016.00179.x
+<a id="118">[118]</a>Philip Koopman and Michael Wagner. 2016. Challenges in autonomous vehicle testing and validation. SAE Int. J.Transport. Saf. 4 (04 2016), 15–24. DOI:https://doi.org/10.4271/2016-01-0128
+<a id="79">[79]</a>Shenjian Gao and Yanwen Tan. 2017. Paving the Way for Self-driving Cars - Software Testing for Safety-critical Systems Based on Machine Learning: A Systematic Mapping Study and a Survey. Blekinge Tekniska Högsola.
+<a id="114">[114]</a>A. Knauss, J. Schroder, C. Berger, and H. Eriksson. 2017. Software-related challenges of testing automated vehicles. In IEEE/ACM 39th International Conference on Software Engineering Companion (ICSE-C). IEEE, 328–330.
+<a id="180">[180]</a>Q. Rao and J. Frtunikj. 2018. Deep learning for self-driving cars: Chances and challenges. In IEEE/ACM 1st International Workshop on Software Engineering for AI in Autonomous Systems (SEFAIAS). IEEE, 35–38.
+<a id="108">[108]</a>Y. Kang, H. Yin, and C. Berger. 2019. Test your self-driving algorithm: An overview of publicly available driving datasets and virtual testing environments. IEEE Trans. Intell. Vehic. 4, 2 (2019), 171–185.
+<a id="20">[20]</a> Halil Beglerovic, Steffen Metzner, and Martin Horn. 2018. Challenges for the Validation and Testing of Automated Driving Functions. (Jan. 2018). DOI:https://doi.org/10.1007/978-3-319-66972-4_15
+<a id="138">[138]</a>Matt Luckcuck, Marie Farrell, Louise A. Dennis, Clare Dixon, and Michael Fisher. 2019. Formal specification and verification of autonomous robotic systems: A survey. ACM Comput. Surv. 52, 5 (2019), 100:1–100:41. DOI:https:// doi.org/10.1145/3342355
+<a id="89">[89]</a>Mario Gleirscher, Simon Foster, and Jim Woodcock. 2020. New opportunities for integrated formal methods. ACM Comput. Surv. 52, 6 (2020), 117:1–117:36. DOI:https://doi.org/10.1145/3357231
+<a id="207">[207]</a>Zaid Tahir and Rob Alexander. 2020. Coverage based testing for V&V and safety assurance of self-driving autonomous vehicles: A systematic literature review. In IEEE International Conference on Artificial Intelligence Testing (AITest). IEEE, 23–30. DOI:https://doi.org/10.1109/AITEST49225.2020.00011
+<a id="178">[178]</a>Nijat Rajabli, Francesco Flammini, Roberto Nardone, and Valeria Vittorini. 2021. Software verification and validation of safe autonomous cars: A systematic literature review. IEEE Access 9 (2021), 4797–4819. DOI:https://doi.org/10.1109/ ACCESS.2020.3048047
+<a id="68">[68]</a>Emelie Engström, Kai Petersen, Nauman bin Ali, and Elizabeth Bjarnason. 2017. SERP-test: A taxonomy for supporting industry–academia communication. Softw. Qual. J. 25 (2017), 1269–1305.
 ]]></content>
       <categories>
         <category>Academic Papers</category>
         <category>Journal</category>
         <category>TOSEM</category>
-        <category>2025</category>
+        <category>2023</category>
       </categories>
       <tags>
+        <tag>Validation &amp; Verification</tag>
         <tag>Review</tag>
-        <tag>MDE</tag>
-        <tag>Epsilon</tag>
+        <tag>Robotics</tag>
+        <tag>RAS</tag>
       </tags>
   </entry>
   <entry>
-    <title>笔记：Advancing Domain-Specific High-Integrity Model-Based Tools:Insights and Future Pathways</title>
-    <url>/2025/02/12/014/</url>
+    <title>小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</title>
+    <url>/2024/08/29/008/</url>
     <content><![CDATA[
-[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://dl.acm.org/doi/abs/10.1145/3640310.3674094)
+*作者来自阿拉巴马大学亨茨维尔分校（美国）。*
 
-`Abstraction`
+本次阅读关注涉及SysML的部分，不关注增材制造（AM）有关的内容。本文展示了一种分析火箭组件 MCC 表面粗糙度的方法，以及该表面粗糙度如何影响火箭发动机的性能。创建了 MATLAB 子程序来评估损失和性能，并运行在 SysML 中开发的基于模型的框架。然后使用 SSME 数据验证了该模型[[30]](#30)。
 
-> Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
+在进行这项研究时，我们更好地了解了使用 AM 升级火箭发动机部件与火箭性能之间的权衡。在此过程中，还展示了基于模型的方法的功能。 在可负担性方面，如果工程师要做出明智的决策，需求可追溯性至关重要。例如，使用此模型的制造工程师可以更好地估计 AM 部件需要多少后处理才能满足性能要求。这可以进一步缩短部件的交付周期，或减轻试验台上的潜在故障，从而减少认证发动机的时间。此外，本文探讨的方面是建立一种全面的以模型为中心的可负担性方法，确保系统整个生命周期阶段的可追溯性和一致性。最后，这将有助于在系统生命周期的早期设想以故障为中心的方面，优化测试-失败-修复周期所花费的时间，实现可负担性。 可负担性和重新认证传统火箭发动机的问题取决于测试-失败-修复周期所花费的时间。 使用 AM 可以缩短重新认证的准备时间，但是实施 AM 而不显著降低性能是一项持续的挑战。可以考虑 AM 来设计新的火箭发动机，但是，RS-25 等传统火箭发动机无法进行大量重新设计以适应 AM 的使用。此外，在进行升级时，预测整个系统的可靠性变化非常重要，这需要采用以模型为中心的方法。这将有助于以整体方式评估设计变更对系统的影响。虽然正在进行研究以建立基于模型的框架来跟踪可靠性变化，但执行交易的能力也将补充跟踪可靠性变化的努力，这对测试-失败-修复周期具有重要影响。本文中传达的分析结果将有助于开发一种方法，该方法可以评估 RS-25、其生产重启和重新认证的增材制造零件的可行性和实用性。由于基于模型的方法通常适用于多种火箭发动机架构，这些技术也可应用于其他液体火箭发动机和先进的推进系统，如核热推进（NTP）。
 
-本文是接着21年论文对CaMCOA Studio介绍的延续，介绍了这种联合Simulink和Sirius的MBSE工具，这篇展示了更多信息。第二节指出一个模型要在不同的抽象层级中表示，也就是NDSM、PDDM、EAM等，他们要在同一个平台上应对这些不同信息层级的模型，并处理追溯性、兼容性等问题。第三节介绍了一些挑战，有软件性能、模型间索引、版本变更带来的模型迁移。第四节汇总了一些代码开发的心得和经验。第五节结合了将软件迁移到Web端的可能性，如使用Sirius Web或GLSP。第六节提出了在云端创建的设想。总体上是对CaMCOA项目的更详细更全面的汇总报告和工具介绍。
+![Fig. 1 The Affordability Modeling Framework for the RS-25 Engine. [18]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
+
+基于模型的 RS-25 可负担性框架的开发是一项正在进行的研究工作 [[18]](#18) [[19]](#19) [[20]](#20) [[21]](#21)。可负担性框架如图 1 所示。它由四个方面组成，以实现可负担性：基于为 RS-25 发动机设定的成本降低目标开发的结构模型 [[20]](#20)；基于 104.5% 功率水平 SSME 数据开发的系统组件和性能模型 [[18]](#18)；正在为测试规划和可靠性开发的功能和行为模型 [[19]](#19) [[20]](#20) [[21]](#21)；以及其他工程分析模型，正在同时开发，首先是 RS-25 发动机的基于模型的故障模式、影响和危害性分析 (FMECA) [[19]](#19)。系统建模语言 (SysML) 用于利用 MBSE 实现可负担性框架。SysML 是一种图形建模语言，提供执行 SE 活动的语义。随后，本研究将利用 SysML 开发基于模型的范例，用于分析 AM 对 RS-25 发动机 MCC 的 SE 优势，这将有利于生产重启。本文的范围将涵盖可负担性建模框架的功能和行为模型以及其他工程分析模型（表面粗糙度的影响）以及系统和组件性能模型（用于估计 109% 功率水平的表面粗糙度影响的性能模型）。
+
+Implementation in SysML and Results
+根据方法论部分中描述的步骤，在 MATLAB 中开发了不同的子程序。开发的子程序被纳入 SysML 中基于 RS-25 模型的可负担性框架 。创建了一个参数图 (par) 来使用开发的子程序执行分析，如图 4 所示。par 包装了开发的 MATLAB 子程序，用于使用三种方法（能量平衡、直接压力损失和 Fanno 流）捕获结果。
+
+![Fig. 4. RS-25 engine surface roughness analysis parametric diagram in SysML.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083002.png)
+
+组件鉴定的一个重要方面是评估组件测试和分析是否满足系统要求。因此，正在进行的分析分别与 RS-25 发动机和 MCC 的系统和组件级要求相关联。这封装在需求图 (req) 中，并与 [[20]](#20) 中开发的结构架构中的组件相关联，如图 5 所示
+
+![Fig. 5. Requirement diagram (req) representing RS-25 engine and MCC requirements and its association to the structural architecture.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083003.png)
+
+代表 RS-25 发动机和 MCC 的 \<\< block >> 由表示为执行分析而开发的 MATLAB 子程序的约束组成，值表示基于方程 (1) – (17) 的输入和输出。一旦确定了 par 和 req，就会在 SysML 中创建 RS-25 发动机块的不同实例，这些实例表示不同的 AM 过程以及表 1 中列出的相关表面粗糙度值。
+
+`参考文献`
+
+<a id="18">[18]</a>Bower, A. J., and Thomas, D. “An Affordability Model Framework for the RS-25 Liquid Rocket Engine.” 2018 Joint Propulsion Conference, 2018, pp. 1–9. https://doi.org/10.2514/6.2018-4460.
+<a id="19">[19]</a>Lakshmipuram Raghu, S., and Thomas, L. D. “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine Using SysML.” AIAA Scitech 2021 Forum, 2021. https://doi.org/10.2514/6.2021-0305.
+<a id="20">[20]</a>Lakshmipuram Raghu, S., and Thomas, L. “Modeling Behavior Elements for the RS-25 Engine Using SysML for Improved Affordability.” AIAA Propulsion and Energy 2021 Forum, 2021, pp. 1–12. https://doi.org/10.2514/6.2021-3578.
+<a id="21">[21]</a>Lakshmipuram Raghu, S., Tudor, M., Thomas, L. D., and Wang, G. “MBSE Utilization for Additive Manufactured Rocket Propulsion Components.” 2022 IEEE Aerospace Conference, 2022. https://doi.org/10.1109/AERO53065.2022.9843586
+<a id="30">[30]</a>Nickerson, G. R., and Dang, L. D. Performance Predictions for an SSME Configuration with an Enlarged Throat. Publication NASA-CR-178743. 1985.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Artical</category>
+        <category>AIAA SCITECH Forum</category>
+        <category>2023</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</title>
+    <url>/2024/08/29/007/</url>
+    <content><![CDATA[
+`小记`
+
+*作者来自马德里理工大学（西班牙）。*
+
+本文的目的是介绍马德里波利特海姆大学目前的研究，以提高小型空间发射器在初步概念阶段的设计效率，该研究基于MBSE方法中的一种新方法，该方法引入了高效和快速的模拟，通过寻找设计重量的最佳平衡来降低成本。在过去的十年中，基于模型的系统工程(MBSE)和并行工程(CE)方法和过程的实施提高了卫星设计的效率，减少了设计时间。
+
+卫星的设计是基于子系统的纯粹功能分析分解，而空间发射器则需要更多的物理分析，因为其组件相互依赖的设计影响很大，需要大量的密集模拟和计算能力。这些仿真的计算时间要求使得卫星并行工程方法在空间发射装置设计中的应用效率低下。一种新的MBSE方法引入了高效和快速的模拟，可以填补现有的空白。
+
+过去几年，由于虚拟建模可靠性的提高，系统仿真软件方法在所有工程领域的数量显著增加。它们的主要优势是缩短了开发时间，降低了与硬件错误相关的成本，在模拟世界和现实世界之间建立了桥梁。由于其历史背景，现有的关于模型和仿真 (M&S) 的文献在航天器设计中非常广泛。早期的建模和仿真支持了太空时代的发展，测试是验证空气动力学、控制律和结构设计的主要方法。随着当前计算能力的提高，它们在航天器设计中的应用已经扩展到流体动力学、推进、结构、制导、导航和控制 (GN&C)、飞行物理、飞行轨迹、飞行器分段和有效载荷部署的模拟[[12]](#12)。然而，关于将所有这些模型和模拟器集成以分析总体发射器设计和初步开发阶段的交易的 M&S 文献几乎不存在。**我们可以找到与将专门为卫星设计开发的 MBSE 方法和并行工程流程应用于航天发射器设计所面临的困难相关的文献，以及有关 NASA 和 ESA 现有模拟器的描述。**这两个航天机构的模拟器都是多体软件，这意味着创建不同的互连软件块来模拟不同的动态，但由于其不同的计算目标，它们之间存在非常有趣的差异。
+
+美国宇航局的模拟器[[13]](#13)由马歇尔太空飞行中心 (MSFC) 的先进概念办公室 (ACO) 建造，由一套自动化的三套工具组成，分别为用于系统重量和尺寸的 INTROS（综合火箭尺寸）、用于结构设计的 LVA（运载火箭分析）和 POST II（模拟轨迹优化程序）。该模拟器提供实验设计 (DOE) 功能，可创建替代模型来分析参数敏感性，确定特定任务的关注领域 [[14]](#14)。
+ESA 的模拟器[[15]](#15)，DCAP（动态和控制分析包），由结构和机制部门开发。它是一套计算机程序软件，提供建模、模拟和分析动态和控制性能的能力，并与其他专业软件（如 NASTRAN、CATIA、MATLAB/Symulink）链接，可以在单个模拟中详细重现大多数关键子系统和学科，从而促进并行工程流程。
+NASA 和 ESA 模拟器均在初步设计阶段使用，并且都具有相似的软件架构，但用途不同。然而，它们似乎都与系统工程流程、要求和系统架构无关。
+
+通过上述分析，我们确定了微型和纳米卫星市场领域的航天发射器最佳概念设计面临的三个主要挑战：
+
+- **多学科设计优化方法主要侧重于重量优化，建模和成本分析从属于重量或侧重于业务分析。**
+- **模型和仿真方法更侧重于重现子系统性能，与定义系统需求和架构的过程无关。**
+- **MBSE 方法允许通过为每个子系统指定功能并定义功能之间以及系统与环境之间的接口来定义功能架构，但它们没有考虑到航天发射器设计更多地基于物理仿真分析而不是卫星设计中应用的功能分解这一事实。**
+
+本研究将回答的主要问题是，是否有可能通过在 MBSE 框架中集成多学科模拟器和成本估算模型来概念性地设计小型竞争性太空发射器，从而在经典系统工程方法中引入广泛的模拟，确定每个子系统定义中的关键设计驱动因素，从而实现其优化，从而减少所需的设计循环数量。
+
+![Fig 2. System engineering Wee Diagram](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png)
+
+这种方法将用图 2 中的新 Wee 图取代经典 V 形图，其中在分解阶段包括建模和仿真，以确定根据定义的需求驱动设计的关键参数。这些参数将在设计阶段进行交换以找到基于快速设计/制造/测试循环的优化解决方案。在集成阶段，将根据模拟器的预测值对测试结果进行分析，以对其进行验证，然后再进入最终的系统集成和验证阶段。
+
+![Fig 3. Space Launcher conceptual design MBSE&S framework](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082902.png)
+
+为此，目前正在使用 Python 代码模块开发太空发射器初步设计模拟器工具（RoTMoS - 火箭和弹道模块化模拟器），涵盖初步设计阶段太空发射器设计所涉及的主要学科：发射轨迹、推进、制导、导航和控制 (GN&C)、空气动力学、负载、应力、质量特性和成本。开发此工具的目的是达到一定的保真度，以便设计实验，分析参数对重量和成本结果的敏感性。模拟器模块将通过任务用例（UPM-Sat 程序）集成到 MBSE 工具（Eclipse CapellaTM）中，遵循空间任务分析与设计 (SMED) 方法，以根据模拟器结果构建优化的太空发射器系统架构和功能。MBSE&S 总体框架如图 3 所示。
+
+最后文章总结了自2021年来的相关研究进展。
+
+`参考文献`
+<a id="12">[12]</a>L. B. Rainey. Space Modeling and Simulation: Roles and Applications throughout the System Life Cycle, El Segundo, California The Aerospace Press. AIAA. 2004.
+<a id="13">[13]</a>E. Waters, J. Garcia, G. Threet, A. Philips. "NASA Advanced Concepts Office, Earth-to-Orbit Team Design Process and Tools." AIAA SPACE 2013 Conference and Exposition, American Institute of Aeronautics and Astronautics.
+<a id="14">[14]</a>M. R. Zwack, P. D. Dees, J. B. Holt. "Application of Design of Experiments and Surrogate Modeling within the NASA Advanced Concepts Office, Earth-to-Orbit Design Process." AIAA Space 2016, American Institute of Aeronautics and Astronautics. 2016.
+<a id="15">[15]</a>G. Baldesi, M. Toso. "European Space Agency’s Launcher Multibody Dynamics Simulator used for System and Subsystem Level Analyses." CEAS Space Journal, 3(1), 27-48. 2012.
 ]]></content>
       <categories>
         <category>Academic Papers</category>
         <category>Conference</category>
-        <category>MODELS</category>
-        <category>2024</category>
+        <category>SECESA</category>
+        <category>2022</category>
       </categories>
       <tags>
         <tag>MBSE</tag>
-        <tag>Epsilon</tag>
-        <tag>Sirius</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</title>
+    <url>/2024/08/30/009/</url>
+    <content><![CDATA[
+`Abstraction`
+基于模型的系统工程 (MBSE) 已在美国宇航局的各种航天计划中得到越来越广泛的应用，例如人类登陆火星现场资源利用 (ISRU) 和地月栖息地架构、商业载人计划 (CCP) 和太空发射系统 (SLS)。最近，MBSE 还帮助支持了美国宇航局的可靠性设计 (DFR) 和任务保障活动。MBSE 的使用有助于在数字环境中可视化整个系统的开发。对于火箭推进系统的开发，利用 MBSE 有助于找到以全面和连贯的方式在整个生命周期内降低成本、进度和风险的方法。为了在竞争激烈的太空竞赛环境中实现可负担性，重要的是要利用增材制造 (AM) 等较新的制造技术。在火箭推进系统的开发中，AM 为通常很复杂的火箭发动机设计提供了新的设计和性能机会。与传统生产技术相比，增材制造火箭推进元件的根本优势在于缩短了交货时间并降低了成本。增材制造设计有助于实现复杂的形状和几何形状，而使用传统生产方法生产这些形状和几何形状通常具有挑战性且成本高昂。
+在火箭推进系统开发的背景下，AM 提供了实现技术和经济上可行的新型发动机设计的技术机会。NASA 的增材制造演示发动机 (AMDE) 等重大努力在火箭推进发动机的生产中采用了增材制造。另一方面，MBSE 提供了在数字环境中可视化设计变更影响的能力。**因此，本研究的目的是评估利用适合增材制造火箭推进元件环境的 MBSE 的好处。对当前最先进的增材制造火箭推进元件进行了文献综述，并确定了利用 MBSE 的潜在机会。**此外，还探索了一个设计示例（RS-25 或航天飞机主发动机），以展示本研究中研究理念的好处。选择设计示例是由于需要重新启动发动机生产以供 NASA 未来的发射清单使用。最后，在缩短发动机测试-失败-修复（重新设计、再制造、重新测试和重新认证）周期时间的范围内对本研究的结果进行了定性评估。
+
+在管理和增强系统工程 (SE) 流程应用的新技术适应性方面，基于模型的系统工程 (MBSE) 在 NASA 内部得到了越来越多的接受和关注 [[19]](#19)。MBSE 是建模的形式化应用，用于支持各种基于系统工程 (SE) 的活动，例如系统需求、设计、分析、验证和跨系统生命周期阶段的确认。在 MBSE 中，模型取代文档成为 SE 流程的主要工件。因此，MBSE 有助于实现高效沟通、管理复杂性、增加多学科知识捕获、创建需求可追溯性并降低风险 [[20]](#20)。
+
+对于火箭发动机，NASA 的 MBSE 注入和现代化计划 - MIAMI [[19]](#19) 曾探索过 MBSE 的使用。据观察，利用 MBSE 有助于实现：
+
+- 自动化验证和确认 (V&V) 过程；
+- 保持对需求的可追溯性；
+- 节省后处理测试数据的时间。
+
+MBSE 还帮助支持了 NASA 的可靠性设计 (DFR) 和基于模型的任务保障活动 (MBMA) 。因此，利用 MBSE 进行 RS25 发动机生产重启的测试-失败-修复，有助于评估可负担性选项（查看设计变更对发动机的影响），从而推断出最小化开发成本的潜在途径。
+
+![Figure 1. The Affordability Modeling Framework for the RS-25 engine [6]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
+
+实现 RS-25 发动机的经济性是一项正在进行的研究工作的一部分。图 1 展示[[6]](#6)了实现 RS-25 经济性的设想框架。为了评估经济性，重要的是同时查看系统架构（组成）、性能、安全性和可靠性以及风险的各个方面。因此，RS-25 经济性模型框架分为四个相互依赖的方面：
+
+- 结构模型[[30]](#30)
+- 系统和组件性能模型
+- 功能和行为模型[[33]](#33)
+- 其他工程分析模型
+
+**结论：**
+本研究的总体目标是展示 MBSE 在增材制造火箭推进部件中的应用。本文在 MBSE 和 AM 应用范围内对近期文献进行了全面总结。利用 RS-25 发动机计划升级的设计示例，展示了开发可负担性框架的先前工作以及随后将 MBSE 机会应用于可负担性框架。针对 AM 技术带来的挑战和 MBSE 提供的机会（第 2 节），确定了利用 MBSE 实现可负担性的可能途径并展示了应用方法。虽然设计示例用于演示目的。所提出的模型本质上是通用的，有可能适合多种液体火箭发动机设计。此外，还展示了通用形状如何代表发动机部件的多种几何形状并提供测试可靠性。
+
+对液体火箭发动机中代表性部件的结构裕度进行分析的最终结果是部件可靠性或部件故障概率信息。在生命周期设计阶段的早期获得这些信息对可负担性模型框架的其他一些方面大有裨益，例如在生命周期早期执行 FMECA。同时展示了一种扩展结构裕度效用以告知可靠性的方法。可靠性信息也可以追溯到基于模型的 FMECA，以评估风险。值得注意的是，所需的工作是同时利用一个或多个单一事实来源进行的，这表明 MBSE 可用于增材制造火箭推进元件。本质上，这个单一事实来源（RS-25 可负担性模型）也可以改进和开发，以探索其他用途（例如生产和成本）及其对可负担性的影响。
+
+本研究以活动图 (act) 的形式展示了测试策略开发中的操作流程。介绍了每个单独操作的可执行文件开发，包括脚本和运行其他软件包 (FEA 包) 的实例。当前的重点是将这些以行为模型呈现的模型转换为完全可执行的 SysML 模型，这将有助于查看 RS-25 发动机的可负担性选项，旨在最大限度地减少发动机测试-失败-修复周期中发生故障和修复的概率。实现这一转变的研究包括：将 FEA 信息应用于神经网络，以及对设备设施和控制要求进行建模 (NASA-STD6033)。因此，这也需要为 RS-25 发动机执行特定的 AM 设计变更信息，以便进一步实施。
+
+`参考文献`
+<a id="19">[19]</a>J. B. Holladay, J. Knizhnik, K. J. Weiland, A. Stein, T. Sanders, and P. Schwindt, “MBSE Infusion and Modernization Initiative (MIAMI): ‘Hot’ Benefits for Real NASA Applications,” in 2019 IEEE Aerospace Conference, 2019, vol. 2019-March, pp. 1–14, doi: 10.1109/AERO.2019.8741795.
+<a id="20">[20]</a>S. Friedenthal, A. Moore, and R. Steiner, A Practical Guide to SysML: The Systems Modeling Language, 3rd ed. Waltham, MA, MA: Morgan Kaufmann, 2015.
+<a id="6">[6]</a>A. J. Bower and D. Thomas, “An Affordability Model Framework for the RS-25 Liquid Rocket Engine,” in 2018 Joint Propulsion Conference, 2018, pp. 1–9, doi: 10.2514/6.2018-4460.
+<a id="30">[30]</a>S. Lakshmipuram Raghu and L. D. Thomas, “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine using SysML,” in AIAA Scitech 2021 Forum, 2021, doi: 10.2514/6.2021-0305.
+<a id="33">[33]</a>S. Lakshmipuram Raghu and L. Thomas, “Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability,” AIAA Propulsion and Energy 2021 Forum, pp. 1–12, Aug. 2021, doi: 10.2514/6.2021-3578.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>AERO</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</title>
+    <url>/2024/08/31/010/</url>
+    <content><![CDATA[
+在这个载人航天不断飞翔的时代，对航天器的可靠性和可维护性的改进有着强烈的需求。成功航天器的主要驱动力之一是坚固而多功能的推进系统。推进系统的设计需要在性能、可靠性和成本之间取得适当的平衡。本研究的重点是可靠性。本研究提出了一个基于模型的框架，使用系统建模语言 (SysML) 进行故障模式、影响和危害性分析 (FMECA)。该框架以传统火箭发动机 RS-25（以前称为航天飞机主发动机 (SSME)）为例。将航天飞机时代的 SSME 用于太空发射系统 (SLS) 任务的目标是必须进行升级以降低发动机成本。此外，升级将需要重新认证发动机以进行载人发射。之所以选择这款发动机进行研究，是为了通过基于模型的故障模式、影响和危害性分析 (MBFMECA) 实现重新认证。因此，在基于模型的系统工程 (MBSE) 的背景下，MBFMECA 已经开发并详细阐述。提议的框架将补充正在进行的 RS-25 发动机可负担性研究工作。
+
+故障模式和影响分析 (FMEA) 是一种用于识别导致系统故障的潜在问题及其原因的过程。FMEA 标准最初由 MIL-STD-1629 定义。自诞生以来，在 FMEA 中添加了方面危害性分析 (CA)，催生了故障模式、影响和危害性分析 (FMECA) 。FMEA 和 FMECA 通常可以互换使用，因为 FMECA 是 FMEA 的扩展。但是，为了转向 FMECA，编写一份主要 FMEA 报告非常重要。主要 FMEA 有助于评估故障的原因和影响，而 FMECA 有助于量化和确定与故障相关的风险的优先级。在火箭发动机的背景下，满足可靠性要求是实现任务保证的关键里程碑。任务保证的一个重要元素是包含隐式 FMECA 的 FMEA 报告。全面、完善的 FMEA 可确保最高安全性并提高任务的可靠性。
+
+Izygon 等人 [[6]](#6) 首次在可靠性谱中使用 MBSE，他们开发了一个基于模型的框架，用于级联蒸馏系统 (CDS) 的 FMEA，CDS 是 NASA 约翰逊航天中心开发的先进水回收系统 (WRS)。此外，Huang 等人 [[8]](#8) 以及 Hansen 和 Huang [[5]](#5) 发起了用于燃气发生器循环液体发动机的 MBFMEA 框架的开发。这些研究包括一个基于模型的综合框架，用于主要 FMEA，该框架进一步扩展以得出 FMECA。这些研究探讨的 MBFMEA 的主要好处包括提高 FMEA 使用和任务执行的有效性、增强 FMEA 内容的全面性以及实现知识重用。过渡到基于模型的平台有助于实现设计灵活性，并将可靠性活动集成到 SE 活动中，例如需求分析、权衡研究以及验证和确认。
+
+**1、建模语言：SysML**
+RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这是一种用于管理复杂工程系统的 SE 活动的图形建模语言。SysML 提供了执行各种 SE 活动的语义基础，例如行为分析、需求可追溯性、性能分析、模拟和需求分析。语义封装在九种类型的 SysML 图中：需求图、块定义图、内部框图、用例图、活动图、序列图、状态机图、参数和包图。为了促进 MBFMECA，安全性和可靠性分析工具包集成到 SysML [[15]](#15) 中。本研究使用此 MBSE 工具包为 RS-25 发动机的 MBFMECA 开发初始基础。
+
+**2、RS-25 SysML Model**
+![Figure 2. Block Definition Diagram representing major components of RS-25 engine in the context of affordability.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png)
+
+为了建立 MBFMECA 的初始框架，主要 RS-25 发动机组件被组织成三个层次。结构架构封装在块定义图 (BDD) 中，如图 2 所示。顶级系统架构在 BDD 中表示。架构的上下文来自与 RS-25 发动机的主要成本削减目标相关的组件。RS-25 发动机通过组合抽象为燃烧装置、控制器、涡轮泵、管道、电气传感器和线束以及阀门和执行器。这些组件进一步抽象为子系统组件，如图 2 所示。考虑深入研究发动机架构的细节很有吸引力。然而，从建模的角度来看，保持基础模型简单和通用很重要。例如，通过图 2 中表达的结构视图，可以看出该架构在一般意义上也适用于液体火箭发动机。随着系统经历系统生命周期的不同阶段，可以完善此基础模型。
+
+**3、Requirements Allocation**
+![Figure 3. Requirement diagram with requirements associated with major components of the RS-25 engine.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083103.png)
+
+如介绍中所述，可靠性活动通常面临缺乏需求可追溯性的挑战。这可以通过开发 SysML 模型来克服。因此，从现有文献[[16]](#16)中综合了 RS-25 发动机及其组件的功能需求。然后将这些需求转换为 SysML 需求图，如图 3 所示。然后通过“满足”关联将这些需求连接到 RS-25 发动机的相应组件。通过这种关联，组件被约束为满足相关要求。这使得在系统生命周期的任何时间点都可以进行需求可追溯性。
+
+目前，SSME（引用的是两篇远古论文）已有大量 FMEA 数据可用。参考文献 [[13]](#13) [[17]](#17) 中的故障信息和不满意状况报告 (UCR) 用于为 RS-25 发动机创建 MBFMECA。从 SSME 时代开始，人们了解到发动机的故障模式基本上可以分为泄漏、裂纹、侵蚀、磨损、凹痕和损坏、污染、分层和破损部件、电气、缺失或多余部件、扭矩振动和超程、松动部件以及公差或间隙问题。利用 SysML 中的安全性和可靠性分析器工具包，创建了这些故障模式。然后根据这些组件的 UCR 信息以及相关故障模式评估和创建潜在故障模式的原因和影响。此外，使用工具包中的 FMEA 表生成功能，生成了 FMEA 表，以可视化适合图 2 所示的 RS-25 发动机结构视图的 FMEA 报告。（表不放了）
+
+**结果与讨论**
+![Figure 4. FMEA table for the Combustion Devices.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083104.png)
+
+创建故障模式和影响并分配严重程度后，在 SysML 中为 RS-25 发动机的组件生成了 FMEA 表。图 4 表示燃烧装置的 FMEA 表。表中表示了七个故障项 F-1 至 F-7，分别对应于主燃烧室 (MCC)、热气歧管 (HGM)、热交换器 (HE)、主喷射器 (MI)、喷嘴 (N)、燃料预燃室 (FPB) 和氧化剂预燃室 (OPB)。‘分类’列表示故障性质，可以是机械的、电气的或软件的。‘项目’列显示分配给相应故障模式的组件（在 BDD 中创建）。所有燃烧装置都由不同严重程度的故障模式‘裂纹’组成。MCC 和 HGM 存在故障模式‘泄漏’。对于 FPB 和 OPB 观察到故障模式“侵蚀”，对于 MI 和 HE 分别观察到故障模式“松动部件”和“间隙问题”。可以观察到，MCC、HGM 和 MI 中的裂缝导致了灾难性的故障，需要成为在整个系统生命周期中跟踪的重要故障项目。对于 HGM，泄漏导致发动机损失，这使其成为一种重要的故障模式，需要严格的缓解措施。虽然故障模式可能对不同的组件相同，但影响和原因可能有所不同。影响和原因在 FMEA 表中是独立的。由于这是基础框架，因此局部和最终影响的定义更为广泛。但是，这些可以随着系统在系统生命周期中的进展而得到细化。
+
+![Figure 5. FMEA table for the Turbopumps](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083105.png)
+
+与燃烧装置类似，图 5 表示涡轮泵的 FMEA 表。表中表示了四个故障项 F-8 至 F11，分别对应于高压燃料涡轮泵 (HPFTP)、高压氧化剂涡轮泵 (HPFTP)、低压燃料涡轮泵 (LPFTP) 和低压氧化剂涡轮泵 (LPOTP)。在 HPFTP、HPOTP 和 LPOTP 中观察到故障模式“磨损”。虽然这种故障模式对于 LPOTP 不太严重，但据观察，在 HPOTP 的情况下，它可能导致发动机故障，在 HPFTP 的情况下，它可能导致车辆故障。还可以观察到，在 HPOTP 的情况下，故障模式“分层和破损部件”和“扭矩、振动和过度行程”导致车辆故障。这表明这些故障模式是系统在生命周期过程中预期的重要故障项，应在设计生命周期的初始阶段设计适当的缓解措施。
+
+![Figure 6. FMEA table for all other components of RS-25 engine expressed in structural view in Figure 2.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083106.png)
+
+图 6 表示故障项目 F-12 至 F-15 的 FMEA 表，分别对应于组件阀门和执行器、电气传感器和线束、管道（管道、管子和歧管的泛化）和控制器。这些故障模式的严重程度本质上很小。随着系统在设计生命周期中不断进步，架构的复杂性会增加，这可以得到改进。在这个基础框架的范围内，这些组件的故障信息已被广泛列出，适用于图 2 中表示的 RS25 架构的顶层层次结构。如前所述，开发 MBFMECA 的目标之一是确保系统组件在整个系统生命周期中能够追溯到需求。通过需求图（图 3），可以将 RS-25 架构（图 2）的组件与功能需求相关联。此外，这些组件还与 FMEA 表“项目”列中的故障模式相关联（图 4、5 和 6）。因此，现在可以生成一个表格来了解可靠性覆盖率分析和相关要求。
+
+![Figure 7. Safety and Reliability Coverage Analysis Structure for Combustion Devices and Turbopumps of the RS-25 engine.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083107.png)
+
+图 7 表示在 SysML 中创建的安全性和可靠性覆盖率分析结构。‘设计元素’列包含 RS-25 引擎架构中包含的组件（图 2），‘可靠性分析覆盖’列表示为组件创建的适当故障项（图 4、5 和 6），‘满足’列包含与组件相关的功能需求信息（图 3）。此功能可以克服在开发 RS-25 引擎等复杂系统时经常遇到的 SE 活动不同步性质。实际上，这也有助于在设计生命周期的早期利用安全性和可靠性活动规划。当系统需要进行设计更改或升级时，需求通常会发生变化。通过安全性和可靠性覆盖率分析，还可以以省时的方式查看设计变更场景中受影响的需求。总体而言，组件、故障信息和受影响需求的视图使得在实施之前执行设计变更的功效分析成为可能。从今以后，这方面有助于实现 RS-25 发动机的高效可负担性框架。
+
+**结论**
+本文提出的 RS-25 发动机 MBFMECA 模型将成为改进发动机可靠性活动的初始基础框架之一。这项工作将 SSME 的传统 FMEA 数据提升到基于模型的 FMECA 平台。这种范式转变将能够为新型 RS-25 发动机的生产提供更高效的 FMEA 方法。此外，当采用不同的先进制造技术（例如增材制造）制造较新版本的 RS-25 发动机时，它将有助于评估权衡利弊。由于该平台基于现有的 SSME 故障数据，它将有助于创建一个强大的框架来评估实施较新技术对 RS-25 发动机生产重启的影响。在 NASA 为新型 RS-25 组件（例如涡轮泵）实施 FMEA 的现有文献背景下，应扩展提出的 MBFMECA，以便在未来的设计变更场景中实现此类实施活动的自动化。基础 MBFMECA 的未来研究方向包括： • 创建额外的 SysML 图表，以对已识别的故障模式的危险性等级进行建模。这将需要修改并从主要 MBFMECA 模型创建新的 SysML 图表和范例。
+
+- 根据危险性等级对发动机的风险和最终影响进行定性评估。
+- 提出简单的纠正措施（定性或定量）以减轻或降低风险的影响。
+- 针对设计变更场景自动生成完整而全面的 FMECA 报告。
+
+进一步的发展还包括集成基于模型的故障树分析 (FTA)，包括火箭发动机的成本考虑方面，并评估设计变更对 RS-25 发动机的影响。这些未来的发展涉及“做得更好”和“专注于提高效率和保真度”方面的设想里程碑（图 1），以实现可负担性。总体而言，将使用可执行的 SysML 模型同时分析性能、可靠性和成本方面。因此，整体努力将能够为 RS-25 引擎提供一个经济实惠的框架，该框架是在 MBSE 频谱内构思的。
+
+`参考文献`
+<a id="6">[6]</a>Izygon, M., Wagner, H., Okon, S., Wang, L., Sargusingh, M., and Evans, J. “Facilitating R&M in Spaceflight Systems with MBSE.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2016-April, 2016, pp. 1–6.https://doi.org/10.1109/RAMS.2016.7448031.
+<a id="8">[8]</a>Huang, Z., Swalgen, S., Davidz, H., and Murray, J. “MBSE-Assisted FMEA Approach - Challenges and Opportunities.” Proceedings - Annual Reliability and Maintainability Symposium, 2017, pp. 1–8. https://doi.org/10.1109/RAM.2017.7889722.
+<a id="5">[5]</a>Hansen, R., and Huang, Z. “Toward FMEA and MBSE Integration.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2018-January, 2018. https://doi.org/10.1109/RAM.2018.8463084.
+<a id="15">[15]</a>Biggs, G., Post, K., Armonas, A., Yakymets, N., Juknevicius, T., and Berres, A. “OMG Standard for Integrating Safety and Reliability Analysis into MBSE: Concepts and Applications.” INCOSE International Symposium, Vol. 29, No. 1, 2019, pp. 159–173. https://doi.org/10.1002/j.2334-5837.2019.00595.x.
+<a id="16">[16]</a>“Space Shuttle Main Engine Orientation, Space Transportation Training System Data.” BC98-04, Rocketdyne Propulsion and Power, Boeing, 1998.
+<a id="13">[13]</a>Tischer, A. E., and Glover, R. C. “Studies and Analyses of the Space Shuttle Main Engine.” NASA-CR-183593, 1987.
+<a id="17">[17]</a>Glover, R. C., Kelley, B. A., and Tischer, A. E. “Studies and Analyses of the Space Shuttle Main Engine: SSME (Space Shuttle Main Engine) Failure Data Review, Diagnostic Survey and Ssme Diagnostic Evaluation.” NASA-CR-178993, 1986.]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Artical</category>
+        <category>AIAA SCITECH Forum</category>
+        <category>2021</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+        <tag>FMEA</tag>
       </tags>
   </entry>
   <entry>
@@ -1752,6 +1680,78 @@ FMEA的三种使用场景：（1）新设计、新技术或新过程；（2）�
       </tags>
   </entry>
   <entry>
+    <title>小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</title>
+    <url>/2024/08/31/011/</url>
+    <content><![CDATA[
+为运载火箭（如太空发射系统 (SLS)）开发复杂推进系统的成功之路取决于性能、可靠性和成本之间的最佳平衡。在过去十年中，复杂推进系统的技术和创新应用超越了运载火箭的开发，转向提高可负担性和安全性。因此，本研究旨在补充正在进行的努力，即为 RS-25 发动机建立一个基于模型的平台，以实现可负担性。该发动机被选为研究候选是因为需要重启生产，采用新技术并降低成本。利用基于模型的系统工程 (MBSE) 的范例，结构架构和基于模型的平台用于执行故障模式、影响和危害性分析 (FMECA) 之前已在系统建模语言 (SysML) 中建模和开发。本研究的重点是扩展基于模型的可靠性框架，以包括 RS-25 发动机的行为方面（发动机性能、测试策略、设计变更实施和结果等）。我们已经详细说明了逐步的努力并讨论了结果，以开发 RS-25 发动机的全面可负担性平台。
+
+主要介绍了用SysML创建RS-25的一些图的内容。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Artical</category>
+        <category>AIAA Propulsion and Energy Forum</category>
+        <category>2021</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Automation in Model-Driven Engineering:A look back, and ahead</title>
+    <url>/2025/02/13/015/</url>
+    <content><![CDATA[
+[Automation in Model-Driven Engineering: A look back, and ahead](https://dl.acm.org/doi/abs/10.1145/3712008)
+
+`Abstraction`
+
+> Model-Driven Engineering (MDE) provides a huge body of knowledge of automation for many different engineering tasks, especially those involving transitioning from design to implementation. With the huge progress made in Artificial Intelligence (AI), questions arise about the future of MDE, such as how existing MDE techniques and technologies can be improved or how other activities that currently lack dedicated support can also be automated. However, at the same time, it has to be revisited where and how models should be used to keep the engineers in the loop for creating, operating, and maintaining complex systems. To trigger dedicated research on these open points, we discuss the history of automation in MDE and present perspectives on how automation in MDE can be further improved and which obstacles have to be overcome in both the medium and long-term.
+
+![纵轴对应MDE能实现的功能，横轴对应所属技术领域](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/25021301.png)
+
+一篇综述性质的文章，一方面回顾了典型的MDE技术，一方面做了技术展望。
+回顾方面如图所示，该文章按照建模、模型验证、模型管理等类型对功能进行了分类（2.1节），然后介绍了几种MDE的技术类型（这个分类挺让人迷惑的，没看懂这么分有什么意义，可能是想突出AI和LLM）（2.2节）。从第三节开始介绍对AI的思考，介绍了个别工作，其余的都是设想，本质上是技术驱动不是工程需求。提出了几个其他的工程需求：标准不统一、性能提升，也是常见的问题。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>TOSEM</category>
+        <category>2025</category>
+      </categories>
+      <tags>
+        <tag>Review</tag>
+        <tag>MDE</tag>
+        <tag>Epsilon</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Advancing Domain-Specific High-Integrity Model-Based Tools:Insights and Future Pathways</title>
+    <url>/2025/02/12/014/</url>
+    <content><![CDATA[
+[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://dl.acm.org/doi/abs/10.1145/3640310.3674094)
+
+`Abstraction`
+
+> Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
+
+本文是接着21年论文对CaMCOA Studio介绍的延续，介绍了这种联合Simulink和Sirius的MBSE工具，这篇展示了更多信息。第二节指出一个模型要在不同的抽象层级中表示，也就是NDSM、PDDM、EAM等，他们要在同一个平台上应对这些不同信息层级的模型，并处理追溯性、兼容性等问题。第三节介绍了一些挑战，有软件性能、模型间索引、版本变更带来的模型迁移。第四节汇总了一些代码开发的心得和经验。第五节结合了将软件迁移到Web端的可能性，如使用Sirius Web或GLSP。第六节提出了在云端创建的设想。总体上是对CaMCOA项目的更详细更全面的汇总报告和工具介绍。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Epsilon</tag>
+        <tag>Sirius</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt</title>
     <url>/2025/01/14/013/</url>
     <content><![CDATA[
@@ -1798,6 +1798,43 @@ FMEA的三种使用场景：（1）新设计、新技术或新过程；（2）�
         <tag>Epsilon</tag>
         <tag>Responsible</tag>
         <tag>Monitor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Picto Web:A Tool for Complex Model Exploration</title>
+    <url>/2025/02/14/017/</url>
+    <content><![CDATA[
+MODELS2022: [Picto web: a tool for complex model exploration](https://dl.acm.org/doi/abs/10.1145/3550356.3559094)
+
+CPS2024: [Exploring complex models with picto web](https://www.sciencedirect.com/science/article/pii/S0167642323001193)
+
+[Picto Web开源代码](https://github.com/epsilonlabs/picto-web)
+
+`Abstraction`
+
+> Picto Web is a multi-tenant web-based tool for complex model exploration. It can transform different types of models into a variety of transient web-based views in formats such as HTML, Graphviz and PlantUML using rule-based model-to-text transformations. Picto Web implements a lazy view computation approach to support large models and complex transformations efficiently, and includes model and transformation template monitoring and push notification facilities to automatically recompute views when either are modified and deliver updated views to clients. The tool is packaged as a Docker container for ease of deployment.
+
+![展示效果](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/25021501.png)
+
+本文是对原来Eclipse Picto工具的网页支持，模型在本地生成，然后可以用网页打开与查看，使用效果和本地一样。
+
+- 第一节介绍了两种技术路线，也就是相关工作Sprotty（也是基于Eclipse的）和本文的Picto。
+- 第二节分别讲技术层级（分为了FileWatcher、Transformer、ViewContentCache、PictoController）、效果演示和中间件的工作模式（分别是EGL、EGX和Picto）。
+- 第三节展示了一次操作在整个平台当中的运行过程。
+
+未来展望里提到的不同版本模型对比很好。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>Epsilon</tag>
+        <tag>Picto</tag>
+        <tag>Web</tag>
       </tags>
   </entry>
 </search>
