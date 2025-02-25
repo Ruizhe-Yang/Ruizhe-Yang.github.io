@@ -1199,6 +1199,52 @@ NASA 和 ESA 模拟器均在初步设计阶段使用，并且都具有相似的�
       </tags>
   </entry>
   <entry>
+    <title>小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</title>
+    <url>/2024/08/29/008/</url>
+    <content><![CDATA[
+*作者来自阿拉巴马大学亨茨维尔分校（美国）。*
+
+本次阅读关注涉及SysML的部分，不关注增材制造（AM）有关的内容。本文展示了一种分析火箭组件 MCC 表面粗糙度的方法，以及该表面粗糙度如何影响火箭发动机的性能。创建了 MATLAB 子程序来评估损失和性能，并运行在 SysML 中开发的基于模型的框架。然后使用 SSME 数据验证了该模型[[30]](#30)。
+
+在进行这项研究时，我们更好地了解了使用 AM 升级火箭发动机部件与火箭性能之间的权衡。在此过程中，还展示了基于模型的方法的功能。 在可负担性方面，如果工程师要做出明智的决策，需求可追溯性至关重要。例如，使用此模型的制造工程师可以更好地估计 AM 部件需要多少后处理才能满足性能要求。这可以进一步缩短部件的交付周期，或减轻试验台上的潜在故障，从而减少认证发动机的时间。此外，本文探讨的方面是建立一种全面的以模型为中心的可负担性方法，确保系统整个生命周期阶段的可追溯性和一致性。最后，这将有助于在系统生命周期的早期设想以故障为中心的方面，优化测试-失败-修复周期所花费的时间，实现可负担性。 可负担性和重新认证传统火箭发动机的问题取决于测试-失败-修复周期所花费的时间。 使用 AM 可以缩短重新认证的准备时间，但是实施 AM 而不显著降低性能是一项持续的挑战。可以考虑 AM 来设计新的火箭发动机，但是，RS-25 等传统火箭发动机无法进行大量重新设计以适应 AM 的使用。此外，在进行升级时，预测整个系统的可靠性变化非常重要，这需要采用以模型为中心的方法。这将有助于以整体方式评估设计变更对系统的影响。虽然正在进行研究以建立基于模型的框架来跟踪可靠性变化，但执行交易的能力也将补充跟踪可靠性变化的努力，这对测试-失败-修复周期具有重要影响。本文中传达的分析结果将有助于开发一种方法，该方法可以评估 RS-25、其生产重启和重新认证的增材制造零件的可行性和实用性。由于基于模型的方法通常适用于多种火箭发动机架构，这些技术也可应用于其他液体火箭发动机和先进的推进系统，如核热推进（NTP）。
+
+![Fig. 1 The Affordability Modeling Framework for the RS-25 Engine. [18]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
+
+基于模型的 RS-25 可负担性框架的开发是一项正在进行的研究工作 [[18]](#18) [[19]](#19) [[20]](#20) [[21]](#21)。可负担性框架如图 1 所示。它由四个方面组成，以实现可负担性：基于为 RS-25 发动机设定的成本降低目标开发的结构模型 [[20]](#20)；基于 104.5% 功率水平 SSME 数据开发的系统组件和性能模型 [[18]](#18)；正在为测试规划和可靠性开发的功能和行为模型 [[19]](#19) [[20]](#20) [[21]](#21)；以及其他工程分析模型，正在同时开发，首先是 RS-25 发动机的基于模型的故障模式、影响和危害性分析 (FMECA) [[19]](#19)。系统建模语言 (SysML) 用于利用 MBSE 实现可负担性框架。SysML 是一种图形建模语言，提供执行 SE 活动的语义。随后，本研究将利用 SysML 开发基于模型的范例，用于分析 AM 对 RS-25 发动机 MCC 的 SE 优势，这将有利于生产重启。本文的范围将涵盖可负担性建模框架的功能和行为模型以及其他工程分析模型（表面粗糙度的影响）以及系统和组件性能模型（用于估计 109% 功率水平的表面粗糙度影响的性能模型）。
+
+Implementation in SysML and Results
+根据方法论部分中描述的步骤，在 MATLAB 中开发了不同的子程序。开发的子程序被纳入 SysML 中基于 RS-25 模型的可负担性框架 。创建了一个参数图 (par) 来使用开发的子程序执行分析，如图 4 所示。par 包装了开发的 MATLAB 子程序，用于使用三种方法（能量平衡、直接压力损失和 Fanno 流）捕获结果。
+
+![Fig. 4. RS-25 engine surface roughness analysis parametric diagram in SysML.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083002.png)
+
+组件鉴定的一个重要方面是评估组件测试和分析是否满足系统要求。因此，正在进行的分析分别与 RS-25 发动机和 MCC 的系统和组件级要求相关联。这封装在需求图 (req) 中，并与 [[20]](#20) 中开发的结构架构中的组件相关联，如图 5 所示
+
+![Fig. 5. Requirement diagram (req) representing RS-25 engine and MCC requirements and its association to the structural architecture.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083003.png)
+
+代表 RS-25 发动机和 MCC 的 \<\< block >> 由表示为执行分析而开发的 MATLAB 子程序的约束组成，值表示基于方程 (1) – (17) 的输入和输出。一旦确定了 par 和 req，就会在 SysML 中创建 RS-25 发动机块的不同实例，这些实例表示不同的 AM 过程以及表 1 中列出的相关表面粗糙度值。
+
+`参考文献`
+
+<a id="18">[18]</a>Bower, A. J., and Thomas, D. “An Affordability Model Framework for the RS-25 Liquid Rocket Engine.” 2018 Joint Propulsion Conference, 2018, pp. 1–9. https://doi.org/10.2514/6.2018-4460.
+<a id="19">[19]</a>Lakshmipuram Raghu, S., and Thomas, L. D. “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine Using SysML.” AIAA Scitech 2021 Forum, 2021. https://doi.org/10.2514/6.2021-0305.
+<a id="20">[20]</a>Lakshmipuram Raghu, S., and Thomas, L. “Modeling Behavior Elements for the RS-25 Engine Using SysML for Improved Affordability.” AIAA Propulsion and Energy 2021 Forum, 2021, pp. 1–12. https://doi.org/10.2514/6.2021-3578.
+<a id="21">[21]</a>Lakshmipuram Raghu, S., Tudor, M., Thomas, L. D., and Wang, G. “MBSE Utilization for Additive Manufactured Rocket Propulsion Components.” 2022 IEEE Aerospace Conference, 2022. https://doi.org/10.1109/AERO53065.2022.9843586
+<a id="30">[30]</a>Nickerson, G. R., and Dang, L. D. Performance Predictions for an SSME Configuration with an Enlarged Throat. Publication NASA-CR-178743. 1985.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Artical</category>
+        <category>AIAA SCITECH Forum</category>
+        <category>2023</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications</title>
     <url>/2024/08/28/006/</url>
     <content><![CDATA[
@@ -1422,137 +1468,6 @@ propositionalization社区已经研究了从分层和嵌套数据生成数据集
       </tags>
   </entry>
   <entry>
-    <title>小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</title>
-    <url>/2024/08/29/008/</url>
-    <content><![CDATA[
-*作者来自阿拉巴马大学亨茨维尔分校（美国）。*
-
-本次阅读关注涉及SysML的部分，不关注增材制造（AM）有关的内容。本文展示了一种分析火箭组件 MCC 表面粗糙度的方法，以及该表面粗糙度如何影响火箭发动机的性能。创建了 MATLAB 子程序来评估损失和性能，并运行在 SysML 中开发的基于模型的框架。然后使用 SSME 数据验证了该模型[[30]](#30)。
-
-在进行这项研究时，我们更好地了解了使用 AM 升级火箭发动机部件与火箭性能之间的权衡。在此过程中，还展示了基于模型的方法的功能。 在可负担性方面，如果工程师要做出明智的决策，需求可追溯性至关重要。例如，使用此模型的制造工程师可以更好地估计 AM 部件需要多少后处理才能满足性能要求。这可以进一步缩短部件的交付周期，或减轻试验台上的潜在故障，从而减少认证发动机的时间。此外，本文探讨的方面是建立一种全面的以模型为中心的可负担性方法，确保系统整个生命周期阶段的可追溯性和一致性。最后，这将有助于在系统生命周期的早期设想以故障为中心的方面，优化测试-失败-修复周期所花费的时间，实现可负担性。 可负担性和重新认证传统火箭发动机的问题取决于测试-失败-修复周期所花费的时间。 使用 AM 可以缩短重新认证的准备时间，但是实施 AM 而不显著降低性能是一项持续的挑战。可以考虑 AM 来设计新的火箭发动机，但是，RS-25 等传统火箭发动机无法进行大量重新设计以适应 AM 的使用。此外，在进行升级时，预测整个系统的可靠性变化非常重要，这需要采用以模型为中心的方法。这将有助于以整体方式评估设计变更对系统的影响。虽然正在进行研究以建立基于模型的框架来跟踪可靠性变化，但执行交易的能力也将补充跟踪可靠性变化的努力，这对测试-失败-修复周期具有重要影响。本文中传达的分析结果将有助于开发一种方法，该方法可以评估 RS-25、其生产重启和重新认证的增材制造零件的可行性和实用性。由于基于模型的方法通常适用于多种火箭发动机架构，这些技术也可应用于其他液体火箭发动机和先进的推进系统，如核热推进（NTP）。
-
-![Fig. 1 The Affordability Modeling Framework for the RS-25 Engine. [18]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
-
-基于模型的 RS-25 可负担性框架的开发是一项正在进行的研究工作 [[18]](#18) [[19]](#19) [[20]](#20) [[21]](#21)。可负担性框架如图 1 所示。它由四个方面组成，以实现可负担性：基于为 RS-25 发动机设定的成本降低目标开发的结构模型 [[20]](#20)；基于 104.5% 功率水平 SSME 数据开发的系统组件和性能模型 [[18]](#18)；正在为测试规划和可靠性开发的功能和行为模型 [[19]](#19) [[20]](#20) [[21]](#21)；以及其他工程分析模型，正在同时开发，首先是 RS-25 发动机的基于模型的故障模式、影响和危害性分析 (FMECA) [[19]](#19)。系统建模语言 (SysML) 用于利用 MBSE 实现可负担性框架。SysML 是一种图形建模语言，提供执行 SE 活动的语义。随后，本研究将利用 SysML 开发基于模型的范例，用于分析 AM 对 RS-25 发动机 MCC 的 SE 优势，这将有利于生产重启。本文的范围将涵盖可负担性建模框架的功能和行为模型以及其他工程分析模型（表面粗糙度的影响）以及系统和组件性能模型（用于估计 109% 功率水平的表面粗糙度影响的性能模型）。
-
-Implementation in SysML and Results
-根据方法论部分中描述的步骤，在 MATLAB 中开发了不同的子程序。开发的子程序被纳入 SysML 中基于 RS-25 模型的可负担性框架 。创建了一个参数图 (par) 来使用开发的子程序执行分析，如图 4 所示。par 包装了开发的 MATLAB 子程序，用于使用三种方法（能量平衡、直接压力损失和 Fanno 流）捕获结果。
-
-![Fig. 4. RS-25 engine surface roughness analysis parametric diagram in SysML.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083002.png)
-
-组件鉴定的一个重要方面是评估组件测试和分析是否满足系统要求。因此，正在进行的分析分别与 RS-25 发动机和 MCC 的系统和组件级要求相关联。这封装在需求图 (req) 中，并与 [[20]](#20) 中开发的结构架构中的组件相关联，如图 5 所示
-
-![Fig. 5. Requirement diagram (req) representing RS-25 engine and MCC requirements and its association to the structural architecture.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083003.png)
-
-代表 RS-25 发动机和 MCC 的 \<\< block >> 由表示为执行分析而开发的 MATLAB 子程序的约束组成，值表示基于方程 (1) – (17) 的输入和输出。一旦确定了 par 和 req，就会在 SysML 中创建 RS-25 发动机块的不同实例，这些实例表示不同的 AM 过程以及表 1 中列出的相关表面粗糙度值。
-
-`参考文献`
-
-<a id="18">[18]</a>Bower, A. J., and Thomas, D. “An Affordability Model Framework for the RS-25 Liquid Rocket Engine.” 2018 Joint Propulsion Conference, 2018, pp. 1–9. https://doi.org/10.2514/6.2018-4460.
-<a id="19">[19]</a>Lakshmipuram Raghu, S., and Thomas, L. D. “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine Using SysML.” AIAA Scitech 2021 Forum, 2021. https://doi.org/10.2514/6.2021-0305.
-<a id="20">[20]</a>Lakshmipuram Raghu, S., and Thomas, L. “Modeling Behavior Elements for the RS-25 Engine Using SysML for Improved Affordability.” AIAA Propulsion and Energy 2021 Forum, 2021, pp. 1–12. https://doi.org/10.2514/6.2021-3578.
-<a id="21">[21]</a>Lakshmipuram Raghu, S., Tudor, M., Thomas, L. D., and Wang, G. “MBSE Utilization for Additive Manufactured Rocket Propulsion Components.” 2022 IEEE Aerospace Conference, 2022. https://doi.org/10.1109/AERO53065.2022.9843586
-<a id="30">[30]</a>Nickerson, G. R., and Dang, L. D. Performance Predictions for an SSME Configuration with an Enlarged Throat. Publication NASA-CR-178743. 1985.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Artical</category>
-        <category>AIAA SCITECH Forum</category>
-        <category>2023</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Failure Mode and Effects Analysis (FMEA Handbook)</title>
-    <url>/2024/09/02/012/</url>
-    <content><![CDATA[
-# 引言
-
-美国汽车工业行动集团（AIAG）和德国汽车工业联合会（VDA）的整车厂（OEM）和一级子供应商成员合作的成果。本手册替代了美国汽车工业行动集团FMEA第四版和VDA Volume 4 "Product and Process FMEA"。
-
-## 目的和说明
-
-FMEA作为一套面向团队的系统的、定性分析方法，其目的是：
-
-- 评估产品/过程中失效的潜在技术风险(evaluate the potential technical risks of failure of a product or process)
-- 分析失效的起因和影响(analyze the causes and effects of those failures)
-- 记录预防和探测措施(document preventive and detection actions)
-- 针对降低风险的措施提出建议(recommend actions to reduce risk)
-
-本手册只考虑技术风险，不涉及财务、实践、战略风险。
-
-## FMEA的目标和限制
-
-> The objective of FMEA is to identify the functions of a product or steps of a process and the associated potential failure modes, effects, and causes. Furthermore, it is used to evaluate whether prevention and detection controls already planned are enough, and to recommend additional actions. The FMEA documents and tracks actions that are taken to reduce risk. The FMEA methodology helps engineers prioritize and focus on preventing product and/or process problems from occurring.
-
-FMEA的目标是识别产品的功能或过程步骤，以及相关的潜在失效模式、影响和起因。此外，它还用于评估计划中的预防和探测措施是否是充分的，以推荐额外的措施。对于采取的措施，FMEA将形成文件并跟踪这些措施的实施情况，以降低风险。FMEA方法可帮助工程师将各种事项按照重要性排序，并将重点放在产品和/或过程中发生问题的预防上。FTA和FMEDA等其他方法可用于定量分析和多点失效分析。
-
-## 企业FMEA整合
-
-### FMEA实施潜在注意事项
-
-- Clear：用严格准确的技术属于描述潜在的失效模式。
-- True：准确描述潜在失效的后果。
-- Realistic：失效的起因是合理的，不考虑极端事件。
-- Complete：对不可预见的潜在失效进行隐瞒。
-
-### 高层管理者的承诺
-
-FMEA过程可能需要相当长的时间才能完成，参与者和高层管理者应重视。
-
-### DFMEA和PFMEA中的知识经验保护
-
-知识产权问题。
-
-### 顾客和供应商之间的协议
-
-包括但不限于：系统边界、必要的工作文件、分析方法和评估表。
-
-### 过渡策略
-
-从旧的两个手册过渡到此新手册的说明。
-
-### FMEA基础版和衍生版
-
-基础FMEA不针对某个具体项目，因此允许对需求、功能和措施进行笼统的概述。衍生版是面向企业或者场景的基础FMEA具体化。
-
-## 产品和过程FMEA
-
-FMEA的三种使用场景：（1）新设计、新技术或新过程；（2）现有设计或过程的新应用；（3）对现有设计或过程的工程变更。
-
-### 设计FMEA（DFMEA）
-
-一种主要由设计责任工程师/团队使用的分析技术，用于确保在将零件交付生产之前，尽可能考虑并解决潜在失效模式及其相关失效起因或机理。设计FMEA用于分析如快/边界图所示边界中所定义的系统、子系统或相关组件的功能，其内部要素之间的关系以及系统边界外要素之间的关系，从而识别出可能存在的设计缺陷，将潜在的失效风险降到最低。
-
-### 过程FMEA（PFMEA）
-
-分析制造、装配和物流过程中的潜在失效，以确保生产的产品符合设计的目的。过程FMEA通过考虑过程变差可能导致的潜在失效模式来分析过程，以确定预防措施的优先顺序，并根据需要改进控制。其总体目标是在生产开始之前分析过程并采取措施，以避免与制造和装配有关的不必要缺陷以及这些缺陷产生的后果。
-
-### 不同FMEA之间的协作
-
-对于制造商而言，一个好的开始是确保当失效影响相同时，DFMEA和PFMEA的严重度相同。
-
-## 项目策划
-
-……
-]]></content>
-      <categories>
-        <category>Book</category>
-        <category>Handbook</category>
-        <category>AIAG &amp; VDA</category>
-      </categories>
-      <tags>
-        <tag>FMEA</tag>
-        <tag>Safety</tag>
-        <tag>Management</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</title>
     <url>/2024/08/30/009/</url>
     <content><![CDATA[
@@ -1680,6 +1595,115 @@ RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这�
       </tags>
   </entry>
   <entry>
+    <title>笔记：Failure Mode and Effects Analysis (FMEA Handbook)</title>
+    <url>/2024/09/02/012/</url>
+    <content><![CDATA[
+# 引言
+
+美国汽车工业行动集团（AIAG）和德国汽车工业联合会（VDA）的整车厂（OEM）和一级子供应商成员合作的成果。本手册替代了美国汽车工业行动集团FMEA第四版和VDA Volume 4 "Product and Process FMEA"。
+
+## 目的和说明
+
+FMEA作为一套面向团队的系统的、定性分析方法，其目的是：
+
+- 评估产品/过程中失效的潜在技术风险(evaluate the potential technical risks of failure of a product or process)
+- 分析失效的起因和影响(analyze the causes and effects of those failures)
+- 记录预防和探测措施(document preventive and detection actions)
+- 针对降低风险的措施提出建议(recommend actions to reduce risk)
+
+本手册只考虑技术风险，不涉及财务、实践、战略风险。
+
+## FMEA的目标和限制
+
+> The objective of FMEA is to identify the functions of a product or steps of a process and the associated potential failure modes, effects, and causes. Furthermore, it is used to evaluate whether prevention and detection controls already planned are enough, and to recommend additional actions. The FMEA documents and tracks actions that are taken to reduce risk. The FMEA methodology helps engineers prioritize and focus on preventing product and/or process problems from occurring.
+
+FMEA的目标是识别产品的功能或过程步骤，以及相关的潜在失效模式、影响和起因。此外，它还用于评估计划中的预防和探测措施是否是充分的，以推荐额外的措施。对于采取的措施，FMEA将形成文件并跟踪这些措施的实施情况，以降低风险。FMEA方法可帮助工程师将各种事项按照重要性排序，并将重点放在产品和/或过程中发生问题的预防上。FTA和FMEDA等其他方法可用于定量分析和多点失效分析。
+
+## 企业FMEA整合
+
+### FMEA实施潜在注意事项
+
+- Clear：用严格准确的技术属于描述潜在的失效模式。
+- True：准确描述潜在失效的后果。
+- Realistic：失效的起因是合理的，不考虑极端事件。
+- Complete：对不可预见的潜在失效进行隐瞒。
+
+### 高层管理者的承诺
+
+FMEA过程可能需要相当长的时间才能完成，参与者和高层管理者应重视。
+
+### DFMEA和PFMEA中的知识经验保护
+
+知识产权问题。
+
+### 顾客和供应商之间的协议
+
+包括但不限于：系统边界、必要的工作文件、分析方法和评估表。
+
+### 过渡策略
+
+从旧的两个手册过渡到此新手册的说明。
+
+### FMEA基础版和衍生版
+
+基础FMEA不针对某个具体项目，因此允许对需求、功能和措施进行笼统的概述。衍生版是面向企业或者场景的基础FMEA具体化。
+
+## 产品和过程FMEA
+
+FMEA的三种使用场景：（1）新设计、新技术或新过程；（2）现有设计或过程的新应用；（3）对现有设计或过程的工程变更。
+
+### 设计FMEA（DFMEA）
+
+一种主要由设计责任工程师/团队使用的分析技术，用于确保在将零件交付生产之前，尽可能考虑并解决潜在失效模式及其相关失效起因或机理。设计FMEA用于分析如快/边界图所示边界中所定义的系统、子系统或相关组件的功能，其内部要素之间的关系以及系统边界外要素之间的关系，从而识别出可能存在的设计缺陷，将潜在的失效风险降到最低。
+
+### 过程FMEA（PFMEA）
+
+分析制造、装配和物流过程中的潜在失效，以确保生产的产品符合设计的目的。过程FMEA通过考虑过程变差可能导致的潜在失效模式来分析过程，以确定预防措施的优先顺序，并根据需要改进控制。其总体目标是在生产开始之前分析过程并采取措施，以避免与制造和装配有关的不必要缺陷以及这些缺陷产生的后果。
+
+### 不同FMEA之间的协作
+
+对于制造商而言，一个好的开始是确保当失效影响相同时，DFMEA和PFMEA的严重度相同。
+
+## 项目策划
+
+……
+]]></content>
+      <categories>
+        <category>Book</category>
+        <category>Handbook</category>
+        <category>AIAG &amp; VDA</category>
+      </categories>
+      <tags>
+        <tag>FMEA</tag>
+        <tag>Safety</tag>
+        <tag>Management</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt</title>
+    <url>/2025/02/10/013/</url>
+    <content><![CDATA[
+[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://ieeexplore.ieee.org/document/9592422)
+**2021 MODELS Best Paper Award, Practice & Innovation Track**
+`Abstraction`
+
+> Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
+
+本文介绍了一种名为CaMCOA Studio的软件工具，是由约克大学为劳斯莱斯开发的基于模型的引擎控制系统模型管理平台。整个论文只有四张图，声称用户可以使用但是没有开源代码，所使用的工具链全部都是开源工具（主要是Epsilon和Sirius）。论文分别介绍了几个问题：metamodel创建问题、Sirius的功能问题、模型管理中的EGL、ETL、EVL、ECL使用等，实现了一个Simulink和EMF的模型转换，（原文4.B节）其中，EMF2Simulink使用的是ETL+Simulink driver的组合，Simulink2EMF使用的是CaMCOA先转XML，后转EMF。后文还讨论了多人协同开发等一系列工程问题。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2021</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Sirius</tag>
+        <tag>Epsilon</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</title>
     <url>/2024/08/31/011/</url>
     <content><![CDATA[
@@ -1725,6 +1749,33 @@ RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这�
       </tags>
   </entry>
   <entry>
+    <title>笔记：Automation in Model-Driven Engineering:A look back, and ahead</title>
+    <url>/2025/02/13/015/</url>
+    <content><![CDATA[
+[Automation in Model-Driven Engineering: A look back, and ahead](https://dl.acm.org/doi/abs/10.1145/3712008)
+
+`Abstraction`
+
+> Model-Driven Engineering (MDE) provides a huge body of knowledge of automation for many different engineering tasks, especially those involving transitioning from design to implementation. With the huge progress made in Artificial Intelligence (AI), questions arise about the future of MDE, such as how existing MDE techniques and technologies can be improved or how other activities that currently lack dedicated support can also be automated. However, at the same time, it has to be revisited where and how models should be used to keep the engineers in the loop for creating, operating, and maintaining complex systems. To trigger dedicated research on these open points, we discuss the history of automation in MDE and present perspectives on how automation in MDE can be further improved and which obstacles have to be overcome in both the medium and long-term.
+
+![纵轴对应MDE能实现的功能，横轴对应所属技术领域](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/25021301.png)
+
+一篇综述性质的文章，一方面回顾了典型的MDE技术，一方面做了技术展望。
+回顾方面如图所示，该文章按照建模、模型验证、模型管理等类型对功能进行了分类（2.1节），然后介绍了几种MDE的技术类型（这个分类挺让人迷惑的，没看懂这么分有什么意义，可能是想突出AI和LLM）（2.2节）。从第三节开始介绍对AI的思考，介绍了个别工作，其余的都是设想，本质上是技术驱动不是工程需求。提出了几个其他的工程需求：标准不统一、性能提升，也是常见的问题。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>TOSEM</category>
+        <category>2025</category>
+      </categories>
+      <tags>
+        <tag>Review</tag>
+        <tag>MDE</tag>
+        <tag>Epsilon</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Towards Runtime Monitoring for Responsible Machine Learning using Model-driven Engineering</title>
     <url>/2025/02/14/016/</url>
     <content><![CDATA[
@@ -1747,30 +1798,6 @@ RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这�
         <tag>Epsilon</tag>
         <tag>Responsible</tag>
         <tag>Monitor</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt</title>
-    <url>/2025/02/10/013/</url>
-    <content><![CDATA[
-[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://ieeexplore.ieee.org/document/9592422)
-**2021 MODELS Best Paper Award, Practice & Innovation Track**
-`Abstraction`
-
-> Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
-
-本文介绍了一种名为CaMCOA Studio的软件工具，是由约克大学为劳斯莱斯开发的基于模型的引擎控制系统模型管理平台。整个论文只有四张图，声称用户可以使用但是没有开源代码，所使用的工具链全部都是开源工具（主要是Epsilon和Sirius）。论文分别介绍了几个问题：metamodel创建问题、Sirius的功能问题、模型管理中的EGL、ETL、EVL、ECL使用等，实现了一个Simulink和EMF的模型转换，（原文4.B节）其中，EMF2Simulink使用的是ETL+Simulink driver的组合，Simulink2EMF使用的是CaMCOA先转XML，后转EMF。后文还讨论了多人协同开发等一系列工程问题。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>MODELS</category>
-        <category>2021</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Sirius</tag>
-        <tag>Epsilon</tag>
       </tags>
   </entry>
   <entry>
@@ -1808,33 +1835,6 @@ CPS2024: [Exploring complex models with picto web](https://www.sciencedirect.com
         <tag>Epsilon</tag>
         <tag>Picto</tag>
         <tag>Web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Automation in Model-Driven Engineering:A look back, and ahead</title>
-    <url>/2025/02/13/015/</url>
-    <content><![CDATA[
-[Automation in Model-Driven Engineering: A look back, and ahead](https://dl.acm.org/doi/abs/10.1145/3712008)
-
-`Abstraction`
-
-> Model-Driven Engineering (MDE) provides a huge body of knowledge of automation for many different engineering tasks, especially those involving transitioning from design to implementation. With the huge progress made in Artificial Intelligence (AI), questions arise about the future of MDE, such as how existing MDE techniques and technologies can be improved or how other activities that currently lack dedicated support can also be automated. However, at the same time, it has to be revisited where and how models should be used to keep the engineers in the loop for creating, operating, and maintaining complex systems. To trigger dedicated research on these open points, we discuss the history of automation in MDE and present perspectives on how automation in MDE can be further improved and which obstacles have to be overcome in both the medium and long-term.
-
-![纵轴对应MDE能实现的功能，横轴对应所属技术领域](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/25021301.png)
-
-一篇综述性质的文章，一方面回顾了典型的MDE技术，一方面做了技术展望。
-回顾方面如图所示，该文章按照建模、模型验证、模型管理等类型对功能进行了分类（2.1节），然后介绍了几种MDE的技术类型（这个分类挺让人迷惑的，没看懂这么分有什么意义，可能是想突出AI和LLM）（2.2节）。从第三节开始介绍对AI的思考，介绍了个别工作，其余的都是设想，本质上是技术驱动不是工程需求。提出了几个其他的工程需求：标准不统一、性能提升，也是常见的问题。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TOSEM</category>
-        <category>2025</category>
-      </categories>
-      <tags>
-        <tag>Review</tag>
-        <tag>MDE</tag>
-        <tag>Epsilon</tag>
       </tags>
   </entry>
   <entry>
@@ -2003,7 +2003,7 @@ SysML直接继承的KerML的部分（对应原文7.2-7.6节）：
 ## 第八章：元模型
 
 - Concrete Syntax具体语法：包括用于描述文本语序的文本语法和用于视图的图形符号。两种表示法均可以独立描述一个完整模型。
-- Abstract Syntax抽象语法：抽象语法被specified as指定为MOF模型。抽象语法为具体语法提供基础，使得模型可以在不同的表示形式之间转换，同时保持其语义完整性。在SysML v2中，抽象语法通过KerML进行定义，提供了统一的元模型结构，支持系统工程建模的各个方面。
+- Abstract Syntax抽象语法：抽象语法被specified as指定为MOF模型（Meta-Object Facility，元对象工具）。抽象语法为具体语法提供基础，使得模型可以在不同的表示形式之间转换，同时保持其语义完整性。在SysML v2中，抽象语法通过KerML进行定义，提供了统一的元模型结构，支持系统工程建模的各个方面。
 - Semantics语义：是基于KerML构建的。
 **（具体语法是比较直观的，就是建模时候的文本规则；抽象语法和语义这两者介绍得比较繁琐，但是没看出来在实际建模中的含义…有待讨论）**
 
@@ -2020,7 +2020,6 @@ SysML中的关键词：
 - REDEFINES = ':>>' | 'redefines'
 ]]></content>
       <categories>
-        <category>Academic Papers</category>
         <category>Document</category>
         <category>OMG</category>
       </categories>
@@ -2028,6 +2027,104 @@ SysML中的关键词：
         <tag>MBSE</tag>
         <tag>SysMLv2</tag>
         <tag>OMG</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Tree-Based versus Hybrid Graphical-Textual Model Editors:An Empirical Study of Testing Specifications</title>
+    <url>/2025/02/25/023/</url>
+    <content><![CDATA[
+[Tree-Based versus Hybrid Graphical-Textual Model Editors: An Empirical Study of Testing Specifications](https://dl.acm.org/doi/abs/10.1145/3640310.3674102)
+
+`Abstraction`
+
+> Tree-based model editors and hybrid graphical-textual model editors have advantages and limitations when editing domain models. Data is displayed hierarchically in tree-based model editors, whereas hybrid graphical-textual model editors capture high-level domain concepts graphically and low-level domain details textually. We conducted an empirical user study with 22 participants to evaluate the implicit assumption of system modellers that hybrid notations are superior, and to investigate the tradeoffs between the default EMF-based tree model editor and a Sirius/Xtext-based hybrid model editor. The results of the user study indicate that users largely prefer the hybrid editor and are more confident with hybrid notations for understanding the meaning of conditions. Furthermore, we found that the tree editor provided superior performance for analysing ordered lists of model elements, whereas activities requiring the comprehension or modelling of complex conditions were carried out faster through the hybrid editor.
+
+本文是测试与讨论类型的论文，不是技术文章。
+
+本文围绕一个工程场景做了树状模型和图文混模型工具的性能对比。工程场景是一个MRS多机器人系统，文章第三节介绍了元模型。文章第四节介绍两种模型所用工具，分别是EMF默认的树状编辑器和开发的Graphite图文混合编辑器，介绍了元模型和例子。第五节开始介绍测试过程，22个参与者是如何被培训和测评的，论文设计了三个目标，分别是Performance（与树编辑器相比，用混合编辑器执行某些任务时，用户如何执行？）、Confidence（用户对解决方案的正确性和完整性对​​给定任务有多信心？）、Preference（用户喜欢混合编辑器或树编辑器吗？），通过他们对5个问题的理解和5个任务操作的结果进行分析。第六节介绍结果评价，五六节占全文一半以上。结论是：“关于性能，使用编辑者执行任务的速度之间存在了权衡。混合编辑器更适合理解和建模复杂条件，而树编辑器更适合分析模型元素的有序列表。当建模条件时，混合编辑器会发现更多校正的误差。但是，犯下的错误很小。同样，与混合编辑器进行建模条件的更多击键和更少的点击量。当使用混合编辑器了解条件的含义时，用户对解决方案更有信心。最后，在研究之前，有50％的参与者更喜欢混合编辑。最后，百分比增加到73％，显示对混合动力编辑者的偏好增加。”
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>Sirius</tag>
+        <tag>Xtext</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Eclipse Modeling Framework 2.0 笔记</title>
+    <url>/2025/02/25/022/</url>
+    <content><![CDATA[前言：
+
+- 第一部分（1-4章）介绍基本概念；
+- 第二部分（5-9章）介绍Ecore和其他形式的关系（UML、Java、XML Schema）；
+- 第三部分（10-13章）分析EMF的代码生成工具和案例；
+- 第四部分（14-21章）介绍EMF的运行库架构。
+
+# 第1章 Eclipse
+
+## 项目
+
+Eclipse项目本身可以划分为4个主要子项目：Equinox、平台、Java开发工具（Java Development Tools）、插件开发环境（Plug-in Development Environment，PDE）。
+
+# 第2章 EMF介绍
+
+# 第3章 使用EMF.Edit编辑模型
+
+# 第4章 使用EMF——简单概述
+
+# 第5章 Ecore建模概念
+
+# 第6章 UML
+
+# 第7章 Java源代码
+
+# 第8章 扩展的Ecore建模
+
+# 第9章 XML Schema
+
+# 第10章 EMF生成器模式
+
+# 第11章 EMF.Edit生成器模式
+
+# 第12章 运行生成器
+
+# 第13章 示例——实现模型和编辑器
+
+# 第14章 探索元数据
+
+# 第15章 持久化
+
+# 第16章 客户端编程工具箱
+
+# 第17章 更改模型
+
+# 第18章 验证架构
+
+# 第19章 EMF.Edit编程
+
+# 第20章 Eclipse IDE之外的应用领域
+
+# 第21章 EMF 2.3和2.4
+
+# 附录A UML符号
+
+# 附录B 示例模型概述
+
+# 附录C 参考文献
+
+]]></content>
+      <categories>
+        <category>Book</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>EMF</tag>
+        <tag>Eclipse</tag>
       </tags>
   </entry>
 </search>
