@@ -1,6 +1,385 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</title>
+    <url>/2024/08/14/001/</url>
+    <content><![CDATA[
+[Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review](https://dl.acm.org/doi/full/10.1145/3631976)
+
+*作者来自瑞典Mälardalen大学和Volvo建筑集团。*
+
+`Abstraction`
+
+> In the Systems Engineering (SE) domain there has been a paradigm shift from document-based to model-based system development artefacts; in fact, new methodologies are emerging to meet the increasing complexity of current systems and the corresponding growing need of digital workflows. In this regard, Model-Based Systems Engineering (MBSE) is considered as a key enabler by many central players of the SE community.
+> MBSE has reached an adequate level of maturity, and there exist documented success stories in its adoption in industry. In particular, one significant benefit of utilising MBSE when compared to the traditional manual and document-centric workflows is that models are available from early phases of systems development; these enable a multitude of analyses prior any implementation effort together with other relevant capabilities, like the automation of development tasks. Nonetheless, it is noticeable there is a lack of a common understanding for how formal analyses for the verification and validation (V&V) of systems behaviour, specifically in the early phases of development, could be placed in an MBSE setting.
+> In this article, we report on the planning, execution, and results of a systematic literature review regarding the early V&V of systems behaviour in the context of model-based systems engineering. The review aims to provide a structured representation of the state of the art with respect to motivations, proposed solutions, and limitations. From an initial set of potentially relevant 701 peer-reviewed publications we selected 149 primary studies, which we analysed according to a rigorous data extraction, analysis, and synthesis process. Based on our results, early V&V has usually the goal of checking the quality of a system design to avoid discovering flaws when parts are being concretely realised; SysML is a de facto standard for describing the system under study, while the solutions for the analyses tend to be varied; also V&V analyses tend to target varied properties with a slight predominance of functional concerns, and following the variation mentioned so far the proposed solutions are largely context specific; the proposed approaches are usually presented without explicit limitations, while when limitations are discussed,readiness of the solutions, handling of analysessimplifications/assumptions, and languages/tools integration are among the most frequently mentioned issues.
+> **Based on the survey results and the standard SE practices, we discuss how the current state-of-the-art MBSE supports early V&V of systems behaviour with a special focus on industrial adoption and identify relevant challenges to be researched further.**
+
+## Introduction
+
+系统工程的基本定义、基本流程、关键环节，基于模型的系统工程提出的缘由、基本定义与发展目标。本文通过调研149篇论文，从工业视角中从最先进的技术中得到可用的V&V分析模型，以及从建模角度采用此类分析所需要的先决条件。
+
+系统定义：
+> System Engineering (SE) is defined as “... an integrated set of elements, subsystems, or assemblies that accomplish a defined objective” in the SE handbook by the International Council on Systems Engineering (INCOSE). "[[88]](#88)
+
+系统开发前提：
+> Indeed, standard SE practices put a lot of emphasis on the precondition that starting to build/implement a System of Interest (SoI) should be only done once there exists enough confidence that it will meet stakeholder expectations and needs.[[88]](#88)
+
+MBSE定义：
+> INCOSE defines Model-Based Systems Engineering (MBSE) as “... the formalised application of modelling to support system requirements, design, analysis, verification and validation activities beginning in the conceptual design phase and continuing throughout development and later lifecycle phases”.[[88]](#88)
+
+MBSE名言：
+> To confirm this, the INCOSE 2035 vision states: “The future of Systems Engineering is predominantly Model-Based.” A model is any description of a system that is not the thing-in-itself [[56]](#56). The quote “all models are wrong, but some are useful,” from Box and Draper[[10]](#10), captures a vital essence of modelling.
+
+## Background and Motivation
+
+相比于基于文档的系统工程，MBSE有更强大的推理和评估能力[[36]](#36)。
+
+相比于传统系统工程，MBSE更直观、更容易识别、有更好的追溯性和通过图表编辑的能力[[31]](#31) [[35]](#35)，增加了V&V的机会[^17] [^36]，更好的处理建模的保真度（不过粗也不过细），降低了解决故障和错误的成本。
+
+在早期进行系统建模和分析是系统工程的主要研究阶段。问题：通用建模语言如SysML缺少系统模拟成熟度[[67]](#67) [[94]](#94)。工业工具的互操作性问题限制MBSE的应用[[20]](#20) [[53]](#53)。
+
+### Motivating Example
+
+![Typical MBSE views early in system development.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081401.png)
+
+以建筑设备Construction Equipment (CE)为案例展开说明。早期的V&V可以加快设计和决策，降低大量迭代的风险。用MBSE技术的SE视图，容易更严格地进行分析，通过MBSE进行重用、分析、模拟等，更早地获得有关系统可行性的分析。但系统映射上仍存在差距。
+
+## Related Work
+
+其他类MBSE相关综述。
+
+[[60]](#60) MBSE工具链的调研综述，主要针对SysML，还有工具准备的一些指标，包括集成能力、互操作性和可追溯性等。
+
+[[73]](#73) 嵌入式系统重的MBSE工具，UML、SysML、MARTE相关，论文侧重代码实现。
+
+[[25]](#25) 从语言、工具和方法三方面对MBSE进行分类，SysML是主流，稳健的方法是缺乏的。
+
+[[66]](#66) MBSE多领域建模问题，指出FMI是有前景的，但基于SysML的互操作性和模拟存在问题。
+
+[[94]](#94) 大部分MBSE缺少模拟功能，认为需要扩展实践并质疑符号工具的可行性。
+
+[[41]](#41) MBSE的价值尚未定论。 [[58]](#58) MBSE仍停留在较小的研究群体中。
+
+[[53]](#53) 调研法国工业MBSE从业者，分析积极影响，并提出应将多物理和多学科设计集成到MBSE框架当中。
+
+[[5]](#5) 对机器人和自主系统 Robotic and Autonomous Systems (RAS) 进行文献调研，发现缺乏工业应用，认为系统模型不希望通过低保真度模型给出。
+
+[[2]](#2) 关注UML进行调研，结论：缺乏非功能性测试、缺乏工业或精细评估、对特定领域的描述过于严格、缺乏通用的方法。
+
+[[21]](#21) 研究多学科设计分析和优化Multidisciplinary Design Analysis and Optimisation (MDAO)与MBSE的关系，因为它可以与低保真模型集成并考虑模型不确定性等。
+
+[[86]](#86) 模拟模型验证和测试：运筹学、仿真与计算机科学领域，结果是缺乏通用术语、理论与实践之间缺乏联系等。
+
+## Research Method
+
+遵循[[51]](#51)的研究方法，三阶段：**planning, performing and reporting**。
+
+规划阶段：确定文献中的差距和审查需求（2、3节）；定义推动工作的研究问题（4.1节）；定义审查流程和所涉及的作者的指导方针。
+
+执行阶段：步骤有Search, Selection, Snowball, Definition of data collection table, Data extraction, and Data analysis。确定论文，构建数据收集表，验证提取编码，横纵向分析。
+
+报告阶段：记录审查结果（6节）并对有效性的潜在威胁以及应采用的相应环节策略（5节）。
+
+### Research Questions
+
+提出5个问题：
+
+- 定义：How is early V&V **defined and motivated** in the MBSE literature? 在MBSE文献中，早期V&V是**如何定义和激发**的？
+- 方法：What are the **means for describing system behaviour** at an early stage of development? 在开发早期阶段**描述系统行为的方法**有哪些？
+- 结论：What are the **results of interest** for the early V&V, and what techniques are employed for performing the analysis? 早期V&V**感兴趣的结果**是什么？以及使用哪些技术进行分析？
+- 应用：Which are the **application domains** employing early V&V? 早期V&V的**应用领域**有哪些？
+- 限制：What are the **limitations** of the existing approaches for early V&V? 现有的早期V&V方法有哪些**局限性**？
+
+### Search Process
+
+数据库：The following databases were searched for information: ACM, IEEE, ScienceDirect, and Scopus.
+
+关键字：(“MBSE” OR “Model-based systems engineering” OR “Model based systems engineering”) AND (“Validation” OR “Verification” OR “V&V” OR “Evaluation”) AND (“Behavior” OR “Behaviour”).
+
+### Inclusion Process with Inclusion and Exclusion Criteria
+
+制定了调研范围论文的纳入规则（2条）与排除规则（6条）inclusion criteria (IC) and exclusion criteria (EC)。
+
+### Data Collection and Analysis
+
+介绍了论文统计信息的表格，对应5个问题共计12条。
+横纵分析：纵向分析是对每个特定的问题进行深入探讨（6节）；横向分析侧重跨数据模式和相关性，包括是否采用SysML、工具的许可类型与限制类别（7节）。
+
+## Threats to Validity
+
+参考[[92]](#92)进行有效性分析。
+
+### Data Reproduceability
+
+为了易读性和简洁性，总结了结果并突出显示了选定的特殊结果。开源了统计数据，在[github](https://github.com/BeeCub3/Replicate-package)中。
+
+### External Validity
+
+外部有效性的威胁主要与要分析的论文的检索有关。通过进行8轮snowballing操作检索论文，确保没有论文遗漏。在论文写完后又检索了一遍。
+
+### Internal Validity
+
+内部效度是指任何主要因参与研究的审稿人偏见而产生的威胁。解释了没有偏见的原因，包括提取论文内容后进行重新编码，使用Covidence确保评论之间的一致性。
+
+### Construct Validity
+
+结构效度主要与从看待方式和得出结论之间的关系得出错误结论的风险有关。解释snowballing操作的好处。
+
+### Conclusion Validity
+
+对结论有效性的威胁是指对研究结果进行误解的任何风险。又解释了一下。
+
+## Findings
+
+### Pubiolication Details
+
+![The distribution of the analysed papers as clustered by year and type of publication.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081402.png)
+
+### RQ1 - How Is Early Validation and Verification Motivated and Defined in the Literature for MBSE?
+
+*How Does the Community Define Early V&V?*
+7成认为设计阶段，2成认为需求阶段，1成认为两者都有。
+
+*What Are the Main Motivating Reasons for Doing Early V&V?*
+依次是“在继续实施后确保设计达到所需的水平”、“通过后期缺陷检测降低风险”、“缩短开发时间”、“降低不完整需求的风险”、“在实施前探索系统行为”。
+
+- V&V of design before implementation
+- Reduce risk with late flaw detection
+- Reduce risk for incomplete requirements
+- Explore system behaviour before implementation
+
+*RQ1 discussion*
+总而言之，虽然提取的动机原因存在一些分歧，但人们似乎一致认为，在开发的早期阶段进行V&V是降低开发成本和减少开发生命周期后期缺陷风险的关键。
+提取的数据表明，MBSE 在系统设计中使用分析方法已达到成熟度，具有显著的优势，也可能意味着需求阶段对当前方法的附加功能的需求较低。
+
+*Actionable Insights RQ1*
+From the analysis performed we believe the following action point to be valuable for the community in the context of RQ1:
+
+- Motivations for V&V stakeholders seem to be somewhat unclear or implicit. Seemingly, there is no clear view of the expected value in performing early V&V.**V&V利益相关者的动机似乎有些不清楚或不明显。从表面上看，对于执行早期V&V的期望值没有明确的看法。**
+- Processes typically span several development stages, seen through the divide between requirements and design, yet, there is little discussion on holistic approaches or possible benefits expected by models to bridge stages.**过程通常跨越几个开发阶段，通过需求和设计之间的划分来看，然而，很少有关于整体方法的讨论或者模型预期的可能的好处来跨越阶段。**
+- Artefacts should be used by several domains and users during development, yet there is little discussion on the interoperability or re-use of V&V artefacts.**在开发过程中，工件应该被几个领域和用户使用，但是很少有关于V&V工件的互操作性或重用的讨论。**
+- There is a broad range of definitions (and many papers make no attempt) for early V&V. Subsequently the expected stakeholders tend to diverge in the papers, and there is a vague understanding about how early V&V slots into the overall SE processes and how it can guide development effectively.**早期V&V有各种各样的定义(许多论文没有尝试)。随后，预期的利益相关者往往在论文中出现分歧，并且对于早期V&V如何融入整个SE流程以及它如何有效地指导开发存在模糊的理解。**
+
+### RQ2 - What Are the Means of Describing System Behaviour at an Early Stage of Development?
+
+*How Is System Behaviour Represented in Early V&V?*
+描述系统行为的语言：主流的语言是SysML，占一半，UML也比较多，其余的依次有OCL、Custom language、Simulink、MARTE、AADL、ModelicaML、EAST-ADL、Informal/Nature Language、OWL、Language agnostic、DoDAF等，还有其他自定义的语言。SysML中，活动图和状态机图比用例图和序列图更受欢迎。
+
+*What Language or Formalism Is Utilised for Behaviour Analysis?*
+解决方案中用于执行分析的语言：很大一部分会选其他，其余比较多的依次是SysML、Simulink、Modelica、Petri Net、UPPAAL等。
+
+*If the Description and Analysis Language Differ, Then How Is the Transformation Performed?*
+SysML主要用于表示系统行为，但很少用于分析。大多数时候需要对不同语言和形式间进行转换，将表示语言转换为分析语言。63%的论文使用了自动转换，12.7%使用了半自动转换。
+
+*RQ2 discussion*
+最常被提及的语言是 SysML、Simulink 和 Modelica。 Petri 网图（具有各种形式）、UPPAAL 和其他类似语言也经常被使用。
+从更广泛的角度来看，基于 SysML 和 UML 的语言被广泛用于行为描述，这可能证实了它们作为早期系统建模事实上的标准的地位。
+依靠模型转换来创建分析模型会对这些转换产生相关的依赖性，但对转换可行性的讨论却很少。同样，除了互操作性和可扩展性之外，跨不同语言的一致性管理概念也大多缺失。在工业环境中实施 MBSE 通常会依赖于大型工具链，在工具、标准和用户不断变化的环境中依赖一组模型转换具有相当大的风险。对于不使用转换的语言，许多都是在 Simulink 等高级工具或 Cameo Systems Modeller 或 MagicDraw 等集成 MBSE 工具包中实现的，这暗示这些解决方案与行业需求更紧密地联系在一起。
+
+*Actionable Insights for RQ2*
+From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO2:
+
+- There is little discussion on the transformation details, are they two-way, how oftenshould they be employed, consistency management, coupling, maintainability, etc.**很少有关于转换细节的讨论，它们是双向的吗，它们应该多久被使用一次，一致性管理，耦合，可维护性，等等。**
+- Scalability oflanguages for analysis could be a weak point, top choices are implementedin industrial tools while many academic choices are based on small scale examples.Few solutions present general approaches that can be implemented in more than onelanguage and/or formalism for description or analysis.**用于分析的语言的可扩展性可能是一个弱点，顶级选择是在工业工具中实现的，而许多学术选择是基于小规模的例子。很少有解决方案提出可以用一种以上的语言和/或形式来实现描述或分析的通用方法。**
+- Considering many commonlyused languages like SysML are semi-formal the reliance on specifc notations andlanguages (and per extension tools) reduces generalisability.**用于分析的语言的可扩展性可能是一个弱点，顶级选择是在工业工具中实现的，而许多学术选择是基于小规模的例子。很少有解决方案提出可以用一种以上的语言和/或形式来实现描述或分析的通用方法。**
+
+### RQ3 - What Are the Results of Interest for Authors Performing Early V&V, and What Techniques Are Employed for the Required Analysis?
+
+*What Methods and Techniques Are Used for Analysis?*
+最常见的是模拟，或者分析用的包括静态分析和模型检查。
+
+*What Results Are of Interest for the Authors?*
+主要关注分析反馈的结果。与航空航天或汽车等代表性领域相比，发电厂、运河/水路系统、Web应用程序和医疗系统等领域的词汇量各不相同。尽管如此，我们仍然可以发现一些明显的趋势，例如执行轨迹和预期的功能行为备受关注。同样，通常通过静态分析获得的结果（例如活性、不一致性、无死锁性、可达性等）也经常被报道。一些论文认为，他们的分析方法适用于特定环境下的应用，因此感兴趣的结果可能因使用场景而异。
+
+*What Are the Tools Used for Analysis?*
+与之前关于系统描述和 V&V 分析语言的结果一致，使用的工具数量非常多，而且大多数工具在所分析的论文中只出现过一两次。更常见的类别是集成 MBSE 工具包、图形编程/仿真环境、模型检查器、建模框架和仿真工具包。 最常用的单个工具是 MATLAB/Simulink 及其相应的库和基于 EMF 的解决方案。EMF 是领先的免费/开源建模平台之一，这使其成为学术研究的一个有吸引力的工具/平台。类似地，MATLAB/Simulink 既适用于学术界也适用于工业界，在基于模型的社区中有着丰富的应用历史。除了这些工具之外，许多专有的 SysML 编辑器因其集成的分析功能而被广泛使用，至少部分消除了对描述和分析行为的不同工具的需求。
+
+*RQ3 discussion*
+模拟是迄今为止最常用的分析方法。这或许表明，为了在早期阶段进行有意义的分析，需要有先进的分析方法，尤其是针对动态行为。除了模拟之外，还有更广泛的不同方法可以简化为模型检查或自动审查/检查。
+总体而言，嵌入式系统领域似乎对早期 V&V 的流程和范围有更清晰的认识，这反映在与其他类型的领域相比更紧凑的工具、语言和结果集上。此外，嵌入式系统领域在早期验证实践方面表现出一定的成熟度，在早期 V&V 的观察时间线中，有较早的出版物。
+SysML 和 UML 配置文件等通用语言的半形式化特性的强大灵活性。当然，这种半形式化描述通常需要转换为更结构化的表示形式进行分析，这增加了复杂性并降低了建模的自由度，因为自动转换需要结构化格式。
+Eclipse/EMF、MATLAB/Simulink、Papyrus、OpenModelica 和 UPPAAL 是更常见的报告工具。论文中还介绍了一些不执行语言间转换的工具，如 MagicDraw 和 Cameo Systems Modeler。
+虽然工具与 MBSE 紧密相关，但令人惊讶的是，很少有解决方案声称与工具无关。事实上，如果工具是核心，那么 MBSE 同样会考虑方法、方法论和语言。然而，许多解决方案都依赖于特定于工具的分析，无论解决方案是否广泛。学术工具往往更紧凑、更开放，以获得最佳效果，而工业工具通常应该集成到更大的流程中，而且人们不愿意使用公开可用的工具，因为除了知识产权保护问题外，对于大型企业来说，它很少具有可扩展性和可维护性。因此，许多工具都是针对特定案例的，这一事实导致了已知的互操作性和可维护性问题。
+
+*Actionable Insights RQ3*
+From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO3:
+
+- Tooling should carry much of the weight in terms of MBSE processes, many of the observed tools are disjoint from the overall processes and need to be integrated efcientlywhile few solutions emphasise interoperability.**工具应该在MBSE过程中占很大比重，许多观察到的工具与整个过程脱节，需要有效地集成，而很少有解决方案强调互操作性。**
+- Few solutions discuss approaches that can be adapted or applied in more than onenotation/tool, further reinforcing the vendor lock-in.**很少有解决方案讨论可以在一个以上的旋转/工具中适应或应用的方法，这进一步加强了供应商锁定。**
+- While simulation is the most common analysis method it is rarely discussed for whatconditions and boundaries its results can be considered valid or not, Moreover, how theanalysis should be integrated into decision-making concretely, apart from high-levelobservations, is left unspecifed.**虽然模拟是最常见的分析方法，但很少讨论其结果在什么条件和边界下被认为是有效的，此外，除了高水平的观察之外，如何将分析具体地整合到决策中，也没有具体说明。**
+- The target properties for the proposed early analysis are many with no evident pattern of classifcation or catalogue referenced in the literature.**提议的早期分析的目标属性很多，在文献中没有明显的分类或目录模式。**
+
+### RQ4 - What Are the Results of Interest for Authors Performing Early V&V, and What Techniques Are Employed for the Required Analysis?
+
+*What Is the Reported Domain?*
+论文中观察到的领域众多，其中最突出的是航空航天和航空电子。14 其他存在感很强的领域包括嵌入式系统、信息物理系统、安全关键系统、汽车和铁路。最后，还有一大类领域在论文中只被提及过一次，例如核电站、运河系统、网络应用程序和云计算。
+
+鉴于所开发系统的复杂性和该领域的历史相关性，航空航天有望成为最常被报道和研究的领域之一。事实上，MBSE 有著名的推动者，例如 NASA，他们就该主题开展了高质量的研究。同样，嵌入式系统在形式化方法和模型检查方面也相当成熟，这些方法经常在论文中报道。此外，汽车和铁路行业在基于模型的实践方面有着坚实的基础，并且存在针对汽车的标准，例如 AUTOSAR。信息物理和安全关键系统是比前面提到的更广泛的类别，但我们无论如何都观察到了强大的存在。在这种情况下，CPS 通常受益于模型提供的统一视图（例如，出于集成分析目的），而安全关键系统需要早期分析以提供必要的证据，证明系统将满足所施加的要求。
+
+*Is the Solution Domain Specific?*
+绝大多数论文用于特定领域，少数说领域无关或者领域可扩展。
+
+*How Was the Solution Validated?*
+3成论文在工业环境中进行了评估并展示了影响力。7成的论文使用[[79]](#79)定义的某种形式运行示例来验证解决方案。
+关于早期验证用户的结果与其他类别一致，因为存在很大且显著的分布。这方面的异常值是航空航天（相关领域涉及航空电子）、嵌入式系统、CPS、安全关键系统、铁路和汽车。有趣的是，嵌入式系统领域的解决方案在分析的论文中提出的解决方案方面往往是一致的，而其他领域则并非如此。事实上，在大多数较大的报告领域中，对于预计如何进行早期 V&V，没有共同/共享的观点。例如，在航空航天领域，有需求分析、模拟、可调度性分析、模型检查、图表检查等例子。
+
+*RQ4 discussion*
+正如人们所料，大多数解决方案都是特定领域的，只有大约 11% 的解决方案声称适用于任何领域。事实上，由于在 SE 流程的早期进行分析需要做出假设或管理不确定性，因此解决方案往往是特定领域的，因为需要更精确、更可靠的信息来构建分析。此外，由于许多目标语言或工具通常与某个领域紧密相关，因此需要制定配置文件和约束，以便能够足够严格地应用 SysML 和类似的半正式（通用）语言。
+大约 34% 的分析论文描述了在工业环境中进行的研究，这似乎表明许多解决方案具有工业适用性。事实上，MBSE 是一种具有坚实工业视角的范式，它对各种解决方案提出了许多要求。与这一广泛的工业范围相关，我们还注意到，大多数解决方案都是不同程度地基于示例，较少关注经验测量。事实上，只有少数论文讨论经验证据来支持解决方案，而这些解决方案在很大程度上依赖于对感知到的益处的争论。这些观察结果与之前报道的 MBSE 的弱点一致，即缺乏经验证据。在这方面，我们认为，对于这种性质的解决方案，经验证据可能很难产生，因为测量定义复杂，在工业环境中执行可能具有挑战性，而不会引入偏见和其他有效性威胁的高风险。然而，这是一个反复出现的问题，涉及基于模型的实践，阻碍了更广泛范围内的基于证据的讨论。
+
+*Actionable Insights RQ4*
+From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO4:
+
+- SE at its core pursues customer satisfaction and correct delivery of systems, yet thereare few attempts to measure and compare solutions, and there is a general lack ofbaselines for V&V approaches.**系统工程的核心是追求客户满意和系统的正确交付，但是很少尝试测量和比较解决方案，并且普遍缺乏V&V方法的基线。**
+- MBSE processes are large and map well to complex domains. However many of theexamples included in academic works seem to be too simplistic to be convincinglyadopted in industrial contexts and make no attempt to discuss these concerns.**MBSE过程很大，并且很好地映射到复杂的域。然而，学术著作中的许多例子似乎过于简单，难以令人信服地应用于工业领域，也没有试图讨论这些问题。**
+- MBSE artefacts are often complex and domain-specific. More unified/standard approaches could be very valuable, and a common-ground for different domains couldimprove training and enable easier comparison of methods and solutions.**MBSE人工制品通常是复杂的和特定领域的。更统一/标准的方法可能是非常有价值的，不同领域的共同点可以改善培训，并使方法和解决方案更容易比较。**
+- There is seemingly no clear indication of whom the target user(s) is in the broadercontext of early V&V, further indicating a lack of clear definition and placement in MBSE processes.**在早期V&V的大背景下，似乎没有明确的迹象表明谁是目标用户，这进一步表明在MBSE流程中缺乏明确的定义和定位。**
+
+### RQ5 - What Limitations Do Authors See, if Any, with Their Implemented Solutions?
+
+并非所有作者都指出了他们提出的早期 V&V 方法的局限性。那些确实指出了局限性的作者的结果。最大的局限性是所提出的解决方案尚未完全开发，通常只部分涵盖了作者感兴趣的内容；另一个重大挑战是由于在描述和分析语言或形式主义存在差异时集成语言；报告的其他问题包括缺乏自动化；行为描述语言的表达能力有限是另一个常见的限制
+
+*RQ5 discussion*
+我们注意到，许多所述的限制与开发过程处于早期阶段这一事实直接或间接相关。事实上，如果抽象程度很高和/或已知系统的细节很少，那么分析应该会很有限或很肤浅。不过，作者明确表示，这是解决方案的一个可观察到的缺点，突出了在早期阶段平衡模型的保真度和抽象性的难度。同样，我们注意到许多与工具和学习曲线有关的问题，这些问题是软件和系统建模中常见的问题。
+从更广泛的角度来看，MBSE 和 SE 通常针对整个系统生命周期。许多 MBSE 方法，例如 MagicGrid 为各个生命周期阶段的活动和方法提供了一个框架。有趣的是，只有少数解决方案讨论了将早期 V&V 活动和结果与后期阶段互连的潜在局限性。值得注意的是，虽然一些论文将各个阶段联系起来，但对每个阶段工件之间可追溯性的讨论和应用却很有限。在 INCOSE 等组织提出的愿景中，经常重申未来的建模应该涵盖系统生命周期的所有部分。**然而，如果在各个阶段生成的模型之间没有更复杂的可追溯性手段，就存在引入不一致或与跨工件管理信息相关的额外工作量的风险。** 事实上，这是以文档为中心的开发中发现的问题之一，经常被用作转向基于模型的实践的论据。
+
+*Actionable Insights RQ5*
+From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO5:
+
+- MBSE processes are continuous (and often iterative) methodologies for system refne-ment. The limitations hint at the difculty in managing model fdelity and abstractionto correctly leverage analysis results from considered artefacts.**MBSE过程是系统改造的连续(通常是迭代)方法。这些限制暗示了管理模型交付和抽象的困难，以正确地利用来自被考虑的工件的分析结果。**
+- MBSE artefacts are expected to evolve, therefore the limitations related to integration,abstraction management, and scalability have an important impact.**MBSE工件预计会发展，因此与集成、抽象管理和可伸缩性相关的限制会产生重要的影响。**
+- Often the main stakeholders in MBSE are the engineers, since many of the limitationsare due to the difculty to apply the methods for the corresponding scenario, it can bederived a general lack of prioritisation for usability concerns.**通常，MBSE的主要利益相关者是工程师，因为许多限制是由于难以将方法应用于相应的场景，这可能导致可用性问题的优先级普遍缺乏。**
+- Frequently recurring limitations are due to analytical simplifcations, which seems tocontradict the inherent essence of early V&V, This hints at a missing clear definitionof what early is, and what can be expected from analysis at such a stage.**经常重复出现的局限性是由于分析上的简化，这似乎违背了早期V&V的内在本质，这暗示了早期是什么，以及在这样一个阶段可以从分析中期待什么，缺少一个明确的定义。**
+
+## Horizontal Analysis
+
+### SysML and Simulation
+
+本节只关注使用了SysML的论文。采用模拟的方法倾向于使用SysML，不使用的有4成。
+
+### Tools and Extra Results
+
+当作者对更广泛的反馈感兴趣而不仅仅是 V&V 结果时，他们不太可能使用多种工具进行分析。相反，当作者对 V&V 之外的结果不感兴趣时​​，他们可能会使用更多工具进行分析。也许这可以归因于所提出的解决方案的成熟度：不太成熟的方法可能包括更多软性优势以达到说服目的，而成熟的解决方案则更注重应用场景中衡量的性能。
+
+### License and Development Phase
+
+工具许可在设计阶段往往是专有的，而在需求阶段则更有可能是免费的。 此外，与专有许可相比，涉及两个阶段的解决方案显示出开源和免费工具的（大致）均匀混合。
+
+### Industry, License, and SysML
+
+虽然（如预期的那样）学术解决方案倾向于免费或开源工具，而行业则倾向于专有工具，但我们在三向映射中看到了两个不同的类别。首先，我们注意到，如果 SysML 在学术界使用，那么工具更可能是专有的而不是免费的，而非 SysML 解决方案最有可能是免费或开源的。此外，对于行业而言，非 SysML 解决方案更可能是免费的，而不是专有的。在这种情况下，我们观察到，无论 SysML 在何处使用，所使用的工具更可能是专有的，而如果解决方案不使用 SysML，则许可证更可能是免费或开源的。
+
+### Other Observations form Horizontal Analysis
+
+- SysML 在设计中的使用比在需求中的使用更多。这可能部分是因为需求阶段的解决方案可以正式完成，而不是依赖于 SysML 这样的非正式语言，因此避免了转向更正式的语言进行分析的需要。
+- 模拟在特定领域的解决方案中更为常见，因为 117 个（70.9%）特定领域的解决方案中有 83 个使用了模拟，而非特定领域的解决方案中只有 16 个（43.7%）使用了模拟。
+- 特定领域的解决方案拥有更多的专有许可证，在这方面，特定领域的解决方案可能需要更高级或更专业的软件，从而导致可用的开源或免费解决方案更少。
+- 在工业环境中的 51 个解决方案中，有 32 个（62.7%）使用 SysML，在 98 个学术解决方案中，有 49 个（50%）使用 SysML。我们预计工业和学术之间的差异会更大，尤其是考虑到大多数 SysML 工具都不是免费的或开源的。然而，工业和学术提取的数据相对相似。这进一步加强了 SysML 是 MBSE 的事实标准语言这一观点。
+- 工业环境倾向于使用多种工具，因为在工业环境中，51 个解决方案中有 34 个（66.6%）使用多种工具，而在学术环境中，98 个解决方案中有 52 个（53%）使用多种工具。这种趋势可以通过以下事实来解释：工业环境更有可能需要高级或专门的工具来实现其目的，而一种工具很少能用于所有分析目的。
+- 作者更有可能在学术环境中发现局限性，因为在学术环境中的 98 篇论文中有 64 篇（65.3%）讨论了其解决方案的局限性。相比之下，在工业环境中的 51 篇论文中有 28 篇（54.9%）描述了其环境中的局限性。这可能与学术界和工业界在传播研究成果方面有不同的兴趣有关（例如，讨论开放的挑战与强调成功的实践）。
+- 大多数使用 SysML 的实现无论如何都需要对语言进行某种扩展或转换为另一种语言或形式主义以用于分析目的。因此，在与领域无关的情况下，可能更倾向于采用一种需要较少努力来执行 V&V 分析的行为描述语言。
+
+*Actionable Insights Horizontal analysis*
+From the analysis performed we believe the following action points to be valuable for thecommunity in the context of the horizontal analysis:
+
+- SysML as a language is more dependent on proprietary tooling and extensions withother mechanisms for analysis compared to other languages, reducing the option foranalysis without heavy investment in surrounding technologies.**与其他语言相比，SysML作为一种语言更依赖于专有工具和具有其他分析机制的扩展，这减少了在没有对周围技术进行大量投资的情况下进行分析的选择。**
+- The gap between academia and industry is noticeable in many categories, hinting at agreater misalignment. Particularly, the tools, languages, and methods differ in termsof preferences.**学术界和工业界之间的差距在许多领域都很明显，暗示着更大的错位。特别是，工具、语言和方法在偏好方面有所不同。**
+- Few general purpose solutions utilise simulation, hinting at the need for domain.specifc information for valid simulations. This, in conjunction with the overwhelminguse of simulation as a V&V method, could explain the lack of general approaches.**很少有通用的解决方案利用模拟，这暗示了对有效模拟的领域特定信息的需求。这一点，连同作为V&V方法的模拟的过度使用，可以解释通用方法的缺乏。**
+
+## Discussion and Outlook
+
+### Limitations of Early V&V
+
+多亏了好的工具，集成更先进的工作流程和强大的功能将变得更加容易，正如其他评论中广泛讨论的那样。尽管工具是 MBSE 分类的核心，但直到今天，它仍然是更广泛采用基于模型的实践的关键障碍。工具经常出现的问题，例如互操作性和可扩展性，似乎限制了学术解决方案在工业领域的应用。
+早期开发阶段的另​​一个相关特征是存在强烈的不确定性，被分析的系统需要考虑可能结果的不确定性。特别是，由于使用高抽象层次的模型，不确定性会增加。此外，在处理异构模型和系统时，由于各种类型的不确定性以及具有不确定性的不同模型之间的相互作用，复杂性也增加了。
+文献中讨论了 MBSE 中不确定性的存在和管理 [[7]](#7) [[63]](#63) [[90]](#90)。据这些作者所知，没有具体的指标或方法可以有效地管理 MBSE 中的不确定性。
+似乎缺乏易于获取且富有成效的方法来学习所审查文献中讨论的基于模型的方法。
+
+### Early V&V in the Broader Context of MBSE
+
+人工智能将发挥作用的两个场景：早期开发中的不确定性和为新手提供帮助。
+在审查这些论文时，缺少关于传播在各个生命周期阶段开发的工件以及 SE 生命周期与早期 V&V 活动的关系的讨论。如果不将不确定性或早期模型的演变/细化传播到开发的后期阶段，则很有可能会创建并丢弃此类模型，这通常被称为基于文档的开发的弱点，并且可能不利于重用。
+在 SE 生命周期中更稳健地传播工件的可能解决方案也可以与敏捷 MBSE [[76]](#76) 和 DevOps [[62]](#62) 相关。这些范例被视为数字线程的推动者 [[80]](#80)，并引起了业界越来越多的兴趣。
+另一个相关方面是使用数字孪生 (DT) [[48]](#48)：利用 DT 被视为设计过程中的强大推动者，也是在系统实施之后集成分析的一种手段。
+
+### Empirical Measurements and Benchmarks in MBSE
+
+对于所研究的解决方案类型，没有基准或类似的参考测量，作者通常采用临时或特定案例的指标。
+测量通常仅限于所提出的 V&V 解决方案的质量属性，而没有尝试在 MBSE 环境中测量解决方案的有效性。
+对 MBSE 感知价值的批判性评论发现，采用 MBSE 带来的好处中只有大约 10% 是与任何指标相对照的，测量评估的低比例同样反映在这篇评论中，约为 11%。缺乏适当的 MBSE 使用情况报告指标限制了研究的影响，因为它通常仅限于轶事例子或观察，很难放在更广泛的背景下。
+Garousi 等人 [[33]](#33) 对产学研合作面临的挑战进行了文献综述，发现常见的挑战与学术解决方案在工业环境中的适用性不足以及对有价值解决方案的不同看法有关。此外，Garousi 等人强调，合作的最佳实践是以现实世界的问题为基础进行研究。但研究和实践之间仍然存在相当大的差距。在这方面，一个可能的解决方案是通过对学术界开发的解决方案提出更明确的要求来具体化与 MBSE 相关的工业需求。从工业角度对 MBSE 解决方案定义更严格的要求可能是弥补目前观察到的一些差距的一种手段。
+
+### Barriers for Industrial Adoption of Early V&V in MBSE
+
+![Challenges for industry adoption of Early V&V for system behaviour in MBSE.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081403.png)
+
+*Model Based*
+找到抽象和保真度之间的正确平衡是一个反复出现的挑战，并且通常是在 MBSE 背景下实现成熟的早期 V&V 的先决条件。事实上，从业者本身在论文中大多被忽略，解决方案的整体可用性并不是优先事项。似乎没有明确的观点来解决这个问题，也许是因为 RQ4 中看到的许多领域的广泛应用。 此外，基于模型的实践在很大程度上依赖于工具，并且在提取过程中遇到了许多传统问题，例如互操作性、自动化和可扩展性，这再次证实了该领域以前的工作。学术工具与更重要的工具环境集成的讨论明显不足。正如预期的那样，挑战是重叠的，但当行业越来越多地转向 OSLC15 等标准以促进更标准化的数据交换时，观察到的许多学术解决方案都存在目标非常狭窄、工具和语言独特的问题。此外，行业从业者和学术研究人员之间似乎存在差距，而且为学术界开发的工具可能旨在解决与行业需求不同的其他问题。
+
+*Systems Engineering*
+使用 SE 的大部分行业正在向至少部分采用 MBSE 的方向转变。然而，遗留问题往往是巨大的，不能简单地为了新方法或工作方法而丢弃，但关于如何在 RQ3 数据提取中促进这种集成的讨论却很少。然而，这些解决方案通常是为专家受众设计的，这限制了解决方案的更广泛适用性（特别是因为许多工程师在基于模型的方法方面都是完全的新手）。采用的一大障碍是难以提供 MBSE 方法的可衡量效益。许多解决方案仅限于扩展到周围活动，例如，解决方案缺乏上下游联系。同样，关于如何管理分析模型以促进重复使用和高效的未来决策的讨论很少。可追溯性以及最近的数字线程在很大程度上被忽略了，从而降低了它们的适用性。普遍缺乏与领域无关的和更通用的解决方案阻碍了现有解决方案的采用。
+
+*Validation & Verification*
+解决方案中一个很大的空白是讨论不确定性和分析有效性，这也是 RQ5 中的局限性之一。在开发的早期阶段，所有模型中都存在不确定性，需要付出相当大的努力来缓解和推理，以便正确定位结果并将其用于决策。然而，很少有人讨论如何在解决方案中管理不确定性，以及分析抽象会带来什么影响，这是作者在 RQ5 中报告的更突出的局限性之一。分析有效性也是如此。如果对重复使用感兴趣，那么就需要对何时可以使用方法或模型进行正确分析以及用户如何根据案例确定所考虑的模型是否足够丰富以产生有效的分析结果进行分类。同样，许多解决方案使用自定义工具进行实施，限制了 SE 流程中的集成。特别是，依赖几种特定的工具会增加流程的复杂性，并可能导致供应商锁定增加。
+
+## Conclusions
+
+> This article reports the results of a systematic literature review on early behaviour validation and verification in model-based systems engineering. From a set of 701 papers retrieved through searches and snowballing activities, we selected 149 relevant contributions, we extracted and coded the obtained data, and we performed analyses whose results and findings are presented in the work. In this respect, we notice an increased interest in performing early V&V and observe a broad range of domains in the analysed papers, with a corresponding variety of methods, tools, and languages. Further, we note a strong industrial presence in the literature and several industrial perspective trends that differ from the academic ones. To name a few of our findings, we note that SysML is the most represented language in industry and academia for describing system behaviour. In contrast, the language or formalism for analysis varies between most solutions. Additionally, several limitations are identified, indicating a lack of readiness for the solutions together with the concerns about managing analysis with low-fidelity models. Finally, a significant divide emerges between the academic and industrial implementation of solutions; such a divide is especially observable for SysML, utilised across all contexts but relying on different tooling for the contexts.
+> We contextualise the review findings and discuss the current status of early validation of system behaviour in the context of industrial MBSE adoption. The review is structured according to the needs of the industry to promote the eventual adoption of early V&V and MBSE processes at large. The review provides actionable insights for the five presented research questions to promote further investigation into this area. Furthermore, we distinguish three areas, Model-Based, Systems Engineering, and Validation & Verification, and highlight a set of corresponding barriers for each area, which we feel need to be addressed to promote and support industrial adoption of early V&V techniques. As such, we hope the findings of this review can provide an adequate state-of-the-art view and pave the way for future investigations for researchers and practitioners.
+
+`个人总结`
+
+本文是一篇高质量的MBSE领域综述，综述的结构本身值得借鉴，文章以V&V过程为对象，研究了MSBE的方法、工具、技术和发展等内容，提出了领域研究的若干关键问题和相关质疑，有很高的参考价值，值得反复查阅。
+
+`参考文献`
+
+<a id="88">[88]</a>David D. Walden, Garry J. Roedler, and Kevin Forsberg. 2015. INCOSE systems engineering handbook version 4: updating the reference for practitioners. In Proceedings of the INCOSE Annual International Symposium, Vol. 25. Wiley Online Library, 678–686.
+<a id="56">[56]</a>Edward A. Lee and Marjan Sirjani. 2018. What good are models? In International Conference on Formal Aspects of Component Software. Springer, 3–31.
+<a id="10">[10]</a>George E. P. Box and Norman R. Draper. 1987. Empirical Model-building and Response Surfaces.John Wiley & Sons.
+<a id="31">[31]</a>Sanford Friedenthal, Regina Griego, and Mark Sampson. 2007. INCOSE model based systems engineering (MBSE) initiative. In Proceedings of the INCOSE Annual International Symposium, Vol. 11. sn.
+<a id="35">[35]</a>Iris Graessler and Julian Hentze. 2020. The new V-model of VDI 2206 and its validation. at-Automatisierungstechnik 68, 5 (2020), 312–324.
+<a id="36">[36]</a>Joe Gregory, Lucy Berthoud, Theo Tryfonas, Alain Rossignol, and Ludovic Faure. 2020. The long and winding road: MBSE adoption for functional avionics of spacecraft. J. Syst. Softw. 160 (2020), 110453.
+<a id="17">[17]</a>Joe Gregory, Lucy Berthoud, Theo Tryfonas, Alain Rossignol, and Ludovic Faure. 2020. The long and winding road: MBSE adoption for functional avionics of spacecraft. J. Syst. Softw. 160 (2020), 110453.
+<a id="67">[67]</a>Mara Nikolaidou, George-Dimitrios Kapos, Anargyros Tsadimas, Vassilis Dalakas, and Dimosthenis Anagnostopoulos. 2016. Challenges in SysML model simulation. Adv. Comput. Sci. Int. J. 5, 4 (2016), 49–56.
+<a id="94">[94]</a>Bernard P. Zeigler, Saurabh Mittal, and Mamadou Kaba Traore. 2018. MBSE with/out simulation: State of the art and way forward. Systems 6, 4 (2018), 40.
+<a id="20">[20]</a>M. Chami and J. M. Bruel. 2018. A Survey on MBSE Adoption Challenges. In INCOSE EMEA Sector Systems Engineering Conference (INCOSE EMEASEC’18). 1–16.
+<a id="53">[53]</a>Christopher Laing, Pierre David, Eric Blanco, and Xavier Dorel. 2020. Questioning integration of verification in modelbased systems engineering: An industrial perspective. Comput. Industr. 114 (2020), 103163.
+<a id="60">[60]</a>Junda Ma, Guoxin Wang, Jinzhi Lu, Hans Vangheluwe, Dimitris Kiritsis, and Yan Yan. 2022. Systematic Literature Review of MBSE Tool-Chains. Appl. Sci. 12, 7 (2022), 3431.
+<a id="73">[73]</a>Muhammad Rashid, Muhammad Waseem Anwar, Farooque Azam, and Muhammad Kashif. 2016. Model-based requirements and properties specifications trends for early design verification of embedded systems. In Proceedings of the 11th System of Systems Engineering Conference (SoSE’16). IEEE, 1–7.
+<a id="25">[25]</a>Pierre De Saqui-Sannes, Rob A. Vingerhoeds, Christophe Garion, and Xavier Thirioux. 2022. A taxonomy of MBSE approaches by languages, tools and methods. IEEE Access (2022).
+<a id="66">[66]</a>Christian Nigischer, Sébastien Bougain, Rainer Riegler, Heinz Peter Stanek, and Manfred Grafinger. 2021. Multidomain simulation utilizing SysML: State of the art and future perspectives. Proc. CIRP 100 (2021), 319–324.
+<a id="41">[41]</a>Kaitlin Henderson and Alejandro Salado. 2021. Value and benefits of model-based systems engineering (MBSE): Evidence from the literature. Syst. Eng. 24, 1 (2021), 51–66.
+<a id="5">[5]</a>Hugo Araujo, Mohammad Reza Mousavi, and Mahsa Varshosaz. 2022. Testing, validation, and verification of robotic and autonomous systems: A systematic review. ACM Trans. Softw. Eng. Methodol. (2022).
+<a id="2">[2]</a>T. Ahmad, J. Iqbal, A. Ashraf, D. Truscan, and I. Porres. 2019. Model-based testing using UML activity diagrams: A systematic mapping study. Computer Science Review 33 (2019), 98–112.
+<a id="21">[21]</a>Jean-Charles Chaudemar and Pierre de Saqui-Sannes. 2021. Mbse and mdao for early validation of design decisions: A bibliography survey. In Proceedings of the IEEE International Systems Conference (SysCon’21). IEEE, 1–8.
+<a id="86">[86]</a>Naoum Tsioptsias, Antuela Tako, and Stewart Robinson. 2016. Model validation and testing in simulation: A literature review. In Proceedings of the 5th Student Conference on Operational Research (SCOR’16). Schloss Dagstuhl-LeibnizZentrum fuer Informatik.
+<a id="58">[58]</a>Zihang Li, Jinzhi Lu, Guoxin Wang, Lei Feng, Didem Gurdur Broo, and Dimitris Kiritsis. 2021. A Bibliometric Analysis on Model-based Systems Engineering. In Proceedings of the IEEE International Symposium on Systems Engineering (ISSE’21). IEEE, 1–8.
+<a id="51">[51]</a>Barbara Kitchenham, Rialette Pretorius, David Budgen, O. Pearl Brereton, Mark Turner, Mahmood Niazi, and Stephen Linkman. 2010. Systematic literature reviews in software engineering—A tertiary study. Inf. Softw. Technol. 52, 8 (2010), 792–805.
+<a id="92">[92]</a>Claes Wohlin, Per Runeson, Martin Höst, Magnus C. Ohlsson, Björn Regnell, and Anders Wesslén. 2012. Experimentation in Software Engineering. Springer Science & Business Media.
+<a id="79">[79]</a>Mary Shaw. 2002. What makes good research in software engineering?Int. J. Softw. Tools Technol. Transf. 4, 1 (2002), 1–7.
+<a id="7">[7]</a>Johan Bergelin, Antonio Cicchetti, and Emil Lundin. 2022. Early validation of heterogeneous battery systems in the railway domain. In Proceedings of the IEEE International Systems Conference (SysCon’22). IEEE, 1–8.
+<a id="63">[63]</a>Yaroslav Menshenin, Carolina Moreno, Yana Brovar, and Clement Fortin. 2021. Integration of MBSE and PLM: Complexity and uncertainty. Int. J. Prod. Lifecycle Manage. 13, 1 (2021), 66–88.
+<a id="90">[90]</a>James R. Williams, Frank R. Burton, Richard F. Paige, and Fiona A. C. Polack. 2012. Sensitivity analysisin model-driven engineering. In International Conference on Model Driven Engineering Languages and Systems. Springer, 743–758.
+<a id="76">[76]</a>Bill Schindel and Rick Dove. 2016. Introduction to the agile systems engineering life cycle MBSE pattern. In Proceedings of the INCOSE Annual International Symposium, Vol. 26. Wiley Online Library, 725–742.
+<a id="62">[62]</a>John T. J. Mathieson, Thomas Mazzuchi, and Shahram Sarkani. 2020. The systems engineering DevOps lemniscate and model-based system operations. IEEE Syst. J. 15, 3 (2020), 3980–3991.
+<a id="80">[80]</a>Victor Singh and Karen E. Willcox. 2018. Engineering design with digital thread. AIAA J. 56, 11 (2018), 4515–4528.
+<a id="48">[48]</a>David Jones, Chris Snider, Aydin Nassehi, Jason Yon, and Ben Hicks. 2020. Characterising the digital twin: A systematic literature review. CIRP J. Manufact. Sci. Technol. 29 (2020), 36–52.
+<a id="33">[33]</a>Vahid Garousi, Kai Petersen, and Baris Ozkan. 2016. Challenges and best practices in industry-academia collaborations in software engineering: A systematic literature review. Inf. Softw. Technol. 79 (2016), 106–127.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>TOSEM</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>Validation &amp; Verification</tag>
+        <tag>MBSE</tag>
+        <tag>Review</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
     <url>/2024/08/17/002/</url>
     <content><![CDATA[
@@ -455,9 +834,9 @@ An autonomous system is an intelligent system that is designed to deal with the 
       </categories>
       <tags>
         <tag>Validation &amp; Verification</tag>
+        <tag>Review</tag>
         <tag>Robotics</tag>
         <tag>RAS</tag>
-        <tag>Review</tag>
       </tags>
   </entry>
   <entry>
@@ -537,663 +916,6 @@ An autonomous system is an intelligent system that is designed to deal with the 
       </categories>
       <tags>
         <tag>Insights</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications</title>
-    <url>/2024/08/28/006/</url>
-    <content><![CDATA[
-[Domain-specific languages for the automated generation of datasets for industry 4.0 applications](https://www.sciencedirect.com/science/article/pii/S2452414X24001018)
-
-*作者来自西班牙坎布里亚大学*
-
-`Abstraction`
-
-> Data collected in Industry 4.0 applications must be converted into tabular datasets before they can be processed by analysis algorithms, as in any data analysis system. To perform this transformation, data scientists have to write complex and long scripts, which can be a cumbersome process. To overcome this limitation, a language called Lavoisier was recently created to facilitate the creation of datasets. This language provides high-level primitives to select data from an object-oriented data model describing data available in a context. However, industrial engineers might not be used to deal with this kind of model. So, this work introduces a new set of languages that adapt Lavoisier to work with fishbone diagrams, which might be more suitable in industrial settings. These new languages keep the benefits of Lavoisier, reducing dataset creation complexity by 40% and up to 80%, and outperforming Lavoisier in some cases.
-
-## Introduction
-
-本文重点关注那些旨在利用构成现代装配线的不同互连元素收集的大量数据的工业4.0应用。MES (Manufacturing Execution System)。然后可以对这些大量数据进行分析，以改进制造过程及其输出产品。Zero-Defect Manufacturing (ZDM) 。
-
-数据集是一种基于表的格式，与所分析的每个元素相关联的所有数据必须放在该表的一行中。然而，这种格式的数据并不常见，因为它通常存储在关系数据库、XML或JSON文件中。在这些表示中，数据不是表格式的，而是链接的，通常是分层的。例如，关于制造产品的数据可以链接到其组件的数据。类似地，每个组件的数据可能连接到其子组件的数据，依此类推。因此，在将这些分层数据用作数据分析算法的输入之前，我们需要将它们扁平化，以便将它们排列成表中特定行的列。
-
-为了执行平坦化任务，数据科学家通常用SQL、R或Pandas等语言编写复杂而冗长的脚本。为了缓解这些问题，一种叫做Lavoisier的语言最近被开发出来[[52]](#52)。这种语言提供了高级原语来创建数据集，这些数据集关注于必须选择哪些数据，而忽略了必须如何重新排列这些数据以使它们适合数据集的细节。
-
-另一方面，工业工程师被用来处理鱼骨图，它允许表示因果关系，通常用于工业环境中的质量控制，并且可以用于指定领域数据之间的影响关系。因此，在工业4.0上下文中，更希望Lavoisier能够使用鱼骨图而不是面向对象的领域模型。
-
-这项工作提出了一个模型驱动的过程，使Lavoisier适应于使用鱼骨图。为了构建这个过程，我们首先创建了一种新的鱼骨模型，称为面向数据的鱼骨模型，其中原因可以连接到领域数据。为此，我们用Lavoisier语句增强鱼骨模型，这样每个原因都可以连接到表征这种原因的领域数据子集。接下来，我们设计了一种名为Papin的新语言来选择应该使用鱼骨图的哪些原因来构建具体的数据集。最后，Papin解释器处理这个选择并自动生成所需的数据集。因此，工业工程师可以使用Papin直接从(面向数据的)鱼骨图创建数据集，而不是从面向对象的领域模型。
-
-通过将面向数据的鱼骨模型和Papin语言应用于五个外部案例研究，评估了这些语言的表达能力。
-
-这项工作扩展了以前在一次会议上提出的贡献在这一贡献中，作为主要区别，本文包括了对我们方法的表达性和有效性的更详尽的评估(第5节)，以及对所呈现语言如何实现的更详细的描述(第4节)。此外，我们扩展了相关工作部分，包括propositionalization和Multi-Relational Data Mining (MRDM)以及工业4.0和ETL过程中的建模语言。
-
-## Background and motivation
-
-### Software language engineering via metamodelling
-
-DSL语言比General Purpose Language (GPL)的强制性更低。DSL允许使用包含来自应用领域的术语和自定义语法。介绍元模型技术。
-
-### Running example: Falling band
-
-作为贯穿本文的运行示例，我们将以一家汽车行业供应商公司的驱动半轴生产为例。在这些检查中，汽车制造商发现，有时车轮一侧的箍松开，引起不同的问题。该公司希望分析在驱动半轴生产过程中收集的数据，以找到这个问题的原因。
-
-### Data mining processes
-
-KDD(Knowledge Discovery in Databases) [[65]](#65) 我们将以KDD过程为基础，解释作为数据挖掘过程一部分的不同阶段。绘制了一个流程图介绍KDD过程，分别是bussis questions, data sources selection, domain data model, algorithm selection, data reshaping, data preparation, algorithm execution, results reports。
-
-### The dataset generation problem
-
-关注其中的data reshaping问题。大多数数据分析算法只能处理以具体表格格式提供的数据，在数据科学社区中称为数据集。在这种格式中，属于要分析的单个实体的所有数据必须放在同一个表行中，我们将其命名为一个实体，一行约束。然而，域数据通常以链接和嵌套元素的图的形式提供，如JSON等。为了创建数据集，数据科学家编写复杂而冗长的脚本，其中使用不同的低级操作链(如过滤器、连接、pivot或聚合)转换原始数据，以满足一个实体、一行约束。
-
-读者可以很容易地注意到，与示例大小相比，这个脚本相当复杂，并且如果紧缩的数量增加，它有明显的可伸缩性问题。这个问题并不是SQL语言所特有的，在使用R或Pandas等其他替代语言时也会出现类似的情况。因此，数据集创建成为一个劳动密集型且容易出错的过程。
-
-### Lavoisier
-
-为了克服这个问题，最近发展了一种叫做Lavoisier[[52]](#52) [[71]](#71) 的语言。Lavoisier是一种用于数据集创建的声明性语言，它提供了一组高级原语，其目标是指定数据集中必须包含哪些数据，而不必详细说明所选数据必须如何转换才能安排为数据集。
-
-通过使用拉瓦锡，与用于此目的的其他语言(如SQL或Pandas)相比，生成数据集所需的操作总数减少了~ 40%，脚本大小减少了~ 60%。因此，作为一个初步假设，我们认为拉瓦锡可能有助于工业4.0的数据选择。然而，我们很快意识到，我们所在地区公司的大多数工业工程师并不熟悉面向对象的数据模型，也不熟悉一般的数据模型。
-
-因此，我们分析了这些公司中通常使用的模型类型，以及这些模型是否可以用作我们方法中面向对象数据模型的替代品。在几个备选方案中，例如描述装配线的图，我们发现了一种模型类型，称为鱼骨图，它为我们的目标提供了三个有趣的元素:(1)它为相当数量的工程师所知;(2)它有一个非常容易理解的符号;(3)可用于表示域数据之间的因果关系。因此，当我们在工业4.0环境中工作时，我们决定使用这些鱼骨图来取代我们原始解决方案的面向对象数据模型。
-
-### Fishbone diagrams
-
-结合案例介绍了鱼骨图的基本概念。
-
-### Problem statement
-
-Lavoisier是面向对象的，鱼骨图是面向数据的，需要进行一个结合。
-
-## Dataset generation from fishbone diagrams
-
-### Solution overview
-
-![Fig. 7. Overview of our solution.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082801.png)
-
-工业工程师先创建鱼骨图，数据工程师创建面向对象领域模型，并鼓励彼此检查。数据工程师创建Data-Oriented Fishbone diagram(DOF) DOF重塑了质量控制鱼骨图，并将原因与表征这些原因的数据联系起来。原因和领域数据之间的连接是使用我们称为data feeders的特殊代码块建立的。最后，工业工程师会使用名为Papin的语言制作数据集。
-
-### Data-oriented fishbone models
-
-DOF将原鱼骨图和面向对象的数据连接起来，连接器是data feeder，它由path和Lavoisier Expression组成。后文介绍了DOF的代码含义和作用。
-
-### Papin: Dataset specification by cause selection
-
-在建立DOF后，我们使用Papin来指定该模型的原因，该模型应该包含在用于分析DOF效应的数据集中。
-
-Papin规范的解释程序：
-
-- 1. 对于Papin规范选择的每个类别或原因，我们遍历它以提取其数据链接的原因。
-- 2. 每个数据链接的原因都使用Lavoisier解释器求值，它为每个原因返回一个数据集。
-- 3. 所有这些数据集都使用主类的标识符作为数据集行之间的匹配属性进行合并。
-- 4. 结果数据集被写入CSV文件。
-
-## Implementation
-
-![Fig. 8. Elements of our model-driven environment.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082802.png)
-
-图8提供了组成模型驱动的基础结构的不同元素的方案。该基础设施包括:
-
-- 1. 我们为三种特定于领域的语言提供了相应的编辑器和解析器;
-- 2. 使用Ecore指定的面向对象领域模型;
-- 3. 通过领域模型检索的领域数据，因此必须符合该模型;
-- 4. Papin解释器，它生成包含所需输出数据集的CSV文件;
-- 5. Lavoisier解释器，它由Papin解释器调用来处理data feeder的Lavoisier表达式。
-
-模型驱动工具的结构介绍。其中DOF工具的语法是用Xtext创建的。
-
-## Evaluation
-
-这些语言有两个主要目标:(1)提高在创建数据集时执行工作的抽象级别;(2)避免业内人士不得不处理他们不熟悉的模型格式来创建数据集。
-
-我们通过分析三个不同的因素来验证这些目标是否已经实现:(1)语言表达性，也就是说，所创建的语言是否可以有效地用于不同的工业4.0问题;(2)工业工程师能否有效处理Papin规范;(3)使用dof和Papin生成数据集可以节省多少意外复杂度。
-
-下面，我们首先描述对语言表现力的评价。然后，我们描述了一个小实验，我们进行了检查工业工程师是否能够理解和创建Papin规范，我们分析了它的结果。接下来，我们将详细介绍我们所遵循的过程，以评估由于dof和Papin可以消除多少意外复杂性，并讨论执行该过程后收集的结果。最后，我们评论和分析了对我们的结果有效性的潜在威胁。
-
-### Expressiveness
-
-结合了汽车行业的五个案例，列出了模型数量和鱼骨图数量。证明鱼骨图的表达能力是足够的，也介绍了三个和语法无关的问题。
-
-### Experiments with industrial engineers
-
-这些经验实验是评估使用DSL的好处的最有效方法之一[[79]](#79) [[80]](#80)。然而，不幸的是，这些类型的实验在DSL和工业4.0社区中都非常罕见。这些实验的主要问题，也可能是它们在社区中不常见的原因，是它们的设计、组织和执行需要在时间和资源方面付出巨大的努力，这通常超出了常规研究项目的限制。由于这些原因，我们选择了一个更简单的程序，即向一组工业工程师分发一份在线问卷，他们必须解决一些与Papin相关的练习。给他们发放答卷让他们作答，问题基本都超过8成人答对。有一些初步证据表明工业工程师能够有效地使用Papin。
-
-### Accidental complexity reduction
-
-#### Evaluation procedure
-
-展示了通过使用面向数据的鱼骨模型和Papin进行数据选择和准备来衡量可以节省多少意外复杂性的努力。(1)要包含在比较中的技术（为什么选这个技术）;(2)待计算度量的集合（为什么这样度量）;(3)用每种语言编写脚本的场景。评估的过程不多介绍。
-
-#### Evaluation results
-
-放弃了自由度选项，因为添加可追溯性信息显然是昂贵的。
-
-脚本大小。1. 除了Data Feeders选项中的场景a和b之外，我们的方法比SQL和Pandas执行得更好。2. Data Feeders选项总是比Lavoisier选项差。3. 在所有情况下，Just Papin选项明显优于拉瓦锡选项，除了a。4. “Just Papin”选项的大小似乎并不取决于场景的复杂程度。……这段讨论非常长，总体上就是在讨论谁好谁坏的问题。
-
-### Threats to validity
-
-#### Expressiveness - 2
-
-语言表达性是软件语言工程中的常见问题。然而，虽然这种威胁不能完全消除，但我们已经尝试通过使用与实际工业问题相对应的外部和异构案例研究来减轻它，以便这些案例研究:(1)涵盖广泛的可能情况;(2)对我们没有偏见;(3)代表真实的工业问题，而不是在研究实验室中人为制造的玩具例子。关于这最后一点，我们想指出的是，虽然这四个案例研究是从文献中得出的，但它们对应的是不同现实公司面临的问题。另一方面，完全可以认为鱼骨图是由案例研究提供的，但是领域模型是由我们创建的，因此，这些领域模型可能是有偏差的。正如2.7节所述，领域模型在工业环境中很少使用，因此在实践中寻找对应于实际工业问题的案例研究，同时提供鱼骨图和领域模型是一项不可行的任务。因此，我们决定为每个案例研究创建领域模型，只使用相应案例研究中报告的可用数据的描述。此外，为了减少潜在的偏差，我们请了几位专家和实践者来检查我们创建的领域模型。没有人报告这些型号有任何问题。
-
-#### Experiments with industrial engineers - 2
-
-关于测试工业工程师是否能够使用Papin的实验，我们对这些实验使用了单个案例研究。因此，为了科学严谨，我们不能将这些实验的结论推广到其他案例研究中，因为我们没有证据表明工业工程师可以将Papin用于其他案例研究。尽管如此，这个案例研究取自一个真实的案例研究，它不是一个微不足道的案例，它具有在真实场景中预期的复杂程度。因此，没有任何特殊性会让我们认为工程师在其他案例研究中使用Papin会有问题。
-其次，我们无法控制受访者如何回答问题。其次，我们无法控制受访者如何回答问题。更严重的威胁是，我们在训练和练习中使用了相同的案例研究。
-
-#### Accidental complexity reduction - 2
-
-意外复杂性降低的结果是我们为比较设计的场景的结果，但其他场景可能会产生不同的结果。……
-
-## Related work
-
-### Fishbone diagrams and data models
-
-该部分报告了一些使用鱼骨图进行需求工程或者模型驱动工程之类建模的案例。
-
-Azzoni等人[[92]](#92)已经发布了一个将CSV文件转换为Ecore模型的工具，以便这些元素之间的关系可以更容易地可视化。该工具将一组CSV文件和Ecore中指定的域模型作为输入，并提供将CSV列映射到域模型元素的机制。使用此映射，该工具能够生成将CSV数据加载到Ecore域模型实例所需的代码。
-
-最后，DescripML[[93]](#93) [[94]](#94) 是一种特定于领域的语言，用于描述数据集的内容。在这种情况下，数据集已经存在，该工具旨在提供一种通用语言来描述其内容，以便数据集的文档变得更加统一，并且可以更容易地检查和比较。此外，该语言还提供了一些功能，提醒数据科学家注意可能导致机器学习算法出现问题的问题，例如性别失衡的数据集。这种语言用于已经创建的数据集，而我们感兴趣的是自动生成这些数据集。
-
-### Models in Industry 4.0
-
-参考的是论文[[82]](#82)中有关工业4.0建模的分析。包括UML、SysML、OWL、AutomationML、EXPRESS、DSL等。这些语言用于不同的目的，从指定制造过程[[114]](#114)到描述CAD(计算机辅助设计)应用程序的交换格式[[115]](#115) [[116]](#116)。在我们的例子中，我们对两种类型的语言感兴趣:(1)那些可以用来指定概念数据模型的语言;(2)工业工程师熟悉的语言，不直接关注数据表示，但可以以某种方式与数据相关联，从而用作数据选择的基础。
-
-#### Languages for data modeling
-
-分别介绍了UML、ER、EXPRESS等语言。
-
-#### Well-known modeling languages in industry
-
-介绍了SysML语言。
-
-#### Dataset generation
-
-propositionalization社区已经研究了从分层和嵌套数据生成数据集的问题。他们的目标是将复杂的数据图转换成表格结构，可以用作数据分析算法的输入。
-
-### Datasets and ETL processes
-
-数据集创建可以被认为是ETL(Extract, Transform, Load)过程的一个特殊情况。在这些过程中，首先从一个或多个源提取数据，这些源可能采用不同的格式，然后根据需要对它们进行转换，最后将其加载到特定的结构中，在我们的示例中，该结构将是满足一个实体、一行约束的表格结构。然而，这个概念主要应用于数据仓库的构建，据我们所知，没有专门为数据集生成定义的ETL过程。结合了一些跟ETL过程有关的工作。
-
-## Summary and future work
-
-本文描述了一组语言，用于为工业环境中的数据分析系统(如工业4.0应用程序)自动生成数据集。该过程采用了Lavoisier(一种用于自动生成数据集的语言)来处理鱼骨模型，而不是面向对象的数据模型。面向对象的数据模型很少被发现，但工业工程师习惯于处理鱼骨模型，因此我们认为这些模型比面向对象的模型更适合于制造环境。
-
-为了使Lavoisier适应鱼骨模型，我们设计了两种新的语言。首先，我们创建了鱼骨模型的一个变体，称为面向数据的鱼骨模型，它可用于表示领域数据之间的影响关系。在这些模型中，原因通过称为数据馈线的特殊代码块连接到领域数据。通过这种方式，可以使用域数据来描述鱼骨模型中的原因，而鱼骨模型现在指定域数据之间的影响关系。数据馈送器的代码是基于Lavoisier的，它被设计为供没有数据科学专业知识的人使用。因此，数据馈送器甚至可以由工业工程师自己编写。然而，这一假设尚未得到实证验证。
-
-其次，我们设计了第二种语言，称为Papin，用于选择要包含在数据集中的原因。这是一种非常简洁的语言，它只引用原因，从而使工业工程师不必处理面向对象的数据模型。Papin解释器处理这些规范，调用Lavoisier解释器来执行数据馈线，并自动生成所需的数据集。
-
-第三，我们通过将这些语言应用于五个案例研究来评估它们的表达性，其中四个来自文献，其余一个来自工业合作伙伴。没有重大问题的报告。此外，我们评估了我们的方法是否保留了拉瓦锡在降低意外复杂性方面的优势。
-
-结论是，我们的方法在降低意外复杂性方面优于SQL和Pandas。与拉瓦锡相比，我们的方法引入了与需要创建DOF相关的初始开销。另一方面，Papin是一种非常简单的语言，可以用很少的关键词选择大量的特征。
-
-因此，当我们从领域模型生成少量数据集时，与DOF创建相关的初始努力可能不会得到回报，但是随着这个数量的增加，我们的方法开始提供好处。
-
-总之，可以说我们的方法有助于减少创建数据集所需的意外复杂性，这将有助于减少开发时间，从而减少工业4.0应用程序的成本。此外，它可以帮助减轻对数据科学家的依赖，他们的费用通常很昂贵，而且可用性可能很少。数据科学家仍然需要构建面向对象的领域模型，但他们可能不需要构建dof和Papin规范。
-
-作为未来的工作，我们计划进行更复杂的控制实验，这将使我们能够更好地测试工业工程师是否真的能够使用我们的语言。我们还将研究替代的具体语法是否可能比当前的文本语法更合适。例如，可以使用语言工作台(如Sirius)创建图形化的具体语法，使用提议语言的现有元模型作为抽象语法。或者，可以使用Picto等工具自动生成图形视图(即无编辑功能)来补充当前的文本语法。此外，我们将开发工具来从相应的QCF模型生成DOF的骨架，以帮助减少与构建DOF相关的工作量。我们将研究如何警告用户在创建数据集时可能出现的一些问题，例如合并两个列，它们之间存在功能依赖关系。我们还将尝试使拉瓦锡适应Ecore以外的数据建模语言，如EXPRESS或OWL。我们将探讨在工业环境中非常流行的其他建模语言，如SysML，是否可以代替鱼骨图作为数据选择的基础。最后，我们将在语言中添加支持，以便在数据馈送器中指定聚合值，这样，例如，表示集合平均值的列就可以包含在数据集中。
-
-`个人总结`
-这篇文章是基于Lavoisier语言的后续文章，大致可以理解为将数据集构建中数据结构搭建的部分工作进行了基于模型化，用更规范地流程减少了重复工作。工具链本身似乎不复杂，无非是对两个语言的介绍，文章后面实验部分的讨论非常冗长，思想可以借鉴但有用没用得太多。自称实用性很强但观感一般，文章写作质量一般。
-
-`参考文献`
-
-<a id="52">[52]</a>A. de la Vega, D. García-Saiz, M. Zorrilla, P. Sánchez, Lavoisier: A dsl for increasing the level of abstraction of data selection and formatting in data mining, J. Comput. Lang. 60 (2020) 100987, http://dx.doi.org/10.1016/j.cola.2020.100987.
-<a id="65">[65]</a>U. Fayyad, G. Piatetsky-Shapiro, P. Smyth, From data mining to knowledge discovery in databases, AI Mag. 17 (1996) 37, http://dx.doi.org/10.1609/ AIMAG.V17I3.1230.
-<a id="71">[71]</a>A. de la Vega, Domain-Specific Languages for Data Mining Democratisation (Ph.D. thesis), Universidad de Cantabria, 2019, URL http://hdl.handle.net/ 10902/16728.
-<a id="79">[79]</a>T. Kosar, S. Gaberc, J.C. Carver, M. Mernik, Program comprehension of domainspecific and general-purpose languages: replication of a family of experiments using integrated development environments, Empir. Softw. Eng. 23 (5) (2018) 2734–2763, http://dx.doi.org/10.1007/s10664-017-9593-2.
-<a id="80">[80]</a>A. Barisic, V. Amaral, M. Goulão, Usability driven DSL development with USEME, Comput. Lang. Syst. Struct. 51 (2018) 118–157, http://dx.doi.org/10.1016/ j.cl.2017.06.005.
-<a id="92">[92]</a>I. Al-Azzoni, N. Petrovic, A. Alqahtani, A utility to transform CSV data into EMF, in: Proceedings of the 8th International Conference on Software Defined Systems (SDS), Gandía (Spain), 2021, pp. 1–6, http://dx.doi.org/10.1109/SDS54264.2021.9732143.
-<a id="93">[93]</a>J. Giner-Miguelez, A. Gómez, J. Cabot, A domain-specific language for describing machine learning datasets, J. Comput. Lang. 76 (2023) 101209, http: //dx.doi.org/10.1016/j.cola.2023.101209.
-<a id="94">[94]</a>J. Giner-Miguelez, A. Gómez, J. Cabot, DescribeML: A dataset description tool for machine learning, Sci. Comput. Program. 231 (2024) 103030, http: //dx.doi.org/10.1016/j.scico.2023.103030.
-<a id="82">[82]</a>A. Wortmann, O. Barais, B. Combemale, M. Wimmer, Modeling languages in Industry 4.0: an extended systematic mapping study, Softw. Syst. Model. 19 (1) (2020) 67–94, http://dx.doi.org/10.1007/s10270-019-00757-6.
-<a id="114">[114]</a>M. Schleipen, R. Drath, Three-view-concept for modeling process or manufacturing plants with automationml, in: Proceedings of the Conference on Emerging Technologies & Factory Automation, EFTA, Palma de Mallorca (Spain), 2009, pp. 1–4, http://dx.doi.org/10.1109/ETFA.2009.5347260.
-<a id="115">[115]</a>G.P. Gujarathi, Y. Ma, Parametric CAD/CAE integration using a common data model, J. Manuf. Syst. 30 (3) (2011) 118–132, http://dx.doi.org/10.1016/j.jmsy.2011.01.002.
-<a id="116">[116]</a>A. Perzylo, N. Somani, M. Rickert, A. Knoll, An ontology for CAD data and geometric constraints as a link between product models and semantic robot task descriptions, in: Proceedings of the International Conference on Intelligent Robots and Systems (IROS), Hamburg (Germany), 2015, pp. 4197–4203, http: //dx.doi.org/10.1109/IROS.2015.7353971.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>JII</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>DSL</tag>
-        <tag>MBSE</tag>
-        <tag>Metamodel</tag>
-        <tag>Industry 4.0</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</title>
-    <url>/2024/08/14/001/</url>
-    <content><![CDATA[
-[Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review](https://dl.acm.org/doi/full/10.1145/3631976)
-
-*作者来自瑞典Mälardalen大学和Volvo建筑集团。*
-
-`Abstraction`
-
-> In the Systems Engineering (SE) domain there has been a paradigm shift from document-based to model-based system development artefacts; in fact, new methodologies are emerging to meet the increasing complexity of current systems and the corresponding growing need of digital workflows. In this regard, Model-Based Systems Engineering (MBSE) is considered as a key enabler by many central players of the SE community.
-> MBSE has reached an adequate level of maturity, and there exist documented success stories in its adoption in industry. In particular, one significant benefit of utilising MBSE when compared to the traditional manual and document-centric workflows is that models are available from early phases of systems development; these enable a multitude of analyses prior any implementation effort together with other relevant capabilities, like the automation of development tasks. Nonetheless, it is noticeable there is a lack of a common understanding for how formal analyses for the verification and validation (V&V) of systems behaviour, specifically in the early phases of development, could be placed in an MBSE setting.
-> In this article, we report on the planning, execution, and results of a systematic literature review regarding the early V&V of systems behaviour in the context of model-based systems engineering. The review aims to provide a structured representation of the state of the art with respect to motivations, proposed solutions, and limitations. From an initial set of potentially relevant 701 peer-reviewed publications we selected 149 primary studies, which we analysed according to a rigorous data extraction, analysis, and synthesis process. Based on our results, early V&V has usually the goal of checking the quality of a system design to avoid discovering flaws when parts are being concretely realised; SysML is a de facto standard for describing the system under study, while the solutions for the analyses tend to be varied; also V&V analyses tend to target varied properties with a slight predominance of functional concerns, and following the variation mentioned so far the proposed solutions are largely context specific; the proposed approaches are usually presented without explicit limitations, while when limitations are discussed,readiness of the solutions, handling of analysessimplifications/assumptions, and languages/tools integration are among the most frequently mentioned issues.
-> **Based on the survey results and the standard SE practices, we discuss how the current state-of-the-art MBSE supports early V&V of systems behaviour with a special focus on industrial adoption and identify relevant challenges to be researched further.**
-
-## Introduction
-
-系统工程的基本定义、基本流程、关键环节，基于模型的系统工程提出的缘由、基本定义与发展目标。本文通过调研149篇论文，从工业视角中从最先进的技术中得到可用的V&V分析模型，以及从建模角度采用此类分析所需要的先决条件。
-
-系统定义：
-> System Engineering (SE) is defined as “... an integrated set of elements, subsystems, or assemblies that accomplish a defined objective” in the SE handbook by the International Council on Systems Engineering (INCOSE). "[[88]](#88)
-
-系统开发前提：
-> Indeed, standard SE practices put a lot of emphasis on the precondition that starting to build/implement a System of Interest (SoI) should be only done once there exists enough confidence that it will meet stakeholder expectations and needs.[[88]](#88)
-
-MBSE定义：
-> INCOSE defines Model-Based Systems Engineering (MBSE) as “... the formalised application of modelling to support system requirements, design, analysis, verification and validation activities beginning in the conceptual design phase and continuing throughout development and later lifecycle phases”.[[88]](#88)
-
-MBSE名言：
-> To confirm this, the INCOSE 2035 vision states: “The future of Systems Engineering is predominantly Model-Based.” A model is any description of a system that is not the thing-in-itself [[56]](#56). The quote “all models are wrong, but some are useful,” from Box and Draper[[10]](#10), captures a vital essence of modelling.
-
-## Background and Motivation
-
-相比于基于文档的系统工程，MBSE有更强大的推理和评估能力[[36]](#36)。
-
-相比于传统系统工程，MBSE更直观、更容易识别、有更好的追溯性和通过图表编辑的能力[[31]](#31) [[35]](#35)，增加了V&V的机会[^17] [^36]，更好的处理建模的保真度（不过粗也不过细），降低了解决故障和错误的成本。
-
-在早期进行系统建模和分析是系统工程的主要研究阶段。问题：通用建模语言如SysML缺少系统模拟成熟度[[67]](#67) [[94]](#94)。工业工具的互操作性问题限制MBSE的应用[[20]](#20) [[53]](#53)。
-
-### Motivating Example
-
-![Typical MBSE views early in system development.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081401.png)
-
-以建筑设备Construction Equipment (CE)为案例展开说明。早期的V&V可以加快设计和决策，降低大量迭代的风险。用MBSE技术的SE视图，容易更严格地进行分析，通过MBSE进行重用、分析、模拟等，更早地获得有关系统可行性的分析。但系统映射上仍存在差距。
-
-## Related Work
-
-其他类MBSE相关综述。
-
-[[60]](#60) MBSE工具链的调研综述，主要针对SysML，还有工具准备的一些指标，包括集成能力、互操作性和可追溯性等。
-
-[[73]](#73) 嵌入式系统重的MBSE工具，UML、SysML、MARTE相关，论文侧重代码实现。
-
-[[25]](#25) 从语言、工具和方法三方面对MBSE进行分类，SysML是主流，稳健的方法是缺乏的。
-
-[[66]](#66) MBSE多领域建模问题，指出FMI是有前景的，但基于SysML的互操作性和模拟存在问题。
-
-[[94]](#94) 大部分MBSE缺少模拟功能，认为需要扩展实践并质疑符号工具的可行性。
-
-[[41]](#41) MBSE的价值尚未定论。 [[58]](#58) MBSE仍停留在较小的研究群体中。
-
-[[53]](#53) 调研法国工业MBSE从业者，分析积极影响，并提出应将多物理和多学科设计集成到MBSE框架当中。
-
-[[5]](#5) 对机器人和自主系统 Robotic and Autonomous Systems (RAS) 进行文献调研，发现缺乏工业应用，认为系统模型不希望通过低保真度模型给出。
-
-[[2]](#2) 关注UML进行调研，结论：缺乏非功能性测试、缺乏工业或精细评估、对特定领域的描述过于严格、缺乏通用的方法。
-
-[[21]](#21) 研究多学科设计分析和优化Multidisciplinary Design Analysis and Optimisation (MDAO)与MBSE的关系，因为它可以与低保真模型集成并考虑模型不确定性等。
-
-[[86]](#86) 模拟模型验证和测试：运筹学、仿真与计算机科学领域，结果是缺乏通用术语、理论与实践之间缺乏联系等。
-
-## Research Method
-
-遵循[[51]](#51)的研究方法，三阶段：**planning, performing and reporting**。
-
-规划阶段：确定文献中的差距和审查需求（2、3节）；定义推动工作的研究问题（4.1节）；定义审查流程和所涉及的作者的指导方针。
-
-执行阶段：步骤有Search, Selection, Snowball, Definition of data collection table, Data extraction, and Data analysis。确定论文，构建数据收集表，验证提取编码，横纵向分析。
-
-报告阶段：记录审查结果（6节）并对有效性的潜在威胁以及应采用的相应环节策略（5节）。
-
-### Research Questions
-
-提出5个问题：
-
-- 定义：How is early V&V **defined and motivated** in the MBSE literature? 在MBSE文献中，早期V&V是**如何定义和激发**的？
-- 方法：What are the **means for describing system behaviour** at an early stage of development? 在开发早期阶段**描述系统行为的方法**有哪些？
-- 结论：What are the **results of interest** for the early V&V, and what techniques are employed for performing the analysis? 早期V&V**感兴趣的结果**是什么？以及使用哪些技术进行分析？
-- 应用：Which are the **application domains** employing early V&V? 早期V&V的**应用领域**有哪些？
-- 限制：What are the **limitations** of the existing approaches for early V&V? 现有的早期V&V方法有哪些**局限性**？
-
-### Search Process
-
-数据库：The following databases were searched for information: ACM, IEEE, ScienceDirect, and Scopus.
-
-关键字：(“MBSE” OR “Model-based systems engineering” OR “Model based systems engineering”) AND (“Validation” OR “Verification” OR “V&V” OR “Evaluation”) AND (“Behavior” OR “Behaviour”).
-
-### Inclusion Process with Inclusion and Exclusion Criteria
-
-制定了调研范围论文的纳入规则（2条）与排除规则（6条）inclusion criteria (IC) and exclusion criteria (EC)。
-
-### Data Collection and Analysis
-
-介绍了论文统计信息的表格，对应5个问题共计12条。
-横纵分析：纵向分析是对每个特定的问题进行深入探讨（6节）；横向分析侧重跨数据模式和相关性，包括是否采用SysML、工具的许可类型与限制类别（7节）。
-
-## Threats to Validity
-
-参考[[92]](#92)进行有效性分析。
-
-### Data Reproduceability
-
-为了易读性和简洁性，总结了结果并突出显示了选定的特殊结果。开源了统计数据，在[github](https://github.com/BeeCub3/Replicate-package)中。
-
-### External Validity
-
-外部有效性的威胁主要与要分析的论文的检索有关。通过进行8轮snowballing操作检索论文，确保没有论文遗漏。在论文写完后又检索了一遍。
-
-### Internal Validity
-
-内部效度是指任何主要因参与研究的审稿人偏见而产生的威胁。解释了没有偏见的原因，包括提取论文内容后进行重新编码，使用Covidence确保评论之间的一致性。
-
-### Construct Validity
-
-结构效度主要与从看待方式和得出结论之间的关系得出错误结论的风险有关。解释snowballing操作的好处。
-
-### Conclusion Validity
-
-对结论有效性的威胁是指对研究结果进行误解的任何风险。又解释了一下。
-
-## Findings
-
-### Pubiolication Details
-
-![The distribution of the analysed papers as clustered by year and type of publication.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081402.png)
-
-### RQ1 - How Is Early Validation and Verification Motivated and Defined in the Literature for MBSE?
-
-*How Does the Community Define Early V&V?*
-7成认为设计阶段，2成认为需求阶段，1成认为两者都有。
-
-*What Are the Main Motivating Reasons for Doing Early V&V?*
-依次是“在继续实施后确保设计达到所需的水平”、“通过后期缺陷检测降低风险”、“缩短开发时间”、“降低不完整需求的风险”、“在实施前探索系统行为”。
-
-- V&V of design before implementation
-- Reduce risk with late flaw detection
-- Reduce risk for incomplete requirements
-- Explore system behaviour before implementation
-
-*RQ1 discussion*
-总而言之，虽然提取的动机原因存在一些分歧，但人们似乎一致认为，在开发的早期阶段进行V&V是降低开发成本和减少开发生命周期后期缺陷风险的关键。
-提取的数据表明，MBSE 在系统设计中使用分析方法已达到成熟度，具有显著的优势，也可能意味着需求阶段对当前方法的附加功能的需求较低。
-
-*Actionable Insights RQ1*
-From the analysis performed we believe the following action point to be valuable for the community in the context of RQ1:
-
-- Motivations for V&V stakeholders seem to be somewhat unclear or implicit. Seemingly, there is no clear view of the expected value in performing early V&V.**V&V利益相关者的动机似乎有些不清楚或不明显。从表面上看，对于执行早期V&V的期望值没有明确的看法。**
-- Processes typically span several development stages, seen through the divide between requirements and design, yet, there is little discussion on holistic approaches or possible benefits expected by models to bridge stages.**过程通常跨越几个开发阶段，通过需求和设计之间的划分来看，然而，很少有关于整体方法的讨论或者模型预期的可能的好处来跨越阶段。**
-- Artefacts should be used by several domains and users during development, yet there is little discussion on the interoperability or re-use of V&V artefacts.**在开发过程中，工件应该被几个领域和用户使用，但是很少有关于V&V工件的互操作性或重用的讨论。**
-- There is a broad range of definitions (and many papers make no attempt) for early V&V. Subsequently the expected stakeholders tend to diverge in the papers, and there is a vague understanding about how early V&V slots into the overall SE processes and how it can guide development effectively.**早期V&V有各种各样的定义(许多论文没有尝试)。随后，预期的利益相关者往往在论文中出现分歧，并且对于早期V&V如何融入整个SE流程以及它如何有效地指导开发存在模糊的理解。**
-
-### RQ2 - What Are the Means of Describing System Behaviour at an Early Stage of Development?
-
-*How Is System Behaviour Represented in Early V&V?*
-描述系统行为的语言：主流的语言是SysML，占一半，UML也比较多，其余的依次有OCL、Custom language、Simulink、MARTE、AADL、ModelicaML、EAST-ADL、Informal/Nature Language、OWL、Language agnostic、DoDAF等，还有其他自定义的语言。SysML中，活动图和状态机图比用例图和序列图更受欢迎。
-
-*What Language or Formalism Is Utilised for Behaviour Analysis?*
-解决方案中用于执行分析的语言：很大一部分会选其他，其余比较多的依次是SysML、Simulink、Modelica、Petri Net、UPPAAL等。
-
-*If the Description and Analysis Language Differ, Then How Is the Transformation Performed?*
-SysML主要用于表示系统行为，但很少用于分析。大多数时候需要对不同语言和形式间进行转换，将表示语言转换为分析语言。63%的论文使用了自动转换，12.7%使用了半自动转换。
-
-*RQ2 discussion*
-最常被提及的语言是 SysML、Simulink 和 Modelica。 Petri 网图（具有各种形式）、UPPAAL 和其他类似语言也经常被使用。
-从更广泛的角度来看，基于 SysML 和 UML 的语言被广泛用于行为描述，这可能证实了它们作为早期系统建模事实上的标准的地位。
-依靠模型转换来创建分析模型会对这些转换产生相关的依赖性，但对转换可行性的讨论却很少。同样，除了互操作性和可扩展性之外，跨不同语言的一致性管理概念也大多缺失。在工业环境中实施 MBSE 通常会依赖于大型工具链，在工具、标准和用户不断变化的环境中依赖一组模型转换具有相当大的风险。对于不使用转换的语言，许多都是在 Simulink 等高级工具或 Cameo Systems Modeller 或 MagicDraw 等集成 MBSE 工具包中实现的，这暗示这些解决方案与行业需求更紧密地联系在一起。
-
-*Actionable Insights for RQ2*
-From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO2:
-
-- There is little discussion on the transformation details, are they two-way, how oftenshould they be employed, consistency management, coupling, maintainability, etc.**很少有关于转换细节的讨论，它们是双向的吗，它们应该多久被使用一次，一致性管理，耦合，可维护性，等等。**
-- Scalability oflanguages for analysis could be a weak point, top choices are implementedin industrial tools while many academic choices are based on small scale examples.Few solutions present general approaches that can be implemented in more than onelanguage and/or formalism for description or analysis.**用于分析的语言的可扩展性可能是一个弱点，顶级选择是在工业工具中实现的，而许多学术选择是基于小规模的例子。很少有解决方案提出可以用一种以上的语言和/或形式来实现描述或分析的通用方法。**
-- Considering many commonlyused languages like SysML are semi-formal the reliance on specifc notations andlanguages (and per extension tools) reduces generalisability.**用于分析的语言的可扩展性可能是一个弱点，顶级选择是在工业工具中实现的，而许多学术选择是基于小规模的例子。很少有解决方案提出可以用一种以上的语言和/或形式来实现描述或分析的通用方法。**
-
-### RQ3 - What Are the Results of Interest for Authors Performing Early V&V, and What Techniques Are Employed for the Required Analysis?
-
-*What Methods and Techniques Are Used for Analysis?*
-最常见的是模拟，或者分析用的包括静态分析和模型检查。
-
-*What Results Are of Interest for the Authors?*
-主要关注分析反馈的结果。与航空航天或汽车等代表性领域相比，发电厂、运河/水路系统、Web应用程序和医疗系统等领域的词汇量各不相同。尽管如此，我们仍然可以发现一些明显的趋势，例如执行轨迹和预期的功能行为备受关注。同样，通常通过静态分析获得的结果（例如活性、不一致性、无死锁性、可达性等）也经常被报道。一些论文认为，他们的分析方法适用于特定环境下的应用，因此感兴趣的结果可能因使用场景而异。
-
-*What Are the Tools Used for Analysis?*
-与之前关于系统描述和 V&V 分析语言的结果一致，使用的工具数量非常多，而且大多数工具在所分析的论文中只出现过一两次。更常见的类别是集成 MBSE 工具包、图形编程/仿真环境、模型检查器、建模框架和仿真工具包。 最常用的单个工具是 MATLAB/Simulink 及其相应的库和基于 EMF 的解决方案。EMF 是领先的免费/开源建模平台之一，这使其成为学术研究的一个有吸引力的工具/平台。类似地，MATLAB/Simulink 既适用于学术界也适用于工业界，在基于模型的社区中有着丰富的应用历史。除了这些工具之外，许多专有的 SysML 编辑器因其集成的分析功能而被广泛使用，至少部分消除了对描述和分析行为的不同工具的需求。
-
-*RQ3 discussion*
-模拟是迄今为止最常用的分析方法。这或许表明，为了在早期阶段进行有意义的分析，需要有先进的分析方法，尤其是针对动态行为。除了模拟之外，还有更广泛的不同方法可以简化为模型检查或自动审查/检查。
-总体而言，嵌入式系统领域似乎对早期 V&V 的流程和范围有更清晰的认识，这反映在与其他类型的领域相比更紧凑的工具、语言和结果集上。此外，嵌入式系统领域在早期验证实践方面表现出一定的成熟度，在早期 V&V 的观察时间线中，有较早的出版物。
-SysML 和 UML 配置文件等通用语言的半形式化特性的强大灵活性。当然，这种半形式化描述通常需要转换为更结构化的表示形式进行分析，这增加了复杂性并降低了建模的自由度，因为自动转换需要结构化格式。
-Eclipse/EMF、MATLAB/Simulink、Papyrus、OpenModelica 和 UPPAAL 是更常见的报告工具。论文中还介绍了一些不执行语言间转换的工具，如 MagicDraw 和 Cameo Systems Modeler。
-虽然工具与 MBSE 紧密相关，但令人惊讶的是，很少有解决方案声称与工具无关。事实上，如果工具是核心，那么 MBSE 同样会考虑方法、方法论和语言。然而，许多解决方案都依赖于特定于工具的分析，无论解决方案是否广泛。学术工具往往更紧凑、更开放，以获得最佳效果，而工业工具通常应该集成到更大的流程中，而且人们不愿意使用公开可用的工具，因为除了知识产权保护问题外，对于大型企业来说，它很少具有可扩展性和可维护性。因此，许多工具都是针对特定案例的，这一事实导致了已知的互操作性和可维护性问题。
-
-*Actionable Insights RQ3*
-From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO3:
-
-- Tooling should carry much of the weight in terms of MBSE processes, many of the observed tools are disjoint from the overall processes and need to be integrated efcientlywhile few solutions emphasise interoperability.**工具应该在MBSE过程中占很大比重，许多观察到的工具与整个过程脱节，需要有效地集成，而很少有解决方案强调互操作性。**
-- Few solutions discuss approaches that can be adapted or applied in more than onenotation/tool, further reinforcing the vendor lock-in.**很少有解决方案讨论可以在一个以上的旋转/工具中适应或应用的方法，这进一步加强了供应商锁定。**
-- While simulation is the most common analysis method it is rarely discussed for whatconditions and boundaries its results can be considered valid or not, Moreover, how theanalysis should be integrated into decision-making concretely, apart from high-levelobservations, is left unspecifed.**虽然模拟是最常见的分析方法，但很少讨论其结果在什么条件和边界下被认为是有效的，此外，除了高水平的观察之外，如何将分析具体地整合到决策中，也没有具体说明。**
-- The target properties for the proposed early analysis are many with no evident pattern of classifcation or catalogue referenced in the literature.**提议的早期分析的目标属性很多，在文献中没有明显的分类或目录模式。**
-
-### RQ4 - What Are the Results of Interest for Authors Performing Early V&V, and What Techniques Are Employed for the Required Analysis?
-
-*What Is the Reported Domain?*
-论文中观察到的领域众多，其中最突出的是航空航天和航空电子。14 其他存在感很强的领域包括嵌入式系统、信息物理系统、安全关键系统、汽车和铁路。最后，还有一大类领域在论文中只被提及过一次，例如核电站、运河系统、网络应用程序和云计算。
-
-鉴于所开发系统的复杂性和该领域的历史相关性，航空航天有望成为最常被报道和研究的领域之一。事实上，MBSE 有著名的推动者，例如 NASA，他们就该主题开展了高质量的研究。同样，嵌入式系统在形式化方法和模型检查方面也相当成熟，这些方法经常在论文中报道。此外，汽车和铁路行业在基于模型的实践方面有着坚实的基础，并且存在针对汽车的标准，例如 AUTOSAR。信息物理和安全关键系统是比前面提到的更广泛的类别，但我们无论如何都观察到了强大的存在。在这种情况下，CPS 通常受益于模型提供的统一视图（例如，出于集成分析目的），而安全关键系统需要早期分析以提供必要的证据，证明系统将满足所施加的要求。
-
-*Is the Solution Domain Specific?*
-绝大多数论文用于特定领域，少数说领域无关或者领域可扩展。
-
-*How Was the Solution Validated?*
-3成论文在工业环境中进行了评估并展示了影响力。7成的论文使用[[79]](#79)定义的某种形式运行示例来验证解决方案。
-关于早期验证用户的结果与其他类别一致，因为存在很大且显著的分布。这方面的异常值是航空航天（相关领域涉及航空电子）、嵌入式系统、CPS、安全关键系统、铁路和汽车。有趣的是，嵌入式系统领域的解决方案在分析的论文中提出的解决方案方面往往是一致的，而其他领域则并非如此。事实上，在大多数较大的报告领域中，对于预计如何进行早期 V&V，没有共同/共享的观点。例如，在航空航天领域，有需求分析、模拟、可调度性分析、模型检查、图表检查等例子。
-
-*RQ4 discussion*
-正如人们所料，大多数解决方案都是特定领域的，只有大约 11% 的解决方案声称适用于任何领域。事实上，由于在 SE 流程的早期进行分析需要做出假设或管理不确定性，因此解决方案往往是特定领域的，因为需要更精确、更可靠的信息来构建分析。此外，由于许多目标语言或工具通常与某个领域紧密相关，因此需要制定配置文件和约束，以便能够足够严格地应用 SysML 和类似的半正式（通用）语言。
-大约 34% 的分析论文描述了在工业环境中进行的研究，这似乎表明许多解决方案具有工业适用性。事实上，MBSE 是一种具有坚实工业视角的范式，它对各种解决方案提出了许多要求。与这一广泛的工业范围相关，我们还注意到，大多数解决方案都是不同程度地基于示例，较少关注经验测量。事实上，只有少数论文讨论经验证据来支持解决方案，而这些解决方案在很大程度上依赖于对感知到的益处的争论。这些观察结果与之前报道的 MBSE 的弱点一致，即缺乏经验证据。在这方面，我们认为，对于这种性质的解决方案，经验证据可能很难产生，因为测量定义复杂，在工业环境中执行可能具有挑战性，而不会引入偏见和其他有效性威胁的高风险。然而，这是一个反复出现的问题，涉及基于模型的实践，阻碍了更广泛范围内的基于证据的讨论。
-
-*Actionable Insights RQ4*
-From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO4:
-
-- SE at its core pursues customer satisfaction and correct delivery of systems, yet thereare few attempts to measure and compare solutions, and there is a general lack ofbaselines for V&V approaches.**系统工程的核心是追求客户满意和系统的正确交付，但是很少尝试测量和比较解决方案，并且普遍缺乏V&V方法的基线。**
-- MBSE processes are large and map well to complex domains. However many of theexamples included in academic works seem to be too simplistic to be convincinglyadopted in industrial contexts and make no attempt to discuss these concerns.**MBSE过程很大，并且很好地映射到复杂的域。然而，学术著作中的许多例子似乎过于简单，难以令人信服地应用于工业领域，也没有试图讨论这些问题。**
-- MBSE artefacts are often complex and domain-specific. More unified/standard approaches could be very valuable, and a common-ground for different domains couldimprove training and enable easier comparison of methods and solutions.**MBSE人工制品通常是复杂的和特定领域的。更统一/标准的方法可能是非常有价值的，不同领域的共同点可以改善培训，并使方法和解决方案更容易比较。**
-- There is seemingly no clear indication of whom the target user(s) is in the broadercontext of early V&V, further indicating a lack of clear definition and placement in MBSE processes.**在早期V&V的大背景下，似乎没有明确的迹象表明谁是目标用户，这进一步表明在MBSE流程中缺乏明确的定义和定位。**
-
-### RQ5 - What Limitations Do Authors See, if Any, with Their Implemented Solutions?
-
-并非所有作者都指出了他们提出的早期 V&V 方法的局限性。那些确实指出了局限性的作者的结果。最大的局限性是所提出的解决方案尚未完全开发，通常只部分涵盖了作者感兴趣的内容；另一个重大挑战是由于在描述和分析语言或形式主义存在差异时集成语言；报告的其他问题包括缺乏自动化；行为描述语言的表达能力有限是另一个常见的限制
-
-*RQ5 discussion*
-我们注意到，许多所述的限制与开发过程处于早期阶段这一事实直接或间接相关。事实上，如果抽象程度很高和/或已知系统的细节很少，那么分析应该会很有限或很肤浅。不过，作者明确表示，这是解决方案的一个可观察到的缺点，突出了在早期阶段平衡模型的保真度和抽象性的难度。同样，我们注意到许多与工具和学习曲线有关的问题，这些问题是软件和系统建模中常见的问题。
-从更广泛的角度来看，MBSE 和 SE 通常针对整个系统生命周期。许多 MBSE 方法，例如 MagicGrid 为各个生命周期阶段的活动和方法提供了一个框架。有趣的是，只有少数解决方案讨论了将早期 V&V 活动和结果与后期阶段互连的潜在局限性。值得注意的是，虽然一些论文将各个阶段联系起来，但对每个阶段工件之间可追溯性的讨论和应用却很有限。在 INCOSE 等组织提出的愿景中，经常重申未来的建模应该涵盖系统生命周期的所有部分。**然而，如果在各个阶段生成的模型之间没有更复杂的可追溯性手段，就存在引入不一致或与跨工件管理信息相关的额外工作量的风险。** 事实上，这是以文档为中心的开发中发现的问题之一，经常被用作转向基于模型的实践的论据。
-
-*Actionable Insights RQ5*
-From the analysis performed we believe the following action points to be valuable for thecommunity in the context of RO5:
-
-- MBSE processes are continuous (and often iterative) methodologies for system refne-ment. The limitations hint at the difculty in managing model fdelity and abstractionto correctly leverage analysis results from considered artefacts.**MBSE过程是系统改造的连续(通常是迭代)方法。这些限制暗示了管理模型交付和抽象的困难，以正确地利用来自被考虑的工件的分析结果。**
-- MBSE artefacts are expected to evolve, therefore the limitations related to integration,abstraction management, and scalability have an important impact.**MBSE工件预计会发展，因此与集成、抽象管理和可伸缩性相关的限制会产生重要的影响。**
-- Often the main stakeholders in MBSE are the engineers, since many of the limitationsare due to the difculty to apply the methods for the corresponding scenario, it can bederived a general lack of prioritisation for usability concerns.**通常，MBSE的主要利益相关者是工程师，因为许多限制是由于难以将方法应用于相应的场景，这可能导致可用性问题的优先级普遍缺乏。**
-- Frequently recurring limitations are due to analytical simplifcations, which seems tocontradict the inherent essence of early V&V, This hints at a missing clear definitionof what early is, and what can be expected from analysis at such a stage.**经常重复出现的局限性是由于分析上的简化，这似乎违背了早期V&V的内在本质，这暗示了早期是什么，以及在这样一个阶段可以从分析中期待什么，缺少一个明确的定义。**
-
-## Horizontal Analysis
-
-### SysML and Simulation
-
-本节只关注使用了SysML的论文。采用模拟的方法倾向于使用SysML，不使用的有4成。
-
-### Tools and Extra Results
-
-当作者对更广泛的反馈感兴趣而不仅仅是 V&V 结果时，他们不太可能使用多种工具进行分析。相反，当作者对 V&V 之外的结果不感兴趣时​​，他们可能会使用更多工具进行分析。也许这可以归因于所提出的解决方案的成熟度：不太成熟的方法可能包括更多软性优势以达到说服目的，而成熟的解决方案则更注重应用场景中衡量的性能。
-
-### License and Development Phase
-
-工具许可在设计阶段往往是专有的，而在需求阶段则更有可能是免费的。 此外，与专有许可相比，涉及两个阶段的解决方案显示出开源和免费工具的（大致）均匀混合。
-
-### Industry, License, and SysML
-
-虽然（如预期的那样）学术解决方案倾向于免费或开源工具，而行业则倾向于专有工具，但我们在三向映射中看到了两个不同的类别。首先，我们注意到，如果 SysML 在学术界使用，那么工具更可能是专有的而不是免费的，而非 SysML 解决方案最有可能是免费或开源的。此外，对于行业而言，非 SysML 解决方案更可能是免费的，而不是专有的。在这种情况下，我们观察到，无论 SysML 在何处使用，所使用的工具更可能是专有的，而如果解决方案不使用 SysML，则许可证更可能是免费或开源的。
-
-### Other Observations form Horizontal Analysis
-
-- SysML 在设计中的使用比在需求中的使用更多。这可能部分是因为需求阶段的解决方案可以正式完成，而不是依赖于 SysML 这样的非正式语言，因此避免了转向更正式的语言进行分析的需要。
-- 模拟在特定领域的解决方案中更为常见，因为 117 个（70.9%）特定领域的解决方案中有 83 个使用了模拟，而非特定领域的解决方案中只有 16 个（43.7%）使用了模拟。
-- 特定领域的解决方案拥有更多的专有许可证，在这方面，特定领域的解决方案可能需要更高级或更专业的软件，从而导致可用的开源或免费解决方案更少。
-- 在工业环境中的 51 个解决方案中，有 32 个（62.7%）使用 SysML，在 98 个学术解决方案中，有 49 个（50%）使用 SysML。我们预计工业和学术之间的差异会更大，尤其是考虑到大多数 SysML 工具都不是免费的或开源的。然而，工业和学术提取的数据相对相似。这进一步加强了 SysML 是 MBSE 的事实标准语言这一观点。
-- 工业环境倾向于使用多种工具，因为在工业环境中，51 个解决方案中有 34 个（66.6%）使用多种工具，而在学术环境中，98 个解决方案中有 52 个（53%）使用多种工具。这种趋势可以通过以下事实来解释：工业环境更有可能需要高级或专门的工具来实现其目的，而一种工具很少能用于所有分析目的。
-- 作者更有可能在学术环境中发现局限性，因为在学术环境中的 98 篇论文中有 64 篇（65.3%）讨论了其解决方案的局限性。相比之下，在工业环境中的 51 篇论文中有 28 篇（54.9%）描述了其环境中的局限性。这可能与学术界和工业界在传播研究成果方面有不同的兴趣有关（例如，讨论开放的挑战与强调成功的实践）。
-- 大多数使用 SysML 的实现无论如何都需要对语言进行某种扩展或转换为另一种语言或形式主义以用于分析目的。因此，在与领域无关的情况下，可能更倾向于采用一种需要较少努力来执行 V&V 分析的行为描述语言。
-
-*Actionable Insights Horizontal analysis*
-From the analysis performed we believe the following action points to be valuable for thecommunity in the context of the horizontal analysis:
-
-- SysML as a language is more dependent on proprietary tooling and extensions withother mechanisms for analysis compared to other languages, reducing the option foranalysis without heavy investment in surrounding technologies.**与其他语言相比，SysML作为一种语言更依赖于专有工具和具有其他分析机制的扩展，这减少了在没有对周围技术进行大量投资的情况下进行分析的选择。**
-- The gap between academia and industry is noticeable in many categories, hinting at agreater misalignment. Particularly, the tools, languages, and methods differ in termsof preferences.**学术界和工业界之间的差距在许多领域都很明显，暗示着更大的错位。特别是，工具、语言和方法在偏好方面有所不同。**
-- Few general purpose solutions utilise simulation, hinting at the need for domain.specifc information for valid simulations. This, in conjunction with the overwhelminguse of simulation as a V&V method, could explain the lack of general approaches.**很少有通用的解决方案利用模拟，这暗示了对有效模拟的领域特定信息的需求。这一点，连同作为V&V方法的模拟的过度使用，可以解释通用方法的缺乏。**
-
-## Discussion and Outlook
-
-### Limitations of Early V&V
-
-多亏了好的工具，集成更先进的工作流程和强大的功能将变得更加容易，正如其他评论中广泛讨论的那样。尽管工具是 MBSE 分类的核心，但直到今天，它仍然是更广泛采用基于模型的实践的关键障碍。工具经常出现的问题，例如互操作性和可扩展性，似乎限制了学术解决方案在工业领域的应用。
-早期开发阶段的另​​一个相关特征是存在强烈的不确定性，被分析的系统需要考虑可能结果的不确定性。特别是，由于使用高抽象层次的模型，不确定性会增加。此外，在处理异构模型和系统时，由于各种类型的不确定性以及具有不确定性的不同模型之间的相互作用，复杂性也增加了。
-文献中讨论了 MBSE 中不确定性的存在和管理 [[7]](#7) [[63]](#63) [[90]](#90)。据这些作者所知，没有具体的指标或方法可以有效地管理 MBSE 中的不确定性。
-似乎缺乏易于获取且富有成效的方法来学习所审查文献中讨论的基于模型的方法。
-
-### Early V&V in the Broader Context of MBSE
-
-人工智能将发挥作用的两个场景：早期开发中的不确定性和为新手提供帮助。
-在审查这些论文时，缺少关于传播在各个生命周期阶段开发的工件以及 SE 生命周期与早期 V&V 活动的关系的讨论。如果不将不确定性或早期模型的演变/细化传播到开发的后期阶段，则很有可能会创建并丢弃此类模型，这通常被称为基于文档的开发的弱点，并且可能不利于重用。
-在 SE 生命周期中更稳健地传播工件的可能解决方案也可以与敏捷 MBSE [[76]](#76) 和 DevOps [[62]](#62) 相关。这些范例被视为数字线程的推动者 [[80]](#80)，并引起了业界越来越多的兴趣。
-另一个相关方面是使用数字孪生 (DT) [[48]](#48)：利用 DT 被视为设计过程中的强大推动者，也是在系统实施之后集成分析的一种手段。
-
-### Empirical Measurements and Benchmarks in MBSE
-
-对于所研究的解决方案类型，没有基准或类似的参考测量，作者通常采用临时或特定案例的指标。
-测量通常仅限于所提出的 V&V 解决方案的质量属性，而没有尝试在 MBSE 环境中测量解决方案的有效性。
-对 MBSE 感知价值的批判性评论发现，采用 MBSE 带来的好处中只有大约 10% 是与任何指标相对照的，测量评估的低比例同样反映在这篇评论中，约为 11%。缺乏适当的 MBSE 使用情况报告指标限制了研究的影响，因为它通常仅限于轶事例子或观察，很难放在更广泛的背景下。
-Garousi 等人 [[33]](#33) 对产学研合作面临的挑战进行了文献综述，发现常见的挑战与学术解决方案在工业环境中的适用性不足以及对有价值解决方案的不同看法有关。此外，Garousi 等人强调，合作的最佳实践是以现实世界的问题为基础进行研究。但研究和实践之间仍然存在相当大的差距。在这方面，一个可能的解决方案是通过对学术界开发的解决方案提出更明确的要求来具体化与 MBSE 相关的工业需求。从工业角度对 MBSE 解决方案定义更严格的要求可能是弥补目前观察到的一些差距的一种手段。
-
-### Barriers for Industrial Adoption of Early V&V in MBSE
-
-![Challenges for industry adoption of Early V&V for system behaviour in MBSE.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081403.png)
-
-*Model Based*
-找到抽象和保真度之间的正确平衡是一个反复出现的挑战，并且通常是在 MBSE 背景下实现成熟的早期 V&V 的先决条件。事实上，从业者本身在论文中大多被忽略，解决方案的整体可用性并不是优先事项。似乎没有明确的观点来解决这个问题，也许是因为 RQ4 中看到的许多领域的广泛应用。 此外，基于模型的实践在很大程度上依赖于工具，并且在提取过程中遇到了许多传统问题，例如互操作性、自动化和可扩展性，这再次证实了该领域以前的工作。学术工具与更重要的工具环境集成的讨论明显不足。正如预期的那样，挑战是重叠的，但当行业越来越多地转向 OSLC15 等标准以促进更标准化的数据交换时，观察到的许多学术解决方案都存在目标非常狭窄、工具和语言独特的问题。此外，行业从业者和学术研究人员之间似乎存在差距，而且为学术界开发的工具可能旨在解决与行业需求不同的其他问题。
-
-*Systems Engineering*
-使用 SE 的大部分行业正在向至少部分采用 MBSE 的方向转变。然而，遗留问题往往是巨大的，不能简单地为了新方法或工作方法而丢弃，但关于如何在 RQ3 数据提取中促进这种集成的讨论却很少。然而，这些解决方案通常是为专家受众设计的，这限制了解决方案的更广泛适用性（特别是因为许多工程师在基于模型的方法方面都是完全的新手）。采用的一大障碍是难以提供 MBSE 方法的可衡量效益。许多解决方案仅限于扩展到周围活动，例如，解决方案缺乏上下游联系。同样，关于如何管理分析模型以促进重复使用和高效的未来决策的讨论很少。可追溯性以及最近的数字线程在很大程度上被忽略了，从而降低了它们的适用性。普遍缺乏与领域无关的和更通用的解决方案阻碍了现有解决方案的采用。
-
-*Validation & Verification*
-解决方案中一个很大的空白是讨论不确定性和分析有效性，这也是 RQ5 中的局限性之一。在开发的早期阶段，所有模型中都存在不确定性，需要付出相当大的努力来缓解和推理，以便正确定位结果并将其用于决策。然而，很少有人讨论如何在解决方案中管理不确定性，以及分析抽象会带来什么影响，这是作者在 RQ5 中报告的更突出的局限性之一。分析有效性也是如此。如果对重复使用感兴趣，那么就需要对何时可以使用方法或模型进行正确分析以及用户如何根据案例确定所考虑的模型是否足够丰富以产生有效的分析结果进行分类。同样，许多解决方案使用自定义工具进行实施，限制了 SE 流程中的集成。特别是，依赖几种特定的工具会增加流程的复杂性，并可能导致供应商锁定增加。
-
-## Conclusions
-
-> This article reports the results of a systematic literature review on early behaviour validation and verification in model-based systems engineering. From a set of 701 papers retrieved through searches and snowballing activities, we selected 149 relevant contributions, we extracted and coded the obtained data, and we performed analyses whose results and findings are presented in the work. In this respect, we notice an increased interest in performing early V&V and observe a broad range of domains in the analysed papers, with a corresponding variety of methods, tools, and languages. Further, we note a strong industrial presence in the literature and several industrial perspective trends that differ from the academic ones. To name a few of our findings, we note that SysML is the most represented language in industry and academia for describing system behaviour. In contrast, the language or formalism for analysis varies between most solutions. Additionally, several limitations are identified, indicating a lack of readiness for the solutions together with the concerns about managing analysis with low-fidelity models. Finally, a significant divide emerges between the academic and industrial implementation of solutions; such a divide is especially observable for SysML, utilised across all contexts but relying on different tooling for the contexts.
-> We contextualise the review findings and discuss the current status of early validation of system behaviour in the context of industrial MBSE adoption. The review is structured according to the needs of the industry to promote the eventual adoption of early V&V and MBSE processes at large. The review provides actionable insights for the five presented research questions to promote further investigation into this area. Furthermore, we distinguish three areas, Model-Based, Systems Engineering, and Validation & Verification, and highlight a set of corresponding barriers for each area, which we feel need to be addressed to promote and support industrial adoption of early V&V techniques. As such, we hope the findings of this review can provide an adequate state-of-the-art view and pave the way for future investigations for researchers and practitioners.
-
-`个人总结`
-
-本文是一篇高质量的MBSE领域综述，综述的结构本身值得借鉴，文章以V&V过程为对象，研究了MSBE的方法、工具、技术和发展等内容，提出了领域研究的若干关键问题和相关质疑，有很高的参考价值，值得反复查阅。
-
-`参考文献`
-
-<a id="88">[88]</a>David D. Walden, Garry J. Roedler, and Kevin Forsberg. 2015. INCOSE systems engineering handbook version 4: updating the reference for practitioners. In Proceedings of the INCOSE Annual International Symposium, Vol. 25. Wiley Online Library, 678–686.
-<a id="56">[56]</a>Edward A. Lee and Marjan Sirjani. 2018. What good are models? In International Conference on Formal Aspects of Component Software. Springer, 3–31.
-<a id="10">[10]</a>George E. P. Box and Norman R. Draper. 1987. Empirical Model-building and Response Surfaces.John Wiley & Sons.
-<a id="31">[31]</a>Sanford Friedenthal, Regina Griego, and Mark Sampson. 2007. INCOSE model based systems engineering (MBSE) initiative. In Proceedings of the INCOSE Annual International Symposium, Vol. 11. sn.
-<a id="35">[35]</a>Iris Graessler and Julian Hentze. 2020. The new V-model of VDI 2206 and its validation. at-Automatisierungstechnik 68, 5 (2020), 312–324.
-<a id="36">[36]</a>Joe Gregory, Lucy Berthoud, Theo Tryfonas, Alain Rossignol, and Ludovic Faure. 2020. The long and winding road: MBSE adoption for functional avionics of spacecraft. J. Syst. Softw. 160 (2020), 110453.
-<a id="17">[17]</a>Joe Gregory, Lucy Berthoud, Theo Tryfonas, Alain Rossignol, and Ludovic Faure. 2020. The long and winding road: MBSE adoption for functional avionics of spacecraft. J. Syst. Softw. 160 (2020), 110453.
-<a id="67">[67]</a>Mara Nikolaidou, George-Dimitrios Kapos, Anargyros Tsadimas, Vassilis Dalakas, and Dimosthenis Anagnostopoulos. 2016. Challenges in SysML model simulation. Adv. Comput. Sci. Int. J. 5, 4 (2016), 49–56.
-<a id="94">[94]</a>Bernard P. Zeigler, Saurabh Mittal, and Mamadou Kaba Traore. 2018. MBSE with/out simulation: State of the art and way forward. Systems 6, 4 (2018), 40.
-<a id="20">[20]</a>M. Chami and J. M. Bruel. 2018. A Survey on MBSE Adoption Challenges. In INCOSE EMEA Sector Systems Engineering Conference (INCOSE EMEASEC’18). 1–16.
-<a id="53">[53]</a>Christopher Laing, Pierre David, Eric Blanco, and Xavier Dorel. 2020. Questioning integration of verification in modelbased systems engineering: An industrial perspective. Comput. Industr. 114 (2020), 103163.
-<a id="60">[60]</a>Junda Ma, Guoxin Wang, Jinzhi Lu, Hans Vangheluwe, Dimitris Kiritsis, and Yan Yan. 2022. Systematic Literature Review of MBSE Tool-Chains. Appl. Sci. 12, 7 (2022), 3431.
-<a id="73">[73]</a>Muhammad Rashid, Muhammad Waseem Anwar, Farooque Azam, and Muhammad Kashif. 2016. Model-based requirements and properties specifications trends for early design verification of embedded systems. In Proceedings of the 11th System of Systems Engineering Conference (SoSE’16). IEEE, 1–7.
-<a id="25">[25]</a>Pierre De Saqui-Sannes, Rob A. Vingerhoeds, Christophe Garion, and Xavier Thirioux. 2022. A taxonomy of MBSE approaches by languages, tools and methods. IEEE Access (2022).
-<a id="66">[66]</a>Christian Nigischer, Sébastien Bougain, Rainer Riegler, Heinz Peter Stanek, and Manfred Grafinger. 2021. Multidomain simulation utilizing SysML: State of the art and future perspectives. Proc. CIRP 100 (2021), 319–324.
-<a id="41">[41]</a>Kaitlin Henderson and Alejandro Salado. 2021. Value and benefits of model-based systems engineering (MBSE): Evidence from the literature. Syst. Eng. 24, 1 (2021), 51–66.
-<a id="5">[5]</a>Hugo Araujo, Mohammad Reza Mousavi, and Mahsa Varshosaz. 2022. Testing, validation, and verification of robotic and autonomous systems: A systematic review. ACM Trans. Softw. Eng. Methodol. (2022).
-<a id="2">[2]</a>T. Ahmad, J. Iqbal, A. Ashraf, D. Truscan, and I. Porres. 2019. Model-based testing using UML activity diagrams: A systematic mapping study. Computer Science Review 33 (2019), 98–112.
-<a id="21">[21]</a>Jean-Charles Chaudemar and Pierre de Saqui-Sannes. 2021. Mbse and mdao for early validation of design decisions: A bibliography survey. In Proceedings of the IEEE International Systems Conference (SysCon’21). IEEE, 1–8.
-<a id="86">[86]</a>Naoum Tsioptsias, Antuela Tako, and Stewart Robinson. 2016. Model validation and testing in simulation: A literature review. In Proceedings of the 5th Student Conference on Operational Research (SCOR’16). Schloss Dagstuhl-LeibnizZentrum fuer Informatik.
-<a id="58">[58]</a>Zihang Li, Jinzhi Lu, Guoxin Wang, Lei Feng, Didem Gurdur Broo, and Dimitris Kiritsis. 2021. A Bibliometric Analysis on Model-based Systems Engineering. In Proceedings of the IEEE International Symposium on Systems Engineering (ISSE’21). IEEE, 1–8.
-<a id="51">[51]</a>Barbara Kitchenham, Rialette Pretorius, David Budgen, O. Pearl Brereton, Mark Turner, Mahmood Niazi, and Stephen Linkman. 2010. Systematic literature reviews in software engineering—A tertiary study. Inf. Softw. Technol. 52, 8 (2010), 792–805.
-<a id="92">[92]</a>Claes Wohlin, Per Runeson, Martin Höst, Magnus C. Ohlsson, Björn Regnell, and Anders Wesslén. 2012. Experimentation in Software Engineering. Springer Science & Business Media.
-<a id="79">[79]</a>Mary Shaw. 2002. What makes good research in software engineering?Int. J. Softw. Tools Technol. Transf. 4, 1 (2002), 1–7.
-<a id="7">[7]</a>Johan Bergelin, Antonio Cicchetti, and Emil Lundin. 2022. Early validation of heterogeneous battery systems in the railway domain. In Proceedings of the IEEE International Systems Conference (SysCon’22). IEEE, 1–8.
-<a id="63">[63]</a>Yaroslav Menshenin, Carolina Moreno, Yana Brovar, and Clement Fortin. 2021. Integration of MBSE and PLM: Complexity and uncertainty. Int. J. Prod. Lifecycle Manage. 13, 1 (2021), 66–88.
-<a id="90">[90]</a>James R. Williams, Frank R. Burton, Richard F. Paige, and Fiona A. C. Polack. 2012. Sensitivity analysisin model-driven engineering. In International Conference on Model Driven Engineering Languages and Systems. Springer, 743–758.
-<a id="76">[76]</a>Bill Schindel and Rick Dove. 2016. Introduction to the agile systems engineering life cycle MBSE pattern. In Proceedings of the INCOSE Annual International Symposium, Vol. 26. Wiley Online Library, 725–742.
-<a id="62">[62]</a>John T. J. Mathieson, Thomas Mazzuchi, and Shahram Sarkani. 2020. The systems engineering DevOps lemniscate and model-based system operations. IEEE Syst. J. 15, 3 (2020), 3980–3991.
-<a id="80">[80]</a>Victor Singh and Karen E. Willcox. 2018. Engineering design with digital thread. AIAA J. 56, 11 (2018), 4515–4528.
-<a id="48">[48]</a>David Jones, Chris Snider, Aydin Nassehi, Jason Yon, and Ben Hicks. 2020. Characterising the digital twin: A systematic literature review. CIRP J. Manufact. Sci. Technol. 29 (2020), 36–52.
-<a id="33">[33]</a>Vahid Garousi, Kai Petersen, and Baris Ozkan. 2016. Challenges and best practices in industry-academia collaborations in software engineering: A systematic literature review. Inf. Softw. Technol. 79 (2016), 106–127.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TOSEM</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>Validation &amp; Verification</tag>
-        <tag>Review</tag>
-        <tag>MBSE</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</title>
-    <url>/2024/08/29/007/</url>
-    <content><![CDATA[
-`小记`
-
-*作者来自马德里理工大学（西班牙）。*
-
-本文的目的是介绍马德里波利特海姆大学目前的研究，以提高小型空间发射器在初步概念阶段的设计效率，该研究基于MBSE方法中的一种新方法，该方法引入了高效和快速的模拟，通过寻找设计重量的最佳平衡来降低成本。在过去的十年中，基于模型的系统工程(MBSE)和并行工程(CE)方法和过程的实施提高了卫星设计的效率，减少了设计时间。
-
-卫星的设计是基于子系统的纯粹功能分析分解，而空间发射器则需要更多的物理分析，因为其组件相互依赖的设计影响很大，需要大量的密集模拟和计算能力。这些仿真的计算时间要求使得卫星并行工程方法在空间发射装置设计中的应用效率低下。一种新的MBSE方法引入了高效和快速的模拟，可以填补现有的空白。
-
-过去几年，由于虚拟建模可靠性的提高，系统仿真软件方法在所有工程领域的数量显著增加。它们的主要优势是缩短了开发时间，降低了与硬件错误相关的成本，在模拟世界和现实世界之间建立了桥梁。由于其历史背景，现有的关于模型和仿真 (M&S) 的文献在航天器设计中非常广泛。早期的建模和仿真支持了太空时代的发展，测试是验证空气动力学、控制律和结构设计的主要方法。随着当前计算能力的提高，它们在航天器设计中的应用已经扩展到流体动力学、推进、结构、制导、导航和控制 (GN&C)、飞行物理、飞行轨迹、飞行器分段和有效载荷部署的模拟[[12]](#12)。然而，关于将所有这些模型和模拟器集成以分析总体发射器设计和初步开发阶段的交易的 M&S 文献几乎不存在。**我们可以找到与将专门为卫星设计开发的 MBSE 方法和并行工程流程应用于航天发射器设计所面临的困难相关的文献，以及有关 NASA 和 ESA 现有模拟器的描述。**这两个航天机构的模拟器都是多体软件，这意味着创建不同的互连软件块来模拟不同的动态，但由于其不同的计算目标，它们之间存在非常有趣的差异。
-
-美国宇航局的模拟器[[13]](#13)由马歇尔太空飞行中心 (MSFC) 的先进概念办公室 (ACO) 建造，由一套自动化的三套工具组成，分别为用于系统重量和尺寸的 INTROS（综合火箭尺寸）、用于结构设计的 LVA（运载火箭分析）和 POST II（模拟轨迹优化程序）。该模拟器提供实验设计 (DOE) 功能，可创建替代模型来分析参数敏感性，确定特定任务的关注领域 [[14]](#14)。
-ESA 的模拟器[[15]](#15)，DCAP（动态和控制分析包），由结构和机制部门开发。它是一套计算机程序软件，提供建模、模拟和分析动态和控制性能的能力，并与其他专业软件（如 NASTRAN、CATIA、MATLAB/Symulink）链接，可以在单个模拟中详细重现大多数关键子系统和学科，从而促进并行工程流程。
-NASA 和 ESA 模拟器均在初步设计阶段使用，并且都具有相似的软件架构，但用途不同。然而，它们似乎都与系统工程流程、要求和系统架构无关。
-
-通过上述分析，我们确定了微型和纳米卫星市场领域的航天发射器最佳概念设计面临的三个主要挑战：
-
-- **多学科设计优化方法主要侧重于重量优化，建模和成本分析从属于重量或侧重于业务分析。**
-- **模型和仿真方法更侧重于重现子系统性能，与定义系统需求和架构的过程无关。**
-- **MBSE 方法允许通过为每个子系统指定功能并定义功能之间以及系统与环境之间的接口来定义功能架构，但它们没有考虑到航天发射器设计更多地基于物理仿真分析而不是卫星设计中应用的功能分解这一事实。**
-
-本研究将回答的主要问题是，是否有可能通过在 MBSE 框架中集成多学科模拟器和成本估算模型来概念性地设计小型竞争性太空发射器，从而在经典系统工程方法中引入广泛的模拟，确定每个子系统定义中的关键设计驱动因素，从而实现其优化，从而减少所需的设计循环数量。
-
-![Fig 2. System engineering Wee Diagram](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png)
-
-这种方法将用图 2 中的新 Wee 图取代经典 V 形图，其中在分解阶段包括建模和仿真，以确定根据定义的需求驱动设计的关键参数。这些参数将在设计阶段进行交换以找到基于快速设计/制造/测试循环的优化解决方案。在集成阶段，将根据模拟器的预测值对测试结果进行分析，以对其进行验证，然后再进入最终的系统集成和验证阶段。
-
-![Fig 3. Space Launcher conceptual design MBSE&S framework](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082902.png)
-
-为此，目前正在使用 Python 代码模块开发太空发射器初步设计模拟器工具（RoTMoS - 火箭和弹道模块化模拟器），涵盖初步设计阶段太空发射器设计所涉及的主要学科：发射轨迹、推进、制导、导航和控制 (GN&C)、空气动力学、负载、应力、质量特性和成本。开发此工具的目的是达到一定的保真度，以便设计实验，分析参数对重量和成本结果的敏感性。模拟器模块将通过任务用例（UPM-Sat 程序）集成到 MBSE 工具（Eclipse CapellaTM）中，遵循空间任务分析与设计 (SMED) 方法，以根据模拟器结果构建优化的太空发射器系统架构和功能。MBSE&S 总体框架如图 3 所示。
-
-最后文章总结了自2021年来的相关研究进展。
-
-`参考文献`
-<a id="12">[12]</a>L. B. Rainey. Space Modeling and Simulation: Roles and Applications throughout the System Life Cycle, El Segundo, California The Aerospace Press. AIAA. 2004.
-<a id="13">[13]</a>E. Waters, J. Garcia, G. Threet, A. Philips. "NASA Advanced Concepts Office, Earth-to-Orbit Team Design Process and Tools." AIAA SPACE 2013 Conference and Exposition, American Institute of Aeronautics and Astronautics.
-<a id="14">[14]</a>M. R. Zwack, P. D. Dees, J. B. Holt. "Application of Design of Experiments and Surrogate Modeling within the NASA Advanced Concepts Office, Earth-to-Orbit Design Process." AIAA Space 2016, American Institute of Aeronautics and Astronautics. 2016.
-<a id="15">[15]</a>G. Baldesi, M. Toso. "European Space Agency’s Launcher Multibody Dynamics Simulator used for System and Subsystem Level Analyses." CEAS Space Journal, 3(1), 27-48. 2012.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>SECESA</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
       </tags>
   </entry>
   <entry>
@@ -1422,6 +1144,338 @@ ACC是一种基于车辆的外部行驶环境，如前方车辆的速度和距�
       </tags>
   </entry>
   <entry>
+    <title>小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</title>
+    <url>/2024/08/29/007/</url>
+    <content><![CDATA[
+`小记`
+
+*作者来自马德里理工大学（西班牙）。*
+
+本文的目的是介绍马德里波利特海姆大学目前的研究，以提高小型空间发射器在初步概念阶段的设计效率，该研究基于MBSE方法中的一种新方法，该方法引入了高效和快速的模拟，通过寻找设计重量的最佳平衡来降低成本。在过去的十年中，基于模型的系统工程(MBSE)和并行工程(CE)方法和过程的实施提高了卫星设计的效率，减少了设计时间。
+
+卫星的设计是基于子系统的纯粹功能分析分解，而空间发射器则需要更多的物理分析，因为其组件相互依赖的设计影响很大，需要大量的密集模拟和计算能力。这些仿真的计算时间要求使得卫星并行工程方法在空间发射装置设计中的应用效率低下。一种新的MBSE方法引入了高效和快速的模拟，可以填补现有的空白。
+
+过去几年，由于虚拟建模可靠性的提高，系统仿真软件方法在所有工程领域的数量显著增加。它们的主要优势是缩短了开发时间，降低了与硬件错误相关的成本，在模拟世界和现实世界之间建立了桥梁。由于其历史背景，现有的关于模型和仿真 (M&S) 的文献在航天器设计中非常广泛。早期的建模和仿真支持了太空时代的发展，测试是验证空气动力学、控制律和结构设计的主要方法。随着当前计算能力的提高，它们在航天器设计中的应用已经扩展到流体动力学、推进、结构、制导、导航和控制 (GN&C)、飞行物理、飞行轨迹、飞行器分段和有效载荷部署的模拟[[12]](#12)。然而，关于将所有这些模型和模拟器集成以分析总体发射器设计和初步开发阶段的交易的 M&S 文献几乎不存在。**我们可以找到与将专门为卫星设计开发的 MBSE 方法和并行工程流程应用于航天发射器设计所面临的困难相关的文献，以及有关 NASA 和 ESA 现有模拟器的描述。**这两个航天机构的模拟器都是多体软件，这意味着创建不同的互连软件块来模拟不同的动态，但由于其不同的计算目标，它们之间存在非常有趣的差异。
+
+美国宇航局的模拟器[[13]](#13)由马歇尔太空飞行中心 (MSFC) 的先进概念办公室 (ACO) 建造，由一套自动化的三套工具组成，分别为用于系统重量和尺寸的 INTROS（综合火箭尺寸）、用于结构设计的 LVA（运载火箭分析）和 POST II（模拟轨迹优化程序）。该模拟器提供实验设计 (DOE) 功能，可创建替代模型来分析参数敏感性，确定特定任务的关注领域 [[14]](#14)。
+ESA 的模拟器[[15]](#15)，DCAP（动态和控制分析包），由结构和机制部门开发。它是一套计算机程序软件，提供建模、模拟和分析动态和控制性能的能力，并与其他专业软件（如 NASTRAN、CATIA、MATLAB/Symulink）链接，可以在单个模拟中详细重现大多数关键子系统和学科，从而促进并行工程流程。
+NASA 和 ESA 模拟器均在初步设计阶段使用，并且都具有相似的软件架构，但用途不同。然而，它们似乎都与系统工程流程、要求和系统架构无关。
+
+通过上述分析，我们确定了微型和纳米卫星市场领域的航天发射器最佳概念设计面临的三个主要挑战：
+
+- **多学科设计优化方法主要侧重于重量优化，建模和成本分析从属于重量或侧重于业务分析。**
+- **模型和仿真方法更侧重于重现子系统性能，与定义系统需求和架构的过程无关。**
+- **MBSE 方法允许通过为每个子系统指定功能并定义功能之间以及系统与环境之间的接口来定义功能架构，但它们没有考虑到航天发射器设计更多地基于物理仿真分析而不是卫星设计中应用的功能分解这一事实。**
+
+本研究将回答的主要问题是，是否有可能通过在 MBSE 框架中集成多学科模拟器和成本估算模型来概念性地设计小型竞争性太空发射器，从而在经典系统工程方法中引入广泛的模拟，确定每个子系统定义中的关键设计驱动因素，从而实现其优化，从而减少所需的设计循环数量。
+
+![Fig 2. System engineering Wee Diagram](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png)
+
+这种方法将用图 2 中的新 Wee 图取代经典 V 形图，其中在分解阶段包括建模和仿真，以确定根据定义的需求驱动设计的关键参数。这些参数将在设计阶段进行交换以找到基于快速设计/制造/测试循环的优化解决方案。在集成阶段，将根据模拟器的预测值对测试结果进行分析，以对其进行验证，然后再进入最终的系统集成和验证阶段。
+
+![Fig 3. Space Launcher conceptual design MBSE&S framework](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082902.png)
+
+为此，目前正在使用 Python 代码模块开发太空发射器初步设计模拟器工具（RoTMoS - 火箭和弹道模块化模拟器），涵盖初步设计阶段太空发射器设计所涉及的主要学科：发射轨迹、推进、制导、导航和控制 (GN&C)、空气动力学、负载、应力、质量特性和成本。开发此工具的目的是达到一定的保真度，以便设计实验，分析参数对重量和成本结果的敏感性。模拟器模块将通过任务用例（UPM-Sat 程序）集成到 MBSE 工具（Eclipse CapellaTM）中，遵循空间任务分析与设计 (SMED) 方法，以根据模拟器结果构建优化的太空发射器系统架构和功能。MBSE&S 总体框架如图 3 所示。
+
+最后文章总结了自2021年来的相关研究进展。
+
+`参考文献`
+<a id="12">[12]</a>L. B. Rainey. Space Modeling and Simulation: Roles and Applications throughout the System Life Cycle, El Segundo, California The Aerospace Press. AIAA. 2004.
+<a id="13">[13]</a>E. Waters, J. Garcia, G. Threet, A. Philips. "NASA Advanced Concepts Office, Earth-to-Orbit Team Design Process and Tools." AIAA SPACE 2013 Conference and Exposition, American Institute of Aeronautics and Astronautics.
+<a id="14">[14]</a>M. R. Zwack, P. D. Dees, J. B. Holt. "Application of Design of Experiments and Surrogate Modeling within the NASA Advanced Concepts Office, Earth-to-Orbit Design Process." AIAA Space 2016, American Institute of Aeronautics and Astronautics. 2016.
+<a id="15">[15]</a>G. Baldesi, M. Toso. "European Space Agency’s Launcher Multibody Dynamics Simulator used for System and Subsystem Level Analyses." CEAS Space Journal, 3(1), 27-48. 2012.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>SECESA</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications</title>
+    <url>/2024/08/28/006/</url>
+    <content><![CDATA[
+[Domain-specific languages for the automated generation of datasets for industry 4.0 applications](https://www.sciencedirect.com/science/article/pii/S2452414X24001018)
+
+*作者来自西班牙坎布里亚大学*
+
+`Abstraction`
+
+> Data collected in Industry 4.0 applications must be converted into tabular datasets before they can be processed by analysis algorithms, as in any data analysis system. To perform this transformation, data scientists have to write complex and long scripts, which can be a cumbersome process. To overcome this limitation, a language called Lavoisier was recently created to facilitate the creation of datasets. This language provides high-level primitives to select data from an object-oriented data model describing data available in a context. However, industrial engineers might not be used to deal with this kind of model. So, this work introduces a new set of languages that adapt Lavoisier to work with fishbone diagrams, which might be more suitable in industrial settings. These new languages keep the benefits of Lavoisier, reducing dataset creation complexity by 40% and up to 80%, and outperforming Lavoisier in some cases.
+
+## Introduction
+
+本文重点关注那些旨在利用构成现代装配线的不同互连元素收集的大量数据的工业4.0应用。MES (Manufacturing Execution System)。然后可以对这些大量数据进行分析，以改进制造过程及其输出产品。Zero-Defect Manufacturing (ZDM) 。
+
+数据集是一种基于表的格式，与所分析的每个元素相关联的所有数据必须放在该表的一行中。然而，这种格式的数据并不常见，因为它通常存储在关系数据库、XML或JSON文件中。在这些表示中，数据不是表格式的，而是链接的，通常是分层的。例如，关于制造产品的数据可以链接到其组件的数据。类似地，每个组件的数据可能连接到其子组件的数据，依此类推。因此，在将这些分层数据用作数据分析算法的输入之前，我们需要将它们扁平化，以便将它们排列成表中特定行的列。
+
+为了执行平坦化任务，数据科学家通常用SQL、R或Pandas等语言编写复杂而冗长的脚本。为了缓解这些问题，一种叫做Lavoisier的语言最近被开发出来[[52]](#52)。这种语言提供了高级原语来创建数据集，这些数据集关注于必须选择哪些数据，而忽略了必须如何重新排列这些数据以使它们适合数据集的细节。
+
+另一方面，工业工程师被用来处理鱼骨图，它允许表示因果关系，通常用于工业环境中的质量控制，并且可以用于指定领域数据之间的影响关系。因此，在工业4.0上下文中，更希望Lavoisier能够使用鱼骨图而不是面向对象的领域模型。
+
+这项工作提出了一个模型驱动的过程，使Lavoisier适应于使用鱼骨图。为了构建这个过程，我们首先创建了一种新的鱼骨模型，称为面向数据的鱼骨模型，其中原因可以连接到领域数据。为此，我们用Lavoisier语句增强鱼骨模型，这样每个原因都可以连接到表征这种原因的领域数据子集。接下来，我们设计了一种名为Papin的新语言来选择应该使用鱼骨图的哪些原因来构建具体的数据集。最后，Papin解释器处理这个选择并自动生成所需的数据集。因此，工业工程师可以使用Papin直接从(面向数据的)鱼骨图创建数据集，而不是从面向对象的领域模型。
+
+通过将面向数据的鱼骨模型和Papin语言应用于五个外部案例研究，评估了这些语言的表达能力。
+
+这项工作扩展了以前在一次会议上提出的贡献在这一贡献中，作为主要区别，本文包括了对我们方法的表达性和有效性的更详尽的评估(第5节)，以及对所呈现语言如何实现的更详细的描述(第4节)。此外，我们扩展了相关工作部分，包括propositionalization和Multi-Relational Data Mining (MRDM)以及工业4.0和ETL过程中的建模语言。
+
+## Background and motivation
+
+### Software language engineering via metamodelling
+
+DSL语言比General Purpose Language (GPL)的强制性更低。DSL允许使用包含来自应用领域的术语和自定义语法。介绍元模型技术。
+
+### Running example: Falling band
+
+作为贯穿本文的运行示例，我们将以一家汽车行业供应商公司的驱动半轴生产为例。在这些检查中，汽车制造商发现，有时车轮一侧的箍松开，引起不同的问题。该公司希望分析在驱动半轴生产过程中收集的数据，以找到这个问题的原因。
+
+### Data mining processes
+
+KDD(Knowledge Discovery in Databases) [[65]](#65) 我们将以KDD过程为基础，解释作为数据挖掘过程一部分的不同阶段。绘制了一个流程图介绍KDD过程，分别是bussis questions, data sources selection, domain data model, algorithm selection, data reshaping, data preparation, algorithm execution, results reports。
+
+### The dataset generation problem
+
+关注其中的data reshaping问题。大多数数据分析算法只能处理以具体表格格式提供的数据，在数据科学社区中称为数据集。在这种格式中，属于要分析的单个实体的所有数据必须放在同一个表行中，我们将其命名为一个实体，一行约束。然而，域数据通常以链接和嵌套元素的图的形式提供，如JSON等。为了创建数据集，数据科学家编写复杂而冗长的脚本，其中使用不同的低级操作链(如过滤器、连接、pivot或聚合)转换原始数据，以满足一个实体、一行约束。
+
+读者可以很容易地注意到，与示例大小相比，这个脚本相当复杂，并且如果紧缩的数量增加，它有明显的可伸缩性问题。这个问题并不是SQL语言所特有的，在使用R或Pandas等其他替代语言时也会出现类似的情况。因此，数据集创建成为一个劳动密集型且容易出错的过程。
+
+### Lavoisier
+
+为了克服这个问题，最近发展了一种叫做Lavoisier[[52]](#52) [[71]](#71) 的语言。Lavoisier是一种用于数据集创建的声明性语言，它提供了一组高级原语，其目标是指定数据集中必须包含哪些数据，而不必详细说明所选数据必须如何转换才能安排为数据集。
+
+通过使用拉瓦锡，与用于此目的的其他语言(如SQL或Pandas)相比，生成数据集所需的操作总数减少了~ 40%，脚本大小减少了~ 60%。因此，作为一个初步假设，我们认为拉瓦锡可能有助于工业4.0的数据选择。然而，我们很快意识到，我们所在地区公司的大多数工业工程师并不熟悉面向对象的数据模型，也不熟悉一般的数据模型。
+
+因此，我们分析了这些公司中通常使用的模型类型，以及这些模型是否可以用作我们方法中面向对象数据模型的替代品。在几个备选方案中，例如描述装配线的图，我们发现了一种模型类型，称为鱼骨图，它为我们的目标提供了三个有趣的元素:(1)它为相当数量的工程师所知;(2)它有一个非常容易理解的符号;(3)可用于表示域数据之间的因果关系。因此，当我们在工业4.0环境中工作时，我们决定使用这些鱼骨图来取代我们原始解决方案的面向对象数据模型。
+
+### Fishbone diagrams
+
+结合案例介绍了鱼骨图的基本概念。
+
+### Problem statement
+
+Lavoisier是面向对象的，鱼骨图是面向数据的，需要进行一个结合。
+
+## Dataset generation from fishbone diagrams
+
+### Solution overview
+
+![Fig. 7. Overview of our solution.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082801.png)
+
+工业工程师先创建鱼骨图，数据工程师创建面向对象领域模型，并鼓励彼此检查。数据工程师创建Data-Oriented Fishbone diagram(DOF) DOF重塑了质量控制鱼骨图，并将原因与表征这些原因的数据联系起来。原因和领域数据之间的连接是使用我们称为data feeders的特殊代码块建立的。最后，工业工程师会使用名为Papin的语言制作数据集。
+
+### Data-oriented fishbone models
+
+DOF将原鱼骨图和面向对象的数据连接起来，连接器是data feeder，它由path和Lavoisier Expression组成。后文介绍了DOF的代码含义和作用。
+
+### Papin: Dataset specification by cause selection
+
+在建立DOF后，我们使用Papin来指定该模型的原因，该模型应该包含在用于分析DOF效应的数据集中。
+
+Papin规范的解释程序：
+
+- 1. 对于Papin规范选择的每个类别或原因，我们遍历它以提取其数据链接的原因。
+- 2. 每个数据链接的原因都使用Lavoisier解释器求值，它为每个原因返回一个数据集。
+- 3. 所有这些数据集都使用主类的标识符作为数据集行之间的匹配属性进行合并。
+- 4. 结果数据集被写入CSV文件。
+
+## Implementation
+
+![Fig. 8. Elements of our model-driven environment.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082802.png)
+
+图8提供了组成模型驱动的基础结构的不同元素的方案。该基础设施包括:
+
+- 1. 我们为三种特定于领域的语言提供了相应的编辑器和解析器;
+- 2. 使用Ecore指定的面向对象领域模型;
+- 3. 通过领域模型检索的领域数据，因此必须符合该模型;
+- 4. Papin解释器，它生成包含所需输出数据集的CSV文件;
+- 5. Lavoisier解释器，它由Papin解释器调用来处理data feeder的Lavoisier表达式。
+
+模型驱动工具的结构介绍。其中DOF工具的语法是用Xtext创建的。
+
+## Evaluation
+
+这些语言有两个主要目标:(1)提高在创建数据集时执行工作的抽象级别;(2)避免业内人士不得不处理他们不熟悉的模型格式来创建数据集。
+
+我们通过分析三个不同的因素来验证这些目标是否已经实现:(1)语言表达性，也就是说，所创建的语言是否可以有效地用于不同的工业4.0问题;(2)工业工程师能否有效处理Papin规范;(3)使用dof和Papin生成数据集可以节省多少意外复杂度。
+
+下面，我们首先描述对语言表现力的评价。然后，我们描述了一个小实验，我们进行了检查工业工程师是否能够理解和创建Papin规范，我们分析了它的结果。接下来，我们将详细介绍我们所遵循的过程，以评估由于dof和Papin可以消除多少意外复杂性，并讨论执行该过程后收集的结果。最后，我们评论和分析了对我们的结果有效性的潜在威胁。
+
+### Expressiveness
+
+结合了汽车行业的五个案例，列出了模型数量和鱼骨图数量。证明鱼骨图的表达能力是足够的，也介绍了三个和语法无关的问题。
+
+### Experiments with industrial engineers
+
+这些经验实验是评估使用DSL的好处的最有效方法之一[[79]](#79) [[80]](#80)。然而，不幸的是，这些类型的实验在DSL和工业4.0社区中都非常罕见。这些实验的主要问题，也可能是它们在社区中不常见的原因，是它们的设计、组织和执行需要在时间和资源方面付出巨大的努力，这通常超出了常规研究项目的限制。由于这些原因，我们选择了一个更简单的程序，即向一组工业工程师分发一份在线问卷，他们必须解决一些与Papin相关的练习。给他们发放答卷让他们作答，问题基本都超过8成人答对。有一些初步证据表明工业工程师能够有效地使用Papin。
+
+### Accidental complexity reduction
+
+#### Evaluation procedure
+
+展示了通过使用面向数据的鱼骨模型和Papin进行数据选择和准备来衡量可以节省多少意外复杂性的努力。(1)要包含在比较中的技术（为什么选这个技术）;(2)待计算度量的集合（为什么这样度量）;(3)用每种语言编写脚本的场景。评估的过程不多介绍。
+
+#### Evaluation results
+
+放弃了自由度选项，因为添加可追溯性信息显然是昂贵的。
+
+脚本大小。1. 除了Data Feeders选项中的场景a和b之外，我们的方法比SQL和Pandas执行得更好。2. Data Feeders选项总是比Lavoisier选项差。3. 在所有情况下，Just Papin选项明显优于拉瓦锡选项，除了a。4. “Just Papin”选项的大小似乎并不取决于场景的复杂程度。……这段讨论非常长，总体上就是在讨论谁好谁坏的问题。
+
+### Threats to validity
+
+#### Expressiveness - 2
+
+语言表达性是软件语言工程中的常见问题。然而，虽然这种威胁不能完全消除，但我们已经尝试通过使用与实际工业问题相对应的外部和异构案例研究来减轻它，以便这些案例研究:(1)涵盖广泛的可能情况;(2)对我们没有偏见;(3)代表真实的工业问题，而不是在研究实验室中人为制造的玩具例子。关于这最后一点，我们想指出的是，虽然这四个案例研究是从文献中得出的，但它们对应的是不同现实公司面临的问题。另一方面，完全可以认为鱼骨图是由案例研究提供的，但是领域模型是由我们创建的，因此，这些领域模型可能是有偏差的。正如2.7节所述，领域模型在工业环境中很少使用，因此在实践中寻找对应于实际工业问题的案例研究，同时提供鱼骨图和领域模型是一项不可行的任务。因此，我们决定为每个案例研究创建领域模型，只使用相应案例研究中报告的可用数据的描述。此外，为了减少潜在的偏差，我们请了几位专家和实践者来检查我们创建的领域模型。没有人报告这些型号有任何问题。
+
+#### Experiments with industrial engineers - 2
+
+关于测试工业工程师是否能够使用Papin的实验，我们对这些实验使用了单个案例研究。因此，为了科学严谨，我们不能将这些实验的结论推广到其他案例研究中，因为我们没有证据表明工业工程师可以将Papin用于其他案例研究。尽管如此，这个案例研究取自一个真实的案例研究，它不是一个微不足道的案例，它具有在真实场景中预期的复杂程度。因此，没有任何特殊性会让我们认为工程师在其他案例研究中使用Papin会有问题。
+其次，我们无法控制受访者如何回答问题。其次，我们无法控制受访者如何回答问题。更严重的威胁是，我们在训练和练习中使用了相同的案例研究。
+
+#### Accidental complexity reduction - 2
+
+意外复杂性降低的结果是我们为比较设计的场景的结果，但其他场景可能会产生不同的结果。……
+
+## Related work
+
+### Fishbone diagrams and data models
+
+该部分报告了一些使用鱼骨图进行需求工程或者模型驱动工程之类建模的案例。
+
+Azzoni等人[[92]](#92)已经发布了一个将CSV文件转换为Ecore模型的工具，以便这些元素之间的关系可以更容易地可视化。该工具将一组CSV文件和Ecore中指定的域模型作为输入，并提供将CSV列映射到域模型元素的机制。使用此映射，该工具能够生成将CSV数据加载到Ecore域模型实例所需的代码。
+
+最后，DescripML[[93]](#93) [[94]](#94) 是一种特定于领域的语言，用于描述数据集的内容。在这种情况下，数据集已经存在，该工具旨在提供一种通用语言来描述其内容，以便数据集的文档变得更加统一，并且可以更容易地检查和比较。此外，该语言还提供了一些功能，提醒数据科学家注意可能导致机器学习算法出现问题的问题，例如性别失衡的数据集。这种语言用于已经创建的数据集，而我们感兴趣的是自动生成这些数据集。
+
+### Models in Industry 4.0
+
+参考的是论文[[82]](#82)中有关工业4.0建模的分析。包括UML、SysML、OWL、AutomationML、EXPRESS、DSL等。这些语言用于不同的目的，从指定制造过程[[114]](#114)到描述CAD(计算机辅助设计)应用程序的交换格式[[115]](#115) [[116]](#116)。在我们的例子中，我们对两种类型的语言感兴趣:(1)那些可以用来指定概念数据模型的语言;(2)工业工程师熟悉的语言，不直接关注数据表示，但可以以某种方式与数据相关联，从而用作数据选择的基础。
+
+#### Languages for data modeling
+
+分别介绍了UML、ER、EXPRESS等语言。
+
+#### Well-known modeling languages in industry
+
+介绍了SysML语言。
+
+#### Dataset generation
+
+propositionalization社区已经研究了从分层和嵌套数据生成数据集的问题。他们的目标是将复杂的数据图转换成表格结构，可以用作数据分析算法的输入。
+
+### Datasets and ETL processes
+
+数据集创建可以被认为是ETL(Extract, Transform, Load)过程的一个特殊情况。在这些过程中，首先从一个或多个源提取数据，这些源可能采用不同的格式，然后根据需要对它们进行转换，最后将其加载到特定的结构中，在我们的示例中，该结构将是满足一个实体、一行约束的表格结构。然而，这个概念主要应用于数据仓库的构建，据我们所知，没有专门为数据集生成定义的ETL过程。结合了一些跟ETL过程有关的工作。
+
+## Summary and future work
+
+本文描述了一组语言，用于为工业环境中的数据分析系统(如工业4.0应用程序)自动生成数据集。该过程采用了Lavoisier(一种用于自动生成数据集的语言)来处理鱼骨模型，而不是面向对象的数据模型。面向对象的数据模型很少被发现，但工业工程师习惯于处理鱼骨模型，因此我们认为这些模型比面向对象的模型更适合于制造环境。
+
+为了使Lavoisier适应鱼骨模型，我们设计了两种新的语言。首先，我们创建了鱼骨模型的一个变体，称为面向数据的鱼骨模型，它可用于表示领域数据之间的影响关系。在这些模型中，原因通过称为数据馈线的特殊代码块连接到领域数据。通过这种方式，可以使用域数据来描述鱼骨模型中的原因，而鱼骨模型现在指定域数据之间的影响关系。数据馈送器的代码是基于Lavoisier的，它被设计为供没有数据科学专业知识的人使用。因此，数据馈送器甚至可以由工业工程师自己编写。然而，这一假设尚未得到实证验证。
+
+其次，我们设计了第二种语言，称为Papin，用于选择要包含在数据集中的原因。这是一种非常简洁的语言，它只引用原因，从而使工业工程师不必处理面向对象的数据模型。Papin解释器处理这些规范，调用Lavoisier解释器来执行数据馈线，并自动生成所需的数据集。
+
+第三，我们通过将这些语言应用于五个案例研究来评估它们的表达性，其中四个来自文献，其余一个来自工业合作伙伴。没有重大问题的报告。此外，我们评估了我们的方法是否保留了拉瓦锡在降低意外复杂性方面的优势。
+
+结论是，我们的方法在降低意外复杂性方面优于SQL和Pandas。与拉瓦锡相比，我们的方法引入了与需要创建DOF相关的初始开销。另一方面，Papin是一种非常简单的语言，可以用很少的关键词选择大量的特征。
+
+因此，当我们从领域模型生成少量数据集时，与DOF创建相关的初始努力可能不会得到回报，但是随着这个数量的增加，我们的方法开始提供好处。
+
+总之，可以说我们的方法有助于减少创建数据集所需的意外复杂性，这将有助于减少开发时间，从而减少工业4.0应用程序的成本。此外，它可以帮助减轻对数据科学家的依赖，他们的费用通常很昂贵，而且可用性可能很少。数据科学家仍然需要构建面向对象的领域模型，但他们可能不需要构建dof和Papin规范。
+
+作为未来的工作，我们计划进行更复杂的控制实验，这将使我们能够更好地测试工业工程师是否真的能够使用我们的语言。我们还将研究替代的具体语法是否可能比当前的文本语法更合适。例如，可以使用语言工作台(如Sirius)创建图形化的具体语法，使用提议语言的现有元模型作为抽象语法。或者，可以使用Picto等工具自动生成图形视图(即无编辑功能)来补充当前的文本语法。此外，我们将开发工具来从相应的QCF模型生成DOF的骨架，以帮助减少与构建DOF相关的工作量。我们将研究如何警告用户在创建数据集时可能出现的一些问题，例如合并两个列，它们之间存在功能依赖关系。我们还将尝试使拉瓦锡适应Ecore以外的数据建模语言，如EXPRESS或OWL。我们将探讨在工业环境中非常流行的其他建模语言，如SysML，是否可以代替鱼骨图作为数据选择的基础。最后，我们将在语言中添加支持，以便在数据馈送器中指定聚合值，这样，例如，表示集合平均值的列就可以包含在数据集中。
+
+`个人总结`
+这篇文章是基于Lavoisier语言的后续文章，大致可以理解为将数据集构建中数据结构搭建的部分工作进行了基于模型化，用更规范地流程减少了重复工作。工具链本身似乎不复杂，无非是对两个语言的介绍，文章后面实验部分的讨论非常冗长，思想可以借鉴但有用没用得太多。自称实用性很强但观感一般，文章写作质量一般。
+
+`参考文献`
+
+<a id="52">[52]</a>A. de la Vega, D. García-Saiz, M. Zorrilla, P. Sánchez, Lavoisier: A dsl for increasing the level of abstraction of data selection and formatting in data mining, J. Comput. Lang. 60 (2020) 100987, http://dx.doi.org/10.1016/j.cola.2020.100987.
+<a id="65">[65]</a>U. Fayyad, G. Piatetsky-Shapiro, P. Smyth, From data mining to knowledge discovery in databases, AI Mag. 17 (1996) 37, http://dx.doi.org/10.1609/ AIMAG.V17I3.1230.
+<a id="71">[71]</a>A. de la Vega, Domain-Specific Languages for Data Mining Democratisation (Ph.D. thesis), Universidad de Cantabria, 2019, URL http://hdl.handle.net/ 10902/16728.
+<a id="79">[79]</a>T. Kosar, S. Gaberc, J.C. Carver, M. Mernik, Program comprehension of domainspecific and general-purpose languages: replication of a family of experiments using integrated development environments, Empir. Softw. Eng. 23 (5) (2018) 2734–2763, http://dx.doi.org/10.1007/s10664-017-9593-2.
+<a id="80">[80]</a>A. Barisic, V. Amaral, M. Goulão, Usability driven DSL development with USEME, Comput. Lang. Syst. Struct. 51 (2018) 118–157, http://dx.doi.org/10.1016/ j.cl.2017.06.005.
+<a id="92">[92]</a>I. Al-Azzoni, N. Petrovic, A. Alqahtani, A utility to transform CSV data into EMF, in: Proceedings of the 8th International Conference on Software Defined Systems (SDS), Gandía (Spain), 2021, pp. 1–6, http://dx.doi.org/10.1109/SDS54264.2021.9732143.
+<a id="93">[93]</a>J. Giner-Miguelez, A. Gómez, J. Cabot, A domain-specific language for describing machine learning datasets, J. Comput. Lang. 76 (2023) 101209, http: //dx.doi.org/10.1016/j.cola.2023.101209.
+<a id="94">[94]</a>J. Giner-Miguelez, A. Gómez, J. Cabot, DescribeML: A dataset description tool for machine learning, Sci. Comput. Program. 231 (2024) 103030, http: //dx.doi.org/10.1016/j.scico.2023.103030.
+<a id="82">[82]</a>A. Wortmann, O. Barais, B. Combemale, M. Wimmer, Modeling languages in Industry 4.0: an extended systematic mapping study, Softw. Syst. Model. 19 (1) (2020) 67–94, http://dx.doi.org/10.1007/s10270-019-00757-6.
+<a id="114">[114]</a>M. Schleipen, R. Drath, Three-view-concept for modeling process or manufacturing plants with automationml, in: Proceedings of the Conference on Emerging Technologies & Factory Automation, EFTA, Palma de Mallorca (Spain), 2009, pp. 1–4, http://dx.doi.org/10.1109/ETFA.2009.5347260.
+<a id="115">[115]</a>G.P. Gujarathi, Y. Ma, Parametric CAD/CAE integration using a common data model, J. Manuf. Syst. 30 (3) (2011) 118–132, http://dx.doi.org/10.1016/j.jmsy.2011.01.002.
+<a id="116">[116]</a>A. Perzylo, N. Somani, M. Rickert, A. Knoll, An ontology for CAD data and geometric constraints as a link between product models and semantic robot task descriptions, in: Proceedings of the International Conference on Intelligent Robots and Systems (IROS), Hamburg (Germany), 2015, pp. 4197–4203, http: //dx.doi.org/10.1109/IROS.2015.7353971.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>JII</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>DSL</tag>
+        <tag>Metamodel</tag>
+        <tag>Industry 4.0</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</title>
+    <url>/2024/08/30/009/</url>
+    <content><![CDATA[
+`Abstraction`
+基于模型的系统工程 (MBSE) 已在美国宇航局的各种航天计划中得到越来越广泛的应用，例如人类登陆火星现场资源利用 (ISRU) 和地月栖息地架构、商业载人计划 (CCP) 和太空发射系统 (SLS)。最近，MBSE 还帮助支持了美国宇航局的可靠性设计 (DFR) 和任务保障活动。MBSE 的使用有助于在数字环境中可视化整个系统的开发。对于火箭推进系统的开发，利用 MBSE 有助于找到以全面和连贯的方式在整个生命周期内降低成本、进度和风险的方法。为了在竞争激烈的太空竞赛环境中实现可负担性，重要的是要利用增材制造 (AM) 等较新的制造技术。在火箭推进系统的开发中，AM 为通常很复杂的火箭发动机设计提供了新的设计和性能机会。与传统生产技术相比，增材制造火箭推进元件的根本优势在于缩短了交货时间并降低了成本。增材制造设计有助于实现复杂的形状和几何形状，而使用传统生产方法生产这些形状和几何形状通常具有挑战性且成本高昂。
+在火箭推进系统开发的背景下，AM 提供了实现技术和经济上可行的新型发动机设计的技术机会。NASA 的增材制造演示发动机 (AMDE) 等重大努力在火箭推进发动机的生产中采用了增材制造。另一方面，MBSE 提供了在数字环境中可视化设计变更影响的能力。**因此，本研究的目的是评估利用适合增材制造火箭推进元件环境的 MBSE 的好处。对当前最先进的增材制造火箭推进元件进行了文献综述，并确定了利用 MBSE 的潜在机会。**此外，还探索了一个设计示例（RS-25 或航天飞机主发动机），以展示本研究中研究理念的好处。选择设计示例是由于需要重新启动发动机生产以供 NASA 未来的发射清单使用。最后，在缩短发动机测试-失败-修复（重新设计、再制造、重新测试和重新认证）周期时间的范围内对本研究的结果进行了定性评估。
+
+在管理和增强系统工程 (SE) 流程应用的新技术适应性方面，基于模型的系统工程 (MBSE) 在 NASA 内部得到了越来越多的接受和关注 [[19]](#19)。MBSE 是建模的形式化应用，用于支持各种基于系统工程 (SE) 的活动，例如系统需求、设计、分析、验证和跨系统生命周期阶段的确认。在 MBSE 中，模型取代文档成为 SE 流程的主要工件。因此，MBSE 有助于实现高效沟通、管理复杂性、增加多学科知识捕获、创建需求可追溯性并降低风险 [[20]](#20)。
+
+对于火箭发动机，NASA 的 MBSE 注入和现代化计划 - MIAMI [[19]](#19) 曾探索过 MBSE 的使用。据观察，利用 MBSE 有助于实现：
+
+- 自动化验证和确认 (V&V) 过程；
+- 保持对需求的可追溯性；
+- 节省后处理测试数据的时间。
+
+MBSE 还帮助支持了 NASA 的可靠性设计 (DFR) 和基于模型的任务保障活动 (MBMA) 。因此，利用 MBSE 进行 RS25 发动机生产重启的测试-失败-修复，有助于评估可负担性选项（查看设计变更对发动机的影响），从而推断出最小化开发成本的潜在途径。
+
+![Figure 1. The Affordability Modeling Framework for the RS-25 engine [6]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
+
+实现 RS-25 发动机的经济性是一项正在进行的研究工作的一部分。图 1 展示[[6]](#6)了实现 RS-25 经济性的设想框架。为了评估经济性，重要的是同时查看系统架构（组成）、性能、安全性和可靠性以及风险的各个方面。因此，RS-25 经济性模型框架分为四个相互依赖的方面：
+
+- 结构模型[[30]](#30)
+- 系统和组件性能模型
+- 功能和行为模型[[33]](#33)
+- 其他工程分析模型
+
+**结论：**
+本研究的总体目标是展示 MBSE 在增材制造火箭推进部件中的应用。本文在 MBSE 和 AM 应用范围内对近期文献进行了全面总结。利用 RS-25 发动机计划升级的设计示例，展示了开发可负担性框架的先前工作以及随后将 MBSE 机会应用于可负担性框架。针对 AM 技术带来的挑战和 MBSE 提供的机会（第 2 节），确定了利用 MBSE 实现可负担性的可能途径并展示了应用方法。虽然设计示例用于演示目的。所提出的模型本质上是通用的，有可能适合多种液体火箭发动机设计。此外，还展示了通用形状如何代表发动机部件的多种几何形状并提供测试可靠性。
+
+对液体火箭发动机中代表性部件的结构裕度进行分析的最终结果是部件可靠性或部件故障概率信息。在生命周期设计阶段的早期获得这些信息对可负担性模型框架的其他一些方面大有裨益，例如在生命周期早期执行 FMECA。同时展示了一种扩展结构裕度效用以告知可靠性的方法。可靠性信息也可以追溯到基于模型的 FMECA，以评估风险。值得注意的是，所需的工作是同时利用一个或多个单一事实来源进行的，这表明 MBSE 可用于增材制造火箭推进元件。本质上，这个单一事实来源（RS-25 可负担性模型）也可以改进和开发，以探索其他用途（例如生产和成本）及其对可负担性的影响。
+
+本研究以活动图 (act) 的形式展示了测试策略开发中的操作流程。介绍了每个单独操作的可执行文件开发，包括脚本和运行其他软件包 (FEA 包) 的实例。当前的重点是将这些以行为模型呈现的模型转换为完全可执行的 SysML 模型，这将有助于查看 RS-25 发动机的可负担性选项，旨在最大限度地减少发动机测试-失败-修复周期中发生故障和修复的概率。实现这一转变的研究包括：将 FEA 信息应用于神经网络，以及对设备设施和控制要求进行建模 (NASA-STD6033)。因此，这也需要为 RS-25 发动机执行特定的 AM 设计变更信息，以便进一步实施。
+
+`参考文献`
+<a id="19">[19]</a>J. B. Holladay, J. Knizhnik, K. J. Weiland, A. Stein, T. Sanders, and P. Schwindt, “MBSE Infusion and Modernization Initiative (MIAMI): ‘Hot’ Benefits for Real NASA Applications,” in 2019 IEEE Aerospace Conference, 2019, vol. 2019-March, pp. 1–14, doi: 10.1109/AERO.2019.8741795.
+<a id="20">[20]</a>S. Friedenthal, A. Moore, and R. Steiner, A Practical Guide to SysML: The Systems Modeling Language, 3rd ed. Waltham, MA, MA: Morgan Kaufmann, 2015.
+<a id="6">[6]</a>A. J. Bower and D. Thomas, “An Affordability Model Framework for the RS-25 Liquid Rocket Engine,” in 2018 Joint Propulsion Conference, 2018, pp. 1–9, doi: 10.2514/6.2018-4460.
+<a id="30">[30]</a>S. Lakshmipuram Raghu and L. D. Thomas, “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine using SysML,” in AIAA Scitech 2021 Forum, 2021, doi: 10.2514/6.2021-0305.
+<a id="33">[33]</a>S. Lakshmipuram Raghu and L. Thomas, “Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability,” AIAA Propulsion and Energy 2021 Forum, pp. 1–12, Aug. 2021, doi: 10.2514/6.2021-3578.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>AERO</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</title>
     <url>/2024/08/29/008/</url>
     <content><![CDATA[
@@ -1459,6 +1513,27 @@ Implementation in SysML and Results
         <category>Artical</category>
         <category>AIAA SCITECH Forum</category>
         <category>2023</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</title>
+    <url>/2024/08/31/011/</url>
+    <content><![CDATA[
+为运载火箭（如太空发射系统 (SLS)）开发复杂推进系统的成功之路取决于性能、可靠性和成本之间的最佳平衡。在过去十年中，复杂推进系统的技术和创新应用超越了运载火箭的开发，转向提高可负担性和安全性。因此，本研究旨在补充正在进行的努力，即为 RS-25 发动机建立一个基于模型的平台，以实现可负担性。该发动机被选为研究候选是因为需要重启生产，采用新技术并降低成本。利用基于模型的系统工程 (MBSE) 的范例，结构架构和基于模型的平台用于执行故障模式、影响和危害性分析 (FMECA) 之前已在系统建模语言 (SysML) 中建模和开发。本研究的重点是扩展基于模型的可靠性框架，以包括 RS-25 发动机的行为方面（发动机性能、测试策略、设计变更实施和结果等）。我们已经详细说明了逐步的努力并讨论了结果，以开发 RS-25 发动机的全面可负担性平台。
+
+主要介绍了用SysML创建RS-25的一些图的内容。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Artical</category>
+        <category>AIAA Propulsion and Energy Forum</category>
+        <category>2021</category>
       </categories>
       <tags>
         <tag>MBSE</tag>
@@ -1650,27 +1725,6 @@ RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这�
       </tags>
   </entry>
   <entry>
-    <title>小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</title>
-    <url>/2024/08/31/011/</url>
-    <content><![CDATA[
-为运载火箭（如太空发射系统 (SLS)）开发复杂推进系统的成功之路取决于性能、可靠性和成本之间的最佳平衡。在过去十年中，复杂推进系统的技术和创新应用超越了运载火箭的开发，转向提高可负担性和安全性。因此，本研究旨在补充正在进行的努力，即为 RS-25 发动机建立一个基于模型的平台，以实现可负担性。该发动机被选为研究候选是因为需要重启生产，采用新技术并降低成本。利用基于模型的系统工程 (MBSE) 的范例，结构架构和基于模型的平台用于执行故障模式、影响和危害性分析 (FMECA) 之前已在系统建模语言 (SysML) 中建模和开发。本研究的重点是扩展基于模型的可靠性框架，以包括 RS-25 发动机的行为方面（发动机性能、测试策略、设计变更实施和结果等）。我们已经详细说明了逐步的努力并讨论了结果，以开发 RS-25 发动机的全面可负担性平台。
-
-主要介绍了用SysML创建RS-25的一些图的内容。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Artical</category>
-        <category>AIAA Propulsion and Energy Forum</category>
-        <category>2021</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记：Automation in Model-Driven Engineering:A look back, and ahead</title>
     <url>/2025/02/13/015/</url>
     <content><![CDATA[
@@ -1692,22 +1746,22 @@ RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这�
         <category>2025</category>
       </categories>
       <tags>
-        <tag>MDE</tag>
         <tag>Review</tag>
+        <tag>MDE</tag>
         <tag>Epsilon</tag>
       </tags>
   </entry>
   <entry>
-    <title>笔记：Advancing Domain-Specific High-Integrity Model-Based Tools:Insights and Future Pathways</title>
-    <url>/2025/02/12/014/</url>
+    <title>笔记：Towards Runtime Monitoring for Responsible Machine Learning using Model-driven Engineering</title>
+    <url>/2025/02/14/016/</url>
     <content><![CDATA[
-[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://dl.acm.org/doi/abs/10.1145/3640310.3674094)
+[Towards Runtime Monitoring for Responsible Machine Learning using Model-driven Engineering](https://dl.acm.org/doi/abs/10.1145/3640310.3674092)
 
 `Abstraction`
 
-> Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
+> Machine learning (ML) components are used heavily in many current software systems, but developing them responsibly in practice remains challenging. ‘Responsible ML’ refers to developing, deploying and maintaining ML-based systems that adhere to humancentric requirements, such as fairness, privacy, transparency, safety, accessibility, and human values. Meeting these requirements is essential for maintaining public trust and ensuring the success of ML-based systems. However, as changes are likely in production environments and requirements often evolve, design-time quality assurance practices are insufficient to ensure such systems’ responsible behavior. Runtime monitoring approaches for ML-based systems can potentially offer valuable solutions to address this problem. Many currently available ML monitoring solutions overlook human-centric requirements due to a lack of awareness and tool support, the complexity of monitoring human-centric requirements, and the effort required to develop and manage monitors for changing requirements. We believe that many of these challenges can be addressed by model-driven engineering. In this new ideas paper, we present an initial meta-model, model-driven approach, and proof of concept prototype for runtime monitoring of human-centric requirements violations, thereby ensuring responsible ML behavior.We discuss our prototype, current limitations and propose some directions for future work.
 
-本文是接着21年论文对CaMCOA Studio介绍的延续，介绍了这种联合Simulink和Sirius的MBSE工具，这篇展示了更多信息。第二节指出一个模型要在不同的抽象层级中表示，也就是NDSM、PDDM、EAM等，他们要在同一个平台上应对这些不同信息层级的模型，并处理追溯性、兼容性等问题。第三节介绍了一些挑战，有软件性能、模型间索引、版本变更带来的模型迁移。第四节汇总了一些代码开发的心得和经验。第五节结合了将软件迁移到Web端的可能性，如使用Sirius Web或GLSP。第六节提出了在云端创建的设想。总体上是对CaMCOA项目的更详细更全面的汇总报告和工具介绍。
+本文做的事情有：设计了一个元模型MoReML，在list123中展示了例子，用EVL做约束+EGL做M2T，一个截图说例子能运行。本文的动机是说：机器学习模型的运行中涉及到人的因素，因此要对人的行为加以约束，以使用基于模型的技术对模型的输入进行限制和警告。想法是好的，但是未免理想，使用MDE的动机也不强，且本文工作量过于少了，很多方面仅是点到为止，实验部分甚至只有一张cmd截图，在MODELS上出现一个正文6页这样的文章也是出乎意料了。
 ]]></content>
       <categories>
         <category>Academic Papers</category>
@@ -1716,9 +1770,10 @@ RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这�
         <category>2024</category>
       </categories>
       <tags>
-        <tag>MBSE</tag>
-        <tag>Sirius</tag>
+        <tag>MDE</tag>
         <tag>Epsilon</tag>
+        <tag>Responsible</tag>
+        <tag>Monitor</tag>
       </tags>
   </entry>
   <entry>
@@ -1759,16 +1814,16 @@ CPS2024: [Exploring complex models with picto web](https://www.sciencedirect.com
       </tags>
   </entry>
   <entry>
-    <title>笔记：Towards Runtime Monitoring for Responsible Machine Learning using Model-driven Engineering</title>
-    <url>/2025/02/14/016/</url>
+    <title>笔记：Advancing Domain-Specific High-Integrity Model-Based Tools:Insights and Future Pathways</title>
+    <url>/2025/02/12/014/</url>
     <content><![CDATA[
-[Towards Runtime Monitoring for Responsible Machine Learning using Model-driven Engineering](https://dl.acm.org/doi/abs/10.1145/3640310.3674092)
+[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://dl.acm.org/doi/abs/10.1145/3640310.3674094)
 
 `Abstraction`
 
-> Machine learning (ML) components are used heavily in many current software systems, but developing them responsibly in practice remains challenging. ‘Responsible ML’ refers to developing, deploying and maintaining ML-based systems that adhere to humancentric requirements, such as fairness, privacy, transparency, safety, accessibility, and human values. Meeting these requirements is essential for maintaining public trust and ensuring the success of ML-based systems. However, as changes are likely in production environments and requirements often evolve, design-time quality assurance practices are insufficient to ensure such systems’ responsible behavior. Runtime monitoring approaches for ML-based systems can potentially offer valuable solutions to address this problem. Many currently available ML monitoring solutions overlook human-centric requirements due to a lack of awareness and tool support, the complexity of monitoring human-centric requirements, and the effort required to develop and manage monitors for changing requirements. We believe that many of these challenges can be addressed by model-driven engineering. In this new ideas paper, we present an initial meta-model, model-driven approach, and proof of concept prototype for runtime monitoring of human-centric requirements violations, thereby ensuring responsible ML behavior.We discuss our prototype, current limitations and propose some directions for future work.
+> Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
 
-本文做的事情有：设计了一个元模型MoReML，在list123中展示了例子，用EVL做约束+EGL做M2T，一个截图说例子能运行。本文的动机是说：机器学习模型的运行中涉及到人的因素，因此要对人的行为加以约束，以使用基于模型的技术对模型的输入进行限制和警告。想法是好的，但是未免理想，使用MDE的动机也不强，且本文工作量过于少了，很多方面仅是点到为止，实验部分甚至只有一张cmd截图，在MODELS上出现一个正文6页这样的文章也是出乎意料了。
+本文是接着21年论文对CaMCOA Studio介绍的延续，介绍了这种联合Simulink和Sirius的MBSE工具，这篇展示了更多信息。第二节指出一个模型要在不同的抽象层级中表示，也就是NDSM、PDDM、EAM等，他们要在同一个平台上应对这些不同信息层级的模型，并处理追溯性、兼容性等问题。第三节介绍了一些挑战，有软件性能、模型间索引、版本变更带来的模型迁移。第四节汇总了一些代码开发的心得和经验。第五节结合了将软件迁移到Web端的可能性，如使用Sirius Web或GLSP。第六节提出了在云端创建的设想。总体上是对CaMCOA项目的更详细更全面的汇总报告和工具介绍。
 ]]></content>
       <categories>
         <category>Academic Papers</category>
@@ -1777,44 +1832,9 @@ CPS2024: [Exploring complex models with picto web](https://www.sciencedirect.com
         <category>2024</category>
       </categories>
       <tags>
-        <tag>MDE</tag>
-        <tag>Epsilon</tag>
-        <tag>Responsible</tag>
-        <tag>Monitor</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Product Lines of Graphical Modelling Languages</title>
-    <url>/2025/02/20/019/</url>
-    <content><![CDATA[
-[Product Lines of Graphical Modelling Languages](https://dl.acm.org/doi/abs/10.1145/3640310.3674082)
-
-[Capone-CS开源代码](https://github.com/antoniogarmendia/capone-graphical-pl)
-
-`Abstraction`
-
-> Modelling languages are essential in many disciplines to express knowledge in a precise way. Furthermore, some domains require families of notations (rather than individual languages) that account for variations of a language. Some examples of language families include those to define automata, Petri nets, process models or software architectures. Several techniques have been proposed to engineer families of languages, but they often neglect the language’s concrete syntax, especially if it is graphical.
-> 
-> To fill this gap, we propose a modular method to build product lines of graphical modelling languages. Language features are defined in modules, which comprise both the abstract and graphical concrete syntax of the feature. A language variant is selected by choosing a valid configuration of modules, from which the abstract and concrete syntax of the variant is synthesised. Our approach permits composition and overriding of graphical elements (e.g., symbol styles, visualisation layers), the injection of pre-defined graphical styles into language families (e.g., to obtain a high-intensity contrast variant for accessibility), and the analysis of graphical conflicts at the product line level. We report on an implementation atop Eclipse/Sirius, and demonstrate its benefits by an evaluation which shows a substantial specification size reduction of our product line method with respect to a case-by-case specification approach.
-
-![展示效果](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/25022002.png)
-
-本文是对MODELS2022年论文的延续，之前关注的是元模型和模型操作两件事，这篇是对模型家族在Sirius中的显示与操作问题做扩展。Sirius的图形编辑本质上是用.odesign文件控制的，因此本文提出了一种元模型，对这种映射关系做了建模，来支持家族模型结构到Sirius上的元素映射。
-
-第二节都是在回顾Capone的概念和数学模型，工具上也是开发了扩展版的Capone-CS，也就是添加了对Sirius的支持。第三节专门讲元模型和对Sirius是如何映射的。第四、五节讨论了一些细节问题。第六节是对软件的简介，如图所示。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>MODELS</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>MDE</tag>
+        <tag>MBSE</tag>
         <tag>Sirius</tag>
-        <tag>Ecore</tag>
-        <tag>Graph</tag>
-        <tag>EMF</tag>
+        <tag>Epsilon</tag>
       </tags>
   </entry>
   <entry>
@@ -1890,57 +1910,109 @@ SoSyM2024:[Modular language product lines: concept, tool and analysis](https://l
       </tags>
   </entry>
   <entry>
-    <title>小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</title>
-    <url>/2024/08/30/009/</url>
+    <title>笔记：Product Lines of Graphical Modelling Languages</title>
+    <url>/2025/02/20/019/</url>
     <content><![CDATA[
+[Product Lines of Graphical Modelling Languages](https://dl.acm.org/doi/abs/10.1145/3640310.3674082)
+
+[Capone-CS开源代码](https://github.com/antoniogarmendia/capone-graphical-pl)
+
 `Abstraction`
-基于模型的系统工程 (MBSE) 已在美国宇航局的各种航天计划中得到越来越广泛的应用，例如人类登陆火星现场资源利用 (ISRU) 和地月栖息地架构、商业载人计划 (CCP) 和太空发射系统 (SLS)。最近，MBSE 还帮助支持了美国宇航局的可靠性设计 (DFR) 和任务保障活动。MBSE 的使用有助于在数字环境中可视化整个系统的开发。对于火箭推进系统的开发，利用 MBSE 有助于找到以全面和连贯的方式在整个生命周期内降低成本、进度和风险的方法。为了在竞争激烈的太空竞赛环境中实现可负担性，重要的是要利用增材制造 (AM) 等较新的制造技术。在火箭推进系统的开发中，AM 为通常很复杂的火箭发动机设计提供了新的设计和性能机会。与传统生产技术相比，增材制造火箭推进元件的根本优势在于缩短了交货时间并降低了成本。增材制造设计有助于实现复杂的形状和几何形状，而使用传统生产方法生产这些形状和几何形状通常具有挑战性且成本高昂。
-在火箭推进系统开发的背景下，AM 提供了实现技术和经济上可行的新型发动机设计的技术机会。NASA 的增材制造演示发动机 (AMDE) 等重大努力在火箭推进发动机的生产中采用了增材制造。另一方面，MBSE 提供了在数字环境中可视化设计变更影响的能力。**因此，本研究的目的是评估利用适合增材制造火箭推进元件环境的 MBSE 的好处。对当前最先进的增材制造火箭推进元件进行了文献综述，并确定了利用 MBSE 的潜在机会。**此外，还探索了一个设计示例（RS-25 或航天飞机主发动机），以展示本研究中研究理念的好处。选择设计示例是由于需要重新启动发动机生产以供 NASA 未来的发射清单使用。最后，在缩短发动机测试-失败-修复（重新设计、再制造、重新测试和重新认证）周期时间的范围内对本研究的结果进行了定性评估。
 
-在管理和增强系统工程 (SE) 流程应用的新技术适应性方面，基于模型的系统工程 (MBSE) 在 NASA 内部得到了越来越多的接受和关注 [[19]](#19)。MBSE 是建模的形式化应用，用于支持各种基于系统工程 (SE) 的活动，例如系统需求、设计、分析、验证和跨系统生命周期阶段的确认。在 MBSE 中，模型取代文档成为 SE 流程的主要工件。因此，MBSE 有助于实现高效沟通、管理复杂性、增加多学科知识捕获、创建需求可追溯性并降低风险 [[20]](#20)。
+> Modelling languages are essential in many disciplines to express knowledge in a precise way. Furthermore, some domains require families of notations (rather than individual languages) that account for variations of a language. Some examples of language families include those to define automata, Petri nets, process models or software architectures. Several techniques have been proposed to engineer families of languages, but they often neglect the language’s concrete syntax, especially if it is graphical.
+> 
+> To fill this gap, we propose a modular method to build product lines of graphical modelling languages. Language features are defined in modules, which comprise both the abstract and graphical concrete syntax of the feature. A language variant is selected by choosing a valid configuration of modules, from which the abstract and concrete syntax of the variant is synthesised. Our approach permits composition and overriding of graphical elements (e.g., symbol styles, visualisation layers), the injection of pre-defined graphical styles into language families (e.g., to obtain a high-intensity contrast variant for accessibility), and the analysis of graphical conflicts at the product line level. We report on an implementation atop Eclipse/Sirius, and demonstrate its benefits by an evaluation which shows a substantial specification size reduction of our product line method with respect to a case-by-case specification approach.
 
-对于火箭发动机，NASA 的 MBSE 注入和现代化计划 - MIAMI [[19]](#19) 曾探索过 MBSE 的使用。据观察，利用 MBSE 有助于实现：
+![展示效果](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/25022002.png)
 
-- 自动化验证和确认 (V&V) 过程；
-- 保持对需求的可追溯性；
-- 节省后处理测试数据的时间。
+本文是对MODELS2022年论文的延续，之前关注的是元模型和模型操作两件事，这篇是对模型家族在Sirius中的显示与操作问题做扩展。Sirius的图形编辑本质上是用.odesign文件控制的，因此本文提出了一种元模型，对这种映射关系做了建模，来支持家族模型结构到Sirius上的元素映射。
 
-MBSE 还帮助支持了 NASA 的可靠性设计 (DFR) 和基于模型的任务保障活动 (MBMA) 。因此，利用 MBSE 进行 RS25 发动机生产重启的测试-失败-修复，有助于评估可负担性选项（查看设计变更对发动机的影响），从而推断出最小化开发成本的潜在途径。
-
-![Figure 1. The Affordability Modeling Framework for the RS-25 engine [6]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
-
-实现 RS-25 发动机的经济性是一项正在进行的研究工作的一部分。图 1 展示[[6]](#6)了实现 RS-25 经济性的设想框架。为了评估经济性，重要的是同时查看系统架构（组成）、性能、安全性和可靠性以及风险的各个方面。因此，RS-25 经济性模型框架分为四个相互依赖的方面：
-
-- 结构模型[[30]](#30)
-- 系统和组件性能模型
-- 功能和行为模型[[33]](#33)
-- 其他工程分析模型
-
-**结论：**
-本研究的总体目标是展示 MBSE 在增材制造火箭推进部件中的应用。本文在 MBSE 和 AM 应用范围内对近期文献进行了全面总结。利用 RS-25 发动机计划升级的设计示例，展示了开发可负担性框架的先前工作以及随后将 MBSE 机会应用于可负担性框架。针对 AM 技术带来的挑战和 MBSE 提供的机会（第 2 节），确定了利用 MBSE 实现可负担性的可能途径并展示了应用方法。虽然设计示例用于演示目的。所提出的模型本质上是通用的，有可能适合多种液体火箭发动机设计。此外，还展示了通用形状如何代表发动机部件的多种几何形状并提供测试可靠性。
-
-对液体火箭发动机中代表性部件的结构裕度进行分析的最终结果是部件可靠性或部件故障概率信息。在生命周期设计阶段的早期获得这些信息对可负担性模型框架的其他一些方面大有裨益，例如在生命周期早期执行 FMECA。同时展示了一种扩展结构裕度效用以告知可靠性的方法。可靠性信息也可以追溯到基于模型的 FMECA，以评估风险。值得注意的是，所需的工作是同时利用一个或多个单一事实来源进行的，这表明 MBSE 可用于增材制造火箭推进元件。本质上，这个单一事实来源（RS-25 可负担性模型）也可以改进和开发，以探索其他用途（例如生产和成本）及其对可负担性的影响。
-
-本研究以活动图 (act) 的形式展示了测试策略开发中的操作流程。介绍了每个单独操作的可执行文件开发，包括脚本和运行其他软件包 (FEA 包) 的实例。当前的重点是将这些以行为模型呈现的模型转换为完全可执行的 SysML 模型，这将有助于查看 RS-25 发动机的可负担性选项，旨在最大限度地减少发动机测试-失败-修复周期中发生故障和修复的概率。实现这一转变的研究包括：将 FEA 信息应用于神经网络，以及对设备设施和控制要求进行建模 (NASA-STD6033)。因此，这也需要为 RS-25 发动机执行特定的 AM 设计变更信息，以便进一步实施。
-
-`参考文献`
-<a id="19">[19]</a>J. B. Holladay, J. Knizhnik, K. J. Weiland, A. Stein, T. Sanders, and P. Schwindt, “MBSE Infusion and Modernization Initiative (MIAMI): ‘Hot’ Benefits for Real NASA Applications,” in 2019 IEEE Aerospace Conference, 2019, vol. 2019-March, pp. 1–14, doi: 10.1109/AERO.2019.8741795.
-<a id="20">[20]</a>S. Friedenthal, A. Moore, and R. Steiner, A Practical Guide to SysML: The Systems Modeling Language, 3rd ed. Waltham, MA, MA: Morgan Kaufmann, 2015.
-<a id="6">[6]</a>A. J. Bower and D. Thomas, “An Affordability Model Framework for the RS-25 Liquid Rocket Engine,” in 2018 Joint Propulsion Conference, 2018, pp. 1–9, doi: 10.2514/6.2018-4460.
-<a id="30">[30]</a>S. Lakshmipuram Raghu and L. D. Thomas, “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine using SysML,” in AIAA Scitech 2021 Forum, 2021, doi: 10.2514/6.2021-0305.
-<a id="33">[33]</a>S. Lakshmipuram Raghu and L. Thomas, “Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability,” AIAA Propulsion and Energy 2021 Forum, pp. 1–12, Aug. 2021, doi: 10.2514/6.2021-3578.
+第二节都是在回顾Capone的概念和数学模型，工具上也是开发了扩展版的Capone-CS，也就是添加了对Sirius的支持。第三节专门讲元模型和对Sirius是如何映射的。第四、五节讨论了一些细节问题。第六节是对软件的简介，如图所示。
 ]]></content>
       <categories>
         <category>Academic Papers</category>
         <category>Conference</category>
-        <category>AERO</category>
-        <category>2022</category>
+        <category>MODELS</category>
+        <category>2024</category>
       </categories>
       <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
+        <tag>MDE</tag>
+        <tag>Sirius</tag>
+        <tag>Ecore</tag>
+        <tag>Graph</tag>
+        <tag>EMF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Eclipse Modeling Framework 2.0 笔记</title>
+    <url>/2025/02/25/022/</url>
+    <content><![CDATA[前言：
+
+- 第一部分（1-4章）介绍基本概念；
+- 第二部分（5-9章）介绍Ecore和其他形式的关系（UML、Java、XML Schema）；
+- 第三部分（10-13章）分析EMF的代码生成工具和案例；
+- 第四部分（14-21章）介绍EMF的运行库架构。
+
+# 第1章 Eclipse
+
+## 项目
+
+Eclipse项目本身可以划分为4个主要子项目：Equinox、平台、Java开发工具（Java Development Tools）、插件开发环境（Plug-in Development Environment，PDE）。
+
+# 第2章 EMF介绍
+
+# 第3章 使用EMF.Edit编辑模型
+
+# 第4章 使用EMF——简单概述
+
+# 第5章 Ecore建模概念
+
+# 第6章 UML
+
+# 第7章 Java源代码
+
+# 第8章 扩展的Ecore建模
+
+# 第9章 XML Schema
+
+# 第10章 EMF生成器模式
+
+# 第11章 EMF.Edit生成器模式
+
+# 第12章 运行生成器
+
+# 第13章 示例——实现模型和编辑器
+
+# 第14章 探索元数据
+
+# 第15章 持久化
+
+# 第16章 客户端编程工具箱
+
+# 第17章 更改模型
+
+# 第18章 验证架构
+
+# 第19章 EMF.Edit编程
+
+# 第20章 Eclipse IDE之外的应用领域
+
+# 第21章 EMF 2.3和2.4
+
+# 附录A UML符号
+
+# 附录B 示例模型概述
+
+# 附录C 参考文献
+
+]]></content>
+      <categories>
+        <category>Book</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>EMF</tag>
+        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -2030,75 +2102,46 @@ SysML中的关键词：
       </tags>
   </entry>
   <entry>
-    <title>Eclipse Modeling Framework 2.0 笔记</title>
-    <url>/2025/02/25/022/</url>
-    <content><![CDATA[前言：
+    <title>笔记：10 years of Model Federation with Openflexo:Challenges and Lessons Learned</title>
+    <url>/2025/02/27/025/</url>
+    <content><![CDATA[
+[10 years of Model Federation with Openflexo: Challenges and Lessons Learned](https://dl.acm.org/doi/abs/10.1145/3640310.3674084)
 
-- 第一部分（1-4章）介绍基本概念；
-- 第二部分（5-9章）介绍Ecore和其他形式的关系（UML、Java、XML Schema）；
-- 第三部分（10-13章）分析EMF的代码生成工具和案例；
-- 第四部分（14-21章）介绍EMF的运行库架构。
+`Abstraction`
 
-# 第1章 Eclipse
+> In the context of complex system development, heterogeneous modeling responds to the need to integrate several domains. This need requires the use of the most appropriate formalism and tooling for each domain to be efficient. Model federation promotes the semantic interoperability of heterogeneous models by providing the means to reify correspondences between different model elements, add custom behaviors and bridge the gap between technological spaces. As such, it can be used as an infrastructure to address many different system engineering problems. This is what we have been doing for over a decade, as part of a close collaboration between a small software engineering startup and academia. This paper reports on this experience.
+> Concretely, we discuss the context, ambitions, and challenges that led to the inception of our practice of model federation, and we present five use cases experiences, stemming from real industrial and academic needs, and elaborate on lessons learned. In addition, we also report on challenges and lessons learned regarding the development and maintenance of a model-driven model federation tool, the Openflexo framework. Finally, we set up a road map for the future of model federation and Openflexo.
 
-## 项目
+当年的best paper之一。本文是Openflexo团队回顾MDE方面的经验的论文，强调了他们对MDE开发的学术与工程理想——模型联合体，然后讲他们是如何理解相关环节的（四个挑战），怎么为之实践的（五个例子），最后给出了他们最终的愿景。
 
-Eclipse项目本身可以划分为4个主要子项目：Equinox、平台、Java开发工具（Java Development Tools）、插件开发环境（Plug-in Development Environment，PDE）。
+第二节介绍了四个挑战：
 
-# 第2章 EMF介绍
+- Preserving existing practices：尽量确保现有的工作模式和工作模型不被破坏或干扰；
+- seeing everying as a model：一个系统最终的模型应该是单一来源的；
+- Conceptualizing and organizing：不同领域的概念互相独立分隔，但是存在一定的语义连接；
+- Mastering evolution：模型的不同侧面应该确保整体系统的一致性。
 
-# 第3章 使用EMF.Edit编辑模型
+第三节介绍模型联合体（Model Federation）的概念。第四节就开发过的五个例子来分析，就上面四个挑战分别讨论，并评估了他们分别做到了哪些方面。第五节讨论经验教训：
 
-# 第4章 使用EMF——简单概述
+- Separate business from technology：流程概念和技术建模分开，每个人应该专注做当前层级的模型而不要跨模型建模。
+- Tool maintenance & dissemination：开发完的软件工具应该不断维护和向工业界推广。
+- Need for many concrete syntax：文本建模在模型多的时候比图建模有用。
+- Federation requires organization：模型联合体的概念需要统一。
+- Modeling requires flexibility：建模应具有一定的灵活性，在一些方面应该可以自定义。
+- Modeling needs model capitalization：好的模型和模型工具应该可以被大量重用，建立一个复用性强的知识库有利于新模型的开发效率。
 
-# 第5章 Ecore建模概念
-
-# 第6章 UML
-
-# 第7章 Java源代码
-
-# 第8章 扩展的Ecore建模
-
-# 第9章 XML Schema
-
-# 第10章 EMF生成器模式
-
-# 第11章 EMF.Edit生成器模式
-
-# 第12章 运行生成器
-
-# 第13章 示例——实现模型和编辑器
-
-# 第14章 探索元数据
-
-# 第15章 持久化
-
-# 第16章 客户端编程工具箱
-
-# 第17章 更改模型
-
-# 第18章 验证架构
-
-# 第19章 EMF.Edit编程
-
-# 第20章 Eclipse IDE之外的应用领域
-
-# 第21章 EMF 2.3和2.4
-
-# 附录A UML符号
-
-# 附录B 示例模型概述
-
-# 附录C 参考文献
-
+本文叙述思路明确，表达简明易读，讨论的逻辑也很在理，很符合我对MDE的一些理解和认知，总结的一些内容也值得再日后回头翻阅。
 ]]></content>
       <categories>
-        <category>Book</category>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2024</category>
       </categories>
       <tags>
+        <tag>MBSE</tag>
         <tag>MDE</tag>
-        <tag>EMF</tag>
-        <tag>Eclipse</tag>
+        <tag>Model Federation</tag>
       </tags>
   </entry>
   <entry>
