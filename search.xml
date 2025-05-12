@@ -1,6 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
+    <url>/2024/08/17/002/</url>
+    <content><![CDATA[
+[Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example](https://dl.acm.org/doi/abs/10.1145/3471907)
+
+*作者是KCL的Kevin Lano。*
+
+`Abstraction`
+
+> In this article, we address how the production of model transformations (MT) can be accelerated by automation of transformation synthesis from requirements, examples, and metamodels. We introduce a synthesis process based on metamodel matching, correspondence patterns between metamodels, and completeness and consistency analysis of matches. We describe how the limitations of metamodel matching can be addressed by combining matching with automated requirements analysis and model transformation by example (MTBE) techniques.
+> We show that in practical examples a large percentage of required transformation functionality can usually be constructed automatically, thus potentially reducing development effort. We also evaluate the efficiency of synthesised transformations.
+> Our novel contributions are:
+>
+> - The concept of correspondence patterns between metamodels of a transformation.
+> - Requirements analysis of transformations using natural language processing (NLP) and machine learning (ML).
+> - Symbolic MTBE using “predictive specification” to infer transformations from examples.
+> - Transformation generation in multiple MT languages and in Java, from an abstract intermediate language.
+
+## Introduction
+
+Model Transformations (MT)是MDE的关键要素。大型手动转换成本高管理难[[9]](#9) [[49]](#49)。元模型匹配技术[[1]](#1) [[17]](#17) [[31]](#31)。
+
+四个困难：1、匹配方法只能找到一种转换，但实际上有多种；2、穷举搜索复杂度高；3、无法检测源和目标的关系；4、通常只处理单一语言转换的场景。
+
+- (i) many different transformations may be possible between two given metamodels, and a matching approach typically only detects a single transformation;
+- (ii) exhaustive search for possible matches becomes infeasible even for cases of moderate size (around 25 to 30 metaclasses in the combined metamodels);
+- (iii) detailed functional relationships between source and target data, such as applications of specific numeric or string functions, cannot normally be detected;
+- (iv) the process is usually directed to and optimised for producing transformations in a single MT language.
+
+MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L}$[[48]](#48)处理4的问题。
+
+![Transformation synthesis process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png)
+
+图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$是映射的三个中间量。
+
+研究问题：
+
+- RQ1 : To what extent can automated metamodel matching be combined with interactive enhancement of matchings to accurately capture the mapping rules of an intended transformation?匹配的程度
+- RQ2 : Can automated requirements analysis using NLP/ML and MTBE techniques improve the accuracy of the approach compared to stand-alone metamodel matching?本文的NLP+MTBE技术能否提高准确性
+- RQ3 : Can the combined approach engineer transformations with appropriate correspondence and design patterns?
+- RQ4 : Can the combined approach produce efficiently executable transformations?
+
+### Illustrative Example: Gantt2CPM
+
+本文用到的一个例子：甘特图到CPM网络。介绍了该MT的原则。
+
+## Scope and bcakground
+
+### Scope of the Approach
+
+对于M2M问题，根据[[55]](#55)进行分类：
+
+- (General) migration 抽象层级相同但元模型不同
+- Evolution migration 一个元模型版本变更
+- Refinement 高抽象层级向低抽象层级映射
+- Abstaction 低抽象层级向高抽象层级映射
+- Code generation 从设计规范模型生成代码
+- Semantic mapping 将源模型映射到有形式化语义的模型
+- Bidirectional(Bx) 双向映射，支持模型同步和变更传播
+- Refactoring 单个模型转换
+
+### $\mathcal{T}\mathcal{L}$ Transformation Repersentation
+
+使用$\mathcal{T}\mathcal{L}$语法描述转换过程。包括集合的划分、符号标识、每个环节的输入输出和$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$符号对应的环节。
+
+### Natural Language Processing and Machine Learning
+
+介绍了NLP的主要技术类型和划分词义的种类和机器学习的基本概念。
+
+## Automated MT Requierments Analysis
+
+如果转换过程存在自然语言需求声明，原则上可以应用NLP技术提取有关转换预期映射的一些信息，有助于元模型匹配。
+
+### Automated Requirements Analysis Using NLP
+
+使用NLP对Gantt2CPM案例进行需求分析。
+首先使用Stanford POS tagger标记需求语句中的词类型，然后构建语法树。创建了CART决策树作为分类器，对需求语句中的关键词类型进行识别。
+
+### Tool Support for MT Requirements Analysis
+
+在工具中如何使用的说明。
+
+## Metamodel Correspondence Patterns
+
+{% note flat %}
+这篇文章太长太难，还没看完，先记到这里……
+{% endnote %}
+
+### Occurrence of Correspondence Patterns in Practice
+
+### Catalogue of Correspondence Patterns
+
+### Correspondence Patterns in Gantt2CPM
+
+### Tool Support for Recognising Correspondence Patterns
+
+## Metamodel Matching Techniques
+
+### Metamodel Matching Concepts
+
+### Similarity Measures for Metamodel Matching
+
+### Metamodel Matching for the Gantt2CPM Case
+
+### Tool Support for Metamodel Matching
+
+## Transformation Correction and Enhancement
+
+### Completeness and Consistency Analysis
+
+### Specification Enhancement for the Gantt2CPM Case
+
+## MTBE Using Perdictive Specification
+
+### Empirical Study of Transformation Mappings and Conditions
+
+### Correction and Extension of Transformations using MTBE
+
+### MTBEfortheGantt2CPMCase
+
+### Tool Support for MTBE
+
+## Transformation Synthesis
+
+### Synthesis of UML-RSDS and Java
+
+### Transformation Synthesis for the Gantt2CPM Case
+
+### Tool Support for Transformation Synthesis
+
+## Evaluation
+
+### RQ1:Correspondence Recognition
+
+### RQ2:Contributions of Automated Requirements Analysis and MTBE
+
+### RQ3:Transformation Design
+
+### RQ4:Transformation Efficiency
+
+## Threats to Validity
+
+### Threats to Internal Validity
+
+### Threats to External Validity
+
+### Threats to Construct Validity
+
+### Threats to Content Validity
+
+### Threats to Conclusion Validity
+
+## Related and Future Work
+
+### Automated Requirements Engineering
+
+### MTBE Approaches
+
+### Correspondence Patterns
+
+### Metamodel Matching Approaches
+
+### Summary
+
+### Limitations and Future Work
+
+## Conclusions
+
+`个人总结`
+
+`参考文献`
+<a id="9">[9]</a>L. Burgueno, J. Cabot, and S. Gerard. 2019. The future of model transformation languages: an open community discussion J. Obj. Technol. 1–11. Retrieved from www.jot.fm/issues/issue_2019_03/article7.pdf.
+<a id="49">[49]</a>K. Lano, Q. Xue, and S. Kolahdouz-Rahimi. 2020. Agile Specification of Code Generators for Model-Driven Engineering. In Proceedings of ICSEA 2020. IARIA, 9–15.
+<a id="1">[1]</a>L. Addazi, A. Cicchetti, J. D. Rocco, D. D. Ruscio, L. Iovino, and A. Pierantonio. 2016. Semantic-based model matching with emfcompare, me workshop, models. CEUR-WS 1706, 40–49.
+<a id="17">[17]</a>S. Fang and K. Lano. Extracting correspondences from metamodels using metamodel matching. In STAF 2019. Retrieved from CEUR-WS.org/vol-2405/02_paper.pdf.
+<a id="31">[31]</a>M. Kessentini, A. Ouni, P. Langer, M. Wimmer, and S. Bechikh. 2014. Search-based metamodel matching with structural and syntactic measures. Journal of Software and Systems 97, 2014 (2014), 1–14.
+<a id="48">[48]</a>K. Lano, S. Fang, and S. Kolahdouz-Rahimi. TL: An abstract specification language for bidirectional transformations. MODELS’20 Comp. Proc. 77 (2020), 1–10.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>TOSEM</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>Model Transformations</tag>
+        <tag>Requirements Engineering</tag>
+        <tag>Automated Software Engineering</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</title>
     <url>/2024/08/14/001/</url>
     <content><![CDATA[
@@ -380,85 +572,6 @@ Garousi 等人 [[33]](#33) 对产学研合作面临的挑战进行了文献综�
       </tags>
   </entry>
   <entry>
-    <title>笔记：What makes a good modeling research contribution?</title>
-    <url>/2024/08/23/004/</url>
-    <content><![CDATA[
-[What makes a good modeling research contribution?]([论文来源](https://link.springer.com/article/10.1007/s10270-024-01177-x))
-
-*作者是Richard F. Paige。*
-
-`Abstraction`
-
-> The modeling field is rapidly evolving and expanding to address new research topics and to connect with new disciplines. As such, what constituted a good modeling research contribution ten years ago may not be the same today. We try to distill some insights of what we (and the community we aim to represent) consider today as key elements of a good research paper in the field of software and systems modeling. Such insights—which will need to evolve and adapt with time—will be useful not just for authors of new papers, but also for reviewers and editors.
-
-## Introduction
-
-关于如何撰写优秀软件工程论文的具体建议：针对特定章节的撰写建议[[1]](#1)、不同类型的软件工程论文[[5]](#5)，甚至关于如何以更符合软件工程审阅者期望的方式撰写论文的建议[[3]](#3)。
-
-## Types of contributions to the modeling field
-
-常见的论文关注的问题：
-
-- how large is the community that the paper aims to address?
-- how much potential impact is there in the result?
-- how complex is the challenge the paper addresses?
-- how substantial is the validation3, e.g., is there an industrial element to the validation?
-- how distant is the topic of the paper from what we typically see in the modeling venues?
-- how readable is the contribution?
-- how relevant are the examples?
-- and finally, how clear and persuasive is the motivation for the research presented in the paper?
-
-此外，明确研究的正面作用和负面作用也很重要。
-下面将介绍六种具体类型。
-
-### The contribution is a model
-
-仅凭一个模型肯定不行。这个新模型能告诉我们关于建模领域的什么？它能帮助我们回答哪些我们以前无法回答的问题？
-
-### The contribution is a language
-
-仅凭一个元模型也不行，需要完整的工作。
-
-### The contribution is a core modeling technique
-
-这些论文介绍了模型分析（模型验证、确认或测试技术等）或操作技术（模型合并、模型到模型转换、代码生成器等）。或将它们组合起来作为特定建模方法的一部分。这可能是我们多年来看到最多提案的类别。因此，在这一类别中，原创性更难实现，而证明新贡献确实有必要则更为重要。
-例如，很难相信建模社区需要一种新的模型转换方法，除非它与具有非常具体要求的新语言、领域或应用程序相关联。
-
-### The contribution is a modeling application
-
-仅仅证明建模（或 MDE 或建模工具）可以应用于问题是不够的——相反，必须令人信服地证明建模提供了一些附加值，一些可以量化或以可重复的方式捕获的好处。
-
-### The contribution is a (new) modeling domain
-
- 除了单个应用程序（见上文），这里的目标是为新的工程或科学领域提供一些初步支持，然后这些支持可以发展成为该领域的一套完整的建模解决方案和应用程序。
-
-### The contribution is a modeling tool
-
-这些工具贡献不应只是研究工作的副产品或简单的一次性原型，而应是一种成熟、可用且广泛的工具，有可能对建模社区产生重大而积极的影响（通过吸引更多用户、促进更多项目采用建模实践等）。
-
-## A community effort
-
-就社区建设问题进行了介绍。
-
-`个人总结`
-作者就SoSyM期刊中的一些研究进行了分类和评估，从审稿人的角度分析一篇文章应具备哪些要素。
-
-`参考文献`
-
-<a id="1">[1]</a>Anthony, L.: Writing research article introductions in software engineering: How accurate is a standard model? IEEE Trans. Prof.Commun. 42(1), 38–46 (1999)
-<a id="5">[5]</a>Montesi, M., Lago, P.: Software engineering article types: an analysis of the literature. J. Syst. Softw. 81(10), 1694–1714 (2008)
-<a id="3">[3]</a>Ernst, N.A., Carver, J.C., Mendez, D., Torchiano, M.: Understanding peer review of software engineering papers. Empir. Softw. Eng. 26, 1–29 (2021)]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>SoSyM</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>Insights</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</title>
     <url>/2024/08/23/003/</url>
     <content><![CDATA[
@@ -727,195 +840,82 @@ An autonomous system is an intelligent system that is designed to deal with the 
       </tags>
   </entry>
   <entry>
-    <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
-    <url>/2024/08/17/002/</url>
+    <title>笔记：What makes a good modeling research contribution?</title>
+    <url>/2024/08/23/004/</url>
     <content><![CDATA[
-[Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example](https://dl.acm.org/doi/abs/10.1145/3471907)
+[What makes a good modeling research contribution?]([论文来源](https://link.springer.com/article/10.1007/s10270-024-01177-x))
 
-*作者是KCL的Kevin Lano。*
+*作者是Richard F. Paige。*
 
 `Abstraction`
 
-> In this article, we address how the production of model transformations (MT) can be accelerated by automation of transformation synthesis from requirements, examples, and metamodels. We introduce a synthesis process based on metamodel matching, correspondence patterns between metamodels, and completeness and consistency analysis of matches. We describe how the limitations of metamodel matching can be addressed by combining matching with automated requirements analysis and model transformation by example (MTBE) techniques.
-> We show that in practical examples a large percentage of required transformation functionality can usually be constructed automatically, thus potentially reducing development effort. We also evaluate the efficiency of synthesised transformations.
-> Our novel contributions are:
->
-> - The concept of correspondence patterns between metamodels of a transformation.
-> - Requirements analysis of transformations using natural language processing (NLP) and machine learning (ML).
-> - Symbolic MTBE using “predictive specification” to infer transformations from examples.
-> - Transformation generation in multiple MT languages and in Java, from an abstract intermediate language.
+> The modeling field is rapidly evolving and expanding to address new research topics and to connect with new disciplines. As such, what constituted a good modeling research contribution ten years ago may not be the same today. We try to distill some insights of what we (and the community we aim to represent) consider today as key elements of a good research paper in the field of software and systems modeling. Such insights—which will need to evolve and adapt with time—will be useful not just for authors of new papers, but also for reviewers and editors.
 
 ## Introduction
 
-Model Transformations (MT)是MDE的关键要素。大型手动转换成本高管理难[[9]](#9) [[49]](#49)。元模型匹配技术[[1]](#1) [[17]](#17) [[31]](#31)。
+关于如何撰写优秀软件工程论文的具体建议：针对特定章节的撰写建议[[1]](#1)、不同类型的软件工程论文[[5]](#5)，甚至关于如何以更符合软件工程审阅者期望的方式撰写论文的建议[[3]](#3)。
 
-四个困难：1、匹配方法只能找到一种转换，但实际上有多种；2、穷举搜索复杂度高；3、无法检测源和目标的关系；4、通常只处理单一语言转换的场景。
+## Types of contributions to the modeling field
 
-- (i) many different transformations may be possible between two given metamodels, and a matching approach typically only detects a single transformation;
-- (ii) exhaustive search for possible matches becomes infeasible even for cases of moderate size (around 25 to 30 metaclasses in the combined metamodels);
-- (iii) detailed functional relationships between source and target data, such as applications of specific numeric or string functions, cannot normally be detected;
-- (iv) the process is usually directed to and optimised for producing transformations in a single MT language.
+常见的论文关注的问题：
 
-MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L}$[[48]](#48)处理4的问题。
+- how large is the community that the paper aims to address?
+- how much potential impact is there in the result?
+- how complex is the challenge the paper addresses?
+- how substantial is the validation3, e.g., is there an industrial element to the validation?
+- how distant is the topic of the paper from what we typically see in the modeling venues?
+- how readable is the contribution?
+- how relevant are the examples?
+- and finally, how clear and persuasive is the motivation for the research presented in the paper?
 
-![Transformation synthesis process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png)
+此外，明确研究的正面作用和负面作用也很重要。
+下面将介绍六种具体类型。
 
-图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$是映射的三个中间量。
+### The contribution is a model
 
-研究问题：
+仅凭一个模型肯定不行。这个新模型能告诉我们关于建模领域的什么？它能帮助我们回答哪些我们以前无法回答的问题？
 
-- RQ1 : To what extent can automated metamodel matching be combined with interactive enhancement of matchings to accurately capture the mapping rules of an intended transformation?匹配的程度
-- RQ2 : Can automated requirements analysis using NLP/ML and MTBE techniques improve the accuracy of the approach compared to stand-alone metamodel matching?本文的NLP+MTBE技术能否提高准确性
-- RQ3 : Can the combined approach engineer transformations with appropriate correspondence and design patterns?
-- RQ4 : Can the combined approach produce efficiently executable transformations?
+### The contribution is a language
 
-### Illustrative Example: Gantt2CPM
+仅凭一个元模型也不行，需要完整的工作。
 
-本文用到的一个例子：甘特图到CPM网络。介绍了该MT的原则。
+### The contribution is a core modeling technique
 
-## Scope and bcakground
+这些论文介绍了模型分析（模型验证、确认或测试技术等）或操作技术（模型合并、模型到模型转换、代码生成器等）。或将它们组合起来作为特定建模方法的一部分。这可能是我们多年来看到最多提案的类别。因此，在这一类别中，原创性更难实现，而证明新贡献确实有必要则更为重要。
+例如，很难相信建模社区需要一种新的模型转换方法，除非它与具有非常具体要求的新语言、领域或应用程序相关联。
 
-### Scope of the Approach
+### The contribution is a modeling application
 
-对于M2M问题，根据[[55]](#55)进行分类：
+仅仅证明建模（或 MDE 或建模工具）可以应用于问题是不够的——相反，必须令人信服地证明建模提供了一些附加值，一些可以量化或以可重复的方式捕获的好处。
 
-- (General) migration 抽象层级相同但元模型不同
-- Evolution migration 一个元模型版本变更
-- Refinement 高抽象层级向低抽象层级映射
-- Abstaction 低抽象层级向高抽象层级映射
-- Code generation 从设计规范模型生成代码
-- Semantic mapping 将源模型映射到有形式化语义的模型
-- Bidirectional(Bx) 双向映射，支持模型同步和变更传播
-- Refactoring 单个模型转换
+### The contribution is a (new) modeling domain
 
-### $\mathcal{T}\mathcal{L}$ Transformation Repersentation
+ 除了单个应用程序（见上文），这里的目标是为新的工程或科学领域提供一些初步支持，然后这些支持可以发展成为该领域的一套完整的建模解决方案和应用程序。
 
-使用$\mathcal{T}\mathcal{L}$语法描述转换过程。包括集合的划分、符号标识、每个环节的输入输出和$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$符号对应的环节。
+### The contribution is a modeling tool
 
-### Natural Language Processing and Machine Learning
+这些工具贡献不应只是研究工作的副产品或简单的一次性原型，而应是一种成熟、可用且广泛的工具，有可能对建模社区产生重大而积极的影响（通过吸引更多用户、促进更多项目采用建模实践等）。
 
-介绍了NLP的主要技术类型和划分词义的种类和机器学习的基本概念。
+## A community effort
 
-## Automated MT Requierments Analysis
-
-如果转换过程存在自然语言需求声明，原则上可以应用NLP技术提取有关转换预期映射的一些信息，有助于元模型匹配。
-
-### Automated Requirements Analysis Using NLP
-
-使用NLP对Gantt2CPM案例进行需求分析。
-首先使用Stanford POS tagger标记需求语句中的词类型，然后构建语法树。创建了CART决策树作为分类器，对需求语句中的关键词类型进行识别。
-
-### Tool Support for MT Requirements Analysis
-
-在工具中如何使用的说明。
-
-## Metamodel Correspondence Patterns
-
-{% note flat %}
-这篇文章太长太难，还没看完，先记到这里……
-{% endnote %}
-
-### Occurrence of Correspondence Patterns in Practice
-
-### Catalogue of Correspondence Patterns
-
-### Correspondence Patterns in Gantt2CPM
-
-### Tool Support for Recognising Correspondence Patterns
-
-## Metamodel Matching Techniques
-
-### Metamodel Matching Concepts
-
-### Similarity Measures for Metamodel Matching
-
-### Metamodel Matching for the Gantt2CPM Case
-
-### Tool Support for Metamodel Matching
-
-## Transformation Correction and Enhancement
-
-### Completeness and Consistency Analysis
-
-### Specification Enhancement for the Gantt2CPM Case
-
-## MTBE Using Perdictive Specification
-
-### Empirical Study of Transformation Mappings and Conditions
-
-### Correction and Extension of Transformations using MTBE
-
-### MTBEfortheGantt2CPMCase
-
-### Tool Support for MTBE
-
-## Transformation Synthesis
-
-### Synthesis of UML-RSDS and Java
-
-### Transformation Synthesis for the Gantt2CPM Case
-
-### Tool Support for Transformation Synthesis
-
-## Evaluation
-
-### RQ1:Correspondence Recognition
-
-### RQ2:Contributions of Automated Requirements Analysis and MTBE
-
-### RQ3:Transformation Design
-
-### RQ4:Transformation Efficiency
-
-## Threats to Validity
-
-### Threats to Internal Validity
-
-### Threats to External Validity
-
-### Threats to Construct Validity
-
-### Threats to Content Validity
-
-### Threats to Conclusion Validity
-
-## Related and Future Work
-
-### Automated Requirements Engineering
-
-### MTBE Approaches
-
-### Correspondence Patterns
-
-### Metamodel Matching Approaches
-
-### Summary
-
-### Limitations and Future Work
-
-## Conclusions
+就社区建设问题进行了介绍。
 
 `个人总结`
+作者就SoSyM期刊中的一些研究进行了分类和评估，从审稿人的角度分析一篇文章应具备哪些要素。
 
 `参考文献`
-<a id="9">[9]</a>L. Burgueno, J. Cabot, and S. Gerard. 2019. The future of model transformation languages: an open community discussion J. Obj. Technol. 1–11. Retrieved from www.jot.fm/issues/issue_2019_03/article7.pdf.
-<a id="49">[49]</a>K. Lano, Q. Xue, and S. Kolahdouz-Rahimi. 2020. Agile Specification of Code Generators for Model-Driven Engineering. In Proceedings of ICSEA 2020. IARIA, 9–15.
-<a id="1">[1]</a>L. Addazi, A. Cicchetti, J. D. Rocco, D. D. Ruscio, L. Iovino, and A. Pierantonio. 2016. Semantic-based model matching with emfcompare, me workshop, models. CEUR-WS 1706, 40–49.
-<a id="17">[17]</a>S. Fang and K. Lano. Extracting correspondences from metamodels using metamodel matching. In STAF 2019. Retrieved from CEUR-WS.org/vol-2405/02_paper.pdf.
-<a id="31">[31]</a>M. Kessentini, A. Ouni, P. Langer, M. Wimmer, and S. Bechikh. 2014. Search-based metamodel matching with structural and syntactic measures. Journal of Software and Systems 97, 2014 (2014), 1–14.
-<a id="48">[48]</a>K. Lano, S. Fang, and S. Kolahdouz-Rahimi. TL: An abstract specification language for bidirectional transformations. MODELS’20 Comp. Proc. 77 (2020), 1–10.
-]]></content>
+
+<a id="1">[1]</a>Anthony, L.: Writing research article introductions in software engineering: How accurate is a standard model? IEEE Trans. Prof.Commun. 42(1), 38–46 (1999)
+<a id="5">[5]</a>Montesi, M., Lago, P.: Software engineering article types: an analysis of the literature. J. Syst. Softw. 81(10), 1694–1714 (2008)
+<a id="3">[3]</a>Ernst, N.A., Carver, J.C., Mendez, D., Torchiano, M.: Understanding peer review of software engineering papers. Empir. Softw. Eng. 26, 1–29 (2021)]]></content>
       <categories>
         <category>Academic Papers</category>
         <category>Journal</category>
-        <category>TOSEM</category>
-        <category>2022</category>
+        <category>SoSyM</category>
+        <category>2024</category>
       </categories>
       <tags>
-        <tag>MDE</tag>
-        <tag>Model Transformations</tag>
-        <tag>Requirements Engineering</tag>
-        <tag>Automated Software Engineering</tag>
+        <tag>Insights</tag>
       </tags>
   </entry>
   <entry>
@@ -1199,6 +1199,125 @@ NASA 和 ESA 模拟器均在初步设计阶段使用，并且都具有相似的�
       </tags>
   </entry>
   <entry>
+    <title>小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</title>
+    <url>/2024/08/29/008/</url>
+    <content><![CDATA[
+*作者来自阿拉巴马大学亨茨维尔分校（美国）。*
+
+本次阅读关注涉及SysML的部分，不关注增材制造（AM）有关的内容。本文展示了一种分析火箭组件 MCC 表面粗糙度的方法，以及该表面粗糙度如何影响火箭发动机的性能。创建了 MATLAB 子程序来评估损失和性能，并运行在 SysML 中开发的基于模型的框架。然后使用 SSME 数据验证了该模型[[30]](#30)。
+
+在进行这项研究时，我们更好地了解了使用 AM 升级火箭发动机部件与火箭性能之间的权衡。在此过程中，还展示了基于模型的方法的功能。 在可负担性方面，如果工程师要做出明智的决策，需求可追溯性至关重要。例如，使用此模型的制造工程师可以更好地估计 AM 部件需要多少后处理才能满足性能要求。这可以进一步缩短部件的交付周期，或减轻试验台上的潜在故障，从而减少认证发动机的时间。此外，本文探讨的方面是建立一种全面的以模型为中心的可负担性方法，确保系统整个生命周期阶段的可追溯性和一致性。最后，这将有助于在系统生命周期的早期设想以故障为中心的方面，优化测试-失败-修复周期所花费的时间，实现可负担性。 可负担性和重新认证传统火箭发动机的问题取决于测试-失败-修复周期所花费的时间。 使用 AM 可以缩短重新认证的准备时间，但是实施 AM 而不显著降低性能是一项持续的挑战。可以考虑 AM 来设计新的火箭发动机，但是，RS-25 等传统火箭发动机无法进行大量重新设计以适应 AM 的使用。此外，在进行升级时，预测整个系统的可靠性变化非常重要，这需要采用以模型为中心的方法。这将有助于以整体方式评估设计变更对系统的影响。虽然正在进行研究以建立基于模型的框架来跟踪可靠性变化，但执行交易的能力也将补充跟踪可靠性变化的努力，这对测试-失败-修复周期具有重要影响。本文中传达的分析结果将有助于开发一种方法，该方法可以评估 RS-25、其生产重启和重新认证的增材制造零件的可行性和实用性。由于基于模型的方法通常适用于多种火箭发动机架构，这些技术也可应用于其他液体火箭发动机和先进的推进系统，如核热推进（NTP）。
+
+![Fig. 1 The Affordability Modeling Framework for the RS-25 Engine. [18]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
+
+基于模型的 RS-25 可负担性框架的开发是一项正在进行的研究工作 [[18]](#18) [[19]](#19) [[20]](#20) [[21]](#21)。可负担性框架如图 1 所示。它由四个方面组成，以实现可负担性：基于为 RS-25 发动机设定的成本降低目标开发的结构模型 [[20]](#20)；基于 104.5% 功率水平 SSME 数据开发的系统组件和性能模型 [[18]](#18)；正在为测试规划和可靠性开发的功能和行为模型 [[19]](#19) [[20]](#20) [[21]](#21)；以及其他工程分析模型，正在同时开发，首先是 RS-25 发动机的基于模型的故障模式、影响和危害性分析 (FMECA) [[19]](#19)。系统建模语言 (SysML) 用于利用 MBSE 实现可负担性框架。SysML 是一种图形建模语言，提供执行 SE 活动的语义。随后，本研究将利用 SysML 开发基于模型的范例，用于分析 AM 对 RS-25 发动机 MCC 的 SE 优势，这将有利于生产重启。本文的范围将涵盖可负担性建模框架的功能和行为模型以及其他工程分析模型（表面粗糙度的影响）以及系统和组件性能模型（用于估计 109% 功率水平的表面粗糙度影响的性能模型）。
+
+Implementation in SysML and Results
+根据方法论部分中描述的步骤，在 MATLAB 中开发了不同的子程序。开发的子程序被纳入 SysML 中基于 RS-25 模型的可负担性框架 。创建了一个参数图 (par) 来使用开发的子程序执行分析，如图 4 所示。par 包装了开发的 MATLAB 子程序，用于使用三种方法（能量平衡、直接压力损失和 Fanno 流）捕获结果。
+
+![Fig. 4. RS-25 engine surface roughness analysis parametric diagram in SysML.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083002.png)
+
+组件鉴定的一个重要方面是评估组件测试和分析是否满足系统要求。因此，正在进行的分析分别与 RS-25 发动机和 MCC 的系统和组件级要求相关联。这封装在需求图 (req) 中，并与 [[20]](#20) 中开发的结构架构中的组件相关联，如图 5 所示
+
+![Fig. 5. Requirement diagram (req) representing RS-25 engine and MCC requirements and its association to the structural architecture.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083003.png)
+
+代表 RS-25 发动机和 MCC 的 \<\< block >> 由表示为执行分析而开发的 MATLAB 子程序的约束组成，值表示基于方程 (1) – (17) 的输入和输出。一旦确定了 par 和 req，就会在 SysML 中创建 RS-25 发动机块的不同实例，这些实例表示不同的 AM 过程以及表 1 中列出的相关表面粗糙度值。
+
+`参考文献`
+
+<a id="18">[18]</a>Bower, A. J., and Thomas, D. “An Affordability Model Framework for the RS-25 Liquid Rocket Engine.” 2018 Joint Propulsion Conference, 2018, pp. 1–9. https://doi.org/10.2514/6.2018-4460.
+<a id="19">[19]</a>Lakshmipuram Raghu, S., and Thomas, L. D. “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine Using SysML.” AIAA Scitech 2021 Forum, 2021. https://doi.org/10.2514/6.2021-0305.
+<a id="20">[20]</a>Lakshmipuram Raghu, S., and Thomas, L. “Modeling Behavior Elements for the RS-25 Engine Using SysML for Improved Affordability.” AIAA Propulsion and Energy 2021 Forum, 2021, pp. 1–12. https://doi.org/10.2514/6.2021-3578.
+<a id="21">[21]</a>Lakshmipuram Raghu, S., Tudor, M., Thomas, L. D., and Wang, G. “MBSE Utilization for Additive Manufactured Rocket Propulsion Components.” 2022 IEEE Aerospace Conference, 2022. https://doi.org/10.1109/AERO53065.2022.9843586
+<a id="30">[30]</a>Nickerson, G. R., and Dang, L. D. Performance Predictions for an SSME Configuration with an Enlarged Throat. Publication NASA-CR-178743. 1985.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Artical</category>
+        <category>AIAA SCITECH Forum</category>
+        <category>2023</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</title>
+    <url>/2024/08/31/010/</url>
+    <content><![CDATA[
+在这个载人航天不断飞翔的时代，对航天器的可靠性和可维护性的改进有着强烈的需求。成功航天器的主要驱动力之一是坚固而多功能的推进系统。推进系统的设计需要在性能、可靠性和成本之间取得适当的平衡。本研究的重点是可靠性。本研究提出了一个基于模型的框架，使用系统建模语言 (SysML) 进行故障模式、影响和危害性分析 (FMECA)。该框架以传统火箭发动机 RS-25（以前称为航天飞机主发动机 (SSME)）为例。将航天飞机时代的 SSME 用于太空发射系统 (SLS) 任务的目标是必须进行升级以降低发动机成本。此外，升级将需要重新认证发动机以进行载人发射。之所以选择这款发动机进行研究，是为了通过基于模型的故障模式、影响和危害性分析 (MBFMECA) 实现重新认证。因此，在基于模型的系统工程 (MBSE) 的背景下，MBFMECA 已经开发并详细阐述。提议的框架将补充正在进行的 RS-25 发动机可负担性研究工作。
+
+故障模式和影响分析 (FMEA) 是一种用于识别导致系统故障的潜在问题及其原因的过程。FMEA 标准最初由 MIL-STD-1629 定义。自诞生以来，在 FMEA 中添加了方面危害性分析 (CA)，催生了故障模式、影响和危害性分析 (FMECA) 。FMEA 和 FMECA 通常可以互换使用，因为 FMECA 是 FMEA 的扩展。但是，为了转向 FMECA，编写一份主要 FMEA 报告非常重要。主要 FMEA 有助于评估故障的原因和影响，而 FMECA 有助于量化和确定与故障相关的风险的优先级。在火箭发动机的背景下，满足可靠性要求是实现任务保证的关键里程碑。任务保证的一个重要元素是包含隐式 FMECA 的 FMEA 报告。全面、完善的 FMEA 可确保最高安全性并提高任务的可靠性。
+
+Izygon 等人 [[6]](#6) 首次在可靠性谱中使用 MBSE，他们开发了一个基于模型的框架，用于级联蒸馏系统 (CDS) 的 FMEA，CDS 是 NASA 约翰逊航天中心开发的先进水回收系统 (WRS)。此外，Huang 等人 [[8]](#8) 以及 Hansen 和 Huang [[5]](#5) 发起了用于燃气发生器循环液体发动机的 MBFMEA 框架的开发。这些研究包括一个基于模型的综合框架，用于主要 FMEA，该框架进一步扩展以得出 FMECA。这些研究探讨的 MBFMEA 的主要好处包括提高 FMEA 使用和任务执行的有效性、增强 FMEA 内容的全面性以及实现知识重用。过渡到基于模型的平台有助于实现设计灵活性，并将可靠性活动集成到 SE 活动中，例如需求分析、权衡研究以及验证和确认。
+
+**1、建模语言：SysML**
+RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这是一种用于管理复杂工程系统的 SE 活动的图形建模语言。SysML 提供了执行各种 SE 活动的语义基础，例如行为分析、需求可追溯性、性能分析、模拟和需求分析。语义封装在九种类型的 SysML 图中：需求图、块定义图、内部框图、用例图、活动图、序列图、状态机图、参数和包图。为了促进 MBFMECA，安全性和可靠性分析工具包集成到 SysML [[15]](#15) 中。本研究使用此 MBSE 工具包为 RS-25 发动机的 MBFMECA 开发初始基础。
+
+**2、RS-25 SysML Model**
+![Figure 2. Block Definition Diagram representing major components of RS-25 engine in the context of affordability.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png)
+
+为了建立 MBFMECA 的初始框架，主要 RS-25 发动机组件被组织成三个层次。结构架构封装在块定义图 (BDD) 中，如图 2 所示。顶级系统架构在 BDD 中表示。架构的上下文来自与 RS-25 发动机的主要成本削减目标相关的组件。RS-25 发动机通过组合抽象为燃烧装置、控制器、涡轮泵、管道、电气传感器和线束以及阀门和执行器。这些组件进一步抽象为子系统组件，如图 2 所示。考虑深入研究发动机架构的细节很有吸引力。然而，从建模的角度来看，保持基础模型简单和通用很重要。例如，通过图 2 中表达的结构视图，可以看出该架构在一般意义上也适用于液体火箭发动机。随着系统经历系统生命周期的不同阶段，可以完善此基础模型。
+
+**3、Requirements Allocation**
+![Figure 3. Requirement diagram with requirements associated with major components of the RS-25 engine.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083103.png)
+
+如介绍中所述，可靠性活动通常面临缺乏需求可追溯性的挑战。这可以通过开发 SysML 模型来克服。因此，从现有文献[[16]](#16)中综合了 RS-25 发动机及其组件的功能需求。然后将这些需求转换为 SysML 需求图，如图 3 所示。然后通过“满足”关联将这些需求连接到 RS-25 发动机的相应组件。通过这种关联，组件被约束为满足相关要求。这使得在系统生命周期的任何时间点都可以进行需求可追溯性。
+
+目前，SSME（引用的是两篇远古论文）已有大量 FMEA 数据可用。参考文献 [[13]](#13) [[17]](#17) 中的故障信息和不满意状况报告 (UCR) 用于为 RS-25 发动机创建 MBFMECA。从 SSME 时代开始，人们了解到发动机的故障模式基本上可以分为泄漏、裂纹、侵蚀、磨损、凹痕和损坏、污染、分层和破损部件、电气、缺失或多余部件、扭矩振动和超程、松动部件以及公差或间隙问题。利用 SysML 中的安全性和可靠性分析器工具包，创建了这些故障模式。然后根据这些组件的 UCR 信息以及相关故障模式评估和创建潜在故障模式的原因和影响。此外，使用工具包中的 FMEA 表生成功能，生成了 FMEA 表，以可视化适合图 2 所示的 RS-25 发动机结构视图的 FMEA 报告。（表不放了）
+
+**结果与讨论**
+![Figure 4. FMEA table for the Combustion Devices.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083104.png)
+
+创建故障模式和影响并分配严重程度后，在 SysML 中为 RS-25 发动机的组件生成了 FMEA 表。图 4 表示燃烧装置的 FMEA 表。表中表示了七个故障项 F-1 至 F-7，分别对应于主燃烧室 (MCC)、热气歧管 (HGM)、热交换器 (HE)、主喷射器 (MI)、喷嘴 (N)、燃料预燃室 (FPB) 和氧化剂预燃室 (OPB)。‘分类’列表示故障性质，可以是机械的、电气的或软件的。‘项目’列显示分配给相应故障模式的组件（在 BDD 中创建）。所有燃烧装置都由不同严重程度的故障模式‘裂纹’组成。MCC 和 HGM 存在故障模式‘泄漏’。对于 FPB 和 OPB 观察到故障模式“侵蚀”，对于 MI 和 HE 分别观察到故障模式“松动部件”和“间隙问题”。可以观察到，MCC、HGM 和 MI 中的裂缝导致了灾难性的故障，需要成为在整个系统生命周期中跟踪的重要故障项目。对于 HGM，泄漏导致发动机损失，这使其成为一种重要的故障模式，需要严格的缓解措施。虽然故障模式可能对不同的组件相同，但影响和原因可能有所不同。影响和原因在 FMEA 表中是独立的。由于这是基础框架，因此局部和最终影响的定义更为广泛。但是，这些可以随着系统在系统生命周期中的进展而得到细化。
+
+![Figure 5. FMEA table for the Turbopumps](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083105.png)
+
+与燃烧装置类似，图 5 表示涡轮泵的 FMEA 表。表中表示了四个故障项 F-8 至 F11，分别对应于高压燃料涡轮泵 (HPFTP)、高压氧化剂涡轮泵 (HPFTP)、低压燃料涡轮泵 (LPFTP) 和低压氧化剂涡轮泵 (LPOTP)。在 HPFTP、HPOTP 和 LPOTP 中观察到故障模式“磨损”。虽然这种故障模式对于 LPOTP 不太严重，但据观察，在 HPOTP 的情况下，它可能导致发动机故障，在 HPFTP 的情况下，它可能导致车辆故障。还可以观察到，在 HPOTP 的情况下，故障模式“分层和破损部件”和“扭矩、振动和过度行程”导致车辆故障。这表明这些故障模式是系统在生命周期过程中预期的重要故障项，应在设计生命周期的初始阶段设计适当的缓解措施。
+
+![Figure 6. FMEA table for all other components of RS-25 engine expressed in structural view in Figure 2.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083106.png)
+
+图 6 表示故障项目 F-12 至 F-15 的 FMEA 表，分别对应于组件阀门和执行器、电气传感器和线束、管道（管道、管子和歧管的泛化）和控制器。这些故障模式的严重程度本质上很小。随着系统在设计生命周期中不断进步，架构的复杂性会增加，这可以得到改进。在这个基础框架的范围内，这些组件的故障信息已被广泛列出，适用于图 2 中表示的 RS25 架构的顶层层次结构。如前所述，开发 MBFMECA 的目标之一是确保系统组件在整个系统生命周期中能够追溯到需求。通过需求图（图 3），可以将 RS-25 架构（图 2）的组件与功能需求相关联。此外，这些组件还与 FMEA 表“项目”列中的故障模式相关联（图 4、5 和 6）。因此，现在可以生成一个表格来了解可靠性覆盖率分析和相关要求。
+
+![Figure 7. Safety and Reliability Coverage Analysis Structure for Combustion Devices and Turbopumps of the RS-25 engine.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083107.png)
+
+图 7 表示在 SysML 中创建的安全性和可靠性覆盖率分析结构。‘设计元素’列包含 RS-25 引擎架构中包含的组件（图 2），‘可靠性分析覆盖’列表示为组件创建的适当故障项（图 4、5 和 6），‘满足’列包含与组件相关的功能需求信息（图 3）。此功能可以克服在开发 RS-25 引擎等复杂系统时经常遇到的 SE 活动不同步性质。实际上，这也有助于在设计生命周期的早期利用安全性和可靠性活动规划。当系统需要进行设计更改或升级时，需求通常会发生变化。通过安全性和可靠性覆盖率分析，还可以以省时的方式查看设计变更场景中受影响的需求。总体而言，组件、故障信息和受影响需求的视图使得在实施之前执行设计变更的功效分析成为可能。从今以后，这方面有助于实现 RS-25 发动机的高效可负担性框架。
+
+**结论**
+本文提出的 RS-25 发动机 MBFMECA 模型将成为改进发动机可靠性活动的初始基础框架之一。这项工作将 SSME 的传统 FMEA 数据提升到基于模型的 FMECA 平台。这种范式转变将能够为新型 RS-25 发动机的生产提供更高效的 FMEA 方法。此外，当采用不同的先进制造技术（例如增材制造）制造较新版本的 RS-25 发动机时，它将有助于评估权衡利弊。由于该平台基于现有的 SSME 故障数据，它将有助于创建一个强大的框架来评估实施较新技术对 RS-25 发动机生产重启的影响。在 NASA 为新型 RS-25 组件（例如涡轮泵）实施 FMEA 的现有文献背景下，应扩展提出的 MBFMECA，以便在未来的设计变更场景中实现此类实施活动的自动化。基础 MBFMECA 的未来研究方向包括： • 创建额外的 SysML 图表，以对已识别的故障模式的危险性等级进行建模。这将需要修改并从主要 MBFMECA 模型创建新的 SysML 图表和范例。
+
+- 根据危险性等级对发动机的风险和最终影响进行定性评估。
+- 提出简单的纠正措施（定性或定量）以减轻或降低风险的影响。
+- 针对设计变更场景自动生成完整而全面的 FMECA 报告。
+
+进一步的发展还包括集成基于模型的故障树分析 (FTA)，包括火箭发动机的成本考虑方面，并评估设计变更对 RS-25 发动机的影响。这些未来的发展涉及“做得更好”和“专注于提高效率和保真度”方面的设想里程碑（图 1），以实现可负担性。总体而言，将使用可执行的 SysML 模型同时分析性能、可靠性和成本方面。因此，整体努力将能够为 RS-25 引擎提供一个经济实惠的框架，该框架是在 MBSE 频谱内构思的。
+
+`参考文献`
+<a id="6">[6]</a>Izygon, M., Wagner, H., Okon, S., Wang, L., Sargusingh, M., and Evans, J. “Facilitating R&M in Spaceflight Systems with MBSE.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2016-April, 2016, pp. 1–6.https://doi.org/10.1109/RAMS.2016.7448031.
+<a id="8">[8]</a>Huang, Z., Swalgen, S., Davidz, H., and Murray, J. “MBSE-Assisted FMEA Approach - Challenges and Opportunities.” Proceedings - Annual Reliability and Maintainability Symposium, 2017, pp. 1–8. https://doi.org/10.1109/RAM.2017.7889722.
+<a id="5">[5]</a>Hansen, R., and Huang, Z. “Toward FMEA and MBSE Integration.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2018-January, 2018. https://doi.org/10.1109/RAM.2018.8463084.
+<a id="15">[15]</a>Biggs, G., Post, K., Armonas, A., Yakymets, N., Juknevicius, T., and Berres, A. “OMG Standard for Integrating Safety and Reliability Analysis into MBSE: Concepts and Applications.” INCOSE International Symposium, Vol. 29, No. 1, 2019, pp. 159–173. https://doi.org/10.1002/j.2334-5837.2019.00595.x.
+<a id="16">[16]</a>“Space Shuttle Main Engine Orientation, Space Transportation Training System Data.” BC98-04, Rocketdyne Propulsion and Power, Boeing, 1998.
+<a id="13">[13]</a>Tischer, A. E., and Glover, R. C. “Studies and Analyses of the Space Shuttle Main Engine.” NASA-CR-183593, 1987.
+<a id="17">[17]</a>Glover, R. C., Kelley, B. A., and Tischer, A. E. “Studies and Analyses of the Space Shuttle Main Engine: SSME (Space Shuttle Main Engine) Failure Data Review, Diagnostic Survey and Ssme Diagnostic Evaluation.” NASA-CR-178993, 1986.]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Artical</category>
+        <category>AIAA SCITECH Forum</category>
+        <category>2021</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+        <tag>FMEA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Domain-specific languages for the automated generation of datasets for industry 4.0 applications</title>
     <url>/2024/08/28/006/</url>
     <content><![CDATA[
@@ -1422,43 +1541,18 @@ propositionalization社区已经研究了从分层和嵌套数据生成数据集
       </tags>
   </entry>
   <entry>
-    <title>小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</title>
-    <url>/2024/08/29/008/</url>
+    <title>小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</title>
+    <url>/2024/08/31/011/</url>
     <content><![CDATA[
-*作者来自阿拉巴马大学亨茨维尔分校（美国）。*
+为运载火箭（如太空发射系统 (SLS)）开发复杂推进系统的成功之路取决于性能、可靠性和成本之间的最佳平衡。在过去十年中，复杂推进系统的技术和创新应用超越了运载火箭的开发，转向提高可负担性和安全性。因此，本研究旨在补充正在进行的努力，即为 RS-25 发动机建立一个基于模型的平台，以实现可负担性。该发动机被选为研究候选是因为需要重启生产，采用新技术并降低成本。利用基于模型的系统工程 (MBSE) 的范例，结构架构和基于模型的平台用于执行故障模式、影响和危害性分析 (FMECA) 之前已在系统建模语言 (SysML) 中建模和开发。本研究的重点是扩展基于模型的可靠性框架，以包括 RS-25 发动机的行为方面（发动机性能、测试策略、设计变更实施和结果等）。我们已经详细说明了逐步的努力并讨论了结果，以开发 RS-25 发动机的全面可负担性平台。
 
-本次阅读关注涉及SysML的部分，不关注增材制造（AM）有关的内容。本文展示了一种分析火箭组件 MCC 表面粗糙度的方法，以及该表面粗糙度如何影响火箭发动机的性能。创建了 MATLAB 子程序来评估损失和性能，并运行在 SysML 中开发的基于模型的框架。然后使用 SSME 数据验证了该模型[[30]](#30)。
-
-在进行这项研究时，我们更好地了解了使用 AM 升级火箭发动机部件与火箭性能之间的权衡。在此过程中，还展示了基于模型的方法的功能。 在可负担性方面，如果工程师要做出明智的决策，需求可追溯性至关重要。例如，使用此模型的制造工程师可以更好地估计 AM 部件需要多少后处理才能满足性能要求。这可以进一步缩短部件的交付周期，或减轻试验台上的潜在故障，从而减少认证发动机的时间。此外，本文探讨的方面是建立一种全面的以模型为中心的可负担性方法，确保系统整个生命周期阶段的可追溯性和一致性。最后，这将有助于在系统生命周期的早期设想以故障为中心的方面，优化测试-失败-修复周期所花费的时间，实现可负担性。 可负担性和重新认证传统火箭发动机的问题取决于测试-失败-修复周期所花费的时间。 使用 AM 可以缩短重新认证的准备时间，但是实施 AM 而不显著降低性能是一项持续的挑战。可以考虑 AM 来设计新的火箭发动机，但是，RS-25 等传统火箭发动机无法进行大量重新设计以适应 AM 的使用。此外，在进行升级时，预测整个系统的可靠性变化非常重要，这需要采用以模型为中心的方法。这将有助于以整体方式评估设计变更对系统的影响。虽然正在进行研究以建立基于模型的框架来跟踪可靠性变化，但执行交易的能力也将补充跟踪可靠性变化的努力，这对测试-失败-修复周期具有重要影响。本文中传达的分析结果将有助于开发一种方法，该方法可以评估 RS-25、其生产重启和重新认证的增材制造零件的可行性和实用性。由于基于模型的方法通常适用于多种火箭发动机架构，这些技术也可应用于其他液体火箭发动机和先进的推进系统，如核热推进（NTP）。
-
-![Fig. 1 The Affordability Modeling Framework for the RS-25 Engine. [18]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
-
-基于模型的 RS-25 可负担性框架的开发是一项正在进行的研究工作 [[18]](#18) [[19]](#19) [[20]](#20) [[21]](#21)。可负担性框架如图 1 所示。它由四个方面组成，以实现可负担性：基于为 RS-25 发动机设定的成本降低目标开发的结构模型 [[20]](#20)；基于 104.5% 功率水平 SSME 数据开发的系统组件和性能模型 [[18]](#18)；正在为测试规划和可靠性开发的功能和行为模型 [[19]](#19) [[20]](#20) [[21]](#21)；以及其他工程分析模型，正在同时开发，首先是 RS-25 发动机的基于模型的故障模式、影响和危害性分析 (FMECA) [[19]](#19)。系统建模语言 (SysML) 用于利用 MBSE 实现可负担性框架。SysML 是一种图形建模语言，提供执行 SE 活动的语义。随后，本研究将利用 SysML 开发基于模型的范例，用于分析 AM 对 RS-25 发动机 MCC 的 SE 优势，这将有利于生产重启。本文的范围将涵盖可负担性建模框架的功能和行为模型以及其他工程分析模型（表面粗糙度的影响）以及系统和组件性能模型（用于估计 109% 功率水平的表面粗糙度影响的性能模型）。
-
-Implementation in SysML and Results
-根据方法论部分中描述的步骤，在 MATLAB 中开发了不同的子程序。开发的子程序被纳入 SysML 中基于 RS-25 模型的可负担性框架 。创建了一个参数图 (par) 来使用开发的子程序执行分析，如图 4 所示。par 包装了开发的 MATLAB 子程序，用于使用三种方法（能量平衡、直接压力损失和 Fanno 流）捕获结果。
-
-![Fig. 4. RS-25 engine surface roughness analysis parametric diagram in SysML.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083002.png)
-
-组件鉴定的一个重要方面是评估组件测试和分析是否满足系统要求。因此，正在进行的分析分别与 RS-25 发动机和 MCC 的系统和组件级要求相关联。这封装在需求图 (req) 中，并与 [[20]](#20) 中开发的结构架构中的组件相关联，如图 5 所示
-
-![Fig. 5. Requirement diagram (req) representing RS-25 engine and MCC requirements and its association to the structural architecture.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083003.png)
-
-代表 RS-25 发动机和 MCC 的 \<\< block >> 由表示为执行分析而开发的 MATLAB 子程序的约束组成，值表示基于方程 (1) – (17) 的输入和输出。一旦确定了 par 和 req，就会在 SysML 中创建 RS-25 发动机块的不同实例，这些实例表示不同的 AM 过程以及表 1 中列出的相关表面粗糙度值。
-
-`参考文献`
-
-<a id="18">[18]</a>Bower, A. J., and Thomas, D. “An Affordability Model Framework for the RS-25 Liquid Rocket Engine.” 2018 Joint Propulsion Conference, 2018, pp. 1–9. https://doi.org/10.2514/6.2018-4460.
-<a id="19">[19]</a>Lakshmipuram Raghu, S., and Thomas, L. D. “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine Using SysML.” AIAA Scitech 2021 Forum, 2021. https://doi.org/10.2514/6.2021-0305.
-<a id="20">[20]</a>Lakshmipuram Raghu, S., and Thomas, L. “Modeling Behavior Elements for the RS-25 Engine Using SysML for Improved Affordability.” AIAA Propulsion and Energy 2021 Forum, 2021, pp. 1–12. https://doi.org/10.2514/6.2021-3578.
-<a id="21">[21]</a>Lakshmipuram Raghu, S., Tudor, M., Thomas, L. D., and Wang, G. “MBSE Utilization for Additive Manufactured Rocket Propulsion Components.” 2022 IEEE Aerospace Conference, 2022. https://doi.org/10.1109/AERO53065.2022.9843586
-<a id="30">[30]</a>Nickerson, G. R., and Dang, L. D. Performance Predictions for an SSME Configuration with an Enlarged Throat. Publication NASA-CR-178743. 1985.
+主要介绍了用SysML创建RS-25的一些图的内容。
 ]]></content>
       <categories>
         <category>Academic Papers</category>
         <category>Artical</category>
-        <category>AIAA SCITECH Forum</category>
-        <category>2023</category>
+        <category>AIAA Propulsion and Energy Forum</category>
+        <category>2021</category>
       </categories>
       <tags>
         <tag>MBSE</tag>
@@ -1519,148 +1613,6 @@ MBSE 还帮助支持了 NASA 的可靠性设计 (DFR) 和基于模型的任务�
         <tag>Rocket Engine</tag>
         <tag>SysML</tag>
         <tag>Simulation</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</title>
-    <url>/2024/08/31/010/</url>
-    <content><![CDATA[
-在这个载人航天不断飞翔的时代，对航天器的可靠性和可维护性的改进有着强烈的需求。成功航天器的主要驱动力之一是坚固而多功能的推进系统。推进系统的设计需要在性能、可靠性和成本之间取得适当的平衡。本研究的重点是可靠性。本研究提出了一个基于模型的框架，使用系统建模语言 (SysML) 进行故障模式、影响和危害性分析 (FMECA)。该框架以传统火箭发动机 RS-25（以前称为航天飞机主发动机 (SSME)）为例。将航天飞机时代的 SSME 用于太空发射系统 (SLS) 任务的目标是必须进行升级以降低发动机成本。此外，升级将需要重新认证发动机以进行载人发射。之所以选择这款发动机进行研究，是为了通过基于模型的故障模式、影响和危害性分析 (MBFMECA) 实现重新认证。因此，在基于模型的系统工程 (MBSE) 的背景下，MBFMECA 已经开发并详细阐述。提议的框架将补充正在进行的 RS-25 发动机可负担性研究工作。
-
-故障模式和影响分析 (FMEA) 是一种用于识别导致系统故障的潜在问题及其原因的过程。FMEA 标准最初由 MIL-STD-1629 定义。自诞生以来，在 FMEA 中添加了方面危害性分析 (CA)，催生了故障模式、影响和危害性分析 (FMECA) 。FMEA 和 FMECA 通常可以互换使用，因为 FMECA 是 FMEA 的扩展。但是，为了转向 FMECA，编写一份主要 FMEA 报告非常重要。主要 FMEA 有助于评估故障的原因和影响，而 FMECA 有助于量化和确定与故障相关的风险的优先级。在火箭发动机的背景下，满足可靠性要求是实现任务保证的关键里程碑。任务保证的一个重要元素是包含隐式 FMECA 的 FMEA 报告。全面、完善的 FMEA 可确保最高安全性并提高任务的可靠性。
-
-Izygon 等人 [[6]](#6) 首次在可靠性谱中使用 MBSE，他们开发了一个基于模型的框架，用于级联蒸馏系统 (CDS) 的 FMEA，CDS 是 NASA 约翰逊航天中心开发的先进水回收系统 (WRS)。此外，Huang 等人 [[8]](#8) 以及 Hansen 和 Huang [[5]](#5) 发起了用于燃气发生器循环液体发动机的 MBFMEA 框架的开发。这些研究包括一个基于模型的综合框架，用于主要 FMEA，该框架进一步扩展以得出 FMECA。这些研究探讨的 MBFMEA 的主要好处包括提高 FMEA 使用和任务执行的有效性、增强 FMEA 内容的全面性以及实现知识重用。过渡到基于模型的平台有助于实现设计灵活性，并将可靠性活动集成到 SE 活动中，例如需求分析、权衡研究以及验证和确认。
-
-**1、建模语言：SysML**
-RS-25 发动机的 MBFMECA 是使用系统建模语言 (SysML) 开发的，这是一种用于管理复杂工程系统的 SE 活动的图形建模语言。SysML 提供了执行各种 SE 活动的语义基础，例如行为分析、需求可追溯性、性能分析、模拟和需求分析。语义封装在九种类型的 SysML 图中：需求图、块定义图、内部框图、用例图、活动图、序列图、状态机图、参数和包图。为了促进 MBFMECA，安全性和可靠性分析工具包集成到 SysML [[15]](#15) 中。本研究使用此 MBSE 工具包为 RS-25 发动机的 MBFMECA 开发初始基础。
-
-**2、RS-25 SysML Model**
-![Figure 2. Block Definition Diagram representing major components of RS-25 engine in the context of affordability.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png)
-
-为了建立 MBFMECA 的初始框架，主要 RS-25 发动机组件被组织成三个层次。结构架构封装在块定义图 (BDD) 中，如图 2 所示。顶级系统架构在 BDD 中表示。架构的上下文来自与 RS-25 发动机的主要成本削减目标相关的组件。RS-25 发动机通过组合抽象为燃烧装置、控制器、涡轮泵、管道、电气传感器和线束以及阀门和执行器。这些组件进一步抽象为子系统组件，如图 2 所示。考虑深入研究发动机架构的细节很有吸引力。然而，从建模的角度来看，保持基础模型简单和通用很重要。例如，通过图 2 中表达的结构视图，可以看出该架构在一般意义上也适用于液体火箭发动机。随着系统经历系统生命周期的不同阶段，可以完善此基础模型。
-
-**3、Requirements Allocation**
-![Figure 3. Requirement diagram with requirements associated with major components of the RS-25 engine.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083103.png)
-
-如介绍中所述，可靠性活动通常面临缺乏需求可追溯性的挑战。这可以通过开发 SysML 模型来克服。因此，从现有文献[[16]](#16)中综合了 RS-25 发动机及其组件的功能需求。然后将这些需求转换为 SysML 需求图，如图 3 所示。然后通过“满足”关联将这些需求连接到 RS-25 发动机的相应组件。通过这种关联，组件被约束为满足相关要求。这使得在系统生命周期的任何时间点都可以进行需求可追溯性。
-
-目前，SSME（引用的是两篇远古论文）已有大量 FMEA 数据可用。参考文献 [[13]](#13) [[17]](#17) 中的故障信息和不满意状况报告 (UCR) 用于为 RS-25 发动机创建 MBFMECA。从 SSME 时代开始，人们了解到发动机的故障模式基本上可以分为泄漏、裂纹、侵蚀、磨损、凹痕和损坏、污染、分层和破损部件、电气、缺失或多余部件、扭矩振动和超程、松动部件以及公差或间隙问题。利用 SysML 中的安全性和可靠性分析器工具包，创建了这些故障模式。然后根据这些组件的 UCR 信息以及相关故障模式评估和创建潜在故障模式的原因和影响。此外，使用工具包中的 FMEA 表生成功能，生成了 FMEA 表，以可视化适合图 2 所示的 RS-25 发动机结构视图的 FMEA 报告。（表不放了）
-
-**结果与讨论**
-![Figure 4. FMEA table for the Combustion Devices.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083104.png)
-
-创建故障模式和影响并分配严重程度后，在 SysML 中为 RS-25 发动机的组件生成了 FMEA 表。图 4 表示燃烧装置的 FMEA 表。表中表示了七个故障项 F-1 至 F-7，分别对应于主燃烧室 (MCC)、热气歧管 (HGM)、热交换器 (HE)、主喷射器 (MI)、喷嘴 (N)、燃料预燃室 (FPB) 和氧化剂预燃室 (OPB)。‘分类’列表示故障性质，可以是机械的、电气的或软件的。‘项目’列显示分配给相应故障模式的组件（在 BDD 中创建）。所有燃烧装置都由不同严重程度的故障模式‘裂纹’组成。MCC 和 HGM 存在故障模式‘泄漏’。对于 FPB 和 OPB 观察到故障模式“侵蚀”，对于 MI 和 HE 分别观察到故障模式“松动部件”和“间隙问题”。可以观察到，MCC、HGM 和 MI 中的裂缝导致了灾难性的故障，需要成为在整个系统生命周期中跟踪的重要故障项目。对于 HGM，泄漏导致发动机损失，这使其成为一种重要的故障模式，需要严格的缓解措施。虽然故障模式可能对不同的组件相同，但影响和原因可能有所不同。影响和原因在 FMEA 表中是独立的。由于这是基础框架，因此局部和最终影响的定义更为广泛。但是，这些可以随着系统在系统生命周期中的进展而得到细化。
-
-![Figure 5. FMEA table for the Turbopumps](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083105.png)
-
-与燃烧装置类似，图 5 表示涡轮泵的 FMEA 表。表中表示了四个故障项 F-8 至 F11，分别对应于高压燃料涡轮泵 (HPFTP)、高压氧化剂涡轮泵 (HPFTP)、低压燃料涡轮泵 (LPFTP) 和低压氧化剂涡轮泵 (LPOTP)。在 HPFTP、HPOTP 和 LPOTP 中观察到故障模式“磨损”。虽然这种故障模式对于 LPOTP 不太严重，但据观察，在 HPOTP 的情况下，它可能导致发动机故障，在 HPFTP 的情况下，它可能导致车辆故障。还可以观察到，在 HPOTP 的情况下，故障模式“分层和破损部件”和“扭矩、振动和过度行程”导致车辆故障。这表明这些故障模式是系统在生命周期过程中预期的重要故障项，应在设计生命周期的初始阶段设计适当的缓解措施。
-
-![Figure 6. FMEA table for all other components of RS-25 engine expressed in structural view in Figure 2.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083106.png)
-
-图 6 表示故障项目 F-12 至 F-15 的 FMEA 表，分别对应于组件阀门和执行器、电气传感器和线束、管道（管道、管子和歧管的泛化）和控制器。这些故障模式的严重程度本质上很小。随着系统在设计生命周期中不断进步，架构的复杂性会增加，这可以得到改进。在这个基础框架的范围内，这些组件的故障信息已被广泛列出，适用于图 2 中表示的 RS25 架构的顶层层次结构。如前所述，开发 MBFMECA 的目标之一是确保系统组件在整个系统生命周期中能够追溯到需求。通过需求图（图 3），可以将 RS-25 架构（图 2）的组件与功能需求相关联。此外，这些组件还与 FMEA 表“项目”列中的故障模式相关联（图 4、5 和 6）。因此，现在可以生成一个表格来了解可靠性覆盖率分析和相关要求。
-
-![Figure 7. Safety and Reliability Coverage Analysis Structure for Combustion Devices and Turbopumps of the RS-25 engine.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083107.png)
-
-图 7 表示在 SysML 中创建的安全性和可靠性覆盖率分析结构。‘设计元素’列包含 RS-25 引擎架构中包含的组件（图 2），‘可靠性分析覆盖’列表示为组件创建的适当故障项（图 4、5 和 6），‘满足’列包含与组件相关的功能需求信息（图 3）。此功能可以克服在开发 RS-25 引擎等复杂系统时经常遇到的 SE 活动不同步性质。实际上，这也有助于在设计生命周期的早期利用安全性和可靠性活动规划。当系统需要进行设计更改或升级时，需求通常会发生变化。通过安全性和可靠性覆盖率分析，还可以以省时的方式查看设计变更场景中受影响的需求。总体而言，组件、故障信息和受影响需求的视图使得在实施之前执行设计变更的功效分析成为可能。从今以后，这方面有助于实现 RS-25 发动机的高效可负担性框架。
-
-**结论**
-本文提出的 RS-25 发动机 MBFMECA 模型将成为改进发动机可靠性活动的初始基础框架之一。这项工作将 SSME 的传统 FMEA 数据提升到基于模型的 FMECA 平台。这种范式转变将能够为新型 RS-25 发动机的生产提供更高效的 FMEA 方法。此外，当采用不同的先进制造技术（例如增材制造）制造较新版本的 RS-25 发动机时，它将有助于评估权衡利弊。由于该平台基于现有的 SSME 故障数据，它将有助于创建一个强大的框架来评估实施较新技术对 RS-25 发动机生产重启的影响。在 NASA 为新型 RS-25 组件（例如涡轮泵）实施 FMEA 的现有文献背景下，应扩展提出的 MBFMECA，以便在未来的设计变更场景中实现此类实施活动的自动化。基础 MBFMECA 的未来研究方向包括： • 创建额外的 SysML 图表，以对已识别的故障模式的危险性等级进行建模。这将需要修改并从主要 MBFMECA 模型创建新的 SysML 图表和范例。
-
-- 根据危险性等级对发动机的风险和最终影响进行定性评估。
-- 提出简单的纠正措施（定性或定量）以减轻或降低风险的影响。
-- 针对设计变更场景自动生成完整而全面的 FMECA 报告。
-
-进一步的发展还包括集成基于模型的故障树分析 (FTA)，包括火箭发动机的成本考虑方面，并评估设计变更对 RS-25 发动机的影响。这些未来的发展涉及“做得更好”和“专注于提高效率和保真度”方面的设想里程碑（图 1），以实现可负担性。总体而言，将使用可执行的 SysML 模型同时分析性能、可靠性和成本方面。因此，整体努力将能够为 RS-25 引擎提供一个经济实惠的框架，该框架是在 MBSE 频谱内构思的。
-
-`参考文献`
-<a id="6">[6]</a>Izygon, M., Wagner, H., Okon, S., Wang, L., Sargusingh, M., and Evans, J. “Facilitating R&M in Spaceflight Systems with MBSE.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2016-April, 2016, pp. 1–6.https://doi.org/10.1109/RAMS.2016.7448031.
-<a id="8">[8]</a>Huang, Z., Swalgen, S., Davidz, H., and Murray, J. “MBSE-Assisted FMEA Approach - Challenges and Opportunities.” Proceedings - Annual Reliability and Maintainability Symposium, 2017, pp. 1–8. https://doi.org/10.1109/RAM.2017.7889722.
-<a id="5">[5]</a>Hansen, R., and Huang, Z. “Toward FMEA and MBSE Integration.” Proceedings - Annual Reliability and Maintainability Symposium, Vols. 2018-January, 2018. https://doi.org/10.1109/RAM.2018.8463084.
-<a id="15">[15]</a>Biggs, G., Post, K., Armonas, A., Yakymets, N., Juknevicius, T., and Berres, A. “OMG Standard for Integrating Safety and Reliability Analysis into MBSE: Concepts and Applications.” INCOSE International Symposium, Vol. 29, No. 1, 2019, pp. 159–173. https://doi.org/10.1002/j.2334-5837.2019.00595.x.
-<a id="16">[16]</a>“Space Shuttle Main Engine Orientation, Space Transportation Training System Data.” BC98-04, Rocketdyne Propulsion and Power, Boeing, 1998.
-<a id="13">[13]</a>Tischer, A. E., and Glover, R. C. “Studies and Analyses of the Space Shuttle Main Engine.” NASA-CR-183593, 1987.
-<a id="17">[17]</a>Glover, R. C., Kelley, B. A., and Tischer, A. E. “Studies and Analyses of the Space Shuttle Main Engine: SSME (Space Shuttle Main Engine) Failure Data Review, Diagnostic Survey and Ssme Diagnostic Evaluation.” NASA-CR-178993, 1986.]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Artical</category>
-        <category>AIAA SCITECH Forum</category>
-        <category>2021</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-        <tag>FMEA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</title>
-    <url>/2024/08/31/011/</url>
-    <content><![CDATA[
-为运载火箭（如太空发射系统 (SLS)）开发复杂推进系统的成功之路取决于性能、可靠性和成本之间的最佳平衡。在过去十年中，复杂推进系统的技术和创新应用超越了运载火箭的开发，转向提高可负担性和安全性。因此，本研究旨在补充正在进行的努力，即为 RS-25 发动机建立一个基于模型的平台，以实现可负担性。该发动机被选为研究候选是因为需要重启生产，采用新技术并降低成本。利用基于模型的系统工程 (MBSE) 的范例，结构架构和基于模型的平台用于执行故障模式、影响和危害性分析 (FMECA) 之前已在系统建模语言 (SysML) 中建模和开发。本研究的重点是扩展基于模型的可靠性框架，以包括 RS-25 发动机的行为方面（发动机性能、测试策略、设计变更实施和结果等）。我们已经详细说明了逐步的努力并讨论了结果，以开发 RS-25 发动机的全面可负担性平台。
-
-主要介绍了用SysML创建RS-25的一些图的内容。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Artical</category>
-        <category>AIAA Propulsion and Energy Forum</category>
-        <category>2021</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Advancing Domain-Specific High-Integrity Model-Based Tools:Insights and Future Pathways</title>
-    <url>/2025/02/12/014/</url>
-    <content><![CDATA[
-[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://dl.acm.org/doi/abs/10.1145/3640310.3674094)
-
-`Abstraction`
-
-> Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
-
-本文是接着21年论文对CaMCOA Studio介绍的延续，介绍了这种联合Simulink和Sirius的MBSE工具，这篇展示了更多信息。第二节指出一个模型要在不同的抽象层级中表示，也就是NDSM、PDDM、EAM等，他们要在同一个平台上应对这些不同信息层级的模型，并处理追溯性、兼容性等问题。第三节介绍了一些挑战，有软件性能、模型间索引、版本变更带来的模型迁移。第四节汇总了一些代码开发的心得和经验。第五节结合了将软件迁移到Web端的可能性，如使用Sirius Web或GLSP。第六节提出了在云端创建的设想。总体上是对CaMCOA项目的更详细更全面的汇总报告和工具介绍。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>MODELS</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Sirius</tag>
-        <tag>Epsilon</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt</title>
-    <url>/2025/02/10/013/</url>
-    <content><![CDATA[
-[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://ieeexplore.ieee.org/document/9592422)
-**2021 MODELS Best Paper Award, Practice & Innovation Track**
-`Abstraction`
-
-> Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
-
-本文介绍了一种名为CaMCOA Studio的软件工具，是由约克大学为劳斯莱斯开发的基于模型的引擎控制系统模型管理平台。整个论文只有四张图，声称用户可以使用但是没有开源代码，所使用的工具链全部都是开源工具（主要是Epsilon和Sirius）。论文分别介绍了几个问题：metamodel创建问题、Sirius的功能问题、模型管理中的EGL、ETL、EVL、ECL使用等，实现了一个Simulink和EMF的模型转换，（原文4.B节）其中，EMF2Simulink使用的是ETL+Simulink driver的组合，Simulink2EMF使用的是CaMCOA先转XML，后转EMF。后文还讨论了多人协同开发等一系列工程问题。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>MODELS</category>
-        <category>2021</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Sirius</tag>
-        <tag>Epsilon</tag>
       </tags>
   </entry>
   <entry>
@@ -1749,42 +1701,51 @@ FMEA的三种使用场景：（1）新设计、新技术或新过程；（2）�
       </tags>
   </entry>
   <entry>
-    <title>笔记：Modular Language Product Lines:A Graph Transformation Approach</title>
-    <url>/2025/02/20/018/</url>
+    <title>笔记：Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt</title>
+    <url>/2025/02/10/013/</url>
     <content><![CDATA[
-MODELS2022:[Modular Language Product Lines:A Graph Transformation Approach](https://dl.acm.org/doi/abs/10.1145/3550355.3552444)
-
-SoSyM2024:[Modular language product lines: concept, tool and analysis](https://link.springer.com/article/10.1007/s10270-024-01179-9)
-
-[Capone开源代码](https://capone-pl.github.io/)
-
+[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://ieeexplore.ieee.org/document/9592422)
+**2021 MODELS Best Paper Award, Practice & Innovation Track**
 `Abstraction`
 
-> Modelling languages are intensively used in paradigms like modeldriven engineering to automate all tasks of the development process.These languages may have variants, in which case the need arises to deal with language families rather than with individual languages.However, specifying the syntax and semantics of each language variant separately is costly, hinders reuse across variants, and may yield inconsistent semantics between variants.
->
-> To attack this problem, we propose a novel, modular way to describe product lines of modelling languages. Our approach is compositional, enabling the incremental definition of language families by means of modules comprising meta-model fragments, graph transformation rules, and rule extensions. Language variants are configured by selecting the desired modules, which entails the composition of a language meta-model and a set of rules defining its semantics. This paper describes a theory able to check consistent semantics among all languages within the family, an implementation as an Eclipse plugin, and an evaluation reporting drastic specification size reduction w.r.t. an enumerative approach.
+> Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
 
-![展示效果](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/25022001.png)
-
-本文围绕着一个概念展开：元模型家族与元模型变体。
-
-描述一个系统，元模型可能存在局部差异，包括表达相同含义但是结构不同，或者某些属性是否存在。由此引申出，在模型管理过程中，同样含义的模型操作，在实现过程中也存在微小的差异。本文认为，作为同一个元模型家族的MDE体系，不同模型之间因为微小的差异而不能关联在一起使用，是一种信息上的浪费。可以试图寻求元模型之间的类似“最大公约数”的表示法，“求同存异”，将一个元模型家族的最小不可拆视为一个单元（product），构建一个属于这个家族的树状结构（Language Product Line，LPL），对一系列类似的元模型和模型操作进行建模，同时LPL结构中通过逻辑操作符表达。
-
-本文第三节讲这种概念。第四节讲LPL元模型部分的结构和（离散）数学模型。第五节讲在模型操作视角下，LPL的数学模型，大概含义就是构建了一种动作三元组，通过原子化操作规则（rule）来实现复杂操作的拼装组合。第六节讲工具支持，开发了一种名为Capone（Component-bAsed PrOduct liNEs）的工具，这个工具是基于EMF的，也使用了Henshin库和FeatureIDE库，展示效果如图所示。
-
-本文数学推导较多，概念十分抽象，阅读难度较大。整体概念还是很扎实有趣的，严肃活泼。
+本文介绍了一种名为CaMCOA Studio的软件工具，是由约克大学为劳斯莱斯开发的基于模型的引擎控制系统模型管理平台。整个论文只有四张图，声称用户可以使用但是没有开源代码，所使用的工具链全部都是开源工具（主要是Epsilon和Sirius）。论文分别介绍了几个问题：metamodel创建问题、Sirius的功能问题、模型管理中的EGL、ETL、EVL、ECL使用等，实现了一个Simulink和EMF的模型转换，（原文4.B节）其中，EMF2Simulink使用的是ETL+Simulink driver的组合，Simulink2EMF使用的是CaMCOA先转XML，后转EMF。后文还讨论了多人协同开发等一系列工程问题。
 ]]></content>
       <categories>
         <category>Academic Papers</category>
         <category>Conference</category>
         <category>MODELS</category>
-        <category>2022</category>
+        <category>2021</category>
       </categories>
       <tags>
-        <tag>MDE</tag>
-        <tag>Ecore</tag>
-        <tag>Graph</tag>
-        <tag>EMF</tag>
+        <tag>MBSE</tag>
+        <tag>Sirius</tag>
+        <tag>Epsilon</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Advancing Domain-Specific High-Integrity Model-Based Tools:Insights and Future Pathways</title>
+    <url>/2025/02/12/014/</url>
+    <content><![CDATA[
+[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://dl.acm.org/doi/abs/10.1145/3640310.3674094)
+
+`Abstraction`
+
+> Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
+
+本文是接着21年论文对CaMCOA Studio介绍的延续，介绍了这种联合Simulink和Sirius的MBSE工具，这篇展示了更多信息。第二节指出一个模型要在不同的抽象层级中表示，也就是NDSM、PDDM、EAM等，他们要在同一个平台上应对这些不同信息层级的模型，并处理追溯性、兼容性等问题。第三节介绍了一些挑战，有软件性能、模型间索引、版本变更带来的模型迁移。第四节汇总了一些代码开发的心得和经验。第五节结合了将软件迁移到Web端的可能性，如使用Sirius Web或GLSP。第六节提出了在云端创建的设想。总体上是对CaMCOA项目的更详细更全面的汇总报告和工具介绍。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Sirius</tag>
+        <tag>Epsilon</tag>
       </tags>
   </entry>
   <entry>
@@ -1809,9 +1770,34 @@ SoSyM2024:[Modular language product lines: concept, tool and analysis](https://l
         <category>2025</category>
       </categories>
       <tags>
+        <tag>MDE</tag>
         <tag>Review</tag>
+        <tag>Epsilon</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Towards Runtime Monitoring for Responsible Machine Learning using Model-driven Engineering</title>
+    <url>/2025/02/14/016/</url>
+    <content><![CDATA[
+[Towards Runtime Monitoring for Responsible Machine Learning using Model-driven Engineering](https://dl.acm.org/doi/abs/10.1145/3640310.3674092)
+
+`Abstraction`
+
+> Machine learning (ML) components are used heavily in many current software systems, but developing them responsibly in practice remains challenging. ‘Responsible ML’ refers to developing, deploying and maintaining ML-based systems that adhere to humancentric requirements, such as fairness, privacy, transparency, safety, accessibility, and human values. Meeting these requirements is essential for maintaining public trust and ensuring the success of ML-based systems. However, as changes are likely in production environments and requirements often evolve, design-time quality assurance practices are insufficient to ensure such systems’ responsible behavior. Runtime monitoring approaches for ML-based systems can potentially offer valuable solutions to address this problem. Many currently available ML monitoring solutions overlook human-centric requirements due to a lack of awareness and tool support, the complexity of monitoring human-centric requirements, and the effort required to develop and manage monitors for changing requirements. We believe that many of these challenges can be addressed by model-driven engineering. In this new ideas paper, we present an initial meta-model, model-driven approach, and proof of concept prototype for runtime monitoring of human-centric requirements violations, thereby ensuring responsible ML behavior.We discuss our prototype, current limitations and propose some directions for future work.
+
+本文做的事情有：设计了一个元模型MoReML，在list123中展示了例子，用EVL做约束+EGL做M2T，一个截图说例子能运行。本文的动机是说：机器学习模型的运行中涉及到人的因素，因此要对人的行为加以约束，以使用基于模型的技术对模型的输入进行限制和警告。想法是好的，但是未免理想，使用MDE的动机也不强，且本文工作量过于少了，很多方面仅是点到为止，实验部分甚至只有一张cmd截图，在MODELS上出现一个正文6页这样的文章也是出乎意料了。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2024</category>
+      </categories>
+      <tags>
         <tag>MDE</tag>
         <tag>Epsilon</tag>
+        <tag>Responsible</tag>
+        <tag>Monitor</tag>
       </tags>
   </entry>
   <entry>
@@ -1852,28 +1838,42 @@ CPS2024: [Exploring complex models with picto web](https://www.sciencedirect.com
       </tags>
   </entry>
   <entry>
-    <title>笔记：Towards Runtime Monitoring for Responsible Machine Learning using Model-driven Engineering</title>
-    <url>/2025/02/14/016/</url>
+    <title>笔记：Modular Language Product Lines:A Graph Transformation Approach</title>
+    <url>/2025/02/20/018/</url>
     <content><![CDATA[
-[Towards Runtime Monitoring for Responsible Machine Learning using Model-driven Engineering](https://dl.acm.org/doi/abs/10.1145/3640310.3674092)
+MODELS2022:[Modular Language Product Lines:A Graph Transformation Approach](https://dl.acm.org/doi/abs/10.1145/3550355.3552444)
+
+SoSyM2024:[Modular language product lines: concept, tool and analysis](https://link.springer.com/article/10.1007/s10270-024-01179-9)
+
+[Capone开源代码](https://capone-pl.github.io/)
 
 `Abstraction`
 
-> Machine learning (ML) components are used heavily in many current software systems, but developing them responsibly in practice remains challenging. ‘Responsible ML’ refers to developing, deploying and maintaining ML-based systems that adhere to humancentric requirements, such as fairness, privacy, transparency, safety, accessibility, and human values. Meeting these requirements is essential for maintaining public trust and ensuring the success of ML-based systems. However, as changes are likely in production environments and requirements often evolve, design-time quality assurance practices are insufficient to ensure such systems’ responsible behavior. Runtime monitoring approaches for ML-based systems can potentially offer valuable solutions to address this problem. Many currently available ML monitoring solutions overlook human-centric requirements due to a lack of awareness and tool support, the complexity of monitoring human-centric requirements, and the effort required to develop and manage monitors for changing requirements. We believe that many of these challenges can be addressed by model-driven engineering. In this new ideas paper, we present an initial meta-model, model-driven approach, and proof of concept prototype for runtime monitoring of human-centric requirements violations, thereby ensuring responsible ML behavior.We discuss our prototype, current limitations and propose some directions for future work.
+> Modelling languages are intensively used in paradigms like modeldriven engineering to automate all tasks of the development process.These languages may have variants, in which case the need arises to deal with language families rather than with individual languages.However, specifying the syntax and semantics of each language variant separately is costly, hinders reuse across variants, and may yield inconsistent semantics between variants.
+>
+> To attack this problem, we propose a novel, modular way to describe product lines of modelling languages. Our approach is compositional, enabling the incremental definition of language families by means of modules comprising meta-model fragments, graph transformation rules, and rule extensions. Language variants are configured by selecting the desired modules, which entails the composition of a language meta-model and a set of rules defining its semantics. This paper describes a theory able to check consistent semantics among all languages within the family, an implementation as an Eclipse plugin, and an evaluation reporting drastic specification size reduction w.r.t. an enumerative approach.
 
-本文做的事情有：设计了一个元模型MoReML，在list123中展示了例子，用EVL做约束+EGL做M2T，一个截图说例子能运行。本文的动机是说：机器学习模型的运行中涉及到人的因素，因此要对人的行为加以约束，以使用基于模型的技术对模型的输入进行限制和警告。想法是好的，但是未免理想，使用MDE的动机也不强，且本文工作量过于少了，很多方面仅是点到为止，实验部分甚至只有一张cmd截图，在MODELS上出现一个正文6页这样的文章也是出乎意料了。
+![展示效果](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/25022001.png)
+
+本文围绕着一个概念展开：元模型家族与元模型变体。
+
+描述一个系统，元模型可能存在局部差异，包括表达相同含义但是结构不同，或者某些属性是否存在。由此引申出，在模型管理过程中，同样含义的模型操作，在实现过程中也存在微小的差异。本文认为，作为同一个元模型家族的MDE体系，不同模型之间因为微小的差异而不能关联在一起使用，是一种信息上的浪费。可以试图寻求元模型之间的类似“最大公约数”的表示法，“求同存异”，将一个元模型家族的最小不可拆视为一个单元（product），构建一个属于这个家族的树状结构（Language Product Line，LPL），对一系列类似的元模型和模型操作进行建模，同时LPL结构中通过逻辑操作符表达。
+
+本文第三节讲这种概念。第四节讲LPL元模型部分的结构和（离散）数学模型。第五节讲在模型操作视角下，LPL的数学模型，大概含义就是构建了一种动作三元组，通过原子化操作规则（rule）来实现复杂操作的拼装组合。第六节讲工具支持，开发了一种名为Capone（Component-bAsed PrOduct liNEs）的工具，这个工具是基于EMF的，也使用了Henshin库和FeatureIDE库，展示效果如图所示。
+
+本文数学推导较多，概念十分抽象，阅读难度较大。整体概念还是很扎实有趣的，严肃活泼。
 ]]></content>
       <categories>
         <category>Academic Papers</category>
         <category>Conference</category>
         <category>MODELS</category>
-        <category>2024</category>
+        <category>2022</category>
       </categories>
       <tags>
         <tag>MDE</tag>
-        <tag>Epsilon</tag>
-        <tag>Responsible</tag>
-        <tag>Monitor</tag>
+        <tag>Ecore</tag>
+        <tag>Graph</tag>
+        <tag>EMF</tag>
       </tags>
   </entry>
   <entry>
@@ -1908,112 +1908,6 @@ CPS2024: [Exploring complex models with picto web](https://www.sciencedirect.com
         <tag>Ecore</tag>
         <tag>Graph</tag>
         <tag>EMF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Towards the Formal Verification of SysML v2 Models</title>
-    <url>/2025/02/22/020/</url>
-    <content><![CDATA[
-[Towards the Formal Verification of SysML v2 Models](https://dl.acm.org/doi/abs/10.1145/3652620.3687820)
-
-`Abstraction`
-
-> Systems Modeling Language (SysML) is the de facto standard in the industry for modeling complex systems. SysML v2 is the new version of the language with reworked fundamentals. In this paper, we explore how the new formal semantics of SysML v2 can enable formal verification and various forms of automated reasoning. Formal verification involves mathematically proving the correctness of a system’s design with respect to certain specifications or properties. This rigorous approach ensures that models behave as intended under all possible conditions. Through a detailed examination, we demonstrate how five specific tools – Gamma, MP-Firebird, Imandra, SAVVS, and SysMD – can formally analyze SysML v2 models. We show how these tools support the different concepts in the language, as well as the set of features and technologies they provide to users of SysML v2, such as model checking, theorem proving, contract-based design, or automatic fault injections. We propose a workflow for applying formal methods on SysML v2 models, illustrated by example models and artifacts generated by the above tools.
-
-较早探讨有关SysML v2模型的论文，虽然只是发在MODELS-C上。本文的作者团队来自是布达佩斯大学[ftsrg组(Fault Tolerant Systems Research Group)](http://inf.mit.bme.hu/en)。本文围绕SysML v2，介绍了几种形式化验证工具，并结合案例进行了说明。第二节介绍SysML v2中的与本文有关的要素。第三节介绍了形式化方法的一些特点。第四节介绍了五款工具，分别是：
-
-- SysMD（一种基于SysML v2进行需求建模与开发的工具）
-- MP-Firebird（美国海军用于形式化建模的框架+工具）
-- Gamma（ftsrg组研发的一套Eclipse开源形式化验证套件）
-- Imandra（一种云自动推理平台）
-- SAVVS（用于SysML v2的安全分析与验证的Eclispe工具）
-
-第五节一口气介绍了五小段SysML v2的例子，然后用上述这些工具应用在这些案例中，分别展现他们各自的功能。结论是向大家展示SysML v2在形式化验证方面的能力，特别是文本的输入输出是如何被呈现的。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>MODELS-C</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>MDE</tag>
-        <tag>SysMLv2</tag>
-        <tag>Formal Methods</tag>
-        <tag>Formal Verification</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Eclipse Modeling Framework 2.0 笔记</title>
-    <url>/2025/02/25/022/</url>
-    <content><![CDATA[前言：
-
-- 第一部分（1-4章）介绍基本概念；
-- 第二部分（5-9章）介绍Ecore和其他形式的关系（UML、Java、XML Schema）；
-- 第三部分（10-13章）分析EMF的代码生成工具和案例；
-- 第四部分（14-21章）介绍EMF的运行库架构。
-
-# 第1章 Eclipse
-
-## 项目
-Eclipse项目本身可以划分为4个主要子项目：Equinox、平台、Java开发工具（Java Development Tools）、插件开发环境（Plug-in Development Environment，PDE）。
-
-# 第2章 EMF介绍
-
-# 第3章 使用EMF.Edit编辑模型
-
-# 第4章 使用EMF——简单概述
-用一个例子说明如何在Eclipse中创建一个EMF（不使用Emfatic）。
-
-# 第5章 Ecore建模概念
-
-
-# 第6章 UML
-
-# 第7章 Java源代码
-
-# 第8章 扩展的Ecore建模
-
-# 第9章 XML Schema
-
-# 第10章 EMF生成器模式
-
-# 第11章 EMF.Edit生成器模式
-
-# 第12章 运行生成器
-
-# 第13章 示例——实现模型和编辑器
-
-# 第14章 探索元数据
-
-# 第15章 持久化
-
-# 第16章 客户端编程工具箱
-
-# 第17章 更改模型
-
-# 第18章 验证架构
-
-# 第19章 EMF.Edit编程
-
-# 第20章 Eclipse IDE之外的应用领域
-
-# 第21章 EMF 2.3和2.4
-
-# 附录A UML符号
-
-# 附录B 示例模型概述
-
-# 附录C 参考文献
-
-]]></content>
-      <categories>
-        <category>Book</category>
-      </categories>
-      <tags>
-        <tag>MDE</tag>
-        <tag>EMF</tag>
-        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -2103,6 +1997,138 @@ SysML中的关键词：
       </tags>
   </entry>
   <entry>
+    <title>笔记：Towards the Formal Verification of SysML v2 Models</title>
+    <url>/2025/02/22/020/</url>
+    <content><![CDATA[
+[Towards the Formal Verification of SysML v2 Models](https://dl.acm.org/doi/abs/10.1145/3652620.3687820)
+
+`Abstraction`
+
+> Systems Modeling Language (SysML) is the de facto standard in the industry for modeling complex systems. SysML v2 is the new version of the language with reworked fundamentals. In this paper, we explore how the new formal semantics of SysML v2 can enable formal verification and various forms of automated reasoning. Formal verification involves mathematically proving the correctness of a system’s design with respect to certain specifications or properties. This rigorous approach ensures that models behave as intended under all possible conditions. Through a detailed examination, we demonstrate how five specific tools – Gamma, MP-Firebird, Imandra, SAVVS, and SysMD – can formally analyze SysML v2 models. We show how these tools support the different concepts in the language, as well as the set of features and technologies they provide to users of SysML v2, such as model checking, theorem proving, contract-based design, or automatic fault injections. We propose a workflow for applying formal methods on SysML v2 models, illustrated by example models and artifacts generated by the above tools.
+
+较早探讨有关SysML v2模型的论文，虽然只是发在MODELS-C上。本文的作者团队来自是布达佩斯大学[ftsrg组(Fault Tolerant Systems Research Group)](http://inf.mit.bme.hu/en)。本文围绕SysML v2，介绍了几种形式化验证工具，并结合案例进行了说明。第二节介绍SysML v2中的与本文有关的要素。第三节介绍了形式化方法的一些特点。第四节介绍了五款工具，分别是：
+
+- SysMD（一种基于SysML v2进行需求建模与开发的工具）
+- MP-Firebird（美国海军用于形式化建模的框架+工具）
+- Gamma（ftsrg组研发的一套Eclipse开源形式化验证套件）
+- Imandra（一种云自动推理平台）
+- SAVVS（用于SysML v2的安全分析与验证的Eclispe工具）
+
+第五节一口气介绍了五小段SysML v2的例子，然后用上述这些工具应用在这些案例中，分别展现他们各自的功能。结论是向大家展示SysML v2在形式化验证方面的能力，特别是文本的输入输出是如何被呈现的。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS-C</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>SysMLv2</tag>
+        <tag>Formal Methods</tag>
+        <tag>Formal Verification</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Tree-Based versus Hybrid Graphical-Textual Model Editors:An Empirical Study of Testing Specifications</title>
+    <url>/2025/02/25/023/</url>
+    <content><![CDATA[
+[Tree-Based versus Hybrid Graphical-Textual Model Editors: An Empirical Study of Testing Specifications](https://dl.acm.org/doi/abs/10.1145/3640310.3674102)
+
+`Abstraction`
+
+> Tree-based model editors and hybrid graphical-textual model editors have advantages and limitations when editing domain models. Data is displayed hierarchically in tree-based model editors, whereas hybrid graphical-textual model editors capture high-level domain concepts graphically and low-level domain details textually. We conducted an empirical user study with 22 participants to evaluate the implicit assumption of system modellers that hybrid notations are superior, and to investigate the tradeoffs between the default EMF-based tree model editor and a Sirius/Xtext-based hybrid model editor. The results of the user study indicate that users largely prefer the hybrid editor and are more confident with hybrid notations for understanding the meaning of conditions. Furthermore, we found that the tree editor provided superior performance for analysing ordered lists of model elements, whereas activities requiring the comprehension or modelling of complex conditions were carried out faster through the hybrid editor.
+
+本文是测试与讨论类型的论文，不是技术文章。
+
+本文围绕一个工程场景做了树状模型和图文混模型工具的性能对比。工程场景是一个MRS多机器人系统，文章第三节介绍了元模型。文章第四节介绍两种模型所用工具，分别是EMF默认的树状编辑器和开发的Graphite图文混合编辑器，介绍了元模型和例子。第五节开始介绍测试过程，22个参与者是如何被培训和测评的，论文设计了三个目标，分别是Performance（与树编辑器相比，用混合编辑器执行某些任务时，用户如何执行？）、Confidence（用户对解决方案的正确性和完整性对​​给定任务有多信心？）、Preference（用户喜欢混合编辑器或树编辑器吗？），通过他们对5个问题的理解和5个任务操作的结果进行分析。第六节介绍结果评价，五六节占全文一半以上。结论是：“关于性能，使用编辑者执行任务的速度之间存在了权衡。混合编辑器更适合理解和建模复杂条件，而树编辑器更适合分析模型元素的有序列表。当建模条件时，混合编辑器会发现更多校正的误差。但是，犯下的错误很小。同样，与混合编辑器进行建模条件的更多击键和更少的点击量。当使用混合编辑器了解条件的含义时，用户对解决方案更有信心。最后，在研究之前，有50％的参与者更喜欢混合编辑。最后，百分比增加到73％，显示对混合动力编辑者的偏好增加。”
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>Sirius</tag>
+        <tag>Xtext</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Eclipse Modeling Framework 2.0 笔记</title>
+    <url>/2025/02/25/022/</url>
+    <content><![CDATA[前言：
+
+- 第一部分（1-4章）介绍基本概念；
+- 第二部分（5-9章）介绍Ecore和其他形式的关系（UML、Java、XML Schema）；
+- 第三部分（10-13章）分析EMF的代码生成工具和案例；
+- 第四部分（14-21章）介绍EMF的运行库架构。
+
+# 第1章 Eclipse
+
+## 项目
+Eclipse项目本身可以划分为4个主要子项目：Equinox、平台、Java开发工具（Java Development Tools）、插件开发环境（Plug-in Development Environment，PDE）。
+
+# 第2章 EMF介绍
+
+# 第3章 使用EMF.Edit编辑模型
+
+# 第4章 使用EMF——简单概述
+用一个例子说明如何在Eclipse中创建一个EMF（不使用Emfatic）。
+
+# 第5章 Ecore建模概念
+
+
+# 第6章 UML
+
+# 第7章 Java源代码
+
+# 第8章 扩展的Ecore建模
+
+# 第9章 XML Schema
+
+# 第10章 EMF生成器模式
+
+# 第11章 EMF.Edit生成器模式
+
+# 第12章 运行生成器
+
+# 第13章 示例——实现模型和编辑器
+
+# 第14章 探索元数据
+
+# 第15章 持久化
+
+# 第16章 客户端编程工具箱
+
+# 第17章 更改模型
+
+# 第18章 验证架构
+
+# 第19章 EMF.Edit编程
+
+# 第20章 Eclipse IDE之外的应用领域
+
+# 第21章 EMF 2.3和2.4
+
+# 附录A UML符号
+
+# 附录B 示例模型概述
+
+# 附录C 参考文献
+
+]]></content>
+      <categories>
+        <category>Book</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>EMF</tag>
+        <tag>Eclipse</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：10 years of Model Federation with Openflexo:Challenges and Lessons Learned</title>
     <url>/2025/02/27/025/</url>
     <content><![CDATA[
@@ -2140,35 +2166,36 @@ SysML中的关键词：
         <category>2024</category>
       </categories>
       <tags>
-        <tag>MBSE</tag>
         <tag>MDE</tag>
+        <tag>MBSE</tag>
         <tag>Model Federation</tag>
       </tags>
   </entry>
   <entry>
-    <title>笔记：Tree-Based versus Hybrid Graphical-Textual Model Editors:An Empirical Study of Testing Specifications</title>
-    <url>/2025/02/25/023/</url>
+    <title>笔记：Solving the Instance Model-View Update Problem in AADL</title>
+    <url>/2025/03/06/026/</url>
     <content><![CDATA[
-[Tree-Based versus Hybrid Graphical-Textual Model Editors: An Empirical Study of Testing Specifications](https://dl.acm.org/doi/abs/10.1145/3640310.3674102)
+[Solving the Instance Model-View Update Problem in AADL](https://dl.acm.org/doi/abs/10.1145/3550355.3552396)
 
 `Abstraction`
 
-> Tree-based model editors and hybrid graphical-textual model editors have advantages and limitations when editing domain models. Data is displayed hierarchically in tree-based model editors, whereas hybrid graphical-textual model editors capture high-level domain concepts graphically and low-level domain details textually. We conducted an empirical user study with 22 participants to evaluate the implicit assumption of system modellers that hybrid notations are superior, and to investigate the tradeoffs between the default EMF-based tree model editor and a Sirius/Xtext-based hybrid model editor. The results of the user study indicate that users largely prefer the hybrid editor and are more confident with hybrid notations for understanding the meaning of conditions. Furthermore, we found that the tree editor provided superior performance for analysing ordered lists of model elements, whereas activities requiring the comprehension or modelling of complex conditions were carried out faster through the hybrid editor.
+> The Architecture Analysis and Design Language (AADL) is a rich language for modeling embedded systems through several constructs such as component extension and refinement to promote modularity of component declarations. To ease processing AADL models, OSATE, the reference tool for AADL, defines another model (namely ‘instance’ model) computed from a base ‘declarative’ model/s. An instance model is a simple object tree where all information from the declarative model is flattened so that tools can easily use this information to analyze the system. However for modifications, they have to make changes in the complex declarative model since there is no automated backward transformation (deinstantiation) from instance to declarative models. Since the instance model is a ‘view’ of the declarative model, this is a view-update problem. In this paper, we propose the OSATE Declarative-Instance Mapping Tool (OSATE-DIM1 ), an Eclipse plugin for deinstantiation of AADL models implementing a solution of this view-update problem. We evaluate OSATE-DIM with a benchmark of existing AADL model processing tools and verify the correctness of our deinstantiation transformations. We also discuss how our approach could be useful for decompilation of Object-Oriented languages’ intermediate representations.
 
-本文是测试与讨论类型的论文，不是技术文章。
+在写法上很受启发的一篇工程文章。作者修补了AADL工具OSATE的图形化显示同步问题，提出了OSATE-DIM工具并开源。
 
-本文围绕一个工程场景做了树状模型和图文混模型工具的性能对比。工程场景是一个MRS多机器人系统，文章第三节介绍了元模型。文章第四节介绍两种模型所用工具，分别是EMF默认的树状编辑器和开发的Graphite图文混合编辑器，介绍了元模型和例子。第五节开始介绍测试过程，22个参与者是如何被培训和测评的，论文设计了三个目标，分别是Performance（与树编辑器相比，用混合编辑器执行某些任务时，用户如何执行？）、Confidence（用户对解决方案的正确性和完整性对​​给定任务有多信心？）、Preference（用户喜欢混合编辑器或树编辑器吗？），通过他们对5个问题的理解和5个任务操作的结果进行分析。第六节介绍结果评价，五六节占全文一半以上。结论是：“关于性能，使用编辑者执行任务的速度之间存在了权衡。混合编辑器更适合理解和建模复杂条件，而树编辑器更适合分析模型元素的有序列表。当建模条件时，混合编辑器会发现更多校正的误差。但是，犯下的错误很小。同样，与混合编辑器进行建模条件的更多击键和更少的点击量。当使用混合编辑器了解条件的含义时，用户对解决方案更有信心。最后，在研究之前，有50％的参与者更喜欢混合编辑。最后，百分比增加到73％，显示对混合动力编辑者的偏好增加。”
+OSATE存在一个问题：修改图形之后对应的文本不能自动更新，也就是Instance model和Declarative model之间并不是天然的一一对应。Declarative model作为文本模型，能生成Instance model，但是如果直接修改Instance model，Declarative model不会发生变化。为解决这个问题，作者首先在2.1节介绍了AADL的元模型和类继承情况，然后在2.2节用数学语言介绍了两种不同的文本和图形映射关系，参考的是Lenses的框架（原文引用8），本文使用的是通过监控变化量，来反向修补模型变化的。3.1节提出假设条件，3.3节围绕一个案例做了几种转换分析，3.4节说明了避免冲突的措施。第4节介绍开发的工具，包括场景和选择参数配置。第5节评估，称其在两个例子上做了测试。第6节对一些问题做了讨论（没看太懂），介绍了相关工作，并无其他实验和量化。
 ]]></content>
       <categories>
         <category>Academic Papers</category>
         <category>Conference</category>
         <category>MODELS</category>
-        <category>2024</category>
+        <category>2022</category>
       </categories>
       <tags>
         <tag>MDE</tag>
-        <tag>Sirius</tag>
-        <tag>Xtext</tag>
+        <tag>Model-View</tag>
+        <tag>AADL</tag>
+        <tag>OSATE</tag>
       </tags>
   </entry>
   <entry>
@@ -2205,33 +2232,6 @@ SysML中的关键词：
       </tags>
   </entry>
   <entry>
-    <title>笔记：Solving the Instance Model-View Update Problem in AADL</title>
-    <url>/2025/03/06/026/</url>
-    <content><![CDATA[
-[Solving the Instance Model-View Update Problem in AADL](https://dl.acm.org/doi/abs/10.1145/3550355.3552396)
-
-`Abstraction`
-
-> The Architecture Analysis and Design Language (AADL) is a rich language for modeling embedded systems through several constructs such as component extension and refinement to promote modularity of component declarations. To ease processing AADL models, OSATE, the reference tool for AADL, defines another model (namely ‘instance’ model) computed from a base ‘declarative’ model/s. An instance model is a simple object tree where all information from the declarative model is flattened so that tools can easily use this information to analyze the system. However for modifications, they have to make changes in the complex declarative model since there is no automated backward transformation (deinstantiation) from instance to declarative models. Since the instance model is a ‘view’ of the declarative model, this is a view-update problem. In this paper, we propose the OSATE Declarative-Instance Mapping Tool (OSATE-DIM1 ), an Eclipse plugin for deinstantiation of AADL models implementing a solution of this view-update problem. We evaluate OSATE-DIM with a benchmark of existing AADL model processing tools and verify the correctness of our deinstantiation transformations. We also discuss how our approach could be useful for decompilation of Object-Oriented languages’ intermediate representations.
-
-在写法上很受启发的一篇工程文章。作者修补了AADL工具OSATE的图形化显示同步问题，提出了OSATE-DIM工具并开源。
-
-OSATE存在一个问题：修改图形之后对应的文本不能自动更新，也就是Instance model和Declarative model之间并不是天然的一一对应。Declarative model作为文本模型，能生成Instance model，但是如果直接修改Instance model，Declarative model不会发生变化。为解决这个问题，作者首先在2.1节介绍了AADL的元模型和类继承情况，然后在2.2节用数学语言介绍了两种不同的文本和图形映射关系，参考的是Lenses的框架（原文引用8），本文使用的是通过监控变化量，来反向修补模型变化的。3.1节提出假设条件，3.3节围绕一个案例做了几种转换分析，3.4节说明了避免冲突的措施。第4节介绍开发的工具，包括场景和选择参数配置。第5节评估，称其在两个例子上做了测试。第6节对一些问题做了讨论（没看太懂），介绍了相关工作，并无其他实验和量化。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>MODELS</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MDE</tag>
-        <tag>Model-View</tag>
-        <tag>AADL</tag>
-        <tag>OSATE</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记：Incremental execution of model-to-text transformations using property access traces</title>
     <url>/2025/03/06/027/</url>
     <content><![CDATA[
@@ -2253,6 +2253,39 @@ OSATE存在一个问题：修改图形之后对应的文本不能自动更新，
         <tag>MDE</tag>
         <tag>Epsilon</tag>
         <tag>Model-to-text Transformation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Model Transformation Testing and Debugging:A Survey</title>
+    <url>/2025/03/07/028/</url>
+    <content><![CDATA[
+[Model Transformation Testing and Debugging:A Survey](https://dl.acm.org/doi/abs/10.1145/3523056)
+
+`Abstraction`
+
+> Model transformations are the key technique in Model-Driven Engineering (MDE) to manipulate and construct models. As a consequence, the correctness of software systems built with MDE approaches relies mainly on the correctness of model transformations, and thus, detecting and locating bugs in model transformations have been popular research topics in recent years. This surge of work has led to a vast literature on model transformation testing and debugging, which makes it challenging to gain a comprehensive view of the current state-of-the-art. This is an obstacle for newcomers to this topic and MDE practitioners to apply these approaches. This article presents a survey on testing and debugging model transformations based on the analysis of 140 papers on the topics. We explore the trends, advances, and evolution over the years, bringing together previously disparate streams of work and providing a comprehensive view of these thriving areas. In addition, we present a conceptual framework to understand and categorize the different proposals. Finally, we identify several open research challenges and propose specific action points for the model transformation community.
+
+本文是研究“模型转换测试和调试”的综述，通过对140篇论文的调研，从不同的角度分析了现有该领域工作的特点，包括进行分类和讨论。
+
+- 第一章介绍论文动机和文章结构。
+- 第二章介绍研究背景，包括一些基本术语：元模型、模型转换和先前的一些工作。
+- 第三章介绍了本文所用使用的分类方法，围绕图4中展示的结构对测试和调试环节进行分类梳理（也就是说不是所有的140篇论文都涵盖这个图4的全流程）。
+- 第四章讲论文调研的流程，包括主要的四个问题、论文收集和选择标准、数据分类等。
+- 第五章进入正题，回答问题一“每个论文的测试过程重点研究了什么？”，开始围绕四个问题就收集到的论文和分类结果进行一一陈述。其中5.2讨论的Test Oracle是有关模型转换理念的分类
+- 第六章回答问题二“模型转换调试的方法是什么？”。
+- 第七章回答问题三“如何评估模型转换方法？”。7.1节先介绍了调研中提到的一些工具，7.2节介绍一些案例，但没有介绍具体的评估方法。
+- 第八章回答问题四“未来挑战有哪些？”。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>CS</category>
+        <category>2023</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>Model Transformation</tag>
+        <tag>Survey</tag>
       </tags>
   </entry>
   <entry>
@@ -2324,36 +2357,228 @@ OSATE存在一个问题：修改图形之后对应的文本不能自动更新，
       </tags>
   </entry>
   <entry>
-    <title>笔记：Model Transformation Testing and Debugging:A Survey</title>
-    <url>/2025/03/07/028/</url>
+    <title>笔记：Bibliometric Analysis of Model-Based Systems Engineering:Past, Current, and Future</title>
+    <url>/2025/05/07/030/</url>
     <content><![CDATA[
-[Model Transformation Testing and Debugging:A Survey](https://dl.acm.org/doi/abs/10.1145/3523056)
+[Bibliometric Analysis of Model-Based Systems Engineering: Past, Current, and Future](https://ieeexplore.ieee.org/abstract/document/9829034/)
 
 `Abstraction`
 
-> Model transformations are the key technique in Model-Driven Engineering (MDE) to manipulate and construct models. As a consequence, the correctness of software systems built with MDE approaches relies mainly on the correctness of model transformations, and thus, detecting and locating bugs in model transformations have been popular research topics in recent years. This surge of work has led to a vast literature on model transformation testing and debugging, which makes it challenging to gain a comprehensive view of the current state-of-the-art. This is an obstacle for newcomers to this topic and MDE practitioners to apply these approaches. This article presents a survey on testing and debugging model transformations based on the analysis of 140 papers on the topics. We explore the trends, advances, and evolution over the years, bringing together previously disparate streams of work and providing a comprehensive view of these thriving areas. In addition, we present a conceptual framework to understand and categorize the different proposals. Finally, we identify several open research challenges and propose specific action points for the model transformation community.
+> Model-based systems engineering (MBSE) is considered an important approach for understanding multidomain fields and is widely used in complex systems such as aerospace. In this article, a detailed survey ofMBSE literature was conducted from its commencement to the present trends through bibliometric analysis.
+> Some bibliometric tools were used to implement a visual network analysis of MBSE-related manuscripts. The results of the bibliometric study revealed the interrelationship and distribution of researchers in multidomain fields. The authorized sources ofMBSE papers were also assorted. The current practices of MBSE were analyzed. The future directions for MBSE based on the current practices were discussed. We found that MBSE’s research has been conducted by many research teams with distinctive characteristics, and the top publishing sources in this field have emerged. Research on MBSE focuses on system engineering, languages, system of systems, and digitalization. The development of new technologies such as next-generation modeling languages is improving current practical problems. The findings of this study may help researchers gain a faster and more comprehensive understanding of the current and future developments in MBSE.
 
-本文是研究“模型转换测试和调试”的综述，通过对140篇论文的调研，从不同的角度分析了现有该领域工作的特点，包括进行分类和讨论。
+![MBSE时间线](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050701.jpg)
 
-- 第一章介绍论文动机和文章结构。
-- 第二章介绍研究背景，包括一些基本术语：元模型、模型转换和先前的一些工作。
-- 第三章介绍了本文所用使用的分类方法，围绕图4中展示的结构对测试和调试环节进行分类梳理（也就是说不是所有的140篇论文都涵盖这个图4的全流程）。
-- 第四章讲论文调研的流程，包括主要的四个问题、论文收集和选择标准、数据分类等。
-- 第五章进入正题，回答问题一“每个论文的测试过程重点研究了什么？”，开始围绕四个问题就收集到的论文和分类结果进行一一陈述。其中5.2讨论的Test Oracle是有关模型转换理念的分类
-- 第六章回答问题二“模型转换调试的方法是什么？”。
-- 第七章回答问题三“如何评估模型转换方法？”。7.1节先介绍了调研中提到的一些工具，7.2节介绍一些案例，但没有介绍具体的评估方法。
-- 第八章回答问题四“未来挑战有哪些？”。
+INCOSE在2006年的系统工程2020一文中提到的MBSE的定义是：
+> Model-based systems engineering is the formalized application of modeling to support system requirements, design, analysis, and V&V activities beginning in the conceptual design phase and continuing throughout development and later lifecycle phases.
+
+本文面向的三个问题：
+
+- 建模语言的升级是否和MBSE有关？建模语言升级的方向是什么？建模语言仍然占据了图11中的当前研究阶段，以SYSML为代表。该语言的未来方向是建立与语义建模相关的功能。
+- 数字工程、数字孪生和人工智能的概念和MBSE的关系？图8-11均表明这些新概念已经作为独立的研究集群存在。此外，图11还显示，在此阶段，数字双胞胎和区块链代表的新概念已成为研究的热门话题。结合图8中的关键字连接，这些新的数字化概念与MBSE的建模和模拟有关。它在系统模型的构建和权威性真实来源中起着重要作用。
+- MBSE的应用领域仍在航空航天中吗？在表V中，我们可以看到MBSE应用程序已经开始扩展，涉及电动汽车和智能电网等复杂系统。
+
+![学者团队分布](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050702.jpg)
+
+![学者团队发文量](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050703.jpg)
+
+22个团队通过广泛的跨阵容合作建立了联系，这在图4中构成了多数。团队之间的关联以红色标记，并且至少出现了35个不同的关联。此外，黑色圆圈中的团队表明它与圈子外的作者几乎没有联系。尽管有27支球队与最大的合行集团（多数）没有联系，但五支大型团队拥有7个以上的成员，这比大多数球队的数量还多。这表明MBSE产生了不同的研究特征，归于研究团队，这又意味着在MBSE社区中至少认可了10种技术。因此，MBSE处于显着的扩展阶段。最大的研究团队是由Vogel-Heuser代表的研究团队，该团队不仅拥有第二大小组基础（有22个核心成员），而且还与九个研究团队合作。
+
+为了评估每个研究团队的活动，我们构建了所有团队发行的年度出版物的统计数据。由于团队的区别特征是合行，因此同时计算团队所有成员的年度出版物将导致严重的重复。为了避免数据重复，我们认为每个集群中出版物数量最多的作者是计算每年出版物数量的代表。图5说明了10位代表作者的年度出版物，在图4中的49个集群中，代表中的出版物数量最多。图5中的点（值）的大小（值）是指作者一年中的出版物数量。就出版物的平均数量而言，这些主要研究团队随着时间的推移增加了产量，这与总体结果一致。Dori在整个2008年至2022年的整个期间都持续了产出。尽管Choley和Vogel在TP方面排名前两名，但它们的出版物主要是2014年及以后的。 Lu和Albers从近年来发表的研究中推断出，过去三年发表的论文数量最多，这表明他们的研究可能与MBSE的下一代技术有关。此外，这些研究人员专注于数字双胞胎，机电系统设计，本体论，工业4.0等。
+
+对于地理分析，我们使用Vosviewer收集出版物的地理信息。作者的地理位置是根据机构或组织的位置而不是其国籍来计算的。图6提出了结果。大多数MBSE研究人员来自美国（25.1％），其次是德国（14.2％），法国（9.0％）和中国（8.0％）。美国，欧洲和中国的研究人员占研究人员总数的80％，这些地区也是航空航天行业快速发展的地区，NASA，ESA和中国航空航天科学技术公司（CASC）等机构。以欧洲太空研究与技术中心（ESTEC）所在的荷兰为例，我们从该国收集的10份出版物是由ESA或ESTEC的研究人员撰写的。此外，我们发现MBSE软件公司还推动了区域MBSE研究。该设施的研究人员撰写了一个名为No Magic（Kaunas，立陶宛）的软件开发设施，来自立陶宛的22个出版物中的7个是欧盟（Kaunas）。
+
+MBSE出版物目前在包括期刊，会议和书籍在内的一千多个来源发表。根据对Vosviewer的引文分析，本研究检查了这些来源之间引文连接的数量和强度。总的来说，出版物来自系统工程，仿真，制造，航空，计算机科学和技术等的来源。图7的左侧显示了完整的源分析结果，以做出整体判断。
+
+为了更清晰地描绘出值得注意的来源，每个来源的最低出版物门槛设置为17，这意味着只有达到阈值的来源才会出现在网络上。在1174个来源中，有45（3.8％）达到了约束。这45个来源生产的出版物数量占所有出版物的51.6％。所有这些来源由于相互引用而相互联系，并且没有独立的来源。图7说明了右侧45个来源的引文网络。网络中的每个节点代表一个不同的来源，其大小代表出版物的数量。调色板代表了源的平均引用数量。
+
+根据引文分析的规则，两个节点之间的联系表明它们具有“相互引用”或相互引文关系。每个链接的强度表示这种关系的数量。因此，节点的总强度越高，该节点与其他节点之间的关系越强，这表示节点的重要性。系统工程与大多数来源的联系，并且在294的强度上具有最高的强度，这表明其可识别性很高。第二个梯队由四个来源：Procedia计算机科学，系统，IEEE航空航天会议，IEEE Systems Journal组成，每个杂志的强度超过80。
+
+![论文引用量排名](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050704.jpg)
+![论文发文量排名](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050705.jpg)
+
+为了提供图7的详细分析，表I和II列出了10个来源，以总引用（TC）和总出版物（TP）排名。 INCOSE在TP和TC中均排名前2名，证明它是MBSE中重要的出版物。七个来源同时出现在TC和TP排名的前10名中。系统工程仅发表了113项研究，并收到了1257次引用。此外，《 IEEE系统杂志》已获得441次引用，其中有43篇出版物，这证明了其内容的高质量。 IEEE关于工业信息学的交易被高度引用，值得研究人员的注意，尽管到目前为止已经发表了少量与MBSE相关的出版物。国际宇航大会（IAC）的TP较高，TC明显较低，这意味着IAC中发表的论文的引用往往比表II中列出的其他来源少。除了表I和II中排名前10的TP/TC源外，图7中还可以找到一些较低但值得注意的来源。
+
+![十个最高引文章](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050706.jpg)
+
+表III列出了最引用的十大MBSE出版物，这些出版物主要来自期刊。除非三本书，否则所有这些出版物都是研究和审查文章。十个最引用的文章反映了MBSE的当前趋势，并以1：5：4的比率对应于II节的三个阶段。在技​​术触发阶段，研究人员更关心概念的定义，但是这些研究并没有吸引更多的研究人员。在膨胀的期望和幻灭阶段的潮流中，MBSE开始朝着应用实践迈进，这也吸引了更多的研究人员。当前的亮相阶段，研究人员开始与新技术（例如数字双胞胎）结合使用MBSE，也吸引了最多的研究。有496篇引文，引用最多的文章发表在2019年的IEEE工业信息学交易（Tao F.等）中。
+
+![关键词图](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050707.jpg)
+
+![未来演化分析（X轴表示和其他主题之间的关联程度，Y轴表示发文密度）](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050708.jpg)
+
+
+![MBSE主题地图](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050709.jpg)
+
+![MBSE主题演变](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050710.jpg)
+
+个人总结：最新的MBSE论文综述，对当前MBSE领域常见的学术概念和发文领域做了统计，整体比较清晰。本文主要都是围绕关键词分析的，偏概念，对实际文章内容的讨论很少，没有区分MBSE在不同的领域发挥了什么作用。
 ]]></content>
       <categories>
         <category>Academic Papers</category>
         <category>Journal</category>
-        <category>CS</category>
-        <category>2023</category>
+        <category>TEM</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>review</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Sirius Web:Insights in Language Workbenches An Experience Report</title>
+    <url>/2025/05/12/032/</url>
+    <content><![CDATA[
+[Sirius Web: Insights in Language Workbenches An Experience Report](https://inria.hal.science/hal-04797246/)
+
+`Abstraction`
+
+> Sirius Web is an open-source, web-based language workbench maintained by Obeo and hosted under the Eclipse Foundation. It is the successor of Sirius Desktop, an Eclipse-based language workbench used for producing numerous industrial graphical modeling workbenches in the past decades. Leveraging on this valuable experience, in this article we provide an overview of Sirius Web and document the rationales and good practices that have shaped its development. Specifically, we focus on: 1/ the rationales behind modeling and usability features; 2/ their impact on the development lifecycle of tool-supported modeling languages; 3/ the software architecture of the language workbench and the resulting modeling environments. Concrete examples illustrate both the detailed rationales and the use of the tool. We also discuss alternative approaches Obeo considered. In addition to introducing Sirius Web, this paper also aims to help language workbench developers make informed design choices for the future development of web-based language workbenches. It also identifies current open questions for the software language engineering community. Moreover, by addressing current open questions in software language engineering, this study contributes to the ongoing dialogue in the community, potentially steering future research directions.
+
+本文关注：基本原理、对软工的影响和作用、语言工作台软件架构。
+
+## Introduction
+
+Sirius Web（后文简称SW）是一种基于Web的语言工作台（language workbench）。
+
+本文的一作Théo Giraudet是开发人员、二作Mélanie Bats是Obeo的CTO、五作Pierre-Charles David是Sirius Desktop的项目负责人。
+
+## Sirius Web
+
+### Overview of the tool
+
+SW is a web application that can be accessed through a web browser client.
+The server part is developed using Java, Spring Boot, and EMF, and the client is made with TypeScript and React.
+SW uses GraphQL for defining the communication protocol between the server and client.
+作用：SW is agnostic of the application domain and mainly targets domain experts. It may be useful for any domain that has to build graphical DSMLs for their own concerns.
+
+SW的使用者分为两个类型：studio maker和end user。
+
+![基本概念](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051201.jpg)
+
+SW提供了两个源语言来定义领域模型和领域视图。语言设计者可以通过GEMOC Studio或Epsilon使用Java API或SW来定义语法semantics。抽象语法符合Ecore。
+
+To describe the mapping between the concrete syntax elements and the abstract syntax elements, the studio maker uses from the View DSL an embeded query language called AQL (Acceleo Query Language) and inspired by OCL (Object Constraint Language).
+
+SW also proposes to create languages with its Java APIs, enabling the use of Ecore to develop abstract syntax.
+
+![效果图](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051202.jpg)
+
+- explorer view
+- representation editor
+- details view
+- model root
+
+当前使用SW的工具：
+
+- [SysON for systems engineering](https://mbse-syson.org/)
+- [Papyrus Web for UML](https://gitlab.eclipse.org/eclipse/papyrus/org.eclipse.papyrus-web)
+- [parts of Obeo SmartEA for enterprise architect](https://www.obeosmartea.com/en/)
+
+### Sirius Web team
+
+SW由七个工程师开发！Mélanie Bats和Benoît Combemale都有十年工作经验。
+
+### Overview of the main considered requirements
+
+We elicited six main requirements to fulfill for developing language workbenches dedicated to graphical modeling environments.
+
+- Heterogeneous Modeling: Language workbenches must be able to deal with different models in a coordinated and usable way.
+- Collaborative modeling: Each studio maker has different domain expertise but needs to work together to build a unique system.
+- Agile language development: The language workbench must provide a way to ease the iteration during the language development process between these two roles.
+- Separation of Concerns: For example, a studio maker may design the abstract syntax once, to then let other studio makers work on various concrete syntaxes on the same abstract syntax and over different periods (e.g., different projects over time).
+- Deployment: This requirement follows the DevOps approach, aiming to bridge the gap between the development and the production.
+- Interoperability: Developed studios usually have to interoperate with other tools of the end users.
+
+## Rationales
+
+### Language workbench development features
+
+#### Rationale 1: Adapting the language workbench to the studio maker expertise
+
+Sirius Web offers three different development interfaces:
+
+- the low-code facilities in the browser;
+- a Java-based API based on the Domain and View DSLs;
+- a Java-based API directly based on EMF.
+
+Each interface provides different abstractions, each with varying degrees of customization possibilities. Through one specific interface, the studio maker can contribute to extending the other interfaces with new services.
+
+#### Rationale 2: Enabling heterogeneous representations
+
+A language workbench should propose the development of multiple representations from different representation types (e.g., diagram, form) for a DSL.
+
+Sirius Web proposes different representation types (diagrams, forms) for which a studio maker can create a representation type description.Moreover, from the Java API the studio maker can create new representation types and use them from the low-code interface.
+
+新的问题：语言工作台应该支持模型变体表示法。
+
+#### Rationale 3: Bootstrapping the language workbench
+
+The features available in the language workbench (representations, interactive features such as completion, layouting) should also be available or even customizable for the developed studios.
+In other words, the language workbench should mainly be a specific studio that proposes meta-languages.
+
+Bootstrapping is a common technique when designing a language workbench. For example, Xtext (Efftinge & Völter 2006), MPS (Pech et al 2013), Spoofax (Wachsmuth et al. 2014) are bootstrapped.
+
+新的问题：A current challenge is how to help developers in reporting issues as they develop their language workbench.
+
+#### Rationale 4: Bridging the gap between the concrete and the abstract syntax
+
+AQL is the language that Obeo provides in Sirius Desktop and Sirius Web for navigating the model. In particular, it is used to describe the mapping from the abstract syntax elements to the concrete syntax elements in the View DSL. The mapping can be conditional to be applied only when an abstract syntax element’s property has a specific value, for instance, enabling more dynamic concrete syntax. Finally, it is also used to describe the behavior of the different tools. 
+
+AQL is inspired by OCL (OMG 2014) and has a very similar syntax, with the following specific difference: AQL has a static typing system like OCL, but the type system checking is separated from the execution phase. This enables to type check on demand: enabled for validation at design time, for the studio maker; and disabled in the studio, to avoid performance overhead and thus execute AQL queries faster. AQL supports union types to avoid falling back on a top type such as Object when a variable can have different types. This allows the list of common attributes of the possible types to be collected and provided to the studio maker via auto-completion.
+
+### Language Development Lifecycle
+
+#### Rationale 5: Uncoupling abstract syntax and concrete syntax development lifecycles
+
+The abstract and concrete syntaxes should be developed as independently as possible, even at different times when possible.
+
+In Sirius Web, the development of abstract syntax and concrete syntax are two different activities with their own lifecycle. This rationale follows the classical separation of concerns between views and models as widely adopted in the human-computer interaction domain (the MV* pattern). However, this requires the co-evolution of the abstract syntax and the concrete syntax: each time the studio maker modifies the abstract syntax, they might have to modify the concrete syntax and vice versa.
+
+#### Rationale 6: Enabling seamless studio deployment
+
+When a studio maker creates or modifies a studio, Sirius Web automatically and seamlessly deploys this studio on the current Sirius Web instance.
+
+### Software Architecture
+
+#### Rationale 7: Enabling model edition by interacting with the concrete syntax elements
+
+![三种具体语法和抽象语法的解析方式](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051203.jpg)
+
+[Xtext](https://www.eclipse.org/Xtext/)和[Langium](https://langium.org)是第一种方案。 In this approach, the instance of the abstract syntax (AST) is directly inferred from the manipulation of the model through the concrete syntax.
+
+[MPS](https://www.jetbrains.com/mps/)和[Freon](https://www.freon4dsl.dev)是第三种方案。which is used only to project the AST to the end user.
+
+Obeo的SW使用的是第二种方案。
+
+#### Rationale 8: Relying on a cloud-native architecture
+
+The language workbench and the developed studios should be accessible without any installation on the devices of the different users.
+
+![Sirius Web云架构](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051204.jpg)
+
+#### Rationale 9: Integrating the studios with other tools and vice versa
+
+Sirius Web provides mechanisms to be integrated with, or to integrate, other environments. Since the Sirius Web front-end is web-based, it can work with other environments that support web view or are web-based, e.g., Eclipse RCP, Visual Studio Code, documentation websites. Moreover, as being cloud-native, Sirius Web uses a standardized protocol between its front-end and its back-end, namely GraphQL over HTTP. So, integration can be performed with environments that use this protocol to get data from and send data to a Sirius Web server. Finally, other web-based environments can be integrated in Sirius Web as a representation type for instance.
+
+### The Sirius Web project development since 2020
+
+Sirius Web是一种通用工具，因此大多数设置都涉及其支持大多数DSML常见的大型工业模型和通用功能的能力。关于可扩展性，Sirius Web旨在支持数百万个元素的模型，这些模型通过具有数千个节点的图形表示显示。这些不同的价值来自与其不同客户的OBEO体验。关于最常见功能的支持，其中一部分来自Sirius桌面和用户要求。其他人来自客户要求或开发特定的独立工作室，例如Syson，其他工作室可能感兴趣的功能是Sirius Web本身的上游。
+
+### Discussion
+
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>JOT</category>
+        <category>2024</category>
       </categories>
       <tags>
         <tag>MDE</tag>
-        <tag>Model Transformation</tag>
-        <tag>Survey</tag>
+        <tag>MBSE</tag>
+        <tag>Sirius</tag>
+        <tag>language workbench</tag>
       </tags>
   </entry>
   <entry>
@@ -2447,75 +2672,6 @@ Mission definition：卫星的四种工作模态（海上关闭、陆地测量�
         <tag>MBSE</tag>
         <tag>SysML</tag>
         <tag>satellite</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Bibliometric Analysis of Model-Based Systems Engineering:Past, Current, and Future</title>
-    <url>/2025/05/07/030/</url>
-    <content><![CDATA[
-[Bibliometric Analysis of Model-Based Systems Engineering: Past, Current, and Future](https://ieeexplore.ieee.org/abstract/document/9829034/)
-
-`Abstraction`
-
-> Model-based systems engineering (MBSE) is considered an important approach for understanding multidomain fields and is widely used in complex systems such as aerospace. In this article, a detailed survey ofMBSE literature was conducted from its commencement to the present trends through bibliometric analysis.
-> Some bibliometric tools were used to implement a visual network analysis of MBSE-related manuscripts. The results of the bibliometric study revealed the interrelationship and distribution of researchers in multidomain fields. The authorized sources ofMBSE papers were also assorted. The current practices of MBSE were analyzed. The future directions for MBSE based on the current practices were discussed. We found that MBSE’s research has been conducted by many research teams with distinctive characteristics, and the top publishing sources in this field have emerged. Research on MBSE focuses on system engineering, languages, system of systems, and digitalization. The development of new technologies such as next-generation modeling languages is improving current practical problems. The findings of this study may help researchers gain a faster and more comprehensive understanding of the current and future developments in MBSE.
-
-![MBSE时间线](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050701.jpg)
-
-INCOSE在2006年的系统工程2020一文中提到的MBSE的定义是：
-> Model-based systems engineering is the formalized application of modeling to support system requirements, design, analysis, and V&V activities beginning in the conceptual design phase and continuing throughout development and later lifecycle phases.
-
-本文面向的三个问题：
-
-- 建模语言的升级是否和MBSE有关？建模语言升级的方向是什么？建模语言仍然占据了图11中的当前研究阶段，以SYSML为代表。该语言的未来方向是建立与语义建模相关的功能。
-- 数字工程、数字孪生和人工智能的概念和MBSE的关系？图8-11均表明这些新概念已经作为独立的研究集群存在。此外，图11还显示，在此阶段，数字双胞胎和区块链代表的新概念已成为研究的热门话题。结合图8中的关键字连接，这些新的数字化概念与MBSE的建模和模拟有关。它在系统模型的构建和权威性真实来源中起着重要作用。
-- MBSE的应用领域仍在航空航天中吗？在表V中，我们可以看到MBSE应用程序已经开始扩展，涉及电动汽车和智能电网等复杂系统。
-
-![学者团队分布](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050702.jpg)
-
-![学者团队发文量](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050703.jpg)
-
-22个团队通过广泛的跨阵容合作建立了联系，这在图4中构成了多数。团队之间的关联以红色标记，并且至少出现了35个不同的关联。此外，黑色圆圈中的团队表明它与圈子外的作者几乎没有联系。尽管有27支球队与最大的合行集团（多数）没有联系，但五支大型团队拥有7个以上的成员，这比大多数球队的数量还多。这表明MBSE产生了不同的研究特征，归于研究团队，这又意味着在MBSE社区中至少认可了10种技术。因此，MBSE处于显着的扩展阶段。最大的研究团队是由Vogel-Heuser代表的研究团队，该团队不仅拥有第二大小组基础（有22个核心成员），而且还与九个研究团队合作。
-
-为了评估每个研究团队的活动，我们构建了所有团队发行的年度出版物的统计数据。由于团队的区别特征是合行，因此同时计算团队所有成员的年度出版物将导致严重的重复。为了避免数据重复，我们认为每个集群中出版物数量最多的作者是计算每年出版物数量的代表。图5说明了10位代表作者的年度出版物，在图4中的49个集群中，代表中的出版物数量最多。图5中的点（值）的大小（值）是指作者一年中的出版物数量。就出版物的平均数量而言，这些主要研究团队随着时间的推移增加了产量，这与总体结果一致。Dori在整个2008年至2022年的整个期间都持续了产出。尽管Choley和Vogel在TP方面排名前两名，但它们的出版物主要是2014年及以后的。 Lu和Albers从近年来发表的研究中推断出，过去三年发表的论文数量最多，这表明他们的研究可能与MBSE的下一代技术有关。此外，这些研究人员专注于数字双胞胎，机电系统设计，本体论，工业4.0等。
-
-对于地理分析，我们使用Vosviewer收集出版物的地理信息。作者的地理位置是根据机构或组织的位置而不是其国籍来计算的。图6提出了结果。大多数MBSE研究人员来自美国（25.1％），其次是德国（14.2％），法国（9.0％）和中国（8.0％）。美国，欧洲和中国的研究人员占研究人员总数的80％，这些地区也是航空航天行业快速发展的地区，NASA，ESA和中国航空航天科学技术公司（CASC）等机构。以欧洲太空研究与技术中心（ESTEC）所在的荷兰为例，我们从该国收集的10份出版物是由ESA或ESTEC的研究人员撰写的。此外，我们发现MBSE软件公司还推动了区域MBSE研究。该设施的研究人员撰写了一个名为No Magic（Kaunas，立陶宛）的软件开发设施，来自立陶宛的22个出版物中的7个是欧盟（Kaunas）。
-
-MBSE出版物目前在包括期刊，会议和书籍在内的一千多个来源发表。根据对Vosviewer的引文分析，本研究检查了这些来源之间引文连接的数量和强度。总的来说，出版物来自系统工程，仿真，制造，航空，计算机科学和技术等的来源。图7的左侧显示了完整的源分析结果，以做出整体判断。
-
-为了更清晰地描绘出值得注意的来源，每个来源的最低出版物门槛设置为17，这意味着只有达到阈值的来源才会出现在网络上。在1174个来源中，有45（3.8％）达到了约束。这45个来源生产的出版物数量占所有出版物的51.6％。所有这些来源由于相互引用而相互联系，并且没有独立的来源。图7说明了右侧45个来源的引文网络。网络中的每个节点代表一个不同的来源，其大小代表出版物的数量。调色板代表了源的平均引用数量。
-
-根据引文分析的规则，两个节点之间的联系表明它们具有“相互引用”或相互引文关系。每个链接的强度表示这种关系的数量。因此，节点的总强度越高，该节点与其他节点之间的关系越强，这表示节点的重要性。系统工程与大多数来源的联系，并且在294的强度上具有最高的强度，这表明其可识别性很高。第二个梯队由四个来源：Procedia计算机科学，系统，IEEE航空航天会议，IEEE Systems Journal组成，每个杂志的强度超过80。
-
-![论文引用量排名](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050704.jpg)
-![论文发文量排名](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050705.jpg)
-
-为了提供图7的详细分析，表I和II列出了10个来源，以总引用（TC）和总出版物（TP）排名。 INCOSE在TP和TC中均排名前2名，证明它是MBSE中重要的出版物。七个来源同时出现在TC和TP排名的前10名中。系统工程仅发表了113项研究，并收到了1257次引用。此外，《 IEEE系统杂志》已获得441次引用，其中有43篇出版物，这证明了其内容的高质量。 IEEE关于工业信息学的交易被高度引用，值得研究人员的注意，尽管到目前为止已经发表了少量与MBSE相关的出版物。国际宇航大会（IAC）的TP较高，TC明显较低，这意味着IAC中发表的论文的引用往往比表II中列出的其他来源少。除了表I和II中排名前10的TP/TC源外，图7中还可以找到一些较低但值得注意的来源。
-
-![十个最高引文章](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050706.jpg)
-
-表III列出了最引用的十大MBSE出版物，这些出版物主要来自期刊。除非三本书，否则所有这些出版物都是研究和审查文章。十个最引用的文章反映了MBSE的当前趋势，并以1：5：4的比率对应于II节的三个阶段。在技​​术触发阶段，研究人员更关心概念的定义，但是这些研究并没有吸引更多的研究人员。在膨胀的期望和幻灭阶段的潮流中，MBSE开始朝着应用实践迈进，这也吸引了更多的研究人员。当前的亮相阶段，研究人员开始与新技术（例如数字双胞胎）结合使用MBSE，也吸引了最多的研究。有496篇引文，引用最多的文章发表在2019年的IEEE工业信息学交易（Tao F.等）中。
-
-![关键词图](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050707.jpg)
-
-![未来演化分析（X轴表示和其他主题之间的关联程度，Y轴表示发文密度）](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050708.jpg)
-
-
-![MBSE主题地图](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050709.jpg)
-
-![MBSE主题演变](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050710.jpg)
-
-个人总结：最新的MBSE论文综述，对当前MBSE领域常见的学术概念和发文领域做了统计，整体比较清晰。本文主要都是围绕关键词分析的，偏概念，对实际文章内容的讨论很少，没有区分MBSE在不同的领域发挥了什么作用。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TEM</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>review</tag>
       </tags>
   </entry>
 </search>

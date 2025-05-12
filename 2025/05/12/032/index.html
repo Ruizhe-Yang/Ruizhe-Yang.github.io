@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：Sirius Web:Insights in Language Workbenches An Experience Report | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Sirius Web: Insights in Language Workbenches An Experience Report Abstraction  Sirius Web is an open-source, web-based language workbench maintained by Obeo and hosted under the Eclipse Foundation. It">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：Sirius Web:Insights in Language Workbenches An Experience Report">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2025/05/12/032/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="Sirius Web: Insights in Language Workbenches An Experience Report Abstraction  Sirius Web is an open-source, web-based language workbench maintained by Obeo and hosted under the Eclipse Foundation. It">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051201.jpg">
+<meta property="article:published_time" content="2025-05-12T12:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-12T14:50:19.388Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="MDE">
+<meta property="article:tag" content="MBSE">
+<meta property="article:tag" content="Sirius">
+<meta property="article:tag" content="language workbench">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051201.jpg"><link rel="shortcut icon" href="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F2.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2025/05/12/032/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：Sirius Web:Insights in Language Workbenches An Experience Report',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-05-12 22:50:19'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">55</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">44</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051201.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F3.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：Sirius Web:Insights in Language Workbenches An Experience Report</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-05-12T12:00:00.000Z" title="Created 2025-05-12 20:00:00">2025-05-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-05-12T14:50:19.388Z" title="Updated 2025-05-12 22:50:19">2025-05-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/">Journal</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/JOT/">JOT</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/JOT/2024/">2024</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>9mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：Sirius Web:Insights in Language Workbenches An Experience Report"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://inria.hal.science/hal-04797246/">Sirius Web: Insights in Language Workbenches An Experience Report</a></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>Sirius Web is an open-source, web-based language workbench maintained by Obeo and hosted under the Eclipse Foundation. It is the successor of Sirius Desktop, an Eclipse-based language workbench used for producing numerous industrial graphical modeling workbenches in the past decades. Leveraging on this valuable experience, in this article we provide an overview of Sirius Web and document the rationales and good practices that have shaped its development. Specifically, we focus on: 1/ the rationales behind modeling and usability features; 2/ their impact on the development lifecycle of tool-supported modeling languages; 3/ the software architecture of the language workbench and the resulting modeling environments. Concrete examples illustrate both the detailed rationales and the use of the tool. We also discuss alternative approaches Obeo considered. In addition to introducing Sirius Web, this paper also aims to help language workbench developers make informed design choices for the future development of web-based language workbenches. It also identifies current open questions for the software language engineering community. Moreover, by addressing current open questions in software language engineering, this study contributes to the ongoing dialogue in the community, potentially steering future research directions.</p>
+</blockquote>
+<p>本文关注：基本原理、对软工的影响和作用、语言工作台软件架构。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Sirius Web（后文简称SW）是一种基于Web的语言工作台（language workbench）。</p>
+<p>本文的一作Théo Giraudet是开发人员、二作Mélanie Bats是Obeo的CTO、五作Pierre-Charles David是Sirius Desktop的项目负责人。</p>
+<h2 id="Sirius-Web"><a href="#Sirius-Web" class="headerlink" title="Sirius Web"></a>Sirius Web</h2><h3 id="Overview-of-the-tool"><a href="#Overview-of-the-tool" class="headerlink" title="Overview of the tool"></a>Overview of the tool</h3><p>SW is a web application that can be accessed through a web browser client.<br>The server part is developed using Java, Spring Boot, and EMF, and the client is made with TypeScript and React.<br>SW uses GraphQL for defining the communication protocol between the server and client.<br>作用：SW is agnostic of the application domain and mainly targets domain experts. It may be useful for any domain that has to build graphical DSMLs for their own concerns.</p>
+<p>SW的使用者分为两个类型：studio maker和end user。</p>
+<p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051201.jpg" alt="基本概念"></p>
+<p>SW提供了两个源语言来定义领域模型和领域视图。语言设计者可以通过GEMOC Studio或Epsilon使用Java API或SW来定义语法semantics。抽象语法符合Ecore。</p>
+<p>To describe the mapping between the concrete syntax elements and the abstract syntax elements, the studio maker uses from the View DSL an embeded query language called AQL (Acceleo Query Language) and inspired by OCL (Object Constraint Language).</p>
+<p>SW also proposes to create languages with its Java APIs, enabling the use of Ecore to develop abstract syntax.</p>
+<p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051202.jpg" alt="效果图"></p>
+<ul>
+<li>explorer view</li>
+<li>representation editor</li>
+<li>details view</li>
+<li>model root</li>
+</ul>
+<p>当前使用SW的工具：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mbse-syson.org/">SysON for systems engineering</a></li>
+<li><a target="_blank" rel="noopener" href="https://gitlab.eclipse.org/eclipse/papyrus/org.eclipse.papyrus-web">Papyrus Web for UML</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.obeosmartea.com/en/">parts of Obeo SmartEA for enterprise architect</a></li>
+</ul>
+<h3 id="Sirius-Web-team"><a href="#Sirius-Web-team" class="headerlink" title="Sirius Web team"></a>Sirius Web team</h3><p>SW由七个工程师开发！Mélanie Bats和Benoît Combemale都有十年工作经验。</p>
+<h3 id="Overview-of-the-main-considered-requirements"><a href="#Overview-of-the-main-considered-requirements" class="headerlink" title="Overview of the main considered requirements"></a>Overview of the main considered requirements</h3><p>We elicited six main requirements to fulfill for developing language workbenches dedicated to graphical modeling environments.</p>
+<ul>
+<li>Heterogeneous Modeling: Language workbenches must be able to deal with different models in a coordinated and usable way.</li>
+<li>Collaborative modeling: Each studio maker has different domain expertise but needs to work together to build a unique system.</li>
+<li>Agile language development: The language workbench must provide a way to ease the iteration during the language development process between these two roles.</li>
+<li>Separation of Concerns: For example, a studio maker may design the abstract syntax once, to then let other studio makers work on various concrete syntaxes on the same abstract syntax and over different periods (e.g., different projects over time).</li>
+<li>Deployment: This requirement follows the DevOps approach, aiming to bridge the gap between the development and the production.</li>
+<li>Interoperability: Developed studios usually have to interoperate with other tools of the end users.</li>
+</ul>
+<h2 id="Rationales"><a href="#Rationales" class="headerlink" title="Rationales"></a>Rationales</h2><h3 id="Language-workbench-development-features"><a href="#Language-workbench-development-features" class="headerlink" title="Language workbench development features"></a>Language workbench development features</h3><h4 id="Rationale-1-Adapting-the-language-workbench-to-the-studio-maker-expertise"><a href="#Rationale-1-Adapting-the-language-workbench-to-the-studio-maker-expertise" class="headerlink" title="Rationale 1: Adapting the language workbench to the studio maker expertise"></a>Rationale 1: Adapting the language workbench to the studio maker expertise</h4><p>Sirius Web offers three different development interfaces:</p>
+<ul>
+<li>the low-code facilities in the browser;</li>
+<li>a Java-based API based on the Domain and View DSLs;</li>
+<li>a Java-based API directly based on EMF.</li>
+</ul>
+<p>Each interface provides different abstractions, each with varying degrees of customization possibilities. Through one specific interface, the studio maker can contribute to extending the other interfaces with new services.</p>
+<h4 id="Rationale-2-Enabling-heterogeneous-representations"><a href="#Rationale-2-Enabling-heterogeneous-representations" class="headerlink" title="Rationale 2: Enabling heterogeneous representations"></a>Rationale 2: Enabling heterogeneous representations</h4><p>A language workbench should propose the development of multiple representations from different representation types (e.g., diagram, form) for a DSL.</p>
+<p>Sirius Web proposes different representation types (diagrams, forms) for which a studio maker can create a representation type description.Moreover, from the Java API the studio maker can create new representation types and use them from the low-code interface.</p>
+<p>新的问题：语言工作台应该支持模型变体表示法。</p>
+<h4 id="Rationale-3-Bootstrapping-the-language-workbench"><a href="#Rationale-3-Bootstrapping-the-language-workbench" class="headerlink" title="Rationale 3: Bootstrapping the language workbench"></a>Rationale 3: Bootstrapping the language workbench</h4><p>The features available in the language workbench (representations, interactive features such as completion, layouting) should also be available or even customizable for the developed studios.<br>In other words, the language workbench should mainly be a specific studio that proposes meta-languages.</p>
+<p>Bootstrapping is a common technique when designing a language workbench. For example, Xtext (Efftinge &amp; Völter 2006), MPS (Pech et al 2013), Spoofax (Wachsmuth et al. 2014) are bootstrapped.</p>
+<p>新的问题：A current challenge is how to help developers in reporting issues as they develop their language workbench.</p>
+<h4 id="Rationale-4-Bridging-the-gap-between-the-concrete-and-the-abstract-syntax"><a href="#Rationale-4-Bridging-the-gap-between-the-concrete-and-the-abstract-syntax" class="headerlink" title="Rationale 4: Bridging the gap between the concrete and the abstract syntax"></a>Rationale 4: Bridging the gap between the concrete and the abstract syntax</h4><p>AQL is the language that Obeo provides in Sirius Desktop and Sirius Web for navigating the model. In particular, it is used to describe the mapping from the abstract syntax elements to the concrete syntax elements in the View DSL. The mapping can be conditional to be applied only when an abstract syntax element’s property has a specific value, for instance, enabling more dynamic concrete syntax. Finally, it is also used to describe the behavior of the different tools. </p>
+<p>AQL is inspired by OCL (OMG 2014) and has a very similar syntax, with the following specific difference: AQL has a static typing system like OCL, but the type system checking is separated from the execution phase. This enables to type check on demand: enabled for validation at design time, for the studio maker; and disabled in the studio, to avoid performance overhead and thus execute AQL queries faster. AQL supports union types to avoid falling back on a top type such as Object when a variable can have different types. This allows the list of common attributes of the possible types to be collected and provided to the studio maker via auto-completion.</p>
+<h3 id="Language-Development-Lifecycle"><a href="#Language-Development-Lifecycle" class="headerlink" title="Language Development Lifecycle"></a>Language Development Lifecycle</h3><h4 id="Rationale-5-Uncoupling-abstract-syntax-and-concrete-syntax-development-lifecycles"><a href="#Rationale-5-Uncoupling-abstract-syntax-and-concrete-syntax-development-lifecycles" class="headerlink" title="Rationale 5: Uncoupling abstract syntax and concrete syntax development lifecycles"></a>Rationale 5: Uncoupling abstract syntax and concrete syntax development lifecycles</h4><p>The abstract and concrete syntaxes should be developed as independently as possible, even at different times when possible.</p>
+<p>In Sirius Web, the development of abstract syntax and concrete syntax are two different activities with their own lifecycle. This rationale follows the classical separation of concerns between views and models as widely adopted in the human-computer interaction domain (the MV* pattern). However, this requires the co-evolution of the abstract syntax and the concrete syntax: each time the studio maker modifies the abstract syntax, they might have to modify the concrete syntax and vice versa.</p>
+<h4 id="Rationale-6-Enabling-seamless-studio-deployment"><a href="#Rationale-6-Enabling-seamless-studio-deployment" class="headerlink" title="Rationale 6: Enabling seamless studio deployment"></a>Rationale 6: Enabling seamless studio deployment</h4><p>When a studio maker creates or modifies a studio, Sirius Web automatically and seamlessly deploys this studio on the current Sirius Web instance.</p>
+<h3 id="Software-Architecture"><a href="#Software-Architecture" class="headerlink" title="Software Architecture"></a>Software Architecture</h3><h4 id="Rationale-7-Enabling-model-edition-by-interacting-with-the-concrete-syntax-elements"><a href="#Rationale-7-Enabling-model-edition-by-interacting-with-the-concrete-syntax-elements" class="headerlink" title="Rationale 7: Enabling model edition by interacting with the concrete syntax elements"></a>Rationale 7: Enabling model edition by interacting with the concrete syntax elements</h4><p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051203.jpg" alt="三种具体语法和抽象语法的解析方式"></p>
+<p><a target="_blank" rel="noopener" href="https://www.eclipse.org/Xtext/">Xtext</a>和<a target="_blank" rel="noopener" href="https://langium.org">Langium</a>是第一种方案。 In this approach, the instance of the abstract syntax (AST) is directly inferred from the manipulation of the model through the concrete syntax.</p>
+<p><a target="_blank" rel="noopener" href="https://www.jetbrains.com/mps/">MPS</a>和<a target="_blank" rel="noopener" href="https://www.freon4dsl.dev">Freon</a>是第三种方案。which is used only to project the AST to the end user.</p>
+<p>Obeo的SW使用的是第二种方案。</p>
+<h4 id="Rationale-8-Relying-on-a-cloud-native-architecture"><a href="#Rationale-8-Relying-on-a-cloud-native-architecture" class="headerlink" title="Rationale 8: Relying on a cloud-native architecture"></a>Rationale 8: Relying on a cloud-native architecture</h4><p>The language workbench and the developed studios should be accessible without any installation on the devices of the different users.</p>
+<p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051204.jpg" alt="Sirius Web云架构"></p>
+<h4 id="Rationale-9-Integrating-the-studios-with-other-tools-and-vice-versa"><a href="#Rationale-9-Integrating-the-studios-with-other-tools-and-vice-versa" class="headerlink" title="Rationale 9: Integrating the studios with other tools and vice versa"></a>Rationale 9: Integrating the studios with other tools and vice versa</h4><p>Sirius Web provides mechanisms to be integrated with, or to integrate, other environments. Since the Sirius Web front-end is web-based, it can work with other environments that support web view or are web-based, e.g., Eclipse RCP, Visual Studio Code, documentation websites. Moreover, as being cloud-native, Sirius Web uses a standardized protocol between its front-end and its back-end, namely GraphQL over HTTP. So, integration can be performed with environments that use this protocol to get data from and send data to a Sirius Web server. Finally, other web-based environments can be integrated in Sirius Web as a representation type for instance.</p>
+<h3 id="The-Sirius-Web-project-development-since-2020"><a href="#The-Sirius-Web-project-development-since-2020" class="headerlink" title="The Sirius Web project development since 2020"></a>The Sirius Web project development since 2020</h3><p>Sirius Web是一种通用工具，因此大多数设置都涉及其支持大多数DSML常见的大型工业模型和通用功能的能力。关于可扩展性，Sirius Web旨在支持数百万个元素的模型，这些模型通过具有数千个节点的图形表示显示。这些不同的价值来自与其不同客户的OBEO体验。关于最常见功能的支持，其中一部分来自Sirius桌面和用户要求。其他人来自客户要求或开发特定的独立工作室，例如Syson，其他工作室可能感兴趣的功能是Sirius Web本身的上游。</p>
+<h3 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2025/05/12/032/">https://ruizhe-yang.github.io/2025/05/12/032/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MDE/">MDE</a><a class="post-meta__tags" href="/tags/MBSE/">MBSE</a><a class="post-meta__tags" href="/tags/Sirius/">Sirius</a><a class="post-meta__tags" href="/tags/language-workbench/">language workbench</a></div><div class="post_share"><div class="social-share" data-image="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051201.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/05/10/031/" title="笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051001.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2025/02/20/019/" title="笔记：Product Lines of Graphical Modelling Languages"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/models2024.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-20</div><div class="title">笔记：Product Lines of Graphical Modelling Languages</div></div></a></div><div><a href="/2025/02/25/023/" title="笔记：Tree-Based versus Hybrid Graphical-Textual Model Editors:An Empirical Study of Testing Specifications"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/models2024.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-25</div><div class="title">笔记：Tree-Based versus Hybrid Graphical-Textual Model Editors:An Empirical Study of Testing Specifications</div></div></a></div><div><a href="/2025/02/27/025/" title="笔记：10 years of Model Federation with Openflexo:Challenges and Lessons Learned"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/models2024.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-27</div><div class="title">笔记：10 years of Model Federation with Openflexo:Challenges and Lessons Learned</div></div></a></div><div><a href="/2025/02/10/013/" title="笔记：Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/models2021.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-10</div><div class="title">笔记：Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt</div></div></a></div><div><a href="/2025/02/12/014/" title="笔记：Advancing Domain-Specific High-Integrity Model-Based Tools:Insights and Future Pathways"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/models2024.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-12</div><div class="title">笔记：Advancing Domain-Specific High-Integrity Model-Based Tools:Insights and Future Pathways</div></div></a></div><div><a href="/2024/08/17/002/" title="笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-17</div><div class="title">笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">55</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">44</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://b23.tv/3cRMvn8" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sirius-Web"><span class="toc-number">2.</span> <span class="toc-text">Sirius Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Overview-of-the-tool"><span class="toc-number">2.1.</span> <span class="toc-text">Overview of the tool</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sirius-Web-team"><span class="toc-number">2.2.</span> <span class="toc-text">Sirius Web team</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Overview-of-the-main-considered-requirements"><span class="toc-number">2.3.</span> <span class="toc-text">Overview of the main considered requirements</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rationales"><span class="toc-number">3.</span> <span class="toc-text">Rationales</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Language-workbench-development-features"><span class="toc-number">3.1.</span> <span class="toc-text">Language workbench development features</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Rationale-1-Adapting-the-language-workbench-to-the-studio-maker-expertise"><span class="toc-number">3.1.1.</span> <span class="toc-text">Rationale 1: Adapting the language workbench to the studio maker expertise</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rationale-2-Enabling-heterogeneous-representations"><span class="toc-number">3.1.2.</span> <span class="toc-text">Rationale 2: Enabling heterogeneous representations</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rationale-3-Bootstrapping-the-language-workbench"><span class="toc-number">3.1.3.</span> <span class="toc-text">Rationale 3: Bootstrapping the language workbench</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rationale-4-Bridging-the-gap-between-the-concrete-and-the-abstract-syntax"><span class="toc-number">3.1.4.</span> <span class="toc-text">Rationale 4: Bridging the gap between the concrete and the abstract syntax</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Language-Development-Lifecycle"><span class="toc-number">3.2.</span> <span class="toc-text">Language Development Lifecycle</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Rationale-5-Uncoupling-abstract-syntax-and-concrete-syntax-development-lifecycles"><span class="toc-number">3.2.1.</span> <span class="toc-text">Rationale 5: Uncoupling abstract syntax and concrete syntax development lifecycles</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rationale-6-Enabling-seamless-studio-deployment"><span class="toc-number">3.2.2.</span> <span class="toc-text">Rationale 6: Enabling seamless studio deployment</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Software-Architecture"><span class="toc-number">3.3.</span> <span class="toc-text">Software Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Rationale-7-Enabling-model-edition-by-interacting-with-the-concrete-syntax-elements"><span class="toc-number">3.3.1.</span> <span class="toc-text">Rationale 7: Enabling model edition by interacting with the concrete syntax elements</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rationale-8-Relying-on-a-cloud-native-architecture"><span class="toc-number">3.3.2.</span> <span class="toc-text">Rationale 8: Relying on a cloud-native architecture</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rationale-9-Integrating-the-studios-with-other-tools-and-vice-versa"><span class="toc-number">3.3.3.</span> <span class="toc-text">Rationale 9: Integrating the studios with other tools and vice versa</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Sirius-Web-project-development-since-2020"><span class="toc-number">3.4.</span> <span class="toc-text">The Sirius Web project development since 2020</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Discussion"><span class="toc-number">3.5.</span> <span class="toc-text">Discussion</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/05/12/032/" title="笔记：Sirius Web:Insights in Language Workbenches An Experience Report"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051201.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Sirius Web:Insights in Language Workbenches An Experience Report"/></a><div class="content"><a class="title" href="/2025/05/12/032/" title="笔记：Sirius Web:Insights in Language Workbenches An Experience Report">笔记：Sirius Web:Insights in Language Workbenches An Experience Report</a><time datetime="2025-05-12T12:00:00.000Z" title="Created 2025-05-12 20:00:00">2025-05-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/10/031/" title="笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051001.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission"/></a><div class="content"><a class="title" href="/2025/05/10/031/" title="笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission">笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission</a><time datetime="2025-05-10T14:00:00.000Z" title="Created 2025-05-10 22:00:00">2025-05-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/07/030/" title="笔记：Bibliometric Analysis of Model-Based Systems Engineering:Past, Current, and Future"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050701.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Bibliometric Analysis of Model-Based Systems Engineering:Past, Current, and Future"/></a><div class="content"><a class="title" href="/2025/05/07/030/" title="笔记：Bibliometric Analysis of Model-Based Systems Engineering:Past, Current, and Future">笔记：Bibliometric Analysis of Model-Based Systems Engineering:Past, Current, and Future</a><time datetime="2025-05-07T02:00:00.000Z" title="Created 2025-05-07 10:00:00">2025-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/27/029/" title="笔记：Unlocking Synergy:Leveraging SysML and Modelica with Bi-Directional Transformation and Simulation Integration Standards"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/INCOSE-IS.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Unlocking Synergy:Leveraging SysML and Modelica with Bi-Directional Transformation and Simulation Integration Standards"/></a><div class="content"><a class="title" href="/2025/04/27/029/" title="笔记：Unlocking Synergy:Leveraging SysML and Modelica with Bi-Directional Transformation and Simulation Integration Standards">笔记：Unlocking Synergy:Leveraging SysML and Modelica with Bi-Directional Transformation and Simulation Integration Standards</a><time datetime="2025-04-27T08:00:00.000Z" title="Created 2025-04-27 16:00:00">2025-04-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/07/028/" title="笔记：Model Transformation Testing and Debugging:A Survey"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/ACM_CS.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Model Transformation Testing and Debugging:A Survey"/></a><div class="content"><a class="title" href="/2025/03/07/028/" title="笔记：Model Transformation Testing and Debugging:A Survey">笔记：Model Transformation Testing and Debugging:A Survey</a><time datetime="2025-03-07T13:00:00.000Z" title="Created 2025-03-07 21:00:00">2025-03-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: '49e4b0f1c60ad5527858cab4a77bc723',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
