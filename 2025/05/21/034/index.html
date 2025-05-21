@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：An integrated approach for enhanced early-phase space system design and optimization | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="An integrated approach for enhanced early-phase space system design and optimization Abstraction  The integration of Model-Based Systems Engineering (MBSE) and Multidisciplinary Design Analysis and Op">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：An integrated approach for enhanced early-phase space system design and optimization">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2025/05/21/034/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="An integrated approach for enhanced early-phase space system design and optimization Abstraction  The integration of Model-Based Systems Engineering (MBSE) and Multidisciplinary Design Analysis and Op">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025052101.jpg">
+<meta property="article:published_time" content="2025-05-21T12:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-21T14:49:50.596Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="MBSE">
+<meta property="article:tag" content="SysML">
+<meta property="article:tag" content="MDAO">
+<meta property="article:tag" content="Satellite">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025052101.jpg"><link rel="shortcut icon" href="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F2.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2025/05/21/034/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：An integrated approach for enhanced early-phase space system design and optimization',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-05-21 22:49:50'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">62</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">51</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025052101.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F3.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：An integrated approach for enhanced early-phase space system design and optimization</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-05-21T12:00:00.000Z" title="Created 2025-05-21 20:00:00">2025-05-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-05-21T14:49:50.596Z" title="Updated 2025-05-21 22:49:50">2025-05-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/">Journal</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/CI/">CI</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/CI/2025/">2025</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>6mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：An integrated approach for enhanced early-phase space system design and optimization"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S0166361525000235">An integrated approach for enhanced early-phase space system design and optimization</a></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>The integration of Model-Based Systems Engineering (MBSE) and Multidisciplinary Design Analysis and Optimization (MDAO) presents a powerful opportunity to enhance early-stage system design, particularly for complex space systems. However, the lack of efficient integration between these methods results in limitations such as unclear boundary between domain models, reduced automation, and challenges in maintaining traceability of optimization results. Overcoming these barriers is essential for conducting high-quality trade studies in systems engineering. In this work, we propose a novel framework that integrates MDAO with MBSE to streamline system modeling, optimization, and verification. This approach enables the seamless exchange of knowledge between design and optimization models, while performing optimizations and managing results directly within the MBSE environment. By using MBSE as a central knowledge repository, the framework minimizes errors and improves the traceability of optimization processes. Case studies demonstrate that this framework enhances both efficiency and accuracy during the early design phases of space mission development. Our findings indicate that integrating MDAO with MBSE allows for comprehensive system evaluation and more informed decision-making, ultimately improving the quality and efficiency of the design process. This integrated framework offers a flexible, scalable solution for multidisciplinary optimization, making it a valuable tool for the design of future complex systems.</p>
+</blockquote>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Traditional systems engineering stores team knowledge in dispersed documents, while detailed design, manufacturing, and testing increasingly rely on computer-aided technology, which can lead to disconnects and introduce errors. By using this model as the single source of truth (SSOT), MBSE helps manage system complexity, offers an efficient interdisciplinary platform for collboration across various fields, and facilitates the sharing of design knowledge.</p>
+<p>Trade study: A means of evaluating system designs by devising alternative means to meet functional requirements, evaluating these alternatives in terms of the measures of effectiveness and system cost, ranking the alternatives according to appropriate selection criteria, dropping less promising alternatives, and proceeding to the next level of resolution, if needed. (NASA Systems Engineering Handbook)</p>
+<p>MDAO typically requires defining the system’s operation before constructing the MDAO framework and performing optimization with analytical models from each discipline. As a result, MDAO demands a substantial initial effort, consuming 60–80 % of project time in aerospace contexts (Habermehl et al, 2022).</p>
+<p>Translating MBSE models into a form usable by MDAO is not straightforward, and integrating MDAO results back into MBSE is equally challenging.</p>
+<p>The primary contribution of this approach is to clearly delineate the boundaries between models within the space mission domain and the optimization domain in MBSE. A consistent model not only enhances the level of automation in performing optimizations within MBSE but also reduces the complexity of associated manual operations, making the optimization process more responsive to system changes.</p>
+<h2 id="Related-work"><a href="#Related-work" class="headerlink" title="Related work"></a>Related work</h2><p>While integrating MBSE with MDAO has the potential to leverage the strengths of both approaches, this synergy has yet to be fully realized (Habermehl et al, 2022).</p>
+<p>Although optimization algorithms and discipline-specific models may originate from various modeling languages and tools, surrogate models and tool interoperability facilitate the linking and execution of MDAO models.</p>
+<p>Challenges also arise in integrating MBSE with MDAO, particularly in the transfer of information between design models, optimization algorithms, and optimization models. Indeed, automatically generating MDAO models from MBSE models remains a significant challenge, particularly for high-fidelity, heterogeneous discipline models, which typically require careful authoring by discipline experts using specialized tools.</p>
+<p>Chaudemar et al proposed two integration processes—strongly coupled and weakly coupled—based on the degree of coupling between MBSE and MDAO (Chaudemar and de Saqui-Sannes, 2021). Several studies support the return of optimization results to MBSE for further analysis and extensive validation (Gao et al, 2021; Chen et al, 2022; C´ ardenas et al, 2022). As MDAO represents only one aspect of the model, returning these solutions to MBSE allows for comprehensive verification and initial screening of viable solutions.</p>
+<p>In summary, although research has demonstrated the potential of integrating MBSE with MDAO, significant challenges remain in fully achieving this integration.</p>
+<ul>
+<li>MBSE和MDAO的边界模糊</li>
+<li>如何利用MBSE推动MDAO有待解决</li>
+</ul>
+<h2 id="Research-objective-and-method"><a href="#Research-objective-and-method" class="headerlink" title="Research objective and method"></a>Research objective and method</h2><ul>
+<li>Integrating MBSE with MDAO from a methodological perspective and to establish MDAO as an integral activity with SE.</li>
+<li>To clarify the modeling boundaries between MBSE and MDAO.</li>
+</ul>
+<p>图1展示了一个面向MDAO设计的SysML扩展元模型，是根据CSRM改编的。<br>图2展示了一个叫XDSM的visualization tool for illustrating processes and data interfaces within an optimizarion architecture.</p>
+<h2 id="Case-study"><a href="#Case-study" class="headerlink" title="Case study"></a>Case study</h2><p>一种应急遥感卫星，1t重，三个任务指标：higher payload performance, longer payload operational hours, and the ability to undertake additional emergency missions throughout the satellite’s lifetime.（1）有效载荷应达到不超过0.3 m的分辨率，（2）在每日数据流量余额的条件下，有效载荷应每天运行不少于60分钟，并且（3）卫星应保留至少80 kg的自由推进剂质量。</p>
+<p>之后开始介绍空间轨道计算，推进剂消耗，通信系统，绘制出一张参数图展示多学科分析的效果。然后开始进行MDAO过程，最后用Excel保存信息。</p>
+<p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025052101.jpg" alt="卫星系统参数图"></p>
+<h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2><p>这种集成可以进行良好的优化、可追溯性链接并完善评估。并且两个领域之间保持了清晰的边界，提高代码复用率，参数关系更清晰。<br><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025052102.jpg" alt="参数关系矩阵"></p>
+<p>此外，还希望将“execute optimization”放到SysML中直接进行，让SysML和算法强耦合。（但是这篇论文实际上没实现这个功能，而使用的所谓“弱耦合”）。</p>
+<p>集成效果方面：</p>
+<ul>
+<li>如何清晰地定义MBSE和MDAO的边界：优化算法不看参数，参数只在SysML中显示。</li>
+<li>如何平衡自动化和手动操作：弱耦合写少量代码，强耦合会不需要写代码。</li>
+<li>如何管理优化后的结果：优化结果有利于MBSE的早期设计调整等理念，加速设计迭代。</li>
+</ul>
+<p>个人总结：本文对一个卫星做了MBSE，然后用一个MDAO的优化器做了计算，工具上两者是分离的，本文没有实现理想的全流程自动化，但是提出了概念，努力将MBSE放到卫星早期设计里面来，所以也使得本文的文字非常冗杂，很偏向概念的文章，但是卫星领域的文章少，适当参考。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2025/05/21/034/">https://ruizhe-yang.github.io/2025/05/21/034/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MBSE/">MBSE</a><a class="post-meta__tags" href="/tags/SysML/">SysML</a><a class="post-meta__tags" href="/tags/MDAO/">MDAO</a><a class="post-meta__tags" href="/tags/Satellite/">Satellite</a></div><div class="post_share"><div class="social-share" data-image="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025052101.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/05/19/035/" title="笔记：Domain-Specific Modeling with SysML v2"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051901.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：Domain-Specific Modeling with SysML v2</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2024/08/29/008/" title="小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083002.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-29</div><div class="title">小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</div></div></a></div><div><a href="/2024/08/29/007/" title="小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-29</div><div class="title">小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</div></div></a></div><div><a href="/2024/08/30/009/" title="小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083004.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-30</div><div class="title">小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</div></div></a></div><div><a href="/2024/08/31/010/" title="小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-31</div><div class="title">小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</div></div></a></div><div><a href="/2024/08/31/011/" title="小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083101.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-31</div><div class="title">小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</div></div></a></div><div><a href="/2025/05/10/031/" title="笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051001.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-10</div><div class="title">笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">62</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">51</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://b23.tv/3cRMvn8" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Related-work"><span class="toc-number">2.</span> <span class="toc-text">Related work</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Research-objective-and-method"><span class="toc-number">3.</span> <span class="toc-text">Research objective and method</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-study"><span class="toc-number">4.</span> <span class="toc-text">Case study</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discussion"><span class="toc-number">5.</span> <span class="toc-text">Discussion</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/05/21/034/" title="笔记：An integrated approach for enhanced early-phase space system design and optimization"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025052101.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：An integrated approach for enhanced early-phase space system design and optimization"/></a><div class="content"><a class="title" href="/2025/05/21/034/" title="笔记：An integrated approach for enhanced early-phase space system design and optimization">笔记：An integrated approach for enhanced early-phase space system design and optimization</a><time datetime="2025-05-21T12:00:00.000Z" title="Created 2025-05-21 20:00:00">2025-05-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/19/035/" title="笔记：Domain-Specific Modeling with SysML v2"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051901.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Domain-Specific Modeling with SysML v2"/></a><div class="content"><a class="title" href="/2025/05/19/035/" title="笔记：Domain-Specific Modeling with SysML v2">笔记：Domain-Specific Modeling with SysML v2</a><time datetime="2025-05-19T12:00:00.000Z" title="Created 2025-05-19 20:00:00">2025-05-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/15/033/" title="笔记：Event-based safety and reliability analysis integration in model-based space mission design"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051502.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Event-based safety and reliability analysis integration in model-based space mission design"/></a><div class="content"><a class="title" href="/2025/05/15/033/" title="笔记：Event-based safety and reliability analysis integration in model-based space mission design">笔记：Event-based safety and reliability analysis integration in model-based space mission design</a><time datetime="2025-05-15T10:00:00.000Z" title="Created 2025-05-15 18:00:00">2025-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/12/032/" title="笔记：Sirius Web:Insights in Language Workbenches An Experience Report"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051202.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Sirius Web:Insights in Language Workbenches An Experience Report"/></a><div class="content"><a class="title" href="/2025/05/12/032/" title="笔记：Sirius Web:Insights in Language Workbenches An Experience Report">笔记：Sirius Web:Insights in Language Workbenches An Experience Report</a><time datetime="2025-05-12T12:00:00.000Z" title="Created 2025-05-12 20:00:00">2025-05-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/10/031/" title="笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051001.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission"/></a><div class="content"><a class="title" href="/2025/05/10/031/" title="笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission">笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission</a><time datetime="2025-05-10T14:00:00.000Z" title="Created 2025-05-10 22:00:00">2025-05-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: 'bfcccb87046201b5171fca6b93c4c4aa',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
