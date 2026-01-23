@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim Abstraction  This paper presents a model-based framework for the dynamic verif">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2026/01/23/037/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim Abstraction  This paper presents a model-based framework for the dynamic verif">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/SST.png">
+<meta property="article:published_time" content="2026-01-23T03:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-23T04:12:28.825Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="MBSE">
+<meta property="article:tag" content="SysML">
+<meta property="article:tag" content="Satellite">
+<meta property="article:tag" content="Co-simulation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/SST.png"><link rel="shortcut icon" href="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F2.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2026/01/23/037/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-01-23 12:12:28'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">64</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">54</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/SST.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F3.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-01-23T03:00:00.000Z" title="Created 2026-01-23 11:00:00">2026-01-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-01-23T04:12:28.825Z" title="Updated 2026-01-23 12:12:28">2026-01-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/">Journal</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/SST/">SST</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/SST/2025/">2025</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>8mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://spj.science.org/doi/10.34133/space.0349">Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim</a></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>This paper presents a model-based framework for the dynamic verification of spacecraft systems, which tightly integrates an executable systems modeling language architectural model with the in-house orbital analysis tool SpaceSim to achieve a closed-loop workflow encompassing system design, analysis, and verification. The method is abstracted into 2 generic types of meta-models: the co-simulation meta-model, which captures the structure of co-simulation commands and data formats, and the system-of-interest meta-model, which ensures hierarchical and modular system architectures, thereby supporting flexible iterative design and verification. The proposed framework is demonstrated through a space mission case study, in which dynamic simulation is used to compute key performance indicators such as energy and information flow balance and to validate associated requirements in real time. The adaptability of the approach is further evaluated through multiple simulated mission change scenarios across 3 dimensions: simulation context, system behavior, and parameter modification. Results indicate that the proposed method effectively reduces the complexity and effort required for model updates and enhances the overall flexibility of system analysis. This study offers a generalizable paradigm for integrating model-based systems engineering with domain-specific simulation tools, laying the groundwork for subsequent highfidelity model replacement, trade-off analysis, and optimization-based design.</p>
+</blockquote>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li>太空任务的系统工程正在向MBSE转型。</li>
+<li>INCOSE和ISO/IEC/IEEE 24641：2023定义了MBSE，将MBSE视为Single Source of Truth (SSOT)是有意义的。</li>
+<li>利用仿真进行系统工程分析能够明确系统演化的过程。</li>
+<li>空间任务的分析是跨阶段跨学科的，MBSE能弥合这一问题。</li>
+<li>系统工程的灵活性也很重要，影响了工程的迭代速度和周期。</li>
+</ul>
+<h2 id="Related-works"><a href="#Related-works" class="headerlink" title="Related works"></a>Related works</h2><ul>
+<li>System analysis in SE</li>
+<li>Flexibility in system analysis</li>
+<li>Summary</li>
+</ul>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><ul>
+<li>本研究的目的是提出一个灵活的空间系统分析框架，使空间系统开发早期阶段的设计和验证能力成为可能。In this study, the satellite system is considered the system of interest (SoI). Through the integration and standardization of a co-simulation meta-model within the MBSE environment, interoperability between SysML models and the SpaceSim tool is established, facilitating the generation of the satellite’s operational timeline. Based on this, an executable architecture model of the satellite system is developed, which uses the computational results from SpaceSim to drive system operations.</li>
+<li>此外，所提出的方法在架构开发阶段结合了分层和模块化原则，以增强系统分析的灵活性。Since the complete SysML model encompasses both system architecture and co-simulation components, the method is abstracted into a structured system analysis process supported by 2 meta-models: the SoI meta-model and the SpaceSim co-simulation meta-model.</li>
+</ul>
+<p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2026012301.png" alt="本文的工作流框架"></p>
+<h3 id="System-analysis-workflow"><a href="#System-analysis-workflow" class="headerlink" title="System analysis workflow"></a>System analysis workflow</h3><ul>
+<li>本文工作流如图1所示。</li>
+<li>工具使用的是MagicDraw 2022和SpaceSim，内容包括卫星系统架构、协同仿真模型、数据显示和仿真控制的GUI。</li>
+<li>流量平衡仿真是由两个部分实现的，一个是SysML和SpaceSim的协同仿真，一个是SysML本身的参数仿真。</li>
+<li>为了保持架构模型和仿真输出之间的一致性，MBSE 明确定义了所有协同仿真输入并捕获和存档所有输出，用UDP通信。</li>
+<li>实现了一个SysML模型到SpaceSim指令生成的功能。</li>
+<li>另外就是卫星架构本身的SysML也可以仿真。</li>
+</ul>
+<h3 id="SoI-meta-model"><a href="#SoI-meta-model" class="headerlink" title="SoI meta-model"></a>SoI meta-model</h3><p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2026012302.png" alt="SoI元模型"></p>
+<h3 id="Co-simulation-meta-model"><a href="#Co-simulation-meta-model" class="headerlink" title="Co-simulation meta-model"></a>Co-simulation meta-model</h3><p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2026012303.png" alt="SpaceSim元模型"></p>
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><h3 id="Mission-definition-and-analysis"><a href="#Mission-definition-and-analysis" class="headerlink" title="Mission definition and analysis"></a>Mission definition and analysis</h3><p>作者设计了一个卫星飞行的空间任务，要分析两个要点：卫星自身的电力平衡和天地通信数据量的下传情况。</p>
+<p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2026012304.png" alt="卫星架构图"></p>
+<p>图5说明了用于流量平衡分析的模拟架构的模块化结构。方框A定义了协同仿真场景对象，包括目标区域、地面站、轨道参数和卫星（SoI）。 B框指定了卫星系统架构，包括结构组件、操作属性和系统参数。某些要求与特定参数直接相关，以方便追溯。方框C代表流模拟配置块，它从外部表读取时间序列数据并更新卫星的状态参数（即卫星块的SState值属性），从而驱动卫星系统内的模式转换。卫星块由方框 A、B 和 C 共享，因此用圆圈强调并放置在图的中心以表明其核心作用。 D框包含与SpaceSim联合仿真所需的模型组件，而E框则展示SpaceSim功能模块库。此联合仿真的目的是在指定的仿真时间范围内计算关键参数，例如太阳能见度、与地面站的链路连接性以及目标区域的摄像机能见度。</p>
+<p>此外还有一些活动图、状态机图，驱动整个仿真能运行起来。实现对电力的计算（平台生存：电池充放电）和对通信的计算（载荷任务：数据存储与下传问题）。</p>
+<p><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2026012305.png" alt="联合仿真界面"></p>
+<h3 id="Flexibility-analysis"><a href="#Flexibility-analysis" class="headerlink" title="Flexibility analysis"></a>Flexibility analysis</h3><p>通过几个例子来凸显本文的框架在参数调整上的优势，介绍了操作步骤的例子和流程，以显示这个框架的灵活性。</p>
+<h4 id="Case-A-Updating-the-co-simulation-model"><a href="#Case-A-Updating-the-co-simulation-model" class="headerlink" title="Case A: Updating the co-simulation model"></a>Case A: Updating the co-simulation model</h4><p>在第一个案例中，任务目标发生了变化：新的目标是利用遥感监测中国的领土和领海，并在三亚增加一个地面站以支持低压缩比数据传输。由于这代表了整体任务环境的转变，因此有必要相应地修改联合仿真架构模型。</p>
+<h4 id="Case-B-Defining-the-working-mode"><a href="#Case-B-Defining-the-working-mode" class="headerlink" title="Case B: Defining the working mode"></a>Case B: Defining the working mode</h4><p>该案例代表了卫星架构模型的行为修改。通过在现有状态机图中引入新的状态和转换条件来增量扩展状态模型。新状态下的行为主要是通过调用组件操作属性并定义相应的流程来实现的。值得注意的是，这种修改仅限于逻辑层，可以被视为旨在反映系统行为的描述性建模活动。然而，由于没有引入新的可执行活动，因此修改保留了卫星架构的动态可执行性。这种方法有效地降低了与修改行为模型相关的复杂性。</p>
+<h4 id="Case-C-Adjusting-satellite-parameters"><a href="#Case-C-Adjusting-satellite-parameters" class="headerlink" title="Case C: Adjusting satellite parameters"></a>Case C: Adjusting satellite parameters</h4><p>有效载荷数据压缩率被调整为1。这一变化需要重新定义卫星子系统参数以适应新的要求。</p>
+<h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2><h3 id="Case-results"><a href="#Case-results" class="headerlink" title="Case results"></a>Case results</h3><ul>
+<li>该案例研究旨在展示所提出的方法如何实现空间系统的动态验证，并初步评估其适应变化的灵活性。通过实例化所提出的元模型，系统工程师可以在 MBSE 环境中执行流量平衡动态分析。在协同仿真过程中，SysML模型充当SSOT，定义SpaceSim仿真模型并捕获其计算结果。这些结果推动了卫星架构的动态模拟，说明了目标参数如何随时间变化。通过模拟一系列任务变更场景，该研究进一步展示了该模型如何适用于验证新的系统架构，从而验证该方法固有的灵活性。</li>
+<li>“灵活性分析”部分提出的 3 个案例研究从 3 个角度探讨了这一概念：协同仿真场景修改、系统行为修改和系统参数修改。</li>
+<li>ABC三个例子是如何体现与传统方法不同的。</li>
+</ul>
+<h3 id="Contributions"><a href="#Contributions" class="headerlink" title="Contributions"></a>Contributions</h3><ul>
+<li>这种方法消除了在 SpaceSim 中自定义代码或手动模型构建的需要，从而提高了设计和分析之间的一致性和连续性。系统分析的灵活性是通过分层和模块化元模型实现的。</li>
+<li>本文引入了 SoI 元模型，以确保系统架构模型既可执行又可理解。元模型采用支持渐进保真度的模块化设计，允许在设计迭代时用高保真度子系统模型替换低保真度组件。</li>
+<li>为了坚持 SSOT 原则，所提出的方法将系统结构、行为、参数和仿真配置整合到一个集中模型中，从而消除分散文档和孤立模型带来的低效率和风险。</li>
+</ul>
+<h3 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h3><ul>
+<li>24h的任务仿真一次要4min，是软件的问题。</li>
+<li>SysML建模能力有限。</li>
+</ul>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>随着工业 4.0 的不断发展、数字孪生技术的兴起以及工业软件供应商之间的并购数量不断增加，系统层面的设计和分析集成正在发生转变。在此背景下，MBSE 在整个系统生命周期中充当 SSOT，发挥着核心作用。为了支持这一目标，本研究提出了一种将 SpaceSim（一种空间系统分析工具）集成到 MBSE 环境中的方法，以实现航天器系统的早期动态验证。该方法明确解决了早期设计频繁迭代期间所需的灵活性。通过利用基于元模型的建模方法，它在标准化仿真环境中建立了通用建模框架和统一的协同仿真流程。该架构简化了模型修改，增强了系统分析灵活性，并有助于加快设计周期。最终，所提出的方法有助于设计解决方案的早期验证，并提供近似但有价值的输入来支持后续的详细设计活动。</p>
+<p>进一步细化权衡、详细设计和优化已确定的最佳解决方案组合对于后续开发至关重要。鉴于太空任务通常涉及定制组件和商业现成解决方案的组合，快速实现有效的设计解决方案仍然是一个挑战。未来的工作包括将所提出的分析框架应用于权衡分析。这包括探索现有解决方案的组合、优化其他系统组件以及评估特定任务的性能指标以确定最可接受的设计解决方案。为了实现这一目标，研究用高保真替代方案替换低保真子系统模型的可行性非常重要。此外，我们将探讨如何将系统分析固有的灵活性扩展到权衡分析。这些努力共同有助于提高 MBSE 模型的成熟度。</p>
+<p>个人总结：这篇文章是哈工大在卫星领域顶刊上发表的MBSE应用向论文，主要还是使用MagicDraw进行联合仿真，提炼的创新点包括两个元模型+SpaceSim指令生成+一个UDP通信+一个案例的三次变更测试，整个工作比较完整，呈现了一个MBSE联合仿真的完整应用，给航天器的建模提供了一个很好的参考。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2026/01/23/037/">https://ruizhe-yang.github.io/2026/01/23/037/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MBSE/">MBSE</a><a class="post-meta__tags" href="/tags/SysML/">SysML</a><a class="post-meta__tags" href="/tags/Satellite/">Satellite</a><a class="post-meta__tags" href="/tags/Co-simulation/">Co-simulation</a></div><div class="post_share"><div class="social-share" data-image="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/SST.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/06/01/036/" title="笔记：A Model Management Framework for Next-Generation Web-based Modeling Tools"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025060201.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：A Model Management Framework for Next-Generation Web-based Modeling Tools</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2025/05/21/034/" title="笔记：An integrated approach for enhanced early-phase space system design and optimization"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025052101.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-21</div><div class="title">笔记：An integrated approach for enhanced early-phase space system design and optimization</div></div></a></div><div><a href="/2024/08/29/008/" title="小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083002.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-29</div><div class="title">小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</div></div></a></div><div><a href="/2024/08/29/007/" title="小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-29</div><div class="title">小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</div></div></a></div><div><a href="/2024/08/31/010/" title="小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083102.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-31</div><div class="title">小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</div></div></a></div><div><a href="/2024/08/30/009/" title="小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083004.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-30</div><div class="title">小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</div></div></a></div><div><a href="/2024/08/31/011/" title="小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083101.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-31</div><div class="title">小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">64</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">54</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://b23.tv/3cRMvn8" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Related-works"><span class="toc-number">2.</span> <span class="toc-text">Related works</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Methods"><span class="toc-number">3.</span> <span class="toc-text">Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#System-analysis-workflow"><span class="toc-number">3.1.</span> <span class="toc-text">System analysis workflow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SoI-meta-model"><span class="toc-number">3.2.</span> <span class="toc-text">SoI meta-model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Co-simulation-meta-model"><span class="toc-number">3.3.</span> <span class="toc-text">Co-simulation meta-model</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Results"><span class="toc-number">4.</span> <span class="toc-text">Results</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mission-definition-and-analysis"><span class="toc-number">4.1.</span> <span class="toc-text">Mission definition and analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flexibility-analysis"><span class="toc-number">4.2.</span> <span class="toc-text">Flexibility analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Case-A-Updating-the-co-simulation-model"><span class="toc-number">4.2.1.</span> <span class="toc-text">Case A: Updating the co-simulation model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Case-B-Defining-the-working-mode"><span class="toc-number">4.2.2.</span> <span class="toc-text">Case B: Defining the working mode</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Case-C-Adjusting-satellite-parameters"><span class="toc-number">4.2.3.</span> <span class="toc-text">Case C: Adjusting satellite parameters</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discussion"><span class="toc-number">5.</span> <span class="toc-text">Discussion</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Case-results"><span class="toc-number">5.1.</span> <span class="toc-text">Case results</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Contributions"><span class="toc-number">5.2.</span> <span class="toc-text">Contributions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Limitations"><span class="toc-number">5.3.</span> <span class="toc-text">Limitations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-number">5.4.</span> <span class="toc-text">Conclusion</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/23/037/" title="笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/SST.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim"/></a><div class="content"><a class="title" href="/2026/01/23/037/" title="笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim">笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim</a><time datetime="2026-01-23T03:00:00.000Z" title="Created 2026-01-23 11:00:00">2026-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/01/036/" title="笔记：A Model Management Framework for Next-Generation Web-based Modeling Tools"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025060201.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A Model Management Framework for Next-Generation Web-based Modeling Tools"/></a><div class="content"><a class="title" href="/2025/06/01/036/" title="笔记：A Model Management Framework for Next-Generation Web-based Modeling Tools">笔记：A Model Management Framework for Next-Generation Web-based Modeling Tools</a><time datetime="2025-06-01T12:00:00.000Z" title="Created 2025-06-01 20:00:00">2025-06-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/21/034/" title="笔记：An integrated approach for enhanced early-phase space system design and optimization"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025052101.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：An integrated approach for enhanced early-phase space system design and optimization"/></a><div class="content"><a class="title" href="/2025/05/21/034/" title="笔记：An integrated approach for enhanced early-phase space system design and optimization">笔记：An integrated approach for enhanced early-phase space system design and optimization</a><time datetime="2025-05-21T12:00:00.000Z" title="Created 2025-05-21 20:00:00">2025-05-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/19/035/" title="笔记：Domain-Specific Modeling with SysML v2"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051901.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Domain-Specific Modeling with SysML v2"/></a><div class="content"><a class="title" href="/2025/05/19/035/" title="笔记：Domain-Specific Modeling with SysML v2">笔记：Domain-Specific Modeling with SysML v2</a><time datetime="2025-05-19T12:00:00.000Z" title="Created 2025-05-19 20:00:00">2025-05-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/15/033/" title="笔记：Event-based safety and reliability analysis integration in model-based space mission design"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025051502.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Event-based safety and reliability analysis integration in model-based space mission design"/></a><div class="content"><a class="title" href="/2025/05/15/033/" title="笔记：Event-based safety and reliability analysis integration in model-based space mission design">笔记：Event-based safety and reliability analysis integration in model-based space mission design</a><time datetime="2025-05-15T10:00:00.000Z" title="Created 2025-05-15 18:00:00">2025-05-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: 'ad5c220a53f836f81fb7c63c2d143738',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
