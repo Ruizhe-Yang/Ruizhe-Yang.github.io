@@ -1,6 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
+    <url>/2024/08/17/002/</url>
+    <content><![CDATA[
+[Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example](https://dl.acm.org/doi/abs/10.1145/3471907)
+
+*作者是KCL的Kevin Lano。*
+
+`Abstraction`
+
+> In this article, we address how the production of model transformations (MT) can be accelerated by automation of transformation synthesis from requirements, examples, and metamodels. We introduce a synthesis process based on metamodel matching, correspondence patterns between metamodels, and completeness and consistency analysis of matches. We describe how the limitations of metamodel matching can be addressed by combining matching with automated requirements analysis and model transformation by example (MTBE) techniques.
+> We show that in practical examples a large percentage of required transformation functionality can usually be constructed automatically, thus potentially reducing development effort. We also evaluate the efficiency of synthesised transformations.
+> Our novel contributions are:
+>
+> - The concept of correspondence patterns between metamodels of a transformation.
+> - Requirements analysis of transformations using natural language processing (NLP) and machine learning (ML).
+> - Symbolic MTBE using “predictive specification” to infer transformations from examples.
+> - Transformation generation in multiple MT languages and in Java, from an abstract intermediate language.
+
+## Introduction
+
+Model Transformations (MT)是MDE的关键要素。大型手动转换成本高管理难[[9]](#9) [[49]](#49)。元模型匹配技术[[1]](#1) [[17]](#17) [[31]](#31)。
+
+四个困难：1、匹配方法只能找到一种转换，但实际上有多种；2、穷举搜索复杂度高；3、无法检测源和目标的关系；4、通常只处理单一语言转换的场景。
+
+- (i) many different transformations may be possible between two given metamodels, and a matching approach typically only detects a single transformation;
+- (ii) exhaustive search for possible matches becomes infeasible even for cases of moderate size (around 25 to 30 metaclasses in the combined metamodels);
+- (iii) detailed functional relationships between source and target data, such as applications of specific numeric or string functions, cannot normally be detected;
+- (iv) the process is usually directed to and optimised for producing transformations in a single MT language.
+
+MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L}$[[48]](#48)处理4的问题。
+
+![Transformation synthesis process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png)
+
+图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$是映射的三个中间量。
+
+研究问题：
+
+- RQ1 : To what extent can automated metamodel matching be combined with interactive enhancement of matchings to accurately capture the mapping rules of an intended transformation?匹配的程度
+- RQ2 : Can automated requirements analysis using NLP/ML and MTBE techniques improve the accuracy of the approach compared to stand-alone metamodel matching?本文的NLP+MTBE技术能否提高准确性
+- RQ3 : Can the combined approach engineer transformations with appropriate correspondence and design patterns?
+- RQ4 : Can the combined approach produce efficiently executable transformations?
+
+### Illustrative Example: Gantt2CPM
+
+本文用到的一个例子：甘特图到CPM网络。介绍了该MT的原则。
+
+## Scope and bcakground
+
+### Scope of the Approach
+
+对于M2M问题，根据[[55]](#55)进行分类：
+
+- (General) migration 抽象层级相同但元模型不同
+- Evolution migration 一个元模型版本变更
+- Refinement 高抽象层级向低抽象层级映射
+- Abstaction 低抽象层级向高抽象层级映射
+- Code generation 从设计规范模型生成代码
+- Semantic mapping 将源模型映射到有形式化语义的模型
+- Bidirectional(Bx) 双向映射，支持模型同步和变更传播
+- Refactoring 单个模型转换
+
+### $\mathcal{T}\mathcal{L}$ Transformation Repersentation
+
+使用$\mathcal{T}\mathcal{L}$语法描述转换过程。包括集合的划分、符号标识、每个环节的输入输出和$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$符号对应的环节。
+
+### Natural Language Processing and Machine Learning
+
+介绍了NLP的主要技术类型和划分词义的种类和机器学习的基本概念。
+
+## Automated MT Requierments Analysis
+
+如果转换过程存在自然语言需求声明，原则上可以应用NLP技术提取有关转换预期映射的一些信息，有助于元模型匹配。
+
+### Automated Requirements Analysis Using NLP
+
+使用NLP对Gantt2CPM案例进行需求分析。
+首先使用Stanford POS tagger标记需求语句中的词类型，然后构建语法树。创建了CART决策树作为分类器，对需求语句中的关键词类型进行识别。
+
+### Tool Support for MT Requirements Analysis
+
+在工具中如何使用的说明。
+
+## Metamodel Correspondence Patterns
+
+{% note flat %}
+这篇文章太长太难，还没看完，先记到这里……
+{% endnote %}
+
+### Occurrence of Correspondence Patterns in Practice
+
+### Catalogue of Correspondence Patterns
+
+### Correspondence Patterns in Gantt2CPM
+
+### Tool Support for Recognising Correspondence Patterns
+
+## Metamodel Matching Techniques
+
+### Metamodel Matching Concepts
+
+### Similarity Measures for Metamodel Matching
+
+### Metamodel Matching for the Gantt2CPM Case
+
+### Tool Support for Metamodel Matching
+
+## Transformation Correction and Enhancement
+
+### Completeness and Consistency Analysis
+
+### Specification Enhancement for the Gantt2CPM Case
+
+## MTBE Using Perdictive Specification
+
+### Empirical Study of Transformation Mappings and Conditions
+
+### Correction and Extension of Transformations using MTBE
+
+### MTBEfortheGantt2CPMCase
+
+### Tool Support for MTBE
+
+## Transformation Synthesis
+
+### Synthesis of UML-RSDS and Java
+
+### Transformation Synthesis for the Gantt2CPM Case
+
+### Tool Support for Transformation Synthesis
+
+## Evaluation
+
+### RQ1:Correspondence Recognition
+
+### RQ2:Contributions of Automated Requirements Analysis and MTBE
+
+### RQ3:Transformation Design
+
+### RQ4:Transformation Efficiency
+
+## Threats to Validity
+
+### Threats to Internal Validity
+
+### Threats to External Validity
+
+### Threats to Construct Validity
+
+### Threats to Content Validity
+
+### Threats to Conclusion Validity
+
+## Related and Future Work
+
+### Automated Requirements Engineering
+
+### MTBE Approaches
+
+### Correspondence Patterns
+
+### Metamodel Matching Approaches
+
+### Summary
+
+### Limitations and Future Work
+
+## Conclusions
+
+`个人总结`
+
+`参考文献`
+<a id="9">[9]</a>L. Burgueno, J. Cabot, and S. Gerard. 2019. The future of model transformation languages: an open community discussion J. Obj. Technol. 1–11. Retrieved from www.jot.fm/issues/issue_2019_03/article7.pdf.
+<a id="49">[49]</a>K. Lano, Q. Xue, and S. Kolahdouz-Rahimi. 2020. Agile Specification of Code Generators for Model-Driven Engineering. In Proceedings of ICSEA 2020. IARIA, 9–15.
+<a id="1">[1]</a>L. Addazi, A. Cicchetti, J. D. Rocco, D. D. Ruscio, L. Iovino, and A. Pierantonio. 2016. Semantic-based model matching with emfcompare, me workshop, models. CEUR-WS 1706, 40–49.
+<a id="17">[17]</a>S. Fang and K. Lano. Extracting correspondences from metamodels using metamodel matching. In STAF 2019. Retrieved from CEUR-WS.org/vol-2405/02_paper.pdf.
+<a id="31">[31]</a>M. Kessentini, A. Ouni, P. Langer, M. Wimmer, and S. Bechikh. 2014. Search-based metamodel matching with structural and syntactic measures. Journal of Software and Systems 97, 2014 (2014), 1–14.
+<a id="48">[48]</a>K. Lano, S. Fang, and S. Kolahdouz-Rahimi. TL: An abstract specification language for bidirectional transformations. MODELS’20 Comp. Proc. 77 (2020), 1–10.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>TOSEM</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>Model Transformations</tag>
+        <tag>Requirements Engineering</tag>
+        <tag>Automated Software Engineering</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Early Validation and Verification of System Behaviour in Model-based Systems Engineering:A Systematic Literature Review</title>
     <url>/2024/08/14/001/</url>
     <content><![CDATA[
@@ -380,6 +572,85 @@ Garousi 等人 [[33]](#33) 对产学研合作面临的挑战进行了文献综�
       </tags>
   </entry>
   <entry>
+    <title>笔记：What makes a good modeling research contribution?</title>
+    <url>/2024/08/23/004/</url>
+    <content><![CDATA[
+[What makes a good modeling research contribution?]([论文来源](https://link.springer.com/article/10.1007/s10270-024-01177-x))
+
+*作者是Richard F. Paige。*
+
+`Abstraction`
+
+> The modeling field is rapidly evolving and expanding to address new research topics and to connect with new disciplines. As such, what constituted a good modeling research contribution ten years ago may not be the same today. We try to distill some insights of what we (and the community we aim to represent) consider today as key elements of a good research paper in the field of software and systems modeling. Such insights—which will need to evolve and adapt with time—will be useful not just for authors of new papers, but also for reviewers and editors.
+
+## Introduction
+
+关于如何撰写优秀软件工程论文的具体建议：针对特定章节的撰写建议[[1]](#1)、不同类型的软件工程论文[[5]](#5)，甚至关于如何以更符合软件工程审阅者期望的方式撰写论文的建议[[3]](#3)。
+
+## Types of contributions to the modeling field
+
+常见的论文关注的问题：
+
+- how large is the community that the paper aims to address?
+- how much potential impact is there in the result?
+- how complex is the challenge the paper addresses?
+- how substantial is the validation3, e.g., is there an industrial element to the validation?
+- how distant is the topic of the paper from what we typically see in the modeling venues?
+- how readable is the contribution?
+- how relevant are the examples?
+- and finally, how clear and persuasive is the motivation for the research presented in the paper?
+
+此外，明确研究的正面作用和负面作用也很重要。
+下面将介绍六种具体类型。
+
+### The contribution is a model
+
+仅凭一个模型肯定不行。这个新模型能告诉我们关于建模领域的什么？它能帮助我们回答哪些我们以前无法回答的问题？
+
+### The contribution is a language
+
+仅凭一个元模型也不行，需要完整的工作。
+
+### The contribution is a core modeling technique
+
+这些论文介绍了模型分析（模型验证、确认或测试技术等）或操作技术（模型合并、模型到模型转换、代码生成器等）。或将它们组合起来作为特定建模方法的一部分。这可能是我们多年来看到最多提案的类别。因此，在这一类别中，原创性更难实现，而证明新贡献确实有必要则更为重要。
+例如，很难相信建模社区需要一种新的模型转换方法，除非它与具有非常具体要求的新语言、领域或应用程序相关联。
+
+### The contribution is a modeling application
+
+仅仅证明建模（或 MDE 或建模工具）可以应用于问题是不够的——相反，必须令人信服地证明建模提供了一些附加值，一些可以量化或以可重复的方式捕获的好处。
+
+### The contribution is a (new) modeling domain
+
+ 除了单个应用程序（见上文），这里的目标是为新的工程或科学领域提供一些初步支持，然后这些支持可以发展成为该领域的一套完整的建模解决方案和应用程序。
+
+### The contribution is a modeling tool
+
+这些工具贡献不应只是研究工作的副产品或简单的一次性原型，而应是一种成熟、可用且广泛的工具，有可能对建模社区产生重大而积极的影响（通过吸引更多用户、促进更多项目采用建模实践等）。
+
+## A community effort
+
+就社区建设问题进行了介绍。
+
+`个人总结`
+作者就SoSyM期刊中的一些研究进行了分类和评估，从审稿人的角度分析一篇文章应具备哪些要素。
+
+`参考文献`
+
+<a id="1">[1]</a>Anthony, L.: Writing research article introductions in software engineering: How accurate is a standard model? IEEE Trans. Prof.Commun. 42(1), 38–46 (1999)
+<a id="5">[5]</a>Montesi, M., Lago, P.: Software engineering article types: an analysis of the literature. J. Syst. Softw. 81(10), 1694–1714 (2008)
+<a id="3">[3]</a>Ernst, N.A., Carver, J.C., Mendez, D., Torchiano, M.: Understanding peer review of software engineering papers. Empir. Softw. Eng. 26, 1–29 (2021)]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>SoSyM</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>Insights</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Testing, Validation, and Verification of Robotic and Autonomous Systems:A Systematic Review</title>
     <url>/2024/08/23/003/</url>
     <content><![CDATA[
@@ -648,198 +919,6 @@ An autonomous system is an intelligent system that is designed to deal with the 
       </tags>
   </entry>
   <entry>
-    <title>笔记：Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example</title>
-    <url>/2024/08/17/002/</url>
-    <content><![CDATA[
-[Model Transformation Development Using Automated Requirements Analysis, Metamodel Matching, and Transformation by Example](https://dl.acm.org/doi/abs/10.1145/3471907)
-
-*作者是KCL的Kevin Lano。*
-
-`Abstraction`
-
-> In this article, we address how the production of model transformations (MT) can be accelerated by automation of transformation synthesis from requirements, examples, and metamodels. We introduce a synthesis process based on metamodel matching, correspondence patterns between metamodels, and completeness and consistency analysis of matches. We describe how the limitations of metamodel matching can be addressed by combining matching with automated requirements analysis and model transformation by example (MTBE) techniques.
-> We show that in practical examples a large percentage of required transformation functionality can usually be constructed automatically, thus potentially reducing development effort. We also evaluate the efficiency of synthesised transformations.
-> Our novel contributions are:
->
-> - The concept of correspondence patterns between metamodels of a transformation.
-> - Requirements analysis of transformations using natural language processing (NLP) and machine learning (ML).
-> - Symbolic MTBE using “predictive specification” to infer transformations from examples.
-> - Transformation generation in multiple MT languages and in Java, from an abstract intermediate language.
-
-## Introduction
-
-Model Transformations (MT)是MDE的关键要素。大型手动转换成本高管理难[[9]](#9) [[49]](#49)。元模型匹配技术[[1]](#1) [[17]](#17) [[31]](#31)。
-
-四个困难：1、匹配方法只能找到一种转换，但实际上有多种；2、穷举搜索复杂度高；3、无法检测源和目标的关系；4、通常只处理单一语言转换的场景。
-
-- (i) many different transformations may be possible between two given metamodels, and a matching approach typically only detects a single transformation;
-- (ii) exhaustive search for possible matches becomes infeasible even for cases of moderate size (around 25 to 30 metaclasses in the combined metamodels);
-- (iii) detailed functional relationships between source and target data, such as applications of specific numeric or string functions, cannot normally be detected;
-- (iv) the process is usually directed to and optimised for producing transformations in a single MT language.
-
-MTBE(Transformation by example)处理1-3的问题，使用$\mathcal{T}\mathcal{L}$[[48]](#48)处理4的问题。
-
-![Transformation synthesis process.](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24081601.png)
-
-图展示了整体流程。其中$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$是映射的三个中间量。
-
-研究问题：
-
-- RQ1 : To what extent can automated metamodel matching be combined with interactive enhancement of matchings to accurately capture the mapping rules of an intended transformation?匹配的程度
-- RQ2 : Can automated requirements analysis using NLP/ML and MTBE techniques improve the accuracy of the approach compared to stand-alone metamodel matching?本文的NLP+MTBE技术能否提高准确性
-- RQ3 : Can the combined approach engineer transformations with appropriate correspondence and design patterns?
-- RQ4 : Can the combined approach produce efficiently executable transformations?
-
-### Illustrative Example: Gantt2CPM
-
-本文用到的一个例子：甘特图到CPM网络。介绍了该MT的原则。
-
-## Scope and bcakground
-
-### Scope of the Approach
-
-对于M2M问题，根据[[55]](#55)进行分类：
-
-- (General) migration 抽象层级相同但元模型不同
-- Evolution migration 一个元模型版本变更
-- Refinement 高抽象层级向低抽象层级映射
-- Abstaction 低抽象层级向高抽象层级映射
-- Code generation 从设计规范模型生成代码
-- Semantic mapping 将源模型映射到有形式化语义的模型
-- Bidirectional(Bx) 双向映射，支持模型同步和变更传播
-- Refactoring 单个模型转换
-
-### $\mathcal{T}\mathcal{L}$ Transformation Repersentation
-
-使用$\mathcal{T}\mathcal{L}$语法描述转换过程。包括集合的划分、符号标识、每个环节的输入输出和$\tau _{re}\tau _{mm}\tau _{cc}\tau _{f}$符号对应的环节。
-
-### Natural Language Processing and Machine Learning
-
-介绍了NLP的主要技术类型和划分词义的种类和机器学习的基本概念。
-
-## Automated MT Requierments Analysis
-
-如果转换过程存在自然语言需求声明，原则上可以应用NLP技术提取有关转换预期映射的一些信息，有助于元模型匹配。
-
-### Automated Requirements Analysis Using NLP
-
-使用NLP对Gantt2CPM案例进行需求分析。
-首先使用Stanford POS tagger标记需求语句中的词类型，然后构建语法树。创建了CART决策树作为分类器，对需求语句中的关键词类型进行识别。
-
-### Tool Support for MT Requirements Analysis
-
-在工具中如何使用的说明。
-
-## Metamodel Correspondence Patterns
-
-{% note flat %}
-这篇文章太长太难，还没看完，先记到这里……
-{% endnote %}
-
-### Occurrence of Correspondence Patterns in Practice
-
-### Catalogue of Correspondence Patterns
-
-### Correspondence Patterns in Gantt2CPM
-
-### Tool Support for Recognising Correspondence Patterns
-
-## Metamodel Matching Techniques
-
-### Metamodel Matching Concepts
-
-### Similarity Measures for Metamodel Matching
-
-### Metamodel Matching for the Gantt2CPM Case
-
-### Tool Support for Metamodel Matching
-
-## Transformation Correction and Enhancement
-
-### Completeness and Consistency Analysis
-
-### Specification Enhancement for the Gantt2CPM Case
-
-## MTBE Using Perdictive Specification
-
-### Empirical Study of Transformation Mappings and Conditions
-
-### Correction and Extension of Transformations using MTBE
-
-### MTBEfortheGantt2CPMCase
-
-### Tool Support for MTBE
-
-## Transformation Synthesis
-
-### Synthesis of UML-RSDS and Java
-
-### Transformation Synthesis for the Gantt2CPM Case
-
-### Tool Support for Transformation Synthesis
-
-## Evaluation
-
-### RQ1:Correspondence Recognition
-
-### RQ2:Contributions of Automated Requirements Analysis and MTBE
-
-### RQ3:Transformation Design
-
-### RQ4:Transformation Efficiency
-
-## Threats to Validity
-
-### Threats to Internal Validity
-
-### Threats to External Validity
-
-### Threats to Construct Validity
-
-### Threats to Content Validity
-
-### Threats to Conclusion Validity
-
-## Related and Future Work
-
-### Automated Requirements Engineering
-
-### MTBE Approaches
-
-### Correspondence Patterns
-
-### Metamodel Matching Approaches
-
-### Summary
-
-### Limitations and Future Work
-
-## Conclusions
-
-`个人总结`
-
-`参考文献`
-<a id="9">[9]</a>L. Burgueno, J. Cabot, and S. Gerard. 2019. The future of model transformation languages: an open community discussion J. Obj. Technol. 1–11. Retrieved from www.jot.fm/issues/issue_2019_03/article7.pdf.
-<a id="49">[49]</a>K. Lano, Q. Xue, and S. Kolahdouz-Rahimi. 2020. Agile Specification of Code Generators for Model-Driven Engineering. In Proceedings of ICSEA 2020. IARIA, 9–15.
-<a id="1">[1]</a>L. Addazi, A. Cicchetti, J. D. Rocco, D. D. Ruscio, L. Iovino, and A. Pierantonio. 2016. Semantic-based model matching with emfcompare, me workshop, models. CEUR-WS 1706, 40–49.
-<a id="17">[17]</a>S. Fang and K. Lano. Extracting correspondences from metamodels using metamodel matching. In STAF 2019. Retrieved from CEUR-WS.org/vol-2405/02_paper.pdf.
-<a id="31">[31]</a>M. Kessentini, A. Ouni, P. Langer, M. Wimmer, and S. Bechikh. 2014. Search-based metamodel matching with structural and syntactic measures. Journal of Software and Systems 97, 2014 (2014), 1–14.
-<a id="48">[48]</a>K. Lano, S. Fang, and S. Kolahdouz-Rahimi. TL: An abstract specification language for bidirectional transformations. MODELS’20 Comp. Proc. 77 (2020), 1–10.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TOSEM</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MDE</tag>
-        <tag>Model Transformations</tag>
-        <tag>Requirements Engineering</tag>
-        <tag>Automated Software Engineering</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记：Design ontology for cognitive thread supporting traceability management in model-based systems engineering</title>
     <url>/2024/08/27/005/</url>
     <content><![CDATA[
@@ -1062,61 +1141,6 @@ ACC是一种基于车辆的外部行驶环境，如前方车辆的速度和距�
         <tag>MetaGraph</tag>
         <tag>KARMA</tag>
         <tag>Simulink</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</title>
-    <url>/2024/08/29/007/</url>
-    <content><![CDATA[
-`小记`
-
-*作者来自马德里理工大学（西班牙）。*
-
-本文的目的是介绍马德里波利特海姆大学目前的研究，以提高小型空间发射器在初步概念阶段的设计效率，该研究基于MBSE方法中的一种新方法，该方法引入了高效和快速的模拟，通过寻找设计重量的最佳平衡来降低成本。在过去的十年中，基于模型的系统工程(MBSE)和并行工程(CE)方法和过程的实施提高了卫星设计的效率，减少了设计时间。
-
-卫星的设计是基于子系统的纯粹功能分析分解，而空间发射器则需要更多的物理分析，因为其组件相互依赖的设计影响很大，需要大量的密集模拟和计算能力。这些仿真的计算时间要求使得卫星并行工程方法在空间发射装置设计中的应用效率低下。一种新的MBSE方法引入了高效和快速的模拟，可以填补现有的空白。
-
-过去几年，由于虚拟建模可靠性的提高，系统仿真软件方法在所有工程领域的数量显著增加。它们的主要优势是缩短了开发时间，降低了与硬件错误相关的成本，在模拟世界和现实世界之间建立了桥梁。由于其历史背景，现有的关于模型和仿真 (M&S) 的文献在航天器设计中非常广泛。早期的建模和仿真支持了太空时代的发展，测试是验证空气动力学、控制律和结构设计的主要方法。随着当前计算能力的提高，它们在航天器设计中的应用已经扩展到流体动力学、推进、结构、制导、导航和控制 (GN&C)、飞行物理、飞行轨迹、飞行器分段和有效载荷部署的模拟[[12]](#12)。然而，关于将所有这些模型和模拟器集成以分析总体发射器设计和初步开发阶段的交易的 M&S 文献几乎不存在。**我们可以找到与将专门为卫星设计开发的 MBSE 方法和并行工程流程应用于航天发射器设计所面临的困难相关的文献，以及有关 NASA 和 ESA 现有模拟器的描述。**这两个航天机构的模拟器都是多体软件，这意味着创建不同的互连软件块来模拟不同的动态，但由于其不同的计算目标，它们之间存在非常有趣的差异。
-
-美国宇航局的模拟器[[13]](#13)由马歇尔太空飞行中心 (MSFC) 的先进概念办公室 (ACO) 建造，由一套自动化的三套工具组成，分别为用于系统重量和尺寸的 INTROS（综合火箭尺寸）、用于结构设计的 LVA（运载火箭分析）和 POST II（模拟轨迹优化程序）。该模拟器提供实验设计 (DOE) 功能，可创建替代模型来分析参数敏感性，确定特定任务的关注领域 [[14]](#14)。
-ESA 的模拟器[[15]](#15)，DCAP（动态和控制分析包），由结构和机制部门开发。它是一套计算机程序软件，提供建模、模拟和分析动态和控制性能的能力，并与其他专业软件（如 NASTRAN、CATIA、MATLAB/Symulink）链接，可以在单个模拟中详细重现大多数关键子系统和学科，从而促进并行工程流程。
-NASA 和 ESA 模拟器均在初步设计阶段使用，并且都具有相似的软件架构，但用途不同。然而，它们似乎都与系统工程流程、要求和系统架构无关。
-
-通过上述分析，我们确定了微型和纳米卫星市场领域的航天发射器最佳概念设计面临的三个主要挑战：
-
-- **多学科设计优化方法主要侧重于重量优化，建模和成本分析从属于重量或侧重于业务分析。**
-- **模型和仿真方法更侧重于重现子系统性能，与定义系统需求和架构的过程无关。**
-- **MBSE 方法允许通过为每个子系统指定功能并定义功能之间以及系统与环境之间的接口来定义功能架构，但它们没有考虑到航天发射器设计更多地基于物理仿真分析而不是卫星设计中应用的功能分解这一事实。**
-
-本研究将回答的主要问题是，是否有可能通过在 MBSE 框架中集成多学科模拟器和成本估算模型来概念性地设计小型竞争性太空发射器，从而在经典系统工程方法中引入广泛的模拟，确定每个子系统定义中的关键设计驱动因素，从而实现其优化，从而减少所需的设计循环数量。
-
-![Fig 2. System engineering Wee Diagram](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png)
-
-这种方法将用图 2 中的新 Wee 图取代经典 V 形图，其中在分解阶段包括建模和仿真，以确定根据定义的需求驱动设计的关键参数。这些参数将在设计阶段进行交换以找到基于快速设计/制造/测试循环的优化解决方案。在集成阶段，将根据模拟器的预测值对测试结果进行分析，以对其进行验证，然后再进入最终的系统集成和验证阶段。
-
-![Fig 3. Space Launcher conceptual design MBSE&S framework](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082902.png)
-
-为此，目前正在使用 Python 代码模块开发太空发射器初步设计模拟器工具（RoTMoS - 火箭和弹道模块化模拟器），涵盖初步设计阶段太空发射器设计所涉及的主要学科：发射轨迹、推进、制导、导航和控制 (GN&C)、空气动力学、负载、应力、质量特性和成本。开发此工具的目的是达到一定的保真度，以便设计实验，分析参数对重量和成本结果的敏感性。模拟器模块将通过任务用例（UPM-Sat 程序）集成到 MBSE 工具（Eclipse CapellaTM）中，遵循空间任务分析与设计 (SMED) 方法，以根据模拟器结果构建优化的太空发射器系统架构和功能。MBSE&S 总体框架如图 3 所示。
-
-最后文章总结了自2021年来的相关研究进展。
-
-`参考文献`
-<a id="12">[12]</a>L. B. Rainey. Space Modeling and Simulation: Roles and Applications throughout the System Life Cycle, El Segundo, California The Aerospace Press. AIAA. 2004.
-<a id="13">[13]</a>E. Waters, J. Garcia, G. Threet, A. Philips. "NASA Advanced Concepts Office, Earth-to-Orbit Team Design Process and Tools." AIAA SPACE 2013 Conference and Exposition, American Institute of Aeronautics and Astronautics.
-<a id="14">[14]</a>M. R. Zwack, P. D. Dees, J. B. Holt. "Application of Design of Experiments and Surrogate Modeling within the NASA Advanced Concepts Office, Earth-to-Orbit Design Process." AIAA Space 2016, American Institute of Aeronautics and Astronautics. 2016.
-<a id="15">[15]</a>G. Baldesi, M. Toso. "European Space Agency’s Launcher Multibody Dynamics Simulator used for System and Subsystem Level Analyses." CEAS Space Journal, 3(1), 27-48. 2012.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>SECESA</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
       </tags>
   </entry>
   <entry>
@@ -1343,82 +1367,58 @@ propositionalization社区已经研究了从分层和嵌套数据生成数据集
       </tags>
   </entry>
   <entry>
-    <title>笔记：What makes a good modeling research contribution?</title>
-    <url>/2024/08/23/004/</url>
+    <title>小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</title>
+    <url>/2024/08/29/007/</url>
     <content><![CDATA[
-[What makes a good modeling research contribution?]([论文来源](https://link.springer.com/article/10.1007/s10270-024-01177-x))
+`小记`
 
-*作者是Richard F. Paige。*
+*作者来自马德里理工大学（西班牙）。*
 
-`Abstraction`
+本文的目的是介绍马德里波利特海姆大学目前的研究，以提高小型空间发射器在初步概念阶段的设计效率，该研究基于MBSE方法中的一种新方法，该方法引入了高效和快速的模拟，通过寻找设计重量的最佳平衡来降低成本。在过去的十年中，基于模型的系统工程(MBSE)和并行工程(CE)方法和过程的实施提高了卫星设计的效率，减少了设计时间。
 
-> The modeling field is rapidly evolving and expanding to address new research topics and to connect with new disciplines. As such, what constituted a good modeling research contribution ten years ago may not be the same today. We try to distill some insights of what we (and the community we aim to represent) consider today as key elements of a good research paper in the field of software and systems modeling. Such insights—which will need to evolve and adapt with time—will be useful not just for authors of new papers, but also for reviewers and editors.
+卫星的设计是基于子系统的纯粹功能分析分解，而空间发射器则需要更多的物理分析，因为其组件相互依赖的设计影响很大，需要大量的密集模拟和计算能力。这些仿真的计算时间要求使得卫星并行工程方法在空间发射装置设计中的应用效率低下。一种新的MBSE方法引入了高效和快速的模拟，可以填补现有的空白。
 
-## Introduction
+过去几年，由于虚拟建模可靠性的提高，系统仿真软件方法在所有工程领域的数量显著增加。它们的主要优势是缩短了开发时间，降低了与硬件错误相关的成本，在模拟世界和现实世界之间建立了桥梁。由于其历史背景，现有的关于模型和仿真 (M&S) 的文献在航天器设计中非常广泛。早期的建模和仿真支持了太空时代的发展，测试是验证空气动力学、控制律和结构设计的主要方法。随着当前计算能力的提高，它们在航天器设计中的应用已经扩展到流体动力学、推进、结构、制导、导航和控制 (GN&C)、飞行物理、飞行轨迹、飞行器分段和有效载荷部署的模拟[[12]](#12)。然而，关于将所有这些模型和模拟器集成以分析总体发射器设计和初步开发阶段的交易的 M&S 文献几乎不存在。**我们可以找到与将专门为卫星设计开发的 MBSE 方法和并行工程流程应用于航天发射器设计所面临的困难相关的文献，以及有关 NASA 和 ESA 现有模拟器的描述。**这两个航天机构的模拟器都是多体软件，这意味着创建不同的互连软件块来模拟不同的动态，但由于其不同的计算目标，它们之间存在非常有趣的差异。
 
-关于如何撰写优秀软件工程论文的具体建议：针对特定章节的撰写建议[[1]](#1)、不同类型的软件工程论文[[5]](#5)，甚至关于如何以更符合软件工程审阅者期望的方式撰写论文的建议[[3]](#3)。
+美国宇航局的模拟器[[13]](#13)由马歇尔太空飞行中心 (MSFC) 的先进概念办公室 (ACO) 建造，由一套自动化的三套工具组成，分别为用于系统重量和尺寸的 INTROS（综合火箭尺寸）、用于结构设计的 LVA（运载火箭分析）和 POST II（模拟轨迹优化程序）。该模拟器提供实验设计 (DOE) 功能，可创建替代模型来分析参数敏感性，确定特定任务的关注领域 [[14]](#14)。
+ESA 的模拟器[[15]](#15)，DCAP（动态和控制分析包），由结构和机制部门开发。它是一套计算机程序软件，提供建模、模拟和分析动态和控制性能的能力，并与其他专业软件（如 NASTRAN、CATIA、MATLAB/Symulink）链接，可以在单个模拟中详细重现大多数关键子系统和学科，从而促进并行工程流程。
+NASA 和 ESA 模拟器均在初步设计阶段使用，并且都具有相似的软件架构，但用途不同。然而，它们似乎都与系统工程流程、要求和系统架构无关。
 
-## Types of contributions to the modeling field
+通过上述分析，我们确定了微型和纳米卫星市场领域的航天发射器最佳概念设计面临的三个主要挑战：
 
-常见的论文关注的问题：
+- **多学科设计优化方法主要侧重于重量优化，建模和成本分析从属于重量或侧重于业务分析。**
+- **模型和仿真方法更侧重于重现子系统性能，与定义系统需求和架构的过程无关。**
+- **MBSE 方法允许通过为每个子系统指定功能并定义功能之间以及系统与环境之间的接口来定义功能架构，但它们没有考虑到航天发射器设计更多地基于物理仿真分析而不是卫星设计中应用的功能分解这一事实。**
 
-- how large is the community that the paper aims to address?
-- how much potential impact is there in the result?
-- how complex is the challenge the paper addresses?
-- how substantial is the validation3, e.g., is there an industrial element to the validation?
-- how distant is the topic of the paper from what we typically see in the modeling venues?
-- how readable is the contribution?
-- how relevant are the examples?
-- and finally, how clear and persuasive is the motivation for the research presented in the paper?
+本研究将回答的主要问题是，是否有可能通过在 MBSE 框架中集成多学科模拟器和成本估算模型来概念性地设计小型竞争性太空发射器，从而在经典系统工程方法中引入广泛的模拟，确定每个子系统定义中的关键设计驱动因素，从而实现其优化，从而减少所需的设计循环数量。
 
-此外，明确研究的正面作用和负面作用也很重要。
-下面将介绍六种具体类型。
+![Fig 2. System engineering Wee Diagram](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082901.png)
 
-### The contribution is a model
+这种方法将用图 2 中的新 Wee 图取代经典 V 形图，其中在分解阶段包括建模和仿真，以确定根据定义的需求驱动设计的关键参数。这些参数将在设计阶段进行交换以找到基于快速设计/制造/测试循环的优化解决方案。在集成阶段，将根据模拟器的预测值对测试结果进行分析，以对其进行验证，然后再进入最终的系统集成和验证阶段。
 
-仅凭一个模型肯定不行。这个新模型能告诉我们关于建模领域的什么？它能帮助我们回答哪些我们以前无法回答的问题？
+![Fig 3. Space Launcher conceptual design MBSE&S framework](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24082902.png)
 
-### The contribution is a language
+为此，目前正在使用 Python 代码模块开发太空发射器初步设计模拟器工具（RoTMoS - 火箭和弹道模块化模拟器），涵盖初步设计阶段太空发射器设计所涉及的主要学科：发射轨迹、推进、制导、导航和控制 (GN&C)、空气动力学、负载、应力、质量特性和成本。开发此工具的目的是达到一定的保真度，以便设计实验，分析参数对重量和成本结果的敏感性。模拟器模块将通过任务用例（UPM-Sat 程序）集成到 MBSE 工具（Eclipse CapellaTM）中，遵循空间任务分析与设计 (SMED) 方法，以根据模拟器结果构建优化的太空发射器系统架构和功能。MBSE&S 总体框架如图 3 所示。
 
-仅凭一个元模型也不行，需要完整的工作。
-
-### The contribution is a core modeling technique
-
-这些论文介绍了模型分析（模型验证、确认或测试技术等）或操作技术（模型合并、模型到模型转换、代码生成器等）。或将它们组合起来作为特定建模方法的一部分。这可能是我们多年来看到最多提案的类别。因此，在这一类别中，原创性更难实现，而证明新贡献确实有必要则更为重要。
-例如，很难相信建模社区需要一种新的模型转换方法，除非它与具有非常具体要求的新语言、领域或应用程序相关联。
-
-### The contribution is a modeling application
-
-仅仅证明建模（或 MDE 或建模工具）可以应用于问题是不够的——相反，必须令人信服地证明建模提供了一些附加值，一些可以量化或以可重复的方式捕获的好处。
-
-### The contribution is a (new) modeling domain
-
- 除了单个应用程序（见上文），这里的目标是为新的工程或科学领域提供一些初步支持，然后这些支持可以发展成为该领域的一套完整的建模解决方案和应用程序。
-
-### The contribution is a modeling tool
-
-这些工具贡献不应只是研究工作的副产品或简单的一次性原型，而应是一种成熟、可用且广泛的工具，有可能对建模社区产生重大而积极的影响（通过吸引更多用户、促进更多项目采用建模实践等）。
-
-## A community effort
-
-就社区建设问题进行了介绍。
-
-`个人总结`
-作者就SoSyM期刊中的一些研究进行了分类和评估，从审稿人的角度分析一篇文章应具备哪些要素。
+最后文章总结了自2021年来的相关研究进展。
 
 `参考文献`
-
-<a id="1">[1]</a>Anthony, L.: Writing research article introductions in software engineering: How accurate is a standard model? IEEE Trans. Prof.Commun. 42(1), 38–46 (1999)
-<a id="5">[5]</a>Montesi, M., Lago, P.: Software engineering article types: an analysis of the literature. J. Syst. Softw. 81(10), 1694–1714 (2008)
-<a id="3">[3]</a>Ernst, N.A., Carver, J.C., Mendez, D., Torchiano, M.: Understanding peer review of software engineering papers. Empir. Softw. Eng. 26, 1–29 (2021)]]></content>
+<a id="12">[12]</a>L. B. Rainey. Space Modeling and Simulation: Roles and Applications throughout the System Life Cycle, El Segundo, California The Aerospace Press. AIAA. 2004.
+<a id="13">[13]</a>E. Waters, J. Garcia, G. Threet, A. Philips. "NASA Advanced Concepts Office, Earth-to-Orbit Team Design Process and Tools." AIAA SPACE 2013 Conference and Exposition, American Institute of Aeronautics and Astronautics.
+<a id="14">[14]</a>M. R. Zwack, P. D. Dees, J. B. Holt. "Application of Design of Experiments and Surrogate Modeling within the NASA Advanced Concepts Office, Earth-to-Orbit Design Process." AIAA Space 2016, American Institute of Aeronautics and Astronautics. 2016.
+<a id="15">[15]</a>G. Baldesi, M. Toso. "European Space Agency’s Launcher Multibody Dynamics Simulator used for System and Subsystem Level Analyses." CEAS Space Journal, 3(1), 27-48. 2012.
+]]></content>
       <categories>
         <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>SoSyM</category>
-        <category>2024</category>
+        <category>Conference</category>
+        <category>SECESA</category>
+        <category>2022</category>
       </categories>
       <tags>
-        <tag>Insights</tag>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
       </tags>
   </entry>
   <entry>
@@ -1459,60 +1459,6 @@ Implementation in SysML and Results
         <category>Artical</category>
         <category>AIAA SCITECH Forum</category>
         <category>2023</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>Rocket Engine</tag>
-        <tag>SysML</tag>
-        <tag>Simulation</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</title>
-    <url>/2024/08/30/009/</url>
-    <content><![CDATA[
-`Abstraction`
-基于模型的系统工程 (MBSE) 已在美国宇航局的各种航天计划中得到越来越广泛的应用，例如人类登陆火星现场资源利用 (ISRU) 和地月栖息地架构、商业载人计划 (CCP) 和太空发射系统 (SLS)。最近，MBSE 还帮助支持了美国宇航局的可靠性设计 (DFR) 和任务保障活动。MBSE 的使用有助于在数字环境中可视化整个系统的开发。对于火箭推进系统的开发，利用 MBSE 有助于找到以全面和连贯的方式在整个生命周期内降低成本、进度和风险的方法。为了在竞争激烈的太空竞赛环境中实现可负担性，重要的是要利用增材制造 (AM) 等较新的制造技术。在火箭推进系统的开发中，AM 为通常很复杂的火箭发动机设计提供了新的设计和性能机会。与传统生产技术相比，增材制造火箭推进元件的根本优势在于缩短了交货时间并降低了成本。增材制造设计有助于实现复杂的形状和几何形状，而使用传统生产方法生产这些形状和几何形状通常具有挑战性且成本高昂。
-在火箭推进系统开发的背景下，AM 提供了实现技术和经济上可行的新型发动机设计的技术机会。NASA 的增材制造演示发动机 (AMDE) 等重大努力在火箭推进发动机的生产中采用了增材制造。另一方面，MBSE 提供了在数字环境中可视化设计变更影响的能力。**因此，本研究的目的是评估利用适合增材制造火箭推进元件环境的 MBSE 的好处。对当前最先进的增材制造火箭推进元件进行了文献综述，并确定了利用 MBSE 的潜在机会。**此外，还探索了一个设计示例（RS-25 或航天飞机主发动机），以展示本研究中研究理念的好处。选择设计示例是由于需要重新启动发动机生产以供 NASA 未来的发射清单使用。最后，在缩短发动机测试-失败-修复（重新设计、再制造、重新测试和重新认证）周期时间的范围内对本研究的结果进行了定性评估。
-
-在管理和增强系统工程 (SE) 流程应用的新技术适应性方面，基于模型的系统工程 (MBSE) 在 NASA 内部得到了越来越多的接受和关注 [[19]](#19)。MBSE 是建模的形式化应用，用于支持各种基于系统工程 (SE) 的活动，例如系统需求、设计、分析、验证和跨系统生命周期阶段的确认。在 MBSE 中，模型取代文档成为 SE 流程的主要工件。因此，MBSE 有助于实现高效沟通、管理复杂性、增加多学科知识捕获、创建需求可追溯性并降低风险 [[20]](#20)。
-
-对于火箭发动机，NASA 的 MBSE 注入和现代化计划 - MIAMI [[19]](#19) 曾探索过 MBSE 的使用。据观察，利用 MBSE 有助于实现：
-
-- 自动化验证和确认 (V&V) 过程；
-- 保持对需求的可追溯性；
-- 节省后处理测试数据的时间。
-
-MBSE 还帮助支持了 NASA 的可靠性设计 (DFR) 和基于模型的任务保障活动 (MBMA) 。因此，利用 MBSE 进行 RS25 发动机生产重启的测试-失败-修复，有助于评估可负担性选项（查看设计变更对发动机的影响），从而推断出最小化开发成本的潜在途径。
-
-![Figure 1. The Affordability Modeling Framework for the RS-25 engine [6]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
-
-实现 RS-25 发动机的经济性是一项正在进行的研究工作的一部分。图 1 展示[[6]](#6)了实现 RS-25 经济性的设想框架。为了评估经济性，重要的是同时查看系统架构（组成）、性能、安全性和可靠性以及风险的各个方面。因此，RS-25 经济性模型框架分为四个相互依赖的方面：
-
-- 结构模型[[30]](#30)
-- 系统和组件性能模型
-- 功能和行为模型[[33]](#33)
-- 其他工程分析模型
-
-**结论：**
-本研究的总体目标是展示 MBSE 在增材制造火箭推进部件中的应用。本文在 MBSE 和 AM 应用范围内对近期文献进行了全面总结。利用 RS-25 发动机计划升级的设计示例，展示了开发可负担性框架的先前工作以及随后将 MBSE 机会应用于可负担性框架。针对 AM 技术带来的挑战和 MBSE 提供的机会（第 2 节），确定了利用 MBSE 实现可负担性的可能途径并展示了应用方法。虽然设计示例用于演示目的。所提出的模型本质上是通用的，有可能适合多种液体火箭发动机设计。此外，还展示了通用形状如何代表发动机部件的多种几何形状并提供测试可靠性。
-
-对液体火箭发动机中代表性部件的结构裕度进行分析的最终结果是部件可靠性或部件故障概率信息。在生命周期设计阶段的早期获得这些信息对可负担性模型框架的其他一些方面大有裨益，例如在生命周期早期执行 FMECA。同时展示了一种扩展结构裕度效用以告知可靠性的方法。可靠性信息也可以追溯到基于模型的 FMECA，以评估风险。值得注意的是，所需的工作是同时利用一个或多个单一事实来源进行的，这表明 MBSE 可用于增材制造火箭推进元件。本质上，这个单一事实来源（RS-25 可负担性模型）也可以改进和开发，以探索其他用途（例如生产和成本）及其对可负担性的影响。
-
-本研究以活动图 (act) 的形式展示了测试策略开发中的操作流程。介绍了每个单独操作的可执行文件开发，包括脚本和运行其他软件包 (FEA 包) 的实例。当前的重点是将这些以行为模型呈现的模型转换为完全可执行的 SysML 模型，这将有助于查看 RS-25 发动机的可负担性选项，旨在最大限度地减少发动机测试-失败-修复周期中发生故障和修复的概率。实现这一转变的研究包括：将 FEA 信息应用于神经网络，以及对设备设施和控制要求进行建模 (NASA-STD6033)。因此，这也需要为 RS-25 发动机执行特定的 AM 设计变更信息，以便进一步实施。
-
-`参考文献`
-<a id="19">[19]</a>J. B. Holladay, J. Knizhnik, K. J. Weiland, A. Stein, T. Sanders, and P. Schwindt, “MBSE Infusion and Modernization Initiative (MIAMI): ‘Hot’ Benefits for Real NASA Applications,” in 2019 IEEE Aerospace Conference, 2019, vol. 2019-March, pp. 1–14, doi: 10.1109/AERO.2019.8741795.
-<a id="20">[20]</a>S. Friedenthal, A. Moore, and R. Steiner, A Practical Guide to SysML: The Systems Modeling Language, 3rd ed. Waltham, MA, MA: Morgan Kaufmann, 2015.
-<a id="6">[6]</a>A. J. Bower and D. Thomas, “An Affordability Model Framework for the RS-25 Liquid Rocket Engine,” in 2018 Joint Propulsion Conference, 2018, pp. 1–9, doi: 10.2514/6.2018-4460.
-<a id="30">[30]</a>S. Lakshmipuram Raghu and L. D. Thomas, “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine using SysML,” in AIAA Scitech 2021 Forum, 2021, doi: 10.2514/6.2021-0305.
-<a id="33">[33]</a>S. Lakshmipuram Raghu and L. Thomas, “Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability,” AIAA Propulsion and Energy 2021 Forum, pp. 1–12, Aug. 2021, doi: 10.2514/6.2021-3578.
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>AERO</category>
-        <category>2022</category>
       </categories>
       <tags>
         <tag>MBSE</tag>
@@ -1701,6 +1647,60 @@ FMEA的三种使用场景：（1）新设计、新技术或新过程；（2）�
       </tags>
   </entry>
   <entry>
+    <title>小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</title>
+    <url>/2024/08/30/009/</url>
+    <content><![CDATA[
+`Abstraction`
+基于模型的系统工程 (MBSE) 已在美国宇航局的各种航天计划中得到越来越广泛的应用，例如人类登陆火星现场资源利用 (ISRU) 和地月栖息地架构、商业载人计划 (CCP) 和太空发射系统 (SLS)。最近，MBSE 还帮助支持了美国宇航局的可靠性设计 (DFR) 和任务保障活动。MBSE 的使用有助于在数字环境中可视化整个系统的开发。对于火箭推进系统的开发，利用 MBSE 有助于找到以全面和连贯的方式在整个生命周期内降低成本、进度和风险的方法。为了在竞争激烈的太空竞赛环境中实现可负担性，重要的是要利用增材制造 (AM) 等较新的制造技术。在火箭推进系统的开发中，AM 为通常很复杂的火箭发动机设计提供了新的设计和性能机会。与传统生产技术相比，增材制造火箭推进元件的根本优势在于缩短了交货时间并降低了成本。增材制造设计有助于实现复杂的形状和几何形状，而使用传统生产方法生产这些形状和几何形状通常具有挑战性且成本高昂。
+在火箭推进系统开发的背景下，AM 提供了实现技术和经济上可行的新型发动机设计的技术机会。NASA 的增材制造演示发动机 (AMDE) 等重大努力在火箭推进发动机的生产中采用了增材制造。另一方面，MBSE 提供了在数字环境中可视化设计变更影响的能力。**因此，本研究的目的是评估利用适合增材制造火箭推进元件环境的 MBSE 的好处。对当前最先进的增材制造火箭推进元件进行了文献综述，并确定了利用 MBSE 的潜在机会。**此外，还探索了一个设计示例（RS-25 或航天飞机主发动机），以展示本研究中研究理念的好处。选择设计示例是由于需要重新启动发动机生产以供 NASA 未来的发射清单使用。最后，在缩短发动机测试-失败-修复（重新设计、再制造、重新测试和重新认证）周期时间的范围内对本研究的结果进行了定性评估。
+
+在管理和增强系统工程 (SE) 流程应用的新技术适应性方面，基于模型的系统工程 (MBSE) 在 NASA 内部得到了越来越多的接受和关注 [[19]](#19)。MBSE 是建模的形式化应用，用于支持各种基于系统工程 (SE) 的活动，例如系统需求、设计、分析、验证和跨系统生命周期阶段的确认。在 MBSE 中，模型取代文档成为 SE 流程的主要工件。因此，MBSE 有助于实现高效沟通、管理复杂性、增加多学科知识捕获、创建需求可追溯性并降低风险 [[20]](#20)。
+
+对于火箭发动机，NASA 的 MBSE 注入和现代化计划 - MIAMI [[19]](#19) 曾探索过 MBSE 的使用。据观察，利用 MBSE 有助于实现：
+
+- 自动化验证和确认 (V&V) 过程；
+- 保持对需求的可追溯性；
+- 节省后处理测试数据的时间。
+
+MBSE 还帮助支持了 NASA 的可靠性设计 (DFR) 和基于模型的任务保障活动 (MBMA) 。因此，利用 MBSE 进行 RS25 发动机生产重启的测试-失败-修复，有助于评估可负担性选项（查看设计变更对发动机的影响），从而推断出最小化开发成本的潜在途径。
+
+![Figure 1. The Affordability Modeling Framework for the RS-25 engine [6]](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24083001.png)
+
+实现 RS-25 发动机的经济性是一项正在进行的研究工作的一部分。图 1 展示[[6]](#6)了实现 RS-25 经济性的设想框架。为了评估经济性，重要的是同时查看系统架构（组成）、性能、安全性和可靠性以及风险的各个方面。因此，RS-25 经济性模型框架分为四个相互依赖的方面：
+
+- 结构模型[[30]](#30)
+- 系统和组件性能模型
+- 功能和行为模型[[33]](#33)
+- 其他工程分析模型
+
+**结论：**
+本研究的总体目标是展示 MBSE 在增材制造火箭推进部件中的应用。本文在 MBSE 和 AM 应用范围内对近期文献进行了全面总结。利用 RS-25 发动机计划升级的设计示例，展示了开发可负担性框架的先前工作以及随后将 MBSE 机会应用于可负担性框架。针对 AM 技术带来的挑战和 MBSE 提供的机会（第 2 节），确定了利用 MBSE 实现可负担性的可能途径并展示了应用方法。虽然设计示例用于演示目的。所提出的模型本质上是通用的，有可能适合多种液体火箭发动机设计。此外，还展示了通用形状如何代表发动机部件的多种几何形状并提供测试可靠性。
+
+对液体火箭发动机中代表性部件的结构裕度进行分析的最终结果是部件可靠性或部件故障概率信息。在生命周期设计阶段的早期获得这些信息对可负担性模型框架的其他一些方面大有裨益，例如在生命周期早期执行 FMECA。同时展示了一种扩展结构裕度效用以告知可靠性的方法。可靠性信息也可以追溯到基于模型的 FMECA，以评估风险。值得注意的是，所需的工作是同时利用一个或多个单一事实来源进行的，这表明 MBSE 可用于增材制造火箭推进元件。本质上，这个单一事实来源（RS-25 可负担性模型）也可以改进和开发，以探索其他用途（例如生产和成本）及其对可负担性的影响。
+
+本研究以活动图 (act) 的形式展示了测试策略开发中的操作流程。介绍了每个单独操作的可执行文件开发，包括脚本和运行其他软件包 (FEA 包) 的实例。当前的重点是将这些以行为模型呈现的模型转换为完全可执行的 SysML 模型，这将有助于查看 RS-25 发动机的可负担性选项，旨在最大限度地减少发动机测试-失败-修复周期中发生故障和修复的概率。实现这一转变的研究包括：将 FEA 信息应用于神经网络，以及对设备设施和控制要求进行建模 (NASA-STD6033)。因此，这也需要为 RS-25 发动机执行特定的 AM 设计变更信息，以便进一步实施。
+
+`参考文献`
+<a id="19">[19]</a>J. B. Holladay, J. Knizhnik, K. J. Weiland, A. Stein, T. Sanders, and P. Schwindt, “MBSE Infusion and Modernization Initiative (MIAMI): ‘Hot’ Benefits for Real NASA Applications,” in 2019 IEEE Aerospace Conference, 2019, vol. 2019-March, pp. 1–14, doi: 10.1109/AERO.2019.8741795.
+<a id="20">[20]</a>S. Friedenthal, A. Moore, and R. Steiner, A Practical Guide to SysML: The Systems Modeling Language, 3rd ed. Waltham, MA, MA: Morgan Kaufmann, 2015.
+<a id="6">[6]</a>A. J. Bower and D. Thomas, “An Affordability Model Framework for the RS-25 Liquid Rocket Engine,” in 2018 Joint Propulsion Conference, 2018, pp. 1–9, doi: 10.2514/6.2018-4460.
+<a id="30">[30]</a>S. Lakshmipuram Raghu and L. D. Thomas, “Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS-25 Engine using SysML,” in AIAA Scitech 2021 Forum, 2021, doi: 10.2514/6.2021-0305.
+<a id="33">[33]</a>S. Lakshmipuram Raghu and L. Thomas, “Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability,” AIAA Propulsion and Energy 2021 Forum, pp. 1–12, Aug. 2021, doi: 10.2514/6.2021-3578.
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>AERO</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Rocket Engine</tag>
+        <tag>SysML</tag>
+        <tag>Simulation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt</title>
     <url>/2025/02/10/013/</url>
     <content><![CDATA[
@@ -1725,29 +1725,63 @@ FMEA的三种使用场景：（1）新设计、新技术或新过程；（2）�
       </tags>
   </entry>
   <entry>
-    <title>笔记：Automation in Model-Driven Engineering:A look back, and ahead</title>
-    <url>/2025/02/13/015/</url>
+    <title>笔记：Picto Web:A Tool for Complex Model Exploration</title>
+    <url>/2025/02/15/017/</url>
     <content><![CDATA[
-[Automation in Model-Driven Engineering: A look back, and ahead](https://dl.acm.org/doi/abs/10.1145/3712008)
+MODELS2022: [Picto web: a tool for complex model exploration](https://dl.acm.org/doi/abs/10.1145/3550356.3559094)
+
+CPS2024: [Exploring complex models with picto web](https://www.sciencedirect.com/science/article/pii/S0167642323001193)
+
+[Picto Web开源代码](https://github.com/epsilonlabs/picto-web)
 
 `Abstraction`
 
-> Model-Driven Engineering (MDE) provides a huge body of knowledge of automation for many different engineering tasks, especially those involving transitioning from design to implementation. With the huge progress made in Artificial Intelligence (AI), questions arise about the future of MDE, such as how existing MDE techniques and technologies can be improved or how other activities that currently lack dedicated support can also be automated. However, at the same time, it has to be revisited where and how models should be used to keep the engineers in the loop for creating, operating, and maintaining complex systems. To trigger dedicated research on these open points, we discuss the history of automation in MDE and present perspectives on how automation in MDE can be further improved and which obstacles have to be overcome in both the medium and long-term.
+> Picto Web is a multi-tenant web-based tool for complex model exploration. It can transform different types of models into a variety of transient web-based views in formats such as HTML, Graphviz and PlantUML using rule-based model-to-text transformations. Picto Web implements a lazy view computation approach to support large models and complex transformations efficiently, and includes model and transformation template monitoring and push notification facilities to automatically recompute views when either are modified and deliver updated views to clients. The tool is packaged as a Docker container for ease of deployment.
 
-![纵轴对应MDE能实现的功能，横轴对应所属技术领域](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/25021301.png)
+![展示效果](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/25021501.png)
 
-一篇综述性质的文章，一方面回顾了典型的MDE技术，一方面做了技术展望。
-回顾方面如图所示，该文章按照建模、模型验证、模型管理等类型对功能进行了分类（2.1节），然后介绍了几种MDE的技术类型（这个分类挺让人迷惑的，没看懂这么分有什么意义，可能是想突出AI和LLM）（2.2节）。从第三节开始介绍对AI的思考，介绍了个别工作，其余的都是设想，本质上是技术驱动不是工程需求。提出了几个其他的工程需求：标准不统一、性能提升，也是常见的问题。
+本文是对原来Eclipse Picto工具的网页支持，模型在本地生成，然后可以用网页打开与查看，使用效果和本地一样。
+
+- 第一节介绍了两种技术路线，也就是相关工作Sprotty（也是基于Eclipse的）和本文的Picto。
+- 第二节分别讲技术层级（分为了FileWatcher、Transformer、ViewContentCache、PictoController）、效果演示和中间件的工作模式（分别是EGL、EGX和Picto）。
+- 第三节展示了一次操作在整个平台当中的运行过程。
+
+未来展望里提到的不同版本模型对比很好。
 ]]></content>
       <categories>
         <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TOSEM</category>
-        <category>2025</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2022</category>
       </categories>
       <tags>
-        <tag>Review</tag>
         <tag>MDE</tag>
+        <tag>Epsilon</tag>
+        <tag>Picto</tag>
+        <tag>Web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Advancing Domain-Specific High-Integrity Model-Based Tools:Insights and Future Pathways</title>
+    <url>/2025/02/12/014/</url>
+    <content><![CDATA[
+[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://dl.acm.org/doi/abs/10.1145/3640310.3674094)
+
+`Abstraction`
+
+> Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
+
+本文是接着21年论文对CaMCOA Studio介绍的延续，介绍了这种联合Simulink和Sirius的MBSE工具，这篇展示了更多信息。第二节指出一个模型要在不同的抽象层级中表示，也就是NDSM、PDDM、EAM等，他们要在同一个平台上应对这些不同信息层级的模型，并处理追溯性、兼容性等问题。第三节介绍了一些挑战，有软件性能、模型间索引、版本变更带来的模型迁移。第四节汇总了一些代码开发的心得和经验。第五节结合了将软件迁移到Web端的可能性，如使用Sirius Web或GLSP。第六节提出了在云端创建的设想。总体上是对CaMCOA项目的更详细更全面的汇总报告和工具介绍。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>Sirius</tag>
         <tag>Epsilon</tag>
       </tags>
   </entry>
@@ -1777,26 +1811,29 @@ FMEA的三种使用场景：（1）新设计、新技术或新过程；（2）�
       </tags>
   </entry>
   <entry>
-    <title>笔记：Advancing Domain-Specific High-Integrity Model-Based Tools:Insights and Future Pathways</title>
-    <url>/2025/02/12/014/</url>
+    <title>笔记：Automation in Model-Driven Engineering:A look back, and ahead</title>
+    <url>/2025/02/13/015/</url>
     <content><![CDATA[
-[Model-Based Development of Engine Control Systems:Experiences and Lessons Learnt](https://dl.acm.org/doi/abs/10.1145/3640310.3674094)
+[Automation in Model-Driven Engineering: A look back, and ahead](https://dl.acm.org/doi/abs/10.1145/3712008)
 
 `Abstraction`
 
-> Rolls-Royce Control Systems supplies engine control and monitoring systems for aviation applications, and is required to design, certify, and deliver these to the highest level of safety assurance. To allow Rolls-Royce to develop safe and robust systems, which continue to increase in complexity, model-based techniques are now a critical part of the software development process. In this paper, we discuss the experiences, challenges and lessons learnt when developing a bespoke domain-specific modelling workbench based on open-source modelling technologies including the Eclipse Modelling Framework (EMF), Xtext, Sirius and Epsilon. This modelling workbench will be used to architect and integrate the software for all future Rolls-Royce engine control and monitoring systems.
+> Model-Driven Engineering (MDE) provides a huge body of knowledge of automation for many different engineering tasks, especially those involving transitioning from design to implementation. With the huge progress made in Artificial Intelligence (AI), questions arise about the future of MDE, such as how existing MDE techniques and technologies can be improved or how other activities that currently lack dedicated support can also be automated. However, at the same time, it has to be revisited where and how models should be used to keep the engineers in the loop for creating, operating, and maintaining complex systems. To trigger dedicated research on these open points, we discuss the history of automation in MDE and present perspectives on how automation in MDE can be further improved and which obstacles have to be overcome in both the medium and long-term.
 
-本文是接着21年论文对CaMCOA Studio介绍的延续，介绍了这种联合Simulink和Sirius的MBSE工具，这篇展示了更多信息。第二节指出一个模型要在不同的抽象层级中表示，也就是NDSM、PDDM、EAM等，他们要在同一个平台上应对这些不同信息层级的模型，并处理追溯性、兼容性等问题。第三节介绍了一些挑战，有软件性能、模型间索引、版本变更带来的模型迁移。第四节汇总了一些代码开发的心得和经验。第五节结合了将软件迁移到Web端的可能性，如使用Sirius Web或GLSP。第六节提出了在云端创建的设想。总体上是对CaMCOA项目的更详细更全面的汇总报告和工具介绍。
+![纵轴对应MDE能实现的功能，横轴对应所属技术领域](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/25021301.png)
+
+一篇综述性质的文章，一方面回顾了典型的MDE技术，一方面做了技术展望。
+回顾方面如图所示，该文章按照建模、模型验证、模型管理等类型对功能进行了分类（2.1节），然后介绍了几种MDE的技术类型（这个分类挺让人迷惑的，没看懂这么分有什么意义，可能是想突出AI和LLM）（2.2节）。从第三节开始介绍对AI的思考，介绍了个别工作，其余的都是设想，本质上是技术驱动不是工程需求。提出了几个其他的工程需求：标准不统一、性能提升，也是常见的问题。
 ]]></content>
       <categories>
         <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>MODELS</category>
-        <category>2024</category>
+        <category>Journal</category>
+        <category>TOSEM</category>
+        <category>2025</category>
       </categories>
       <tags>
-        <tag>MBSE</tag>
-        <tag>Sirius</tag>
+        <tag>MDE</tag>
+        <tag>Review</tag>
         <tag>Epsilon</tag>
       </tags>
   </entry>
@@ -1874,43 +1911,6 @@ SoSyM2024:[Modular language product lines: concept, tool and analysis](https://l
       </tags>
   </entry>
   <entry>
-    <title>笔记：Picto Web:A Tool for Complex Model Exploration</title>
-    <url>/2025/02/15/017/</url>
-    <content><![CDATA[
-MODELS2022: [Picto web: a tool for complex model exploration](https://dl.acm.org/doi/abs/10.1145/3550356.3559094)
-
-CPS2024: [Exploring complex models with picto web](https://www.sciencedirect.com/science/article/pii/S0167642323001193)
-
-[Picto Web开源代码](https://github.com/epsilonlabs/picto-web)
-
-`Abstraction`
-
-> Picto Web is a multi-tenant web-based tool for complex model exploration. It can transform different types of models into a variety of transient web-based views in formats such as HTML, Graphviz and PlantUML using rule-based model-to-text transformations. Picto Web implements a lazy view computation approach to support large models and complex transformations efficiently, and includes model and transformation template monitoring and push notification facilities to automatically recompute views when either are modified and deliver updated views to clients. The tool is packaged as a Docker container for ease of deployment.
-
-![展示效果](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/25021501.png)
-
-本文是对原来Eclipse Picto工具的网页支持，模型在本地生成，然后可以用网页打开与查看，使用效果和本地一样。
-
-- 第一节介绍了两种技术路线，也就是相关工作Sprotty（也是基于Eclipse的）和本文的Picto。
-- 第二节分别讲技术层级（分为了FileWatcher、Transformer、ViewContentCache、PictoController）、效果演示和中间件的工作模式（分别是EGL、EGX和Picto）。
-- 第三节展示了一次操作在整个平台当中的运行过程。
-
-未来展望里提到的不同版本模型对比很好。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>MODELS</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>MDE</tag>
-        <tag>Epsilon</tag>
-        <tag>Picto</tag>
-        <tag>Web</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记：Towards the Formal Verification of SysML v2 Models</title>
     <url>/2025/02/22/020/</url>
     <content><![CDATA[
@@ -1944,29 +1944,76 @@ CPS2024: [Exploring complex models with picto web](https://www.sciencedirect.com
       </tags>
   </entry>
   <entry>
-    <title>笔记：Tree-Based versus Hybrid Graphical-Textual Model Editors:An Empirical Study of Testing Specifications</title>
-    <url>/2025/02/25/023/</url>
-    <content><![CDATA[
-[Tree-Based versus Hybrid Graphical-Textual Model Editors: An Empirical Study of Testing Specifications](https://dl.acm.org/doi/abs/10.1145/3640310.3674102)
+    <title>Eclipse Modeling Framework 2.0 笔记</title>
+    <url>/2025/02/25/022/</url>
+    <content><![CDATA[前言：
 
-`Abstraction`
+- 第一部分（1-4章）介绍基本概念；
+- 第二部分（5-9章）介绍Ecore和其他形式的关系（UML、Java、XML Schema）；
+- 第三部分（10-13章）分析EMF的代码生成工具和案例；
+- 第四部分（14-21章）介绍EMF的运行库架构。
 
-> Tree-based model editors and hybrid graphical-textual model editors have advantages and limitations when editing domain models. Data is displayed hierarchically in tree-based model editors, whereas hybrid graphical-textual model editors capture high-level domain concepts graphically and low-level domain details textually. We conducted an empirical user study with 22 participants to evaluate the implicit assumption of system modellers that hybrid notations are superior, and to investigate the tradeoffs between the default EMF-based tree model editor and a Sirius/Xtext-based hybrid model editor. The results of the user study indicate that users largely prefer the hybrid editor and are more confident with hybrid notations for understanding the meaning of conditions. Furthermore, we found that the tree editor provided superior performance for analysing ordered lists of model elements, whereas activities requiring the comprehension or modelling of complex conditions were carried out faster through the hybrid editor.
+# 第1章 Eclipse
 
-本文是测试与讨论类型的论文，不是技术文章。
+## 项目
+Eclipse项目本身可以划分为4个主要子项目：Equinox、平台、Java开发工具（Java Development Tools）、插件开发环境（Plug-in Development Environment，PDE）。
 
-本文围绕一个工程场景做了树状模型和图文混模型工具的性能对比。工程场景是一个MRS多机器人系统，文章第三节介绍了元模型。文章第四节介绍两种模型所用工具，分别是EMF默认的树状编辑器和开发的Graphite图文混合编辑器，介绍了元模型和例子。第五节开始介绍测试过程，22个参与者是如何被培训和测评的，论文设计了三个目标，分别是Performance（与树编辑器相比，用混合编辑器执行某些任务时，用户如何执行？）、Confidence（用户对解决方案的正确性和完整性对​​给定任务有多信心？）、Preference（用户喜欢混合编辑器或树编辑器吗？），通过他们对5个问题的理解和5个任务操作的结果进行分析。第六节介绍结果评价，五六节占全文一半以上。结论是：“关于性能，使用编辑者执行任务的速度之间存在了权衡。混合编辑器更适合理解和建模复杂条件，而树编辑器更适合分析模型元素的有序列表。当建模条件时，混合编辑器会发现更多校正的误差。但是，犯下的错误很小。同样，与混合编辑器进行建模条件的更多击键和更少的点击量。当使用混合编辑器了解条件的含义时，用户对解决方案更有信心。最后，在研究之前，有50％的参与者更喜欢混合编辑。最后，百分比增加到73％，显示对混合动力编辑者的偏好增加。”
+# 第2章 EMF介绍
+
+# 第3章 使用EMF.Edit编辑模型
+
+# 第4章 使用EMF——简单概述
+用一个例子说明如何在Eclipse中创建一个EMF（不使用Emfatic）。
+
+# 第5章 Ecore建模概念
+
+
+# 第6章 UML
+
+# 第7章 Java源代码
+
+# 第8章 扩展的Ecore建模
+
+# 第9章 XML Schema
+
+# 第10章 EMF生成器模式
+
+# 第11章 EMF.Edit生成器模式
+
+# 第12章 运行生成器
+
+# 第13章 示例——实现模型和编辑器
+
+# 第14章 探索元数据
+
+# 第15章 持久化
+
+# 第16章 客户端编程工具箱
+
+# 第17章 更改模型
+
+# 第18章 验证架构
+
+# 第19章 EMF.Edit编程
+
+# 第20章 Eclipse IDE之外的应用领域
+
+# 第21章 EMF 2.3和2.4
+
+# 附录A UML符号
+
+# 附录B 示例模型概述
+
+# 附录C 参考文献
+
 ]]></content>
       <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>MODELS</category>
-        <category>2024</category>
+        <category>Book</category>
       </categories>
       <tags>
         <tag>MDE</tag>
-        <tag>Sirius</tag>
-        <tag>Xtext</tag>
+        <tag>EMF</tag>
+        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -2056,76 +2103,29 @@ SysML中的关键词：
       </tags>
   </entry>
   <entry>
-    <title>Eclipse Modeling Framework 2.0 笔记</title>
-    <url>/2025/02/25/022/</url>
-    <content><![CDATA[前言：
+    <title>笔记：Tree-Based versus Hybrid Graphical-Textual Model Editors:An Empirical Study of Testing Specifications</title>
+    <url>/2025/02/25/023/</url>
+    <content><![CDATA[
+[Tree-Based versus Hybrid Graphical-Textual Model Editors: An Empirical Study of Testing Specifications](https://dl.acm.org/doi/abs/10.1145/3640310.3674102)
 
-- 第一部分（1-4章）介绍基本概念；
-- 第二部分（5-9章）介绍Ecore和其他形式的关系（UML、Java、XML Schema）；
-- 第三部分（10-13章）分析EMF的代码生成工具和案例；
-- 第四部分（14-21章）介绍EMF的运行库架构。
+`Abstraction`
 
-# 第1章 Eclipse
+> Tree-based model editors and hybrid graphical-textual model editors have advantages and limitations when editing domain models. Data is displayed hierarchically in tree-based model editors, whereas hybrid graphical-textual model editors capture high-level domain concepts graphically and low-level domain details textually. We conducted an empirical user study with 22 participants to evaluate the implicit assumption of system modellers that hybrid notations are superior, and to investigate the tradeoffs between the default EMF-based tree model editor and a Sirius/Xtext-based hybrid model editor. The results of the user study indicate that users largely prefer the hybrid editor and are more confident with hybrid notations for understanding the meaning of conditions. Furthermore, we found that the tree editor provided superior performance for analysing ordered lists of model elements, whereas activities requiring the comprehension or modelling of complex conditions were carried out faster through the hybrid editor.
 
-## 项目
-Eclipse项目本身可以划分为4个主要子项目：Equinox、平台、Java开发工具（Java Development Tools）、插件开发环境（Plug-in Development Environment，PDE）。
+本文是测试与讨论类型的论文，不是技术文章。
 
-# 第2章 EMF介绍
-
-# 第3章 使用EMF.Edit编辑模型
-
-# 第4章 使用EMF——简单概述
-用一个例子说明如何在Eclipse中创建一个EMF（不使用Emfatic）。
-
-# 第5章 Ecore建模概念
-
-
-# 第6章 UML
-
-# 第7章 Java源代码
-
-# 第8章 扩展的Ecore建模
-
-# 第9章 XML Schema
-
-# 第10章 EMF生成器模式
-
-# 第11章 EMF.Edit生成器模式
-
-# 第12章 运行生成器
-
-# 第13章 示例——实现模型和编辑器
-
-# 第14章 探索元数据
-
-# 第15章 持久化
-
-# 第16章 客户端编程工具箱
-
-# 第17章 更改模型
-
-# 第18章 验证架构
-
-# 第19章 EMF.Edit编程
-
-# 第20章 Eclipse IDE之外的应用领域
-
-# 第21章 EMF 2.3和2.4
-
-# 附录A UML符号
-
-# 附录B 示例模型概述
-
-# 附录C 参考文献
-
+本文围绕一个工程场景做了树状模型和图文混模型工具的性能对比。工程场景是一个MRS多机器人系统，文章第三节介绍了元模型。文章第四节介绍两种模型所用工具，分别是EMF默认的树状编辑器和开发的Graphite图文混合编辑器，介绍了元模型和例子。第五节开始介绍测试过程，22个参与者是如何被培训和测评的，论文设计了三个目标，分别是Performance（与树编辑器相比，用混合编辑器执行某些任务时，用户如何执行？）、Confidence（用户对解决方案的正确性和完整性对​​给定任务有多信心？）、Preference（用户喜欢混合编辑器或树编辑器吗？），通过他们对5个问题的理解和5个任务操作的结果进行分析。第六节介绍结果评价，五六节占全文一半以上。结论是：“关于性能，使用编辑者执行任务的速度之间存在了权衡。混合编辑器更适合理解和建模复杂条件，而树编辑器更适合分析模型元素的有序列表。当建模条件时，混合编辑器会发现更多校正的误差。但是，犯下的错误很小。同样，与混合编辑器进行建模条件的更多击键和更少的点击量。当使用混合编辑器了解条件的含义时，用户对解决方案更有信心。最后，在研究之前，有50％的参与者更喜欢混合编辑。最后，百分比增加到73％，显示对混合动力编辑者的偏好增加。”
 ]]></content>
       <categories>
-        <category>Book</category>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2024</category>
       </categories>
       <tags>
         <tag>MDE</tag>
-        <tag>EMF</tag>
-        <tag>Eclipse</tag>
+        <tag>Sirius</tag>
+        <tag>Xtext</tag>
       </tags>
   </entry>
   <entry>
@@ -2162,49 +2162,6 @@ Eclipse项目本身可以划分为4个主要子项目：Equinox、平台、Java�
       </tags>
   </entry>
   <entry>
-    <title>笔记：10 years of Model Federation with Openflexo:Challenges and Lessons Learned</title>
-    <url>/2025/02/27/025/</url>
-    <content><![CDATA[
-[10 years of Model Federation with Openflexo: Challenges and Lessons Learned](https://dl.acm.org/doi/abs/10.1145/3640310.3674084)
-
-`Abstraction`
-
-> In the context of complex system development, heterogeneous modeling responds to the need to integrate several domains. This need requires the use of the most appropriate formalism and tooling for each domain to be efficient. Model federation promotes the semantic interoperability of heterogeneous models by providing the means to reify correspondences between different model elements, add custom behaviors and bridge the gap between technological spaces. As such, it can be used as an infrastructure to address many different system engineering problems. This is what we have been doing for over a decade, as part of a close collaboration between a small software engineering startup and academia. This paper reports on this experience.
-> Concretely, we discuss the context, ambitions, and challenges that led to the inception of our practice of model federation, and we present five use cases experiences, stemming from real industrial and academic needs, and elaborate on lessons learned. In addition, we also report on challenges and lessons learned regarding the development and maintenance of a model-driven model federation tool, the Openflexo framework. Finally, we set up a road map for the future of model federation and Openflexo.
-
-当年的best paper之一。本文是Openflexo团队回顾MDE方面的经验的论文，强调了他们对MDE开发的学术与工程理想——模型联合体，然后讲他们是如何理解相关环节的（四个挑战），怎么为之实践的（五个例子），最后给出了他们最终的愿景。
-
-第二节介绍了四个挑战：
-
-- Preserving existing practices：尽量确保现有的工作模式和工作模型不被破坏或干扰；
-- seeing everying as a model：一个系统信息应该来自模型；
-- Conceptualizing and organizing：不同领域的概念互相独立分隔，但是存在一定的语义连接；
-- Mastering evolution：模型的不同侧面应该确保整体系统的一致性。
-
-第三节介绍模型联合体（Model Federation）的概念。第四节就开发过的五个例子来分析，就上面四个挑战分别讨论，并评估了他们分别做到了哪些方面。第五节讨论经验教训：
-
-- Separate business from technology：流程概念和技术建模分开，每个人应该专注做当前层级的模型而不要跨模型建模。
-- Tool maintenance & dissemination：开发完的软件工具应该不断维护和向工业界推广。
-- Need for many concrete syntax：文本建模在模型多的时候比图建模有用。
-- Federation requires organization：模型联合体的概念需要统一。
-- Modeling requires flexibility：建模应具有一定的灵活性，在一些方面应该可以自定义。
-- Modeling needs model capitalization：好的模型和模型工具应该可以被大量重用，建立一个复用性强的知识库有利于新模型的开发效率。
-
-本文叙述思路明确，表达简明易读，讨论的逻辑也很在理，很符合我对MDE的一些理解和认知，总结的一些内容也值得再日后回头翻阅。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>MODELS</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>MDE</tag>
-        <tag>Model Federation</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记：Solving the Instance Model-View Update Problem in AADL</title>
     <url>/2025/03/06/026/</url>
     <content><![CDATA[
@@ -2229,39 +2186,6 @@ OSATE存在一个问题：修改图形之后对应的文本不能自动更新，
         <tag>Model-View</tag>
         <tag>AADL</tag>
         <tag>OSATE</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Model Transformation Testing and Debugging:A Survey</title>
-    <url>/2025/03/07/028/</url>
-    <content><![CDATA[
-[Model Transformation Testing and Debugging:A Survey](https://dl.acm.org/doi/abs/10.1145/3523056)
-
-`Abstraction`
-
-> Model transformations are the key technique in Model-Driven Engineering (MDE) to manipulate and construct models. As a consequence, the correctness of software systems built with MDE approaches relies mainly on the correctness of model transformations, and thus, detecting and locating bugs in model transformations have been popular research topics in recent years. This surge of work has led to a vast literature on model transformation testing and debugging, which makes it challenging to gain a comprehensive view of the current state-of-the-art. This is an obstacle for newcomers to this topic and MDE practitioners to apply these approaches. This article presents a survey on testing and debugging model transformations based on the analysis of 140 papers on the topics. We explore the trends, advances, and evolution over the years, bringing together previously disparate streams of work and providing a comprehensive view of these thriving areas. In addition, we present a conceptual framework to understand and categorize the different proposals. Finally, we identify several open research challenges and propose specific action points for the model transformation community.
-
-本文是研究“模型转换测试和调试”的综述，通过对140篇论文的调研，从不同的角度分析了现有该领域工作的特点，包括进行分类和讨论。
-
-- 第一章介绍论文动机和文章结构。
-- 第二章介绍研究背景，包括一些基本术语：元模型、模型转换和先前的一些工作。
-- 第三章介绍了本文所用使用的分类方法，围绕图4中展示的结构对测试和调试环节进行分类梳理（也就是说不是所有的140篇论文都涵盖这个图4的全流程）。
-- 第四章讲论文调研的流程，包括主要的四个问题、论文收集和选择标准、数据分类等。
-- 第五章进入正题，回答问题一“每个论文的测试过程重点研究了什么？”，开始围绕四个问题就收集到的论文和分类结果进行一一陈述。其中5.2讨论的Test Oracle是有关模型转换理念的分类
-- 第六章回答问题二“模型转换调试的方法是什么？”。
-- 第七章回答问题三“如何评估模型转换方法？”。7.1节先介绍了调研中提到的一些工具，7.2节介绍一些案例，但没有介绍具体的评估方法。
-- 第八章回答问题四“未来挑战有哪些？”。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>CS</category>
-        <category>2023</category>
-      </categories>
-      <tags>
-        <tag>MDE</tag>
-        <tag>Model Transformation</tag>
-        <tag>Survey</tag>
       </tags>
   </entry>
   <entry>
@@ -2357,6 +2281,108 @@ OSATE存在一个问题：修改图形之后对应的文本不能自动更新，
       </tags>
   </entry>
   <entry>
+    <title>笔记：Model Transformation Testing and Debugging:A Survey</title>
+    <url>/2025/03/07/028/</url>
+    <content><![CDATA[
+[Model Transformation Testing and Debugging:A Survey](https://dl.acm.org/doi/abs/10.1145/3523056)
+
+`Abstraction`
+
+> Model transformations are the key technique in Model-Driven Engineering (MDE) to manipulate and construct models. As a consequence, the correctness of software systems built with MDE approaches relies mainly on the correctness of model transformations, and thus, detecting and locating bugs in model transformations have been popular research topics in recent years. This surge of work has led to a vast literature on model transformation testing and debugging, which makes it challenging to gain a comprehensive view of the current state-of-the-art. This is an obstacle for newcomers to this topic and MDE practitioners to apply these approaches. This article presents a survey on testing and debugging model transformations based on the analysis of 140 papers on the topics. We explore the trends, advances, and evolution over the years, bringing together previously disparate streams of work and providing a comprehensive view of these thriving areas. In addition, we present a conceptual framework to understand and categorize the different proposals. Finally, we identify several open research challenges and propose specific action points for the model transformation community.
+
+本文是研究“模型转换测试和调试”的综述，通过对140篇论文的调研，从不同的角度分析了现有该领域工作的特点，包括进行分类和讨论。
+
+- 第一章介绍论文动机和文章结构。
+- 第二章介绍研究背景，包括一些基本术语：元模型、模型转换和先前的一些工作。
+- 第三章介绍了本文所用使用的分类方法，围绕图4中展示的结构对测试和调试环节进行分类梳理（也就是说不是所有的140篇论文都涵盖这个图4的全流程）。
+- 第四章讲论文调研的流程，包括主要的四个问题、论文收集和选择标准、数据分类等。
+- 第五章进入正题，回答问题一“每个论文的测试过程重点研究了什么？”，开始围绕四个问题就收集到的论文和分类结果进行一一陈述。其中5.2讨论的Test Oracle是有关模型转换理念的分类
+- 第六章回答问题二“模型转换调试的方法是什么？”。
+- 第七章回答问题三“如何评估模型转换方法？”。7.1节先介绍了调研中提到的一些工具，7.2节介绍一些案例，但没有介绍具体的评估方法。
+- 第八章回答问题四“未来挑战有哪些？”。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>CS</category>
+        <category>2023</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>Model Transformation</tag>
+        <tag>Survey</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Bibliometric Analysis of Model-Based Systems Engineering:Past, Current, and Future</title>
+    <url>/2025/05/07/030/</url>
+    <content><![CDATA[
+[Bibliometric Analysis of Model-Based Systems Engineering: Past, Current, and Future](https://ieeexplore.ieee.org/abstract/document/9829034/)
+
+`Abstraction`
+
+> Model-based systems engineering (MBSE) is considered an important approach for understanding multidomain fields and is widely used in complex systems such as aerospace. In this article, a detailed survey ofMBSE literature was conducted from its commencement to the present trends through bibliometric analysis.
+> Some bibliometric tools were used to implement a visual network analysis of MBSE-related manuscripts. The results of the bibliometric study revealed the interrelationship and distribution of researchers in multidomain fields. The authorized sources ofMBSE papers were also assorted. The current practices of MBSE were analyzed. The future directions for MBSE based on the current practices were discussed. We found that MBSE’s research has been conducted by many research teams with distinctive characteristics, and the top publishing sources in this field have emerged. Research on MBSE focuses on system engineering, languages, system of systems, and digitalization. The development of new technologies such as next-generation modeling languages is improving current practical problems. The findings of this study may help researchers gain a faster and more comprehensive understanding of the current and future developments in MBSE.
+
+![MBSE时间线](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050701.jpg)
+
+INCOSE在2006年的系统工程2020一文中提到的MBSE的定义是：
+> Model-based systems engineering is the formalized application of modeling to support system requirements, design, analysis, and V&V activities beginning in the conceptual design phase and continuing throughout development and later lifecycle phases.
+
+本文面向的三个问题：
+
+- 建模语言的升级是否和MBSE有关？建模语言升级的方向是什么？建模语言仍然占据了图11中的当前研究阶段，以SYSML为代表。该语言的未来方向是建立与语义建模相关的功能。
+- 数字工程、数字孪生和人工智能的概念和MBSE的关系？图8-11均表明这些新概念已经作为独立的研究集群存在。此外，图11还显示，在此阶段，数字双胞胎和区块链代表的新概念已成为研究的热门话题。结合图8中的关键字连接，这些新的数字化概念与MBSE的建模和模拟有关。它在系统模型的构建和权威性真实来源中起着重要作用。
+- MBSE的应用领域仍在航空航天中吗？在表V中，我们可以看到MBSE应用程序已经开始扩展，涉及电动汽车和智能电网等复杂系统。
+
+![学者团队分布](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050702.jpg)
+
+![学者团队发文量](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050703.jpg)
+
+22个团队通过广泛的跨阵容合作建立了联系，这在图4中构成了多数。团队之间的关联以红色标记，并且至少出现了35个不同的关联。此外，黑色圆圈中的团队表明它与圈子外的作者几乎没有联系。尽管有27支球队与最大的合行集团（多数）没有联系，但五支大型团队拥有7个以上的成员，这比大多数球队的数量还多。这表明MBSE产生了不同的研究特征，归于研究团队，这又意味着在MBSE社区中至少认可了10种技术。因此，MBSE处于显着的扩展阶段。最大的研究团队是由Vogel-Heuser代表的研究团队，该团队不仅拥有第二大小组基础（有22个核心成员），而且还与九个研究团队合作。
+
+为了评估每个研究团队的活动，我们构建了所有团队发行的年度出版物的统计数据。由于团队的区别特征是合行，因此同时计算团队所有成员的年度出版物将导致严重的重复。为了避免数据重复，我们认为每个集群中出版物数量最多的作者是计算每年出版物数量的代表。图5说明了10位代表作者的年度出版物，在图4中的49个集群中，代表中的出版物数量最多。图5中的点（值）的大小（值）是指作者一年中的出版物数量。就出版物的平均数量而言，这些主要研究团队随着时间的推移增加了产量，这与总体结果一致。Dori在整个2008年至2022年的整个期间都持续了产出。尽管Choley和Vogel在TP方面排名前两名，但它们的出版物主要是2014年及以后的。 Lu和Albers从近年来发表的研究中推断出，过去三年发表的论文数量最多，这表明他们的研究可能与MBSE的下一代技术有关。此外，这些研究人员专注于数字双胞胎，机电系统设计，本体论，工业4.0等。
+
+对于地理分析，我们使用Vosviewer收集出版物的地理信息。作者的地理位置是根据机构或组织的位置而不是其国籍来计算的。图6提出了结果。大多数MBSE研究人员来自美国（25.1％），其次是德国（14.2％），法国（9.0％）和中国（8.0％）。美国，欧洲和中国的研究人员占研究人员总数的80％，这些地区也是航空航天行业快速发展的地区，NASA，ESA和中国航空航天科学技术公司（CASC）等机构。以欧洲太空研究与技术中心（ESTEC）所在的荷兰为例，我们从该国收集的10份出版物是由ESA或ESTEC的研究人员撰写的。此外，我们发现MBSE软件公司还推动了区域MBSE研究。该设施的研究人员撰写了一个名为No Magic（Kaunas，立陶宛）的软件开发设施，来自立陶宛的22个出版物中的7个是欧盟（Kaunas）。
+
+MBSE出版物目前在包括期刊，会议和书籍在内的一千多个来源发表。根据对Vosviewer的引文分析，本研究检查了这些来源之间引文连接的数量和强度。总的来说，出版物来自系统工程，仿真，制造，航空，计算机科学和技术等的来源。图7的左侧显示了完整的源分析结果，以做出整体判断。
+
+为了更清晰地描绘出值得注意的来源，每个来源的最低出版物门槛设置为17，这意味着只有达到阈值的来源才会出现在网络上。在1174个来源中，有45（3.8％）达到了约束。这45个来源生产的出版物数量占所有出版物的51.6％。所有这些来源由于相互引用而相互联系，并且没有独立的来源。图7说明了右侧45个来源的引文网络。网络中的每个节点代表一个不同的来源，其大小代表出版物的数量。调色板代表了源的平均引用数量。
+
+根据引文分析的规则，两个节点之间的联系表明它们具有“相互引用”或相互引文关系。每个链接的强度表示这种关系的数量。因此，节点的总强度越高，该节点与其他节点之间的关系越强，这表示节点的重要性。系统工程与大多数来源的联系，并且在294的强度上具有最高的强度，这表明其可识别性很高。第二个梯队由四个来源：Procedia计算机科学，系统，IEEE航空航天会议，IEEE Systems Journal组成，每个杂志的强度超过80。
+
+![论文引用量排名](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050704.jpg)
+![论文发文量排名](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050705.jpg)
+
+为了提供图7的详细分析，表I和II列出了10个来源，以总引用（TC）和总出版物（TP）排名。 INCOSE在TP和TC中均排名前2名，证明它是MBSE中重要的出版物。七个来源同时出现在TC和TP排名的前10名中。系统工程仅发表了113项研究，并收到了1257次引用。此外，《 IEEE系统杂志》已获得441次引用，其中有43篇出版物，这证明了其内容的高质量。 IEEE关于工业信息学的交易被高度引用，值得研究人员的注意，尽管到目前为止已经发表了少量与MBSE相关的出版物。国际宇航大会（IAC）的TP较高，TC明显较低，这意味着IAC中发表的论文的引用往往比表II中列出的其他来源少。除了表I和II中排名前10的TP/TC源外，图7中还可以找到一些较低但值得注意的来源。
+
+![十个最高引文章](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050706.jpg)
+
+表III列出了最引用的十大MBSE出版物，这些出版物主要来自期刊。除非三本书，否则所有这些出版物都是研究和审查文章。十个最引用的文章反映了MBSE的当前趋势，并以1：5：4的比率对应于II节的三个阶段。在技​​术触发阶段，研究人员更关心概念的定义，但是这些研究并没有吸引更多的研究人员。在膨胀的期望和幻灭阶段的潮流中，MBSE开始朝着应用实践迈进，这也吸引了更多的研究人员。当前的亮相阶段，研究人员开始与新技术（例如数字双胞胎）结合使用MBSE，也吸引了最多的研究。有496篇引文，引用最多的文章发表在2019年的IEEE工业信息学交易（Tao F.等）中。
+
+![关键词图](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050707.jpg)
+
+![未来演化分析（X轴表示和其他主题之间的关联程度，Y轴表示发文密度）](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050708.jpg)
+
+
+![MBSE主题地图](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050709.jpg)
+
+![MBSE主题演变](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050710.jpg)
+
+个人总结：最新的MBSE论文综述，对当前MBSE领域常见的学术概念和发文领域做了统计，整体比较清晰。本文主要都是围绕关键词分析的，偏概念，对实际文章内容的讨论很少，没有区分MBSE在不同的领域发挥了什么作用。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>TEM</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>review</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission</title>
     <url>/2025/05/10/031/</url>
     <content><![CDATA[
@@ -2447,156 +2473,6 @@ Mission definition：卫星的四种工作模态（海上关闭、陆地测量�
         <tag>MBSE</tag>
         <tag>SysML</tag>
         <tag>satellite</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Bibliometric Analysis of Model-Based Systems Engineering:Past, Current, and Future</title>
-    <url>/2025/05/07/030/</url>
-    <content><![CDATA[
-[Bibliometric Analysis of Model-Based Systems Engineering: Past, Current, and Future](https://ieeexplore.ieee.org/abstract/document/9829034/)
-
-`Abstraction`
-
-> Model-based systems engineering (MBSE) is considered an important approach for understanding multidomain fields and is widely used in complex systems such as aerospace. In this article, a detailed survey ofMBSE literature was conducted from its commencement to the present trends through bibliometric analysis.
-> Some bibliometric tools were used to implement a visual network analysis of MBSE-related manuscripts. The results of the bibliometric study revealed the interrelationship and distribution of researchers in multidomain fields. The authorized sources ofMBSE papers were also assorted. The current practices of MBSE were analyzed. The future directions for MBSE based on the current practices were discussed. We found that MBSE’s research has been conducted by many research teams with distinctive characteristics, and the top publishing sources in this field have emerged. Research on MBSE focuses on system engineering, languages, system of systems, and digitalization. The development of new technologies such as next-generation modeling languages is improving current practical problems. The findings of this study may help researchers gain a faster and more comprehensive understanding of the current and future developments in MBSE.
-
-![MBSE时间线](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050701.jpg)
-
-INCOSE在2006年的系统工程2020一文中提到的MBSE的定义是：
-> Model-based systems engineering is the formalized application of modeling to support system requirements, design, analysis, and V&V activities beginning in the conceptual design phase and continuing throughout development and later lifecycle phases.
-
-本文面向的三个问题：
-
-- 建模语言的升级是否和MBSE有关？建模语言升级的方向是什么？建模语言仍然占据了图11中的当前研究阶段，以SYSML为代表。该语言的未来方向是建立与语义建模相关的功能。
-- 数字工程、数字孪生和人工智能的概念和MBSE的关系？图8-11均表明这些新概念已经作为独立的研究集群存在。此外，图11还显示，在此阶段，数字双胞胎和区块链代表的新概念已成为研究的热门话题。结合图8中的关键字连接，这些新的数字化概念与MBSE的建模和模拟有关。它在系统模型的构建和权威性真实来源中起着重要作用。
-- MBSE的应用领域仍在航空航天中吗？在表V中，我们可以看到MBSE应用程序已经开始扩展，涉及电动汽车和智能电网等复杂系统。
-
-![学者团队分布](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050702.jpg)
-
-![学者团队发文量](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050703.jpg)
-
-22个团队通过广泛的跨阵容合作建立了联系，这在图4中构成了多数。团队之间的关联以红色标记，并且至少出现了35个不同的关联。此外，黑色圆圈中的团队表明它与圈子外的作者几乎没有联系。尽管有27支球队与最大的合行集团（多数）没有联系，但五支大型团队拥有7个以上的成员，这比大多数球队的数量还多。这表明MBSE产生了不同的研究特征，归于研究团队，这又意味着在MBSE社区中至少认可了10种技术。因此，MBSE处于显着的扩展阶段。最大的研究团队是由Vogel-Heuser代表的研究团队，该团队不仅拥有第二大小组基础（有22个核心成员），而且还与九个研究团队合作。
-
-为了评估每个研究团队的活动，我们构建了所有团队发行的年度出版物的统计数据。由于团队的区别特征是合行，因此同时计算团队所有成员的年度出版物将导致严重的重复。为了避免数据重复，我们认为每个集群中出版物数量最多的作者是计算每年出版物数量的代表。图5说明了10位代表作者的年度出版物，在图4中的49个集群中，代表中的出版物数量最多。图5中的点（值）的大小（值）是指作者一年中的出版物数量。就出版物的平均数量而言，这些主要研究团队随着时间的推移增加了产量，这与总体结果一致。Dori在整个2008年至2022年的整个期间都持续了产出。尽管Choley和Vogel在TP方面排名前两名，但它们的出版物主要是2014年及以后的。 Lu和Albers从近年来发表的研究中推断出，过去三年发表的论文数量最多，这表明他们的研究可能与MBSE的下一代技术有关。此外，这些研究人员专注于数字双胞胎，机电系统设计，本体论，工业4.0等。
-
-对于地理分析，我们使用Vosviewer收集出版物的地理信息。作者的地理位置是根据机构或组织的位置而不是其国籍来计算的。图6提出了结果。大多数MBSE研究人员来自美国（25.1％），其次是德国（14.2％），法国（9.0％）和中国（8.0％）。美国，欧洲和中国的研究人员占研究人员总数的80％，这些地区也是航空航天行业快速发展的地区，NASA，ESA和中国航空航天科学技术公司（CASC）等机构。以欧洲太空研究与技术中心（ESTEC）所在的荷兰为例，我们从该国收集的10份出版物是由ESA或ESTEC的研究人员撰写的。此外，我们发现MBSE软件公司还推动了区域MBSE研究。该设施的研究人员撰写了一个名为No Magic（Kaunas，立陶宛）的软件开发设施，来自立陶宛的22个出版物中的7个是欧盟（Kaunas）。
-
-MBSE出版物目前在包括期刊，会议和书籍在内的一千多个来源发表。根据对Vosviewer的引文分析，本研究检查了这些来源之间引文连接的数量和强度。总的来说，出版物来自系统工程，仿真，制造，航空，计算机科学和技术等的来源。图7的左侧显示了完整的源分析结果，以做出整体判断。
-
-为了更清晰地描绘出值得注意的来源，每个来源的最低出版物门槛设置为17，这意味着只有达到阈值的来源才会出现在网络上。在1174个来源中，有45（3.8％）达到了约束。这45个来源生产的出版物数量占所有出版物的51.6％。所有这些来源由于相互引用而相互联系，并且没有独立的来源。图7说明了右侧45个来源的引文网络。网络中的每个节点代表一个不同的来源，其大小代表出版物的数量。调色板代表了源的平均引用数量。
-
-根据引文分析的规则，两个节点之间的联系表明它们具有“相互引用”或相互引文关系。每个链接的强度表示这种关系的数量。因此，节点的总强度越高，该节点与其他节点之间的关系越强，这表示节点的重要性。系统工程与大多数来源的联系，并且在294的强度上具有最高的强度，这表明其可识别性很高。第二个梯队由四个来源：Procedia计算机科学，系统，IEEE航空航天会议，IEEE Systems Journal组成，每个杂志的强度超过80。
-
-![论文引用量排名](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050704.jpg)
-![论文发文量排名](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050705.jpg)
-
-为了提供图7的详细分析，表I和II列出了10个来源，以总引用（TC）和总出版物（TP）排名。 INCOSE在TP和TC中均排名前2名，证明它是MBSE中重要的出版物。七个来源同时出现在TC和TP排名的前10名中。系统工程仅发表了113项研究，并收到了1257次引用。此外，《 IEEE系统杂志》已获得441次引用，其中有43篇出版物，这证明了其内容的高质量。 IEEE关于工业信息学的交易被高度引用，值得研究人员的注意，尽管到目前为止已经发表了少量与MBSE相关的出版物。国际宇航大会（IAC）的TP较高，TC明显较低，这意味着IAC中发表的论文的引用往往比表II中列出的其他来源少。除了表I和II中排名前10的TP/TC源外，图7中还可以找到一些较低但值得注意的来源。
-
-![十个最高引文章](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050706.jpg)
-
-表III列出了最引用的十大MBSE出版物，这些出版物主要来自期刊。除非三本书，否则所有这些出版物都是研究和审查文章。十个最引用的文章反映了MBSE的当前趋势，并以1：5：4的比率对应于II节的三个阶段。在技​​术触发阶段，研究人员更关心概念的定义，但是这些研究并没有吸引更多的研究人员。在膨胀的期望和幻灭阶段的潮流中，MBSE开始朝着应用实践迈进，这也吸引了更多的研究人员。当前的亮相阶段，研究人员开始与新技术（例如数字双胞胎）结合使用MBSE，也吸引了最多的研究。有496篇引文，引用最多的文章发表在2019年的IEEE工业信息学交易（Tao F.等）中。
-
-![关键词图](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050707.jpg)
-
-![未来演化分析（X轴表示和其他主题之间的关联程度，Y轴表示发文密度）](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050708.jpg)
-
-
-![MBSE主题地图](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050709.jpg)
-
-![MBSE主题演变](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025050710.jpg)
-
-个人总结：最新的MBSE论文综述，对当前MBSE领域常见的学术概念和发文领域做了统计，整体比较清晰。本文主要都是围绕关键词分析的，偏概念，对实际文章内容的讨论很少，没有区分MBSE在不同的领域发挥了什么作用。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>TEM</category>
-        <category>2024</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>review</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：An integrated approach for enhanced early-phase space system design and optimization</title>
-    <url>/2025/05/21/034/</url>
-    <content><![CDATA[
-[An integrated approach for enhanced early-phase space system design and optimization](https://www.sciencedirect.com/science/article/pii/S0166361525000235)
-
-`Abstraction`
-
-> The integration of Model-Based Systems Engineering (MBSE) and Multidisciplinary Design Analysis and Optimization (MDAO) presents a powerful opportunity to enhance early-stage system design, particularly for complex space systems. However, the lack of efficient integration between these methods results in limitations such as unclear boundary between domain models, reduced automation, and challenges in maintaining traceability of optimization results. Overcoming these barriers is essential for conducting high-quality trade studies in systems engineering. In this work, we propose a novel framework that integrates MDAO with MBSE to streamline system modeling, optimization, and verification. This approach enables the seamless exchange of knowledge between design and optimization models, while performing optimizations and managing results directly within the MBSE environment. By using MBSE as a central knowledge repository, the framework minimizes errors and improves the traceability of optimization processes. Case studies demonstrate that this framework enhances both efficiency and accuracy during the early design phases of space mission development. Our findings indicate that integrating MDAO with MBSE allows for comprehensive system evaluation and more informed decision-making, ultimately improving the quality and efficiency of the design process. This integrated framework offers a flexible, scalable solution for multidisciplinary optimization, making it a valuable tool for the design of future complex systems.
-
-## Introduction
-
-Traditional systems engineering stores team knowledge in dispersed documents, while detailed design, manufacturing, and testing increasingly rely on computer-aided technology, which can lead to disconnects and introduce errors. By using this model as the single source of truth (SSOT), MBSE helps manage system complexity, offers an efficient interdisciplinary platform for collboration across various fields, and facilitates the sharing of design knowledge.
-
-Trade study: A means of evaluating system designs by devising alternative means to meet functional requirements, evaluating these alternatives in terms of the measures of effectiveness and system cost, ranking the alternatives according to appropriate selection criteria, dropping less promising alternatives, and proceeding to the next level of resolution, if needed. (NASA Systems Engineering Handbook)
-
-MDAO typically requires defining the system’s operation before constructing the MDAO framework and performing optimization with analytical models from each discipline. As a result, MDAO demands a substantial initial effort, consuming 60–80 % of project time in aerospace contexts (Habermehl et al, 2022).
-
-Translating MBSE models into a form usable by MDAO is not straightforward, and integrating MDAO results back into MBSE is equally challenging.
-
-The primary contribution of this approach is to clearly delineate the boundaries between models within the space mission domain and the optimization domain in MBSE. A consistent model not only enhances the level of automation in performing optimizations within MBSE but also reduces the complexity of associated manual operations, making the optimization process more responsive to system changes.
-
-## Related work
-
-While integrating MBSE with MDAO has the potential to leverage the strengths of both approaches, this synergy has yet to be fully realized (Habermehl et al, 2022).
-
-Although optimization algorithms and discipline-specific models may originate from various modeling languages and tools, surrogate models and tool interoperability facilitate the linking and execution of MDAO models.
-
-Challenges also arise in integrating MBSE with MDAO, particularly in the transfer of information between design models, optimization algorithms, and optimization models. Indeed, automatically generating MDAO models from MBSE models remains a significant challenge, particularly for high-fidelity, heterogeneous discipline models, which typically require careful authoring by discipline experts using specialized tools.
-
-Chaudemar et al proposed two integration processes—strongly coupled and weakly coupled—based on the degree of coupling between MBSE and MDAO (Chaudemar and de Saqui-Sannes, 2021). Several studies support the return of optimization results to MBSE for further analysis and extensive validation (Gao et al, 2021; Chen et al, 2022; C´ ardenas et al, 2022). As MDAO represents only one aspect of the model, returning these solutions to MBSE allows for comprehensive verification and initial screening of viable solutions.
-
-In summary, although research has demonstrated the potential of integrating MBSE with MDAO, significant challenges remain in fully achieving this integration.
-
-- MBSE和MDAO的边界模糊
-- 如何利用MBSE推动MDAO有待解决
-
-## Research objective and method
-
-- Integrating MBSE with MDAO from a methodological perspective and to establish MDAO as an integral activity with SE.
-- To clarify the modeling boundaries between MBSE and MDAO.
-
-图1展示了一个面向MDAO设计的SysML扩展元模型，是根据CSRM改编的。
-图2展示了一个叫XDSM的visualization tool for illustrating processes and data interfaces within an optimizarion architecture.
-
-## Case study
-
-一种应急遥感卫星，1t重，三个任务指标：higher payload performance, longer payload operational hours, and the ability to undertake additional emergency missions throughout the satellite’s lifetime.（1）有效载荷应达到不超过0.3 m的分辨率，（2）在每日数据流量余额的条件下，有效载荷应每天运行不少于60分钟，并且（3）卫星应保留至少80 kg的自由推进剂质量。
-
-之后开始介绍空间轨道计算，推进剂消耗，通信系统，绘制出一张参数图展示多学科分析的效果。然后开始进行MDAO过程，最后用Excel保存信息。
-
-![卫星系统参数图](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025052101.jpg)
-
-## Discussion
-
-这种集成可以进行良好的优化、可追溯性链接并完善评估。并且两个领域之间保持了清晰的边界，提高代码复用率，参数关系更清晰。
-![参数关系矩阵](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025052102.jpg)
-
-此外，还希望将“execute optimization”放到SysML中直接进行，让SysML和算法强耦合。（但是这篇论文实际上没实现这个功能，而使用的所谓“弱耦合”）。
-
-集成效果方面：
-
-- 如何清晰地定义MBSE和MDAO的边界：优化算法不看参数，参数只在SysML中显示。
-- 如何平衡自动化和手动操作：弱耦合写少量代码，强耦合会不需要写代码。
-- 如何管理优化后的结果：优化结果有利于MBSE的早期设计调整等理念，加速设计迭代。
-
-个人总结：本文对一个卫星做了MBSE，然后用一个MDAO的优化器做了计算，工具上两者是分离的，本文没有实现理想的全流程自动化，但是提出了概念，努力将MBSE放到卫星早期设计里面来，所以也使得本文的文字非常冗杂，很偏向概念的文章，但是卫星领域的文章少，适当参考。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>CI</category>
-        <category>2025</category>
-      </categories>
-      <tags>
-        <tag>MBSE</tag>
-        <tag>SysML</tag>
-        <tag>MDAO</tag>
-        <tag>Satellite</tag>
       </tags>
   </entry>
   <entry>
@@ -2776,8 +2652,8 @@ Sirius Web是一种通用工具，因此大多数设置都涉及其支持大多�
         <category>2024</category>
       </categories>
       <tags>
-        <tag>MBSE</tag>
         <tag>MDE</tag>
+        <tag>MBSE</tag>
         <tag>Sirius</tag>
         <tag>language workbench</tag>
       </tags>
@@ -2851,6 +2727,130 @@ This section proposes a failure analysis method that relies on the processes of 
       </tags>
   </entry>
   <entry>
+    <title>笔记：10 years of Model Federation with Openflexo:Challenges and Lessons Learned</title>
+    <url>/2025/02/27/025/</url>
+    <content><![CDATA[
+[10 years of Model Federation with Openflexo: Challenges and Lessons Learned](https://dl.acm.org/doi/abs/10.1145/3640310.3674084)
+
+`Abstraction`
+
+> In the context of complex system development, heterogeneous modeling responds to the need to integrate several domains. This need requires the use of the most appropriate formalism and tooling for each domain to be efficient. Model federation promotes the semantic interoperability of heterogeneous models by providing the means to reify correspondences between different model elements, add custom behaviors and bridge the gap between technological spaces. As such, it can be used as an infrastructure to address many different system engineering problems. This is what we have been doing for over a decade, as part of a close collaboration between a small software engineering startup and academia. This paper reports on this experience.
+> Concretely, we discuss the context, ambitions, and challenges that led to the inception of our practice of model federation, and we present five use cases experiences, stemming from real industrial and academic needs, and elaborate on lessons learned. In addition, we also report on challenges and lessons learned regarding the development and maintenance of a model-driven model federation tool, the Openflexo framework. Finally, we set up a road map for the future of model federation and Openflexo.
+
+当年的best paper之一。本文是Openflexo团队回顾MDE方面的经验的论文，强调了他们对MDE开发的学术与工程理想——模型联合体，然后讲他们是如何理解相关环节的（四个挑战），怎么为之实践的（五个例子），最后给出了他们最终的愿景。
+
+第二节介绍了四个挑战：
+
+- Preserving existing practices：尽量确保现有的工作模式和工作模型不被破坏或干扰；
+- seeing everying as a model：一个系统信息应该来自模型；
+- Conceptualizing and organizing：不同领域的概念互相独立分隔，但是存在一定的语义连接；
+- Mastering evolution：模型的不同侧面应该确保整体系统的一致性。
+
+第三节介绍模型联合体（Model Federation）的概念。第四节就开发过的五个例子来分析，就上面四个挑战分别讨论，并评估了他们分别做到了哪些方面。第五节讨论经验教训：
+
+- Separate business from technology：流程概念和技术建模分开，每个人应该专注做当前层级的模型而不要跨模型建模。
+- Tool maintenance & dissemination：开发完的软件工具应该不断维护和向工业界推广。
+- Need for many concrete syntax：文本建模在模型多的时候比图建模有用。
+- Federation requires organization：模型联合体的概念需要统一。
+- Modeling requires flexibility：建模应具有一定的灵活性，在一些方面应该可以自定义。
+- Modeling needs model capitalization：好的模型和模型工具应该可以被大量重用，建立一个复用性强的知识库有利于新模型的开发效率。
+
+本文叙述思路明确，表达简明易读，讨论的逻辑也很在理，很符合我对MDE的一些理解和认知，总结的一些内容也值得再日后回头翻阅。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>MBSE</tag>
+        <tag>Model Federation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：An integrated approach for enhanced early-phase space system design and optimization</title>
+    <url>/2025/05/21/034/</url>
+    <content><![CDATA[
+[An integrated approach for enhanced early-phase space system design and optimization](https://www.sciencedirect.com/science/article/pii/S0166361525000235)
+
+`Abstraction`
+
+> The integration of Model-Based Systems Engineering (MBSE) and Multidisciplinary Design Analysis and Optimization (MDAO) presents a powerful opportunity to enhance early-stage system design, particularly for complex space systems. However, the lack of efficient integration between these methods results in limitations such as unclear boundary between domain models, reduced automation, and challenges in maintaining traceability of optimization results. Overcoming these barriers is essential for conducting high-quality trade studies in systems engineering. In this work, we propose a novel framework that integrates MDAO with MBSE to streamline system modeling, optimization, and verification. This approach enables the seamless exchange of knowledge between design and optimization models, while performing optimizations and managing results directly within the MBSE environment. By using MBSE as a central knowledge repository, the framework minimizes errors and improves the traceability of optimization processes. Case studies demonstrate that this framework enhances both efficiency and accuracy during the early design phases of space mission development. Our findings indicate that integrating MDAO with MBSE allows for comprehensive system evaluation and more informed decision-making, ultimately improving the quality and efficiency of the design process. This integrated framework offers a flexible, scalable solution for multidisciplinary optimization, making it a valuable tool for the design of future complex systems.
+
+## Introduction
+
+Traditional systems engineering stores team knowledge in dispersed documents, while detailed design, manufacturing, and testing increasingly rely on computer-aided technology, which can lead to disconnects and introduce errors. By using this model as the single source of truth (SSOT), MBSE helps manage system complexity, offers an efficient interdisciplinary platform for collboration across various fields, and facilitates the sharing of design knowledge.
+
+Trade study: A means of evaluating system designs by devising alternative means to meet functional requirements, evaluating these alternatives in terms of the measures of effectiveness and system cost, ranking the alternatives according to appropriate selection criteria, dropping less promising alternatives, and proceeding to the next level of resolution, if needed. (NASA Systems Engineering Handbook)
+
+MDAO typically requires defining the system’s operation before constructing the MDAO framework and performing optimization with analytical models from each discipline. As a result, MDAO demands a substantial initial effort, consuming 60–80 % of project time in aerospace contexts (Habermehl et al, 2022).
+
+Translating MBSE models into a form usable by MDAO is not straightforward, and integrating MDAO results back into MBSE is equally challenging.
+
+The primary contribution of this approach is to clearly delineate the boundaries between models within the space mission domain and the optimization domain in MBSE. A consistent model not only enhances the level of automation in performing optimizations within MBSE but also reduces the complexity of associated manual operations, making the optimization process more responsive to system changes.
+
+## Related work
+
+While integrating MBSE with MDAO has the potential to leverage the strengths of both approaches, this synergy has yet to be fully realized (Habermehl et al, 2022).
+
+Although optimization algorithms and discipline-specific models may originate from various modeling languages and tools, surrogate models and tool interoperability facilitate the linking and execution of MDAO models.
+
+Challenges also arise in integrating MBSE with MDAO, particularly in the transfer of information between design models, optimization algorithms, and optimization models. Indeed, automatically generating MDAO models from MBSE models remains a significant challenge, particularly for high-fidelity, heterogeneous discipline models, which typically require careful authoring by discipline experts using specialized tools.
+
+Chaudemar et al proposed two integration processes—strongly coupled and weakly coupled—based on the degree of coupling between MBSE and MDAO (Chaudemar and de Saqui-Sannes, 2021). Several studies support the return of optimization results to MBSE for further analysis and extensive validation (Gao et al, 2021; Chen et al, 2022; C´ ardenas et al, 2022). As MDAO represents only one aspect of the model, returning these solutions to MBSE allows for comprehensive verification and initial screening of viable solutions.
+
+In summary, although research has demonstrated the potential of integrating MBSE with MDAO, significant challenges remain in fully achieving this integration.
+
+- MBSE和MDAO的边界模糊
+- 如何利用MBSE推动MDAO有待解决
+
+## Research objective and method
+
+- Integrating MBSE with MDAO from a methodological perspective and to establish MDAO as an integral activity with SE.
+- To clarify the modeling boundaries between MBSE and MDAO.
+
+图1展示了一个面向MDAO设计的SysML扩展元模型，是根据CSRM改编的。
+图2展示了一个叫XDSM的visualization tool for illustrating processes and data interfaces within an optimizarion architecture.
+
+## Case study
+
+一种应急遥感卫星，1t重，三个任务指标：higher payload performance, longer payload operational hours, and the ability to undertake additional emergency missions throughout the satellite’s lifetime.（1）有效载荷应达到不超过0.3 m的分辨率，（2）在每日数据流量余额的条件下，有效载荷应每天运行不少于60分钟，并且（3）卫星应保留至少80 kg的自由推进剂质量。
+
+之后开始介绍空间轨道计算，推进剂消耗，通信系统，绘制出一张参数图展示多学科分析的效果。然后开始进行MDAO过程，最后用Excel保存信息。
+
+![卫星系统参数图](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025052101.jpg)
+
+## Discussion
+
+这种集成可以进行良好的优化、可追溯性链接并完善评估。并且两个领域之间保持了清晰的边界，提高代码复用率，参数关系更清晰。
+![参数关系矩阵](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025052102.jpg)
+
+此外，还希望将“execute optimization”放到SysML中直接进行，让SysML和算法强耦合。（但是这篇论文实际上没实现这个功能，而使用的所谓“弱耦合”）。
+
+集成效果方面：
+
+- 如何清晰地定义MBSE和MDAO的边界：优化算法不看参数，参数只在SysML中显示。
+- 如何平衡自动化和手动操作：弱耦合写少量代码，强耦合会不需要写代码。
+- 如何管理优化后的结果：优化结果有利于MBSE的早期设计调整等理念，加速设计迭代。
+
+个人总结：本文对一个卫星做了MBSE，然后用一个MDAO的优化器做了计算，工具上两者是分离的，本文没有实现理想的全流程自动化，但是提出了概念，努力将MBSE放到卫星早期设计里面来，所以也使得本文的文字非常冗杂，很偏向概念的文章，但是卫星领域的文章少，适当参考。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>CI</category>
+        <category>2025</category>
+      </categories>
+      <tags>
+        <tag>MBSE</tag>
+        <tag>SysML</tag>
+        <tag>MDAO</tag>
+        <tag>Satellite</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记：Domain-Specific Modeling with SysML v2</title>
     <url>/2025/05/19/035/</url>
     <content><![CDATA[
@@ -2886,201 +2886,6 @@ UAF、SAE、AADL、Arcadia/Capella在SysML v2上的工作。
         <tag>DSL</tag>
         <tag>SysML v2</tag>
         <tag>DSML</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：A Model Management Framework for Next-Generation Web-based Modeling Tools</title>
-    <url>/2025/06/01/036/</url>
-    <content><![CDATA[
-[A Model Management Framework for Next-Generation Web-based Modeling Tools](https://model-engineering.info/publications/papers/ECMFA25-ModelService-CR.pdf)
-
-`Abstraction`
-
-> The move towards web technologies has arrived at modeling and especially modeling tools. Several frameworks and platforms have been proposed recently, aiming at the efficient realization of web-based modeling tools, i.e., tools developed with web technologies that natively allow for cloud-based deployment and use in web browsers. Most of these frameworks separate modeling tool functionality like editing, rendering, and management of the model into separate specialized components, often realized in different technologies. For the model management of Ecore-based modeling languages like the UML, the Eclipse Modeling Framework (EMF) is still prevalent. While this may maximize reuse, it comes at a cost: EMF is Java-based, entailing a polyglot technology stack, which complicates the development and hinders an entirely browser-based deployment without any backend. In this paper, we address this problem by introducing a Typescript-only approach for generating Langium-based modeling language grammars and model management servers. Using our approach, developers can build next-generation web-based modeling tools with a homogeneous technology stack, which can be executed as cloud applications or plain browser applications without any backend, if needed. We evaluate our approach by applying it to two distinct modeling tools: a Workflow and a UML modeling tool.
-
-## Introduction
-
-一些Web端建模平台技术开始兴起如Sirius Web和EMF Cloud。他们有更好的图形编辑能力，由Stroppy和GLSP支持，这些框架依赖Java-based EMF，导致几个问题：异构开发者环境复杂；需要额外的runtime requirements；阻碍了浏览器部署（prevents a deployment as plain browser application, in which the modeling tool is hosted as a static website without the need for a backend. However, this form of deployment becomes increasingly important given the cost and IP considerations with a cloud infrastructure.）
-
-Langium作为Xtext的下一代出现。（However, as Langium is a textual language framework strongly aligned with the Language Server Protocol, it only focuses on textual editing, i.e., changing text documents in a two-dimensional space defined by row and character position.）Therefore, the question arises whether the features of Langium can be made available for model-oriented use cases, enabling modeling tools to benefit from Langium’s rich capabilities in model serialization, managing cross-references, and validating models.
-
-**A gap remains in leveraging the model management functioniality of Langium for graphical modeling languages and editors.**
-差距仍在利用Langium的模型管理功能来用于图形建模语言和编辑器。因此，这项研究探讨了扩大Langium功能的可能性，以提供面向模型的客户对其AST模型的访问，并将其用作建模工具建模工具的拼写字体本地模型管理框架，取代至关重要的功能，否则需要基于Java的传统框架，例如EMF。**This research consequently explores the possibilities of expanding the functionalities of Langium to provide model-oriented clients access to its AST model and use it as a Typescript-native model management framework for modeling tools, replacing crucial functionalities that would otherwise require traditional Java-based frameworks, such as EMF.**
-
-**We enhance Langium with a dedicated model management service and a corresponding API to which model-oriented clients can connect and manipulate the model state.** As Langium is written in Typescript and can be packaged for the browser without a dependency on NodeJS, complete model management can be handled inside the browser. Access to the local file system can be implemented to load model files by using the Browser File System API or other external services.
-
-We further introduce a Typescript-native language to simplify the definition of the metamodel. This metamodel definition language is based on Typescript interfaces which are extended to capture necessary meta-information of metamodel elements by custom annotations (e.g., to signify cross-references). **Taking such a Typescript-native metamodel definition language as input, we generate a generic JSON grammar from these type definitions, and, ultimately, a Langium-based model management server.**
-
-## Background
-
-### Web-based Modelling
-
-现有的一些Web前端建模技术：Sprotty, EMF.cloud, Sirius Web, ReactFlow, ReactDiagrams, JointJS（都是EMF生态的）。后端的有GLSP，限制在文本语言的Langium。其他的还有Gentleman和jjodel。
-
-### GLSP
-
-The Graphical Language Server Platform (GLSP) is an extensible open-source framework for building custom diagram editors with web technologies. GLSP is based on an extensible client-server architecture and comes with four major components: GLSP Server, GLSP Client, Platform Integration, and Model Management. 之后介绍了GLSP的一些技术实现路线。
-
-### Langium
-
-介绍Langium，大部分内容和官网与手册一致。
-
-### Synopsis
-
-**To the best of our knowledge, no adequate mature solution for efficiently realizing model management in the browser using exclusively web technologies exists yet.**
-Primarily, we aim for a solution that is extensible, interoperable, and built with community-driven frameworks like Langium and standardized programming languages like Typescript. The reason for this constraining is that other approaches often do not excel from academic proof-of-concept prototypes. Proper browser-based model management is desired, as it would enable the shift of the entire modeling tool into the browser, omitting any installation steps. The usage of Java is one of the main obstacles on the path toward browser-based modeling tools. To address these shortcomings, we propose a novel grammar specification (Section 2) and model management generation (Section 3) approach that is based on Typescript and Langium.
-
-## Typescript-based Grammar Specification
-
-### Requirements
-
-介绍Typescript-based grammar language的元模型属性。
-
-### Language Concepts
-
-具体介绍元模型和一个例子。相当于使用Typescript写了一个对应于Ecore的元模型。
-
-## Model Management Generation
-
-### Requirements_
-
-- 初试特征
-- 解析：解析解析需要能够读取基于打字稿的语法定义和其他配置文件。此外，为了简化从生态到我们的方法的过渡，.ecore解析器将是有益的。
-- 验证和转换：必须验证所有解析和生成的文件。这包括基于打字稿的语法定义，Langiumdeclaration和LangiumGrammar文件。经过验证后，转换器应能够生成不同类型的文件。
-- 文档创建：.langium和Langium services
-- 包的安装与构建（installation and build）
-
-### Generator Concepts
-
-逐步介绍生成器是如何进行的，如图所示。
-
-![流程图](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025060201.jpg)
-
-### Model Management API
-
-模型管理API允许图形编辑器访问Langium语言服务器的AST。该API提供了打开，关闭，加载，保存和更新文档的功能。模型管理服务器的一个核心组件是负责langiumDocument内部模型状态的负载，保存和操纵的模型服务。模型管理API的要求之一是它与Langium的简单集成。因此，它被实现为由模块文件组成的NPM软件包，该软件包定义了默认langium服务的扩展，包括特定于语言的扩展和扩展，以增强语言服务器通常的功能。我们实施的两个关键扩展程序是JSonSerializer，这对于在模型管理服务器中实现JSON补丁功能至关重要，以及负责将AST转换为其文本表示形式的Serialializer。
-
-## Evaluation
-
-用Workflow和BIGUML两个例子对比进行评估。The two examples show breadth and depth of our solution as the Workflow editor comes with a Typescript-based GLSP client and server implementation already while BIGUML comes with a Typescript-based GLSP client, a Java-based GLSP server, and a Java-based model management. Thus, the BIGUML example is much richer in requirements and extends the workflow editor requirements from an architectural point of view (Java-based GLSP server and model management server) and in functionality (i.e., having a Property palette and an outline view).
-
-### Realization and Integration of the Model Management Server
-
-Workflow Model Management Server和BIGUML Model Management Server的技术。
-
-## Conclusion
-
-In order to bring modeling tools into the cloud, it is crucial to build these tools with a homogeneous technology stack consisting of web technologies that natively allow cloud-based deployment and use in web browsers. In this paper, we proposed a novel Typescript-only approach for generating Langium-based modeling language grammars and subsequently generating entire model management servers. Through two use cases, we evaluated our approach and showed, how developers can build next-generation web-based modeling tools. All software components described in this paper will be published open-source to enable wide industrial and academic adoption and use.
-
-个人总结：这篇讨论了Langium工具在模型管理服务上的一些问题，本文提供了一个新的方法生成了模型管理Server层，支持更丰富的操作。技术细节看得不是很明白。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Journal</category>
-        <category>JOT</category>
-        <category>2025</category>
-      </categories>
-      <tags>
-        <tag>MDE</tag>
-        <tag>DSL</tag>
-        <tag>Web</tag>
-        <tag>Langium</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica</title>
-    <url>/2026/02/04/038/</url>
-    <content><![CDATA[
-[Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica](https://ieeexplore.ieee.org/abstract/document/11245473)
-
-`Abstraction`
-
-> As automotive electronic architectures grow increasingly complex and software development costs escalate, AUTOSAR plays a critical role in standardizing and enhancing the reusability of automotive controllers. However, existing AUTOSAR application layer modeling tools, such as the Simulink AUTOSAR Blockset, primarily adopt causal modeling paradigms, which constrain flexibility in capturing intricate system interactions. Additionally, their proprietary nature limits model accessibility, hindering cross-platform collaboration and multi-domain integration. Modelica, an object-oriented, equation-based modeling language, is particularly well-suited for multi-domain simulations due to its acausal modeling capabilities and strong support for component reuse.
-> This paper proposes a Modelica-based visual modeling approach for AUTOSAR application layer models. Specifically, it establishes encapsulation rules for representing AUTOSAR constructs in Modelica and develops an open-source AUTOSAR model library, facilitating industry collaboration and accelerating rapid prototyping. A formal mathematical representation of AUTOSAR models is introduced to enhance both expressiveness and verifiability. Furthermore, a structured visual modeling methodology is presented to lower the development barrier for AUTOSAR application layer modeling. Comparative analysis with Simulink’s AUTOSAR Blockset demonstrates that the proposed approach successfully integrates Modelica’s multidomain modeling capabilities into the AUTOSAR workflow while ensuring simulation consistency with Simulink.
-> To the best of our knowledge, this work represents the first integration of AUTOSAR within Modelica’s multi-domain simulation framework. Compared to Simulink, Modelica’s acausal modeling paradigm enables more flexible system representations, its open ecosystem supports cross-platform collaboration, and its multi-domain integration enhances interoperability. Beyond the automotive domain, the proposed approach can also be applied to controller design in other industries, further demonstrating its potential for cross-disciplinary adoption.
-
-## Introduction
-
-AUTOSAR现有的是用Simulink，缺点是依赖因果建模和闭源。本文的贡献：
-
-- 提出了基于Modelica的AUTOSAR开源库；
-- 建立了AUTOSAR的形式化数学表示，以及用于AUTOSAR应用层建模的结构可视化建模规则，增强了表达性和可验证性；
-- 用Modelica体系和Simulink AUTOSAR Blockset进行仿真对比。
-
-## Related Works
-
-### AUTOSAR Standard
-
-AUTOSAR主要包含三个组件：a layered architecture, methodology, application interfaces.
-
-AUTOSAR layered architecture 将汽车软件分为四层：ASW application Software Layer, RTE Runtime Environment, BSW Basic Software Layer, Microcontroller。ASW的核心是SWC，它封装特定的功能并通过标准化接口与其他组件或外部系统交互。本文主要关注的就是ASW的可视化建模，特别是SWC的表示方面。
-
-### Tools for AUTOSAR
-
-介绍了几款商业软件，但是主要在将Simulink。此外，IBM 的 Rational Rhapsody 通过基于 UML/SysML 的设计和自动代码生成来支持 AUTOSAR 建模。而 Dassault Systemes 的 SCADE Suite 和 SCADE Architect 为 AUTOSAR 框架内基于模型的设计、验证和集成提供了全面的工具。
-
-ARTop是一个基于 Eclipse 的框架，有助于定制 AUTOSAR 工具开发。 Arctic Core 为嵌入式系统提供基础软件模块和运行时环境配置。 openAUTOSAR 源自 Arctic Core，提供改进的模块支持并更严格地遵守 AUTOSAR 标准。
-
-### Modelica
-
-不多赘述。
-
-### Motivation
-
-Modelica比Simulink好的两个理由：开源生态，非因果建模。
-
-## Proposed Framework
-
-![本文提出的框架](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2026020401.png)
-
-### Encapsulation of the AUTOSAR Model Library
-
-### Formal Representation of AUTOSAR Model
-
-### Visual Modeling Rules for application layer AUTOSAR
-
-## Implementation
-
-### Development Environment
-
-MWORKS Sysplorer
-
-### AUTOSAR Library
-
-展示了大致的代码结构
-
-### Visual Modeling Implementation
-
-## Case Study and Evaluation
-
-使用的是Matlab Simulink中的一个Swc_Expfcns_Example作展示，是一个汽车前照灯的仿真模型。
-
-- 使用本文的工具建立一个一样的模型，跑仿真。Simulink每次仿真的时间都差不多，但是Modelica的第一次仿真因为要编译，时间较长，但是编译完的模型（仅修改数值的情况下）仿真速度就很快了。
-- Modelica还支持跨领域仿真，外接其他非因果模块做更丰富的仿真。
-
-## Threats and future work
-
-当前的一个限制是没能扩展到RTE和BSW的支持。
-
-## Conclusion
-
-本文介绍了一种基于 Modelica 的 AUTOSAR 应用层模型可视化建模和仿真方法。具体来说，它建立了在 Modelica 中表示 AUTOSAR 构造的封装规则，并开发了开源 AUTOSAR 模型库，促进行业协作并加速快速原型设计。还提供了 AUTOSAR 模型的正式数学表示，以增强表达性和可验证性。此外，提出了一种结构化可视化建模方法来降低AUTOSAR应用层建模的开发复杂性。
-
-该方法的可行性通过可公开访问的 AUTOSAR 库以及与 Simulink 的 AUTOSAR Blockset 的比较仿真得到验证，展示了功能等效性和跨域集成能力。虽然当前的实现侧重于经典平台应用层的部分建模，但未来的工作将扩展对较低 AUTOSAR 层（例如 RTE 和 BSW）的支持，改进形式语义以增强建模的严谨性，并集成代码生成功能以支持部署到符合 AUTOSAR 的 ECU。
-
-个人总结：哈工大的学生完成的文章，应该是Modelica走向AUTOSAR的第一个工作，想法很新颖，工作的思路也比较清晰简单，有一定的试验性和开创性。本文建立了一个AUTOSAR的形式化数学表示，这部分可以参考一下。其余的工作思路很清晰简洁。
-]]></content>
-      <categories>
-        <category>Academic Papers</category>
-        <category>Conference</category>
-        <category>MODELS</category>
-        <category>2025</category>
-      </categories>
-      <tags>
-        <tag>Simulink</tag>
-        <tag>Simulation</tag>
-        <tag>Modelica</tag>
-        <tag>AUTOSAR</tag>
       </tags>
   </entry>
   <entry>
@@ -3199,6 +3004,347 @@ MWORKS Sysplorer
         <tag>SysML</tag>
         <tag>Satellite</tag>
         <tag>Co-simulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica</title>
+    <url>/2026/02/04/038/</url>
+    <content><![CDATA[
+[Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica](https://ieeexplore.ieee.org/abstract/document/11245473)
+
+`Abstraction`
+
+> As automotive electronic architectures grow increasingly complex and software development costs escalate, AUTOSAR plays a critical role in standardizing and enhancing the reusability of automotive controllers. However, existing AUTOSAR application layer modeling tools, such as the Simulink AUTOSAR Blockset, primarily adopt causal modeling paradigms, which constrain flexibility in capturing intricate system interactions. Additionally, their proprietary nature limits model accessibility, hindering cross-platform collaboration and multi-domain integration. Modelica, an object-oriented, equation-based modeling language, is particularly well-suited for multi-domain simulations due to its acausal modeling capabilities and strong support for component reuse.
+> This paper proposes a Modelica-based visual modeling approach for AUTOSAR application layer models. Specifically, it establishes encapsulation rules for representing AUTOSAR constructs in Modelica and develops an open-source AUTOSAR model library, facilitating industry collaboration and accelerating rapid prototyping. A formal mathematical representation of AUTOSAR models is introduced to enhance both expressiveness and verifiability. Furthermore, a structured visual modeling methodology is presented to lower the development barrier for AUTOSAR application layer modeling. Comparative analysis with Simulink’s AUTOSAR Blockset demonstrates that the proposed approach successfully integrates Modelica’s multidomain modeling capabilities into the AUTOSAR workflow while ensuring simulation consistency with Simulink.
+> To the best of our knowledge, this work represents the first integration of AUTOSAR within Modelica’s multi-domain simulation framework. Compared to Simulink, Modelica’s acausal modeling paradigm enables more flexible system representations, its open ecosystem supports cross-platform collaboration, and its multi-domain integration enhances interoperability. Beyond the automotive domain, the proposed approach can also be applied to controller design in other industries, further demonstrating its potential for cross-disciplinary adoption.
+
+## Introduction
+
+AUTOSAR现有的是用Simulink，缺点是依赖因果建模和闭源。本文的贡献：
+
+- 提出了基于Modelica的AUTOSAR开源库；
+- 建立了AUTOSAR的形式化数学表示，以及用于AUTOSAR应用层建模的结构可视化建模规则，增强了表达性和可验证性；
+- 用Modelica体系和Simulink AUTOSAR Blockset进行仿真对比。
+
+## Related Works
+
+### AUTOSAR Standard
+
+AUTOSAR主要包含三个组件：a layered architecture, methodology, application interfaces.
+
+AUTOSAR layered architecture 将汽车软件分为四层：ASW application Software Layer, RTE Runtime Environment, BSW Basic Software Layer, Microcontroller。ASW的核心是SWC，它封装特定的功能并通过标准化接口与其他组件或外部系统交互。本文主要关注的就是ASW的可视化建模，特别是SWC的表示方面。
+
+### Tools for AUTOSAR
+
+介绍了几款商业软件，但是主要在将Simulink。此外，IBM 的 Rational Rhapsody 通过基于 UML/SysML 的设计和自动代码生成来支持 AUTOSAR 建模。而 Dassault Systemes 的 SCADE Suite 和 SCADE Architect 为 AUTOSAR 框架内基于模型的设计、验证和集成提供了全面的工具。
+
+ARTop是一个基于 Eclipse 的框架，有助于定制 AUTOSAR 工具开发。 Arctic Core 为嵌入式系统提供基础软件模块和运行时环境配置。 openAUTOSAR 源自 Arctic Core，提供改进的模块支持并更严格地遵守 AUTOSAR 标准。
+
+### Modelica
+
+不多赘述。
+
+### Motivation
+
+Modelica比Simulink好的两个理由：开源生态，非因果建模。
+
+## Proposed Framework
+
+![本文提出的框架](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2026020401.png)
+
+### Encapsulation of the AUTOSAR Model Library
+
+### Formal Representation of AUTOSAR Model
+
+### Visual Modeling Rules for application layer AUTOSAR
+
+## Implementation
+
+### Development Environment
+
+MWORKS Sysplorer
+
+### AUTOSAR Library
+
+展示了大致的代码结构
+
+### Visual Modeling Implementation
+
+## Case Study and Evaluation
+
+使用的是Matlab Simulink中的一个Swc_Expfcns_Example作展示，是一个汽车前照灯的仿真模型。
+
+- 使用本文的工具建立一个一样的模型，跑仿真。Simulink每次仿真的时间都差不多，但是Modelica的第一次仿真因为要编译，时间较长，但是编译完的模型（仅修改数值的情况下）仿真速度就很快了。
+- Modelica还支持跨领域仿真，外接其他非因果模块做更丰富的仿真。
+
+## Threats and future work
+
+当前的一个限制是没能扩展到RTE和BSW的支持。
+
+## Conclusion
+
+本文介绍了一种基于 Modelica 的 AUTOSAR 应用层模型可视化建模和仿真方法。具体来说，它建立了在 Modelica 中表示 AUTOSAR 构造的封装规则，并开发了开源 AUTOSAR 模型库，促进行业协作并加速快速原型设计。还提供了 AUTOSAR 模型的正式数学表示，以增强表达性和可验证性。此外，提出了一种结构化可视化建模方法来降低AUTOSAR应用层建模的开发复杂性。
+
+该方法的可行性通过可公开访问的 AUTOSAR 库以及与 Simulink 的 AUTOSAR Blockset 的比较仿真得到验证，展示了功能等效性和跨域集成能力。虽然当前的实现侧重于经典平台应用层的部分建模，但未来的工作将扩展对较低 AUTOSAR 层（例如 RTE 和 BSW）的支持，改进形式语义以增强建模的严谨性，并集成代码生成功能以支持部署到符合 AUTOSAR 的 ECU。
+
+个人总结：哈工大的学生完成的文章，应该是Modelica走向AUTOSAR的第一个工作，想法很新颖，工作的思路也比较清晰简单，有一定的试验性和开创性。本文建立了一个AUTOSAR的形式化数学表示，这部分可以参考一下。其余的工作思路很清晰简洁。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>MODELS</category>
+        <category>2025</category>
+      </categories>
+      <tags>
+        <tag>Simulink</tag>
+        <tag>Simulation</tag>
+        <tag>Modelica</tag>
+        <tag>AUTOSAR</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：A Model Management Framework for Next-Generation Web-based Modeling Tools</title>
+    <url>/2025/06/01/036/</url>
+    <content><![CDATA[
+[A Model Management Framework for Next-Generation Web-based Modeling Tools](https://model-engineering.info/publications/papers/ECMFA25-ModelService-CR.pdf)
+
+`Abstraction`
+
+> The move towards web technologies has arrived at modeling and especially modeling tools. Several frameworks and platforms have been proposed recently, aiming at the efficient realization of web-based modeling tools, i.e., tools developed with web technologies that natively allow for cloud-based deployment and use in web browsers. Most of these frameworks separate modeling tool functionality like editing, rendering, and management of the model into separate specialized components, often realized in different technologies. For the model management of Ecore-based modeling languages like the UML, the Eclipse Modeling Framework (EMF) is still prevalent. While this may maximize reuse, it comes at a cost: EMF is Java-based, entailing a polyglot technology stack, which complicates the development and hinders an entirely browser-based deployment without any backend. In this paper, we address this problem by introducing a Typescript-only approach for generating Langium-based modeling language grammars and model management servers. Using our approach, developers can build next-generation web-based modeling tools with a homogeneous technology stack, which can be executed as cloud applications or plain browser applications without any backend, if needed. We evaluate our approach by applying it to two distinct modeling tools: a Workflow and a UML modeling tool.
+
+## Introduction
+
+一些Web端建模平台技术开始兴起如Sirius Web和EMF Cloud。他们有更好的图形编辑能力，由Stroppy和GLSP支持，这些框架依赖Java-based EMF，导致几个问题：异构开发者环境复杂；需要额外的runtime requirements；阻碍了浏览器部署（prevents a deployment as plain browser application, in which the modeling tool is hosted as a static website without the need for a backend. However, this form of deployment becomes increasingly important given the cost and IP considerations with a cloud infrastructure.）
+
+Langium作为Xtext的下一代出现。（However, as Langium is a textual language framework strongly aligned with the Language Server Protocol, it only focuses on textual editing, i.e., changing text documents in a two-dimensional space defined by row and character position.）Therefore, the question arises whether the features of Langium can be made available for model-oriented use cases, enabling modeling tools to benefit from Langium’s rich capabilities in model serialization, managing cross-references, and validating models.
+
+**A gap remains in leveraging the model management functioniality of Langium for graphical modeling languages and editors.**
+差距仍在利用Langium的模型管理功能来用于图形建模语言和编辑器。因此，这项研究探讨了扩大Langium功能的可能性，以提供面向模型的客户对其AST模型的访问，并将其用作建模工具建模工具的拼写字体本地模型管理框架，取代至关重要的功能，否则需要基于Java的传统框架，例如EMF。**This research consequently explores the possibilities of expanding the functionalities of Langium to provide model-oriented clients access to its AST model and use it as a Typescript-native model management framework for modeling tools, replacing crucial functionalities that would otherwise require traditional Java-based frameworks, such as EMF.**
+
+**We enhance Langium with a dedicated model management service and a corresponding API to which model-oriented clients can connect and manipulate the model state.** As Langium is written in Typescript and can be packaged for the browser without a dependency on NodeJS, complete model management can be handled inside the browser. Access to the local file system can be implemented to load model files by using the Browser File System API or other external services.
+
+We further introduce a Typescript-native language to simplify the definition of the metamodel. This metamodel definition language is based on Typescript interfaces which are extended to capture necessary meta-information of metamodel elements by custom annotations (e.g., to signify cross-references). **Taking such a Typescript-native metamodel definition language as input, we generate a generic JSON grammar from these type definitions, and, ultimately, a Langium-based model management server.**
+
+## Background
+
+### Web-based Modelling
+
+现有的一些Web前端建模技术：Sprotty, EMF.cloud, Sirius Web, ReactFlow, ReactDiagrams, JointJS（都是EMF生态的）。后端的有GLSP，限制在文本语言的Langium。其他的还有Gentleman和jjodel。
+
+### GLSP
+
+The Graphical Language Server Platform (GLSP) is an extensible open-source framework for building custom diagram editors with web technologies. GLSP is based on an extensible client-server architecture and comes with four major components: GLSP Server, GLSP Client, Platform Integration, and Model Management. 之后介绍了GLSP的一些技术实现路线。
+
+### Langium
+
+介绍Langium，大部分内容和官网与手册一致。
+
+### Synopsis
+
+**To the best of our knowledge, no adequate mature solution for efficiently realizing model management in the browser using exclusively web technologies exists yet.**
+Primarily, we aim for a solution that is extensible, interoperable, and built with community-driven frameworks like Langium and standardized programming languages like Typescript. The reason for this constraining is that other approaches often do not excel from academic proof-of-concept prototypes. Proper browser-based model management is desired, as it would enable the shift of the entire modeling tool into the browser, omitting any installation steps. The usage of Java is one of the main obstacles on the path toward browser-based modeling tools. To address these shortcomings, we propose a novel grammar specification (Section 2) and model management generation (Section 3) approach that is based on Typescript and Langium.
+
+## Typescript-based Grammar Specification
+
+### Requirements
+
+介绍Typescript-based grammar language的元模型属性。
+
+### Language Concepts
+
+具体介绍元模型和一个例子。相当于使用Typescript写了一个对应于Ecore的元模型。
+
+## Model Management Generation
+
+### Requirements_
+
+- 初试特征
+- 解析：解析解析需要能够读取基于打字稿的语法定义和其他配置文件。此外，为了简化从生态到我们的方法的过渡，.ecore解析器将是有益的。
+- 验证和转换：必须验证所有解析和生成的文件。这包括基于打字稿的语法定义，Langiumdeclaration和LangiumGrammar文件。经过验证后，转换器应能够生成不同类型的文件。
+- 文档创建：.langium和Langium services
+- 包的安装与构建（installation and build）
+
+### Generator Concepts
+
+逐步介绍生成器是如何进行的，如图所示。
+
+![流程图](https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025060201.jpg)
+
+### Model Management API
+
+模型管理API允许图形编辑器访问Langium语言服务器的AST。该API提供了打开，关闭，加载，保存和更新文档的功能。模型管理服务器的一个核心组件是负责langiumDocument内部模型状态的负载，保存和操纵的模型服务。模型管理API的要求之一是它与Langium的简单集成。因此，它被实现为由模块文件组成的NPM软件包，该软件包定义了默认langium服务的扩展，包括特定于语言的扩展和扩展，以增强语言服务器通常的功能。我们实施的两个关键扩展程序是JSonSerializer，这对于在模型管理服务器中实现JSON补丁功能至关重要，以及负责将AST转换为其文本表示形式的Serialializer。
+
+## Evaluation
+
+用Workflow和BIGUML两个例子对比进行评估。The two examples show breadth and depth of our solution as the Workflow editor comes with a Typescript-based GLSP client and server implementation already while BIGUML comes with a Typescript-based GLSP client, a Java-based GLSP server, and a Java-based model management. Thus, the BIGUML example is much richer in requirements and extends the workflow editor requirements from an architectural point of view (Java-based GLSP server and model management server) and in functionality (i.e., having a Property palette and an outline view).
+
+### Realization and Integration of the Model Management Server
+
+Workflow Model Management Server和BIGUML Model Management Server的技术。
+
+## Conclusion
+
+In order to bring modeling tools into the cloud, it is crucial to build these tools with a homogeneous technology stack consisting of web technologies that natively allow cloud-based deployment and use in web browsers. In this paper, we proposed a novel Typescript-only approach for generating Langium-based modeling language grammars and subsequently generating entire model management servers. Through two use cases, we evaluated our approach and showed, how developers can build next-generation web-based modeling tools. All software components described in this paper will be published open-source to enable wide industrial and academic adoption and use.
+
+个人总结：这篇讨论了Langium工具在模型管理服务上的一些问题，本文提供了一个新的方法生成了模型管理Server层，支持更丰富的操作。技术细节看得不是很明白。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>JOT</category>
+        <category>2025</category>
+      </categories>
+      <tags>
+        <tag>MDE</tag>
+        <tag>DSL</tag>
+        <tag>Web</tag>
+        <tag>Langium</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines</title>
+    <url>/2026/08/05/040/</url>
+    <content><![CDATA[
+[Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines](https://doi.org/10.1016/j.ress.2023.109864)
+
+`Abstraction`
+
+> Current aero-engine safety assessments mostly rely on experience-based safety analysis methods such as Fault Tree Analysis (FTA) or Failure Modes and Effects Analysis (FMEA). The progressively significant dynamic characteristics of aero-engines during their transition between states render these methods incapable of providing accurate quantitative safety guidance, which is vital for complex aerothermal-mechanical systems. To solve this problem, a Model-Based Safety Analysis with Time Resolution (MBSA-TR) method was established, which included system modeling, fault modeling, and Safety Critical Parameter (SCP) identification. An integrated system model combining the main gas path and air system was built based on dynamics principles, and it was capable of reflecting the dynamic characteristics of aero-engines. The fault model included several time-resolved sub-modules and interacted bidirectionally with the system model at each time step to realize time-sequential fault propagation. SCPs were defined as parametric analysis objectives, and they were identified using an FTA-like identification framework. Finally, a case study of a typical turbofan engine with low-pressure compressor blade fractures as the primary fault was analyzed. The results showed that some hazard risks are incapable of detection without time resolution. Thus, time resolution is indispensable for the safety evaluation of complex aerothermal-mechanical systems of aero-engines.
+
+摘要翻译：目前航空发动机安全评估主要依赖故障树分析（FTA）和故障模式与影响分析（FMEA）等基于经验的方法。航空发动机在状态转换过程中的动态特性越来越显著，传统方法难以为复杂气动热力-机械系统提供准确的定量安全指导。为了解决这个问题，本文建立了一种具有时间分辨率的基于模型的安全分析（MBSA-TR）方法，包括系统建模、故障建模和安全关键参数（SCP）识别。系统模型基于动力学原理，将主气路与空气系统集成起来；故障模型包含多个具有时间分辨率的子模块，并在每个时间步与系统模型进行双向交互，从而实现具有时序的故障传播。SCP被定义为参数化安全分析目标，并通过类似FTA的框架进行识别。最后，本文以低压压气机叶片断裂为初始故障，对典型涡扇发动机进行了案例分析。结果表明，一些危险风险在缺少时间分辨率时无法被发现，因此时间分辨率对于航空发动机复杂气动热力-机械系统的安全评估是不可缺少的。
+
+## Introduction
+
+传统FTA和FMEA能够进行结构化安全分析，但是不擅长表示系统状态转换、故障耦合和故障传播的动态过程。航空发动机的安全问题又恰好与时间高度相关，主要体现在三个方面：
+
+- **Fault state is time related：**故障可能是永久、瞬态或者多阶段的，开始时间和持续时间都会改变最终结果；
+- **Fault propagation is time sequential：**容积惯性、热惯性和转动惯性会延迟参数响应，故障在部件间并不是瞬时传播；
+- **Fault effect is time varying：**部件故障通常不是简单的完全失效，故障影响会随着时间非线性变化。
+
+已有的动态故障树、Petri网和贝叶斯网络可以描述部分动态特征，但是本文认为它们难以直接给出复杂发动机系统的高保真瞬态结果。已有的航空发动机故障仿真又多集中于主气路和单一故障，忽略了承担冷却、密封和轴向力控制等安全功能的内部空气系统，也缺少完整的时序故障链。
+
+本文采用Extended System Model（ESM）的思路，在物理机理系统模型上增加故障注入能力，提出MBSA-TR方法。主要贡献可以概括为：
+
+- 基于动力学原理和守恒方程建立能够描述发动机状态转换与部件耦合关系的系统模型；
+- 在每个时间步传递系统状态和故障信息，将故障状态、传播和影响中的时间信息注入系统；
+- 以双转子涡扇发动机为例，比较故障触发时间、传播延迟和时变故障影响对安全结论的作用。
+
+## Framework overview
+
+![MBSA-TR方法总览](https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080501.png)
+
+MBSA-TR包含三个核心部分：System Model、Fault Model和Safety Critical Parameters（SCPs）。
+
+- 系统模型描述发动机的结构和行为，通过容积、转动和热惯性保留正常及故障状态下的瞬态特征；
+- 故障模型将故障状态、故障影响和故障传播转化为系统模型可接受的参数，通过故障注入模块形成ESM；
+- SCP将适航规章中的安全要求转化为有限数量的参数化分析目标，避免分析发动机模型中的全部时变参数。
+
+这里最重要的不是三个模型简单连接，而是系统模型和故障模型在**每一个时间步**双向交换信息：故障模型改变系统部件参数，系统状态又决定后续故障是否被触发。
+
+## System model
+
+本文在.NET Framework上自研了一套面向对象、模块化的建模程序。系统模型同时包含主气路和内部空气系统，并采用流体网络法建立无向网络模型。相比按照气流方向逐部件计算的方法，流体网络法在故障导致局部流动短时反向时仍然能够工作。
+
+模型由Connector Module和Component Module组成。连接器不只是模型接口，同时承担网络节点、惯性元件和物理截面的作用：Fluid Connector描述容积惯性，Mechanical Connector描述转动惯性，Thermal Connector描述热惯性。压气机、涡轮、燃烧室、篦齿封严和盘腔等部件则封装在组件库中。
+
+每个时间步先由连接器提供猜测状态，组件进行计算并把质量流量、焓、功率等结果返回连接器，再通过非线性微分方程的迭代求解完成收敛。之后系统状态分别传递给控制系统和故障模型，故障模型更新下一时间步的部件参数。案例中通过精度和计算量的权衡，将时间步设置为1 ms；100 ms时间步已经产生7.30%的误差。
+
+## Fault model
+
+![故障模型结构](https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080502.png)
+
+故障模型分为Fault State、Fault Effect、Fault Propagation和Fault Injection四个子模块。
+
+### Fault state
+
+故障状态包含Trigger、Activation和Duration。Trigger决定某个故障是否参加本次仿真，Activation可以直接指定初始故障的触发时间，也可以使用系统状态阈值作为触发条件。Duration将故障分为三类：永久故障、给定持续时间的瞬态故障，以及由多个阶段组成的多阶段故障。
+
+### Fault effect
+
+故障影响通过部件性能缩放系数实现。以压气机效率或流量系数为例，故障参数可以写成`Y_fault = Y × k`，其中故障系数`k`又可以是随时间变化的函数。对于叶尖部分断裂等不完全故障，模型再使用Severity Factor表示严重程度；如果严重度存在不确定性，还可以定义概率分布并通过Monte Carlo抽样。
+
+### Fault propagation and injection
+
+故障传播分为两类：
+
+- 显式传播：由上游故障模块直接触发下游故障，适合传播路径清楚或者经过试验验证的情况；
+- 隐式传播：初始故障先改变系统状态，当截面参数值或变化率达到阈值时再触发链式故障，更接近复杂发动机中由物理行为产生的间接传播。
+
+最后，Fault Injection模块把形式化后的故障信息持续注入系统模型，并在每个时间步检查故障状态与影响，从而形成具有时间分辨率的ESM。
+
+## Safety critical parameters
+
+SCP被定义为“异常时可能导致危险后果的系统运行参数”。本文借鉴FTA，从适航规章中的7类顶层危险后果出发，依次向下分解到故障模式、部件和参数，最后形成SCP集合。这个过程本质上是将法规和安全目标映射为可观察、可计算的仿真量。
+
+案例中共识别出11个SCP，包括低压和高压压气机喘振裕度、燃烧室进出口压力、涡轮进口温度、涡轮出口温度、排气温度、两根转轴的转速和轴向力。
+
+## Case study
+
+本文建立了一个结构类似CFM56的双转子涡扇发动机模型。发动机在地面暖机状态下从约60%设计转速加速到100%，控制系统使用增量PID算法，以燃油流量为调节量、低压轴转速为控制目标，控制频率为50 Hz。
+
+![低压压气机叶片断裂引起的初始故障和链式故障](https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080503.png)
+
+低压压气机（LPC）叶片断裂被设置为初始故障，整个故障链包括5种故障：
+
+- Fault (1)：LPC叶片断裂，永久故障，压气机效率系数下降5%、流量系数下降0.4%；
+- Fault (2)：引气面积增加，永久故障，由Fault (1)显式触发，面积增加5%；
+- Fault (3)：篦齿封严故障，多阶段故障，由温度变化率隐式触发，经历间隙减小、磨损、间隙增加和磨损后稳定四个阶段；
+- Fault (4)：轴功率损失，瞬态故障，与篦齿磨损过程伴随发生，由Fault (3)显式触发；
+- Fault (5)：高压压气机（HPC）进口湍流，多阶段故障，由进口压力变化隐式触发，效率和流量系数先下降再恢复。
+
+初始故障在加速过程的2.35 s被手动触发。篦齿封严故障延迟3 ms后出现，前三个阶段分别持续36 ms、114 ms和23 ms；轴功率损失持续114 ms；HPC进口湍流两个阶段一共持续185 ms。
+
+![故障链时序](https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080504.png)
+
+## Results and analysis
+
+![正常状态和故障状态下的SCP仿真结果](https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080505.png)
+
+仿真结果中几个比较重要的现象：
+
+- LPC和HPC喘振裕度在故障发生后的81 ms内下降约2%，但仍高于20%，喘振风险没有成为主要问题；
+- 燃烧室进出口压力相对于正常状态产生约1.5%、持续150 ms的瞬态升高，稳定后仍高约10 kPa；
+- 涡轮进口温度（TET）在初始故障发生后的69 ms内从1739.4 K升高到1807.7 K，比正常状态最大值高57.5 K，超过CFR Part 33.88采用的42 K超温裕度要求；
+- 系统稳定后TET回落到1747.1 K，又进入可接受范围。如果模型只分析稳态结果，这个超温风险会完全被漏掉；
+- 低压轴转速只瞬时下降0.13%，高压轴转速稳定值增加0.98%，均仍在安全范围内；
+- 两根转轴的轴向力变化明显。低压轴轴向力先上升6.18%，随后在133 ms内下降34.61%；高压轴轴向力在138 ms内下降47.69%，最终稳定值比正常状态高34.68%，可能增加轴承损伤风险。
+
+进一步分析认为，SCP产生剧烈变化主要有三个原因：故障发生时发动机正处于加速过程；为了保守安全分析设置了敏感的故障触发条件；案例只使用简单增量PID控制，没有加入多参数监测和超温限制等保护逻辑。
+
+## Impact of time resolution
+
+![不同初始故障触发时间下的TET结果](https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080506.png)
+
+初始故障的触发时间前后移动0.5 s或1 s后，TET峰值发生了显著变化。触发时间前后移动1 s时，系统远离临界状态，Fault (3)和Fault (4)甚至不会被触发。这说明同一种初始故障和同一套故障参数，在不同运行时刻可能得到完全不同的故障链。
+
+![不同故障传播延迟下的TET结果](https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080507.png)
+
+当链式故障额外延迟0.5 s和1 s时，TET峰值分别下降17.77 K和30.73 K。传播延迟越大，多个故障影响在时间上的叠加越弱，系统的瞬态峰值也越低。
+
+![有无时变故障影响时的TET结果](https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080508.png)
+
+如果故障一旦触发就保持固定影响，而不是使用时变故障参数，TET峰值会降低41.47 K，稳定值反而升高5.3 K。也就是说，忽略时间变化不仅会漏掉瞬态风险，还可能放大长期故障影响，最终得到方向都不一致的安全结论。
+
+## Discussion and conclusion
+
+本文建立的MBSA-TR将主气路和空气系统的物理模型、具有时间信息的故障模型以及SCP识别结合起来。案例最直接的结论是：复杂气动热力-机械系统的最大故障影响更可能出现在瞬态过程，而不是系统稳定以后。故障触发时间、传播延迟和时变影响即使只有很小变化，也可能改变安全分析结果。
+
+这套方法也有比较明确的限制。它要求分析人员已经基本了解初始故障、潜在链式故障、触发条件和故障影响参数，很多数据仍然依赖已有试验、CFD结果和工程经验。故障序列、触发时间、传播延迟和严重度的组合数量很大，本文的方法还无法系统搜索全部组合。案例也只考虑了有限的机械故障和简单控制系统，后续还需要加入诊断、保护装置和更多真实试验数据。
+
+个人总结：北航航空发动机安全方向在RESS上的一篇工作，工程味很重。本文所谓的MBSA并不是使用SysML、AltaRica或者AADL建立的安全模型，而是在自研.NET动力学仿真平台上增加了一层时间化故障模型。文章最值得参考的是故障状态、故障影响、故障传播和故障注入四个模块的划分，以及显式/隐式传播和每个时间步双向耦合的处理方式。SCP识别也提供了一条从适航条款到仿真参数的路线。案例的结果很有说服力：稳态TET是安全的，但是瞬态已经超限，直接说明了为什么复杂机电液热系统不能只做稳态故障注入。局限也比较明显，故障链和触发条件基本需要事先知道，模型精度高度依赖试验参数，方法更接近“面向安全的高保真动态仿真”，距离自动化的故障发现和完整MBSA工具链还有一段距离。对Modelica故障建模来说，这篇文章的时间语义、链式故障触发和系统-故障双向交互方式很值得借鉴。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>RESS</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>MBSA</tag>
+        <tag>Safety Analysis</tag>
+        <tag>Fault Injection</tag>
+        <tag>Aero-engine</tag>
+        <tag>Time Resolution</tag>
       </tags>
   </entry>
   <entry>

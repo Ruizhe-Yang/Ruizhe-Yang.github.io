@@ -1,0 +1,292 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines Abstraction  Current aero-engine safety assessments mostly rely on experien">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2026/08/05/040/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines Abstraction  Current aero-engine safety assessments mostly rely on experien">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080501.png">
+<meta property="article:published_time" content="2026-08-05T12:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-05T13:36:22.871Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="MBSA">
+<meta property="article:tag" content="Safety Analysis">
+<meta property="article:tag" content="Fault Injection">
+<meta property="article:tag" content="Aero-engine">
+<meta property="article:tag" content="Time Resolution">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080501.png"><link rel="shortcut icon" href="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F2.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2026/08/05/040/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-08-05 21:36:22'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">71</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">56</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080501.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F3.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-08-05T12:00:00.000Z" title="Created 2026-08-05 20:00:00">2026-08-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-08-05T13:36:22.871Z" title="Updated 2026-08-05 21:36:22">2026-08-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/">Journal</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/RESS/">RESS</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/RESS/2024/">2024</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">3.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>12mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.ress.2023.109864">Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines</a></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>Current aero-engine safety assessments mostly rely on experience-based safety analysis methods such as Fault Tree Analysis (FTA) or Failure Modes and Effects Analysis (FMEA). The progressively significant dynamic characteristics of aero-engines during their transition between states render these methods incapable of providing accurate quantitative safety guidance, which is vital for complex aerothermal-mechanical systems. To solve this problem, a Model-Based Safety Analysis with Time Resolution (MBSA-TR) method was established, which included system modeling, fault modeling, and Safety Critical Parameter (SCP) identification. An integrated system model combining the main gas path and air system was built based on dynamics principles, and it was capable of reflecting the dynamic characteristics of aero-engines. The fault model included several time-resolved sub-modules and interacted bidirectionally with the system model at each time step to realize time-sequential fault propagation. SCPs were defined as parametric analysis objectives, and they were identified using an FTA-like identification framework. Finally, a case study of a typical turbofan engine with low-pressure compressor blade fractures as the primary fault was analyzed. The results showed that some hazard risks are incapable of detection without time resolution. Thus, time resolution is indispensable for the safety evaluation of complex aerothermal-mechanical systems of aero-engines.</p>
+</blockquote>
+<p>摘要翻译：目前航空发动机安全评估主要依赖故障树分析（FTA）和故障模式与影响分析（FMEA）等基于经验的方法。航空发动机在状态转换过程中的动态特性越来越显著，传统方法难以为复杂气动热力-机械系统提供准确的定量安全指导。为了解决这个问题，本文建立了一种具有时间分辨率的基于模型的安全分析（MBSA-TR）方法，包括系统建模、故障建模和安全关键参数（SCP）识别。系统模型基于动力学原理，将主气路与空气系统集成起来；故障模型包含多个具有时间分辨率的子模块，并在每个时间步与系统模型进行双向交互，从而实现具有时序的故障传播。SCP被定义为参数化安全分析目标，并通过类似FTA的框架进行识别。最后，本文以低压压气机叶片断裂为初始故障，对典型涡扇发动机进行了案例分析。结果表明，一些危险风险在缺少时间分辨率时无法被发现，因此时间分辨率对于航空发动机复杂气动热力-机械系统的安全评估是不可缺少的。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>传统FTA和FMEA能够进行结构化安全分析，但是不擅长表示系统状态转换、故障耦合和故障传播的动态过程。航空发动机的安全问题又恰好与时间高度相关，主要体现在三个方面：</p>
+<ul>
+<li><strong>Fault state is time related：</strong>故障可能是永久、瞬态或者多阶段的，开始时间和持续时间都会改变最终结果；</li>
+<li><strong>Fault propagation is time sequential：</strong>容积惯性、热惯性和转动惯性会延迟参数响应，故障在部件间并不是瞬时传播；</li>
+<li><strong>Fault effect is time varying：</strong>部件故障通常不是简单的完全失效，故障影响会随着时间非线性变化。</li>
+</ul>
+<p>已有的动态故障树、Petri网和贝叶斯网络可以描述部分动态特征，但是本文认为它们难以直接给出复杂发动机系统的高保真瞬态结果。已有的航空发动机故障仿真又多集中于主气路和单一故障，忽略了承担冷却、密封和轴向力控制等安全功能的内部空气系统，也缺少完整的时序故障链。</p>
+<p>本文采用Extended System Model（ESM）的思路，在物理机理系统模型上增加故障注入能力，提出MBSA-TR方法。主要贡献可以概括为：</p>
+<ul>
+<li>基于动力学原理和守恒方程建立能够描述发动机状态转换与部件耦合关系的系统模型；</li>
+<li>在每个时间步传递系统状态和故障信息，将故障状态、传播和影响中的时间信息注入系统；</li>
+<li>以双转子涡扇发动机为例，比较故障触发时间、传播延迟和时变故障影响对安全结论的作用。</li>
+</ul>
+<h2 id="Framework-overview"><a href="#Framework-overview" class="headerlink" title="Framework overview"></a>Framework overview</h2><p><img src="https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080501.png" alt="MBSA-TR方法总览"></p>
+<p>MBSA-TR包含三个核心部分：System Model、Fault Model和Safety Critical Parameters（SCPs）。</p>
+<ul>
+<li>系统模型描述发动机的结构和行为，通过容积、转动和热惯性保留正常及故障状态下的瞬态特征；</li>
+<li>故障模型将故障状态、故障影响和故障传播转化为系统模型可接受的参数，通过故障注入模块形成ESM；</li>
+<li>SCP将适航规章中的安全要求转化为有限数量的参数化分析目标，避免分析发动机模型中的全部时变参数。</li>
+</ul>
+<p>这里最重要的不是三个模型简单连接，而是系统模型和故障模型在<strong>每一个时间步</strong>双向交换信息：故障模型改变系统部件参数，系统状态又决定后续故障是否被触发。</p>
+<h2 id="System-model"><a href="#System-model" class="headerlink" title="System model"></a>System model</h2><p>本文在.NET Framework上自研了一套面向对象、模块化的建模程序。系统模型同时包含主气路和内部空气系统，并采用流体网络法建立无向网络模型。相比按照气流方向逐部件计算的方法，流体网络法在故障导致局部流动短时反向时仍然能够工作。</p>
+<p>模型由Connector Module和Component Module组成。连接器不只是模型接口，同时承担网络节点、惯性元件和物理截面的作用：Fluid Connector描述容积惯性，Mechanical Connector描述转动惯性，Thermal Connector描述热惯性。压气机、涡轮、燃烧室、篦齿封严和盘腔等部件则封装在组件库中。</p>
+<p>每个时间步先由连接器提供猜测状态，组件进行计算并把质量流量、焓、功率等结果返回连接器，再通过非线性微分方程的迭代求解完成收敛。之后系统状态分别传递给控制系统和故障模型，故障模型更新下一时间步的部件参数。案例中通过精度和计算量的权衡，将时间步设置为1 ms；100 ms时间步已经产生7.30%的误差。</p>
+<h2 id="Fault-model"><a href="#Fault-model" class="headerlink" title="Fault model"></a>Fault model</h2><p><img src="https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080502.png" alt="故障模型结构"></p>
+<p>故障模型分为Fault State、Fault Effect、Fault Propagation和Fault Injection四个子模块。</p>
+<h3 id="Fault-state"><a href="#Fault-state" class="headerlink" title="Fault state"></a>Fault state</h3><p>故障状态包含Trigger、Activation和Duration。Trigger决定某个故障是否参加本次仿真，Activation可以直接指定初始故障的触发时间，也可以使用系统状态阈值作为触发条件。Duration将故障分为三类：永久故障、给定持续时间的瞬态故障，以及由多个阶段组成的多阶段故障。</p>
+<h3 id="Fault-effect"><a href="#Fault-effect" class="headerlink" title="Fault effect"></a>Fault effect</h3><p>故障影响通过部件性能缩放系数实现。以压气机效率或流量系数为例，故障参数可以写成<code>Y_fault = Y × k</code>，其中故障系数<code>k</code>又可以是随时间变化的函数。对于叶尖部分断裂等不完全故障，模型再使用Severity Factor表示严重程度；如果严重度存在不确定性，还可以定义概率分布并通过Monte Carlo抽样。</p>
+<h3 id="Fault-propagation-and-injection"><a href="#Fault-propagation-and-injection" class="headerlink" title="Fault propagation and injection"></a>Fault propagation and injection</h3><p>故障传播分为两类：</p>
+<ul>
+<li>显式传播：由上游故障模块直接触发下游故障，适合传播路径清楚或者经过试验验证的情况；</li>
+<li>隐式传播：初始故障先改变系统状态，当截面参数值或变化率达到阈值时再触发链式故障，更接近复杂发动机中由物理行为产生的间接传播。</li>
+</ul>
+<p>最后，Fault Injection模块把形式化后的故障信息持续注入系统模型，并在每个时间步检查故障状态与影响，从而形成具有时间分辨率的ESM。</p>
+<h2 id="Safety-critical-parameters"><a href="#Safety-critical-parameters" class="headerlink" title="Safety critical parameters"></a>Safety critical parameters</h2><p>SCP被定义为“异常时可能导致危险后果的系统运行参数”。本文借鉴FTA，从适航规章中的7类顶层危险后果出发，依次向下分解到故障模式、部件和参数，最后形成SCP集合。这个过程本质上是将法规和安全目标映射为可观察、可计算的仿真量。</p>
+<p>案例中共识别出11个SCP，包括低压和高压压气机喘振裕度、燃烧室进出口压力、涡轮进口温度、涡轮出口温度、排气温度、两根转轴的转速和轴向力。</p>
+<h2 id="Case-study"><a href="#Case-study" class="headerlink" title="Case study"></a>Case study</h2><p>本文建立了一个结构类似CFM56的双转子涡扇发动机模型。发动机在地面暖机状态下从约60%设计转速加速到100%，控制系统使用增量PID算法，以燃油流量为调节量、低压轴转速为控制目标，控制频率为50 Hz。</p>
+<p><img src="https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080503.png" alt="低压压气机叶片断裂引起的初始故障和链式故障"></p>
+<p>低压压气机（LPC）叶片断裂被设置为初始故障，整个故障链包括5种故障：</p>
+<ul>
+<li>Fault (1)：LPC叶片断裂，永久故障，压气机效率系数下降5%、流量系数下降0.4%；</li>
+<li>Fault (2)：引气面积增加，永久故障，由Fault (1)显式触发，面积增加5%；</li>
+<li>Fault (3)：篦齿封严故障，多阶段故障，由温度变化率隐式触发，经历间隙减小、磨损、间隙增加和磨损后稳定四个阶段；</li>
+<li>Fault (4)：轴功率损失，瞬态故障，与篦齿磨损过程伴随发生，由Fault (3)显式触发；</li>
+<li>Fault (5)：高压压气机（HPC）进口湍流，多阶段故障，由进口压力变化隐式触发，效率和流量系数先下降再恢复。</li>
+</ul>
+<p>初始故障在加速过程的2.35 s被手动触发。篦齿封严故障延迟3 ms后出现，前三个阶段分别持续36 ms、114 ms和23 ms；轴功率损失持续114 ms；HPC进口湍流两个阶段一共持续185 ms。</p>
+<p><img src="https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080504.png" alt="故障链时序"></p>
+<h2 id="Results-and-analysis"><a href="#Results-and-analysis" class="headerlink" title="Results and analysis"></a>Results and analysis</h2><p><img src="https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080505.png" alt="正常状态和故障状态下的SCP仿真结果"></p>
+<p>仿真结果中几个比较重要的现象：</p>
+<ul>
+<li>LPC和HPC喘振裕度在故障发生后的81 ms内下降约2%，但仍高于20%，喘振风险没有成为主要问题；</li>
+<li>燃烧室进出口压力相对于正常状态产生约1.5%、持续150 ms的瞬态升高，稳定后仍高约10 kPa；</li>
+<li>涡轮进口温度（TET）在初始故障发生后的69 ms内从1739.4 K升高到1807.7 K，比正常状态最大值高57.5 K，超过CFR Part 33.88采用的42 K超温裕度要求；</li>
+<li>系统稳定后TET回落到1747.1 K，又进入可接受范围。如果模型只分析稳态结果，这个超温风险会完全被漏掉；</li>
+<li>低压轴转速只瞬时下降0.13%，高压轴转速稳定值增加0.98%，均仍在安全范围内；</li>
+<li>两根转轴的轴向力变化明显。低压轴轴向力先上升6.18%，随后在133 ms内下降34.61%；高压轴轴向力在138 ms内下降47.69%，最终稳定值比正常状态高34.68%，可能增加轴承损伤风险。</li>
+</ul>
+<p>进一步分析认为，SCP产生剧烈变化主要有三个原因：故障发生时发动机正处于加速过程；为了保守安全分析设置了敏感的故障触发条件；案例只使用简单增量PID控制，没有加入多参数监测和超温限制等保护逻辑。</p>
+<h2 id="Impact-of-time-resolution"><a href="#Impact-of-time-resolution" class="headerlink" title="Impact of time resolution"></a>Impact of time resolution</h2><p><img src="https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080506.png" alt="不同初始故障触发时间下的TET结果"></p>
+<p>初始故障的触发时间前后移动0.5 s或1 s后，TET峰值发生了显著变化。触发时间前后移动1 s时，系统远离临界状态，Fault (3)和Fault (4)甚至不会被触发。这说明同一种初始故障和同一套故障参数，在不同运行时刻可能得到完全不同的故障链。</p>
+<p><img src="https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080507.png" alt="不同故障传播延迟下的TET结果"></p>
+<p>当链式故障额外延迟0.5 s和1 s时，TET峰值分别下降17.77 K和30.73 K。传播延迟越大，多个故障影响在时间上的叠加越弱，系统的瞬态峰值也越低。</p>
+<p><img src="https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080508.png" alt="有无时变故障影响时的TET结果"></p>
+<p>如果故障一旦触发就保持固定影响，而不是使用时变故障参数，TET峰值会降低41.47 K，稳定值反而升高5.3 K。也就是说，忽略时间变化不仅会漏掉瞬态风险，还可能放大长期故障影响，最终得到方向都不一致的安全结论。</p>
+<h2 id="Discussion-and-conclusion"><a href="#Discussion-and-conclusion" class="headerlink" title="Discussion and conclusion"></a>Discussion and conclusion</h2><p>本文建立的MBSA-TR将主气路和空气系统的物理模型、具有时间信息的故障模型以及SCP识别结合起来。案例最直接的结论是：复杂气动热力-机械系统的最大故障影响更可能出现在瞬态过程，而不是系统稳定以后。故障触发时间、传播延迟和时变影响即使只有很小变化，也可能改变安全分析结果。</p>
+<p>这套方法也有比较明确的限制。它要求分析人员已经基本了解初始故障、潜在链式故障、触发条件和故障影响参数，很多数据仍然依赖已有试验、CFD结果和工程经验。故障序列、触发时间、传播延迟和严重度的组合数量很大，本文的方法还无法系统搜索全部组合。案例也只考虑了有限的机械故障和简单控制系统，后续还需要加入诊断、保护装置和更多真实试验数据。</p>
+<p>个人总结：北航航空发动机安全方向在RESS上的一篇工作，工程味很重。本文所谓的MBSA并不是使用SysML、AltaRica或者AADL建立的安全模型，而是在自研.NET动力学仿真平台上增加了一层时间化故障模型。文章最值得参考的是故障状态、故障影响、故障传播和故障注入四个模块的划分，以及显式/隐式传播和每个时间步双向耦合的处理方式。SCP识别也提供了一条从适航条款到仿真参数的路线。案例的结果很有说服力：稳态TET是安全的，但是瞬态已经超限，直接说明了为什么复杂机电液热系统不能只做稳态故障注入。局限也比较明显，故障链和触发条件基本需要事先知道，模型精度高度依赖试验参数，方法更接近“面向安全的高保真动态仿真”，距离自动化的故障发现和完整MBSA工具链还有一段距离。对Modelica故障建模来说，这篇文章的时间语义、链式故障触发和系统-故障双向交互方式很值得借鉴。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2026/08/05/040/">https://ruizhe-yang.github.io/2026/08/05/040/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MBSA/">MBSA</a><a class="post-meta__tags" href="/tags/Safety-Analysis/">Safety Analysis</a><a class="post-meta__tags" href="/tags/Fault-Injection/">Fault Injection</a><a class="post-meta__tags" href="/tags/Aero-engine/">Aero-engine</a><a class="post-meta__tags" href="/tags/Time-Resolution/">Time Resolution</a></div><div class="post_share"><div class="social-share" data-image="https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080501.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/02/05/039/" title="笔记：Hand-Written Code Preservation in Model-to-Text Transformation using Intrinsic Redundancy"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/models2025.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：Hand-Written Code Preservation in Model-to-Text Transformation using Intrinsic Redundancy</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">71</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">56</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://b23.tv/3cRMvn8" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Framework-overview"><span class="toc-number">2.</span> <span class="toc-text">Framework overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#System-model"><span class="toc-number">3.</span> <span class="toc-text">System model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fault-model"><span class="toc-number">4.</span> <span class="toc-text">Fault model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fault-state"><span class="toc-number">4.1.</span> <span class="toc-text">Fault state</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fault-effect"><span class="toc-number">4.2.</span> <span class="toc-text">Fault effect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fault-propagation-and-injection"><span class="toc-number">4.3.</span> <span class="toc-text">Fault propagation and injection</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Safety-critical-parameters"><span class="toc-number">5.</span> <span class="toc-text">Safety critical parameters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-study"><span class="toc-number">6.</span> <span class="toc-text">Case study</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Results-and-analysis"><span class="toc-number">7.</span> <span class="toc-text">Results and analysis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Impact-of-time-resolution"><span class="toc-number">8.</span> <span class="toc-text">Impact of time resolution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discussion-and-conclusion"><span class="toc-number">9.</span> <span class="toc-text">Discussion and conclusion</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/05/040/" title="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines"><img src="https://github.com/Ruizhe-Yang/website/blob/main/hexo-zh/source/pictures/2026080501.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines"/></a><div class="content"><a class="title" href="/2026/08/05/040/" title="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines">笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines</a><time datetime="2026-08-05T12:00:00.000Z" title="Created 2026-08-05 20:00:00">2026-08-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/05/039/" title="笔记：Hand-Written Code Preservation in Model-to-Text Transformation using Intrinsic Redundancy"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/models2025.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Hand-Written Code Preservation in Model-to-Text Transformation using Intrinsic Redundancy"/></a><div class="content"><a class="title" href="/2026/02/05/039/" title="笔记：Hand-Written Code Preservation in Model-to-Text Transformation using Intrinsic Redundancy">笔记：Hand-Written Code Preservation in Model-to-Text Transformation using Intrinsic Redundancy</a><time datetime="2026-02-05T12:00:00.000Z" title="Created 2026-02-05 20:00:00">2026-02-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/04/038/" title="笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/models2025.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica"/></a><div class="content"><a class="title" href="/2026/02/04/038/" title="笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica">笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica</a><time datetime="2026-02-04T04:00:00.000Z" title="Created 2026-02-04 12:00:00">2026-02-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/23/037/" title="笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/SST.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim"/></a><div class="content"><a class="title" href="/2026/01/23/037/" title="笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim">笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim</a><time datetime="2026-01-23T03:00:00.000Z" title="Created 2026-01-23 11:00:00">2026-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/01/036/" title="笔记：A Model Management Framework for Next-Generation Web-based Modeling Tools"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/2025060201.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A Model Management Framework for Next-Generation Web-based Modeling Tools"/></a><div class="content"><a class="title" href="/2025/06/01/036/" title="笔记：A Model Management Framework for Next-Generation Web-based Modeling Tools">笔记：A Model Management Framework for Next-Generation Web-based Modeling Tools</a><time datetime="2025-06-01T12:00:00.000Z" title="Created 2025-06-01 20:00:00">2025-06-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: 'd169f20ae7064f99dafe592c58c5ad6c',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
