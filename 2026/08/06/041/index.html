@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Simple analysis of complex system safety based on Finite State Machine Network and phase space theory Abstraction  Safety analysis of complex systems, such as aero-engines, has always been a challengi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2026/08/06/041/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="Simple analysis of complex system safety based on Finite State Machine Network and phase space theory Abstraction  Safety analysis of complex systems, such as aero-engines, has always been a challengi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ruizhe-yang.github.io/pictures/2026080601.png">
+<meta property="article:published_time" content="2026-08-06T12:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-06T01:28:20.886Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="Safety">
+<meta property="article:tag" content="Complex Systems">
+<meta property="article:tag" content="FSMN">
+<meta property="article:tag" content="Phase Space">
+<meta property="article:tag" content="Aero-engine">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruizhe-yang.github.io/pictures/2026080601.png"><link rel="shortcut icon" href="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F2.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2026/08/06/041/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-08-06 09:28:20'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">56</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/pictures/2026080601.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F3.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-08-06T12:00:00.000Z" title="Created 2026-08-06 20:00:00">2026-08-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-08-06T01:28:20.886Z" title="Updated 2026-08-06 09:28:20">2026-08-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/">Journal</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/RESS/">RESS</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/RESS/2024/">2024</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">3.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>11mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.ress.2024.110205">Simple analysis of complex system safety based on Finite State Machine Network and phase space theory</a></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>Safety analysis of complex systems, such as aero-engines, has always been a challenging problem. In particular, the risk propagation caused by system functional interactions has become increasingly prominent, leading to the difficulty of traditional safety analysis methods. Existing methods are mostly based on manual experience and deduction with difficulty to completely analyze the whole system safety regions. In this paper, a model-based framework is proposed by combining Finite State Machine Network (FSMN) and phase space theory to perform safety analysis of complex systems from function-logic perspective. We first construct the system model and system state-transition network based on FSMN. Then combining with phase space theory, we identify system safety regions of the entire operating space from macro perspective, and investigate the system risk propagation from micro perspective. An aero-engine system is taken as an example to illustrate the proposed method. Our results show that this method has the ability to effectively identify the potential risk factors and explore emergent unknown risks, which can provide guidance for safety testing.</p>
+</blockquote>
+<p>摘要翻译：航空发动机等复杂系统的安全分析一直是一个具有挑战性的问题。特别是由系统功能交互引起的风险传播越来越突出，使传统安全分析方法难以处理。现有方法主要依赖人工经验和推理，很难完整分析整个系统的安全区域。本文将有限状态机网络（FSMN）与相空间理论结合起来，提出一种从功能逻辑角度开展复杂系统安全分析的基于模型框架。首先基于FSMN建立系统模型和系统状态转移网络；然后结合相空间理论，从宏观角度识别整个运行空间中的系统安全区域，从微观角度研究系统风险传播。本文以航空发动机为例说明该方法，结果表明它能够识别潜在风险因素并探索涌现的未知风险，可为安全试验提供指导。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>复杂系统中的局部错误可能通过系统要素间的交互不断传播、积累和放大，最终导致重大事故。传统FTA、ETA、FMEA和HAZOP擅长描述事故与原因之间的线性因果链，但是依赖已有经验，对非预期的功能交互和未知风险处理能力有限。STAMP和FRAM等系统性方法能够关注组件间的交互，却主要依赖定性分析和人工推理；已有MBSA方法则大多集中在物理层故障模式，对功能层的功能退化、功能异常和交互涌现关注不足。</p>
+<p>本文将FSMN与相空间理论结合，从功能逻辑角度建立整个系统运行过程的离散动态模型。作者希望同时解决两个问题：</p>
+<ul>
+<li>从宏观角度遍历系统状态空间，识别系统的安全区和不同等级的风险区；</li>
+<li>从微观角度沿状态转移路径分析风险传播，发现由不安全功能交互产生的未知涌现风险。</li>
+</ul>
+<p>文章的三个主要贡献：建立功能逻辑层的完整动态模型；首次将相空间理论用于复杂系统安全区域识别；减少传统风险定位对人工经验和推理的依赖。</p>
+<h2 id="Preliminaries"><a href="#Preliminaries" class="headerlink" title="Preliminaries"></a>Preliminaries</h2><h3 id="Finite-State-Machine-Network"><a href="#Finite-State-Machine-Network" class="headerlink" title="Finite State Machine Network"></a>Finite State Machine Network</h3><p>有限状态机（FSM）用有限数量的状态、输入、输出和转移函数描述系统行为。本文采用Mealy状态机，每个状态机可以写为<code>M = &lt;x_t, s_t, y_t&gt;</code>，其中<code>x_t</code>是外部输入，<code>s_t</code>是内部状态，<code>y_t</code>是由输入和内部状态共同决定的输出。</p>
+<p>有限状态机网络（FSMN）在此基础上将多个FSM连接起来。网络节点是具有独立动态行为的FSM，边表示FSM之间的功能交互。一个组件的输出可以成为另一个组件的输入，多个组件也可以通过串联、并联或更复杂的结构共同决定系统输出。</p>
+<h3 id="Phase-space-theory"><a href="#Phase-space-theory" class="headerlink" title="Phase space theory"></a>Phase space theory</h3><p>相空间是由系统所有可能状态组成的集合，状态转移轨迹描述系统特征随时间的演化。吸引子（Attractor）是系统经过演化后趋于稳定的一组状态，吸引域（Basin of Attraction）则包含所有最终会进入这个吸引子的初始状态。</p>
+<p>本文将系统状态转移网络看作离散相空间：如果一个状态在下一步仍然转移到自身，它就是吸引子；如果该吸引子表示安全稳态，其吸引域就是安全区；如果吸引子表示危险稳态，对应吸引域就是风险区。</p>
+<h2 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h2><p><img src="/pictures/2026080601.png" alt="FSMN与相空间理论结合的安全分析流程"></p>
+<p>整个框架分为Modeling和Safety Analysis两个阶段。建模阶段先建立FSMN，再根据功能状态转移规则生成系统状态转移网络；安全分析阶段包括安全区域识别和风险传播分析。</p>
+<h3 id="System-modeling-based-on-FSMN"><a href="#System-modeling-based-on-FSMN" class="headerlink" title="System modeling based on FSMN"></a>System modeling based on FSMN</h3><p>每个系统组件都被建模为一个FSM，组件间的功能依赖关系表示为有向边。如果组件j完成自身功能依赖组件i的输出，就建立一条从i到j的连接。所有组件及功能连接共同形成系统FSMN。</p>
+<p>本文对组件状态作了几项简化：</p>
+<ul>
+<li>内部功能状态和输出功能状态均采用离散等级，0表示失效，最大值表示正常，其他值表示部分有效；</li>
+<li>一个组件的输入功能状态取所有上游组件输出状态之和；</li>
+<li>不考虑维修，组件内部状态和输出状态只会保持或下降；</li>
+<li>输出功能状态由组件当前状态和上游组件输出共同决定。</li>
+</ul>
+<p>在给定所有组件的初始状态和转移规则后，FSMN可以自动计算下一系统状态。遍历全部初始状态，以每个系统状态为节点、状态转移为有向边，就可以构造完整的系统状态转移网络。</p>
+<h3 id="Safety-region-identification"><a href="#Safety-region-identification" class="headerlink" title="Safety region identification"></a>Safety region identification</h3><p><img src="/pictures/2026080602.png" alt="基于吸引域划分的安全区和风险区"></p>
+<p>作者根据吸引子的安全属性划分不同区域。安全吸引子形成Safety Region，不安全吸引子可以进一步形成多个不同等级的Risk Region。同一吸引域中的所有状态最终会趋向同一个吸引子，因此具有相近的安全特征。</p>
+<p>这种方法不再只把系统简单区分为安全和不安全，而是允许根据安全标准划分多级区域。位于安全区与风险区边界上的状态被定义为分界状态，可以用来描述系统距离风险区域的安全裕度。</p>
+<h3 id="Risk-propagation-analysis"><a href="#Risk-propagation-analysis" class="headerlink" title="Risk propagation analysis"></a>Risk propagation analysis</h3><p>如果一条状态转移路径最终到达风险区中的吸引子，该路径就被定义为风险传播路径，路径长度是其中有向边的数量。作者关注的不是已经发生的大规模故障，而是系统如何从表面正常或可接受的局部异常逐步演化到不可接受的风险状态。</p>
+<p>对某个风险吸引子反向搜索所有可能的初始状态和转移路径，可以定位具有潜在风险的状态。路径长度还可以用于描述风险传播速度，并为不同阶段设置预防和控制措施。</p>
+<h2 id="Case-study-safety-analysis-of-aero-engine"><a href="#Case-study-safety-analysis-of-aero-engine" class="headerlink" title="Case study: safety analysis of aero-engine"></a>Case study: safety analysis of aero-engine</h2><p>案例采用一个双转子轴流式涡扇发动机，包括Inlet、Fan、Compressor、Combustor、HP-Turbine、LP-Turbine、Bypass和Nozzle八个组件。</p>
+<p><img src="/pictures/2026080603.png" alt="航空发动机FSMN模型"></p>
+<p>每个组件均设为三种内部状态和三种输出状态：0表示不能输出功能，1表示能够输出部分有效功能，2表示能够正常输出功能。因此发动机系统共有<code>3^8 = 6561</code>种可能状态，每个状态用8维向量表示。作者按照发动机工作原理为每个组件人工定义功能状态转移规则，再遍历所有初始状态生成状态转移网络。</p>
+<p><img src="/pictures/2026080604.png" alt="航空发动机状态转移网络和系统状态含义"></p>
+<p>图中不同颜色的区域表示不同吸引子形成的吸引域。例如状态<code>(22122212)</code>中压气机和旁路只能输出部分功能，其余组件正常，发动机仍可以产生推力；状态<code>(01001000)</code>中只有风扇和高压涡轮保留部分功能，其余组件均不能输出功能，发动机无法产生推力。</p>
+<h2 id="System-region-identification"><a href="#System-region-identification" class="headerlink" title="System region identification"></a>System region identification</h2><p>整个状态转移网络中一共得到357个吸引子。作者根据发动机能否输出推力以及失效组件的范围，将吸引子分为四类：</p>
+<ul>
+<li>High-risk：大规模组件失效，发动机不能输出推力；</li>
+<li>Mid-risk：没有发生大规模坍塌，但功能级联使发动机最终不能输出推力；</li>
+<li>Low-risk：存在局部故障，但发动机仍能输出全部或部分推力；</li>
+<li>Safe：所有组件都能正常或部分输出功能，系统保持安全稳态。</li>
+</ul>
+<p><img src="/pictures/2026080605.png" alt="不同风险等级的吸引子数量与吸引域规模"></p>
+<p>357个吸引子中，高风险吸引子只有3个，中风险144个，低风险78个，安全吸引子132个。但是不同吸引域包含的状态数量差异很大：高风险区包含5229个状态，中风险区660个，低风险区416个，安全区只有256个。也就是说，虽然高风险稳态数量很少，但由于发动机组件间具有强功能耦合，大部分初始状态最终都有向高风险状态演化的可能。</p>
+<p>作者还分析了状态<code>(02221122)</code>。这个状态看起来只有进气道失效，其余组件仍能正常或部分输出功能，喷管也能正常输出，通常不会被直接判断为重大风险。但是它位于高风险吸引子<code>(00000000)</code>的吸引域内，会沿状态转移路径逐步演化为全部组件失效。</p>
+<p><img src="/pictures/2026080606.png" alt="表面正常状态在高风险区中的位置及演化路径"></p>
+<p>这个例子说明了安全区域分析的意义：不只判断当前状态有没有明显故障，还判断当前状态最终会进入哪一种稳态，从而提前发现隐藏风险。</p>
+<h2 id="Risk-propagation-analysis-1"><a href="#Risk-propagation-analysis-1" class="headerlink" title="Risk propagation analysis"></a>Risk propagation analysis</h2><p><img src="/pictures/2026080607.png" alt="状态12221022的风险传播路径"></p>
+<p>状态<code>(12221022)</code>最初只有低压涡轮完全失效。经过组件间的功能交互，故障依次扩展到风扇、压气机、旁路、燃烧室和喷管，最终在6个转移步骤后进入高风险状态<code>(10000000)</code>，形成大规模发动机功能失效。</p>
+<p>全部状态转移路径长度呈偏斜正态分布，最大长度为10，说明任意状态最多经过10步就会进入稳态。长度为1至4的路径共有4348条，占大多数。较长的路径意味着风险演化过程中存在更多可以实施控制和阻断的阶段。</p>
+<h3 id="Emergent-risk"><a href="#Emergent-risk" class="headerlink" title="Emergent risk"></a>Emergent risk</h3><p><img src="/pictures/2026080608.png" alt="单风险因素和多风险因素下的风险传播路径"></p>
+<p>本文最有意思的结果是多风险因素产生的涌现风险：</p>
+<ul>
+<li>只有高压涡轮部分失效时，系统从<code>(22221222)</code>转移到安全状态<code>(22121222)</code>，只对压气机功能产生有限影响；</li>
+<li>只有风扇完全失效时，系统从<code>(20222222)</code>转移到中风险状态<code>(20122201)</code>，影响压气机、旁路和喷管，但没有引起整体坍塌；</li>
+<li>当风扇完全失效与高压涡轮部分失效同时存在时，系统从<code>(20221222)</code>最终转移到高风险状态<code>(20000000)</code>，除进气道外所有组件都失去功能。</li>
+</ul>
+<p>两个单独存在时尚可容忍的风险因素，在叠加后通过功能交互产生大规模系统坍塌，这就是文中识别出的涌现风险。从物理层理解，可以将其对应为风扇叶片断裂与高压涡轮长期磨损的组合：风扇单独失效时，压气机仍能由高压涡轮维持一定输出；高压涡轮同时退化后，压气机无法继续维持，故障经压气机、燃烧室等组件快速级联。</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>本文将FSMN和相空间理论结合，形成了一套从功能逻辑角度分析复杂系统安全的方法。FSMN负责表达组件功能交互并生成完整状态转移网络，相空间理论则通过吸引子和吸引域划分安全区与风险区。在发动机案例中，作者遍历了6561个状态，得到357个吸引子，并通过风险区域和状态转移路径识别出表面正常但最终走向失效的潜在状态，以及由多个风险因素交互产生的系统涌现风险。</p>
+<p>方法的局限也比较明显。当前分析仍停留在功能层，离散状态与具体物理故障模式之间缺少严格映射；状态转移规则主要依赖人工根据工作原理设定，分析结论会受到规则正确性的直接影响；案例没有使用实际数据，也没有考虑维修、概率、不确定性和测量误差。随着组件数量和状态等级增加，完整遍历还会面临明显的状态空间爆炸问题。</p>
+<p>个人总结：北航可靠性学院和航空发动机研究院合作的一篇RESS论文，和上一篇MBSA-TR关注的方向不一样。上一篇是物理模型加时间化故障注入，这一篇更接近离散状态空间上的功能安全分析。文章最值得参考的是把吸引域直接定义为安全区或风险区，从“当前是否故障”转向“当前状态最终会走向哪里”，这个思路比较新颖。多故障组合产生涌现风险的例子也很好理解，适合用于指导组合故障测试。不过案例把八个组件都简化成三状态，转移规则由作者人工设定，所谓未知风险在一定程度上仍然是规则推演的结果，工程可信度还需要物理模型和试验支撑。整体上方法创新比案例验证更强，后续如果能把FSMN与SysML状态机、Modelica物理模型或具体故障注入试验结合起来，会更有价值。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2026/08/06/041/">https://ruizhe-yang.github.io/2026/08/06/041/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Safety/">Safety</a><a class="post-meta__tags" href="/tags/Complex-Systems/">Complex Systems</a><a class="post-meta__tags" href="/tags/FSMN/">FSMN</a><a class="post-meta__tags" href="/tags/Phase-Space/">Phase Space</a><a class="post-meta__tags" href="/tags/Aero-engine/">Aero-engine</a></div><div class="post_share"><div class="social-share" data-image="/pictures/2026080601.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/08/05/040/" title="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines"><img class="cover" src="/pictures/2026080501.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2024/09/02/012/" title="笔记：Failure Mode and Effects Analysis (FMEA Handbook)"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24090201.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-02</div><div class="title">笔记：Failure Mode and Effects Analysis (FMEA Handbook)</div></div></a></div><div><a href="/2026/08/05/040/" title="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines"><img class="cover" src="/pictures/2026080501.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-05</div><div class="title">笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">74</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">56</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://b23.tv/3cRMvn8" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preliminaries"><span class="toc-number">2.</span> <span class="toc-text">Preliminaries</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Finite-State-Machine-Network"><span class="toc-number">2.1.</span> <span class="toc-text">Finite State Machine Network</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Phase-space-theory"><span class="toc-number">2.2.</span> <span class="toc-text">Phase space theory</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Methodology"><span class="toc-number">3.</span> <span class="toc-text">Methodology</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#System-modeling-based-on-FSMN"><span class="toc-number">3.1.</span> <span class="toc-text">System modeling based on FSMN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Safety-region-identification"><span class="toc-number">3.2.</span> <span class="toc-text">Safety region identification</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Risk-propagation-analysis"><span class="toc-number">3.3.</span> <span class="toc-text">Risk propagation analysis</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-study-safety-analysis-of-aero-engine"><span class="toc-number">4.</span> <span class="toc-text">Case study: safety analysis of aero-engine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#System-region-identification"><span class="toc-number">5.</span> <span class="toc-text">System region identification</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Risk-propagation-analysis-1"><span class="toc-number">6.</span> <span class="toc-text">Risk propagation analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Emergent-risk"><span class="toc-number">6.1.</span> <span class="toc-text">Emergent risk</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">7.</span> <span class="toc-text">Conclusion</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/06/041/" title="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory"><img src="/pictures/2026080601.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory"/></a><div class="content"><a class="title" href="/2026/08/06/041/" title="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory">笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory</a><time datetime="2026-08-06T12:00:00.000Z" title="Created 2026-08-06 20:00:00">2026-08-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/05/040/" title="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines"><img src="/pictures/2026080501.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines"/></a><div class="content"><a class="title" href="/2026/08/05/040/" title="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines">笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines</a><time datetime="2026-08-05T12:00:00.000Z" title="Created 2026-08-05 20:00:00">2026-08-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/05/039/" title="笔记：Hand-Written Code Preservation in Model-to-Text Transformation using Intrinsic Redundancy"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/models2025.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Hand-Written Code Preservation in Model-to-Text Transformation using Intrinsic Redundancy"/></a><div class="content"><a class="title" href="/2026/02/05/039/" title="笔记：Hand-Written Code Preservation in Model-to-Text Transformation using Intrinsic Redundancy">笔记：Hand-Written Code Preservation in Model-to-Text Transformation using Intrinsic Redundancy</a><time datetime="2026-02-05T12:00:00.000Z" title="Created 2026-02-05 20:00:00">2026-02-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/04/038/" title="笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/models2025.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica"/></a><div class="content"><a class="title" href="/2026/02/04/038/" title="笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica">笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica</a><time datetime="2026-02-04T04:00:00.000Z" title="Created 2026-02-04 12:00:00">2026-02-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/23/037/" title="笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/SST.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim"/></a><div class="content"><a class="title" href="/2026/01/23/037/" title="笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim">笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim</a><time datetime="2026-01-23T03:00:00.000Z" title="Created 2026-01-23 11:00:00">2026-01-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: '73c57a26bc5482038f139e88a21a6040',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
