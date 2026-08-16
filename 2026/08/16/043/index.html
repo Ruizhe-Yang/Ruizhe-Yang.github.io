@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Inclusion of Reliability and Safety Analysis Methods in Modelica Abstraction  A method is developed to combine techniques of reliability and safety analysis with the Modelica language, which is now wi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2026/08/16/043/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="Inclusion of Reliability and Safety Analysis Methods in Modelica Abstraction  A method is developed to combine techniques of reliability and safety analysis with the Modelica language, which is now wi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ruizhe-yang.github.io/pictures/2026081601.png">
+<meta property="article:published_time" content="2026-08-16T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-16T12:36:27.756Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="Safety">
+<meta property="article:tag" content="Modelica">
+<meta property="article:tag" content="Reliability">
+<meta property="article:tag" content="Aircraft Electrical Power System">
+<meta property="article:tag" content="ENADOT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruizhe-yang.github.io/pictures/2026081601.png"><link rel="shortcut icon" href="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F2.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2026/08/16/043/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-08-16 20:36:27'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">84</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">61</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/pictures/2026081601.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F3.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-08-16T02:00:00.000Z" title="Created 2026-08-16 10:00:00">2026-08-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-08-16T12:36:27.756Z" title="Updated 2026-08-16 20:36:27">2026-08-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Conference/">Conference</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Conference/Modelica-Conference/">Modelica Conference</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Conference/Modelica-Conference/2011/">2011</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">4.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>14mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://doi.org/10.3384/ecp11063616">Inclusion of Reliability and Safety Analysis Methods in Modelica</a></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>A method is developed to combine techniques of reliability and safety analysis with the Modelica language, which is now widely used for the modelling and simulation of technical systems. The method allows to perform a reliability or safety analysis on the system model that is created and used for simulation studies. The procedure automatically determines the so called minimal path sets or minimal cut sets of a system, its failure probability and critical components. The reliability and safety analysis methods are incorporated in a Modelica library that is established for the modelling and simulation of aircraft on-board electrical power systems. The recent trend towards a broader use of electric system technologies on commercial aircraft has motivated the creation of this kind of model library, which supports the conceptual design and optimisation of on-board electrical systems regarding power behaviour, weight, reliability and safety.</p>
+</blockquote>
+<p>摘要翻译：本文提出一种将可靠性与安全分析技术结合到Modelica语言中的方法。该方法能够直接在用于常规仿真研究的系统模型上开展可靠性或安全分析，并自动确定系统的最小路集、最小割集、失效概率和关键组件。作者把这些分析方法集成到一个用于飞机机载电力系统建模与仿真的Modelica库中。随着商用飞机越来越多地使用电气系统技术，这类模型库可在概念设计阶段从功率行为、重量、可靠性和安全性等方面支持机载电力系统架构设计与优化。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>复杂系统的Modelica模型已经包含了结构连接、组件功能和系统重构逻辑等大量安全分析所需的信息。如果为了可靠性分析再独立建立可靠性框图、故障树或其他逻辑模型，不仅增加建模工作，还容易使物理模型与安全模型在后续修改中失去一致性。</p>
+<p>本文的出发点是直接复用仿真模型：先在组件模型中补充故障状态下的物理行为和失效率参数，再由自动化程序反复改变组件状态并执行系统仿真，根据输出判定系统功能是否满足要求。这样，同一个Modelica模型既用于功率和重量设计，也用于最小路集、最小割集、系统失效概率以及飞机签派可靠性分析。</p>
+<p>作者将这套工具称为ENADOT（Electrical Network Architecture Design Optimisation Tool），主要面向飞机机载电力系统的概念设计与架构优化。</p>
+<h2 id="Component-fault-modelling"><a href="#Component-fault-modelling" class="headerlink" title="Component fault modelling"></a>Component fault modelling</h2><p>普通Modelica组件通常只描述正常状态下的微分或代数方程。为支持安全分析，ENADOT要求组件同时具有一个或多个故障模式，每个故障模式仍然通过物理参数和方程表达。</p>
+<h3 id="Cable-model"><a href="#Cable-model" class="headerlink" title="Cable model"></a>Cable model</h3><p>双芯电缆被等效为电阻：正常电阻约为<code>10^-1 Ω</code>；开路故障使用约<code>10^6 Ω</code>的大电阻；短路故障则使用连接两根导线的<code>10^-5 Ω</code>小电阻。用于短路的并联电阻始终存在于模型中，只是在非短路状态下取<code>10^6 Ω</code>，从而避免在仿真期间动态改变模型拓扑。</p>
+<h3 id="Contactor-model"><a href="#Contactor-model" class="headerlink" title="Contactor model"></a>Contactor model</h3><p><img src="/pictures/2026081602.png" alt="接触器的正常、故障和限流Modelica模型"></p>
+<p>接触器同样采用可变电阻表示，断开时<code>Ropen = 10^6 Ω</code>，闭合时<code>Rclosed ≈ 2×10^-3 Ω</code>。模型还可以通过增大限流电阻<code>Rlmt</code>把实际电流限制在额定电流以内，用于近似断路器保护功能。与真实断路器跳闸后需要复位不同，这种连续限流方式更适合概念设计阶段的稳态网络分析。</p>
+<p>接触器包含两类主要故障：开路故障，以及需要断开时仍保持闭合的<code>fails to open</code>故障。后者意味着电流限制和故障隔离功能丧失，可能使短路影响继续向上游或相邻母线传播。</p>
+<p>每个组件通过布尔输入控制正常状态、故障模式1、故障模式2等状态，并允许在仿真过程中切换。组件内部还保存可修改的失效率参数。论文采用恒定失效率和指数寿命分布，组件在时刻<code>t</code>前发生故障的概率为<code>pi(t) = 1 - exp(-λi t)</code>。组件重量则根据额定功率、转速等尺寸参数计算。</p>
+<p>为了适应电网架构级概念设计，作者还作了几项简化：交流系统使用有效值表示，三相对称系统由单相等效模型代替，模型主要使用代数方程而省略快速电磁暂态。这些简化使模型适合稳态功率、可靠性、安全性和重量联合分析，但也限定了方法能够覆盖的物理现象。</p>
+<h2 id="ENADOT-framework"><a href="#ENADOT-framework" class="headerlink" title="ENADOT framework"></a>ENADOT framework</h2><p><img src="/pictures/2026081601.png" alt="ENADOT电网架构分析与优化框架"></p>
+<p>ENADOT以同一个电力系统仿真模型为中心，提供三类分析能力：</p>
+<ul>
+<li><strong>功率行为分析：</strong>在正常和降级工况下计算发电机、母线、电缆和负载的功率与设计点；</li>
+<li><strong>重量分析：</strong>根据最不利功率负载确定组件尺寸，进而计算组件重量和系统总重量；</li>
+<li><strong>安全与可靠性分析：</strong>自动搜索最小路集和最小割集，计算系统失效概率，并结合允许带故障放行的MEL规则评估签派可用性。</li>
+</ul>
+<p>复杂电网仍使用Dymola图形编辑器以常规方式搭建。模型图层会根据发电机或电池来源用不同颜色动态显示接触器状态和电能流向，未带电组件显示为灰色。ENADOT还结合Dymola实时仿真与Visual C++，允许用户点击组件切换正常或故障状态，直接观察故障隔离和网络重构结果。这种交互方式既用于分析，也用于检查模型实现是否符合设计逻辑。</p>
+<h2 id="Automated-analysis-procedures"><a href="#Automated-analysis-procedures" class="headerlink" title="Automated analysis procedures"></a>Automated analysis procedures</h2><h3 id="Electrical-load-analysis"><a href="#Electrical-load-analysis" class="headerlink" title="Electrical load analysis"></a>Electrical load analysis</h3><p>电负载分析自动遍历正常和降级工况，记录每个组件在飞行周期中的最大功率及发生时刻。最大负载作为设计点，用来选择组件额定参数并计算系统重量。因此，可靠性分析并不是一个孤立的附加程序，而是和架构尺寸设计共享相同模型与场景。</p>
+<h3 id="Safety-analysis"><a href="#Safety-analysis" class="headerlink" title="Safety analysis"></a>Safety analysis</h3><p>安全分析的目标由操作者指定，例如“至少一条直流母线带电时系统可用”或“交流关键母线失压时系统失效”。分析开始前可以选择可靠性框图意义上的最小路集分析，或者故障树意义上的最小割集分析。</p>
+<p><strong>最小路集（Minimal Path Set）</strong>是能够使指定系统功能成立的最小完好组件组合。所谓最小，是指删除其中任意一个完好组件后，系统功能就不再满足要求。冗余系统通常具有多个最小路集，分别代表实现同一功能的不同供电路径。ENADOT的路集分析只考虑组件完好或失效两个状态，计算量较低，适合作为设计阶段的快速安全估计。</p>
+<p><strong>最小割集（Minimal Cut Set）</strong>是能够使系统功能丧失的最小故障组件及故障模式组合。割集分析会区分电缆开路、短路，接触器开路、拒动，发电机失压等具体故障模式，因此比二状态路集分析复杂，但结果可以直接对应传统故障树分析。</p>
+<p>在恒定且相互独立的组件失效率假设下，一个最小路集的概率由其中全部组件保持完好的概率相乘得到，一个最小割集的概率则由其中全部故障事件概率相乘得到。系统运行或失效概率需要对多个路集或割集的并集使用容斥公式。由于直接展开会产生大量乘积项，作者采用不交积之和算法缩减表达式。</p>
+<p>论文也明确提醒，模型化安全分析只能穷尽模型物理范围内的故障。湿度、电磁干扰等共因威胁如果没有进入模型，就不会被自动分析程序发现，仍然需要设计人员额外评估。</p>
+<h3 id="Reliability-and-dispatch-analysis"><a href="#Reliability-and-dispatch-analysis" class="headerlink" title="Reliability and dispatch analysis"></a>Reliability and dispatch analysis</h3><p>安全性关注可能危及飞行的功能丧失，可靠性则关注飞机能否按计划执行商业任务。论文把签派可靠性定义为航班不因技术原因延误超过15分钟或取消的比例。</p>
+<p>ENADOT把最低设备清单（MEL）中允许带故障放行的组件作为输入。如果一组MEL组件中至少需要<code>k</code>个保持完好，程序就组合出全部满足条件的最小路集，并结合组件失效率计算给定运行周期内的系统可用性。这一步把冗余设计、安全余度和商业签派规则放在同一模型上分析。</p>
+<h3 id="Reducing-computational-effort"><a href="#Reducing-computational-effort" class="headerlink" title="Reducing computational effort"></a>Reducing computational effort</h3><p>如果直接枚举，<code>n</code>个二状态组件需要检查<code>2^n</code>种组合；若每个组件有正常和两个故障模式，则需要<code>3^n</code>种组合。20个组件分别超过一百万和三十亿种状态，无法依靠穷举处理实际电网。</p>
+<p>ENADOT对最小路集采用两阶段策略：</p>
+<ol>
+<li>把Modelica对象结构和连接关系看作图，使用改进的深度优先搜索寻找数量适中的候选路集；</li>
+<li>按候选组合设置组件状态并执行系统仿真，依据实际物理输出筛选真正的最小路集。</li>
+</ol>
+<p>最小割集搜索先利用已经得到的最小路集，再根据组件在系统中的位置和故障模式使用启发式规则缩小组合范围。例如优先检查分属于不同最小路集的故障组件，或者位于最小路集邻近位置、可能阻断供电路径的组件。结构搜索负责降低候选数量，物理仿真负责验证功能后果。</p>
+<h2 id="Aircraft-electrical-power-system-case-study"><a href="#Aircraft-electrical-power-system-case-study" class="headerlink" title="Aircraft electrical power system case study"></a>Aircraft electrical power system case study</h2><p>案例模型参考A380级四发远程商用飞机的典型电力系统结构和公开资料建立，并不声称与实际飞行型号完全一致。系统的主要能源与转换设备包括：</p>
+<ul>
+<li>四台发动机驱动的三相115 VAC、150 kVA变频发电机G1至G4；</li>
+<li>两台由辅助动力装置驱动的115 VAC、120 kVA恒频发电机AG1和AG2；</li>
+<li>一台70 kVA冲压空气涡轮应急发电机RatG；</li>
+<li>三台300 A电池充电调节单元和一台300 A变压整流器；</li>
+<li>四组28 VDC电池，以及为空中应急交流母线供电的静止逆变器。</li>
+</ul>
+<h3 id="Normal-operation"><a href="#Normal-operation" class="headerlink" title="Normal operation"></a>Normal operation</h3><p><img src="/pictures/2026081603.png" alt="四发远程飞机电网的正常飞行工况"></p>
+<p>正常飞行时，G1至G4分别为AC_1至AC_4母线供电，两台APU发电机可用但不接入。若一台发电机失效，相邻发电机可以通过接触器接管；同侧两台发电机都失效时，还可以通过交叉联络接触器保持四条交流母线供电。由于发动机驱动发电机的频率取决于发动机转速，系统始终避免不同变频发电机直接并联。</p>
+<p>AC_ESS和AC_EMER为飞行关键交流负载供电，包括空速探头和风挡加热、液压泵以及维持最低操纵能力所需的电静液作动器。若全部发动机发电失效，RatG可以承担关键和应急负载，静止逆变器还可以在RatG展开过程中由电池维持AC_EMER。28 VDC侧具有不间断供电能力，用于飞控、发动机控制、航电、仪表和通信等关键设备。</p>
+<h3 id="Degraded-operation"><a href="#Degraded-operation" class="headerlink" title="Degraded operation"></a>Degraded operation</h3><p><img src="/pictures/2026081604.png" alt="发动机1、发电机2、APU和BCRU2失效后的降级工况"></p>
+<p>降级案例同时注入Engine1、G2、APU和BCRU2失效。G1和G2供电均丧失后，G3通过交叉联络为AC_1、AC_2、AC_3、DC_1和DC_2供电；BCRU2故障通过闭合DCTC2得到补偿；G4继续为AC_4、AC_ESS、AC_EMER和DC_ESS供电。系统切除一半厨房、娱乐和客舱照明等非关键负载，而关键负载仍然全部得到满足。</p>
+<p>这个例子说明，分析程序不能只查看哪些组件已经故障，还必须执行接触器控制逻辑、故障隔离、母线重构和负载卸载，才能判断系统功能是否真正丧失。</p>
+<h2 id="Safety-analysis-results"><a href="#Safety-analysis-results" class="headerlink" title="Safety analysis results"></a>Safety analysis results</h2><p>作者以AC_1母线供电为例开展安全分析。虽然AC_1是非关键母线，但结果规模相对紧凑，适合展示方法。</p>
+<p><img src="/pictures/2026081605.png" alt="AC_1母线的前三个最小路集"></p>
+<p>程序共得到六个最小路集：</p>
+<ul>
+<li>G1直接为AC_1供电；</li>
+<li>G2经过AC_2为AC_1供电；</li>
+<li>G3经过AC_3和AC_2跨区为AC_1供电；</li>
+<li>G4经过AC_4、AC_3和AC_2跨区供电；</li>
+<li>APU发电机AG1经过AC_2供电；</li>
+<li>APU发电机AG2经过AC_2供电。</li>
+</ul>
+<p>六条路径不仅说明AC_1具有多重电源冗余，也同时验证了电网连接、接触器重构逻辑和Modelica模型实现是否正确。</p>
+<h3 id="Minimal-cut-sets"><a href="#Minimal-cut-sets" class="headerlink" title="Minimal cut sets"></a>Minimal cut sets</h3><p><img src="/pictures/2026081606.png" alt="电缆短路导致AC_1失压的一阶最小割集"></p>
+<p>割集分析考虑所有组件的具体故障模式，共识别出5个一阶最小割集和21个二阶最小割集。典型一阶割集包括AC_1自身开路或短路，以及直接相连的Feeder1、AEssFeed1电缆短路。典型二阶割集则是正常供电路径失效与交叉转供路径受阻的组合，例如G1失效同时ACTC1开路，或者电缆短路同时联络接触器拒绝断开。</p>
+<p><img src="/pictures/2026081607.png" alt="AC_1失压最小割集及其一飞行小时发生概率"></p>
+<p>对于<code>t = 1 Fh</code>，AC_1失压概率为<code>4.0×10^-4</code>。结果由连接母线的电缆故障主导，其中Feeder1开路概率为<code>2×10^-4</code>，AEssFeed1短路和Feeder1短路各为<code>1×10^-4</code>，二阶组合的概率明显更低。</p>
+<p>分析结果还能反向指导架构改进：如果在电缆与母线之间增加具有限流能力的接触器，就可以阻断短路影响传播，消除多数由单一电缆故障造成的AC_1失压。由于电源本身具有多重冗余，改进后的剩余风险将主要受母线自身故障限制。</p>
+<h2 id="Reliability-analysis-results"><a href="#Reliability-analysis-results" class="headerlink" title="Reliability analysis results"></a>Reliability analysis results</h2><p>签派可靠性案例把<code>G1、G2、G3、G4、APU与AG1组合、APU与AG2组合</code>定义为六个MEL项目，并假定组件在10个连续飞行日、总计200飞行小时内不维修。</p>
+<ul>
+<li>若六项都必须完好，即不允许带故障放行，签派可靠性为<code>0.869</code>；</li>
+<li>若至少五项完好，即允许一个缺陷，程序生成6个最小路集，可靠性提高到<code>0.911</code>；</li>
+<li>若至少四项完好，即允许两个缺陷，程序生成15个最小路集，可靠性进一步提高到<code>0.929</code>。</li>
+</ul>
+<p>允许降级放行可以提高商业运行可靠性，但改善程度最终受那些始终必须完好的组件限制，而且任何MEL放行规则都必须保证降级系统仍有足够安全余度。换句话说，签派可靠性优化不能脱离前面的安全分析单独进行。</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>本文把故障物理行为、故障概率和可靠性分析算法直接纳入Modelica组件库与系统模型中，使同一个飞机电网模型同时支持功率负载、重量、最小路集、最小割集、系统失效概率和签派可靠性分析。方法利用Modelica对象连接结构预筛候选路径，再通过实际系统仿真验证功能结果，避免完全依赖人工故障树，也降低了组合状态爆炸带来的计算压力。</p>
+<p>四发飞机电网案例说明，该方法能够识别多条冗余供电路径、具体故障模式组合和风险主导组件，并可把结果反馈到架构改进和MEL规则设计。作者提出的后续方向是将这套分析方法从电气系统推广到其他物理领域。</p>
+<h2 id="论文评价"><a href="#论文评价" class="headerlink" title="论文评价"></a>论文评价</h2><ul>
+<li><strong>推测的软件工具链：</strong> 论文明确使用Modelica建立组件与系统模型，使用Dymola进行图形建模、仿真和Modelica函数执行，并结合Visual C++实现实时可视化和鼠标故障注入。最小路集/割集、概率和MEL组合算法明确以Modelica函数的algorithm语法集成在ENADOT库中；图搜索与交互界面的具体C++边界、编译器版本和数据存储方式未披露，不宜进一步确定。</li>
+<li><strong>收录原因：</strong> 在2011年的背景下，文章较早实现了物理仿真模型与可靠性/安全分析的单一模型源，把自动最小路集、最小割集、失效概率和签派可靠性纳入Modelica工作流；又用接近A380规模的多电源、多母线、自动重构电网展示工程可行性。方法与Modelica会议关注的语言扩展、工具实现和跨领域系统建模高度契合，案例也具有明确航空工程价值。</li>
+<li><strong>值得借鉴：</strong> 正常与故障行为放在同一可复用组件内，可以避免物理模型和安全模型长期演化后不一致；“利用对象连接图进行深度优先预筛，再用物理仿真判定功能”的两阶段算法值得直接迁移到其他Modelica系统；最小路集、最小割集、架构重量和MEL签派可靠性共用同一模型，使安全结果能够直接反馈到架构设计；在图形模型上着色显示供电路径和故障点，也显著提高了结果可解释性。</li>
+<li><strong>可能不足：</strong> 案例采用单相有效值、稳态代数网络和恒定独立失效率，未覆盖电磁暂态、保护时序、维修过程、共因失效及失效率不确定性；最小割集依赖位置与故障模式启发式筛选，论文没有严格证明搜索完整性，也缺少运行时间和与专业FTA工具的基准对比。分析场景、MEL项目和系统功能判据仍由用户指定，案例模型也只近似真实A380电网。ENADOT及模型未在文中公开，Dymola和Visual C++依赖进一步限制了结果复现与工具链移植。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2026/08/16/043/">https://ruizhe-yang.github.io/2026/08/16/043/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Safety/">Safety</a><a class="post-meta__tags" href="/tags/Modelica/">Modelica</a><a class="post-meta__tags" href="/tags/Reliability/">Reliability</a><a class="post-meta__tags" href="/tags/Aircraft-Electrical-Power-System/">Aircraft Electrical Power System</a><a class="post-meta__tags" href="/tags/ENADOT/">ENADOT</a></div><div class="post_share"><div class="social-share" data-image="/pictures/2026081601.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2026/08/16/044/" title="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid"><img class="cover" src="/pictures/2026081608.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid</div></div></a></div><div class="next-post pull-right"><a href="/2026/08/06/042/" title="笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application"><img class="cover" src="/pictures/2026080609.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2024/09/02/012/" title="笔记：Failure Mode and Effects Analysis (FMEA Handbook)"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/24090201.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-02</div><div class="title">笔记：Failure Mode and Effects Analysis (FMEA Handbook)</div></div></a></div><div><a href="/2026/08/06/041/" title="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory"><img class="cover" src="/pictures/2026080601.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-06</div><div class="title">笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory</div></div></a></div><div><a href="/2025/04/27/029/" title="笔记：Unlocking Synergy:Leveraging SysML and Modelica with Bi-Directional Transformation and Simulation Integration Standards"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/INCOSE-IS.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-27</div><div class="title">笔记：Unlocking Synergy:Leveraging SysML and Modelica with Bi-Directional Transformation and Simulation Integration Standards</div></div></a></div><div><a href="/2026/02/04/038/" title="笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/models2025.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-04</div><div class="title">笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica</div></div></a></div><div><a href="/2026/08/16/044/" title="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid"><img class="cover" src="/pictures/2026081608.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-16</div><div class="title">笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">84</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">61</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://b23.tv/3cRMvn8" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Component-fault-modelling"><span class="toc-number">2.</span> <span class="toc-text">Component fault modelling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cable-model"><span class="toc-number">2.1.</span> <span class="toc-text">Cable model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Contactor-model"><span class="toc-number">2.2.</span> <span class="toc-text">Contactor model</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ENADOT-framework"><span class="toc-number">3.</span> <span class="toc-text">ENADOT framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Automated-analysis-procedures"><span class="toc-number">4.</span> <span class="toc-text">Automated analysis procedures</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Electrical-load-analysis"><span class="toc-number">4.1.</span> <span class="toc-text">Electrical load analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Safety-analysis"><span class="toc-number">4.2.</span> <span class="toc-text">Safety analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reliability-and-dispatch-analysis"><span class="toc-number">4.3.</span> <span class="toc-text">Reliability and dispatch analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reducing-computational-effort"><span class="toc-number">4.4.</span> <span class="toc-text">Reducing computational effort</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Aircraft-electrical-power-system-case-study"><span class="toc-number">5.</span> <span class="toc-text">Aircraft electrical power system case study</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Normal-operation"><span class="toc-number">5.1.</span> <span class="toc-text">Normal operation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Degraded-operation"><span class="toc-number">5.2.</span> <span class="toc-text">Degraded operation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Safety-analysis-results"><span class="toc-number">6.</span> <span class="toc-text">Safety analysis results</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Minimal-cut-sets"><span class="toc-number">6.1.</span> <span class="toc-text">Minimal cut sets</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reliability-analysis-results"><span class="toc-number">7.</span> <span class="toc-text">Reliability analysis results</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">8.</span> <span class="toc-text">Conclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E8%AF%84%E4%BB%B7"><span class="toc-number">9.</span> <span class="toc-text">论文评价</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/16/044/" title="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid"><img src="/pictures/2026081608.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid"/></a><div class="content"><a class="title" href="/2026/08/16/044/" title="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid">笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid</a><time datetime="2026-08-16T03:00:00.000Z" title="Created 2026-08-16 11:00:00">2026-08-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/16/043/" title="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica"><img src="/pictures/2026081601.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica"/></a><div class="content"><a class="title" href="/2026/08/16/043/" title="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica">笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica</a><time datetime="2026-08-16T02:00:00.000Z" title="Created 2026-08-16 10:00:00">2026-08-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/06/042/" title="笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application"><img src="/pictures/2026080609.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application"/></a><div class="content"><a class="title" href="/2026/08/06/042/" title="笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application">笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application</a><time datetime="2026-08-06T13:00:00.000Z" title="Created 2026-08-06 21:00:00">2026-08-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/06/041/" title="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory"><img src="/pictures/2026080601.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory"/></a><div class="content"><a class="title" href="/2026/08/06/041/" title="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory">笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory</a><time datetime="2026-08-06T12:00:00.000Z" title="Created 2026-08-06 20:00:00">2026-08-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/05/040/" title="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines"><img src="/pictures/2026080501.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines"/></a><div class="content"><a class="title" href="/2026/08/05/040/" title="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines">笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines</a><time datetime="2026-08-05T12:00:00.000Z" title="Created 2026-08-05 20:00:00">2026-08-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: '76a3924e73e73e1c77c2dfe61aec66c4',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

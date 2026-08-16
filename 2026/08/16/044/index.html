@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid Abstraction  The new generation of low-earth-orbit (LEO) satellite constellation systems has the">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2026/08/16/044/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid Abstraction  The new generation of low-earth-orbit (LEO) satellite constellation systems has the">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ruizhe-yang.github.io/pictures/2026081608.png">
+<meta property="article:published_time" content="2026-08-16T03:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-16T12:48:24.015Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="Modelica">
+<meta property="article:tag" content="Satellite Constellation">
+<meta property="article:tag" content="PHM">
+<meta property="article:tag" content="Model-Data Hybrid">
+<meta property="article:tag" content="Digital Twin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruizhe-yang.github.io/pictures/2026081608.png"><link rel="shortcut icon" href="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F2.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2026/08/16/044/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-08-16 20:48:24'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">84</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">61</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/pictures/2026081608.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E5%A4%B4%E5%83%8F3.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-08-16T03:00:00.000Z" title="Created 2026-08-16 11:00:00">2026-08-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-08-16T12:48:24.015Z" title="Updated 2026-08-16 20:48:24">2026-08-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/">Journal</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/Electronics/">Electronics</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/Electronics/2022/">2022</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">4.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>14mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://doi.org/10.3390/electronics11142155">Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid</a></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>The new generation of low-earth-orbit (LEO) satellite constellation systems has the characteristics of low delay, strong signal and global coverage, and it is an important direction for the development of next-generation communication technology. A major disadvantage is that the constellation system is huge, often composed of hundreds or thousands of satellites, which puts forward high requirements for the design and health management of the constellation system, and the existing telemetry data monitoring system cannot meet the actual needs. CPS is a multidimensional complex system that integrates computation, communication and control (3C). Through the deep integration and cooperation of 3C, the real-time monitoring and dynamic control of large-scale engineering systems are realized, which is completely suitable for the operation and maintenance requirements of the satellite constellation system. This paper firstly establishes the entire satellite constellation system model, which is integrated from the satellite multidomain system, the constellation orbit environment system and the communication link system. Then, according to the technical concept of cyber-physical systems (CPS), an implementation framework of a prognostics and health (PHM) system driven by a model–data hybrid for satellite constellation systems is proposed. The framework is based on model simulation data and telemetry data and combines virtual and real data fusion, fault diagnosis, simulation prediction and other technologies to generate enhanced data to drive the effective operation of the PHM system. Finally, a verification case is designed to prove that the satellite constellation health management system implemented under this framework has a positive effect on the reliable operation and maintenance of the satellite constellation system.</p>
+</blockquote>
+<p>摘要翻译：新一代低地球轨道（LEO）卫星星座具有低时延、强信号和全球覆盖等特点，是下一代通信技术的重要发展方向；但由数百乃至数千颗卫星组成的庞大系统也对星座设计和健康管理提出了很高要求，现有遥测数据监视系统已经难以满足实际需求。信息物理系统（CPS）通过计算、通信与控制（3C）的深度融合，实现大型工程系统的实时监视和动态控制，适合卫星星座的运行维护需求。本文首先建立由卫星多领域系统、星座轨道环境系统和通信链路系统集成而成的完整星座模型，继而依据CPS理念提出模型—数据混合驱动的星座故障预测与健康管理（PHM）系统框架。该框架融合模型仿真数据和遥测数据，并结合虚实数据融合、故障诊断与仿真预测等技术产生增强数据，以驱动PHM系统有效运行。最后通过验证案例说明，该框架对星座系统的可靠运行与维护具有积极作用。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>LEO通信星座通常由数百至数千颗卫星组成。卫星数量的增长能够提高覆盖率与通信容量，却也使状态监视、故障定位和维护决策从单星问题扩展为大规模系统问题。传统卫星PHM主要依赖天地链路遥测：当某个参数超过预设安全阈值时，再由工程人员配合诊断算法定位故障。论文认为这种纯数据驱动方式至少存在三点局限：</p>
+<ul>
+<li>许多故障由缓慢退化发展而来，早期异常幅度很小，等到遥测量越过固定阈值时，相关部件可能已经受损；</li>
+<li>卫星进入非测控区域后会出现遥测中断，纯数据方法无法持续判断系统状态；</li>
+<li>可下传遥测变量有限，而且部分变量对故障特征并不敏感，可能降低检测效率和诊断精度。</li>
+</ul>
+<p>已有星座仿真通常分别研究卫星机械—电气—控制多领域系统、星座轨道与覆盖，以及通信链路。典型流程是由STK计算轨道，再单向导入OPNET等网络仿真工具，三类模型缺少统一耦合。本文因此在MWorks中基于Modelica开发星座通用模型库，把卫星多领域系统、星座轨道环境和通信链路放在同一平台内，并建立模型与在轨遥测之间的数据通道，使虚拟模型能够跟随真实星座的状态变化。</p>
+<p>论文的两项主要工作是：一套支持卫星多领域、星座轨道与构型、地面覆盖和通信链路联合仿真的Modelica模型库；以及一个融合模型数据与遥测数据的星座PHM框架。</p>
+<h2 id="Unified-modeling-of-LEO-satellite-constellation"><a href="#Unified-modeling-of-LEO-satellite-constellation" class="headerlink" title="Unified modeling of LEO satellite constellation"></a>Unified modeling of LEO satellite constellation</h2><h3 id="System-composition"><a href="#System-composition" class="headerlink" title="System composition"></a>System composition</h3><p>LEO通信星座的轨道高度通常为200～2000 km，系统可分为空间段、地面段和用户段。空间段包含全部在轨卫星；地面段由信关站、系统控制中心和地面综合网络组成，负责测控及空间网络管理；用户段则包括移动、舰载、车载和机载等终端。三类通信链路分别为地面站与卫星之间的馈电链路、卫星之间的星间链路，以及卫星与终端之间的用户链路。</p>
+<p><img src="/pictures/2026081608.png" alt="卫星星座统一模型的组成、层次与接口"></p>
+<p>统一模型以这三类物理分段为顶层结构，进一步把空间段拆分为星座轨道模型和卫星多领域模型。模型之间通过轨道信息、变轨指令、电功率、通信请求和链路指标等接口交互。例如轨道位置决定卫星间是否可见和链路距离，姿态与能源状态影响有效载荷工作，通信业务又形成卫星电源系统的动态负载。与把轨道结果离线传递给网络仿真的方式相比，这种架构允许多个领域在同一仿真时间轴上双向耦合。</p>
+<h3 id="Constellation-orbit-model"><a href="#Constellation-orbit-model" class="headerlink" title="Constellation orbit model"></a>Constellation orbit model</h3><p>星座轨道模型使用轨道面数量<code>p</code>、每个轨道面的卫星数<code>s</code>以及半长轴、偏心率、轨道倾角、升交点赤经、近地点幅角和真近点角等参数描述构型。模型不仅计算各卫星的位置和速度，还包含70阶×70阶JGM3非球形地球引力场、大气阻力、日月引力、太阳光压、后牛顿效应和固体潮等摄动因素。</p>
+<p>每颗卫星的轨道状态被分发给多领域本体模型、控制中心和链路模型。控制中心则根据实际轨道与目标构型的偏差产生相位保持或轨道面保持指令，通过速度脉冲触发推进系统完成修正。这样，轨道变化不是独立动画，而会进一步影响姿态、推进剂、能源和通信性能。</p>
+<h3 id="Satellite-multidomain-model"><a href="#Satellite-multidomain-model" class="headerlink" title="Satellite multidomain model"></a>Satellite multidomain model</h3><p><img src="/pictures/2026081609.png" alt="卫星GNC、推进、电源与有效载荷子系统模型"></p>
+<p>单星模型包括制导导航与控制（GNC）、推进、电源和有效载荷四个主要子系统：</p>
+<ul>
+<li><strong>GNC子系统：</strong>由卫星本体、太阳翼、姿态传感器、飞轮和控制器构成。小角度姿态调整主要由飞轮完成，大幅度机动则调用姿态推力器；</li>
+<li><strong>推进子系统：</strong>包括气体增压、推进剂贮箱、轨道发动机和16个姿态推力器，可响应控制中心的轨道维持指令和姿态控制指令；</li>
+<li><strong>电源子系统：</strong>由太阳翼、蓄电池、功率调节控制装置以及固定负载、耦合负载组成，既计算发电与荷电状态，也向GNC、推进和载荷等用电设备提供电接口；</li>
+<li><strong>有效载荷子系统：</strong>使用天线和转发器描述星间链路与星地链路，根据链路请求、几何关系及设备状态计算链路性能。</li>
+</ul>
+<p>这种分层方式保留了组件级参数和物理行为，又通过标准接口组合成单星、轨道面和星座，可以从星座总体向下查看单星及子系统，也可以从部件故障向上分析覆盖或通信服务的变化。</p>
+<h3 id="Orbit-model-validation"><a href="#Orbit-model-validation" class="headerlink" title="Orbit-model validation"></a>Orbit-model validation</h3><p><img src="/pictures/2026081610.png" alt="MWorks与STK计算的真近点角和惯性系位置对比"></p>
+<p>作者使用STK作为参照，对同一初始条件下的真近点角、惯性坐标系位置和星下点轨迹进行比较。MWorks与STK曲线基本重合，文中报告的偏差小于5%，说明Modelica轨道模型能够满足该框架的初步应用要求。需要注意的是，这项验证主要覆盖轨道计算，并不等同于卫星各物理子系统和通信链路均已获得同等程度的验证。</p>
+<h2 id="Model–data-hybrid-PHM-framework"><a href="#Model–data-hybrid-PHM-framework" class="headerlink" title="Model–data hybrid PHM framework"></a>Model–data hybrid PHM framework</h2><p><img src="/pictures/2026081611.png" alt="模型数据混合驱动的卫星星座PHM系统架构"></p>
+<p>论文依据CPS理念把PHM系统分为基础数据层和健康管理层。基础数据层连接真实星座实体、遥测数据、实验数据和虚拟星座模型，负责数据注入、模型校准、实时伴随仿真与超实时预测；健康管理层则包含健康监视、故障诊断、故障处置决策和状态预测。</p>
+<p>这一框架不是简单地把模型结果和遥测曲线并排显示，而是使二者形成闭环：在轨遥测修正模型状态，模型在遥测间断时补全状态并生成不可直接测量的变量，诊断和预测结果再为真实星座的运维决策提供依据。模型在上线之前需利用地面实验数据进行验证；投入运行后，还需要持续检查模型输出和遥测之间的偏差。</p>
+<h2 id="Key-technologies"><a href="#Key-technologies" class="headerlink" title="Key technologies"></a>Key technologies</h2><h3 id="Virtual–real-data-fusion"><a href="#Virtual–real-data-fusion" class="headerlink" title="Virtual–real data fusion"></a>Virtual–real data fusion</h3><p><img src="/pictures/2026081612.png" alt="遥测订阅、参数识别与模型数据融合流程"></p>
+<p>系统通过TCP/IP或UDP订阅指定遥测数据帧，完成解析后把参数分成环境参数与状态参数。环境参数在每个仿真步注入模型，例如外部环境随轨道位置不断改变；状态参数先用于初始化模型，之后主要由模型方程连续演化。当仿真结果与新遥测之间的差值超过给定阈值时，系统再次注入状态参数，使模型重新同步到真实星座。</p>
+<p>这一策略兼顾了两种数据源的特点：频繁注入全部遥测会破坏模型自身的连续动态，而完全自由运行又会使误差不断累积。按参数类型和误差阈值触发同步，可以在保留模型预测能力的同时约束漂移。同步模型还可以在非测控弧段填补时间序列空缺，并输出遥测系统没有布置传感器的内部变量，形成面向健康分析的增强数据。</p>
+<h3 id="Health-monitoring"><a href="#Health-monitoring" class="headerlink" title="Health monitoring"></a>Health monitoring</h3><p>传统健康监视将遥测参数与上下限比较，规则直观，但难以识别尚未越限的多变量早期退化。论文因此提出使用单类支持向量机（OCSVM）进行异常检测：只利用正常状态样本学习正常数据在高维特征空间中的边界，再把落在边界之外的新样本判为异常。文中采用径向基高斯核，并将模型生成的扩展变量和遥测量共同作为潜在输入。</p>
+<p>OCSVM适合正常样本多、故障标签少的卫星场景，但其结论仍依赖训练数据能否覆盖不同轨道环境和正常工况。模型数据的作用之一，就是把环境变化所导致的正常状态迁移显式纳入健康监视，避免把正常工况切换误判为故障。</p>
+<h3 id="Fault-diagnosis"><a href="#Fault-diagnosis" class="headerlink" title="Fault diagnosis"></a>Fault diagnosis</h3><p><img src="/pictures/2026081613.png" alt="利用模型故障注入生成有标签数据的诊断流程"></p>
+<p>深度学习诊断通常需要大量带标签的故障数据，而真实卫星故障样本稀少且获取代价高。本文的思路是在经过验证的星座模型中注入故障参数，模拟不同故障模式、位置和程度，批量生成带标签训练样本，再训练自编码器、卷积神经网络或循环神经网络等诊断模型。在线运行时，遥测与模型融合后的数据进入训练好的网络，输出对应故障模式。</p>
+<p>这种方法把物理模型作为故障数据生成器，可以覆盖不适合在真实卫星上实施的危险试验。不过，要使合成样本真正支持在轨诊断，仍需解决故障机理到模型参数的准确映射、模型与真实对象的域差异，以及仿真精度和数据生成速度之间的权衡。</p>
+<h3 id="State-prediction-and-fault-handling"><a href="#State-prediction-and-fault-handling" class="headerlink" title="State prediction and fault handling"></a>State prediction and fault handling</h3><p>同步后的模型保存了当前星座状态。系统可在此基础上输入未来轨道环境和计划控制指令，采用超实时仿真预测能源、姿态、轨道和通信性能的发展趋势，在参数真正越限之前给出预警。与只依赖历史曲线外推的方法相比，模型预测能够显式考虑后续指令和物理耦合关系。</p>
+<p>当系统产生候选维护或故障处置方案后，还可先把方案注入虚拟模型，比较不同控制动作对单星状态、星座构型和通信服务的影响，再决定是否向真实卫星下发。这相当于把模型同时作为状态估计器、预测器和运维方案的虚拟验证环境。</p>
+<h2 id="Verification-case"><a href="#Verification-case" class="headerlink" title="Verification case"></a>Verification case</h2><p><img src="/pictures/2026081614.png" alt="MWorks中的星座通用模型库与示例系统模型"></p>
+<p>案例在MWorks中搭建星座系统，模型库提供空间段、地面段、用户段、系统分析、动态模块和通用组件等包，并允许从星座多维视图逐层查看轨道、单星和组件。论文正文称示例仿真包含20颗卫星，仿真时长100 s、步长0.1 s，总计算耗时842 s，说明完整多领域模型当时尚不能达到实时速度。</p>
+<p>参数表以Iridium NEXT为参考，给出6个轨道面、每面11颗卫星、轨道倾角86.4°、偏心率0.00126、卫星质量900 kg、飞轮最大力矩32 N·m、推力器推力5 N、最大供电功率3200 W和28 V母线电压等参数。这里存在正文“20颗卫星”与参数表“6×11颗卫星”的表述差异，阅读结果时需要区分示例模型实际规模与参考星座构型。</p>
+<p><img src="/pictures/2026081615.png" alt="星座轨道、多领域、通信链路、系统监视与电池状态预测结果"></p>
+<p>仿真结果同时展示星座经纬度与区域覆盖卫星数、太阳翼功率和姿态角、通信链路系统余量、单星系统状态监视界面，以及蓄电池荷电状态预测。该案例说明统一模型可以把轨道、物理状态和通信性能送入同一PHM界面，并利用同步后的模型预测后续状态。</p>
+<h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2><p>作者报告轨道与能源系统的计算效果较为满意，但通信链路模型仍存在较大误差，机器学习诊断也需要进一步改进。规模方面，模型可以运行到1000颗卫星，却因计算效率过低而缺乏工程实用性。由于不同卫星之间主要交换信息而不直接交换能量，作者提出采用分布式仿真：由一个主节点负责星座调度和时间同步，数十个高性能从节点分别计算单星多领域模型，再交换轨道与通信数据。</p>
+<p>这一讨论也揭示了框架从概念验证走向在轨应用的关键约束。PHM不仅要求模型足够准确，还要求同步仿真接近实时、预测仿真快于实时，并能在星座规模增长时保持稳定的数据通信和时间一致性。论文给出了分布式方向，但尚未实现和验证相应调度、负载均衡及误差控制机制。</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>本文在MWorks/Modelica中统一建立卫星多领域、星座轨道环境和通信链路模型，并在此基础上提出模型—数据混合驱动的星座PHM框架。遥测数据负责约束虚拟模型，模型则用于补全遥测、扩展可观测变量、生成带标签故障数据、预测未来状态和预演故障处置方案，从而把物理建模、数据驱动算法和运维决策连接起来。</p>
+<p>案例证明了统一模型与PHM流程的基本可行性，也暴露出通信链路精度和大规模仿真效率问题。后续工作的重点是提高模型数据训练得到的故障诊断效果，并以分布式计算支撑数百至数千颗卫星的实时或超实时仿真。</p>
+<h2 id="论文评价"><a href="#论文评价" class="headerlink" title="论文评价"></a>论文评价</h2><ul>
+<li><strong>推测的软件工具链：</strong> 论文明确以MWorks为统一建模与仿真平台，使用Modelica开发轨道、卫星多领域和通信链路模型，并用STK对轨道结果进行对比验证；遥测接口采用TCP/IP或UDP。OCSVM、深度神经网络和分布式仿真属于框架中的算法或后续方向，论文没有披露实际使用的机器学习库、编程语言、数据库及集群中间件，因此不能据此认定为某一具体Python或C++工具链。</li>
+<li><strong>收录原因：</strong> 文章面向LEO巨型星座和PHM这一具有现实需求的交叉问题，把此前相互分离的轨道、单星多领域和通信链路仿真统一到Modelica平台，并进一步给出遥测同步、模型补数、故障样本生成和超实时预测的完整CPS框架。STK对比和MWorks案例提供了初步验证，主题与Electronics关注的建模仿真、通信系统、CPS和智能运维方向契合。</li>
+<li><strong>值得借鉴：</strong> 顶层按空间段、地面段和用户段划分，内部再以清晰接口连接轨道、单星和链路模型，便于从部件到星座逐层扩展；把环境参数设为逐步注入、状态参数设为初始化并在误差越限时重同步，是兼顾模型连续性与在轨一致性的实用策略；利用经验证模型生成稀缺故障标签、填补遥测空档和预演维护指令，也为其他难以开展真实故障试验的复杂系统提供了可迁移思路。</li>
+<li><strong>可能不足：</strong> PHM部分更多是体系框架和界面示例，缺少异常检测与故障诊断的准确率、误报率、预测提前量以及虚实融合误差等量化指标；小于5%的验证主要针对轨道，论文自己也承认通信链路误差较大。20颗卫星仿真100 s耗时842 s，1000颗卫星虽能运行但效率不可接受，所提分布式方案尚未实现。正文20颗与参数表6×11颗的规模表述也不一致；模型、故障参数映射、训练数据和源码未公开，限制了复现与独立比较。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2026/08/16/044/">https://ruizhe-yang.github.io/2026/08/16/044/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Modelica/">Modelica</a><a class="post-meta__tags" href="/tags/Satellite-Constellation/">Satellite Constellation</a><a class="post-meta__tags" href="/tags/PHM/">PHM</a><a class="post-meta__tags" href="/tags/Model-Data-Hybrid/">Model-Data Hybrid</a><a class="post-meta__tags" href="/tags/Digital-Twin/">Digital Twin</a></div><div class="post_share"><div class="social-share" data-image="/pictures/2026081608.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/08/16/043/" title="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica"><img class="cover" src="/pictures/2026081601.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2025/04/27/029/" title="笔记：Unlocking Synergy:Leveraging SysML and Modelica with Bi-Directional Transformation and Simulation Integration Standards"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/INCOSE-IS.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-27</div><div class="title">笔记：Unlocking Synergy:Leveraging SysML and Modelica with Bi-Directional Transformation and Simulation Integration Standards</div></div></a></div><div><a href="/2026/02/04/038/" title="笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica"><img class="cover" src="https://intellink-01.oss-cn-beijing.aliyuncs.com/pictures/models2025.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-04</div><div class="title">笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica</div></div></a></div><div><a href="/2026/08/16/043/" title="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica"><img class="cover" src="/pictures/2026081601.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-16</div><div class="title">笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://intellink-01.oss-cn-beijing.aliyuncs.com/yang/%E4%B8%AA%E4%BA%BA%E7%85%A7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">84</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">61</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://b23.tv/3cRMvn8" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unified-modeling-of-LEO-satellite-constellation"><span class="toc-number">2.</span> <span class="toc-text">Unified modeling of LEO satellite constellation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#System-composition"><span class="toc-number">2.1.</span> <span class="toc-text">System composition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Constellation-orbit-model"><span class="toc-number">2.2.</span> <span class="toc-text">Constellation orbit model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Satellite-multidomain-model"><span class="toc-number">2.3.</span> <span class="toc-text">Satellite multidomain model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Orbit-model-validation"><span class="toc-number">2.4.</span> <span class="toc-text">Orbit-model validation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Model%E2%80%93data-hybrid-PHM-framework"><span class="toc-number">3.</span> <span class="toc-text">Model–data hybrid PHM framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key-technologies"><span class="toc-number">4.</span> <span class="toc-text">Key technologies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Virtual%E2%80%93real-data-fusion"><span class="toc-number">4.1.</span> <span class="toc-text">Virtual–real data fusion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Health-monitoring"><span class="toc-number">4.2.</span> <span class="toc-text">Health monitoring</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fault-diagnosis"><span class="toc-number">4.3.</span> <span class="toc-text">Fault diagnosis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#State-prediction-and-fault-handling"><span class="toc-number">4.4.</span> <span class="toc-text">State prediction and fault handling</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Verification-case"><span class="toc-number">5.</span> <span class="toc-text">Verification case</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discussion"><span class="toc-number">6.</span> <span class="toc-text">Discussion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">7.</span> <span class="toc-text">Conclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E8%AF%84%E4%BB%B7"><span class="toc-number">8.</span> <span class="toc-text">论文评价</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/16/044/" title="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid"><img src="/pictures/2026081608.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid"/></a><div class="content"><a class="title" href="/2026/08/16/044/" title="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid">笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid</a><time datetime="2026-08-16T03:00:00.000Z" title="Created 2026-08-16 11:00:00">2026-08-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/16/043/" title="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica"><img src="/pictures/2026081601.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica"/></a><div class="content"><a class="title" href="/2026/08/16/043/" title="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica">笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica</a><time datetime="2026-08-16T02:00:00.000Z" title="Created 2026-08-16 10:00:00">2026-08-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/06/042/" title="笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application"><img src="/pictures/2026080609.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application"/></a><div class="content"><a class="title" href="/2026/08/06/042/" title="笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application">笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application</a><time datetime="2026-08-06T13:00:00.000Z" title="Created 2026-08-06 21:00:00">2026-08-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/06/041/" title="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory"><img src="/pictures/2026080601.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory"/></a><div class="content"><a class="title" href="/2026/08/06/041/" title="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory">笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory</a><time datetime="2026-08-06T12:00:00.000Z" title="Created 2026-08-06 20:00:00">2026-08-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/05/040/" title="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines"><img src="/pictures/2026080501.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines"/></a><div class="content"><a class="title" href="/2026/08/05/040/" title="笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines">笔记：Model-based safety analysis with time resolution (MBSA-TR) method for complex aerothermal-mechanical systems of aero-engines</a><time datetime="2026-08-05T12:00:00.000Z" title="Created 2026-08-05 20:00:00">2026-08-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: 'e23392874fc87f5f7eac73142f2b55a7',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
