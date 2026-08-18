@@ -4276,4 +4276,274 @@ Risk evaluation关注如何表达专家在Occurrence（O）、Severity（S）和
         <tag>Systematic Review</tag>
       </tags>
   </entry>
+  <entry>
+    <title>笔记：AADL-Based safety analysis using formal methods applied to aircraft digital systems</title>
+    <url>/2026/08/18/046/</url>
+    <content><![CDATA[
+[AADL-Based safety analysis using formal methods applied to aircraft digital systems](https://doi.org/10.1016/j.ress.2021.107649)
+
+`Abstraction`
+
+> Model-based engineering tools are increasingly being used for system-level development of safety-critical systems. Architectural and behavioral models provide important information that can be leveraged to improve the system safety analysis process. Model-based design artifacts produced in early stage development activities can be used to perform system safety analysis, reducing costs, and providing accurate results throughout the system life-cycle. In this paper we describe an extension to the Architecture Analysis and Design Language (AADL) that supports modeling of system behavior under failure conditions. This safety annex enables the independent modeling of component failures and allows safety engineers to weave various types of fault behavior into the nominal system model. The accompanying tool support uses model checking to verify safety properties in the presence of faults and comprehensively enumerate all applicable fault combinations leading to failure conditions under quantitative objectives as part of the safety assessment process. The approach allows exploration of the effects of faulty component behavior on system level failure conditions without requiring explicit propagation specifications. It also supports a shared system model, a modeling language that can describe real-time embedded systems, and usable safety analysis artifacts.
+
+摘要翻译：基于模型的工程工具越来越多地用于安全关键系统的系统级开发。架构模型和行为模型中包含大量能够直接支持系统安全分析的信息，因此早期设计阶段形成的模型化成果可以被复用于安全评估，从而降低分析成本，并在整个系统生命周期中保持分析结果与当前设计的一致性。本文针对Architecture Analysis and Design Language（AADL）提出Safety Annex扩展，使系统能够描述故障条件下的行为。安全工程师可以独立定义组件故障，再把这些故障行为“weave”到名义系统模型中。配套工具利用模型检查，在存在故障的情况下验证安全性质，并按照给定的定量分析目标枚举能够导致系统级失效条件的故障组合。该方法依靠系统行为本身传播故障影响，因此不要求安全工程师为所有故障路径显式定义传播关系，同时支持共享系统模型、实时嵌入式系统建模和可用于安全评估的分析结果。
+
+## Introduction
+
+复杂航空数字系统的软件规模、架构层次和组件交互不断增加，安全工程师要理解系统真实行为，往往需要在需求、架构、软件设计和接口文档之间反复查找信息。传统安全分析如果另外维护一套独立故障模型，还会带来一个长期问题：系统模型发生设计变化以后，安全模型未必同步更新。
+
+本文的核心思路是把安全分析直接建立在系统工程使用的AADL模型之上。系统工程师维护架构和名义行为，安全工程师只补充故障行为和分析假设，随后由形式化验证工具自动判断这些故障是否会破坏顶层安全性质。
+
+作者特别关注两类MBSA实现差异：
+
+- 一类方法要求用户显式声明故障如何从一个组件传播到另一个组件，例如AADL Error Model Annex Version 2（EMV2）、HiP-HOPS和Ansys Medini；
+- 另一类方法把故障表现为组件行为的变化，再让系统原本的行为关系自然传递这种变化。
+
+本文主要采用第二种思路，同时保留对硬件依赖等特殊情况的显式传播能力。
+
+作者给出的目标包括：让系统开发和安全分析共享当前设计模型；把行为化故障分析集成到具有严格语义的系统建模语言中；支持对称和非对称故障；利用形式化方法自动验证安全性质并生成安全评估证据。
+
+## AADL and AGREE
+
+AADL是SAE定义的面向性能关键、嵌入式和实时系统的体系结构建模语言。它可以同时描述软件函数、数据、处理器、总线、存储器等逻辑或物理组件，并以层级化组件及连接关系表达完整系统架构。
+
+本文选择AADL的重要原因是它具有比较严格的运行语义，能够进一步连接形式化验证工具。
+
+AGREE（Assume Guarantee REasoning Environment）是AADL中的形式化行为分析工具。它通过assumption和guarantee描述组件输入、输出及状态随时间的关系：
+
+- `assumption`描述组件对环境或输入的前提；
+- `guarantee`描述在这些前提成立时组件必须满足的行为；
+- 顶层系统安全性质由下层组件合同逐层支撑。
+
+AGREE会把AADL及合同转换为同步数据流语言Lustre，再交给JKind模型检查器进行验证。分析既可以把所有组件展平成一个整体进行monolithic verification，也可以按照AADL层级进行compositional verification。后者把大问题拆解为多个局部证明，更适合较大规模系统。
+
+## Case study: Wheel Brake System
+
+![AIR6110轮刹系统的两轮简化架构](/pictures/2026081809.png)
+
+案例采用SAE AIR6110中的Wheel Brake System（WBS）。这是航空安全、形式化验证和合同式设计研究中常用的标准案例。
+
+完整AADL模型包括8个机轮，系统由控制部分和电液物理部分组成。物理系统包含green与blue两套冗余液压回路、液压泵、meter valve、selector valve、antiskid shutoff valve以及应急蓄压器；控制系统核心是具有双通道冗余的Braking System Control Unit（BSCU）。
+
+WBS具有三种主要工作模式：
+
+1. **Normal mode：**使用green液压泵，每个机轮配置独立meter valve，由BSCU电子指令控制制动和防滑；
+2. **Alternate mode：**切换到blue液压泵，以轮对为单位使用meter valve和antiskid shutoff valve，机械踏板输入参与控制；
+3. **Emergency mode：**当blue液压泵失效时，由accumulator中储存的液压能维持应急制动。
+
+完整WBS架构包含30类不同组件、169个组件实例，层级深度为5。这个规模已经明显超过适合人工逐条追踪故障传播关系的简单教学案例。
+
+## Safety assessment process
+
+![基于形式化方法的AADL安全评估流程](/pictures/2026081808.png)
+
+作者把系统开发与安全分析组织为一个围绕共享AADL模型反复迭代的流程：
+
+1. 系统工程师在AADL/AGREE中建立硬件与软件架构、组件名义行为和系统级安全要求；
+2. 先使用模型检查器验证名义设计是否满足安全要求；
+3. 安全工程师通过Safety Annex为组件增加故障模式，并定义本次分析的fault hypothesis；
+4. 再次运行模型检查，在故障存在时验证安全性质和容错目标；
+5. 如果安全要求被破坏，工具输出counterexample以及导致违反顶层性质的minimal fault combinations；
+6. 安全工程师判断这些组合是否合理，并根据结果修改系统设计，然后重新执行整个流程。
+
+这个工作流的价值在于系统模型本身就是持续更新的设计源。架构发生变化后，下一次安全分析直接作用于新模型，不需要安全工程师再手工同步另一份独立系统结构。
+
+## Safety Annex implementation
+
+![Safety Annex插件及AGREE/JKind工具链](/pictures/2026081810.png)
+
+Safety Annex使用Java实现，并作为插件集成在基于Eclipse的OSATE（Open Source AADL Tool Environment）中。它并不是一套独立安全建模语言，而是和AGREE Annex配合使用。
+
+基本工具链可以概括为：
+
+`AADL architecture + AGREE nominal contracts + Safety Annex faults → Lustre → JKind`
+
+名义行为首先由AGREE合同描述。运行故障分析时，Safety Annex在转换过程中扩展这些合同，把故障激活变量、故障行为和可追溯信息加入中间模型。最终生成的Lustre模型仍然通过JKind执行安全性质验证。
+
+![名义AGREE行为与加入故障后的扩展模型](/pictures/2026081811.png)
+
+每个故障在形式化模型中对应一个activation literal。该变量为true时，故障行为被激活，并可能使组件原有guarantee失效。顶层模型检查由此可以沿系统合同判断一个底层组件故障是否最终导致系统级安全性质违反。
+
+模型检查器并不要求故障在某个预先指定时间发生，而是可以在允许范围内选择对安全性质最不利的激活时刻。因此，这种验证能够搜索普通固定场景仿真不一定覆盖到的故障时序。
+
+## Nominal model and safety properties
+
+在进行故障分析之前，作者首先要求名义模型必须通过安全性质验证。
+
+WBS行为主要依据AIR6110建立。论文报告名义AGREE模型包含1个顶层assumption、11个顶层system properties和113个分配到子系统的guarantees；在完整展开的验证模型中，共有36个assumptions和246个supporting guarantees。由于部分轮级要求需要针对8个机轮或左右两侧分别实例化，后续验证表中形成13个顶层安全检查项。
+
+其中一个典型性质是**不得发生非指令制动（inadvertent braking）**。例如，AIR6110要求起飞过程中单轮非指令制动的发生概率低于`1E-9 per takeoff`。在AGREE中，这个安全目标被表达为组件输入、飞机状态、液压压力和制动力之间的形式化逻辑关系。
+
+名义模型首先分别进行monolithic和compositional分析。结果显示所有顶层lemmas均能够得到证明，这意味着后续故障分析是在一个已经满足名义安全需求的系统设计上开展的。
+
+## Fault modeling
+
+Safety Annex允许安全工程师在AADL组件实例中独立声明故障。故障节点使用AGREE node语法描述，因此既可以调用通用故障库，也可以根据组件特性定义更复杂的故障行为。
+
+论文给出的常见故障包括：
+
+- valve stuck open / stuck closed；
+- 软件输出变为nondeterministic；
+- 电源被切断；
+- 传感器输出反转或固定到某个值。
+
+完整WBS故障模型包含33个fault definitions和141个fault instances。大量实例来自8个机轮和冗余组件的重复结构。
+
+### Implicit error propagation
+
+![Safety Annex隐式传播与EMV2显式传播的差异](/pictures/2026081812.png)
+
+这是本文最关键的思想之一。
+
+在EMV2等显式传播方法中，分析人员需要把故障类型沿每一级组件接口继续声明。例如一个传感器产生`NoService`错误以后，还要在BSCU、阀门等下游组件的相关端口上继续定义这种错误如何传播。分析工具随后根据这些传播token组合出故障流或故障树。
+
+Safety Annex采用不同方式：故障直接改变传感器的**输出行为**。下游BSCU接收到的是已经错误的实际输入，因此会按照自己的名义行为合同做出相应响应。故障影响由原系统行为关系继续传播，无需用户额外写一条“sensor fault propagates to BSCU”的规则。
+
+例如pedal sensor正常情况下要求机械踏板位置和电子输出一致。若注入`inverted_fail`，电子踏板输出被替换为错误值，BSCU和后续液压控制根据这个错误值继续运行，最终可能使“踏板被踩下时必须存在正制动压力”的系统性质失效。
+
+这是一种典型的Failure Effect Modeling：安全分析关注故障怎样改变系统行为，而不是只传播抽象故障标签。
+
+### Explicit error propagation
+
+完全依赖行为传播也不能覆盖所有故障。某些硬件依赖关系并不通过正常数据接口表达。
+
+例如CPU失效可能同时影响所有绑定在该CPU上的软件线程；同一舱段内一个硬件爆炸，也可能同时破坏邻近设备。这类关系需要显式建模。
+
+Safety Annex因此提供hardware fault和`propagate_to`机制。硬件故障本身不要求具有数据端口或具体输出行为，它可以作为触发器，激活其他硬件或软件组件中的相关故障。
+
+WBS示例假设green和blue液压泵位于同一舱段。如果舱段爆炸导致两个泵同时不可用，就可以通过硬件故障依赖关系直接建立这种共因触发，而不需要人为制造不存在的数据连接。
+
+### Asymmetric faults
+
+![非对称故障的通信节点实现](/pictures/2026081813.png)
+
+Byzantine或asymmetric fault指同一个故障源向不同观察者呈现不同错误现象。
+
+如果组件A的一个输出同时连接B、C、D、E四个组件，普通对称故障会使四个下游看到相同错误值；非对称故障则可能使其中一些组件收到错误值，而另一些仍收到正常值。
+
+为了支持这种行为，Safety Annex在内部自动为一对多连接插入communication nodes，并把故障定义分别注入每条连接。用户看到的AADL名义架构不需要改变，但模型检查器能够独立激活不同通信节点上的故障，使不同接收者观察到不同结果。
+
+这种设计使系统能够分析总线、分发式通信和拜占庭故障等仅靠单一组件输出状态难以描述的场景。
+
+## Fault hypothesis
+
+安全分析不会无约束地允许任意数量故障同时发生。Safety Annex通过fault analysis statement定义本次分析假设。
+
+作者支持两类主要约束。
+
+### Maximum number of faults
+
+指定系统在任何时刻最多允许`N`个独立故障激活。
+
+这类似传统FTA中限制最小割集阶数。例如设置`N = 2`，模型检查只搜索一阶和二阶故障组合，不继续展开更高阶组合。
+
+### Probability threshold
+
+另一种方式是为每个故障赋予发生概率，并只考虑组合概率高于某个阈值的故障集合。
+
+在独立故障假设下，多个故障同时发生的概率通过相乘得到。概率过低的组合直接从分析空间中剔除。这与传统安全分析中使用probability truncation limit筛选割集的思路相近。
+
+需要注意的是，本文并没有使用probabilistic model checker。概率主要用于预先筛选故障组合和后续量化，真正判断某个组合是否能够违反系统安全性质的仍然是普通形式化行为验证。
+
+## Fault model analysis
+
+Safety Annex提供两类核心分析结果。
+
+### Verification in the presence of faults
+
+第一类分析是在fault hypothesis允许的范围内激活故障，然后验证顶层安全性质是否仍然成立。
+
+如果某个性质可以被破坏，JKind返回counterexample。这个反例不仅说明“安全性质失败”，还给出多步执行过程中的具体信号赋值、组件状态以及当时激活的故障。Safety Annex额外保留了从Lustre模型回到AADL组件和故障定义的traceability信息，因此安全工程师可以看到哪一个组件故障在什么系统行为下触发了顶层违反。
+
+这种结果比只给出一个故障组合更加接近可解释的失效场景。
+
+### Generate minimal cut sets
+
+第二类分析自动生成能够导致某个系统安全性质违反的minimal cut sets。
+
+作者利用JKind中的Inductive Validity Core（IVC）与All-MIVCs算法。IVC用于提取证明某个安全性质所必需的最小模型元素；All-MIVCs进一步枚举所有这样的最小集合。Safety Annex把其中包含的fault activation literals转换成导致顶层性质失效的最小故障组合。
+
+![WBS最小割集结果及概率阈值筛选效果](/pictures/2026081814.png)
+
+WBS案例清楚展示了组合爆炸问题。
+
+对于性质`S18-WBS-0324`，只按照最大故障数搜索时：
+
+- 一阶割集为8个；
+- 二阶割集为3665个；
+- 三阶割集为28,694个；
+- 四阶割集达到883,981个；
+- 当继续搜索五阶组合时，割集数量已经超过150万个并最终因内存不足而终止。
+
+加入概率阈值以后，大量极低概率组合被直接排除。同一性质只保留8个一阶割集和3665个二阶割集，更高阶组合在阈值条件下不再进入结果。
+
+这说明形式化方法可以系统枚举故障组合，但“能够枚举”并不等于“适合人工分析”。概率截断、故障建模合理化和架构改进仍然是控制分析规模的重要手段。
+
+## Design change driven by safety analysis
+
+![利用安全分析结果修改踏板传感器架构](/pictures/2026081815.png)
+
+作者进一步展示了安全结果如何反向推动系统设计。
+
+对“不得发生全部机轮非指令制动”这一顶层要求执行`N = 1`分析时，模型发现pedal sensor的单一故障就可以破坏安全性质，因此该传感器构成single point of failure。
+
+设计改进方案是在系统中加入三个pedal sensors，并通过majority voting输出最终踏板信号。作者在AADL模型中增加新的传感器子系统和相应AGREE合同，然后重新执行安全分析。
+
+修改以后，单个传感器故障不再能够导致原安全性质失败。
+
+这个案例体现了模型化安全分析的完整闭环：**发现故障组合 → 查看counterexample → 修改架构 → 自动重新验证**。由于系统开发和安全分析共享AADL模型，设计变化会直接进入下一次安全分析，而不需要再手工修改一棵独立故障树。
+
+## Position in MBSA methods
+
+![论文对相关MBSA工具与方法的比较](/pictures/2026081816.png)
+
+论文在Discussion中给出一个很有价值的MBSA分类视角。
+
+首先，可以按照故障传播方式区分：
+
+- **Failure Logic Modeling（FLM）：**显式描述故障及传播逻辑；
+- **Failure Effect Modeling（FEM）：**描述故障怎样改变组件行为，再由系统行为产生传播结果。
+
+其次，可以按照模型来源区分：
+
+- 为安全分析专门建立purpose-built safety model；
+- 在原有系统工程模型上增加安全信息，即Existing System Model（ESM）。
+
+对于FEM，还可以继续区分causal / non-causal，以及monolithic / compositional analysis。
+
+作者把Safety Annex定位为一种**ESM、causal、compositional、mixed FLM/FEM**方法：主要故障影响通过AGREE行为合同隐式传播，硬件依赖等特殊关系又可以显式声明；分析直接扩展AADL系统模型，并支持分层组合验证。
+
+相比EMV2、HiP-HOPS和Medini等更偏FLM的方案，这种做法减少了逐端口维护故障传播关系的工作。相比独立的AltaRica、SAML等安全语言，它又更强调系统开发模型和安全模型共享同一个架构基础。
+
+## Conclusion
+
+本文提出AADL Safety Annex，把组件故障定义、故障行为注入、形式化模型检查和最小割集生成集成到AADL/AGREE系统工程流程中。系统工程师维护名义架构和行为合同，安全工程师独立补充故障节点和fault hypothesis，工具再把两者组合成可验证的Lustre模型，并由JKind检查顶层安全性质。
+
+方法最有特点的地方是行为化故障传播。大多数故障只需要定义“组件坏了以后输出会变成什么”，其影响就会沿原有AGREE合同自然传到系统级，而不需要为每条传播路径重复建立故障token。对于硬件绑定、共因位置关系等无法通过正常接口表达的依赖，Safety Annex又保留显式传播机制。
+
+WBS案例进一步表明，形式化验证不仅能够找出违反安全目标的具体counterexample，还可以生成minimal cut sets，并把结果反馈到系统架构修改中。加入三重踏板传感器和majority voting以后，原来的单点故障被消除，新的设计结果能够直接在共享模型上重新验证。
+
+这篇文章代表了一类比较典型的模型化安全分析路线：**以系统架构与形式化行为模型作为主要事实源，把故障定义作为独立安全扩展织入名义模型，然后利用自动验证形成安全证据。**
+
+## 论文评价
+
+- **推测的软件工具链：** 论文工具链披露得比较完整。系统架构使用AADL，建模环境为基于Eclipse的OSATE；名义行为和合同采用AGREE Annex；Safety Annex以Java插件形式集成到OSATE；AADL/AGREE模型被转换为Lustre，后端使用JKind模型检查器执行`k`-induction、compositional verification和counterexample生成；minimal cut set分析进一步利用IVC与All-MIVCs算法。案例需求和故障概率主要来自SAE AIR6110，整个Safety Annex、用户手册和WBS模型在AMASE GitHub项目中公开。
+- **收录原因：** 文章把MBSE、MBSA、故障注入和形式化验证连接成了一条完整工程链路，并且选择航空数字系统这一软件密集、安全关键的典型场景。它不仅提出故障建模语法，还真正实现了“名义模型验证—故障扩展—故障条件下安全验证—最小割集—设计修改—重新验证”的闭环。尤其是通过behavioral contracts实现隐式故障传播，减少显式传播关系维护，同时又保留硬件依赖和非对称故障能力，使方法在工程表达和形式化可分析性之间取得了比较清楚的平衡。
+- **值得借鉴：** Safety Annex把故障模型与名义模型分开维护、分析时再进行weaving，这种组织方式既保留系统工程模型的稳定性，也让安全工程师能够独立维护故障知识；先验证名义模型，再在fault hypothesis下验证故障模型，分析流程非常适合持续设计迭代；利用系统原有行为关系自动产生故障传播效果，可以显著降低重复维护传播逻辑的工作；counterexample和minimal cut set同时输出，一个提供具体动态违反路径，一个提供故障组合层面的安全证据；max-N与probability threshold两类分析假设也很好地对应传统安全分析中的割集阶数和概率截断思想。
+- **可能不足：** 方法要求系统首先具有比较完整且形式化的AGREE行为合同，这部分建模成本并不低，组件行为或安全合同不准确时，自动分析只会系统地放大模型本身的偏差。概率分析假设故障独立，而且并非真正的概率模型检查，概率主要用于故障组合筛选；minimal cut set结果不保留故障暴露时间和发生顺序，因此对强时序事故链的表达仍有限。案例也清楚显示割集数量会快速爆炸，`S18-WBS-0324`在高阶分析中超过150万个组合并发生内存不足。除此之外，AADL/AGREE采用因果数据流式行为描述，更适合数字与实时嵌入式系统，对具有强非因果、多物理场耦合行为的工程系统并不天然适配。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Journal</category>
+        <category>RESS</category>
+        <category>2021</category>
+      </categories>
+      <tags>
+        <tag>Formal Methods</tag>
+        <tag>AADL</tag>
+        <tag>Fault Injection</tag>
+        <tag>Model-based Safety Analysis</tag>
+        <tag>Aircraft Digital Systems</tag>
+      </tags>
+  </entry>
 </search>
