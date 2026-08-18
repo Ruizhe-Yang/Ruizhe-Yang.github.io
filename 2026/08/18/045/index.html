@@ -1,0 +1,331 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Failure mode and effect analysis improvement: A systematic literature review and future research agenda Abstraction  Failure mode and effects analysis (FMEA) is a reliability management technique comm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2026/08/18/045/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="Failure mode and effect analysis improvement: A systematic literature review and future research agenda Abstraction  Failure mode and effects analysis (FMEA) is a reliability management technique comm">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ruizhe-yang.github.io/pictures/2026081801.png">
+<meta property="article:published_time" content="2026-08-18T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-18T03:51:51.626Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="FMEA">
+<meta property="article:tag" content="Risk Priority Number">
+<meta property="article:tag" content="Risk Evaluation">
+<meta property="article:tag" content="Bibliometrics">
+<meta property="article:tag" content="Systematic Review">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruizhe-yang.github.io/pictures/2026081801.png"><link rel="shortcut icon" href="/pictures/site-favicon.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2026/08/18/045/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-08-18 11:51:51'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/pictures/site-avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">88</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">62</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/pictures/2026081801.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="/pictures/site-logo.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-08-18T04:00:00.000Z" title="Created 2026-08-18 12:00:00">2026-08-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-08-18T03:51:51.626Z" title="Updated 2026-08-18 11:51:51">2026-08-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/">Journal</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/RESS/">RESS</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/RESS/2020/">2020</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">4.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>15mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.ress.2020.106885">Failure mode and effect analysis improvement: A systematic literature review and future research agenda</a></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>Failure mode and effects analysis (FMEA) is a reliability management technique commonly utilized in various industries to guarantee the security and reliability of systems, services and projects. Nonetheless, the classical risk priority number (RPN) method has been criticized for many inherent deficiencies in the literature. Over the last decades, plenty of models and approaches have been employed to enhance the inherent characteristics of FMEA, but few contributions are devoted to review and summarize the related researches on FMEA improvement. Therefore, this paper aims to conduct a systematic review of the journal articles on the topic during the years between 1998 and 2018. A metadata statistical analysis is undertaken to present an overview of publication distribution across time and journals. Besides, a bibliometric analysis is performed to identify the most influential authors, institutions and areas, reveal the research hotspots and give an insight into the theme evolution in this field. The results indicated that the annual publications on FMEA improvement are rising quickly in the past two decades, especially after 2013; Liu HC, Chang KH, Kumar D, Sharma RK and You JX are the most prolific researchers; and Asian especially China is the major contributor in this field. Moreover, “healthcare failure mode”, “risk ranking”, “extended FMEA”, “gray theory”, “risk evaluation”, and “fuzzy inference” are the research focuses in improving the traditional FMEA.</p>
+</blockquote>
+<p>摘要翻译：故障模式与影响分析（FMEA）是一种广泛应用于多个行业的可靠性管理技术，用于保障系统、服务和项目的安全性与可靠性。然而，传统风险优先数（RPN）方法在已有研究中受到许多批评。过去几十年中，大量模型和方法被用于改进FMEA，但系统总结FMEA改进研究的工作相对有限。本文因此对1998—2018年间有关FMEA改进的期刊论文开展系统性文献综述。作者首先通过元数据统计分析梳理论文随时间和期刊的分布情况，随后使用文献计量方法识别主要作者、机构和研究区域，分析研究热点及主题演化。结果表明，FMEA改进研究在过去二十年快速增长，尤其是2013年以后增长明显；Liu HC、Chang KH、Kumar D、Sharma RK和You JX是发文较多的研究者；亚洲特别是中国是这一领域的重要贡献地区。“healthcare failure mode”“risk ranking”“extended FMEA”“gray theory”“risk evaluation”和“fuzzy inference”构成了传统FMEA改进研究中的主要主题。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>FMEA是一种典型的前馈式可靠性与安全分析方法，其核心不是在事故发生后追溯原因，而是在系统、产品或过程投入使用前识别已知或潜在故障模式，并采取预防和改进措施。当分析进一步包含Criticality Analysis时，通常称为FMECA。</p>
+<p>论文把一个完整FMEA概括为四个主要步骤：</p>
+<ol>
+<li>识别系统中已知或潜在的故障模式；</li>
+<li>确认每个故障模式的原因和影响；</li>
+<li>根据风险优先数（RPN）对故障模式进行排序；</li>
+<li>对高风险故障采取纠正或缓解措施。</li>
+</ol>
+<p>传统FMEA虽然直观、易用，并已广泛用于制造、航空航天、医疗等领域，但围绕经典RPN的风险评价方式长期存在争议。由此形成了一个规模很大的“FMEA improvement”研究方向，主要围绕故障模式风险评价、风险因子权重和风险排序机制进行扩展。</p>
+<p>已有FMEA综述大多采用人工分类和定性总结。本文希望使用更可重复的系统性检索流程与文献计量方法，减少文献选择和主题归纳中的主观性，并回答三个问题：这个领域由哪些研究者和机构推动、主要研究热点是什么、这些热点在二十年间如何演化。</p>
+<h2 id="Research-methodology"><a href="#Research-methodology" class="headerlink" title="Research methodology"></a>Research methodology</h2><p><img src="/pictures/2026081801.png" alt="FMEA改进研究的文献筛选流程"></p>
+<p>整套综述流程包括四个阶段：Keyword Definition、Data Collection and Identification、Metadata Statistical Analysis和Bibliometric Analysis。</p>
+<h3 id="Keyword-definition"><a href="#Keyword-definition" class="headerlink" title="Keyword definition"></a>Keyword definition</h3><p>作者采用两级关键词结构进行检索。第一层以<code>FMEA</code>或<code>FMECA</code>限定研究对象，第二层再分别组合以下主题：</p>
+<ul>
+<li><code>risk priority number</code> / <code>RPN</code>；</li>
+<li><code>risk evaluation</code> / <code>risk assessment</code>；</li>
+<li><code>risk prioritization</code> / <code>risk ranking</code>；</li>
+<li><code>risk factor weight</code> / <code>weight of risk factor</code>；</li>
+<li><code>reliability analysis</code> / <code>reliability management</code>；</li>
+<li><code>criticality analysis</code>。</li>
+</ul>
+<p>这种结构实际上已经反映了论文对“FMEA改进”的界定：研究重点主要放在风险计算、风险评价和排序方法的改进，而不是简单收集FMEA应用案例。</p>
+<h3 id="Data-collection-and-screening"><a href="#Data-collection-and-screening" class="headerlink" title="Data collection and screening"></a>Data collection and screening</h3><p>检索数据来自Web of Science（WoS），时间范围为1998—2018年，只保留Journal Article。初始检索得到2148条记录，去重后剩1022篇；标题和摘要筛选后剩819篇，随后进行全文筛选，最终得到263篇正式进入分析的论文。</p>
+<p>筛选标准也比较严格：</p>
+<ul>
+<li>保留以克服传统FMEA缺陷、提出FMEA改进方法为目标的论文；</li>
+<li>排除仅将FMEA应用到某个工程案例、但没有方法改进的论文；</li>
+<li>将主要讨论FMEA自动化实现的文章视为与本综述主题无关；</li>
+<li>两位作者独立完成筛选，并对不一致结果进行协商。</li>
+</ul>
+<p>因此，本文得到的263篇论文不是“全部FMEA研究”，而是一个专门面向<strong>FMEA方法改进</strong>的子集。</p>
+<h3 id="Bibliometric-analysis"><a href="#Bibliometric-analysis" class="headerlink" title="Bibliometric analysis"></a>Bibliometric analysis</h3><p>文献计量部分主要使用CiteSpace。分析内容包括作者与机构合作网络、作者与参考文献共被引、关键词共现、关键词突现、关键词时间线和聚类分析。机构地理分布还结合Google Earth进行展示。</p>
+<p>与只按主题人工归类相比，这种方法可以从发文、引用和关键词关系中识别研究群体与主题结构，但得到的是文献网络层面的“研究版图”，并不直接评价某一种FMEA方法在工程应用中的真实效果。</p>
+<h2 id="Publication-landscape"><a href="#Publication-landscape" class="headerlink" title="Publication landscape"></a>Publication landscape</h2><p><img src="/pictures/2026081802.png" alt="1998—2018年FMEA改进论文年度发表数量"></p>
+<p>1998—2018年间，FMEA改进研究总体呈持续增长趋势，2014年前后开始明显加速。最后五年共发表159篇，占全部263篇的60%；到2018年，年度论文数量已经达到44篇。这个趋势说明，传统RPN及其改进问题在2010年代后期仍然是可靠性研究中的活跃主题。</p>
+<p><img src="/pictures/2026081803.png" alt="FMEA改进研究主要发表期刊"></p>
+<p>263篇论文分布在105种期刊中。发文数量最多的期刊包括：</p>
+<ul>
+<li><em>International Journal of Quality and Reliability Management</em>：26篇；</li>
+<li><em>Quality and Reliability Engineering International</em>：19篇；</li>
+<li><em>Expert Systems with Applications</em>：14篇；</li>
+<li><em>Applied Soft Computing</em>：13篇；</li>
+<li><em>Safety Science</em>：12篇；</li>
+<li><em>Reliability Engineering &amp; System Safety</em>：10篇。</li>
+</ul>
+<p>这个期刊分布也反映出FMEA改进研究具有明显的交叉特征：一部分属于传统可靠性与质量工程，另一部分则大量借用模糊理论、智能决策与多准则决策方法。</p>
+<h2 id="Authors-and-research-groups"><a href="#Authors-and-research-groups" class="headerlink" title="Authors and research groups"></a>Authors and research groups</h2><p>作者使用发文量、总被引和篇均被引三个指标衡量研究者贡献。按照发文量，Liu HC以26篇位居第一，其后为Chang KH（14篇）、Kumar D和Sharma RK（各13篇）、You JX（12篇）。按照总被引，Liu HC同样排名第一；而按照篇均被引，Wang YM、Chin KS和Yang JB位于前列。</p>
+<p><img src="/pictures/2026081804.png" alt="FMEA改进研究的主要作者合作网络"></p>
+<p>合作网络中形成了7个较明显的研究群体，其中几类具有代表性：</p>
+<ul>
+<li><strong>Liu HC / You JX研究群体：</strong>重点处理传统FMEA中的风险评价、风险因子权重和故障模式排序，使用过D numbers、灰色关联投影、模糊AHP、熵权、VIKOR、犹豫语言集、前景理论和QUALFLEX等方法；</li>
+<li><strong>Sharma RK / Panchal D相关群体：</strong>一支更关注模糊规则库与模糊推理，另一支结合灰色关联分析和模糊决策方法处理工业系统风险分析；</li>
+<li><strong>Chang KH研究群体：</strong>重点研究故障模式风险估计和排序机制，涉及直觉模糊集、TOPSIS以及指数型RPN等方法。</li>
+</ul>
+<p>这些研究群体的共同特点是：多数改进并没有改变FMEA“识别故障模式—评价风险—排序”的基本流程，而是持续修改其中的评价信息表达、权重确定和排序算法。</p>
+<h2 id="Institutions-and-geographical-distribution"><a href="#Institutions-and-geographical-distribution" class="headerlink" title="Institutions and geographical distribution"></a>Institutions and geographical distribution</h2><p>从机构和国家分布看，论文认为亚洲是FMEA改进研究的主要贡献地区，研究活动在中国东南部尤其集中。发文最多的机构包括同济大学22篇、上海大学21篇、R.O.C. Military Academy 13篇和National Institute of Technology 12篇。</p>
+<p>合作网络表明，中国与英国、美国、加拿大之间存在较多合作；同济大学与上海大学、R.O.C. Military Academy与National Chiao Tung University、University Malaysia Sarawak与Deakin University之间也形成了较明显的机构合作关系。</p>
+<p>这里的结论本质上反映的是论文所选263篇文献中的作者和机构分布，因此更适合用于描述这一特定文献集合，而不是直接等价于全球全部FMEA研究的绝对格局。</p>
+<h2 id="Co-citation-analysis-and-research-hotspots"><a href="#Co-citation-analysis-and-research-hotspots" class="headerlink" title="Co-citation analysis and research hotspots"></a>Co-citation analysis and research hotspots</h2><p>作者共被引分析显示，Bowles and Peláez、Liu HC、Wang YM、Pillay and Wang、Braglia等工作在FMEA改进研究中具有较强影响。早期经典工作已经开始使用模糊逻辑、灰色理论和AHP等方法处理传统FMEA中风险评价与排序的问题。</p>
+<p><img src="/pictures/2026081805.png" alt="FMEA改进研究的参考文献共被引聚类"></p>
+<p>参考文献共被引分析最终形成6个主要主题簇：</p>
+<h3 id="Healthcare-failure-mode"><a href="#Healthcare-failure-mode" class="headerlink" title="Healthcare failure mode"></a>Healthcare failure mode</h3><p>医疗风险管理是最明显的应用主题之一。改进FMEA被用于麻醉过程、医院采购、输血、放疗等场景，目标通常是识别医疗流程中的潜在故障并提高患者安全。</p>
+<h3 id="Risk-ranking"><a href="#Risk-ranking" class="headerlink" title="Risk ranking"></a>Risk ranking</h3><p>Risk ranking是持续时间最长的主题。传统RPN的风险排序受到大量质疑，因此研究者引入DEMATEL、模糊规则系统、语言加权几何算子和证据推理等方法，希望得到更加稳定和可信的故障模式优先级。</p>
+<h3 id="Extended-FMEA"><a href="#Extended-FMEA" class="headerlink" title="Extended FMEA"></a>Extended FMEA</h3><p>这一类工作直接扩展传统FMEA的评价框架，例如引入多专家—多准则决策、Utility Priority Number（UPN）以及面向成本的Priority-cost FMECA，使风险排序不仅依赖传统RPN。</p>
+<h3 id="Gray-theory"><a href="#Gray-theory" class="headerlink" title="Gray theory"></a>Gray theory</h3><p>灰色理论主要用于处理信息不完整条件下的风险评价。相关研究通常将灰色关联分析与模糊FMEA结合，用于产品、过程和复杂工业系统的故障风险排序。</p>
+<h3 id="Risk-evaluation"><a href="#Risk-evaluation" class="headerlink" title="Risk evaluation"></a>Risk evaluation</h3><p>Risk evaluation关注如何表达专家在Occurrence（O）、Severity（S）和Detection（D）上的不确定判断。模糊集、直觉模糊集、区间直觉模糊集和语言分布评价等方法在这一主题中大量出现。</p>
+<h3 id="Fuzzy-inference"><a href="#Fuzzy-inference" class="headerlink" title="Fuzzy inference"></a>Fuzzy inference</h3><p>模糊推理通过<code>if-then</code>规则建立风险因子与故障风险等级之间的映射。相比直接计算<code>O × S × D</code>，这种方法允许使用语言变量和非线性规则描述专家经验，因此成为FMEA改进中的一条长期技术路线。</p>
+<h2 id="Keyword-evolution"><a href="#Keyword-evolution" class="headerlink" title="Keyword evolution"></a>Keyword evolution</h2><p>关键词共现结果中，<code>FMEA</code>、<code>system</code>、<code>risk evaluation</code>、<code>criticality analysis</code>、<code>failure mode</code>和<code>prioritization</code>处于网络中的重要位置。围绕不确定信息处理，常见方法包括fuzzy set、Pythagorean fuzzy set、evidential reasoning、Dempster-Shafer theory和D number；围绕故障模式排序，则大量出现AHP、TOPSIS、VIKOR、DEMATEL、DEA和fuzzy inference system。</p>
+<p><img src="/pictures/2026081806.png" alt="FMEA改进研究的关键词时间线与主题演化"></p>
+<p>作者把1998—2018年的研究演化划分为四个阶段：</p>
+<ol>
+<li><strong>Nascency stage（1998—2008）：</strong>相关论文数量较少，研究主题尚未形成密集网络；</li>
+<li><strong>Growth stage（约2009以后）：</strong><code>failure mode</code>、<code>prioritization</code>和<code>risk priority number</code>等关键词开始明显增长；</li>
+<li><strong>Explosion stage（2012—2015）：</strong>fuzzy FMEA快速发展，fuzzy set、fuzzy logic、fuzzy inference system和fuzzy TOPSIS等方法集中出现；</li>
+<li><strong>Lucubration stage（2016—2018）：</strong>研究开始进一步使用Dempster-Shafer theory、Pythagorean fuzzy set、DEMATEL、Entropy和Z number等更复杂的不确定性与决策方法。</li>
+</ol>
+<p>从这条时间线可以看出，FMEA改进研究长期围绕一个核心问题展开：<strong>如何把专家对O、S、D等风险因素的模糊、不确定或不一致判断，转化为更可信的故障模式风险排序。</strong></p>
+<h2 id="Application-fields"><a href="#Application-fields" class="headerlink" title="Application fields"></a>Application fields</h2><p><img src="/pictures/2026081807.png" alt="改进FMEA方法的主要应用领域分布"></p>
+<p>263篇论文中，制造业应用最多，共101篇，占38%。其后主要包括：</p>
+<ul>
+<li>Marine：21篇，8%；</li>
+<li>Aerospace：16篇，6%；</li>
+<li>Healthcare：15篇，6%；</li>
+<li>Electronic：14篇，5%；</li>
+<li>Construction：11篇，4%；</li>
+<li>Service：10篇，4%；</li>
+<li>Education：9篇，3%；</li>
+<li>Food：7篇，3%；</li>
+<li>Product design：6篇，约2%；</li>
+<li>Others：53篇，20%。</li>
+</ul>
+<p>航空航天类案例包括航空发动机涡轮转子叶片、航空电子制造项目、机场空侧、飞机制动系统和起落架系统等。制造业、海洋工程和医疗领域则形成了更大的应用规模。</p>
+<p>值得注意的是，本文的“应用领域分析”统计的是<strong>提出改进FMEA方法的论文所采用的验证场景</strong>，并不是对所有工业FMEA应用数量的统计。</p>
+<h2 id="Research-gaps-and-future-opportunities"><a href="#Research-gaps-and-future-opportunities" class="headerlink" title="Research gaps and future opportunities"></a>Research gaps and future opportunities</h2><p>论文根据文献计量和内容分析提出三类后续研究方向。</p>
+<h3 id="More-robust-failure-mode-ranking"><a href="#More-robust-failure-mode-ranking" class="headerlink" title="More robust failure-mode ranking"></a>More robust failure-mode ranking</h3><p>很多研究把FMEA风险排序建模为多准则决策问题，并分别使用TOPSIS、DEA、GRA、VIKOR等方法。但不同MCDM算法可能给出不一致的排序结果。作者因此建议进一步研究更加综合和稳健的排序机制，例如组合两种或多种决策方法。</p>
+<h3 id="More-complete-representation-of-the-FMEA-decision-process"><a href="#More-complete-representation-of-the-FMEA-decision-process" class="headerlink" title="More complete representation of the FMEA decision process"></a>More complete representation of the FMEA decision process</h3><p>已有研究已经大量讨论风险评价、风险因素权重和故障模式排序，但FMEA实际决策过程中还有其他关系没有得到充分处理，例如不同FMEA团队成员本身的权重、不同故障模式之间的内部关系，以及故障模式与纠正措施之间的联系。</p>
+<h3 id="Better-usability-for-practitioners"><a href="#Better-usability-for-practitioners" class="headerlink" title="Better usability for practitioners"></a>Better usability for practitioners</h3><p>许多改进FMEA方法在论文中需要较复杂的模糊计算、证据推理或MCDM过程，普通工程人员直接使用的成本较高。作者因此建议开发相应的原型软件系统，把复杂计算封装起来，使这些方法真正能够进入工程流程。</p>
+<p>这一点非常关键：FMEA改进研究在算法上越来越复杂，但方法是否能够被安全工程师稳定、持续地使用，本身也成为研究问题。</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>本文对1998—2018年间263篇FMEA改进论文进行了系统性综述和文献计量分析。结果表明，这一研究方向在2013年以后明显加速，形成了一批稳定的研究群体和期刊阵地；研究主题长期集中在传统RPN的替代、风险评价信息的不确定性处理、风险因子权重和故障模式排序，并大量采用模糊理论、灰色理论、证据推理和多准则决策方法。</p>
+<p>从主题结构看，healthcare failure mode、risk ranking、extended FMEA、gray theory、risk evaluation和fuzzy inference构成六个主要聚类；从应用看，制造业占比最高，海洋、航空航天、医疗和电子领域也具有较多案例。论文最终把未来研究重点放在更稳健的风险排序、更完整的FMEA决策关系表达以及面向工程人员的原型工具开发上。</p>
+<p>这篇文章更像一张“传统FMEA改进研究的知识地图”。从本文纳入文献的关键词、聚类和研究群体可以看出，1998—2018年间最密集的工作集中于<strong>怎样评价和排序已有故障模式</strong>。系统行为仿真、动态故障传播和故障影响自动量化并没有成为本文识别出的主要热点。对于后续研究，这种版图本身可以帮助判断一个新的FMEA方法究竟是在继续改进RPN，还是在改变FMEA获取故障证据和形成安全结论的方式。</p>
+<h2 id="论文评价"><a href="#论文评价" class="headerlink" title="论文评价"></a>论文评价</h2><ul>
+<li><strong>推测的软件工具链：</strong> 论文明确使用Web of Science完成文献检索，使用CiteSpace开展作者合作、机构合作、共被引、关键词共现、关键词突现、时间线和聚类分析，并结合Google Earth展示机构地理分布。文献筛选由两位作者独立完成。论文没有披露专门的编程语言或数据处理脚本，因此不宜进一步推断为MATLAB、Python或R等具体实现。</li>
+<li><strong>收录原因：</strong> 这是一篇很适合作为FMEA研究入口的RESS综述。它不是再次介绍FMEA流程，而是用263篇论文把1998—2018年的“FMEA improvement”拆解为研究者、机构、核心文献、关键词、主题演化和应用领域几个层次，可以快速判断传统FMEA改进研究真正把精力集中在什么问题上。尤其是risk ranking、risk evaluation、fuzzy inference等主题的长期占优，为理解RPN改进路线提供了较完整的历史背景。</li>
+<li><strong>值得借鉴：</strong> 四阶段文献筛选流程清楚，可直接复用于一个方法学子领域的系统综述；作者没有只统计发文量，而是把合作网络、共被引、关键词突现、时间线和应用分布组合起来，能够同时观察“谁在研究、研究什么、什么时候兴起、在哪些行业验证”。对FMEA方法研究而言，论文还清楚揭示了一个重要现象：大量工作实际上是在改造O/S/D评价和风险排序算法，因此研究新的FMEA框架时，应明确自己改变的是风险排序机制、证据获取机制，还是故障影响分析过程本身。</li>
+<li><strong>可能不足：</strong> 数据只来自WoS，并限定为1998—2018年的期刊论文，同时主动排除了单纯应用类文章和FMEA自动化研究，因此得到的是“FMEA改进算法研究”的知识图谱，而不是完整FMEA研究版图；引用次数和关键词网络能够反映影响力与关注度，却不能直接说明某种改进方法的工程有效性。论文对未来方向的讨论仍主要围绕MCDM排序、团队权重和原型工具；就本文的关键词与聚类结果而言，模型化FMEA、动态故障传播和仿真驱动影响量化并未形成主要研究主题。由于数据截止到2018年，这篇综述也无法反映2019年以后的研究演进。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2026/08/18/045/">https://ruizhe-yang.github.io/2026/08/18/045/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/FMEA/">FMEA</a><a class="post-meta__tags" href="/tags/Risk-Priority-Number/">Risk Priority Number</a><a class="post-meta__tags" href="/tags/Risk-Evaluation/">Risk Evaluation</a><a class="post-meta__tags" href="/tags/Bibliometrics/">Bibliometrics</a><a class="post-meta__tags" href="/tags/Systematic-Review/">Systematic Review</a></div><div class="post_share"><div class="social-share" data-image="/pictures/2026081801.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/08/16/044/" title="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid"><img class="cover" src="/pictures/2026081608.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2024/08/31/010/" title="小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML"><img class="cover" src="/pictures/24083102.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-31</div><div class="title">小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</div></div></a></div><div><a href="/2024/09/02/012/" title="笔记：Failure Mode and Effects Analysis (FMEA Handbook)"><img class="cover" src="/pictures/24090201.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-02</div><div class="title">笔记：Failure Mode and Effects Analysis (FMEA Handbook)</div></div></a></div><div><a href="/2025/05/15/033/" title="笔记：Event-based safety and reliability analysis integration in model-based space mission design"><img class="cover" src="/pictures/2025051502.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-15</div><div class="title">笔记：Event-based safety and reliability analysis integration in model-based space mission design</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/pictures/site-avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">88</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">62</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://b23.tv/3cRMvn8" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Research-methodology"><span class="toc-number">2.</span> <span class="toc-text">Research methodology</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Keyword-definition"><span class="toc-number">2.1.</span> <span class="toc-text">Keyword definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-collection-and-screening"><span class="toc-number">2.2.</span> <span class="toc-text">Data collection and screening</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bibliometric-analysis"><span class="toc-number">2.3.</span> <span class="toc-text">Bibliometric analysis</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Publication-landscape"><span class="toc-number">3.</span> <span class="toc-text">Publication landscape</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Authors-and-research-groups"><span class="toc-number">4.</span> <span class="toc-text">Authors and research groups</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Institutions-and-geographical-distribution"><span class="toc-number">5.</span> <span class="toc-text">Institutions and geographical distribution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Co-citation-analysis-and-research-hotspots"><span class="toc-number">6.</span> <span class="toc-text">Co-citation analysis and research hotspots</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Healthcare-failure-mode"><span class="toc-number">6.1.</span> <span class="toc-text">Healthcare failure mode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Risk-ranking"><span class="toc-number">6.2.</span> <span class="toc-text">Risk ranking</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Extended-FMEA"><span class="toc-number">6.3.</span> <span class="toc-text">Extended FMEA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gray-theory"><span class="toc-number">6.4.</span> <span class="toc-text">Gray theory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Risk-evaluation"><span class="toc-number">6.5.</span> <span class="toc-text">Risk evaluation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fuzzy-inference"><span class="toc-number">6.6.</span> <span class="toc-text">Fuzzy inference</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keyword-evolution"><span class="toc-number">7.</span> <span class="toc-text">Keyword evolution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application-fields"><span class="toc-number">8.</span> <span class="toc-text">Application fields</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Research-gaps-and-future-opportunities"><span class="toc-number">9.</span> <span class="toc-text">Research gaps and future opportunities</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#More-robust-failure-mode-ranking"><span class="toc-number">9.1.</span> <span class="toc-text">More robust failure-mode ranking</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#More-complete-representation-of-the-FMEA-decision-process"><span class="toc-number">9.2.</span> <span class="toc-text">More complete representation of the FMEA decision process</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Better-usability-for-practitioners"><span class="toc-number">9.3.</span> <span class="toc-text">Better usability for practitioners</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">10.</span> <span class="toc-text">Conclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E8%AF%84%E4%BB%B7"><span class="toc-number">11.</span> <span class="toc-text">论文评价</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/18/045/" title="笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda"><img src="/pictures/2026081801.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda"/></a><div class="content"><a class="title" href="/2026/08/18/045/" title="笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda">笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda</a><time datetime="2026-08-18T04:00:00.000Z" title="Created 2026-08-18 12:00:00">2026-08-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/16/044/" title="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid"><img src="/pictures/2026081608.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid"/></a><div class="content"><a class="title" href="/2026/08/16/044/" title="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid">笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid</a><time datetime="2026-08-16T03:00:00.000Z" title="Created 2026-08-16 11:00:00">2026-08-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/16/043/" title="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica"><img src="/pictures/2026081601.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica"/></a><div class="content"><a class="title" href="/2026/08/16/043/" title="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica">笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica</a><time datetime="2026-08-16T02:00:00.000Z" title="Created 2026-08-16 10:00:00">2026-08-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/06/042/" title="笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application"><img src="/pictures/2026080609.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application"/></a><div class="content"><a class="title" href="/2026/08/06/042/" title="笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application">笔记：Guided simulation for dynamic probabilistic risk assessment of complex systems: Concept, method, and application</a><time datetime="2026-08-06T13:00:00.000Z" title="Created 2026-08-06 21:00:00">2026-08-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/06/041/" title="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory"><img src="/pictures/2026080601.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory"/></a><div class="content"><a class="title" href="/2026/08/06/041/" title="笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory">笔记：Simple analysis of complex system safety based on Finite State Machine Network and phase space theory</a><time datetime="2026-08-06T12:00:00.000Z" title="Created 2026-08-06 20:00:00">2026-08-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: '8a4f006c5e189ad453d9225b3af0a6b3',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
