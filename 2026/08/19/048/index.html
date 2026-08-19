@@ -1,0 +1,466 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="A modeling and simulation framework for the study and analysis of cascading failures in satellite networks Abstraction  Satellite networks are inherently susceptible to cascading failures due to resou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2026/08/19/048/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="A modeling and simulation framework for the study and analysis of cascading failures in satellite networks Abstraction  Satellite networks are inherently susceptible to cascading failures due to resou">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ruizhe-yang.github.io/pictures/2026081910.png">
+<meta property="article:published_time" content="2026-08-19T04:10:00.000Z">
+<meta property="article:modified_time" content="2026-08-19T04:10:00.000Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="Satellite Networks">
+<meta property="article:tag" content="Cascading Failures">
+<meta property="article:tag" content="Modeling Framework">
+<meta property="article:tag" content="Reliability Analysis">
+<meta property="article:tag" content="Network Evolution">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruizhe-yang.github.io/pictures/2026081910.png"><link rel="shortcut icon" href="/pictures/site-favicon.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2026/08/19/048/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-08-19 12:10:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/pictures/site-avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">103</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">64</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/pictures/2026081910.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="/pictures/site-logo.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-08-19T04:10:00.000Z" title="Created 2026-08-19 12:10:00">2026-08-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-08-19T04:10:00.000Z" title="Updated 2026-08-19 12:10:00">2026-08-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/">Journal</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/RESS/">RESS</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/RESS/2026/">2026</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">6.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>21mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.ress.2026.112793">A modeling and simulation framework for the study and analysis of cascading failures in satellite networks</a></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>Satellite networks are inherently susceptible to cascading failures due to resource constraints, complex environments, and limited protection mechanisms. Existing studies have explored this issue from various perspectives; however, significant differences in the key modeling factors considered often lead to models that do not fully capture satellite network characteristics. This results in inconsistent findings and a lack of structured guidance for model development. To address this problem, this paper proposes a unified modeling framework for cascading failures in satellite networks. The framework systematically describes key modeling factors from five aspects: components and coupling relationships, load-resource interactions, state transitions, initial disturbances, and performance metrics. Based on this framework, a scalable simulation algorithm is further developed to support cascading failure analysis. In the case studies, simulations are conducted on three constellations of different scales based on modeling with reasonable assumptions under the proposed framework. The results show that the proportion of failed satellites fluctuates by more than 20%, and in over 83% of cases, failures propagate within a two-hop neighborhood of failed satellites. Additional analyses in the supplementary material further demonstrate the applicability and effectiveness of the proposed framework.</p>
+</blockquote>
+<p>摘要翻译：由于资源受限、运行环境复杂以及防护能力有限，卫星网络天然容易受到级联故障影响。现有研究已经从多个角度分析这一问题，但不同研究对关键建模因素的选择差异很大，导致所建立的模型往往不能完整体现卫星网络的真实特征，研究结论也缺少一致性。为解决这一问题，本文提出一个面向卫星网络级联故障的统一建模框架，从五个方面系统描述建模所需的关键因素：组件及其耦合关系、负载—资源交互、状态转移、初始扰动以及性能评价指标。在此基础上，作者进一步设计了一套可扩展的级联故障仿真算法。案例分别在三种不同规模的星座上进行仿真。结果表明，卫星失效比例在级联过程中具有超过20%的波动，并且83%以上的新故障发生在已有故障卫星两跳范围内。补充材料进一步分析了具体故障传播过程，用于说明该框架的适用性和分析能力。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>卫星网络的级联故障并不是“某一颗卫星坏掉以后网络少一个节点”这么简单。卫星失效后，其原本承担的用户接入和中继业务会被重新分配到其他卫星，使周边节点负载上升；这些卫星如果进一步发生拥塞、资源退化或暂时停机，又会产生新的流量重分配，从而形成连续放大的故障链。</p>
+<p>现有卫星网络级联故障研究已经形成多种建模方式，但得到的结果差异很大。论文列举的已有结论中，有的模型会得到接近100%的网络破坏，有的研究认为只有约15%的卫星失效，还有一些模型中仅剩6%的卫星能够正常工作。作者认为，这些巨大差异并不完全来自星座本身，而是来自<strong>模型假设不一致</strong>。</p>
+<p>论文把现有建模问题归纳为五类：</p>
+<ol>
+<li>忽略卫星网络的动态轨道特性；</li>
+<li>卫星负载模型与真实业务流量不匹配；</li>
+<li>状态转移机制被过度简化；</li>
+<li>卫星资源建模维度不一致；</li>
+<li>仿真场景与真实星座结构脱节。</li>
+</ol>
+<p>因此，这篇文章真正想解决的不是提出一个新的单一故障传播公式，而是回答一个更基础的问题：<strong>研究卫星网络级联故障时，一个相对完整且可复用的模型至少应该包含哪些内容？</strong></p>
+<h2 id="Problems-in-existing-cascading-failure-models"><a href="#Problems-in-existing-cascading-failure-models" class="headerlink" title="Problems in existing cascading-failure models"></a>Problems in existing cascading-failure models</h2><p>作者系统比较了基于互依网络、复杂网络、业务流量和动态网络的多类已有模型。</p>
+<p>其中一个明显问题是静态网络假设。卫星在轨高速运动，地面覆盖范围不断变化，用户接入卫星、网关可见性和星间路由都会随时间变化。因此，如果只选取某一时刻的静态网络快照，再根据节点度、介数中心性等拓扑指标定义负载，就容易把真实的业务变化完全忽略。</p>
+<p>第二个问题是负载定义。复杂网络方法常使用节点中心性表示负载，但真实通信卫星承担的是实际数据：用户上行数据、星间转发数据以及暂时无法处理而进入buffer的数据。节点在拓扑上重要，并不一定意味着它在当前时刻承担的业务量最大。</p>
+<p>第三个问题是“超载即永久失效”的简化。真实卫星在高负载下通常会先发生buffer积累、处理时延上升、温度增加或处理能力下降；系统还可能主动限流、自检、降级运行和恢复。若模型直接从Normal跳到Permanent Failure，往往会夸大故障传播强度。</p>
+<p>第四个问题是资源建模。有些研究只考虑buffer，有些增加processing capacity，但卫星实际运行还受到链路带宽、电源状态、温度、辐射等多因素影响。级联故障本质上是<strong>负载与有限资源之间持续失配</strong>产生的，因此资源维度直接影响结论。</p>
+<h2 id="Modeling-framework"><a href="#Modeling-framework" class="headerlink" title="Modeling framework"></a>Modeling framework</h2><p><img src="/pictures/2026081910.png" alt="卫星网络级联故障统一建模框架及实际仿真场景对应关系"></p>
+<p>作者最终提出五部分参考框架：</p>
+<ol>
+<li><strong>Components and coupling relationships</strong></li>
+<li><strong>Load-resource</strong></li>
+<li><strong>State transition</strong></li>
+<li><strong>Initial perturbation</strong></li>
+<li><strong>Performance metrics</strong></li>
+</ol>
+<p>这五部分形成一条完整的级联演化逻辑：</p>
+<p><code>组件和连接 → 产生/传输业务 → 业务占用资源 → 资源变化触发状态变化 → 状态变化导致流量重新分配 → 新一轮资源变化</code></p>
+<p>初始扰动负责打破原来的平衡，性能指标则持续记录整个网络在级联过程中的损伤程度。</p>
+<h2 id="Components-and-coupling-relationships"><a href="#Components-and-coupling-relationships" class="headerlink" title="Components and coupling relationships"></a>Components and coupling relationships</h2><p>论文首先区分两类组件。</p>
+<h3 id="Propagation-Sensitive-Components"><a href="#Propagation-Sensitive-Components" class="headerlink" title="Propagation-Sensitive Components"></a>Propagation-Sensitive Components</h3><p>Propagation-Sensitive Components（PSC）是直接参与级联故障传播的组件，主要就是在轨通信卫星。</p>
+<p>卫星负责接收、处理和转发数据。一颗卫星失效以后，其业务会被重定向到其他卫星，因此卫星既是故障承受者，也是故障进一步传播的载体。</p>
+<p>为了保留星座动态性，每颗卫星的位置由Keplerian orbital elements描述：</p>
+<p><code>Ω_v(t) = &#123;a, e, i, Ω, ω, M(t)&#125;</code></p>
+<p>其中包含半长轴、偏心率、倾角、升交点赤经、近地点幅角和随时间变化的平近点角。卫星位置随时间更新，因此覆盖关系和网络负载也会随之变化。</p>
+<h3 id="Propagation-External-Components"><a href="#Propagation-External-Components" class="headerlink" title="Propagation-External Components"></a>Propagation-External Components</h3><p>Propagation-External Components（PEC）不直接参与卫星间故障传播，但会产生业务流量，例如：</p>
+<ul>
+<li>fixed ground stations；</li>
+<li>mobile terminals；</li>
+<li>terrestrial backbone infrastructure；</li>
+<li>ground gateways。</li>
+</ul>
+<p>PEC本身失效通常不会直接把某颗卫星“传染”为失效，但PEC的空间分布和业务需求决定了流量从哪里进入卫星网络，因此会改变整个级联传播过程。</p>
+<h3 id="Coupling-relationships"><a href="#Coupling-relationships" class="headerlink" title="Coupling relationships"></a>Coupling relationships</h3><p>耦合关系进一步分为星间耦合和星地耦合。</p>
+<p>星间链路可以是Permanent ISL，也可以是随轨道位置动态开关的Intermittent ISL。星地链路则天然具有动态性：地面设备需要不断切换到当前可见卫星。</p>
+<p>因此，网络在时刻<code>t</code>的连接状态统一表示为动态邻接矩阵：</p>
+<p><code>S(t) = &#123;s_ik(t)&#125;</code></p>
+<p>只要两个组件之间在时刻<code>t</code>存在有效链路，对应元素为1，否则为0。</p>
+<h2 id="Load-resource-model"><a href="#Load-resource-model" class="headerlink" title="Load-resource model"></a>Load-resource model</h2><p>论文把卫星负载明确分成三部分：</p>
+<p><code>Load = Uplink traffic + Relayed traffic + Buffered data</code></p>
+<h3 id="Uplink-traffic"><a href="#Uplink-traffic" class="headerlink" title="Uplink traffic"></a>Uplink traffic</h3><p>Uplink traffic来自地面PEC。只有某个地面用户位于卫星覆盖范围内并满足连接条件时，其数据才会进入对应卫星。</p>
+<p>因此，卫星某一时刻的上行负载同时取决于：</p>
+<ul>
+<li>当前轨道位置；</li>
+<li>当前星地连接；</li>
+<li>用户空间分布；</li>
+<li>用户实时数据需求。</li>
+</ul>
+<p>这比直接使用节点degree或betweenness作为“负载”更接近实际通信网络。</p>
+<h3 id="Relayed-traffic"><a href="#Relayed-traffic" class="headerlink" title="Relayed traffic"></a>Relayed traffic</h3><p>Relayed traffic来自其他卫星，是路由机制决定的转发数据。</p>
+<p>作者没有把路由固定为一种算法，而是把路由拆为两个可以替换的因素：</p>
+<ul>
+<li><strong>Optimization objective：</strong>最小时延、最少跳数、负载均衡或多目标优化；</li>
+<li><strong>Decision entity：</strong>centralized、distributed或semi-distributed routing。</li>
+</ul>
+<p>因此，路由模块在这个框架中只是一个可替换部分，不同研究可以使用不同路由算法，而不需要改变其他级联故障建模结构。</p>
+<h3 id="Buffered-data"><a href="#Buffered-data" class="headerlink" title="Buffered data"></a>Buffered data</h3><p>卫星上一时刻没有处理完的数据继续进入下一时刻buffer：</p>
+<p><code>B_i(t) = L_i(t-1) + H_i(t-1) - P_i(t-1)</code></p>
+<p>如果新进入的数据持续高于卫星处理能力，buffer会逐步积累，最终触发拥塞甚至保护性停机。这种连续积累过程是论文区别于“负载超限立即永久失效”模型的重要地方。</p>
+<h2 id="Satellite-resources"><a href="#Satellite-resources" class="headerlink" title="Satellite resources"></a>Satellite resources</h2><p>论文把资源定义为一个可扩展向量：</p>
+<p><code>C = &#123;C^(1), C^(2), ..., C^(n)&#125;</code></p>
+<p>可以包括：</p>
+<ul>
+<li>buffer capacity；</li>
+<li>processing ability；</li>
+<li>computing capability；</li>
+<li>link bandwidth；</li>
+<li>power-related resources。</li>
+</ul>
+<p>每种资源进一步区分<strong>maximum capacity</strong>和<strong>actual capacity</strong>。</p>
+<p>Maximum capacity代表理想状态下的设计能力；Actual capacity则随真实运行状态发生变化：</p>
+<p><code>C_vi(t) = f(ζ_vi(t)) C_max</code></p>
+<p>也就是说，卫星的“能力上限”并不是恒定可用的。电源衰减、硬件老化、温度升高、辐射环境以及不同资源之间的耦合，都可能降低当前可用资源。</p>
+<p>这个设定把级联故障从纯网络拓扑问题推进到“网络业务—星上资源—运行状态”耦合问题。</p>
+<h2 id="State-transition"><a href="#State-transition" class="headerlink" title="State transition"></a>State transition</h2><p><img src="/pictures/2026081911.png" alt="卫星四种运行状态及状态转移条件"></p>
+<p>通用框架允许每颗卫星拥有自己的状态集合：</p>
+<p><code>χ_vi = (x1, x2, ..., xm)</code></p>
+<p>具体案例中，作者定义了四种状态。</p>
+<h3 id="Normal-Operation"><a href="#Normal-Operation" class="headerlink" title="Normal Operation"></a>Normal Operation</h3><p>卫星正常工作，处理能力、buffer和链路资源可以完整使用。</p>
+<h3 id="Congestion-Control"><a href="#Congestion-Control" class="headerlink" title="Congestion Control"></a>Congestion Control</h3><p>当buffer占用超过阈值后，卫星不立即失效，而是进入拥塞控制状态，通过限制邻接链路发送速率和重新路由降低负载。</p>
+<h3 id="Performance-Degradation"><a href="#Performance-Degradation" class="headerlink" title="Performance Degradation"></a>Performance Degradation</h3><p>如果高负载持续存在，星上温度和电源状态恶化，实际处理能力下降，卫星进入性能退化状态。</p>
+<h3 id="Shutdown-Self-check"><a href="#Shutdown-Self-check" class="headerlink" title="Shutdown Self-check"></a>Shutdown Self-check</h3><p>当buffer完全占满或系统达到保护条件时，卫星暂时关闭业务进入自检/冷却状态。在此期间它不能接收和处理业务，相关流量必须重新路由到其他卫星。</p>
+<p>完成恢复时间<code>Δt_r</code>后，卫星可以重新进入Normal Operation。</p>
+<p>因此，这里的“failure”不是默认永久性的。卫星可以经历：</p>
+<p><code>Normal → Congestion → Degradation → Shutdown → Recovery → Normal</code></p>
+<p>这使网络产生明显的周期性和波动性，也更接近真实星载系统面对持续高负载时的运行行为。</p>
+<h2 id="Initial-perturbation"><a href="#Initial-perturbation" class="headerlink" title="Initial perturbation"></a>Initial perturbation</h2><p>初始扰动负责触发级联过程，框架给出三类。</p>
+<h3 id="Permanent-failure-perturbation"><a href="#Permanent-failure-perturbation" class="headerlink" title="Permanent failure perturbation"></a>Permanent failure perturbation</h3><p>直接让部分卫星进入永久失效状态。例如随机关闭5%的卫星，可以近似模拟硬件故障、制造缺陷或大范围环境事件。</p>
+<p>也可以按区域选择卫星，使扰动具有空间特征，例如模拟强辐射环境导致的区域性故障。</p>
+<h3 id="Traffic-related-perturbation"><a href="#Traffic-related-perturbation" class="headerlink" title="Traffic-related perturbation"></a>Traffic-related perturbation</h3><p>向网络注入异常业务。例如在某一轨道面注入突发高流量，可以模拟DDoS等恶意流量；也可以让受攻击卫星改变路由信息，引导其他数据经过异常路径。</p>
+<h3 id="Complex-attack-perturbation"><a href="#Complex-attack-perturbation" class="headerlink" title="Complex attack perturbation"></a>Complex attack perturbation</h3><p>对于漏洞利用、控制信号篡改或恶意指令注入等复杂攻击，论文建议把攻击效果映射为资源消耗异常、流量异常或运行状态变化，再由既有load-resource和state-transition机制继续传播影响。</p>
+<h2 id="Performance-metrics"><a href="#Performance-metrics" class="headerlink" title="Performance metrics"></a>Performance metrics</h2><p>论文把结果指标分成三个层级。</p>
+<h3 id="Network-integrity"><a href="#Network-integrity" class="headerlink" title="Network integrity"></a>Network integrity</h3><p>关注整个网络还能保持多少正常节点，典型指标为Operational Satellite Ratio：</p>
+<p><code>G(t)</code></p>
+<p>它直接反映级联故障对星座完整性的破坏程度。</p>
+<h3 id="Quality-of-Service"><a href="#Quality-of-Service" class="headerlink" title="Quality of Service"></a>Quality of Service</h3><p>从用户角度评价，包括：</p>
+<ul>
+<li>packet loss rate；</li>
+<li>average end-to-end delay；</li>
+<li>network throughput。</li>
+</ul>
+<p>这类指标能回答“虽然还有很多卫星没坏，但用户实际上还能不能正常通信”。</p>
+<h3 id="Operational-efficiency"><a href="#Operational-efficiency" class="headerlink" title="Operational efficiency"></a>Operational efficiency</h3><p>从网络管理角度观察，包括：</p>
+<ul>
+<li>load deviation；</li>
+<li>total network traffic；</li>
+<li>link utilization。</li>
+</ul>
+<p>这些指标用于判断剩余卫星是否出现严重负载集中，以及频繁重路由是否造成额外网络开销。</p>
+<h2 id="Simulation-algorithm"><a href="#Simulation-algorithm" class="headerlink" title="Simulation algorithm"></a>Simulation algorithm</h2><p>论文进一步为这个框架设计了一套可执行仿真算法。</p>
+<p>核心思想是：<strong>每个组件独立执行自身行为，由一个global time统一同步。</strong></p>
+<p>Satellite对象保存：</p>
+<ul>
+<li>Keplerian orbital elements；</li>
+<li>resource configuration；</li>
+<li>state vector；</li>
+<li>uplink traffic；</li>
+<li>relay traffic；</li>
+<li>buffered data；</li>
+<li>packet queue。</li>
+</ul>
+<p>卫星主要执行两个行为：</p>
+<p><code>Packet_Monitoring_and_Processing()</code></p>
+<p>负责监听buffer，对数据包进行转发、等待或丢弃，并更新负载和资源。</p>
+<p><code>Stateful_Mode_Update()</code></p>
+<p>根据当前资源状态和状态转移条件周期性更新卫星运行模式。</p>
+<p>PEC则按地理位置被组织为Regional Entity，用于生成数据包、搜索当前可见卫星并完成上行传输。</p>
+<p>整个仿真由多个线程共同运行：卫星分别处理packet和状态更新，不同区域实体产生业务，同时Global Time线程提供统一时间基准。</p>
+<h2 id="Global-cascading-simulation"><a href="#Global-cascading-simulation" class="headerlink" title="Global cascading simulation"></a>Global cascading simulation</h2><p>主程序首先初始化卫星、地面实体和初始扰动，然后启动各卫星处理线程和Global Time线程。</p>
+<p>之后在每个全局时间步执行：</p>
+<ol>
+<li>更新所有卫星轨道位置；</li>
+<li>重新计算网络耦合关系<code>S(t)</code>；</li>
+<li>生成并上传地面业务；</li>
+<li>卫星独立处理和转发packet；</li>
+<li>根据资源条件更新卫星状态；</li>
+<li>记录网络性能指标。</li>
+</ol>
+<p>因此，轨道运动、用户接入、路由、buffer、资源退化、状态转移和故障传播全部沿同一个时间轴演化。</p>
+<h2 id="Case-study"><a href="#Case-study" class="headerlink" title="Case study"></a>Case study</h2><p>案例选择三种不同规模的Walker-Delta星座：</p>
+<ul>
+<li><strong>NeLS：</strong>10个轨道面，每面12颗，共120颗卫星；</li>
+<li><strong>Quarter-Starlink：</strong>16个轨道面，每面25颗，共400颗卫星；</li>
+<li><strong>Starlink Phase I-a：</strong>32个轨道面，每面50颗，共1600颗卫星。</li>
+</ul>
+<p>仿真环境明确为Python 3.11.0，硬件为Intel Core i9-12900H和16 GB RAM。</p>
+<p>地面业务的空间分布结合全球人口数据和互联网使用率。50%的用户被假定为可直接接入卫星的移动或偏远区域终端，另外50%通过gateway接入。</p>
+<p>路由采用集中式minimum-hop策略，同跳数条件下优先选择更高纬度的路径以缩短星间链路距离。</p>
+<p>每个地面设备的数据生成速率服从：</p>
+<p><code>U(2.4 Kbps, 2 Mbps)</code></p>
+<p>案例中的卫星资源向量简化为：</p>
+<p><code>C = &#123;Buffer Capacity, Processing Ability, ISL Bandwidth&#125;</code></p>
+<p>实际处理能力进一步受到SOC、温度和辐射剂量影响；实际链路带宽还受到功率状态和SINR相关拥塞退化影响。</p>
+<p>初始扰动统一设置为<strong>5%的卫星永久失效</strong>。</p>
+<h2 id="Network-performance-under-cascading-failures"><a href="#Network-performance-under-cascading-failures" class="headerlink" title="Network performance under cascading failures"></a>Network performance under cascading failures</h2><p><img src="/pictures/2026081912.png" alt="三种星座在级联故障下的网络性能变化"></p>
+<p>三种星座在两个轨道周期内都出现明显级联过程。</p>
+<p>从Network Integrity看：</p>
+<ul>
+<li>NeLS最严重时约40%的卫星失效；</li>
+<li>Quarter-Starlink在约0.75个轨道周期后平均维持约36%的失效比例；</li>
+<li>Starlink Phase I-a在一个轨道周期后大致稳定在21%左右的失效比例。</li>
+</ul>
+<p>总体上，规模越大的星座表现出更强冗余能力。</p>
+<p>QoS同样明显下降。三种星座在级联过程中packet loss平均约15%，average end-to-end delay持续高于689 ms。也就是说，即使网络并没有完全失效，用户端服务质量已经出现严重退化。</p>
+<p>Load deviation也随着级联故障扩大而明显增加。因为越来越少的正常卫星需要接管失效节点的业务，负载进一步集中，又会触发新的拥塞和过载。</p>
+<p>整个网络的总业务量在级联过程中下降约22%～41%。原因之一是集中式路由能够知道目标卫星已经失效，因此部分数据直接在源端被丢弃，没有继续进入无效路径。</p>
+<h2 id="Cascading-propagation-patterns"><a href="#Cascading-propagation-patterns" class="headerlink" title="Cascading propagation patterns"></a>Cascading propagation patterns</h2><p><img src="/pictures/2026081913.png" alt="新增失效卫星与既有失效卫星之间的跳数分布"></p>
+<p>三种星座表现出非常相似的传播距离规律：</p>
+<ul>
+<li>约41%～45%的新故障发生在已有故障卫星的一跳邻居；</li>
+<li>超过83%的新故障发生在两跳范围内；</li>
+<li>超过94%发生在三跳范围内；</li>
+<li>4～5跳传播不足6%；</li>
+<li>六跳以外没有观察到传播。</li>
+</ul>
+<p>因此，级联故障并不是瞬间“全网跳跃式扩散”，而主要通过故障节点附近的局部网络逐层扩展。</p>
+<p>这个结果对于韧性设计很重要：故障卫星周围<strong>两跳邻域</strong>是最需要重点监测和流量控制的区域。</p>
+<h2 id="Spatial-distribution-of-failures"><a href="#Spatial-distribution-of-failures" class="headerlink" title="Spatial distribution of failures"></a>Spatial distribution of failures</h2><p><img src="/pictures/2026081914.png" alt="不同规模星座中的故障空间分布"></p>
+<p>故障分布与gateway和业务热点高度相关。</p>
+<p>NeLS中的故障主要集中在欧洲、亚洲和北美等高业务区域。Quarter-Starlink中影响范围进一步扩大，但仍围绕gateway密集区域。</p>
+<p>到了Starlink Phase I-a规模，故障不仅出现在业务热点附近，还扩展到不同热点之间承担大量跨区域中继流量的卫星。</p>
+<p>论文解释为：大规模星座具有更多相邻轨道和中继路径，因此局部拥塞更容易跨轨道传播；但与此同时，更大的冗余又使整体失效比例和波动程度比小星座更低。</p>
+<h2 id="Hardware-resource-configuration-reliability"><a href="#Hardware-resource-configuration-reliability" class="headerlink" title="Hardware resource configuration reliability"></a>Hardware resource configuration reliability</h2><p><img src="/pictures/2026081915.png" alt="不同硬件资源配置下三种星座的最低网络完整性"></p>
+<p>作者进一步分析需要配置多少资源才能使：</p>
+<p><code>G(t) &gt; 0.9</code></p>
+<p>即整个级联过程中至少90%的卫星维持正常状态。</p>
+<p>得到的经验结果为：</p>
+<ul>
+<li>NeLS大约需要热点业务需求的4倍资源；</li>
+<li>Quarter-Starlink约需要3.5倍；</li>
+<li>Starlink Phase I-a略高于3倍即可。</li>
+</ul>
+<p>规模更大的星座由于节点和路径冗余更强，因此单颗卫星达到同等网络韧性所需的资源冗余比例反而更低。</p>
+<p>但论文同时发现，只单独增加buffer、processing ability或bandwidth中的一种效果有限。真正明显提高级联故障抵抗能力，需要三类资源联合增加。</p>
+<p>这说明系统级可靠性优化不应该简单理解为“把某一个硬件参数做大”，而要考虑多个资源瓶颈之间的耦合。</p>
+<h2 id="Cascading-evolution-mechanism"><a href="#Cascading-evolution-mechanism" class="headerlink" title="Cascading evolution mechanism"></a>Cascading evolution mechanism</h2><p>结合正文和Supplementary分析，作者把典型级联过程总结为四个阶段：</p>
+<ol>
+<li><strong>Congestion aggregation</strong></li>
+<li><strong>Intra-regional failure propagation</strong></li>
+<li><strong>Inter-regional failure propagation</strong></li>
+<li><strong>Cascading fluctuation</strong></li>
+</ol>
+<p>故障通常从业务高度集中的区域开始。初始卫星失效后，其业务首先压到邻近卫星；邻居同时要承担自己的原有业务和失效节点的覆盖/中继任务，逐步形成局部拥塞。</p>
+<p>小星座由于覆盖冗余低，故障更容易在同一区域内反复传播；部分已经恢复的卫星很快又被重新增加的业务压垮，因此整体波动更剧烈。</p>
+<p>Mega-constellation拥有更密集的邻接轨道，故障能够更快从一个热点区域向其他轨道和其他热点传播，但大量剩余卫星也可以分担更多流量，使单次级联波动相对平缓。</p>
+<h2 id="Resilience-implications"><a href="#Resilience-implications" class="headerlink" title="Resilience implications"></a>Resilience implications</h2><p>论文根据传播阶段给出三类控制重点：</p>
+<ul>
+<li><strong>Initial stage：</strong>减小初始故障后的流量重分配压力，避免关键邻近卫星首先拥塞；</li>
+<li><strong>Early propagation：</strong>在两跳附近进行主动流量限制和拓扑隔离，把级联限制在局部；</li>
+<li><strong>Large-scale propagation：</strong>缩短卫星恢复时间，提高仍然可用的星座冗余。</li>
+</ul>
+<p>对于mega-constellation，作者进一步提出几个方向：在gateway密集区域使用虚拟化资源调度形成高容量逻辑节点；发现级联信号后限制跨轨道流量形成containment region；在卫星接近容量上限时，由gateway主动把业务卸载到其他可见低负载卫星。</p>
+<h2 id="Framework-implementation-guidelines"><a href="#Framework-implementation-guidelines" class="headerlink" title="Framework implementation guidelines"></a>Framework implementation guidelines</h2><p>论文强调，这个框架本身不是一套固定模型，而是一个<strong>reference framework</strong>。</p>
+<p>如果研究重点是卫星网络安全，可以主要替换Initial Disturbance模块，构造不同攻击场景。</p>
+<p>如果研究资源配置，可以重点修改Load-Resource模块中的buffer、processor、bandwidth和power模型。</p>
+<p>如果研究路由机制，可以替换Relayed Traffic中的routing algorithm，而保留组件、状态、扰动和性能指标结构。</p>
+<p>这种模块化使不同研究可以在统一建模边界内改变具体算法，避免因为每篇论文从头定义“什么是节点、什么是负载、什么叫失效”而导致结果难以比较。</p>
+<h2 id="Comparison-with-simplified-baseline-models"><a href="#Comparison-with-simplified-baseline-models" class="headerlink" title="Comparison with simplified baseline models"></a>Comparison with simplified baseline models</h2><p><img src="/pictures/2026081916.png" alt="原始模型与统一框架下重新建模后的级联结果对比"></p>
+<p>作者最后使用NeLS星座重新实现三种已有模型：CR-SIN、MA-LEO和DCF-LEO。</p>
+<p>原始模型由于静态网络、永久失效和不同负载定义等假设，得到的级联结果差异很大，彼此很难直接比较。</p>
+<p>把CR-SIN和MA-LEO放入本文框架后，加入动态轨道和过载恢复机制，二者的级联过程开始呈现明显的周期波动，其总体趋势变得更接近动态DCF-LEO和本文案例。</p>
+<p>但结果仍然不会完全相同，因为不同模型保留了不同PEC、资源和状态假设。</p>
+<p>这组对比很好地说明本文工作的定位：<strong>框架不会强迫所有研究得到相同结论，而是让研究者能够清楚知道“结论差异到底来自哪个建模假设”。</strong></p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>本文针对卫星网络级联故障研究中建模假设分散、结果难以比较的问题，提出一个由组件与耦合、负载—资源、状态转移、初始扰动和性能指标五部分组成的统一参考框架。</p>
+<p>框架进一步配套一套基于组件行为和多线程的仿真算法，使卫星轨道、星地连接、packet流、资源状态和组件运行模式能够在统一全局时间下动态演化。</p>
+<p>三种不同规模星座的案例说明，级联故障具有明显动态波动；83%以上的新故障发生在既有故障节点两跳范围内；网络级失效比例之外，packet loss、delay、load deviation和network traffic同样能够揭示严重服务退化。大规模星座虽然可能形成更广泛的跨区域传播，但更高冗余使其整体级联波动通常低于小星座。</p>
+<p>这篇文章最重要的价值并不是某一个具体失效比例，而是给出一套相对完整的<strong>“级联故障仿真应该建模什么”</strong>的结构。它把轨道动力学、业务负载、星上资源、状态变化和网络性能放在同一个分析框架中，使后续模型可以在统一边界下替换路由、资源、攻击和状态机制，并对不同假设产生的安全与可靠性结论进行可解释比较。</p>
+<h2 id="论文评价"><a href="#论文评价" class="headerlink" title="论文评价"></a>论文评价</h2><ul>
+<li><strong>推测的软件工具链：</strong> 论文明确说明全部案例使用Python 3.11.0运行，测试硬件为Intel Core i9-12900H和16 GB RAM；算法实现采用面向组件的数据结构、Queue数据包缓存、多线程组件行为和Global Time同步机制。轨道位置由Keplerian elements计算并转换到ECI坐标，网络层还需要动态邻接矩阵、路由计算和packet级处理。论文没有披露具体Python第三方库，因此不宜直接认定使用NetworkX、SimPy、Skyfield等工具；从算法描述看，核心更像作者自研的离散时间/事件混合网络仿真程序。</li>
+<li><strong>收录原因：</strong> 这篇文章抓住了卫星网络级联故障研究中一个很实际的问题：很多论文的结果差异并不是算法本身造成的，而是因为动态轨道、业务负载、资源维度、状态恢复和真实星座场景等基本假设不一致。作者没有继续提出一个孤立的“新级联公式”，而是把这些关键建模因素整理成五部分统一框架，再配套可执行算法和三种不同规模星座案例。对于RESS而言，这种工作能够提高可靠性模型的完整性、可解释性和跨研究比较能力，具有明确的方法论价值。</li>
+<li><strong>值得借鉴：</strong> 五部分框架把“系统结构—行为负载—资源约束—状态演化—扰动输入—结果指标”连接成清晰链路，非常适合复杂系统仿真驱动的安全分析；PSC/PEC的划分把真正参与故障传播的对象和只影响输入负载的环境实体区分开来；负载不是抽象中心性，而是由uplink、relay和buffer共同形成；状态模型允许拥塞、退化、保护停机和恢复，避免“故障即永久失效”的过度简化；案例同时观察Network Integrity、QoS和Operational Efficiency，也说明安全分析不能只看组件失效数量。最后，把已有模型重新放入同一框架比较的实验设计尤其值得借鉴，因为它能区分“方法差异”和“建模假设差异”。</li>
+<li><strong>可能不足：</strong> 本文提出的是参考建模框架，而案例只是其中一个具体实例，因此案例结果高度依赖作者选取的假设。公开的卫星硬件资源参数有限，buffer、processing ability和ISL bandwidth主要依据峰值流量进行参数化，并不等价于真实Starlink星上硬件；用户数据率采用统一分布，路由采用minimum-hop，PEC只简化为用户和gateway，也没有完整覆盖真实业务的昼夜变化、认证、handover、软件任务和更复杂的网络协议。状态转移虽然比传统二状态模型更真实，但仍是四个离散模式，资源变化与星上热、电源和计算硬件之间的映射属于较强简化。多线程算法强调可扩展性，但论文没有给出与成熟网络仿真器或并行离散事件仿真平台的运行效率基准。因此，这篇文章更适合作为卫星网络级联故障研究的建模“骨架”，而不是已经完成高保真工程验证的数字卫星网络模型。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2026/08/19/048/">https://ruizhe-yang.github.io/2026/08/19/048/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Satellite-Networks/">Satellite Networks</a><a class="post-meta__tags" href="/tags/Cascading-Failures/">Cascading Failures</a><a class="post-meta__tags" href="/tags/Modeling-Framework/">Modeling Framework</a><a class="post-meta__tags" href="/tags/Reliability-Analysis/">Reliability Analysis</a><a class="post-meta__tags" href="/tags/Network-Evolution/">Network Evolution</a></div><div class="post_share"><div class="social-share" data-image="/pictures/2026081910.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2026/08/19/049/" title="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment"><img class="cover" src="/pictures/2026081917.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment</div></div></a></div><div class="next-post pull-right"><a href="/2026/08/19/047/" title="笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling"><img class="cover" src="/pictures/2026081901.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/pictures/site-avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">103</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">64</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://b23.tv/3cRMvn8" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Problems-in-existing-cascading-failure-models"><span class="toc-number">2.</span> <span class="toc-text">Problems in existing cascading-failure models</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Modeling-framework"><span class="toc-number">3.</span> <span class="toc-text">Modeling framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Components-and-coupling-relationships"><span class="toc-number">4.</span> <span class="toc-text">Components and coupling relationships</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Propagation-Sensitive-Components"><span class="toc-number">4.1.</span> <span class="toc-text">Propagation-Sensitive Components</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Propagation-External-Components"><span class="toc-number">4.2.</span> <span class="toc-text">Propagation-External Components</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Coupling-relationships"><span class="toc-number">4.3.</span> <span class="toc-text">Coupling relationships</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Load-resource-model"><span class="toc-number">5.</span> <span class="toc-text">Load-resource model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Uplink-traffic"><span class="toc-number">5.1.</span> <span class="toc-text">Uplink traffic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Relayed-traffic"><span class="toc-number">5.2.</span> <span class="toc-text">Relayed traffic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Buffered-data"><span class="toc-number">5.3.</span> <span class="toc-text">Buffered data</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Satellite-resources"><span class="toc-number">6.</span> <span class="toc-text">Satellite resources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#State-transition"><span class="toc-number">7.</span> <span class="toc-text">State transition</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Normal-Operation"><span class="toc-number">7.1.</span> <span class="toc-text">Normal Operation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Congestion-Control"><span class="toc-number">7.2.</span> <span class="toc-text">Congestion Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Performance-Degradation"><span class="toc-number">7.3.</span> <span class="toc-text">Performance Degradation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shutdown-Self-check"><span class="toc-number">7.4.</span> <span class="toc-text">Shutdown Self-check</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Initial-perturbation"><span class="toc-number">8.</span> <span class="toc-text">Initial perturbation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Permanent-failure-perturbation"><span class="toc-number">8.1.</span> <span class="toc-text">Permanent failure perturbation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Traffic-related-perturbation"><span class="toc-number">8.2.</span> <span class="toc-text">Traffic-related perturbation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Complex-attack-perturbation"><span class="toc-number">8.3.</span> <span class="toc-text">Complex attack perturbation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Performance-metrics"><span class="toc-number">9.</span> <span class="toc-text">Performance metrics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Network-integrity"><span class="toc-number">9.1.</span> <span class="toc-text">Network integrity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quality-of-Service"><span class="toc-number">9.2.</span> <span class="toc-text">Quality of Service</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Operational-efficiency"><span class="toc-number">9.3.</span> <span class="toc-text">Operational efficiency</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Simulation-algorithm"><span class="toc-number">10.</span> <span class="toc-text">Simulation algorithm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Global-cascading-simulation"><span class="toc-number">11.</span> <span class="toc-text">Global cascading simulation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-study"><span class="toc-number">12.</span> <span class="toc-text">Case study</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Network-performance-under-cascading-failures"><span class="toc-number">13.</span> <span class="toc-text">Network performance under cascading failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cascading-propagation-patterns"><span class="toc-number">14.</span> <span class="toc-text">Cascading propagation patterns</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spatial-distribution-of-failures"><span class="toc-number">15.</span> <span class="toc-text">Spatial distribution of failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hardware-resource-configuration-reliability"><span class="toc-number">16.</span> <span class="toc-text">Hardware resource configuration reliability</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cascading-evolution-mechanism"><span class="toc-number">17.</span> <span class="toc-text">Cascading evolution mechanism</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Resilience-implications"><span class="toc-number">18.</span> <span class="toc-text">Resilience implications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Framework-implementation-guidelines"><span class="toc-number">19.</span> <span class="toc-text">Framework implementation guidelines</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Comparison-with-simplified-baseline-models"><span class="toc-number">20.</span> <span class="toc-text">Comparison with simplified baseline models</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">21.</span> <span class="toc-text">Conclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E8%AF%84%E4%BB%B7"><span class="toc-number">22.</span> <span class="toc-text">论文评价</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/19/049/" title="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment"><img src="/pictures/2026081917.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment"/></a><div class="content"><a class="title" href="/2026/08/19/049/" title="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment">笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment</a><time datetime="2026-08-19T04:36:00.000Z" title="Created 2026-08-19 12:36:00">2026-08-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/19/048/" title="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks"><img src="/pictures/2026081910.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks"/></a><div class="content"><a class="title" href="/2026/08/19/048/" title="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks">笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks</a><time datetime="2026-08-19T04:10:00.000Z" title="Created 2026-08-19 12:10:00">2026-08-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/19/047/" title="笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling"><img src="/pictures/2026081901.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling"/></a><div class="content"><a class="title" href="/2026/08/19/047/" title="笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling">笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling</a><time datetime="2026-08-19T04:00:00.000Z" title="Created 2026-08-19 12:00:00">2026-08-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/18/046/" title="笔记：AADL-Based safety analysis using formal methods applied to aircraft digital systems"><img src="/pictures/2026081808.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：AADL-Based safety analysis using formal methods applied to aircraft digital systems"/></a><div class="content"><a class="title" href="/2026/08/18/046/" title="笔记：AADL-Based safety analysis using formal methods applied to aircraft digital systems">笔记：AADL-Based safety analysis using formal methods applied to aircraft digital systems</a><time datetime="2026-08-18T05:00:00.000Z" title="Created 2026-08-18 13:00:00">2026-08-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/18/045/" title="笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda"><img src="/pictures/2026081801.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda"/></a><div class="content"><a class="title" href="/2026/08/18/045/" title="笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda">笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda</a><time datetime="2026-08-18T04:00:00.000Z" title="Created 2026-08-18 12:00:00">2026-08-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: '036ee099d465215842cfc247e0805a67',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
