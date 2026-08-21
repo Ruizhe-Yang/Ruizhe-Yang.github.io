@@ -1,0 +1,689 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis Abstraction  The complexity of systems is rapidly increasing to meet evo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2026/08/21/050/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis Abstraction  The complexity of systems is rapidly increasing to meet evo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ruizhe-yang.github.io/pictures/2026082101.png">
+<meta property="article:published_time" content="2026-08-21T09:33:00.000Z">
+<meta property="article:modified_time" content="2026-08-21T09:33:00.000Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="FMEA">
+<meta property="article:tag" content="FTA">
+<meta property="article:tag" content="Fault Signature Matrix">
+<meta property="article:tag" content="Root Cause Analysis">
+<meta property="article:tag" content="Fault Propagation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruizhe-yang.github.io/pictures/2026082101.png"><link rel="shortcut icon" href="/pictures/site-favicon.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2026/08/21/050/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-08-21 17:33:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/pictures/site-avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">50</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">106</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">64</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/pictures/2026082101.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="/pictures/site-logo.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-08-21T09:33:00.000Z" title="Created 2026-08-21 17:33:00">2026-08-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-08-21T09:33:00.000Z" title="Updated 2026-08-21 17:33:00">2026-08-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/">Journal</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/RESS/">RESS</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/RESS/2026/">2026</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">9.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>35mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.ress.2026.112469">Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis</a></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>The complexity of systems is rapidly increasing to meet evolving global demands. These systems possess intricate architectures with numerous components that challenge fault diagnosis and failure prediction. A primary challenge is fault propagation, where failures cascade throughout interconnected components. Traditional reliability methods struggle to effectively address the propagation of failures and identify their root causes. Similarly, existing research is primarily based on the use of sensors and data-driven methodologies for system monitoring. Yet, the diagnostic process still relies heavily on available knowledge and operator experience. To address these challenges, this study introduces a fault diagnosis framework that enhances reliability and resilience in complex systems. The proposed approach extends the traditional static Fault Signature Matrix (FSM) to a time-dependent representation via a failure-sequence line that orders symptoms, integrating failure analysis (via Failure Modes and Effects Analysis, FMEA), interaction analysis (using Fault Tree Analysis, FTA), and a heuristic-based causal inference approach. This integration facilitates systematic knowledge retrieval, analyzes functional component relationships, and assesses how individual failures affect other components. The methodology is demonstrated on a solid oxide fuel cell system, an emerging technology. Results reveal that multiple failure modes can lead to identical stack-level failures, highlighting the importance of linking component failures to their actual root causes. The findings offer significant insights for the field, helping system operators to understand the underlying failure mechanisms and enabling timely preventive actions to mitigate risks.</p>
+</blockquote>
+<p>摘要翻译：为了满足不断发展的全球需求，工程系统的复杂程度正在快速提高。这类系统通常具有复杂架构和大量相互连接的组件，因此故障诊断和失效预测都变得更加困难。其中一个主要挑战是故障传播，即某个组件中的失效会沿着组件之间的连接和功能依赖逐步传播到系统其他部分。传统可靠性方法在有效描述故障传播并识别真正根因方面仍存在不足。与此同时，当前研究大量依靠传感器以及数据驱动方法开展系统监测，但实际诊断过程仍然高度依赖已有系统知识和现场操作人员的经验。针对这些问题，本文提出一个面向复杂系统的故障诊断框架，以提高系统可靠性和韧性。该方法在传统静态Fault Signature Matrix（FSM）的基础上增加时间依赖信息，通过一条按照症状出现顺序组织的failure-sequence line，将Failure Modes and Effects Analysis（FMEA）失效分析、Fault Tree Analysis（FTA）交互关系分析以及启发式因果推理结合起来。通过这种方式，已有工程知识可以被系统化检索，组件之间的功能关系能够得到分析，并能够进一步判断某个局部故障会如何影响其他组件。论文以Solid Oxide Fuel Cell（SOFC）系统进行演示。结果表明，不同Failure Modes可能最终产生完全相同的Stack-level Failure表现，因此将最终故障与真正Root Cause重新关联非常重要。本文方法能够帮助操作人员理解潜在故障机理，并在最终严重后果出现以前采取及时的预防措施。</p>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>现代工程系统的复杂性主要来自三个方面：规模不断扩大、系统中组件类型越来越多、组件之间的连接和依赖越来越密集。航空航天、汽车和工业系统都面临同样的问题：系统功能更强，但一个局部组件的异常也更容易通过接口和功能依赖影响其他组件，使可靠性、安全性和性能分析更加困难。</p>
+<p>故障诊断尤其受到这种复杂性的影响。论文指出，复杂系统中Root Cause、Fault和Fault Symptom之间通常并不存在简单的一一对应关系。一个Root Cause可以引起多个Fault，一个Fault又可能产生多个Symptom；反过来，同一个Symptom也可能来自多个不同Fault，而同一个Fault也可能具有多个潜在Root Causes。因此，真正困难的并不是“有没有异常”，而是如何从已经观察到的症状重新恢复它们背后的因果关系。</p>
+<p>目前Sensors和Data-driven Models已经被广泛用于Fault Diagnosis和Health Monitoring，但实际工业诊断仍然大量依靠专家和现场操作人员判断。Maintenance Logs、Fault Records以及其他历史文档中积累了很多有效知识，但这些知识通常以文本和表格的形式分散保存，缺少直观、系统和可重复的检索方式。本文因此并不试图完全以新的机器学习模型替代工程知识，而是希望把已有FMEA、FTA、故障记录和领域经验重新组织成一种透明的诊断结构。</p>
+<p>Fault Signature Matrix（FSM）正是本文选择的基础工具。FSM能够以紧凑矩阵的形式建立Hypothesized Failure Modes和Measurable Symptoms之间的关系，但传统FSM通常是静态的：它只告诉分析人员“一个故障应该出现哪些症状”，没有记录这些症状<strong>何时出现、以什么顺序出现以及沿哪些组件传播</strong>。当多个故障共享同一组最终症状时，这种静态表示就很难继续向上游定位Root Cause。</p>
+<p><img src="/pictures/2026082102.png" alt="传统FSM与本文扩展FSM的对比"></p>
+<h3 id="1-1-Automated-fault-diagnosis-in-complex-systems"><a href="#1-1-Automated-fault-diagnosis-in-complex-systems" class="headerlink" title="1.1. Automated fault diagnosis in complex systems"></a>1.1. Automated fault diagnosis in complex systems</h3><p>复杂系统中一个常见的自动Fault Diagnosis思路是Residual-based Diagnosis，即把实际系统测量结果与模型预测值比较，形成Residual。当Residual超过设定Threshold时，就认为相关变量出现异常。</p>
+<p>Residual也是构建Fault Signature的重要基础。已有工作利用Physics-based Knowledge提高Residual提取质量，也有研究将Residual进一步处理成二维Health Image并输入CNN，还有研究通过Bayesian Deep Learning表达Fault Signature的不确定性，或者通过Feature Filtering和Mapping提高实时诊断的特征可分性。</p>
+<p>这些工作说明从Sensor Data中提取可靠Fault Signature非常重要，但本文进一步强调：<strong>Fault Signature本身仍然需要被解释。</strong></p>
+<p>实际传感器可能存在Noise、Missing Data或不完整测量。此时Domain Expertise仍然参与多个环节，包括：</p>
+<ul>
+<li>决定哪些Sensor Signals值得采集；</li>
+<li>确定采样频率；</li>
+<li>对Sensor Data进行Pre-processing；</li>
+<li>判断一个Observed Pattern是否具有故障意义；</li>
+<li>将数据模式重新关联到特定组件和Failure Mechanism。</li>
+</ul>
+<p>因此，本文更关注Knowledge-based Approach。作者认为，在下一代Fault Diagnosis中，一个重要问题是如何把多个组件上的Monitoring Information和系统结构知识一起组织起来，使Raw Data能够转化为Actionable Information。</p>
+<h3 id="1-2-Fault-signature-matrix-in-residual-based-approaches"><a href="#1-2-Fault-signature-matrix-in-residual-based-approaches" class="headerlink" title="1.2. Fault signature matrix in residual-based approaches"></a>1.2. Fault signature matrix in residual-based approaches</h3><p>传统FSM主要包含Faults和Symptoms两个核心元素。Symptoms通常来自Sensor Readings、Residuals或其他Monitored Variables。当Fault发生时，与该Fault相关的Symptom Entry被标记为1，否则为0。</p>
+<p>论文使用一个简单矩阵说明FSM的Detection和Isolation能力：</p>
+<ul>
+<li><code>f1 = [0,0,0,0,0]</code>：没有任何关联症状，因此既不能检测，也不能隔离；</li>
+<li><code>f2 = [1,0,1,0,0]</code></li>
+<li><code>f3 = [1,0,1,0,0]</code></li>
+</ul>
+<p><code>f2</code>和<code>f3</code>虽然可以检测，但因为它们具有完全相同的Symptom Vector，所以无法相互隔离；</p>
+<ul>
+<li><code>f4 = [1,1,1,0,0]</code></li>
+</ul>
+<p><code>f4</code>具有Unique Symptom Vector，因此既可以Detection，也可以Isolation。</p>
+<p>FSM曾经广泛应用于Fault Diagnosis，但随着系统复杂程度提高，其使用逐渐减少。作者认为主要原因有三点。</p>
+<p>第一，Traditional FSM建立的是Static Fault-Symptom Relationship。它无法描述一个症状是在故障发生后立即产生，还是经过其他组件传播以后才产生。因此，它对Dynamic或Time-varying Behavior的表达能力有限。</p>
+<p>第二，虽然FSM表中可以列出多个Faults，但推理往往仍然基于Single-fault Assumption。若两个Fault同时存在，Measured Symptom Vector可能不再与矩阵中的任何单独一行匹配，也可能与另一种Failure Signature混淆。</p>
+<p>第三，即使某些FSM是在FTA之后建立，因此包含一定Interdependency Information，Traditional FSM通常也只把相关Symptoms放入同一行，而没有说明这些Symptoms之间的Causal Path。也就是说，它记录Correlation，但没有明确记录Propagation Direction和Temporal Sequence。</p>
+<p>作者认为，FSM并不是没有价值，而是它没有充分利用前置Failure Analysis中已经形成的系统知识。如果能够把FMEA、FTA和维修经验中的因果信息重新映射到FSM中，它仍然可以成为Knowledge-based与Data-based方法之间的有效接口。</p>
+<h3 id="1-3-Contribution-of-this-paper"><a href="#1-3-Contribution-of-this-paper" class="headerlink" title="1.3. Contribution of this paper"></a>1.3. Contribution of this paper</h3><p>本文提出一种Qualitative、Knowledge-driven的Traditional FSM Extension。</p>
+<p>核心新增内容是<code>failure-sequence line</code>。它不再只把Symptoms放在一个无序集合中，而是根据它们在故障传播过程中的先后关系进行排列。这样，FSM从Static Association转化为带有Temporal Precedence的Representation。</p>
+<p>这项工作建立在作者之前将FMEA与FTA结合构建FSM的研究基础上。此前的Phase 1和Phase 2分别负责：</p>
+<ul>
+<li>FMEA：Failure Analysis；</li>
+<li>FTA：Interaction Analysis。</li>
+</ul>
+<p>本文进一步增加Phase 3：</p>
+<ul>
+<li>Heuristic Causal Inference。</li>
+</ul>
+<p>Phase 3对Symptoms分配不同Timing Labels，并明确区分Intermediate Symptoms和Consequence Symptoms，最终形成Failure-sequence Line。</p>
+<p>作者使用三个Timing Labels：</p>
+<ul>
+<li><code>X</code>：Initial Effect；</li>
+<li><code>1</code>：Immediate Effect；</li>
+<li><code>2</code>：Delayed Effect。</li>
+</ul>
+<p>另一个重要改进是保留Symptom Polarity。例如不再写“Temperature Abnormal”，而是写High Temperature或Low Temperature；不再只写“Flow Abnormal”，而是写Increase或Decrease。这样即使Sensor Family完全相同，也可能通过Directionality提高Fault Isolation能力。</p>
+<p>论文主要贡献最终概括为两点：</p>
+<ul>
+<li>将Fault Signature Matrix扩展为Time-dependent Version；</li>
+<li>在SOFC系统中完整展示这种Fault Diagnosis Framework。</li>
+</ul>
+<h2 id="2-Development-of-extended-FSM"><a href="#2-Development-of-extended-FSM" class="headerlink" title="2. Development of extended FSM"></a>2. Development of extended FSM</h2><p>本文首先给出Extended FSM的一般开发方法。目标是解决两个问题：一是如何系统提取已经存在于Maintenance Logs、Troubleshooting Manuals和专家经验中的Knowledge；二是如何描述某个组件性能退化后，通过功能依赖继续影响其他组件，最终降低系统总体性能。</p>
+<p><img src="/pictures/2026082101.png" alt="扩展FSM方法的整体技术框架"></p>
+<p>Traditional FSM通常在Failure Analysis结束以后直接构造，而本文增加了一个完整的三阶段流程：</p>
+<ol>
+<li>FMEA完成Failure Analysis；</li>
+<li>FTA完成Interaction Analysis；</li>
+<li>Heuristic Causal Inference把症状按照传播顺序重新组织。</li>
+</ol>
+<p>这种组织的意义在于：FMEA负责保证Failure Mode和Effect信息完整，FTA负责保证Interdependency显式进入模型，而Phase 3则把这些关系真正转换成可用于Diagnosis的Ordered Signature。</p>
+<p><img src="/pictures/2026082103.png" alt="Extended FSM的三个Phase与具体步骤"></p>
+<h3 id="2-1-Failure-analysis"><a href="#2-1-Failure-analysis" class="headerlink" title="2.1. Failure analysis"></a>2.1. Failure analysis</h3><p>Phase 1使用FMEA，但作者强调这里关注的是System-level Failure Analysis，而不是只在Component Level逐项列故障。</p>
+<p><strong>Step 1.1: Select a component</strong></p>
+<p>首先列出分析范围中的Components和Subsystems，并明确每个组件的Purpose和Intended Function。随着系统规模扩大，直接分析全部组件会导致工作量迅速增长，因此作者建议必要时先使用Criticality Screening等成熟方法缩小候选集。</p>
+<p><strong>Step 1.2: Identify gradual degradation failures modes</strong></p>
+<p>识别每个组件可能发生的Gradual Degradation Failure Modes，即随着时间逐渐恶化并影响组件功能的失效机制。</p>
+<p>Extended FSM最适合Wear、Corrosion、Fouling等具有连续发展过程的机制，因为这类Failure Mode通常会逐步产生一系列可以观测的症状，非常适合构造Fault Propagation Path。</p>
+<p>Fatigue等Failure Mechanism则有所不同。由于其内部演化很难通过非破坏方式直接观察，在System Level上经常表现为Sudden、Irreversible Event。因此它虽然仍然可以进入Extended FSM，但通常对应一个近似零Propagation Window的Immediate或Consequence Event，最终表现和Classical FSM比较接近。</p>
+<p>对于经验不足的分析人员，作者建议在这一阶段充分利用Maintenance Logs、Troubleshooting Manuals以及其他Documented Knowledge。</p>
+<p><strong>Step 1.3: Determine causes and effects of each failure mode</strong></p>
+<p>确定每个Failure Mode的Causes，并继续确定其Effects。这里的Effect不只局限于当前组件内部，还要明确这种异常是否会继续影响其他Subsystem Units。</p>
+<p><strong>Step 1.4: Determine observable system variables to detect each failure mode</strong></p>
+<p>确定可以用于识别该Failure Mode的Observable System Variables。这些Observable可以包括：</p>
+<ul>
+<li>Sensor Measurements；</li>
+<li>Inspection Findings；</li>
+<li>Visual Observations；</li>
+<li>Simple Computed Residuals。</li>
+</ul>
+<p>这一步不是Traditional FMEA的标准列项，但对本文方法非常重要，因为Observable Symptom就是后续Failure Propagation Path的起点。</p>
+<p>如果Failure Mode没有Direct Sensor，例如内部Catalyst Degradation，可以把它标记为Latent，并根据Physics或Simple Observer指定一个或多个Proxy Observables。</p>
+<p>作者还特别强调实际部署时需要由Domain Experts确定Threshold和Directionality，例如：</p>
+<ul>
+<li>High / Low；</li>
+<li>Increasing / Decreasing；</li>
+</ul>
+<p>相对于Nominal Condition的偏移。由于这些阈值高度依赖具体系统，论文没有统一给出。</p>
+<h3 id="2-2-Interaction-analysis"><a href="#2-2-Interaction-analysis" class="headerlink" title="2.2. Interaction analysis"></a>2.2. Interaction analysis</h3><p>Phase 2研究一个组件状态对其他组件的影响，也就是Functional Dependency。</p>
+<p>组件越多，Dependency数量通常越大，而具有强Functional Tie的组件之间也更容易发生Fault Propagation。本文继续采用FTA显式表示这种Cause-effect Relationship。</p>
+<p>作者并不是把FTA主要作为概率计算工具，而是把它作为<strong>组件传播关系的结构化表示工具</strong>。</p>
+<p><strong>Step 2.1: Select the most critical component</strong></p>
+<p>首先选择Most Critical Component，并把其最不希望发生的状态设置为FTA Top Event。</p>
+<p>论文假设关键组件已经知道；如果未知，建议先在Phase 1中执行FMECA，通过Criticality Assessment确定最关键对象。</p>
+<p><strong>Step 2.2: Identify first-level components</strong></p>
+<p>识别能够直接导致Top Event的组件。它们属于First-level Components，在FTA中表示Direct Events。</p>
+<p><strong>Step 2.3: Identify second-level components</strong></p>
+<p>针对每个First-level Component，继续寻找能够导致其Failure的其他Components。这些属于Second-level Components，是Indirect Events。</p>
+<p><strong>Step 2.4: Assign failure modes for each level</strong></p>
+<p>为FTA不同层级组件分配Phase 1中识别的Specific Failure Modes。</p>
+<p>完成以后，FTA就不再只是“组件A和组件B与Top Event有关”，而是明确：</p>
+<p><code>Component + Failure Mode → Downstream Component + Failure Mode → Top Event</code></p>
+<p>由此得到后续Causal Inference能够使用的Propagation Skeleton。</p>
+<h3 id="2-3-Causal-inference-approach"><a href="#2-3-Causal-inference-approach" class="headerlink" title="2.3. Causal inference approach"></a>2.3. Causal inference approach</h3><p>Phase 3是本文在之前工作基础上的主要新增部分。</p>
+<p>Fault Propagation被定义为由Initial Trigger开始、沿多个系统组件连续发展的Sequential Degradation Process。因此，仅知道FTA中谁依赖谁还不够，还需要把具体Symptoms放到传播路径上并确定它们的Temporal Order。</p>
+<p>作者将Effects分成三类：</p>
+<ul>
+<li><strong>Initial Effect（X）</strong>：离Failure Mode最近、最先能够测量到的Symptom；</li>
+<li><strong>Immediate Effect（1）</strong>：通常发生在同一Component中，或者属于First-hop Consequence；</li>
+<li><strong>Delayed Effect（2）</strong>：需要进一步沿System Dependency传播后才能出现，通常已经影响到下游Component。</li>
+</ul>
+<p>这里的Expert Knowledge并不是完全自由发挥。FMEA已经限定了Failure Modes、Causes和Effects；FTA已经限定了Allowed Links。因此专家的任务主要是沿这些Documented Paths确定Directionality和Temporal Ordering。</p>
+<p>作者认为，只要分析人员共享相似的System Knowledge，他们对主要传播方向和症状顺序应该能够形成较一致判断，即使不同专家最终给出的Sequence Granularity可能不同。</p>
+<p><strong>Step 3.1: Select a failure mode</strong></p>
+<p>针对每个Component，从Phase 1选取一个Failure Mode。</p>
+<p><strong>Step 3.2: Identify initial effect</strong></p>
+<p>把Step 1.4中确定的Observable Variable作为该Failure Mode的Initial Effect。</p>
+<p><strong>Step 3.3: Generate a failure scenario</strong></p>
+<p>从Initial Effect出发，根据Phase 2建立的Propagation Paths继续推理该故障对附近组件产生的Immediate或Delayed Effects。传播速度取决于Failure Mode性质：严重故障可能快速传播，而Gradual Degradation可能经过较长时间才影响下游组件。</p>
+<p><img src="/pictures/2026082104.png" alt="Extended FSM中Initial、Immediate和Delayed Effect的构造方式"></p>
+<h3 id="2-4-Example"><a href="#2-4-Example" class="headerlink" title="2.4. Example"></a>2.4. Example</h3><p>作者使用一个由A、B、C、D、E五个组件组成的简单系统说明方法。</p>
+<p>设Component C依赖A和B，Component E依赖C和D，且E是Critical Component。</p>
+<p>如果A发生Failure，异常会先影响C，再进一步影响E。Traditional FSM能够告诉分析人员A的Failure对应<code>sA、sC、sE</code>等Symptoms，但这些Symptoms是无序的。</p>
+<p>Extended FSM则把它表达为：</p>
+<p><code>sA → sC → sE</code></p>
+<p>因此，同样是Component E出现Failure，如果此前先出现<code>sA</code>，就可以把Root Cause追溯到A；若另一条路径来自B、C、D或E自身，则会形成不同的Failure-sequence Line。</p>
+<p>论文强调，这种差异并不是简单地“把其他组件Symptoms增加到矩阵中”，而是显式加入Inter-component Dependencies和Sequential Emergence of Symptoms。</p>
+<p>Traditional FSM通常提供Single-fault View，而Extended FSM可以表示多个Simultaneous或Competing Propagation Pathways，因而更适合复杂系统中的Simultaneous Fault Diagnosis。</p>
+<h2 id="3-Application-and-demonstration-of-extended-FSM"><a href="#3-Application-and-demonstration-of-extended-FSM" class="headerlink" title="3. Application and demonstration of extended FSM"></a>3. Application and demonstration of extended FSM</h2><p>作者选择Solid Oxide Fuel Cell（SOFC）作为Case Study。</p>
+<p>SOFC具有典型复杂系统特征：</p>
+<ul>
+<li>Component数量较多；</li>
+<li>同时包含Electrochemical Reaction、Heat Transfer和Mass Transport等Multi-scale Processes；</li>
+<li>一个Component的性能明显依赖其他Components，因此Interdependency很强。</li>
+</ul>
+<p>这使SOFC非常适合展示Root Cause Identification和Fault Propagation Analysis。</p>
+<h3 id="3-1-Layout"><a href="#3-1-Layout" class="headerlink" title="3.1. Layout"></a>3.1. Layout</h3><p><img src="/pictures/2026082105.png" alt="SOFC系统结构与监测位置"></p>
+<p>案例使用一个Fuel Pre-reformed SOFC System。Stack周围的主要组件包括：</p>
+<ul>
+<li>Air Blower；</li>
+<li>Air Pre-heater；</li>
+<li>Fuel Pre-reformer；</li>
+<li>Post-burner。</li>
+</ul>
+<p>Air Blower向Stack Cathode提供足够空气。空气除了参与Electrochemical Reaction，还用于Stack Cooling。</p>
+<p>Air Pre-heater保证进入Stack的空气达到合适Operating Temperature。</p>
+<p>Fuel Pre-reformer将输入燃料处理成Hydrogen-rich Fuel，并把Hydrogen送入Stack Anode。</p>
+<p>Post-burner回收Exhaust Gas中的Heat，并将其重新提供给Pre-reformer和Air Pre-heater，也可以用于其他Cogeneration Applications。</p>
+<p>Stack完成Chemical Energy到Electrical Energy的转换。</p>
+<p>Fig. 8中的A～K表示后续用于Monitoring和Failure Analysis的具体位置。</p>
+<h3 id="3-2-Phase-1-failure-analysis"><a href="#3-2-Phase-1-failure-analysis" class="headerlink" title="3.2. Phase 1: failure analysis"></a>3.2. Phase 1: failure analysis</h3><p>作者基于已有SOFC FTA研究信息进一步构造FMEA。由于方法具有Design-oriented特点，其目标是在SOFC实际运行前识别可能导致Stack Failure的问题。</p>
+<p><img src="/pictures/2026082106.png" alt="SOFC系统的FMEA结果"></p>
+<h4 id="3-2-1-Step-1-1-select-a-component"><a href="#3-2-1-Step-1-1-select-a-component" class="headerlink" title="3.2.1. Step 1.1: select a component"></a>3.2.1. Step 1.1: select a component</h4><p>本文分析四个主要组件：</p>
+<ol>
+<li><strong>Air blower</strong>：向Stack提供所需Air Flow，同时承担Cooling功能。由于SOFC通常需要较高Volumetric Flow，Air Blower也是系统中Energy Consumption很高的设备。</li>
+<li><strong>Air pre-heater</strong>：保证Stack工作在正确Temperature范围。</li>
+<li><strong>Pre-reformer</strong>：将Fuel转换为Hydrogen-rich Gas，为SOFC Stack提供足够Hydrogen。</li>
+<li><strong>Stack</strong>：通过Electrochemical Reactions把Chemical Energy转换为Electrical Energy。</li>
+</ol>
+<h4 id="3-2-2-Step-1-2-identify-gradual-degradation-failures-modes"><a href="#3-2-2-Step-1-2-identify-gradual-degradation-failures-modes" class="headerlink" title="3.2.2. Step 1.2: identify gradual degradation failures modes"></a>3.2.2. Step 1.2: identify gradual degradation failures modes</h4><p>主要Gradual Degradation Failure Modes记录在FMEA中。</p>
+<p>Air Blower包含Fouled Air Filter、Air Flow Leakage、Surface Fouling等。</p>
+<p>Air Pre-heater包含Piping Air Leakage、Cold Air Flow、Overheating和Surface Fouling。</p>
+<p>Pre-reformer包含Fuel Leakage、Overheating、Surface Fouling。</p>
+<p>Stack主要考虑Excessive Current Density和Electrolyte Degradation。</p>
+<p>这些Failure Modes都能够通过Flow、Pressure、Temperature、Voltage或Power等变量产生可识别Effects。</p>
+<h4 id="3-2-3-Step-1-3-determine-causes-and-effects-of-each-failure-mode"><a href="#3-2-3-Step-1-3-determine-causes-and-effects-of-each-failure-mode" class="headerlink" title="3.2.3. Step 1.3: determine causes and effects of each failure mode"></a>3.2.3. Step 1.3: determine causes and effects of each failure mode</h4><p><strong>Air blower</strong></p>
+<p>Blocked/Restricted Air Intake是常见Failure。Filter随着运行积累Impurities，会增加Airflow Resistance并降低Filtration Effectiveness。环境中的污染物也会积累在部件表面。</p>
+<p>Air Leakage可能由Loose Fittings、Seal Problems、Worn Valves等引起，从而显著降低Air Blower Efficiency。</p>
+<p><strong>Air pre-heater</strong></p>
+<p>Piping Air Leakage使Air Intake不足，会破坏Energy Conversion Process，增加System Temperature和Fuel Consumption。</p>
+<p>Pre-reformer异常还可能以两种方式影响Pre-heater：</p>
+<ul>
+<li>Cold Airflow使Pre-heater温度下降；</li>
+<li>Overheating使Pre-heater Outlet Temperature异常升高。</li>
+</ul>
+<p>长期运行形成的Fouling Deposit会阻碍Heat Transfer，降低Pre-heater Efficiency。</p>
+<p><strong>Pre-reformer</strong></p>
+<p>Fuel Flow Leakage会使Stack Anode获得的Fuel不足，并导致Fuel Consumption上升。</p>
+<p>Post-burner Degradation可能造成Outlet Temperature过高，使Pre-reformer出现Overheating。</p>
+<p>Surface Fouling会降低Pre-reformer Efficiency。</p>
+<p><strong>Stack</strong></p>
+<p>Excessive Current Density通常来自过高Power Demand或Operational Error，会增加Ohmic Loss和Local Heat Generation，并加速Degradation和Thermal Stress。</p>
+<p>Electrolyte Damage/Degradation会降低Ionic Conductivity，使Electrochemical Reaction Rate下降、Ohmic Resistance上升，最终使Stack Temperature和Performance下降。</p>
+<h4 id="3-2-4-Step-1-4-determine-observable-system-variables-to-detect-each-failure-mode"><a href="#3-2-4-Step-1-4-determine-observable-system-variables-to-detect-each-failure-mode" class="headerlink" title="3.2.4. Step 1.4: determine observable system variables to detect each failure mode"></a>3.2.4. Step 1.4: determine observable system variables to detect each failure mode</h4><p>FMEA最后为每个Failure Mode绑定可观测Symptoms。</p>
+<p>论文共使用Flow（F）、Pressure（P）、Temperature（T）、Voltage（V）、Current（I）等Sensor Families。</p>
+<p>例如：</p>
+<ul>
+<li>Low Air Flow；</li>
+<li>Decrease in Pressure；</li>
+<li>High Temperature；</li>
+<li>Low Temperature；</li>
+<li>Decrease in Voltage；</li>
+<li>Gradual Reduction in Power；</li>
+<li>Sudden Drop in Power。</li>
+</ul>
+<p>这些Symptoms不仅用于Detection，也会成为Phase 3中Failure-sequence Line的节点。</p>
+<h2 id="3-3-Phase-2-interaction-analysis"><a href="#3-3-Phase-2-interaction-analysis" class="headerlink" title="3.3. Phase 2: interaction analysis"></a>3.3. Phase 2: interaction analysis</h2><p>这一阶段通过FTA识别SOFC组件之间最重要的Dependencies，并由此确定Failure Propagation Paths。</p>
+<p><img src="/pictures/2026082107.png" alt="以SOFC Stack Failure为Top Event的FTA"></p>
+<h3 id="3-3-1-Step-2-1-select-the-most-critical-component"><a href="#3-3-1-Step-2-1-select-the-most-critical-component" class="headerlink" title="3.3.1. Step 2.1: select the most critical component"></a>3.3.1. Step 2.1: select the most critical component</h3><p>Stack是Fuel Cell Power System的核心，因此被选为Most Critical Component，即FTA Top Event。</p>
+<p>这意味着本文主要研究哪些Failure Paths最终能够导致Stack Failure。</p>
+<h3 id="3-3-2-Step-2-2-identify-first-level-components"><a href="#3-3-2-Step-2-2-identify-first-level-components" class="headerlink" title="3.3.2. Step 2.2: identify first-level components"></a>3.3.2. Step 2.2: identify first-level components</h3><p>除Stack本身外，系统还有Air Blower、Air Pre-heater、Pre-reformer和Post-burner等Relevant Components。</p>
+<p>Post-burner会通过Heat Exchange同时影响Pre-reformer和Air Pre-heater，理论上可能形成Closed Loop。为了避免把分析扩展成无限循环，本文只在与其相关的Propagation Path中考虑Post-burner对Pre-reformer的影响。</p>
+<p>因此，本Interaction Analysis主要保留四个组件：</p>
+<ul>
+<li>Air Blower；</li>
+<li>Air Pre-heater；</li>
+<li>Pre-reformer；</li>
+<li>Stack。</li>
+</ul>
+<p>其中Air Pre-heater和Pre-reformer直接影响Stack，因此属于First-level Components / Direct Events。</p>
+<h3 id="3-3-3-Step-2-3-identify-second-level-components"><a href="#3-3-3-Step-2-3-identify-second-level-components" class="headerlink" title="3.3.3. Step 2.3: identify second-level components"></a>3.3.3. Step 2.3: identify second-level components</h3><p>Air Blower会影响Air Pre-heater，因此Air Blower属于Second-level Component。</p>
+<p>Post-burner会影响Pre-reformer，因此它也位于Pre-reformer对应Propagation Branch的上游。</p>
+<p>这些Second-level Events属于Indirect Events，因为它们不会立即作用到Stack，而是首先改变First-level Component，然后进一步传播。</p>
+<h3 id="3-3-4-Step-2-4-assign-failure-modes-for-each-level"><a href="#3-3-4-Step-2-4-assign-failure-modes-for-each-level" class="headerlink" title="3.3.4. Step 2.4: assign failure modes for each level"></a>3.3.4. Step 2.4: assign failure modes for each level</h3><p>把FMEA中已经识别的Specific Failure Modes分配到FTA不同层级。</p>
+<p>完成后，FTA可以同时告诉分析人员：</p>
+<ul>
+<li>哪个Component是Root Cause所在位置；</li>
+<li>它发生的是哪一种Failure Mode；</li>
+<li>它通过哪个Component继续向Stack传播。</li>
+</ul>
+<p>因此Phase 2为Phase 3构造Causal Sequence提供明确拓扑基础。</p>
+<h2 id="3-4-Phase-3-causal-inference-approach"><a href="#3-4-Phase-3-causal-inference-approach" class="headerlink" title="3.4. Phase 3: causal inference approach"></a>3.4. Phase 3: causal inference approach</h2><p>Phase 2已经说明不同组件之间的Dependency，但仍没有回答“应该监测什么Signal”和“这些Signal什么时候出现”。</p>
+<p>Phase 3把System Variables和Failure States连接起来，使用Heuristic Causal Inference建立Propagation Paths。</p>
+<p>论文给出两个前提。</p>
+<p>第一，每个Failure Mode都可以作为一个Failure Scenario的起点。Stack本身可以由于Excessive Current Density或Electrolyte Degradation独立失效，也可以受到其他组件的Degradation影响。</p>
+<p>第二，本文只分析最Relevant Failures，而不是试图穷尽SOFC中所有High-level Degradation Mechanisms。重点是说明Root Cause、Fault Type和Fault Symptoms之间的关系。</p>
+<h3 id="3-4-1-Step-3-1-select-a-failure-mode-and-Step-3-2-identify-initial-effect"><a href="#3-4-1-Step-3-1-select-a-failure-mode-and-Step-3-2-identify-initial-effect" class="headerlink" title="3.4.1. Step 3.1: select a failure mode; and Step 3.2: identify initial effect"></a>3.4.1. Step 3.1: select a failure mode; and Step 3.2: identify initial effect</h3><p>从FMEA中逐个选择Failure Mode，并把Step 1.4确定的Detection Symptom作为Initial Effect。</p>
+<p>例如：</p>
+<ul>
+<li>Fouled Air Filter对应Low Air Flow；</li>
+<li>Fuel Leakage对应Low Fuel Flow；</li>
+<li>Stack Excessive Current Density对应Temperature Increase。</li>
+</ul>
+<p>Initial Effect在Extended FSM中标记为<code>X</code>。</p>
+<h3 id="3-4-2-Step-3-3-generate-a-failure-scenario"><a href="#3-4-2-Step-3-3-generate-a-failure-scenario" class="headerlink" title="3.4.2. Step 3.3: generate a failure scenario"></a>3.4.2. Step 3.3: generate a failure scenario</h3><p>以Initial Effect为起点，再根据FTA关系加入可能出现在其他Components中的Immediate和Delayed Effects。</p>
+<p>论文最终定义24个Monitored Symptoms。</p>
+<p>其中特别区分：</p>
+<ul>
+<li><code>s23</code>：Gradual Reduction in Power；</li>
+<li><code>s24</code>：Sudden Drop in Power。</li>
+</ul>
+<p>二者虽然都是Power下降，但Failure Dynamics不同，因此对应不同Root Causes。</p>
+<h4 id="3-4-2-1-Air-blower"><a href="#3-4-2-1-Air-blower" class="headerlink" title="3.4.2.1. Air blower."></a>3.4.2.1. Air blower.</h4><p>Air Blower属于Indirect Event，即它不会直接影响Stack，而是先影响Air Pre-heater，再进一步影响Stack。</p>
+<p>对于Fouled Air Filter and Ducts（<code>f1.1</code>），Initial Symptom是System Air Intake降低，即<code>s1</code>。</p>
+<p>由于Air Intake不足，会立即产生：</p>
+<ul>
+<li>Air Blower Pressure下降（<code>s3</code>）；</li>
+<li>Blower Outlet Air Flow降低（<code>s4</code>）。</li>
+</ul>
+<p>根据FTA，Air Blower继续影响Air Pre-heater，因此Delayed Effect包括：</p>
+<ul>
+<li>Pre-heater Outlet Air Flow降低（<code>s13</code>）。</li>
+</ul>
+<p>低Air Flow进一步造成Stack Cooling不足和Non-uniform Temperature Distribution，从而出现：</p>
+<ul>
+<li>Stack Temperature增加（<code>s16、s17、s18</code>）；</li>
+<li>Stack Voltage下降（<code>s22</code>）；</li>
+<li>Gradual Power Reduction（<code>s23</code>）。</li>
+</ul>
+<p>Air Flow Reduction in Blower System（<code>f1.2</code>）具有相似传播后果，但Initial Observable不同：首先观测到的是Blower内部Flow Reduction（<code>s2</code>）。</p>
+<p>Fouled Surfaces（<code>f1.3</code>）则首先表现为Air Blower Outlet High Temperature（<code>s5</code>），随后仍会沿热过程传递到Pre-heater和Stack，最终导致Thermal Fatigue、Voltage下降和Gradual Power Reduction。</p>
+<h4 id="3-4-2-2-Air-pre-heater"><a href="#3-4-2-2-Air-pre-heater" class="headerlink" title="3.4.2.2. Air pre-heater."></a>3.4.2.2. Air pre-heater.</h4><p>Air Pre-heater属于Direct Event，因此它的异常可以直接传播到Stack。</p>
+<p>Piping Air Leak（<code>f2.1</code>）首先通过Pre-heater Inlet Flow下降（<code>s12</code>）被检测，随后立即表现为Cathode Inlet Low Air Flow（<code>s13</code>），再逐步导致Stack内部Temperature Distribution异常（<code>s16、s17、s18</code>）。</p>
+<p>Cold Air Flow（<code>f2.2</code>）可以先通过Pre-reformer Outlet Low Temperature（<code>s8</code>）识别，随后使Pre-heater Temperature降低（<code>s15</code>），最终导致Stack Temperature降低（<code>s19、s20、s21</code>）以及Sudden Power Drop（<code>s24</code>）。</p>
+<p>相反，Overheating（<code>f2.3</code>）首先表现为Pre-reformer Outlet Temperature过高（<code>s9</code>），随后使Pre-heater Outlet出现High Temperature（<code>s14</code>），进一步使Stack Temperature升高（<code>s16、s17、s18</code>），最终引起Voltage下降（<code>s22</code>）和Gradual Power Reduction（<code>s23</code>）。</p>
+<p>Surface Fouling（<code>f2.4</code>）主要阻碍Heat Transfer，因此会降低Pre-heater以及Stack相关Temperature，最终形成一组Low-temperature Symptoms。</p>
+<h4 id="3-4-2-3-Pre-reformer"><a href="#3-4-2-3-Pre-reformer" class="headerlink" title="3.4.2.3. Pre-reformer."></a>3.4.2.3. Pre-reformer.</h4><p>Pre-reformer同样属于Direct Event。</p>
+<p>Fuel Leak（<code>f3.1</code>）首先表现为Pre-reformer Inlet Fuel Flow降低（<code>s7</code>），随后Anode获得的Fuel不足，Stack出现Uneven Temperature Distribution（<code>s19、s20、s21</code>）并产生Sudden Power Drop（<code>s24</code>）。</p>
+<p>Overheating的初始来源是Post-burner Outlet Excessive Temperature（<code>s6</code>）。其Delayed Effect是系统Temperature逐步上升（<code>s11、s16、s17、s18</code>），最终引起Thermal Fatigue，表现为Voltage Reduction（<code>s22</code>）和Gradual Power Reduction（<code>s23</code>）。</p>
+<p>Surface Degradation due to Fouling（<code>f3.3</code>）首先表现为Anode Inlet Low Temperature（<code>s10</code>），随后降低Fuel Conversion Efficiency，使Stack Temperatures降低并导致明显Power Drop。</p>
+<h4 id="3-4-2-4-Stack"><a href="#3-4-2-4-Stack" class="headerlink" title="3.4.2.4. Stack."></a>3.4.2.4. Stack.</h4><p>Stack是Top Event，但它也可以Independent Failure。</p>
+<p>Excessive Current Density会产生Excessive Heat，因此首先看到：</p>
+<ul>
+<li>Stack Temperature Increase（<code>s16</code>）；</li>
+<li>High Cathode/Anode Outlet Temperature（<code>s17、s18</code>）。</li>
+</ul>
+<p>随后表现为：</p>
+<ul>
+<li>Stack Voltage下降（<code>s22</code>）；</li>
+<li>Gradual Power Reduction（<code>s23</code>）。</li>
+</ul>
+<p>Electrolyte Degradation则降低Ionic Conductivity，使Electrochemical Reaction减弱，表现为：</p>
+<ul>
+<li>Stack Temperature下降（<code>s19</code>）；</li>
+<li>Anode/Cathode Outlet Low Temperature（<code>s20、s21</code>）；</li>
+<li>Sudden Significant Power Drop（<code>s24</code>）。</li>
+</ul>
+<p>这说明同样是Stack Power Loss，其上游Temperature Direction和前置Symptoms可能完全不同。</p>
+<h3 id="3-4-3-Implementation"><a href="#3-4-3-Implementation" class="headerlink" title="3.4.3. Implementation"></a>3.4.3. Implementation</h3><p>Extended FSM实际实现时，首先建立一个包含Detection Symptoms、Immediate Effects和Delayed Effects的Table，然后把Failure Modes逐行放入矩阵，最后根据前述Failure Scenarios填入Timing Labels。</p>
+<p><img src="/pictures/2026082108.png" alt="SOFC系统最终形成的Extended Fault Signature Matrix"></p>
+<p>最终工具包含：</p>
+<ul>
+<li>12个Failure Modes；</li>
+<li>24个System Variables；</li>
+<li>其中10个Failure Modes用于分析它们如何贡献到Stack Failure。</li>
+</ul>
+<p>矩阵标注方式为：</p>
+<ul>
+<li><code>X</code>：Initial Effect；</li>
+<li><code>1</code>：Immediate Effect；</li>
+<li><code>2</code>：Delayed Effect。</li>
+</ul>
+<p>作者同时说明，为了实际部署，仍然需要进一步确定什么程度的Deviation才能被判定为Fault Symptom。论文中的症状阈值只是结构性表示，没有进行具体数值Calibration。</p>
+<h2 id="4-Benefits-and-validation-of-extended-FSM"><a href="#4-Benefits-and-validation-of-extended-FSM" class="headerlink" title="4. Benefits and validation of extended FSM"></a>4. Benefits and validation of extended FSM</h2><p>Extended FSM中每一行都形成一个Fault Signature。</p>
+<p>在本文案例中，所有完整Signature Vectors都不同，因此理论上12个Failure Modes都可以Unique Identification、Detection和Isolation。</p>
+<p>论文用Fig. 11右侧的传统表示进行对照：如果不显式考虑Interdependencies，也不执行Phase 3 Causal Inference，得到的只是无序Symptom Vectors；左侧Extended FSM则把Intermediate Symptoms和Timing关系加入其中。</p>
+<p>Immediate Effects通常发生在一个Component内部，而Delayed Effects往往发生在跨Component Propagation以后，这与实际工程中“局部变化先发生、系统后果后出现”的直觉一致。</p>
+<p>最重要的现象是：Stack自身的两个Failure Modes具有不同Signature，但很多上游Failure Modes最终会重复产生类似Stack-level Consequence Symptoms。如果只看Final Stack Symptoms，就很难判断真正Root Cause。</p>
+<p>因此Extended FSM的主要改进可以归纳为：</p>
+<ol>
+<li>通过结构化和排序Symptoms提高Root Cause Identification；</li>
+<li>通过Explicit Direct/Indirect Causalities表达Fault Propagation。</li>
+</ol>
+<h3 id="4-1-Higher-granularity-root-cause-isolation-from-the-same-sensor-families"><a href="#4-1-Higher-granularity-root-cause-isolation-from-the-same-sensor-families" class="headerlink" title="4.1. Higher-granularity root-cause isolation from the same sensor families"></a>4.1. Higher-granularity root-cause isolation from the same sensor families</h3><p>作者将本文方法与已有SOFC FSM研究进行比较。</p>
+<p>Arsie et al.使用15个Variables监测5个Component Faults，但Failure定义较宽泛，例如只写Performance Degradation。</p>
+<p>Yousfi Steiner et al.进一步区分了具体Component Failure Modes，例如把Air Blower Failure拆为Mechanical Loss Increase和Air Leakage。</p>
+<p>本文则分析12个Failure Modes，并明确整合：</p>
+<ul>
+<li>FMEA；</li>
+<li>FTA；</li>
+<li>Heuristic Causal Inference。</li>
+</ul>
+<p>已有研究主要支持Detection和Isolation，而本文增加Identification，并把FSM从Fully Diagnostic Type扩展为同时具有Diagnostic和Predictive特征。</p>
+<h3 id="4-1-1-Comparison-under-same-sensor-families"><a href="#4-1-1-Comparison-under-same-sensor-families" class="headerlink" title="4.1.1. Comparison under same sensor families"></a>4.1.1. Comparison under same sensor families</h3><p>为了验证Improvement不是单纯因为增加Sensor，作者只使用参考研究中已经存在的15组Residual Sets来测试本文12个Failure Modes。</p>
+<p><img src="/pictures/2026082109.png" alt="相同Sensor Families下传统表示与Extended FSM的Confusion Matrix"></p>
+<p>主要区别是本文保留Polarity。</p>
+<p>如果参考文献只把某一测点表示为“Temperature Abnormal”，本文则进一步区分：</p>
+<ul>
+<li>High Temperature；</li>
+<li>Low Temperature。</li>
+</ul>
+<p>在完全使用相同Sensor Families的条件下，只保留这种Directionality Information，就能够明显减少Signature Collision。</p>
+<p>Fig. 13a中一些Failure Modes仍然在Confusion Matrix中出现Off-diagonal Clusters，说明15个Residuals不足以完全Isolation全部12种Failure Modes。</p>
+<p>当采用本文定义的High/Low Symptoms后，Fig. 13b出现更加清晰的Diagonal，说明不增加Instrumentation也可以提高Root Cause Granularity。</p>
+<h3 id="4-1-2-Progressive-gains-from-stack-consequences-to-upstream-causes"><a href="#4-1-2-Progressive-gains-from-stack-consequences-to-upstream-causes" class="headerlink" title="4.1.2. Progressive gains from stack consequences to upstream causes"></a>4.1.2. Progressive gains from stack consequences to upstream causes</h3><p>论文进一步从Stack向Air Blower逐步增加Symptoms，观察Root Cause Isolation能力变化。</p>
+<p><img src="/pictures/2026082110.png" alt="从Stack Consequence逐步加入上游Symptoms后的Isolation改善"></p>
+<p>Scenario A只使用Stack Sensors：</p>
+<p><code>s16 ～ s24</code></p>
+<p>Unique IDs为：</p>
+<p><code>0 / 12</code></p>
+<p>也就是说，只看Stack Consequence无法唯一识别任何Root Cause。</p>
+<p>随后逐步加入上游Measurements：</p>
+<ul>
+<li>Scenario B加入Location D Temperature；</li>
+<li>Scenario C加入Location D Flow；</li>
+<li>Scenario D加入Location C Flow；</li>
+<li>Scenario E加入Location G Temperature；</li>
+<li>Scenario F加入Location J Temperature；</li>
+<li>Scenario G加入Location F Fuel Flow。</li>
+</ul>
+<p>到Scenario G，已经能够：</p>
+<p><code>10 / 12</code></p>
+<p>唯一识别Root Causes。</p>
+<p>继续加入<code>s6、s5、s4、s3</code>时Unique IDs仍保持10，说明这些Measurements虽然增加信息，但没有突破最后两个Ambiguities。</p>
+<p>直到Scenario L加入Air Blower Flow<code>s2</code>：</p>
+<p><code>12 / 12</code></p>
+<p>全部Failure Modes得到Unique Isolation。</p>
+<p>最后再增加<code>s1</code>也不再提高结果。</p>
+<p>这个实验有两个工程意义。</p>
+<p>第一，Extended FSM可以从Consequence Symptoms逐步向上游Root Cause反推，清楚展示哪些Measurements真正增加诊断信息。</p>
+<p>第二，它可以直接支持Sensor Investment Decision：不是Sensor越多越好，而是应优先增加能够打破当前Ambiguity Plateau的Sensor Family。</p>
+<h3 id="4-1-3-Deterministic-sensor-removals"><a href="#4-1-3-Deterministic-sensor-removals" class="headerlink" title="4.1.3. Deterministic sensor removals"></a>4.1.3. Deterministic sensor removals</h3><p>作者反向进行Grouped Sensor Removal。</p>
+<p>移除所有Stack上游Flowmeters，包括<code>s1、s2、s4、s7、s12、s13</code>以后，Isolation能力有所下降，但仍有多个Failure Modes保持Unique。这说明Flow Measurements虽然重要，但在Temperature和Stack Variables仍存在时，部分信息可以被替代。</p>
+<p>相反，如果移除所有Non-stack Temperature Measurements，包括<code>s5、s6、s8～s11、s14、s15</code>，Confusion Matrix会明显破碎成多个Two-way或Three-way Clusters，只剩4个Modes能够Unique Isolation。</p>
+<p>因此在本案例中：</p>
+<ul>
+<li>Temperature Evidence主要负责区分不同Failure Branch；</li>
+<li>Flowmeter Evidence进一步细化同一Branch中的Fault Distinction。</li>
+</ul>
+<p>这为SOFC Sensor Architecture提供了非常直接的设计依据。</p>
+<h3 id="4-1-4-Stochastic-sensor-removals"><a href="#4-1-4-Stochastic-sensor-removals" class="headerlink" title="4.1.4. Stochastic sensor removals"></a>4.1.4. Stochastic sensor removals</h3><p>为了模拟真实系统中的Sensor Failure、Data Loss和Communication Dropout，作者进一步进行Monte Carlo Simulation。</p>
+<p><img src="/pictures/2026082111.png" alt="随机Sensor Dropout下Traditional FSM与Extended FSM的诊断鲁棒性"></p>
+<p>每个Symptom Channel以Probability <code>p</code>独立被移除，以<code>1-p</code>概率保留。每个Dropout Level运行1000次Independent Realizations。</p>
+<p>结果显示，随着Dropout增加，两种FSM的Root Cause Isolability都下降，但Extended FSM始终更高，而且差异会逐渐扩大。</p>
+<p>当：</p>
+<p><code>p = 0.30</code></p>
+<p>Extended FSM平均仍能保持：</p>
+<p><code>81.0%</code></p>
+<p>Unique Root Causes，而Traditional FSM为：</p>
+<p><code>73.7%</code></p>
+<p>差异约：</p>
+<p><code>+7.3 percentage points</code></p>
+<p>当：</p>
+<p><code>p = 0.40</code></p>
+<p>Extended FSM为：</p>
+<p><code>72.1%</code></p>
+<p>Traditional FSM为：</p>
+<p><code>63.7%</code></p>
+<p>差异扩大到：</p>
+<p><code>+8.4 percentage points</code></p>
+<p>作者据此认为，Timing Information和Ordered Signature能够在Incomplete Sensing条件下减少Signature Collision，因此对不确定Instrumentation Condition更鲁棒。</p>
+<h3 id="4-2-From-diagnosis-to-predictions"><a href="#4-2-From-diagnosis-to-predictions" class="headerlink" title="4.2. From diagnosis to predictions"></a>4.2. From diagnosis to predictions</h3><p>本文方法最大的进一步价值是同时支持Backward Diagnosis和Forward Prediction。</p>
+<p>Traditional FSM主要执行Binary Matching：Measured Symptom Vector完整匹配某一行以后，才把它识别为对应Fault。</p>
+<p>Extended FSM则可以只使用Sequence中已经出现的Early Symptoms判断当前处于哪一个Propagation Stage。</p>
+<p>例如完整Observed Vector：</p>
+<p><code>S1 = [s5, s14, s16, s17, s18, s22, s23]</code></p>
+<p>表示Air Blower Surface Fouling（<code>f1.3</code>）最终传播成Stack Fault。此时Traditional FSM和Extended FSM都可以识别。</p>
+<p>但如果目前只观测到：</p>
+<p><code>S2 = [s5, s14]</code></p>
+<p>Traditional FSM由于Signature尚不完整而难以匹配。</p>
+<p>Extended FSM则可以判断：</p>
+<ul>
+<li>Air Blower已经Degraded；</li>
+<li>当前影响已经传播到Air Pre-heater；</li>
+<li>Stack-level Consequence尚未出现；</li>
+<li>如果不采取措施，下一阶段可能出现Stack Temperature、Voltage和Power异常。</li>
+</ul>
+<p>同样，如果只出现Early Cue：</p>
+<p><code>S3 = [s7]</code></p>
+<p>Sequence Structure能够约束下一步合理的Branch Cue，例如<code>s10</code>，从而提示Operator在相应Time Window内重点检查相关变量。</p>
+<p>因此Extended FSM不仅Detect Final Failure，还能识别Intermediate Stage并暴露Actionable Window。</p>
+<p><img src="/pictures/2026082112.png" alt="带Timing Labels的Failure Signature与预防性干预窗口"></p>
+<p>论文进一步把Timing Labels与Operation/Maintenance Action建立对应：</p>
+<ul>
+<li><code>X (initial)</code>：Informational Notice。增加Monitoring并寻找Second Independent Indicator；建立Watch Item，但暂时不创建正式Work Order。</li>
+<li><code>1 (immediate)</code>：Reduce Risk Now。采取Protective Trim/Derate、通知Shift Lead，并准备Work Order。</li>
+<li><code>2 (delayed)</code>：Plan Before Impact。在Safe Envelope内继续运行，同时生成Prognostic Alert，并在下一可用窗口安排On-condition Task。</li>
+<li><code>Consequence</code>：Mitigate/Stop。立即执行Corrective Action和Corrective Maintenance。</li>
+</ul>
+<p>需要注意的是，这里的Time Dependence仍是Qualitative Timing Class，而不是定量的Seconds/Minutes/Hours。</p>
+<p>作者明确说明，本研究的Validation仍然是Qualitative，Propagation Probability和具体Time Threshold留待Future Work。</p>
+<h3 id="4-3-Practical-relevance"><a href="#4-3-Practical-relevance" class="headerlink" title="4.3. Practical relevance"></a>4.3. Practical relevance</h3><p>论文总结了三个直接工程价值。</p>
+<p>第一，<strong>Root Cause定位更加具体。</strong></p>
+<p>当Fault已经被Detection以后，Ordered Symptoms可以帮助Operator从Final Consequence回溯Root Cause，采取针对性Component Replacement或Focused Intervention，而不是进行大范围Troubleshooting。</p>
+<p>第二，<strong>支持Preventive Maintenance。</strong></p>
+<p>如果当前只出现Initial/Immediate Symptoms，但Failure-sequence Line已经表明后续可能影响Critical Component，就可以利用尚未发生Consequence的Window提前安排维护，减少Damage和Downtime。</p>
+<p>第三，<strong>支持Sensor Architecture Design。</strong></p>
+<p>Progressive Sensor Addition和Sensor Removal结果可以说明哪些Measurements真正增加Fault Isolation Information。企业可以据此判断增加某一个Sensor是否值得，而不是盲目扩大Instrumentation。</p>
+<p>作者认为该方法可以推广到其他具有复杂Component Relationships的系统。结构化的Step-by-step Process也有助于经验较少的分析人员构建FSM，而对Experienced Users而言，它则可以作为防止遗漏Critical Relationship的检查框架。</p>
+<h2 id="5-Conclusion"><a href="#5-Conclusion" class="headerlink" title="5. Conclusion"></a>5. Conclusion</h2><p>本文提出一种用于改善Complex System Root Cause Identification和Fault Propagation Tracing的方法。</p>
+<p>Traditional FSM能够进行Fault Detection和Isolation，但对Root Cause的识别能力有限。本文通过：</p>
+<p><code>FMEA + FTA + Heuristic Causal Inference</code></p>
+<p>扩展FSM。</p>
+<p>其中：</p>
+<ul>
+<li>FMEA在System Level识别Failure Mode、Cause、Effect和Observable Variable；</li>
+<li>FTA显式表示Inter-component Dependencies；</li>
+<li>Phase 3把这些Dependency继续传递到Time-ordered FSM中，把Symptoms组织为Initial、Immediate和Delayed Effects，形成Failure-sequence Line。</li>
+</ul>
+<p>由此，Extended FSM能够同时支持：</p>
+<ul>
+<li>Fault Detection；</li>
+<li>Fault Isolation；</li>
+<li>Root Cause Identification；</li>
+<li>Fault Propagation Analysis；</li>
+<li>Early-stage Prediction。</li>
+</ul>
+<p>SOFC案例说明Stack Failure通常不是独立事件。多个不同Upstream Failure Modes可以产生相同Stack-level Symptoms，因此只看Final Consequence不足以确定真正原因。Extended FSM通过Upstream Symptoms、Polarity和Sequential Ordering把这些路径区分开来。</p>
+<p>在相同Sensor Families下，增加High/Low等Directionality已经能够提高Isolation；从Stack向上游逐步增加Symptoms后，12个Root Causes的Unique Isolation由0/12提高到12/12；在Random Sensor Dropout实验中，Extended FSM在30%和40% Dropout下仍分别保持81.0%和72.1%的平均Unique Isolability，均优于Traditional FSM。</p>
+<p>作者同时指出Generalizability和Scalability问题。系统规模越大，Failure Modes、Dependencies和Candidate Symptoms数量越多，Knowledge Engineering工作量会明显增加。Online Diagnosis本身仍然较轻量，因为Signature Matching计算成本低，但离线枚举大量Propagation Path可能成为复杂系统中的瓶颈。因此推荐先使用Criticality Screening缩小分析范围。</p>
+<p>未来还可以进一步和Prognostics融合。若多个Sensor能够沿已知Propagation Path观察Degradation Trend，那么System-level Remaining Useful Life（RUL）就可以考虑上游故障对下游组件寿命的影响，而不再把各组件独立估计。</p>
+<p>最后，作者明确把当前研究定义为<strong>Qualitative and Structural</strong>。论文没有报告Isolation Time、False-positive Rate、Propagation Path Probability等定量指标，也没有使用真实SOFC Dataset。未来需要使用真实数据验证Interdependency和Timing Labels的收益，并把Extended FSM与Signal Processing或Model-based Features结合。</p>
+<p>作者还提出一个值得注意的发展方向：Extended FSM可以直接映射到Causal Graphical Models，例如Bayesian Networks。FSM负责透明地组织Domain Knowledge和Temporal Precedence，而Bayesian Network则可以在未来获得Data或Prior以后完成Quantitative Inference。</p>
+<h2 id="论文评价"><a href="#论文评价" class="headerlink" title="论文评价"></a>论文评价</h2><ul>
+<li><strong>推测的软件工具链：</strong> 论文没有明确披露一个专门的软件平台或编程语言，且Data Availability明确说明“No data was used for the research described in the article”。当前工作主要由FMEA表、FTA、Extended FSM、Failure-sequence Line、Confusion Matrix以及Monte Carlo Sensor Dropout实验组成，因此实际实现很可能采用表格工具维护FMEA/FSM、常规绘图工具建立FTA，再使用MATLAB或Python完成Confusion Matrix和Monte Carlo分析，但正文没有足够证据确认具体软件。当前方法的核心不是软件平台，而是如何把Failure Knowledge转化为结构化诊断模型。</li>
+<li><strong>收录原因：</strong> 这篇文章的创新点并不是重新设计FMEA或FTA本身，而是解决Traditional FSM的一个具体缺口：传统矩阵只有Fault-Symptom静态关联，无法表达跨组件传播和症状先后顺序。作者使用FMEA保证Failure/Effect信息，使用FTA保证Interdependency进入模型，再通过Causal Inference形成Failure-sequence Line，使同一套Knowledge能够同时服务Root Cause Identification和Forward Prediction。更重要的是，文章没有只展示一个Extended Matrix，而是通过Same Sensor Families、Progressive Sensor Addition、Deterministic Sensor Removal和Stochastic Dropout等多组实验验证了结构性收益，因此具有较完整的方法验证链。</li>
+<li><strong>值得借鉴：</strong> 最值得借鉴的是FMEA、FTA和FSM之间的信息流设计。FMEA负责“Failure Mode是什么、Effect是什么、哪些变量可以观测”，FTA负责“组件之间如何依赖、Fault可能沿哪条路径传播”，Extended FSM再进一步负责“Symptoms按照什么顺序出现”。这种组织把传统安全分析文档从彼此独立的结果表变成可以连续传递的信息链。另一个非常值得借鉴的点是Polarity-aware Symptoms：不额外增加Sensor，只把“abnormal temperature”细化为High/Low，就可以明显提升Isolation。Progressive Sensor Sets和Sensor Removal也非常适合用作安全监测系统的Sensor Selection实验。最后，<code>X/1/2</code> Timing Label虽然简单，但把诊断结果直接连接到Monitoring、Protective Operation和Condition-based Maintenance，为Safety Analysis结果如何进入实际运维提供了很清晰的接口。</li>
+<li><strong>可能不足：</strong> 论文标题中的“time dependence”需要谨慎理解：当前方法主要增加的是Temporal Precedence和Qualitative Timing Class，而不是严格的Quantitative Time Resolution。<code>X/1/2</code>只表示Initial、Immediate、Delayed，并没有具体Propagation Delay、Probability Distribution或State-dependent Trigger，因此还不能回答“故障经过多少秒传播到下一组件”。Phase 3仍依赖Expert Knowledge，FMEA和FTA虽然约束了可选节点和路径，但专家对Timing Label和Sequence Granularity的判断尚未通过真实实验数据验证。SOFC案例没有使用真实运行数据，因此Confusion Matrix主要验证的是Signature结构上的可分性，而不是噪声、工况变化和阈值误差条件下的Online Diagnosis Accuracy。论文也没有给出False Positive、False Negative、Isolation Time和Propagation Probability。随着系统规模增大，离线构建Propagation Path的Knowledge Engineering Cost可能迅速增加。因此，本文更适合作为一种透明、可追溯的Knowledge-based Fault Propagation Representation，后续如果与动态仿真、真实Sensor Data或Bayesian/Causal Model结合，才会进一步形成真正定量的时序故障传播分析框架。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2026/08/21/050/">https://ruizhe-yang.github.io/2026/08/21/050/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/FMEA/">FMEA</a><a class="post-meta__tags" href="/tags/FTA/">FTA</a><a class="post-meta__tags" href="/tags/Fault-Signature-Matrix/">Fault Signature Matrix</a><a class="post-meta__tags" href="/tags/Root-Cause-Analysis/">Root Cause Analysis</a><a class="post-meta__tags" href="/tags/Fault-Propagation/">Fault Propagation</a></div><div class="post_share"><div class="social-share" data-image="/pictures/2026082101.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/08/19/049/" title="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment"><img class="cover" src="/pictures/2026081917.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2025/05/15/033/" title="笔记：Event-based safety and reliability analysis integration in model-based space mission design"><img class="cover" src="/pictures/2025051502.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-15</div><div class="title">笔记：Event-based safety and reliability analysis integration in model-based space mission design</div></div></a></div><div><a href="/2024/08/31/010/" title="小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML"><img class="cover" src="/pictures/24083102.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-31</div><div class="title">小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</div></div></a></div><div><a href="/2024/09/02/012/" title="笔记：Failure Mode and Effects Analysis (FMEA Handbook)"><img class="cover" src="/pictures/24090201.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-02</div><div class="title">笔记：Failure Mode and Effects Analysis (FMEA Handbook)</div></div></a></div><div><a href="/2026/08/19/049/" title="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment"><img class="cover" src="/pictures/2026081917.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-19</div><div class="title">笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment</div></div></a></div><div><a href="/2026/08/18/045/" title="笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda"><img class="cover" src="/pictures/2026081801.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-18</div><div class="title">笔记：Failure mode and effect analysis improvement: A systematic literature review and future research agenda</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/pictures/site-avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">50</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">106</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">64</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://b23.tv/3cRMvn8" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-number">1.</span> <span class="toc-text">1. Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Automated-fault-diagnosis-in-complex-systems"><span class="toc-number">1.1.</span> <span class="toc-text">1.1. Automated fault diagnosis in complex systems</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Fault-signature-matrix-in-residual-based-approaches"><span class="toc-number">1.2.</span> <span class="toc-text">1.2. Fault signature matrix in residual-based approaches</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Contribution-of-this-paper"><span class="toc-number">1.3.</span> <span class="toc-text">1.3. Contribution of this paper</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Development-of-extended-FSM"><span class="toc-number">2.</span> <span class="toc-text">2. Development of extended FSM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Failure-analysis"><span class="toc-number">2.1.</span> <span class="toc-text">2.1. Failure analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Interaction-analysis"><span class="toc-number">2.2.</span> <span class="toc-text">2.2. Interaction analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Causal-inference-approach"><span class="toc-number">2.3.</span> <span class="toc-text">2.3. Causal inference approach</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Example"><span class="toc-number">2.4.</span> <span class="toc-text">2.4. Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Application-and-demonstration-of-extended-FSM"><span class="toc-number">3.</span> <span class="toc-text">3. Application and demonstration of extended FSM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Layout"><span class="toc-number">3.1.</span> <span class="toc-text">3.1. Layout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Phase-1-failure-analysis"><span class="toc-number">3.2.</span> <span class="toc-text">3.2. Phase 1: failure analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-Step-1-1-select-a-component"><span class="toc-number">3.2.1.</span> <span class="toc-text">3.2.1. Step 1.1: select a component</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-Step-1-2-identify-gradual-degradation-failures-modes"><span class="toc-number">3.2.2.</span> <span class="toc-text">3.2.2. Step 1.2: identify gradual degradation failures modes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-Step-1-3-determine-causes-and-effects-of-each-failure-mode"><span class="toc-number">3.2.3.</span> <span class="toc-text">3.2.3. Step 1.3: determine causes and effects of each failure mode</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-4-Step-1-4-determine-observable-system-variables-to-detect-each-failure-mode"><span class="toc-number">3.2.4.</span> <span class="toc-text">3.2.4. Step 1.4: determine observable system variables to detect each failure mode</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Phase-2-interaction-analysis"><span class="toc-number">4.</span> <span class="toc-text">3.3. Phase 2: interaction analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-Step-2-1-select-the-most-critical-component"><span class="toc-number">4.1.</span> <span class="toc-text">3.3.1. Step 2.1: select the most critical component</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-Step-2-2-identify-first-level-components"><span class="toc-number">4.2.</span> <span class="toc-text">3.3.2. Step 2.2: identify first-level components</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-Step-2-3-identify-second-level-components"><span class="toc-number">4.3.</span> <span class="toc-text">3.3.3. Step 2.3: identify second-level components</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-4-Step-2-4-assign-failure-modes-for-each-level"><span class="toc-number">4.4.</span> <span class="toc-text">3.3.4. Step 2.4: assign failure modes for each level</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-Phase-3-causal-inference-approach"><span class="toc-number">5.</span> <span class="toc-text">3.4. Phase 3: causal inference approach</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-Step-3-1-select-a-failure-mode-and-Step-3-2-identify-initial-effect"><span class="toc-number">5.1.</span> <span class="toc-text">3.4.1. Step 3.1: select a failure mode; and Step 3.2: identify initial effect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-Step-3-3-generate-a-failure-scenario"><span class="toc-number">5.2.</span> <span class="toc-text">3.4.2. Step 3.3: generate a failure scenario</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-2-1-Air-blower"><span class="toc-number">5.2.1.</span> <span class="toc-text">3.4.2.1. Air blower.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-2-2-Air-pre-heater"><span class="toc-number">5.2.2.</span> <span class="toc-text">3.4.2.2. Air pre-heater.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-2-3-Pre-reformer"><span class="toc-number">5.2.3.</span> <span class="toc-text">3.4.2.3. Pre-reformer.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-2-4-Stack"><span class="toc-number">5.2.4.</span> <span class="toc-text">3.4.2.4. Stack.</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-3-Implementation"><span class="toc-number">5.3.</span> <span class="toc-text">3.4.3. Implementation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Benefits-and-validation-of-extended-FSM"><span class="toc-number">6.</span> <span class="toc-text">4. Benefits and validation of extended FSM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Higher-granularity-root-cause-isolation-from-the-same-sensor-families"><span class="toc-number">6.1.</span> <span class="toc-text">4.1. Higher-granularity root-cause isolation from the same sensor families</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-Comparison-under-same-sensor-families"><span class="toc-number">6.2.</span> <span class="toc-text">4.1.1. Comparison under same sensor families</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-Progressive-gains-from-stack-consequences-to-upstream-causes"><span class="toc-number">6.3.</span> <span class="toc-text">4.1.2. Progressive gains from stack consequences to upstream causes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-3-Deterministic-sensor-removals"><span class="toc-number">6.4.</span> <span class="toc-text">4.1.3. Deterministic sensor removals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-4-Stochastic-sensor-removals"><span class="toc-number">6.5.</span> <span class="toc-text">4.1.4. Stochastic sensor removals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-From-diagnosis-to-predictions"><span class="toc-number">6.6.</span> <span class="toc-text">4.2. From diagnosis to predictions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Practical-relevance"><span class="toc-number">6.7.</span> <span class="toc-text">4.3. Practical relevance</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Conclusion"><span class="toc-number">7.</span> <span class="toc-text">5. Conclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E8%AF%84%E4%BB%B7"><span class="toc-number">8.</span> <span class="toc-text">论文评价</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/21/050/" title="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis"><img src="/pictures/2026082101.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis"/></a><div class="content"><a class="title" href="/2026/08/21/050/" title="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis">笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis</a><time datetime="2026-08-21T09:33:00.000Z" title="Created 2026-08-21 17:33:00">2026-08-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/19/049/" title="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment"><img src="/pictures/2026081917.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment"/></a><div class="content"><a class="title" href="/2026/08/19/049/" title="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment">笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment</a><time datetime="2026-08-19T04:36:00.000Z" title="Created 2026-08-19 12:36:00">2026-08-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/19/048/" title="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks"><img src="/pictures/2026081910.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks"/></a><div class="content"><a class="title" href="/2026/08/19/048/" title="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks">笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks</a><time datetime="2026-08-19T04:10:00.000Z" title="Created 2026-08-19 12:10:00">2026-08-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/19/047/" title="笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling"><img src="/pictures/2026081901.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling"/></a><div class="content"><a class="title" href="/2026/08/19/047/" title="笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling">笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling</a><time datetime="2026-08-19T04:00:00.000Z" title="Created 2026-08-19 12:00:00">2026-08-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/18/046/" title="笔记：AADL-Based safety analysis using formal methods applied to aircraft digital systems"><img src="/pictures/2026081808.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：AADL-Based safety analysis using formal methods applied to aircraft digital systems"/></a><div class="content"><a class="title" href="/2026/08/18/046/" title="笔记：AADL-Based safety analysis using formal methods applied to aircraft digital systems">笔记：AADL-Based safety analysis using formal methods applied to aircraft digital systems</a><time datetime="2026-08-18T05:00:00.000Z" title="Created 2026-08-18 13:00:00">2026-08-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: 'e99a8e30db87292a22df23718522c837',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
