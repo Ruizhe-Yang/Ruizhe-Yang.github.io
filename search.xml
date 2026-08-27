@@ -6752,4 +6752,511 @@ SOFC案例说明Stack Failure通常不是独立事件。多个不同Upstream Fai
         <tag>Fault Propagation</tag>
       </tags>
   </entry>
+  <entry>
+    <title>笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library</title>
+    <url>/2026/08/27/051/</url>
+    <content><![CDATA[
+[Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library](https://doi.org/10.3384/ECP207155)
+
+`Abstraction`
+
+> The multiphysics modeling has a great importance when a complex space system (as a satellite) is considered. Indeed, it is necessary to analyse how the system’s behavior is affected by the space environment or by on board failures. In this paper, the Modelica Library is used to hierarchically build and connect the main subsystems that can be found in a traditional satellite. Specifically, the modeling and simulation of the entire system is carried out in the Dymola environment. Finally, the FMI is applied to simulate in Dymola some specific satellite models/logics created with higher fidelity in the Matlab/Simulink domain.
+
+摘要翻译：对于卫星这类复杂空间系统，多物理场建模具有重要意义，因为系统总体行为不仅由单一分系统决定，还会受到空间环境、分系统之间的物理耦合以及星上故障的共同影响。本文使用Modelica Library，以层级化方式构建并连接传统卫星中常见的主要分系统，并在Dymola环境中完成整个卫星系统的建模与仿真。为了兼顾不同工具各自的建模优势，作者进一步使用Functional Mock-up Interface（FMI），将在Matlab/Simulink/Simscape中建立的部分较高保真模型与控制逻辑导入Dymola，从而形成一个Modelica主模型与外部高保真子模型联合工作的多工具仿真平台。
+
+## 1 Introduction
+
+卫星是典型的多物理域复杂系统。姿态控制涉及刚体动力学、执行机构和控制算法；电源系统涉及太阳能电池、电池、功率电子与负载；热控涉及辐射、传导和主动散热；推进又同时包含电、热、流体和机械推力过程。一个局部分系统的状态变化，往往会通过功率、温度、姿态或控制信号影响其他分系统，因此仅分别建立独立模型并不能完整反映整星行为。
+
+作者由此强调Holistic Approach，即从总体视角模拟系统内部的Multiphysics Interactions。Dymola被选作主集成环境，基础Physical Elements主要来自Modelica Library，并利用Acausal Modeling构造Hybrid-complex System。对于标准库中没有的特殊空间算法，则通过Modelica文本代码自行定义；对于Matlab/Simulink中更容易实现或已有较高保真度的模型，通过FMI继续复用。
+
+因此全文技术路线并不是“所有内容都必须原生Modelica化”，而是：
+
+`Modelica物理组件 + 自定义Modelica算法 + FMI外部高保真模块 → Dymola整星系统模型`
+
+这使Dymola更像一个统一的System Integration Backbone。
+
+### 1.1 Satellite system
+
+![本文采用的卫星分系统层级分解结构](/pictures/2026082701.png)
+
+本文选择Small Satellite作为示例。作者明确指出，每颗卫星的Architecture和On-board Equipment都取决于Mission，因此这里给出的不是某一颗真实卫星的固定设计，而是一套为了研究多物理场交互而构造的通用Breakdown Architecture。
+
+考虑四个主要Subsystem：
+
+- **ADCS（Attitude and Determination Control Subsystem）**：利用Reaction Wheels等执行机构改变或保持Satellite Orientation，并通过Gyroscope、Star Tracker等传感器估计姿态；
+- **THR（Thermal subsystem）**：监测Satellite Instruments和Surface Temperature，并将其维持在允许范围内；
+- **PROP（Propulsion subsystem）**：产生Thrust，既可支持姿态机动，也可抵消Solar Radiation Pressure等Disturbance Torque；
+- **EPS（Electrical Power Subsystem）**：利用PV Array发电，由PMU完成MPPT、Battery管理、DC-DC Conversion和Power Distribution。
+
+论文Figure 1实际建立了三层分解：第一层是Subsystem，第二层是Subsystem Tasks，第三层才是执行这些任务的Physical Components，例如Reaction Wheel、Gyro、Star Tracker、Radiator、Nozzle、PV Array和Battery。
+
+这种组织方式与Modelica的Hierarchical Component Modeling高度一致：底层物理元件先构建和验证，再封装为Subsystem，最后组合成Spacecraft。
+
+由于推进采用Water Resistojet，作者认为这套架构尤其接近CubeSat；除推进形式外，其他结构也可以继续适配Large Spacecraft。
+
+## 2 Modeling design
+
+作者先总结一般Real System Modeling的四个阶段。
+
+1. **Extract a physical model from reality**：从现实对象中筛选真正主导系统行为的Physical/State Variables。这里依赖Engineering Judgment，因为工程模型必须有所取舍。
+2. **Extract the mathematical model from the physical one**：利用具体物理组件的Constitutive Laws，把识别出的物理现象转化为数学方程。
+3. **Simulate the mathematical model**：采用适当的Numerical Integration求解这些方程，得到State Variables随时间的Evolution。
+4. **Perform sensitivity analysis**：比较Simulation Result与Real Response，逐步完成State Identification和Parameter Adjustment；当模型与真实系统持续校准后，才有可能进一步形成Digital Twin。
+
+论文用DC Motor驱动Shaft作为简单示例，说明真实复杂电机可以被抽象为电气与机械Physical Model，再由一组一阶Differential Equations描述。作者借此强调：Modelica建模的重点是Physical Topology和Constitutive Relation，而不是在模型层面手工安排求解顺序。
+
+### 2.1 Satellite general architecture
+
+![卫星外形与执行机构配置](/pictures/2026082702.png)
+
+完成High-level Structure后，需要先建立Subsystem Correlation Flow，确定整星内部不同Physical Variables如何相互作用。
+
+为了简化仿真，作者采用以下主要假设：
+
+- PV Arrays与Main Body刚性连接；
+- Satellite Center of Mass位于Dymola World Frame原点；
+- Attitude Dynamics在该坐标系下表达；
+- 配置6个Thrusters，通过不同Nozzle激活组合形成Three-axis Torque；
+- Propulsion采用Water Resistojet；
+- 配置2个Star Trackers，分别沿x和y方向观测Inertial Fixed Stars；
+- Satellite和Actuator尺寸与主要参数大致接近16U CubeSat。
+
+其中PV Array的Rigid Connection和Rigid-body Satellite是假设体系中很重要的两点：它们使姿态模型能够忽略Structure Flexibility，从而把论文重点放在多分系统耦合，而不是柔性航天器动力学。
+
+#### 2.1.1 Satellite subsystems interaction
+
+![卫星各分系统之间的主要物理交互关系](/pictures/2026082703.png)
+
+Figure 5是全文最核心的System-level Diagram之一。作者明确给出各分系统真正交换的Physical Variables：
+
+- EPS Bus Voltage `VBus`或Battery Voltage `VBatt`为ADCS Reaction Wheels和PROP Resistojet供电；
+- ADCS输出的Attitude Matrix决定Satellite Body相对Sun/Earth的姿态；
+- 姿态进一步决定哪些Surface受到Sun/Earth Radiation，Shadow Model把结果表示为Boolean Vector；
+- PV Array输出功率取决于PV-Sun Incidence Angle；
+- PROP中Water被Electro-thermal Circuit加热形成Steam，Steam Pressure和Temperature进一步决定Nozzle Thrust；
+- Fuzzy Logic根据Attitude Error决定Nozzle Firing Time和Direction，最终形成Propulsive Torque；
+- Battery Temperature和PV Array Temperature作为EPS输入，改变Power Generation和Battery Charge/Discharge；
+- SRP Torque Block根据Sun Inertial Position和Satellite Attitude计算Disturbance Torque。
+
+由此可以看到几个完整闭环。例如：
+
+`Attitude → Sun incidence → PV power → Bus voltage → Reaction wheel → Attitude`
+
+以及：
+
+`Attitude → Illumination → Thermal state → Battery/PV behavior → EPS → Actuator`
+
+这就是本文“Multiphysics”最实质的内容。模型并不是把ADCS、THR、PROP和EPS放在同一个Package里就结束，而是让一个域的State真正改变另一个域的方程输入和物理行为。
+
+作者也指出，部分跨域关系通过Control Logic连接，因此最终Space System同时包含Physical System和Digital Control Logic，具备典型Cyber-Physical System特征。
+
+#### 2.1.2 ADCS subsystem
+
+![ADCS分系统的Modelica建模逻辑](/pictures/2026082704.png)
+
+ADCS从Target Attitude到Reaction Wheel输出采用两层控制链。
+
+首先，Desired Attitude Angles与Sensor Estimated Attitude之间形成Error，进入PID Controller。PID得到Virtual DC Motor所需Continuous Voltage，使Virtual Reaction Wheel产生Ideal Control Torque。
+
+随后根据Virtual RW Angular Velocity，第二个PID计算H-bridge Duty Cycle。PWM与EPS Bus Voltage共同形成真实DC Motor的Square Voltage。
+
+真实DC Motor获得Voltage后产生Current和Torque，带动实际Reaction Wheel。Reaction Wheel通过Action-Reaction将Torque施加到Satellite Body。
+
+Satellite Rigid-body Dynamics同时受到三类Torque：
+
+- Solar Radiation Pressure Torque；
+- Propulsion Torque；
+- Reaction Wheel Torque。
+
+作者给出的核心刚体方程为：
+
+`J·dω_sat/dt = -ω_sat × (Jω_sat) + T_srp + T_p + T_RW`
+
+DC Motor还同时满足Electrical Equation和Mechanical Equation：
+
+`L_a·di/dt = -R_a·i - K_m·ω_M + V_m`
+
+`J_m·dω_M/dt = -b·ω_M + K_m·i + T_RW`
+
+因此Reaction Wheel链条本身已经跨越：
+
+`Electrical → Electromechanical → Mechanical rotation → Spacecraft attitude`
+
+Dymola模型使用Rigid Body、World Frame Joint、World Torque、Fixed Rotation、Revolute/Spherical Joint、Voltage Source、DC Motor、Inertia、H-Bridge、PWM、Gyro以及Limited PID等组件。
+
+Satellite被视为Simple Rigid-body。作者认为对于16U CubeSat，由于Solar Panel较短、Main-body Inertia占主导，这一假设可以接受；对于大型卫星或Long Flexible Solar Array，Flexible Dynamics将成为后续扩展内容。
+
+Sensor方面，Ideal Gyro可以直接由Angular Velocity Sensor近似，但Star Tracker Noise、TRIAD Algorithm和SRP Torque需要通过Section 3中的自定义Modelica Function实现。
+
+#### 2.1.3 THR subsystem
+
+![卫星14节点Lumped Thermal Model及Radiator控制](/pictures/2026082705.png)
+
+Thermal Model采用Lumped Approach。Satellite Surfaces和Internal Instrumentation被抽象为具有一定Thermal Capacity的Nodes，节点之间可以发生Conduction和Radiation。
+
+本文共使用14个Thermal Nodes：
+
+- Main Body：3、4、5、6、7、8；
+- PV Array：1、2、9、10；
+- Radiators：11、12、13、14。
+
+Deep Space被视为平均约3 K的Radiative Sink。
+
+由于Space中基本不存在空气，Convection被忽略。主要传热路径只考虑：
+
+- Conductive Heat Transfer；
+- Radiative Heat Transfer。
+
+作者还对PV Array正反面使用不同Thermal Properties：Top Side具有更高Emissivity，Bottom Side具有更高Absorptivity。Radiator同样通过不同节点区分High-emissivity和High-absorptivity Surface。
+
+THR Logic如下：
+
+1. 输入Satellite Attitude Matrix、Sun Position和Solar Irradiance；
+2. Shadow Model返回14维Boolean Vector，判断每个Node是否接受Sun/Earth Radiation；
+3. 根据Temperature Distribution使用Hysteresis控制Radiator；
+4. Radiator Opening/Closing改变Thermal Model的Conduction与Radiation行为；
+5. Radiator Angle改变节点11～14的Shadow Condition。
+
+Thermal Node基本Energy Balance写成：
+
+`C_i dT_i/dt = Q_Sun + Q_Earth + ΣQ_c + ΣQ_r`
+
+其中Solar Energy由Absorptivity、Solar Flux和Area决定；Earth Energy理论上由Albedo和Infrared共同构成；节点间Conduction取决于Thermal Conductance与Temperature Difference；Radiation还受到Emissivity和View Factor影响。
+
+因此，这是一种典型的System-level Lumped Thermal Network：能够分析姿态、光照、散热器动作与温度之间的系统级耦合，但并不试图获得Finite-element级Temperature Field。
+
+#### 2.1.4 PROP subsystem
+
+![Water Resistojet推进分系统的多物理建模流程](/pictures/2026082706.png)
+
+PROP是全文跨物理域最丰富的Subsystem。
+
+Attitude Angle Error和Angular Rate Error首先进入Fuzzy Logic Block，得到每个Nozzle的Firing Time。
+
+EPS Bus Voltage通过Buck Circuit降低到约0.5 V后施加在Tungsten Rod两端。Electrical Current产生Joule Heating，Heat Flow进入Boiler Furnace。
+
+Liquid Water进入Vaporizer，吸热后转化为Steam，再流入Convergent-divergent Nozzle膨胀。
+
+Boiler Liquid Phase由PID调节，以维持Vaporizer工作；Valve则决定何时允许Steam Generation与Thrust Delivery。
+
+最终利用Nozzle相对CM的Moment Arm计算Propulsive Torque。
+
+Boiler采用Modelica已有Drum-boiler Component，Nozzle采用Rocket Equation自行实现。Thrust由Steam Mass Flow、Exit Velocity、Exit Pressure与Exit Area共同决定，Exit Velocity又由Mach Number、Specific Heat Ratio、Steam Gas Constant和Exit Temperature决定。
+
+本文Nozzle Exit Mach Number约为10。
+
+Fuzzy Logic通过Matlab Mamdani GUI设计，随后利用FMI导入Dymola。
+
+PROP模型中的Modelica组件包括Water Source、Steam Drum Boiler、Steam Sink Boundary、Valve、Steam Pressure/Temperature Sensor、Voltage Source、Thermal Resistor、Tungsten Thermal Mass以及Heat Transfer。
+
+Thermal Resistor启用Thermal Port，用于把Joule Heat显式送入Tungsten/Vaporizer；PROP关闭后又通过Heat Transfer逐步把Tungsten恢复到约298 K。
+
+#### 2.1.5 EPS subsysyem
+
+![EPS分系统的PV-MPPT-Battery-BMS结构](/pictures/2026082707.png)
+
+EPS从Solar Energy输入一直建模到Bus和Battery。
+
+PV Array Photocurrent由三类因素共同决定：
+
+- Sun Heat Flux；
+- Sun Ray Incidence Angle；
+- Solar Panel Temperature。
+
+MPPT Algorithm调节PV Voltage，使PV Array工作在Maximum Power Point附近。
+
+随后Two-switch Buck-Boost Converter把PV电压转换到Spacecraft Bus。本文16U CubeSat的Nominal Bus Voltage约为13 V。
+
+Battery正常与Bus连接。BMS根据SOC和Eclipse Condition调节Battery Current。当Bus Voltage过低或发生Eclipse时，Switch闭合，Battery接管Loads。
+
+Battery Charge/Discharge Profile显式受到Battery Temperature影响。
+
+BMS使用Typical CC-CV Charging/Discharging Logic。
+
+作者特别说明，在Acausal Modeling模式下，只需要按照真实Buck-Boost Circuit搭建Physical Representation，内部Constitutive Equations已经封装在Modelica Components中，建模重点由“手写方程求解流程”转移到“真实物理拓扑”。
+
+PV Array通过Thermal Diode的Series/Parallel Connection建立；MPPT使用Logical Library；Battery-BMS则使用Simscape后经FMI接入Dymola。
+
+## 3 Modelica coding
+
+![作者自行编写的Modelica功能块](/pictures/2026082708.png)
+
+Standard Library并不直接包含所有Satellite-specific Algorithm，因此作者使用Dymola Text Option自行建立Block。
+
+主要自定义Functions为：
+
+- SRP torque；
+- ADCS sensor；
+- Shadow model；
+- Nozzle；
+- Photocurrent。
+
+这些Functions主要承担两类工作：
+
+一是补充Modelica Standard Library缺失的Specialized Algorithm；
+
+二是连接不同Subsystem或连接Satellite与Space Environment。
+
+具体算法包括：
+
+1. 根据每个Surface相对CM的位置以及Absorption、Diffuse Reflection、Specular Reflection系数计算Solar Radiation Pressure Torque；
+2. 通过Gaussian Noise构造Euler "123" Perturbation Matrix，模拟Star Tracker误差；
+3. 使用TRIAD Algorithm根据两个Measured Vectors估计Satellite Attitude；
+4. 通过Sun Direction与Surface Normal的Scalar Product判断各Thermal Node是否被照亮；
+5. 计算Converging-diverging Nozzle中的Isentropic Expansion；
+6. 计算PV Photocurrent。
+
+论文还给出`PhotoCurrent` Block的Modelica代码。Inputs包括Short-circuit Current、Temperature Coefficient、Solar Array Temperature、Solar Irradiance、Body-frame方向以及Sun Direction。Block内部先计算Surface-Sun Cosine，再结合Illumination、Irradiance和Temperature求Photocurrent。
+
+这部分清楚体现作者的Modelica开发策略：能由标准物理元件组合出来的内容尽量使用Library；真正没有对应Acausal Component的Space-specific Function才自己编码。
+
+## 4 FMI interface
+
+![Fuzzy Logic与Battery-BMS通过FMI接入Dymola](/pictures/2026082709.png)
+
+Functional Mock-up Interface被用于两个模块：
+
+- Fuzzy Bang-bang Logic；
+- Battery-BMS Module。
+
+两者均先在Matlab/Simulink环境中建立，并利用Simscape进行物理建模。
+
+作者选择这种混合工具链有两个原因。
+
+第一，Matlab/Simulink中的Fuzzy Logic Designer App可以明显加快Controller设计，没有必要为了追求“全部Modelica”而重新实现一套Fuzzy Design流程。
+
+第二，Simscape已有Medium-high Fidelity Battery Element，尤其能够表现Temperature Dependency，因此比简单自建Battery模型更加方便。
+
+最终这些模块通过FMI导入Dymola，与其他Modelica Subsystems共同参与整星仿真。
+
+这里体现的是一种非常务实的工程思路：Modelica/Dymola作为统一系统级骨架，而不是要求所有领域模型必须在同一种工具内从零实现。
+
+## 5 Simulation results
+
+完整Hierarchical Satellite Model建立后，作者在Dymola中进行Simulation。
+
+主要参数与Assumptions为：
+
+- 16U CubeSat；
+- Main Body：`0.2 × 0.2 × 0.4 m`；
+- PV Array：`0.2 × 0.4 × 0.01 m`；
+- DC Motor Nominal Voltage约12 V；
+- Reaction Wheel Inertia约`0.0005 kg·m²`；
+- Peak Generated Power约180 W；
+- Maximum Battery Voltage约15 V；
+- Star Tracker Covariance：`1σ ≈ 10^-4 rad`；
+- Nozzle Exit Mach Number约10；
+- Heliocentric Orbit；
+- Constant Solar Heat Flux：1370 W/m²；
+- Thermal Model中只考虑Sun，不考虑Earth Heating；
+- Typical Simulation Time约100 s；
+- 100 s内忽略Satellite Translational Displacement；
+- 不进行Orbit Propagation，只分析Attitude Evolution；
+- Main Body假设Aluminium；
+- PV Surface假设Silicon；
+- Thermal Conduction Wall Thickness约0.01 m。
+
+大部分仿真使用DASSL。最后一个Multiphysics Scenario中，作者认为Stiff Solver `Sdirk34hw`表现更好。
+
+这组假设非常重要，因为它限定了本文成果的建模层级：主要验证Subsystem Physics与Cross-domain Coupling，而不是进行长时间Orbit-Thermal-Power Mission Simulation。
+
+### 5.1 ADCS-Sensors simulation
+
+ADCS首先单独仿真。
+
+Sun Direction固定为`[0,0,1]`，Satellite按照Target Ramp Profile完成姿态跟踪。
+
+作者比较Ideal Gyro Integration与TRIAD Algorithm的Attitude Estimate。由于Star Tracker引入Gaussian Noise，Estimated Attitude与Real Attitude存在小偏差。
+
+Maneuver过程Peak Overshoot Attitude Error约：
+
+`0.34°`
+
+作者指出可进一步通过PID Tuning调整。
+
+RW1真实DC Motor使用PWM Square Voltage，Switching Frequency设为1000 Hz。
+
+Appendix Figure 23还同时给出Target Angles、RW Angular Rate、SRP Torque、TRIAD Error、Motor Voltage以及PID/RW Torque，可以看出Sensor、Controller、Motor、Reaction Wheel和Satellite Dynamics形成了完整的闭环验证。
+
+### 5.2 Fuzzy logic (FMI simulation)
+
+随后对PROP Architecture进行测试。
+
+由于前一节结果表明TRIAD Estimation Error并未阻止PID完成姿态控制，因此从此处开始直接采用Ideal Gyro Attitude代替Star Tracker Measurement。
+
+Sun Direction仍固定为`[0,0,1]`。
+
+目标Euler "123" Attitude设置为：
+
+`[0.3, 0.8, 0.1] rad`
+
+PROP最终能够完成Maneuver，Final Attitude Error约：
+
+`0.06°`
+
+Fuzzy FMI Block输出Body-frame Propulsive Torque以及每个Nozzle的Firing Time/Direction。
+
+Resistojet Torque量级约：
+
+`10 mNm`
+
+Nominal Steam Pressure：
+
+`13 bar`
+
+Vaporizer维持工作所需Water Mass Flow：
+
+`≈ 0.13 kg/s`
+
+作者特别提醒，Water Storage受到Small Satellite尺寸限制，因此实际Mission Design必须重新校准这些PROP Parameters。换言之，这一仿真更偏向验证Multi-domain Modeling Chain，而不是给出已经工程定型的16U推进设计。
+
+### 5.3 Battery-BMS (FMI simulation)
+
+Battery-BMS FMI Block被独立测试。
+
+为了模拟Battery向Loads供电，Simulink Model加入：
+
+`0.1 Ω`
+
+Load Resistance。
+
+Bus Voltage被设置为Periodic Square Signal，以模拟周期性Eclipse。
+
+当`VBus = 0`时，Load Switch闭合，Battery接管Loads，出现Voltage Drop和Discharge。
+
+作者进一步比较三种Battery Temperature：
+
+- 283 K；
+- 293 K；
+- 313 K。
+
+结果显示Higher Battery Temperature会加快Discharge。
+
+较低Temperature则会表现出更高Charging Voltage和更明显Loaded Voltage Drop。
+
+这一结果验证了Thermal State会反向改变EPS Behavior，因此Battery Temperature不只是一个被动输出，而是实际参与Power System Dynamics的跨域变量。
+
+### 5.4 THR-Radiator simulation
+
+THR模型单独验证Active Radiator Control。
+
+初始Sun Direction为：
+
+`[0,-1,0]`
+
+大约6.9 h后改为：
+
+`[0,0,1]`
+
+控制器监测Node 8 Temperature，并希望保持其不超过约70 °C。
+
+Hysteresis Logic表现为：
+
+- `T8 ≈ 60 °C`时Radiator打开；
+- `T8 < 40 °C`时Radiator重新关闭，以避免Overcooling。
+
+Radiator Closed时，作者假设其不再Exchange Heat，因此Temperature保持不变。
+
+![ADCS与THR分系统的主要Simulation Graphs](/pictures/2026082710.png)
+
+由于16U CubeSat尺寸较小、Thermal Scheme基本对称且Material较均匀，不同Nodes之间Temperature Difference较小。
+
+High-emissivity Radiator Nodes激活后，对Deep Space的Radiation Heat Transfer明显增加。
+
+因此THR实现了一个完整闭环：
+
+`Illumination → Temperature → Hysteresis → Radiator Angle → Radiation Coefficient → Temperature`
+
+### 5.5 Multyphysics scenario
+
+![Satellite Multiphysics Scenario的主要结果](/pictures/2026082711.png)
+
+最后一个Scenario把多个Satellite Subsystems组合起来，但不使用PROP，Attitude Maneuver只依靠Reaction Wheels。
+
+场景设定：
+
+- Satellite绕Dymola固定x-axis旋转180°；
+- Sun Direction固定为`[0,1,0]`。
+
+随着Attitude改变，PV-Sun Incidence Angle和Shadow Condition发生变化。
+
+Maneuver开始阶段PV Array Power较高；当Nodes 1-2进入Shadow后，PV Generation降为0。
+
+此时Battery自动为Reaction Wheels供电，并开始Discharge，同时向Loads提供约13 V。
+
+因此形成完整Cross-domain Chain：
+
+`ADCS maneuver → attitude → illumination/shadow → PV power → EPS source switching → battery discharge → RW power supply`
+
+MPPT仍将Main Bus维持在Nominal约13 V，即使PV Array自身工作在更高Voltage。
+
+Figure 25同时给出：
+
+- Satellite Animation；
+- PV Power；
+- Photocurrent；
+- Battery SOC；
+- PV Temperature；
+- Battery Temperature；
+- Battery Voltage。
+
+Figure 26进一步展示：
+
+- Shadow Model输出；
+- EPS Voltage；
+- Euler Attitude；
+- RW1 Angular Rate。
+
+这是全文真正证明“Multiphysics Acausal Modeling”价值的仿真：Mechanical Attitude不再只是独立曲线，而是实际改变Electrical Power与Battery State。
+
+## 6 Conclusions
+
+作者把本文目标概括为：
+
+- 使用Modelica Tools建立并仿真一个Complex Space System；
+- 建立未来可以继续执行Tests和Failure Analysis的平台。
+
+当前成果表明，可以用Modelica Standard Library建立ADCS、THR、PROP和EPS的主体Physical Model，再通过Modelica Coding补充Space-specific Algorithms，通过FMI接入Matlab/Simulink/Simscape中的高保真或成熟模块。
+
+未来首先计划增加Structure Subsystem，以研究Flexibility Effects，尤其面向Large Satellite与Long Solar Array。
+
+FMI还可以继续用于把模型导出到其他Programs，与Real System Telemetry结合进行Parametric System Identification或Frequency-domain Nonlinear System Identification，从而进一步提高Model Fidelity。
+
+因此本文更像一个可继续扩展的Satellite Multiphysics Simulation Platform原型，而不是最终完成的Flight Digital Twin。
+
+## Appendix: Simulation Graphs
+
+Appendix集中给出Section 5涉及的主要Simulation Graphs。
+
+Figure 23为ADCS结果，包括Satellite Animation、Target Attitude、Reaction Wheel Speed、SRP Torque、TRIAD Attitude Error、PWM Motor Voltage以及PID/RW Torque。
+
+Figure 24为THR结果，包括Radiator Opening/Closing、Radiator Angle、Thermal Node Temperature、Node间Temperature Difference以及Deep-space Radiation Heat Transfer Coefficient。
+
+Figure 25和Figure 26为整星Multiphysics Scenario，展示Satellite Maneuver与PV Power、Photocurrent、Battery SOC、PV/Battery Temperature、Battery Voltage、Shadow State、EPS Voltage以及Reaction Wheel Speed之间的关联。
+
+这些Appendix Graphs本质上是Section 5仿真结果的集中补充，也是判断各Subsystem是否真正完成动态耦合的重要证据。
+
+## 论文评价
+
+- **推测的软件工具链：** 论文工具链披露得比较清楚。主体系统模型与仿真平台是Dymola，基础物理组件来自Modelica Standard Library；SRP Torque、TRIAD、Shadow Model、Nozzle和Photocurrent通过Modelica Text Coding实现；Fuzzy Bang-bang Controller使用Matlab/Simulink的Mamdani Fuzzy Logic Designer，Battery-BMS使用Simscape，并通过FMI接入Dymola。大部分Simulation使用DASSL，最终Multiphysics Scenario采用Sdirk34hw。整体属于“Dymola/Modelica系统集成 + Matlab/Simulink/Simscape特定模型 + FMI互操作”的混合工具链。
+- **收录原因：** 这篇论文真正展示了Modelica在Satellite Multiphysics Integration中的优势。ADCS跨越机械、电机和控制；THR采用14-node Lumped Thermal Network；PROP同时连接Electrical Heating、Thermal、Fluid和Mechanical Thrust；EPS连接PV、Power Electronics、Battery和BMS。更重要的是Figure 5把这些Subsystem通过Attitude、Temperature、Voltage、Solar Incidence、Torque等真实Physical Variables耦合起来，而最终Multiphysics Scenario又实际演示了“姿态变化→光照变化→PV失去输出→Battery接管→Reaction Wheel继续工作”的闭环过程，非常符合Modelica Conference对Acausal、Multi-domain和Hierarchical Modeling的关注。
+- **值得借鉴：** 最值得借鉴的是作者对模型来源的分层处理：能由Modelica标准物理元件表达的部分优先使用Standard Library；没有现成组件的Satellite-specific Algorithm自己写Modelica Block；已经在其他工具中更成熟的模型直接通过FMI复用。这种策略比强行把所有模型重写成同一种语言更务实。另一个值得借鉴的点是先建立Figure 5式Cross-interaction Diagram，再进入代码建模，它明确回答了“各分系统究竟交换哪些变量”。THR的Lumped-node方法、ADCS的DC Motor-RW链、EPS的PV-MPPT-Battery链，以及最后用一个180°Maneuver触发多域耦合的验证方法，也都很适合作为Satellite Overall Simulation的参考模板。
+- **可能不足：** 当前工作更接近Conceptual/Preliminary Multiphysics Demonstrator，而不是Mission-level High-fidelity Simulator。典型Multiphysics仿真只有约100 s，没有Orbit Propagation，并在短时窗口中固定Sun Direction；Thermal Model最终只保留Sun而忽略Earth Albedo/IR；Satellite和PV采用Rigid-body/Rigid Connection，没有Flexible Structure；Sensor Model较简化，后续PROP测试甚至直接使用Ideal Gyro Attitude；没有Payload、Communication、OBC、Ground Station、Mission Planning等总体层级模块。Water Resistojet约`0.13 kg/s`的Water Mass Flow也必须针对真实Small Satellite Propellant Storage重新校核，作者本人已指出这一点。论文还没有给出长期Energy Balance、Orbit/Eclipse Mission Profile、真实Telemetry对比或Quantitative Validation Error，因此最值得学习的是建模架构和Multi-domain Coupling方法，而不是直接照搬其参数。
+- **总体评价：** 从Modelica卫星总体建模的角度，这篇文章已经明显超过“单一分系统示例”，开始真正建立整星级物理耦合模型；但其颗粒度仍然偏向系统概念验证。它最有价值的贡献是说明如何把Mechanical、Electrical、Thermal、Fluid与Control组织进同一个Acausal Framework，并利用FMI吸收外部模型。对于后续更完整的CubeSat总体仿真，这种架构思想比某一个具体方程或参数更值得复用。
+]]></content>
+      <categories>
+        <category>Academic Papers</category>
+        <category>Conference</category>
+        <category>Modelica Conference</category>
+        <category>2024</category>
+      </categories>
+      <tags>
+        <tag>Modelica</tag>
+        <tag>Satellite</tag>
+        <tag>Dymola</tag>
+        <tag>Multiphysics Modeling</tag>
+        <tag>FMI</tag>
+      </tags>
+  </entry>
 </search>

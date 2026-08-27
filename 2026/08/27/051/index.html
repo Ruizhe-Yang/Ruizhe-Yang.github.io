@@ -1,0 +1,522 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library Abstraction  The multiphysics modeling has a great importance when a complex space system (as a satellite) is consider">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2026/08/27/051/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library Abstraction  The multiphysics modeling has a great importance when a complex space system (as a satellite) is consider">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ruizhe-yang.github.io/pictures/2026082701.png">
+<meta property="article:published_time" content="2026-08-27T11:15:00.000Z">
+<meta property="article:modified_time" content="2026-08-27T11:15:00.000Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="Modelica">
+<meta property="article:tag" content="Satellite">
+<meta property="article:tag" content="Dymola">
+<meta property="article:tag" content="Multiphysics Modeling">
+<meta property="article:tag" content="FMI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruizhe-yang.github.io/pictures/2026082701.png"><link rel="shortcut icon" href="/pictures/site-favicon.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2026/08/27/051/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-08-27 19:15:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/pictures/site-avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">109</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">65</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/pictures/2026082701.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="/pictures/site-logo.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-08-27T11:15:00.000Z" title="Created 2026-08-27 19:15:00">2026-08-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-08-27T11:15:00.000Z" title="Updated 2026-08-27 19:15:00">2026-08-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Conference/">Conference</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Conference/Modelica-Conference/">Modelica Conference</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Conference/Modelica-Conference/2024/">2024</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">5.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>21mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://doi.org/10.3384/ECP207155">Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library</a></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>The multiphysics modeling has a great importance when a complex space system (as a satellite) is considered. Indeed, it is necessary to analyse how the system’s behavior is affected by the space environment or by on board failures. In this paper, the Modelica Library is used to hierarchically build and connect the main subsystems that can be found in a traditional satellite. Specifically, the modeling and simulation of the entire system is carried out in the Dymola environment. Finally, the FMI is applied to simulate in Dymola some specific satellite models/logics created with higher fidelity in the Matlab/Simulink domain.</p>
+</blockquote>
+<p>摘要翻译：对于卫星这类复杂空间系统，多物理场建模具有重要意义，因为系统总体行为不仅由单一分系统决定，还会受到空间环境、分系统之间的物理耦合以及星上故障的共同影响。本文使用Modelica Library，以层级化方式构建并连接传统卫星中常见的主要分系统，并在Dymola环境中完成整个卫星系统的建模与仿真。为了兼顾不同工具各自的建模优势，作者进一步使用Functional Mock-up Interface（FMI），将在Matlab/Simulink/Simscape中建立的部分较高保真模型与控制逻辑导入Dymola，从而形成一个Modelica主模型与外部高保真子模型联合工作的多工具仿真平台。</p>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p>卫星是典型的多物理域复杂系统。姿态控制涉及刚体动力学、执行机构和控制算法；电源系统涉及太阳能电池、电池、功率电子与负载；热控涉及辐射、传导和主动散热；推进又同时包含电、热、流体和机械推力过程。一个局部分系统的状态变化，往往会通过功率、温度、姿态或控制信号影响其他分系统，因此仅分别建立独立模型并不能完整反映整星行为。</p>
+<p>作者由此强调Holistic Approach，即从总体视角模拟系统内部的Multiphysics Interactions。Dymola被选作主集成环境，基础Physical Elements主要来自Modelica Library，并利用Acausal Modeling构造Hybrid-complex System。对于标准库中没有的特殊空间算法，则通过Modelica文本代码自行定义；对于Matlab/Simulink中更容易实现或已有较高保真度的模型，通过FMI继续复用。</p>
+<p>因此全文技术路线并不是“所有内容都必须原生Modelica化”，而是：</p>
+<p><code>Modelica物理组件 + 自定义Modelica算法 + FMI外部高保真模块 → Dymola整星系统模型</code></p>
+<p>这使Dymola更像一个统一的System Integration Backbone。</p>
+<h3 id="1-1-Satellite-system"><a href="#1-1-Satellite-system" class="headerlink" title="1.1 Satellite system"></a>1.1 Satellite system</h3><p><img src="/pictures/2026082701.png" alt="本文采用的卫星分系统层级分解结构"></p>
+<p>本文选择Small Satellite作为示例。作者明确指出，每颗卫星的Architecture和On-board Equipment都取决于Mission，因此这里给出的不是某一颗真实卫星的固定设计，而是一套为了研究多物理场交互而构造的通用Breakdown Architecture。</p>
+<p>考虑四个主要Subsystem：</p>
+<ul>
+<li><strong>ADCS（Attitude and Determination Control Subsystem）</strong>：利用Reaction Wheels等执行机构改变或保持Satellite Orientation，并通过Gyroscope、Star Tracker等传感器估计姿态；</li>
+<li><strong>THR（Thermal subsystem）</strong>：监测Satellite Instruments和Surface Temperature，并将其维持在允许范围内；</li>
+<li><strong>PROP（Propulsion subsystem）</strong>：产生Thrust，既可支持姿态机动，也可抵消Solar Radiation Pressure等Disturbance Torque；</li>
+<li><strong>EPS（Electrical Power Subsystem）</strong>：利用PV Array发电，由PMU完成MPPT、Battery管理、DC-DC Conversion和Power Distribution。</li>
+</ul>
+<p>论文Figure 1实际建立了三层分解：第一层是Subsystem，第二层是Subsystem Tasks，第三层才是执行这些任务的Physical Components，例如Reaction Wheel、Gyro、Star Tracker、Radiator、Nozzle、PV Array和Battery。</p>
+<p>这种组织方式与Modelica的Hierarchical Component Modeling高度一致：底层物理元件先构建和验证，再封装为Subsystem，最后组合成Spacecraft。</p>
+<p>由于推进采用Water Resistojet，作者认为这套架构尤其接近CubeSat；除推进形式外，其他结构也可以继续适配Large Spacecraft。</p>
+<h2 id="2-Modeling-design"><a href="#2-Modeling-design" class="headerlink" title="2 Modeling design"></a>2 Modeling design</h2><p>作者先总结一般Real System Modeling的四个阶段。</p>
+<ol>
+<li><strong>Extract a physical model from reality</strong>：从现实对象中筛选真正主导系统行为的Physical/State Variables。这里依赖Engineering Judgment，因为工程模型必须有所取舍。</li>
+<li><strong>Extract the mathematical model from the physical one</strong>：利用具体物理组件的Constitutive Laws，把识别出的物理现象转化为数学方程。</li>
+<li><strong>Simulate the mathematical model</strong>：采用适当的Numerical Integration求解这些方程，得到State Variables随时间的Evolution。</li>
+<li><strong>Perform sensitivity analysis</strong>：比较Simulation Result与Real Response，逐步完成State Identification和Parameter Adjustment；当模型与真实系统持续校准后，才有可能进一步形成Digital Twin。</li>
+</ol>
+<p>论文用DC Motor驱动Shaft作为简单示例，说明真实复杂电机可以被抽象为电气与机械Physical Model，再由一组一阶Differential Equations描述。作者借此强调：Modelica建模的重点是Physical Topology和Constitutive Relation，而不是在模型层面手工安排求解顺序。</p>
+<h3 id="2-1-Satellite-general-architecture"><a href="#2-1-Satellite-general-architecture" class="headerlink" title="2.1 Satellite general architecture"></a>2.1 Satellite general architecture</h3><p><img src="/pictures/2026082702.png" alt="卫星外形与执行机构配置"></p>
+<p>完成High-level Structure后，需要先建立Subsystem Correlation Flow，确定整星内部不同Physical Variables如何相互作用。</p>
+<p>为了简化仿真，作者采用以下主要假设：</p>
+<ul>
+<li>PV Arrays与Main Body刚性连接；</li>
+<li>Satellite Center of Mass位于Dymola World Frame原点；</li>
+<li>Attitude Dynamics在该坐标系下表达；</li>
+<li>配置6个Thrusters，通过不同Nozzle激活组合形成Three-axis Torque；</li>
+<li>Propulsion采用Water Resistojet；</li>
+<li>配置2个Star Trackers，分别沿x和y方向观测Inertial Fixed Stars；</li>
+<li>Satellite和Actuator尺寸与主要参数大致接近16U CubeSat。</li>
+</ul>
+<p>其中PV Array的Rigid Connection和Rigid-body Satellite是假设体系中很重要的两点：它们使姿态模型能够忽略Structure Flexibility，从而把论文重点放在多分系统耦合，而不是柔性航天器动力学。</p>
+<h4 id="2-1-1-Satellite-subsystems-interaction"><a href="#2-1-1-Satellite-subsystems-interaction" class="headerlink" title="2.1.1 Satellite subsystems interaction"></a>2.1.1 Satellite subsystems interaction</h4><p><img src="/pictures/2026082703.png" alt="卫星各分系统之间的主要物理交互关系"></p>
+<p>Figure 5是全文最核心的System-level Diagram之一。作者明确给出各分系统真正交换的Physical Variables：</p>
+<ul>
+<li>EPS Bus Voltage <code>VBus</code>或Battery Voltage <code>VBatt</code>为ADCS Reaction Wheels和PROP Resistojet供电；</li>
+<li>ADCS输出的Attitude Matrix决定Satellite Body相对Sun/Earth的姿态；</li>
+<li>姿态进一步决定哪些Surface受到Sun/Earth Radiation，Shadow Model把结果表示为Boolean Vector；</li>
+<li>PV Array输出功率取决于PV-Sun Incidence Angle；</li>
+<li>PROP中Water被Electro-thermal Circuit加热形成Steam，Steam Pressure和Temperature进一步决定Nozzle Thrust；</li>
+<li>Fuzzy Logic根据Attitude Error决定Nozzle Firing Time和Direction，最终形成Propulsive Torque；</li>
+<li>Battery Temperature和PV Array Temperature作为EPS输入，改变Power Generation和Battery Charge/Discharge；</li>
+<li>SRP Torque Block根据Sun Inertial Position和Satellite Attitude计算Disturbance Torque。</li>
+</ul>
+<p>由此可以看到几个完整闭环。例如：</p>
+<p><code>Attitude → Sun incidence → PV power → Bus voltage → Reaction wheel → Attitude</code></p>
+<p>以及：</p>
+<p><code>Attitude → Illumination → Thermal state → Battery/PV behavior → EPS → Actuator</code></p>
+<p>这就是本文“Multiphysics”最实质的内容。模型并不是把ADCS、THR、PROP和EPS放在同一个Package里就结束，而是让一个域的State真正改变另一个域的方程输入和物理行为。</p>
+<p>作者也指出，部分跨域关系通过Control Logic连接，因此最终Space System同时包含Physical System和Digital Control Logic，具备典型Cyber-Physical System特征。</p>
+<h4 id="2-1-2-ADCS-subsystem"><a href="#2-1-2-ADCS-subsystem" class="headerlink" title="2.1.2 ADCS subsystem"></a>2.1.2 ADCS subsystem</h4><p><img src="/pictures/2026082704.png" alt="ADCS分系统的Modelica建模逻辑"></p>
+<p>ADCS从Target Attitude到Reaction Wheel输出采用两层控制链。</p>
+<p>首先，Desired Attitude Angles与Sensor Estimated Attitude之间形成Error，进入PID Controller。PID得到Virtual DC Motor所需Continuous Voltage，使Virtual Reaction Wheel产生Ideal Control Torque。</p>
+<p>随后根据Virtual RW Angular Velocity，第二个PID计算H-bridge Duty Cycle。PWM与EPS Bus Voltage共同形成真实DC Motor的Square Voltage。</p>
+<p>真实DC Motor获得Voltage后产生Current和Torque，带动实际Reaction Wheel。Reaction Wheel通过Action-Reaction将Torque施加到Satellite Body。</p>
+<p>Satellite Rigid-body Dynamics同时受到三类Torque：</p>
+<ul>
+<li>Solar Radiation Pressure Torque；</li>
+<li>Propulsion Torque；</li>
+<li>Reaction Wheel Torque。</li>
+</ul>
+<p>作者给出的核心刚体方程为：</p>
+<p><code>J·dω_sat/dt = -ω_sat × (Jω_sat) + T_srp + T_p + T_RW</code></p>
+<p>DC Motor还同时满足Electrical Equation和Mechanical Equation：</p>
+<p><code>L_a·di/dt = -R_a·i - K_m·ω_M + V_m</code></p>
+<p><code>J_m·dω_M/dt = -b·ω_M + K_m·i + T_RW</code></p>
+<p>因此Reaction Wheel链条本身已经跨越：</p>
+<p><code>Electrical → Electromechanical → Mechanical rotation → Spacecraft attitude</code></p>
+<p>Dymola模型使用Rigid Body、World Frame Joint、World Torque、Fixed Rotation、Revolute/Spherical Joint、Voltage Source、DC Motor、Inertia、H-Bridge、PWM、Gyro以及Limited PID等组件。</p>
+<p>Satellite被视为Simple Rigid-body。作者认为对于16U CubeSat，由于Solar Panel较短、Main-body Inertia占主导，这一假设可以接受；对于大型卫星或Long Flexible Solar Array，Flexible Dynamics将成为后续扩展内容。</p>
+<p>Sensor方面，Ideal Gyro可以直接由Angular Velocity Sensor近似，但Star Tracker Noise、TRIAD Algorithm和SRP Torque需要通过Section 3中的自定义Modelica Function实现。</p>
+<h4 id="2-1-3-THR-subsystem"><a href="#2-1-3-THR-subsystem" class="headerlink" title="2.1.3 THR subsystem"></a>2.1.3 THR subsystem</h4><p><img src="/pictures/2026082705.png" alt="卫星14节点Lumped Thermal Model及Radiator控制"></p>
+<p>Thermal Model采用Lumped Approach。Satellite Surfaces和Internal Instrumentation被抽象为具有一定Thermal Capacity的Nodes，节点之间可以发生Conduction和Radiation。</p>
+<p>本文共使用14个Thermal Nodes：</p>
+<ul>
+<li>Main Body：3、4、5、6、7、8；</li>
+<li>PV Array：1、2、9、10；</li>
+<li>Radiators：11、12、13、14。</li>
+</ul>
+<p>Deep Space被视为平均约3 K的Radiative Sink。</p>
+<p>由于Space中基本不存在空气，Convection被忽略。主要传热路径只考虑：</p>
+<ul>
+<li>Conductive Heat Transfer；</li>
+<li>Radiative Heat Transfer。</li>
+</ul>
+<p>作者还对PV Array正反面使用不同Thermal Properties：Top Side具有更高Emissivity，Bottom Side具有更高Absorptivity。Radiator同样通过不同节点区分High-emissivity和High-absorptivity Surface。</p>
+<p>THR Logic如下：</p>
+<ol>
+<li>输入Satellite Attitude Matrix、Sun Position和Solar Irradiance；</li>
+<li>Shadow Model返回14维Boolean Vector，判断每个Node是否接受Sun/Earth Radiation；</li>
+<li>根据Temperature Distribution使用Hysteresis控制Radiator；</li>
+<li>Radiator Opening/Closing改变Thermal Model的Conduction与Radiation行为；</li>
+<li>Radiator Angle改变节点11～14的Shadow Condition。</li>
+</ol>
+<p>Thermal Node基本Energy Balance写成：</p>
+<p><code>C_i dT_i/dt = Q_Sun + Q_Earth + ΣQ_c + ΣQ_r</code></p>
+<p>其中Solar Energy由Absorptivity、Solar Flux和Area决定；Earth Energy理论上由Albedo和Infrared共同构成；节点间Conduction取决于Thermal Conductance与Temperature Difference；Radiation还受到Emissivity和View Factor影响。</p>
+<p>因此，这是一种典型的System-level Lumped Thermal Network：能够分析姿态、光照、散热器动作与温度之间的系统级耦合，但并不试图获得Finite-element级Temperature Field。</p>
+<h4 id="2-1-4-PROP-subsystem"><a href="#2-1-4-PROP-subsystem" class="headerlink" title="2.1.4 PROP subsystem"></a>2.1.4 PROP subsystem</h4><p><img src="/pictures/2026082706.png" alt="Water Resistojet推进分系统的多物理建模流程"></p>
+<p>PROP是全文跨物理域最丰富的Subsystem。</p>
+<p>Attitude Angle Error和Angular Rate Error首先进入Fuzzy Logic Block，得到每个Nozzle的Firing Time。</p>
+<p>EPS Bus Voltage通过Buck Circuit降低到约0.5 V后施加在Tungsten Rod两端。Electrical Current产生Joule Heating，Heat Flow进入Boiler Furnace。</p>
+<p>Liquid Water进入Vaporizer，吸热后转化为Steam，再流入Convergent-divergent Nozzle膨胀。</p>
+<p>Boiler Liquid Phase由PID调节，以维持Vaporizer工作；Valve则决定何时允许Steam Generation与Thrust Delivery。</p>
+<p>最终利用Nozzle相对CM的Moment Arm计算Propulsive Torque。</p>
+<p>Boiler采用Modelica已有Drum-boiler Component，Nozzle采用Rocket Equation自行实现。Thrust由Steam Mass Flow、Exit Velocity、Exit Pressure与Exit Area共同决定，Exit Velocity又由Mach Number、Specific Heat Ratio、Steam Gas Constant和Exit Temperature决定。</p>
+<p>本文Nozzle Exit Mach Number约为10。</p>
+<p>Fuzzy Logic通过Matlab Mamdani GUI设计，随后利用FMI导入Dymola。</p>
+<p>PROP模型中的Modelica组件包括Water Source、Steam Drum Boiler、Steam Sink Boundary、Valve、Steam Pressure/Temperature Sensor、Voltage Source、Thermal Resistor、Tungsten Thermal Mass以及Heat Transfer。</p>
+<p>Thermal Resistor启用Thermal Port，用于把Joule Heat显式送入Tungsten/Vaporizer；PROP关闭后又通过Heat Transfer逐步把Tungsten恢复到约298 K。</p>
+<h4 id="2-1-5-EPS-subsysyem"><a href="#2-1-5-EPS-subsysyem" class="headerlink" title="2.1.5 EPS subsysyem"></a>2.1.5 EPS subsysyem</h4><p><img src="/pictures/2026082707.png" alt="EPS分系统的PV-MPPT-Battery-BMS结构"></p>
+<p>EPS从Solar Energy输入一直建模到Bus和Battery。</p>
+<p>PV Array Photocurrent由三类因素共同决定：</p>
+<ul>
+<li>Sun Heat Flux；</li>
+<li>Sun Ray Incidence Angle；</li>
+<li>Solar Panel Temperature。</li>
+</ul>
+<p>MPPT Algorithm调节PV Voltage，使PV Array工作在Maximum Power Point附近。</p>
+<p>随后Two-switch Buck-Boost Converter把PV电压转换到Spacecraft Bus。本文16U CubeSat的Nominal Bus Voltage约为13 V。</p>
+<p>Battery正常与Bus连接。BMS根据SOC和Eclipse Condition调节Battery Current。当Bus Voltage过低或发生Eclipse时，Switch闭合，Battery接管Loads。</p>
+<p>Battery Charge/Discharge Profile显式受到Battery Temperature影响。</p>
+<p>BMS使用Typical CC-CV Charging/Discharging Logic。</p>
+<p>作者特别说明，在Acausal Modeling模式下，只需要按照真实Buck-Boost Circuit搭建Physical Representation，内部Constitutive Equations已经封装在Modelica Components中，建模重点由“手写方程求解流程”转移到“真实物理拓扑”。</p>
+<p>PV Array通过Thermal Diode的Series/Parallel Connection建立；MPPT使用Logical Library；Battery-BMS则使用Simscape后经FMI接入Dymola。</p>
+<h2 id="3-Modelica-coding"><a href="#3-Modelica-coding" class="headerlink" title="3 Modelica coding"></a>3 Modelica coding</h2><p><img src="/pictures/2026082708.png" alt="作者自行编写的Modelica功能块"></p>
+<p>Standard Library并不直接包含所有Satellite-specific Algorithm，因此作者使用Dymola Text Option自行建立Block。</p>
+<p>主要自定义Functions为：</p>
+<ul>
+<li>SRP torque；</li>
+<li>ADCS sensor；</li>
+<li>Shadow model；</li>
+<li>Nozzle；</li>
+<li>Photocurrent。</li>
+</ul>
+<p>这些Functions主要承担两类工作：</p>
+<p>一是补充Modelica Standard Library缺失的Specialized Algorithm；</p>
+<p>二是连接不同Subsystem或连接Satellite与Space Environment。</p>
+<p>具体算法包括：</p>
+<ol>
+<li>根据每个Surface相对CM的位置以及Absorption、Diffuse Reflection、Specular Reflection系数计算Solar Radiation Pressure Torque；</li>
+<li>通过Gaussian Noise构造Euler “123” Perturbation Matrix，模拟Star Tracker误差；</li>
+<li>使用TRIAD Algorithm根据两个Measured Vectors估计Satellite Attitude；</li>
+<li>通过Sun Direction与Surface Normal的Scalar Product判断各Thermal Node是否被照亮；</li>
+<li>计算Converging-diverging Nozzle中的Isentropic Expansion；</li>
+<li>计算PV Photocurrent。</li>
+</ol>
+<p>论文还给出<code>PhotoCurrent</code> Block的Modelica代码。Inputs包括Short-circuit Current、Temperature Coefficient、Solar Array Temperature、Solar Irradiance、Body-frame方向以及Sun Direction。Block内部先计算Surface-Sun Cosine，再结合Illumination、Irradiance和Temperature求Photocurrent。</p>
+<p>这部分清楚体现作者的Modelica开发策略：能由标准物理元件组合出来的内容尽量使用Library；真正没有对应Acausal Component的Space-specific Function才自己编码。</p>
+<h2 id="4-FMI-interface"><a href="#4-FMI-interface" class="headerlink" title="4 FMI interface"></a>4 FMI interface</h2><p><img src="/pictures/2026082709.png" alt="Fuzzy Logic与Battery-BMS通过FMI接入Dymola"></p>
+<p>Functional Mock-up Interface被用于两个模块：</p>
+<ul>
+<li>Fuzzy Bang-bang Logic；</li>
+<li>Battery-BMS Module。</li>
+</ul>
+<p>两者均先在Matlab/Simulink环境中建立，并利用Simscape进行物理建模。</p>
+<p>作者选择这种混合工具链有两个原因。</p>
+<p>第一，Matlab/Simulink中的Fuzzy Logic Designer App可以明显加快Controller设计，没有必要为了追求“全部Modelica”而重新实现一套Fuzzy Design流程。</p>
+<p>第二，Simscape已有Medium-high Fidelity Battery Element，尤其能够表现Temperature Dependency，因此比简单自建Battery模型更加方便。</p>
+<p>最终这些模块通过FMI导入Dymola，与其他Modelica Subsystems共同参与整星仿真。</p>
+<p>这里体现的是一种非常务实的工程思路：Modelica/Dymola作为统一系统级骨架，而不是要求所有领域模型必须在同一种工具内从零实现。</p>
+<h2 id="5-Simulation-results"><a href="#5-Simulation-results" class="headerlink" title="5 Simulation results"></a>5 Simulation results</h2><p>完整Hierarchical Satellite Model建立后，作者在Dymola中进行Simulation。</p>
+<p>主要参数与Assumptions为：</p>
+<ul>
+<li>16U CubeSat；</li>
+<li>Main Body：<code>0.2 × 0.2 × 0.4 m</code>；</li>
+<li>PV Array：<code>0.2 × 0.4 × 0.01 m</code>；</li>
+<li>DC Motor Nominal Voltage约12 V；</li>
+<li>Reaction Wheel Inertia约<code>0.0005 kg·m²</code>；</li>
+<li>Peak Generated Power约180 W；</li>
+<li>Maximum Battery Voltage约15 V；</li>
+<li>Star Tracker Covariance：<code>1σ ≈ 10^-4 rad</code>；</li>
+<li>Nozzle Exit Mach Number约10；</li>
+<li>Heliocentric Orbit；</li>
+<li>Constant Solar Heat Flux：1370 W/m²；</li>
+<li>Thermal Model中只考虑Sun，不考虑Earth Heating；</li>
+<li>Typical Simulation Time约100 s；</li>
+<li>100 s内忽略Satellite Translational Displacement；</li>
+<li>不进行Orbit Propagation，只分析Attitude Evolution；</li>
+<li>Main Body假设Aluminium；</li>
+<li>PV Surface假设Silicon；</li>
+<li>Thermal Conduction Wall Thickness约0.01 m。</li>
+</ul>
+<p>大部分仿真使用DASSL。最后一个Multiphysics Scenario中，作者认为Stiff Solver <code>Sdirk34hw</code>表现更好。</p>
+<p>这组假设非常重要，因为它限定了本文成果的建模层级：主要验证Subsystem Physics与Cross-domain Coupling，而不是进行长时间Orbit-Thermal-Power Mission Simulation。</p>
+<h3 id="5-1-ADCS-Sensors-simulation"><a href="#5-1-ADCS-Sensors-simulation" class="headerlink" title="5.1 ADCS-Sensors simulation"></a>5.1 ADCS-Sensors simulation</h3><p>ADCS首先单独仿真。</p>
+<p>Sun Direction固定为<code>[0,0,1]</code>，Satellite按照Target Ramp Profile完成姿态跟踪。</p>
+<p>作者比较Ideal Gyro Integration与TRIAD Algorithm的Attitude Estimate。由于Star Tracker引入Gaussian Noise，Estimated Attitude与Real Attitude存在小偏差。</p>
+<p>Maneuver过程Peak Overshoot Attitude Error约：</p>
+<p><code>0.34°</code></p>
+<p>作者指出可进一步通过PID Tuning调整。</p>
+<p>RW1真实DC Motor使用PWM Square Voltage，Switching Frequency设为1000 Hz。</p>
+<p>Appendix Figure 23还同时给出Target Angles、RW Angular Rate、SRP Torque、TRIAD Error、Motor Voltage以及PID/RW Torque，可以看出Sensor、Controller、Motor、Reaction Wheel和Satellite Dynamics形成了完整的闭环验证。</p>
+<h3 id="5-2-Fuzzy-logic-FMI-simulation"><a href="#5-2-Fuzzy-logic-FMI-simulation" class="headerlink" title="5.2 Fuzzy logic (FMI simulation)"></a>5.2 Fuzzy logic (FMI simulation)</h3><p>随后对PROP Architecture进行测试。</p>
+<p>由于前一节结果表明TRIAD Estimation Error并未阻止PID完成姿态控制，因此从此处开始直接采用Ideal Gyro Attitude代替Star Tracker Measurement。</p>
+<p>Sun Direction仍固定为<code>[0,0,1]</code>。</p>
+<p>目标Euler “123” Attitude设置为：</p>
+<p><code>[0.3, 0.8, 0.1] rad</code></p>
+<p>PROP最终能够完成Maneuver，Final Attitude Error约：</p>
+<p><code>0.06°</code></p>
+<p>Fuzzy FMI Block输出Body-frame Propulsive Torque以及每个Nozzle的Firing Time/Direction。</p>
+<p>Resistojet Torque量级约：</p>
+<p><code>10 mNm</code></p>
+<p>Nominal Steam Pressure：</p>
+<p><code>13 bar</code></p>
+<p>Vaporizer维持工作所需Water Mass Flow：</p>
+<p><code>≈ 0.13 kg/s</code></p>
+<p>作者特别提醒，Water Storage受到Small Satellite尺寸限制，因此实际Mission Design必须重新校准这些PROP Parameters。换言之，这一仿真更偏向验证Multi-domain Modeling Chain，而不是给出已经工程定型的16U推进设计。</p>
+<h3 id="5-3-Battery-BMS-FMI-simulation"><a href="#5-3-Battery-BMS-FMI-simulation" class="headerlink" title="5.3 Battery-BMS (FMI simulation)"></a>5.3 Battery-BMS (FMI simulation)</h3><p>Battery-BMS FMI Block被独立测试。</p>
+<p>为了模拟Battery向Loads供电，Simulink Model加入：</p>
+<p><code>0.1 Ω</code></p>
+<p>Load Resistance。</p>
+<p>Bus Voltage被设置为Periodic Square Signal，以模拟周期性Eclipse。</p>
+<p>当<code>VBus = 0</code>时，Load Switch闭合，Battery接管Loads，出现Voltage Drop和Discharge。</p>
+<p>作者进一步比较三种Battery Temperature：</p>
+<ul>
+<li>283 K；</li>
+<li>293 K；</li>
+<li>313 K。</li>
+</ul>
+<p>结果显示Higher Battery Temperature会加快Discharge。</p>
+<p>较低Temperature则会表现出更高Charging Voltage和更明显Loaded Voltage Drop。</p>
+<p>这一结果验证了Thermal State会反向改变EPS Behavior，因此Battery Temperature不只是一个被动输出，而是实际参与Power System Dynamics的跨域变量。</p>
+<h3 id="5-4-THR-Radiator-simulation"><a href="#5-4-THR-Radiator-simulation" class="headerlink" title="5.4 THR-Radiator simulation"></a>5.4 THR-Radiator simulation</h3><p>THR模型单独验证Active Radiator Control。</p>
+<p>初始Sun Direction为：</p>
+<p><code>[0,-1,0]</code></p>
+<p>大约6.9 h后改为：</p>
+<p><code>[0,0,1]</code></p>
+<p>控制器监测Node 8 Temperature，并希望保持其不超过约70 °C。</p>
+<p>Hysteresis Logic表现为：</p>
+<ul>
+<li><code>T8 ≈ 60 °C</code>时Radiator打开；</li>
+<li><code>T8 &lt; 40 °C</code>时Radiator重新关闭，以避免Overcooling。</li>
+</ul>
+<p>Radiator Closed时，作者假设其不再Exchange Heat，因此Temperature保持不变。</p>
+<p><img src="/pictures/2026082710.png" alt="ADCS与THR分系统的主要Simulation Graphs"></p>
+<p>由于16U CubeSat尺寸较小、Thermal Scheme基本对称且Material较均匀，不同Nodes之间Temperature Difference较小。</p>
+<p>High-emissivity Radiator Nodes激活后，对Deep Space的Radiation Heat Transfer明显增加。</p>
+<p>因此THR实现了一个完整闭环：</p>
+<p><code>Illumination → Temperature → Hysteresis → Radiator Angle → Radiation Coefficient → Temperature</code></p>
+<h3 id="5-5-Multyphysics-scenario"><a href="#5-5-Multyphysics-scenario" class="headerlink" title="5.5 Multyphysics scenario"></a>5.5 Multyphysics scenario</h3><p><img src="/pictures/2026082711.png" alt="Satellite Multiphysics Scenario的主要结果"></p>
+<p>最后一个Scenario把多个Satellite Subsystems组合起来，但不使用PROP，Attitude Maneuver只依靠Reaction Wheels。</p>
+<p>场景设定：</p>
+<ul>
+<li>Satellite绕Dymola固定x-axis旋转180°；</li>
+<li>Sun Direction固定为<code>[0,1,0]</code>。</li>
+</ul>
+<p>随着Attitude改变，PV-Sun Incidence Angle和Shadow Condition发生变化。</p>
+<p>Maneuver开始阶段PV Array Power较高；当Nodes 1-2进入Shadow后，PV Generation降为0。</p>
+<p>此时Battery自动为Reaction Wheels供电，并开始Discharge，同时向Loads提供约13 V。</p>
+<p>因此形成完整Cross-domain Chain：</p>
+<p><code>ADCS maneuver → attitude → illumination/shadow → PV power → EPS source switching → battery discharge → RW power supply</code></p>
+<p>MPPT仍将Main Bus维持在Nominal约13 V，即使PV Array自身工作在更高Voltage。</p>
+<p>Figure 25同时给出：</p>
+<ul>
+<li>Satellite Animation；</li>
+<li>PV Power；</li>
+<li>Photocurrent；</li>
+<li>Battery SOC；</li>
+<li>PV Temperature；</li>
+<li>Battery Temperature；</li>
+<li>Battery Voltage。</li>
+</ul>
+<p>Figure 26进一步展示：</p>
+<ul>
+<li>Shadow Model输出；</li>
+<li>EPS Voltage；</li>
+<li>Euler Attitude；</li>
+<li>RW1 Angular Rate。</li>
+</ul>
+<p>这是全文真正证明“Multiphysics Acausal Modeling”价值的仿真：Mechanical Attitude不再只是独立曲线，而是实际改变Electrical Power与Battery State。</p>
+<h2 id="6-Conclusions"><a href="#6-Conclusions" class="headerlink" title="6 Conclusions"></a>6 Conclusions</h2><p>作者把本文目标概括为：</p>
+<ul>
+<li>使用Modelica Tools建立并仿真一个Complex Space System；</li>
+<li>建立未来可以继续执行Tests和Failure Analysis的平台。</li>
+</ul>
+<p>当前成果表明，可以用Modelica Standard Library建立ADCS、THR、PROP和EPS的主体Physical Model，再通过Modelica Coding补充Space-specific Algorithms，通过FMI接入Matlab/Simulink/Simscape中的高保真或成熟模块。</p>
+<p>未来首先计划增加Structure Subsystem，以研究Flexibility Effects，尤其面向Large Satellite与Long Solar Array。</p>
+<p>FMI还可以继续用于把模型导出到其他Programs，与Real System Telemetry结合进行Parametric System Identification或Frequency-domain Nonlinear System Identification，从而进一步提高Model Fidelity。</p>
+<p>因此本文更像一个可继续扩展的Satellite Multiphysics Simulation Platform原型，而不是最终完成的Flight Digital Twin。</p>
+<h2 id="Appendix-Simulation-Graphs"><a href="#Appendix-Simulation-Graphs" class="headerlink" title="Appendix: Simulation Graphs"></a>Appendix: Simulation Graphs</h2><p>Appendix集中给出Section 5涉及的主要Simulation Graphs。</p>
+<p>Figure 23为ADCS结果，包括Satellite Animation、Target Attitude、Reaction Wheel Speed、SRP Torque、TRIAD Attitude Error、PWM Motor Voltage以及PID/RW Torque。</p>
+<p>Figure 24为THR结果，包括Radiator Opening/Closing、Radiator Angle、Thermal Node Temperature、Node间Temperature Difference以及Deep-space Radiation Heat Transfer Coefficient。</p>
+<p>Figure 25和Figure 26为整星Multiphysics Scenario，展示Satellite Maneuver与PV Power、Photocurrent、Battery SOC、PV/Battery Temperature、Battery Voltage、Shadow State、EPS Voltage以及Reaction Wheel Speed之间的关联。</p>
+<p>这些Appendix Graphs本质上是Section 5仿真结果的集中补充，也是判断各Subsystem是否真正完成动态耦合的重要证据。</p>
+<h2 id="论文评价"><a href="#论文评价" class="headerlink" title="论文评价"></a>论文评价</h2><ul>
+<li><strong>推测的软件工具链：</strong> 论文工具链披露得比较清楚。主体系统模型与仿真平台是Dymola，基础物理组件来自Modelica Standard Library；SRP Torque、TRIAD、Shadow Model、Nozzle和Photocurrent通过Modelica Text Coding实现；Fuzzy Bang-bang Controller使用Matlab/Simulink的Mamdani Fuzzy Logic Designer，Battery-BMS使用Simscape，并通过FMI接入Dymola。大部分Simulation使用DASSL，最终Multiphysics Scenario采用Sdirk34hw。整体属于“Dymola/Modelica系统集成 + Matlab/Simulink/Simscape特定模型 + FMI互操作”的混合工具链。</li>
+<li><strong>收录原因：</strong> 这篇论文真正展示了Modelica在Satellite Multiphysics Integration中的优势。ADCS跨越机械、电机和控制；THR采用14-node Lumped Thermal Network；PROP同时连接Electrical Heating、Thermal、Fluid和Mechanical Thrust；EPS连接PV、Power Electronics、Battery和BMS。更重要的是Figure 5把这些Subsystem通过Attitude、Temperature、Voltage、Solar Incidence、Torque等真实Physical Variables耦合起来，而最终Multiphysics Scenario又实际演示了“姿态变化→光照变化→PV失去输出→Battery接管→Reaction Wheel继续工作”的闭环过程，非常符合Modelica Conference对Acausal、Multi-domain和Hierarchical Modeling的关注。</li>
+<li><strong>值得借鉴：</strong> 最值得借鉴的是作者对模型来源的分层处理：能由Modelica标准物理元件表达的部分优先使用Standard Library；没有现成组件的Satellite-specific Algorithm自己写Modelica Block；已经在其他工具中更成熟的模型直接通过FMI复用。这种策略比强行把所有模型重写成同一种语言更务实。另一个值得借鉴的点是先建立Figure 5式Cross-interaction Diagram，再进入代码建模，它明确回答了“各分系统究竟交换哪些变量”。THR的Lumped-node方法、ADCS的DC Motor-RW链、EPS的PV-MPPT-Battery链，以及最后用一个180°Maneuver触发多域耦合的验证方法，也都很适合作为Satellite Overall Simulation的参考模板。</li>
+<li><strong>可能不足：</strong> 当前工作更接近Conceptual/Preliminary Multiphysics Demonstrator，而不是Mission-level High-fidelity Simulator。典型Multiphysics仿真只有约100 s，没有Orbit Propagation，并在短时窗口中固定Sun Direction；Thermal Model最终只保留Sun而忽略Earth Albedo/IR；Satellite和PV采用Rigid-body/Rigid Connection，没有Flexible Structure；Sensor Model较简化，后续PROP测试甚至直接使用Ideal Gyro Attitude；没有Payload、Communication、OBC、Ground Station、Mission Planning等总体层级模块。Water Resistojet约<code>0.13 kg/s</code>的Water Mass Flow也必须针对真实Small Satellite Propellant Storage重新校核，作者本人已指出这一点。论文还没有给出长期Energy Balance、Orbit/Eclipse Mission Profile、真实Telemetry对比或Quantitative Validation Error，因此最值得学习的是建模架构和Multi-domain Coupling方法，而不是直接照搬其参数。</li>
+<li><strong>总体评价：</strong> 从Modelica卫星总体建模的角度，这篇文章已经明显超过“单一分系统示例”，开始真正建立整星级物理耦合模型；但其颗粒度仍然偏向系统概念验证。它最有价值的贡献是说明如何把Mechanical、Electrical、Thermal、Fluid与Control组织进同一个Acausal Framework，并利用FMI吸收外部模型。对于后续更完整的CubeSat总体仿真，这种架构思想比某一个具体方程或参数更值得复用。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2026/08/27/051/">https://ruizhe-yang.github.io/2026/08/27/051/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Modelica/">Modelica</a><a class="post-meta__tags" href="/tags/Satellite/">Satellite</a><a class="post-meta__tags" href="/tags/Dymola/">Dymola</a><a class="post-meta__tags" href="/tags/Multiphysics-Modeling/">Multiphysics Modeling</a><a class="post-meta__tags" href="/tags/FMI/">FMI</a></div><div class="post_share"><div class="social-share" data-image="/pictures/2026082701.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/08/21/050/" title="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis"><img class="cover" src="/pictures/2026082101.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2025/04/27/029/" title="笔记：Unlocking Synergy:Leveraging SysML and Modelica with Bi-Directional Transformation and Simulation Integration Standards"><img class="cover" src="/pictures/INCOSE-IS.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-27</div><div class="title">笔记：Unlocking Synergy:Leveraging SysML and Modelica with Bi-Directional Transformation and Simulation Integration Standards</div></div></a></div><div><a href="/2026/02/04/038/" title="笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica"><img class="cover" src="/pictures/models2025.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-04</div><div class="title">笔记：Visual Modeling and Simulation of AUTOSAR Application Layer Models Using Modelica</div></div></a></div><div><a href="/2026/08/16/043/" title="笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica"><img class="cover" src="/pictures/2026081601.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-16</div><div class="title">笔记：Inclusion of Reliability and Safety Analysis Methods in Modelica</div></div></a></div><div><a href="/2026/08/16/044/" title="笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid"><img class="cover" src="/pictures/2026081608.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-16</div><div class="title">笔记：Modeling of Satellite Constellation in Modelica and a PHM System Framework Driven by Model Data Hybrid</div></div></a></div><div><a href="/2025/05/21/034/" title="笔记：An integrated approach for enhanced early-phase space system design and optimization"><img class="cover" src="/pictures/2025052101.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-21</div><div class="title">笔记：An integrated approach for enhanced early-phase space system design and optimization</div></div></a></div><div><a href="/2026/01/23/037/" title="笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim"><img class="cover" src="/pictures/SST.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-23</div><div class="title">笔记：Dynamic Verification of Space Missions via Flexible Model-Based Co-simulation with Systems Modeling Language and SpaceSim</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/pictures/site-avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">109</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">65</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://b23.tv/3cRMvn8" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-number">1.</span> <span class="toc-text">1 Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Satellite-system"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Satellite system</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Modeling-design"><span class="toc-number">2.</span> <span class="toc-text">2 Modeling design</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Satellite-general-architecture"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Satellite general architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-Satellite-subsystems-interaction"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1 Satellite subsystems interaction</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-ADCS-subsystem"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2 ADCS subsystem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-THR-subsystem"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3 THR subsystem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-4-PROP-subsystem"><span class="toc-number">2.1.4.</span> <span class="toc-text">2.1.4 PROP subsystem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-5-EPS-subsysyem"><span class="toc-number">2.1.5.</span> <span class="toc-text">2.1.5 EPS subsysyem</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Modelica-coding"><span class="toc-number">3.</span> <span class="toc-text">3 Modelica coding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-FMI-interface"><span class="toc-number">4.</span> <span class="toc-text">4 FMI interface</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Simulation-results"><span class="toc-number">5.</span> <span class="toc-text">5 Simulation results</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-ADCS-Sensors-simulation"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 ADCS-Sensors simulation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Fuzzy-logic-FMI-simulation"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 Fuzzy logic (FMI simulation)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-Battery-BMS-FMI-simulation"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 Battery-BMS (FMI simulation)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-THR-Radiator-simulation"><span class="toc-number">5.4.</span> <span class="toc-text">5.4 THR-Radiator simulation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-Multyphysics-scenario"><span class="toc-number">5.5.</span> <span class="toc-text">5.5 Multyphysics scenario</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Conclusions"><span class="toc-number">6.</span> <span class="toc-text">6 Conclusions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Appendix-Simulation-Graphs"><span class="toc-number">7.</span> <span class="toc-text">Appendix: Simulation Graphs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E8%AF%84%E4%BB%B7"><span class="toc-number">8.</span> <span class="toc-text">论文评价</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/27/051/" title="笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library"><img src="/pictures/2026082701.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library"/></a><div class="content"><a class="title" href="/2026/08/27/051/" title="笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library">笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library</a><time datetime="2026-08-27T11:15:00.000Z" title="Created 2026-08-27 19:15:00">2026-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/21/050/" title="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis"><img src="/pictures/2026082101.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis"/></a><div class="content"><a class="title" href="/2026/08/21/050/" title="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis">笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis</a><time datetime="2026-08-21T09:33:00.000Z" title="Created 2026-08-21 17:33:00">2026-08-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/19/049/" title="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment"><img src="/pictures/2026081917.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment"/></a><div class="content"><a class="title" href="/2026/08/19/049/" title="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment">笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment</a><time datetime="2026-08-19T04:36:00.000Z" title="Created 2026-08-19 12:36:00">2026-08-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/19/048/" title="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks"><img src="/pictures/2026081910.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks"/></a><div class="content"><a class="title" href="/2026/08/19/048/" title="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks">笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks</a><time datetime="2026-08-19T04:10:00.000Z" title="Created 2026-08-19 12:10:00">2026-08-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/19/047/" title="笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling"><img src="/pictures/2026081901.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling"/></a><div class="content"><a class="title" href="/2026/08/19/047/" title="笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling">笔记：A novel event tree analysis-graphical evaluation and review technique network model for comprehensive fault analysis in rocket hydrogen-oxygen refueling</a><time datetime="2026-08-19T04:00:00.000Z" title="Created 2026-08-19 12:00:00">2026-08-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: 'ac884ee94d7ac60c2f25d8deff508a11',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
