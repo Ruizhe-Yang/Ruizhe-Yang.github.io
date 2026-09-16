@@ -294,3 +294,17 @@ const btf = {
     delete parent.globalFn[key]
   }
 }
+
+const updateBilibiliLink = () => {
+  document.querySelectorAll('a.social-icon[title="Bilibili"]').forEach(link => {
+    link.href = 'https://space.bilibili.com/473823163'
+  })
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', updateBilibiliLink)
+} else {
+  updateBilibiliLink()
+}
+
+document.addEventListener('pjax:complete', updateBilibiliLink)
