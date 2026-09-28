@@ -1,0 +1,526 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：A system-theoretic assurance framework for safety-driven systems engineering | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="A system-theoretic assurance framework for safety-driven systems engineering Abstraction  The complexity of safety-critical systems is continuously increasing. To create safe systems despite the compl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：A system-theoretic assurance framework for safety-driven systems engineering">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2026/09/28/052/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="A system-theoretic assurance framework for safety-driven systems engineering Abstraction  The complexity of safety-critical systems is continuously increasing. To create safe systems despite the compl">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ruizhe-yang.github.io/pictures/2026092801.png">
+<meta property="article:published_time" content="2026-09-28T01:53:00.000Z">
+<meta property="article:modified_time" content="2026-09-28T01:53:00.000Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="MBSE">
+<meta property="article:tag" content="SysML">
+<meta property="article:tag" content="STPA">
+<meta property="article:tag" content="GSN">
+<meta property="article:tag" content="Safety Assurance">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruizhe-yang.github.io/pictures/2026092801.png"><link rel="shortcut icon" href="/pictures/site-favicon.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2026/09/28/052/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：A system-theoretic assurance framework for safety-driven systems engineering',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-09-28 09:53:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/pictures/site-avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">52</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">112</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">65</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/pictures/2026092801.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="/pictures/site-logo.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：A system-theoretic assurance framework for safety-driven systems engineering</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-09-28T01:53:00.000Z" title="Created 2026-09-28 09:53:00">2026-09-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-09-28T01:53:00.000Z" title="Updated 2026-09-28 09:53:00">2026-09-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/">Journal</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/SoSyM/">SoSyM</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/SoSyM/2024/">2024</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">7.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>28mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：A system-theoretic assurance framework for safety-driven systems engineering"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://doi.org/10.1007/s10270-024-01209-6">A system-theoretic assurance framework for safety-driven systems engineering</a></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>The complexity of safety-critical systems is continuously increasing. To create safe systems despite the complexity, the system development requires a strong integration of system design and safety activities. A promising choice for integrating system design and safety activities are model-based approaches. They can help to handle complexity through abstraction, automation, and reuse and are applied to design, analyze, and assure systems. In practice, however, there is often a disconnect between the model-based design and safety activities. At the same time, there is often a delay until recent approaches are available in model-based frameworks. As a result, the advantages of the models are often not fully utilized. Therefore, this article proposes a framework that integrates recent approaches for system design (model-based systems engineering), safety analysis (system-theoretic process analysis), and safety assurance (goal structuring notation). The framework is implemented in the systems modeling language (SysML), and the focus is placed on the connection between the safety analysis and safety assurance activities. It is shown how the model-based integration enables tool assistance for the systematic creation, analysis, and maintenance of safety artifacts. The framework is demonstrated with the system design, safety analysis, and safety assurance of a collision avoidance system for aircraft. The model-based nature of the design and safety activities is utilized to support the systematic generation, analysis, and maintenance of safety artifacts.</p>
+</blockquote>
+<p>摘要翻译：安全关键系统的复杂性正在持续增加。为了在复杂度不断提高的情况下仍然开发出安全系统，系统开发过程必须强化系统设计活动与安全活动之间的集成。模型化方法为这种集成提供了一条很有潜力的技术路线，因为模型可以通过抽象、自动化与复用帮助工程人员处理复杂性，并且已经被分别用于系统设计、安全分析以及安全保证。然而在实际工程中，模型化系统设计与模型化安全活动之间往往仍然存在脱节，而且新的安全分析方法通常需要很长时间才能真正进入现有模型化工具链，从而使模型本身的价值没有被充分利用。针对这一问题，本文提出一种System-theoretic Assurance Framework，将系统设计中的Model-Based Systems Engineering（MBSE）、安全分析中的System-Theoretic Process Analysis（STPA）以及安全保证中的Goal Structuring Notation（GSN）集成为一套端到端框架。该框架基于Systems Modeling Language（SysML）实现，并特别关注Safety Analysis与Safety Assurance之间的连接。论文说明了这种Model-based Integration如何利用模型的Traceability和Semi-formal Structure，为Safety Artifacts的系统化生成、分析与维护提供工具支持。作者进一步以Aircraft Collision Avoidance System为案例，展示如何把系统设计、安全分析与安全保证连接到同一个模型空间中，并利用这种连接自动生成Safety Case Baseline、检查Safety Case完整性、跟踪安全保证进度以及支持后续维护。</p>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p>安全关键系统正在越来越多地由高度互联的组件和Software-defined Functions组成。系统功能越来越依赖复杂交互，而不仅仅是单个硬件部件的正确工作，因此Design Error、Incomplete Specification和Interaction-related Hazard的风险也随之增加。</p>
+<p>作者认为，面向这种复杂系统，System Design和Safety不能继续采用“先完成系统设计，再在后期单独做一次Safety Assessment”的串行方式，而需要在开发过程中建立Systematic Integration。</p>
+<p>当前三类代表性方法已经分别在自己的领域得到应用：</p>
+<ul>
+<li>系统设计：Model-Based Systems Engineering（MBSE）；</li>
+<li>安全分析：System-Theoretic Process Analysis（STPA）；</li>
+<li>安全保证：Goal Structuring Notation（GSN）Safety Case。</li>
+</ul>
+<p>MBSE通过模型贯穿System Life Cycle；STPA特别关注复杂系统中的控制交互、Specification Error和Software-intensive Risk；GSN则通过Goal—Strategy—Evidence形式构造Safety Argument。</p>
+<p>已有研究已经指出把MBSE、STPA和GSN组合起来具有价值，但作者认为现状仍然不完整。一方面，很多Model-based Safety Framework仍然主要连接传统FMEA、FTA等Safety Analysis；另一方面，STPA和GSN虽然已经可以分别在SysML环境中表达，却缺少一条<strong>Model-based End-to-end Integration</strong>路线。</p>
+<p>因此，这篇论文真正研究的不是单独“怎么做STPA”或者“怎么画GSN”，而是如何形成：</p>
+<p><code>System Design → Safety Analysis → Safety Assurance</code></p>
+<p>连续的信息链，并且让这条链具备明确的Traceability，使工具能够自动查询、生成、检查和维护不同安全工件。</p>
+<p>文章中特别强调Safety Analysis与Safety Assurance的连接，因为仅仅完成STPA并不代表安全工作已经得到充分保证。STPA产出了Loss、Hazard、UCA、Loss Scenario、Mitigation等分析结果，但还需要回答：</p>
+<ul>
+<li>是否所有Loss都识别完整？</li>
+<li>是否所有Hazard都得到系统分析？</li>
+<li>每个Control Action是否都被检查过？</li>
+<li>是否可能遗漏UCA？</li>
+<li>Loss Scenario是否识别充分？</li>
+<li>Mitigation是否真的实施并得到验证？</li>
+</ul>
+<p>这些问题本身已经从“Safety Analysis Result是什么”转向“为什么我们相信Safety Analysis Result足够可信”，也就是Safety Assurance问题。</p>
+<h2 id="2-Background"><a href="#2-Background" class="headerlink" title="2 Background"></a>2 Background</h2><p>本章分别介绍Framework中的三个基础部分：Model-based System Design、Model-based Safety Analysis和Model-based Safety Assurance。</p>
+<h3 id="2-1-Model-based-system-design"><a href="#2-1-Model-based-system-design" class="headerlink" title="2.1 Model-based system design"></a>2.1 Model-based system design</h3><p>MBSE被定义为一种使用Modeling贯穿整个System Life Cycle的Development Paradigm。它建立在Systems Engineering的系统化过程之上，并进一步通过Formalized Modeling提高一致性、可追踪性和自动化能力。</p>
+<p>作者强调，有效执行MBSE需要三个基本条件：</p>
+<ul>
+<li>Method；</li>
+<li>Language；</li>
+<li>Tool。</li>
+</ul>
+<p>在Method方面，可以使用MagicGrid、Arcadia、OOSEM等Systematic MBSE Framework。</p>
+<p>在Language方面，论文选择SysML。SysML源自UML，能够同时表示Requirement、Structure、Behavior和Parametric等不同系统视角。作者还指出，当时正在开发的SysML v2将拥有独立Meta-model以及Textual Representation等新能力。</p>
+<p>对于本文而言，SysML最重要的能力之一是<strong>可扩展性</strong>。通过Stereotype可以把Domain-specific Modeling Concept引入MBSE环境，例如把STPA元素和GSN元素作为SysML扩展建模。</p>
+<p>另一个关键点是Semi-formal Model能够与Tool Script结合。模型中的Element、Property和Relationship不再只是图形，而是可由API查询的结构化对象，因此可以进一步实现自动创建元素、建立Trace Link、查询Coverage、执行Consistency Check、自动生成Report和维护Safety Artifact。</p>
+<h3 id="2-2-Model-based-safety-analysis"><a href="#2-2-Model-based-safety-analysis" class="headerlink" title="2.2 Model-based safety analysis"></a>2.2 Model-based safety analysis</h3><p><img src="/pictures/2026092801.png" alt="STPA的分析步骤与主要工件关系"></p>
+<p>作者选择STPA作为Safety Analysis方法，原因是现代复杂系统越来越Software-intensive，而Traditional Component Failure Analysis不一定能够充分覆盖Incomplete Specification和Unsafe Interaction。</p>
+<p>STPA是Top-down Safety Analysis，其基本流程在论文中被概括为四个步骤。</p>
+<p>第一步定义Analysis Purpose，包括System、Boundary和Environment，然后识别需要避免的Losses，并从Loss进一步导出Hazards。</p>
+<p>第二步建立Control Structure，用于描述Components、Control Hierarchy、Control Actions（CA）和Feedback。</p>
+<p>第三步分析Control Actions，识别Unsafe Control Actions（UCA）。一个Control Action可能因为不正确地提供、没有提供、时机错误或持续时间不合适而导致Hazardous State。</p>
+<p>第四步针对UCA继续识别Loss Scenarios（LS）以及导致这些Scenario出现的Causal Factors（CF），并进一步建立Mitigations（M）。</p>
+<p>因此STPA的主要工件关系可以整理为：</p>
+<p><code>Loss → Hazard → Control Structure → CA → UCA → LS → CF → Mitigation</code></p>
+<p>Mitigation最终可能反向改变System Architecture、System Requirement，或者要求执行更深入的Safety Analysis。</p>
+<p>作者此前已经把STPA集成到SysML MBSE Environment中，并实现Coverage Indication、Change Impact Analysis和自动生成STPA Summary等能力。这些前期工作成为本文继续连接GSN的基础。</p>
+<p>从本文的角度看，Model-based STPA最大的价值不是把STPA表格搬到SysML里，而是让所有STPA Artifact成为<strong>有类型、有关系、可查询的模型元素</strong>。只有这样，后续Safety Case才可能从STPA模型中自动生成。</p>
+<h3 id="2-3-Model-based-safety-assurance"><a href="#2-3-Model-based-safety-assurance" class="headerlink" title="2.3 Model-based safety assurance"></a>2.3 Model-based safety assurance</h3><p>Safety Assurance关注的不是重新发现Hazard，而是构造一个有组织的Argument来说明：“为什么可以相信该系统达到了所声称的Safety”。</p>
+<p>Assurance Case通常从一个Top-level Claim开始，通过Strategy逐步分解成更小的Sub-goals，直到这些Sub-goals可以由适当Evidence或Justification支撑。</p>
+<p>当Assurance Case专门围绕Safety建立时，就形成Safety Case。</p>
+<p>本文选择Goal Structuring Notation（GSN）表示Safety Case。根据GSN Standard，主要Element包括：</p>
+<ul>
+<li><strong>Goal（G.）</strong>：Safety Argument中的Claim；</li>
+<li><strong>Strategy（S.）</strong>：说明一个Goal如何被Supporting Goals分解；</li>
+<li><strong>Context（C.）</strong>：提供与Argument相关的Context Information或Reference；</li>
+<li><strong>Assumption（A.）</strong>：有意保留、尚未直接证明的Statement；</li>
+<li><strong>Justification（J.）</strong>：解释或支撑Argument的Reasoning。</li>
+</ul>
+<p>论文特别提醒：Safety Case只是组织Argument的Framework，并不会因为“画出了GSN图”就自动保证系统安全。Safety Case的实际价值最终取决于Safety Activities本身的Quality、Completeness和Evidence。</p>
+<p>因此本文后续加入Assumption与Justification并不是附加装饰，而是用来主动检查Safety Analysis是否存在没有被充分论证的前提。</p>
+<h2 id="3-Related-work"><a href="#3-Related-work" class="headerlink" title="3 Related work"></a>3 Related work</h2><p>相关工作已经分别探索过不同组合关系。</p>
+<p>有工作把SysML和STPA结合，用于Systematic Development与Verification；也有研究把STPA与Safety Case结合，以保证Automotive Perception System；另有研究讨论如何通过GSN Safety Case Pattern把STPA与Certification连接起来。</p>
+<p>RAAML（Risk Analysis and Assessment Modeling Language）则试图标准化在SysML中表示STPA和GSN。</p>
+<p>作者认为这些工作已经证明三类方法之间存在天然联系，但仍存在两个缺口。</p>
+<p>第一，RAAML主要给出Modeling Language层面的Integration，却没有提供足够清晰的End-to-end Application Guidance，即没有说明System Design、STPA和GSN应该如何按开发过程连续协同。</p>
+<p>第二，AdvoCATE、OpenCERT等Framework已经能够提供Safety Case Tool Support，并利用模型实现Safety Case Construction和Maintenance，但主要面向Traditional Safety Analyses，没有完整支持STPA这种较新的System-theoretic Approach。</p>
+<p>因此本文定位非常明确：不是再发明一个新的Safety Analysis，也不是再提出一个新的Safety Case Notation，而是把目前已经比较成熟的：</p>
+<p><code>MBSE + STPA + GSN</code></p>
+<p>真正连接成一个Model-based End-to-end Assurance Framework。</p>
+<h2 id="4-Assurance-framework"><a href="#4-Assurance-framework" class="headerlink" title="4 Assurance framework"></a>4 Assurance framework</h2><p><img src="/pictures/2026092802.png" alt="System design、STPA与GSN组成的总体框架"></p>
+<p>Framework把三个Perspective并排组织：</p>
+<ul>
+<li>左侧：System Design（MBSE）；</li>
+<li>中间：Safety Analysis（STPA）；</li>
+<li>右侧：Safety Assurance（GSN）。</li>
+</ul>
+<p>同时在模型层面建立大量明确的Traceability。</p>
+<p>从System Design到STPA，例如Stakeholder Needs帮助识别Losses和Hazards；System Structure成为Control Structure的重要基础；System Behavior帮助分析Control Action与Loss Scenario；System Parameters可能作为Loss Scenario中的关键因素；Mitigation最终可以继续Refine System Requirements。</p>
+<p>从STPA到GSN，则按照Safety Case Level建立逐层连接。</p>
+<p>Figure 3实际上是全文的核心：它不是三个工具的简单拼接，而是一张<strong>Safety Artifact Information Flow Map</strong>。</p>
+<h3 id="4-1-Framework-overview"><a href="#4-1-Framework-overview" class="headerlink" title="4.1 Framework overview"></a>4.1 Framework overview</h3><p>Framework强调Automation必须建立在足够的Traceability和Formality之上。</p>
+<p>如果Loss、Hazard、CA、UCA、LS、CF、Mitigation以及GSN Goal只是散落在Word、Excel和独立Diagram中，工具无法稳定判断它们之间的对应关系。</p>
+<p>而在SysML模型中，每个元素都可以成为Typed Model Element，并通过Trace、Supported By、In Context Of、Composed Of等Relationship明确连接，因此工具可以执行机器可理解的Query和Consistency Analysis。</p>
+<h4 id="4-1-1-System-design"><a href="#4-1-1-System-design" class="headerlink" title="4.1.1 System design"></a>4.1.1 System design</h4><p>本文建议System Design仍然遵循一个成熟MBSE Framework。</p>
+<p>SysML被选为MBSE Language，因为在Research与Industry中应用广泛，能够从不同View描述系统，而且Language仍在持续发展。</p>
+<p>Framework利用SysML的四个Pillars：</p>
+<ul>
+<li>Requirements；</li>
+<li>Structure；</li>
+<li>Behavior；</li>
+<li>Parametrics。</li>
+</ul>
+<p>首先从Use Case和Stakeholder Needs得到Stakeholder Requirements，再进一步转化为System Requirements。</p>
+<p>随后不断细化System Structure，同时描述System Behavior以及Characterizing Parameters。</p>
+<p>重要的是，这些并不是互相孤立的Diagram，而是在同一个System Model中具有Traceability，因此可以进一步自动生成Requirement Report和System Design Document。</p>
+<p>从Safety-driven Engineering角度看，这一系统模型也是后续STPA的知识基础，而不是“设计完成后的输入附件”。</p>
+<h4 id="4-1-2-Safety-analysis"><a href="#4-1-2-Safety-analysis" class="headerlink" title="4.1.2 Safety analysis"></a>4.1.2 Safety analysis</h4><p>Safety Analysis与System Design并行推进，而不是在设计完成后才开始。</p>
+<p>作者把STPA四个步骤与System Design Artifact建立Traceability。</p>
+<p>例如Stakeholder Needs可以帮助识别Loss与Hazard；Control Structure应当反映System Structure；System Behavior进入Safety Analysis，用于解释Control Interaction；System Parameters也可能成为Loss Scenario的重要因素；最终Mitigation会从Safety Perspective反向Refine System Requirements。</p>
+<p>因此这是一条双向关系：</p>
+<p><code>Design Model → Safety Analysis</code></p>
+<p>同时：</p>
+<p><code>Safety Findings → Design Refinement</code></p>
+<p>作者把这种流程称为Safety-driven Design Process。</p>
+<h4 id="4-1-3-Safety-assurance"><a href="#4-1-3-Safety-assurance" class="headerlink" title="4.1.3 Safety assurance"></a>4.1.3 Safety assurance</h4><p><img src="/pictures/2026092803.png" alt="STPA工件映射到六层GSN Safety Case的结构"></p>
+<p>作者认为，即使已经Systematically执行STPA，也不能自动保证分析已经Complete。因此，每一个STPA阶段还需要从Assurance Perspective重新检查。</p>
+<p>Framework建立六个Safety Case Levels，记作L1～L6。</p>
+<p><strong>L1：Loss</strong></p>
+<p>最高层目标G.1是系统不应触发任何不可接受Loss。要相信这个Goal，必须相信所有Relevant Loss都已经识别，因此出现Assumption A.1以及对应Justification J.1，例如执行Rigorous Review。</p>
+<p><strong>L2：Hazard</strong></p>
+<p>为了防止Loss，需要Mitigate所有Hazards，因此形成G.2。这个层级要检查Hazard识别是否Complete，以及所用Safety Analysis Model是否适当。</p>
+<p><strong>L3：Control Action</strong></p>
+<p>为了控制Hazard，需要保证所有相关Control Actions得到系统分析，形成G.3。作者专门把CA单独设置为一个Safety Case Level，这是相较已有Pattern的重要扩展，因为如果某一个CA被遗漏，它对应的UCA也就不会出现。</p>
+<p><strong>L4：Unsafe Control Action</strong></p>
+<p>每个UCA必须在System Operation中被Prevent，形成G.4。因此要检查所有UCA是否识别、描述并链接完整。</p>
+<p><strong>L5：Loss Scenario</strong></p>
+<p>为了Prevent UCA，需要防止能够导致UCA的Loss Scenarios，形成G.5。这一层进一步检查LS识别是否充分，以及Mitigation是否覆盖LS。</p>
+<p><strong>L6：Mitigation</strong></p>
+<p>如果每个Mitigation已经正确Implemented并Verified，最终Argument Branch才算完成，即G.6。</p>
+<p>因此整条Safety Argument可以理解为：</p>
+<p><code>No Losses → Hazards mitigated → CAs are safe → UCAs prevented → LSs prevented → Mitigations implemented and verified</code></p>
+<p>这使STPA分析结果不再只是一个Hazard List，而被重新组织为一条可审查的Safety Argument。</p>
+<h3 id="4-2-Framework-implementation"><a href="#4-2-Framework-implementation" class="headerlink" title="4.2 Framework implementation"></a>4.2 Framework implementation</h3><p>本文在Implementation部分重点展示Safety Analysis与Safety Assurance的Model-based Integration，因为System Design与STPA的Integration已在作者此前工作中实现。</p>
+<p>核心目标有两个：</p>
+<ol>
+<li>根据Model-based STPA自动生成Safety Case Baseline；</li>
+<li>利用模型Traceability进一步支持Safety Case Assessment。</li>
+</ol>
+<h4 id="4-2-1-Modeling-concepts"><a href="#4-2-1-Modeling-concepts" class="headerlink" title="4.2.1 Modeling concepts"></a>4.2.1 Modeling concepts</h4><p>为了实现自动Safety Case Generation，需要MBSE、STPA和GSN在同一个Model Environment中具有兼容的Modeling Concepts。</p>
+<p>作者采用SysML作为Proof-of-concept Integration Language。</p>
+<p>STPA部分使用作者此前建立的SysML Profile；GSN部分参考RAAML中使用Stereotype表示GSN Element的做法，但作者认为通用RAAML表示还不够直接支持本文Pattern，因此进行了Application-specific Extension。</p>
+<p>Figure 4中，Goal和Context针对不同Safety Case Level被进一步细分，例如：</p>
+<ul>
+<li>GoalLossesL1；</li>
+<li>GoalHazardsL2；</li>
+<li>GoalControlActionL3；</li>
+<li>GoalUnsafeControlActionL4；</li>
+<li>GoalLossScenariosL5；</li>
+<li>GoalMitigationL6。</li>
+</ul>
+<p>每个Goal直接Reference相应STPA Element。</p>
+<p>Context则不仅链接当前层STPA Element，还链接下一层需要进一步分析的元素。</p>
+<p>例如<code>GoalHazardsL2</code>引用Hazards，而<code>ContextHazardsL2</code>进一步链接CAs，为L3做准备。</p>
+<p>这种建模方式的意义是让每个GSN Element不只是一个写着文字的Box，而是有真实Model Reference指向STPA Artifact。</p>
+<h4 id="4-2-2-Safety-case-pattern"><a href="#4-2-2-Safety-case-pattern" class="headerlink" title="4.2.2 Safety case pattern"></a>4.2.2 Safety case pattern</h4><p><img src="/pictures/2026092804.png" alt="包含Goal、Strategy、Context、Assumption与Justification的Safety Case Pattern"></p>
+<p>为了实现Automation，必须预先定义Safety Case Pattern。</p>
+<p>作者选择已有STPA-GSN Pattern作为基础，并进行了两项重要调整。</p>
+<p>第一，增加独立的Control Action Layer。</p>
+<p>原因是STPA本身会逐一分析Control Action，如果GSN直接从Hazard跳到UCA，就缺少对“是否所有CA都已经分析”的显式保证。</p>
+<p>加入L3以后，可以单独检查CA是否完整、CA是否正确放置在Control Structure中、CA是否正确Formulated、每个CA是否都存在对应UCA Analysis。</p>
+<p>第二，作者在每个Safety Case Level都强化了Assumption—Justification结构。</p>
+<p>例如L1中不仅有<code>G.1 No Losses</code>，还要建立A.1.1 <code>All Losses Identified</code>、J.1.1 <code>Peer Review Loss Identification</code>、A.1.2 <code>Suitable Analysis Approach</code>、J.1.2 <code>Follow Systematic Analysis Approach</code>。</p>
+<p>这体现了作者的一个重要思想：Safety Case不只是把STPA Result重新排列，而应<strong>额外检查STPA本身的可信性</strong>。</p>
+<p>Assumption可以分成Verification-oriented和Validation-oriented。例如“All relevant losses are identified”更偏Verification of completeness，而“A suitable approach is chosen to mitigate hazards”更偏Validation of appropriateness。</p>
+<p>作者指出，大部分Assumption与Justification可以作为Reusable Template用于未来System，但每个System都必须重新检查，因为特定系统可能引入新Assumption或者使已有Assumption失效。</p>
+<h4 id="4-2-3-Safety-case-generation"><a href="#4-2-3-Safety-case-generation" class="headerlink" title="4.2.3 Safety case generation"></a>4.2.3 Safety case generation</h4><p><img src="/pictures/2026092805.png" alt="Safety Case自动生成后的分支结构"></p>
+<p>自动生成的Input是一个Model-based <code>STPA Summary</code>，其中包含Losses、Hazards、CAs、Feedback、UCAs、LSs、CFs、Mitigations以及它们之间的Relations。</p>
+<p>作者给出Algorithm 1，以Depth-first方式生成Safety Case。</p>
+<p>基本过程为：</p>
+<ol>
+<li>根据Losses和Hazards创建L1；</li>
+<li>根据Hazards、CAs和Feedback创建L2；</li>
+<li>针对每个CA创建L3；</li>
+<li>针对每个CA关联的UCA创建L4；</li>
+<li>针对每个UCA关联的LS创建L5；</li>
+<li>针对每个LS关联的Mitigation创建L6。</li>
+</ol>
+<p>从L3开始Safety Case会明显向横向展开，因为一个系统可以有多个CA，每个CA又有多个UCA，每个UCA再包含多个LS。</p>
+<p>作者特别处理Duplicate问题。一个Mitigation可能同时Address多个Loss Scenarios，如果每次Traversal都重新创建Model Element，就会出现重复M；同样，一个LS也可能与多个UCA有关。</p>
+<p>因此生成Algorithm每次创建元素之前都应检查：</p>
+<p><code>Element already exists?</code></p>
+<p>如果存在，则只建立Link，不再重新创建。</p>
+<p>Proof-of-concept使用Cameo Systems Modeler实现。工具API负责Search/Create Model Elements，Script实现Algorithm 1。</p>
+<p>这一点非常关键：Safety Case自动生成并不是Language层面的理论设想，而是真正依赖MBSE Tool API进行模型对象操作。</p>
+<h4 id="4-2-4-Safety-case-assessment"><a href="#4-2-4-Safety-case-assessment" class="headerlink" title="4.2.4 Safety case assessment"></a>4.2.4 Safety case assessment</h4><p>作者认为，对Complex System而言，仅仅“自动生成Safety Case”远远不够。Safety Case可能非常庞大，如果Engineering Team无法有效理解和维护它，Automation反而可能制造新的复杂性。</p>
+<p>因此论文进一步提出三类Support。</p>
+<p><strong>Safety case visualization</strong></p>
+<p>利用模型可以有多种Views的特点，从不同维度观察同一个Safety Case：</p>
+<ul>
+<li>Diagram View：适合局部分析Element、Property和Relationship；</li>
+<li>Table View：适合大量Element和Property的Compact Overview；</li>
+<li>Matrix View：适合快速查看多个Element之间的Relationships；</li>
+<li>Relationship Map：适合跨多个层级查看Element Relation。</li>
+</ul>
+<p>这些Views不是不同数据副本，而是同一底层Model的不同Representation。</p>
+<p><strong>Safety case V&amp;V</strong></p>
+<p>工具可以自动执行Rule-based Checks，例如：</p>
+<ul>
+<li>Assumption没有Justification；</li>
+<li>Justification尚未Executed；</li>
+<li>Goal没有Element Reference；</li>
+<li>Context没有Element Reference；</li>
+<li>Goal仍处于Undeveloped；</li>
+<li>Element没有Relationship/Traceability。</li>
+</ul>
+<p>例如L4 Context没有任何Loss Scenario Reference时，可能说明对应UCA根本没有完成Loss Scenario Analysis，因此工具应自动Highlight。</p>
+<p>这些Check可以通过OCL或者Tool-integrated Script实现，并可设置Information、Warning、Error等Severity。</p>
+<p><strong>Safety case progress tracking</strong></p>
+<p>作者还提出对Safety Case Element数量和状态进行统计，例如Goals数量、Contexts数量、Strategies数量、Assumptions数量、Justified Assumptions数量、Justifications数量、Executed Justifications数量。</p>
+<p>这种统计使Safety Assurance从“有一张Safety Case图”转化为可量化的Process Progress。</p>
+<h2 id="5-Framework-demonstration"><a href="#5-Framework-demonstration" class="headerlink" title="5 Framework demonstration"></a>5 Framework demonstration</h2><p>Framework使用Aircraft Collision Avoidance System（CAS）进行示范。</p>
+<p>作者明确说明案例经过简化，主要目的是演示Framework的Generation与Assessment能力，而不是完整展示一个可Certification的真实CAS。</p>
+<h3 id="5-1-System-design"><a href="#5-1-System-design" class="headerlink" title="5.1 System design"></a>5.1 System design</h3><p><img src="/pictures/2026092806.png" alt="CAS Use Case、Loss/Hazard以及Requirement Traceability"></p>
+<p>CAS的主要任务是Avoid Traffic Collisions，并向Pilot计算和发布Advisory。</p>
+<p>Use Case包括Situation Perception、Calculate Collision Advisory、Announce Advisory、Coordinate Collision Avoidance和Avoid Traffic Collisions。</p>
+<p>Use Case与Stakeholder Requirement继续导出System Requirements，并与System Model Elements建立Traceability。</p>
+<p>System Context中还包含Pilot、Other Aircraft、Sensor Unit、Aircraft Control System、Control Surfaces、GNSS和Traffic Controller。</p>
+<p>CAS通过Sensor Unit获得OwnAircraftState和OtherAircraftState，根据Situation Perception判断是否需要Advisory。</p>
+<p>Pilot接收到Advisory以后，再通过ManeuverCMD操纵Aircraft Control System。</p>
+<p>这套Context Model后续几乎可以直接转换为STPA Control Structure，因此体现了MBSE与STPA复用同一System Knowledge的优势。</p>
+<h3 id="5-2-Safety-analysis"><a href="#5-2-Safety-analysis" class="headerlink" title="5.2 Safety analysis"></a>5.2 Safety analysis</h3><p><img src="/pictures/2026092807.png" alt="CAS中Advisory Control Action的UCA、Loss Scenario与Causal Factor关系"></p>
+<p>STPA首先识别Loss与Hazard。</p>
+<p>因为CAS目标是Avoid Traffic Collision，一个典型Loss是<code>Loss of Aircraft due to a traffic accident</code>。</p>
+<p>对应Hazard之一是<code>CAS causes or contributes to a controlled maneuver into ground</code>。</p>
+<p>第二步建立Control Structure。由于System Design Model已经包含Pilot、CAS、Sensor Unit、Aircraft等Element，因此无需重新从零建立结构。</p>
+<p>但STPA还额外强调Process Model。</p>
+<p>例如CAS中的<code>Model of Dangerous Situations</code>表示CAS如何判断Traffic Situation是否危险。</p>
+<p>Pilot的<code>Model of Pilot Response Time</code>则表示系统对Pilot响应延迟的Belief。</p>
+<p>这些Process Model非常重要，因为STPA不仅问“哪个Component Failure”，还会问“Controller是否因为错误的Internal Model而给出Unsafe Control”。</p>
+<p>对于Advisory CA，论文识别三种UCA。</p>
+<p>其中一个典型UCA是<code>NoAdvisoryWithIntruderPresent</code>，即存在Collision Course时没有提供Advisory，从而可能造成Minimum Separation Violation。</p>
+<p>一个对应Loss Scenario是<code>LowPilotDelayAssumption</code>，即CAS错误地假设Pilot Response Delay较短，导致Advisory发出时间不合适。</p>
+<p>如果Assumed Pilot Delay过大，Advisory可能过早；如果Assumed Delay过小，则Pilot可能根本来不及反应。</p>
+<p>这说明<code>Pilot Response Time</code>并不是一个普通设计Parameter，而可能直接进入Safety Analysis。</p>
+<p>另一个LS是<code>WrongOperationalMode</code>。Pilot因为错误理解CAS Working Mode而选择错误Operational Mode。</p>
+<p>其Causal Factors包括ModeChange、Model of Collision Avoidance Usage和Operational Mode。</p>
+<p>作者用这个例子强调STPA在Software Specification与Human-machine Teaming问题上的价值：事故不一定来自硬件部件坏掉，也可能来自Human Belief、Control Mode和System Interpretation之间的Interaction。</p>
+<h3 id="5-3-Safety-assurance"><a href="#5-3-Safety-assurance" class="headerlink" title="5.3 Safety assurance"></a>5.3 Safety assurance</h3><p>Safety Assurance使用前述Model-based STPA Traceability自动生成Safety Case Baseline，并进一步利用不同View、V&amp;V Rule和Statistics进行Assessment。</p>
+<h4 id="5-3-1-Safety-case-generation"><a href="#5-3-1-Safety-case-generation" class="headerlink" title="5.3.1 Safety case generation"></a>5.3.1 Safety case generation</h4><p><img src="/pictures/2026092808.png" alt="CAS自动生成Safety Case的一个完整分支"></p>
+<p>论文展示Advisory对应的一条Safety Case Branch。</p>
+<p>G.1是最高层：</p>
+<p><code>Collision Avoidance System is free from unacceptable risks leading to losses</code></p>
+<p>随后S.1要求Analyze and Mitigate Hazards。</p>
+<p>进入L2以后，Safety Case针对CAS相关Hazards建立Goal；L3继续对应Advisory CA；L4对应不同UCA；L5对应Loss Scenario；L6最终连接Mitigation。</p>
+<p>这条链把STPA结果完整映射到GSN：</p>
+<p><code>Loss → Hazard → CA → UCA → LS → Mitigation</code></p>
+<p>但Safety Case相比STPA多出的最重要内容是Assumption和Justification。</p>
+<p>例如对于Advisory UCA，A.3.2要求<code>All Advisory UCAs are identified</code>，而J.3.2要求执行<code>Peer review Advisory UCA identification</code>。</p>
+<p>如果UCA Identification不完整，那么后续“Prevent UCAs”的Strategy本身就没有可信基础。</p>
+<p>因此Safety Case真正增加的是<strong>对Safety Analysis Quality的第二层审查</strong>。</p>
+<h4 id="5-3-2-Safety-case-assessment"><a href="#5-3-2-Safety-case-assessment" class="headerlink" title="5.3.2 Safety case assessment"></a>5.3.2 Safety case assessment</h4><p><img src="/pictures/2026092809.png" alt="Safety Case的Matrix、Diagram、Table与Relationship Map视图"></p>
+<p>作者使用多种View展示同一个Safety Case。</p>
+<p>Matrix View用于查看Goal、Assumption和Justification之间关系。</p>
+<p>例如Strategy S.1依赖A.1.2 <code>Suitable analysis to address hazards</code>，而J.1.2要求使用Systematic Analysis Approach。在本文中，这个Approach就是按照STPA Handbook系统执行STPA，但理论上也可以要求附加其他Safety Analysis。</p>
+<p>Diagram View更适合局部查看Element、Property和Relationship。</p>
+<p>作者故意设置一个情况：</p>
+<ul>
+<li><code>J.3.2 Justified = true</code></li>
+<li><code>J.3.2 Executed = false</code></li>
+</ul>
+<p>这意味着工程师已经认为Peer Review方法足够支撑Assumption，但Review实际还没有执行。</p>
+<p>Validation Rule因此自动把J.3.2标记为Error。</p>
+<p>作者又故意移除Context C.3中的UCA Reference，工具随即给出另一个Warning。这说明Model Check可以发现Safety Analysis中可能存在的缺失关系。</p>
+<p>Table View适合一次浏览多个UCA对应的Goal、Strategy、Context、Assumption、Justification和Supporting Goal。</p>
+<p>Relationship Map适合观察L5到L6之间Mitigation Relationship。</p>
+<p>例如为了Mitigate <code>WrongOperationalMode</code> LS，需要CAS Mode Feedback等Mitigation被Implemented并Verified。</p>
+<p>如果Goal G.6仍Undeveloped、Assumption A.5.2未Justified、Justification J.5.2未Executed，工具就可以同时Highlight这些尚未完成的Assurance Work。</p>
+<p><img src="/pictures/2026092810.png" alt="Safety Case中Assumption/Justification状态与Progress Statistics"></p>
+<p>最后，作者展示Safety Case Progress Tracking。</p>
+<p>开始时没有Safety Case Element。</p>
+<p>执行Generation以后得到Baseline，但这并不意味着Safety Case已经Valid。</p>
+<p>随后随着Assumption逐步Justified，Justified Assumptions数量增加；再执行Justification Activities，Executed Justifications数量增加。</p>
+<p>论文中的示例出现12个Justified Assumptions和8个Executed Justifications。</p>
+<p>这些统计与Table中的具体Model State完全一致，因为它们来自同一个Model。</p>
+<p>按Safety Case Level统计还能发现分析的不完整性。例如L4 Goal数量明显少于L3，意味着并不是所有Control Actions都已经完成UCA Analysis；L5没有Justified Assumption，而L6甚至缺少Element，则进一步说明整个Assurance Process尚未完成。</p>
+<p>这种统计非常适合大型项目，因为它提供的不只是“Safety Case规模”，还可以成为一个Safety Work Progress Dashboard。</p>
+<h2 id="6-Discussion"><a href="#6-Discussion" class="headerlink" title="6 Discussion"></a>6 Discussion</h2><p>作者认为Framework最直接的优势来自Model-based Integration本身。</p>
+<p>第一是Automation。因为System Design、STPA和GSN都位于可查询模型中，所以Safety Case能够自动生成，Safety Rule能够自动检查，Progress Statistics也能够自动计算。</p>
+<p>第二是Usability。Automation并不必然等于“更容易使用”。复杂系统可能生成巨大Safety Case，因此论文专门增加Multi-faceted Visualization、Automatic Highlight以及Progress Tracking来帮助工程师工作。</p>
+<p>第三是End-to-end Change Impact。虽然本文没有完整实现，但已有Traceability理论上可以继续形成：</p>
+<p><code>Design Change → STPA Impact → Safety Case Impact</code></p>
+<p>例如System Design发生变化后，工具首先识别哪些Safety Analysis需要更新；STPA更新以后，又进一步识别哪些GSN Argument需要更新。</p>
+<p>这实际上是本文非常重要但尚未完全实现的长期目标：让Safety Evidence随着System Design演化，而不是在设计变化以后依赖人工重新同步多个文档。</p>
+<p>作者同时非常谨慎地指出，<strong>自动生成Safety Case并不意味着自动得到可信Safety Case。</strong></p>
+<p>如果Underlying Argument本身错误、不完整，Automation只会更快地生成一个结构完整但内容错误的Argument。</p>
+<p>因此必须持续识别Assumptions、Limitations、Validation Needs和Review Activities。</p>
+<p>作者建议未来将更系统的STPA Validation Framework继续纳入Assumption和Justification Template。</p>
+<p>本文当前也没有覆盖STPA与其他Safety Analysis的完整集成，但Framework保留了接口。</p>
+<p>例如如果某个Loss Scenario的原因涉及Component Failure，Mitigation可以要求进一步执行FMEA或FTA。</p>
+<p>对于Software-intensive Risk，还可以进一步使用Scenario-based Analysis或Formal Methods。</p>
+<p>因此Framework并不要求STPA替代所有分析，而是可以把STPA作为System-level Top-down Analysis，再把其他方法作为Specific Risk Refinement。</p>
+<p>在Tool方面，Proof-of-concept依赖Cameo Systems Modeler的Tool-specific API，因此Implementation目前不可直接迁移。</p>
+<p>作者认为SysML v2 API标准化未来可能改善这一问题，使Framework Logic与具体Tool解耦。</p>
+<p>对于真正Safety-critical应用，还存在Tool Qualification问题。尤其当工程过程越来越依赖Automatic Checks时，必须确保Automation本身经过V&amp;V、Check Rule足够完整、Script没有被错误修改，并且Tool不会制造False Sense of Confidence。</p>
+<p>这也是本文非常重要的一点：Model-based Safety Automation本身也需要进入Safety Assurance范围。</p>
+<h2 id="7-Conclusion"><a href="#7-Conclusion" class="headerlink" title="7 Conclusion"></a>7 Conclusion</h2><p>本文提出一套System-theoretic Assurance Framework，实现：</p>
+<p><code>MBSE + STPA + GSN</code></p>
+<p>的Model-based End-to-end Integration。</p>
+<p>通过明确连接System Design、Safety Analysis和Safety Assurance中的Model Elements，Framework可以利用Traceability实现Assisting Automation。</p>
+<p>论文重点证明了两类能力。</p>
+<p>第一，能够从Model-based STPA自动生成GSN Safety Case Baseline。</p>
+<p>第二，能够自动评估Safety Case Properties，包括Highlight需要进一步关注的部分、检查Missing Reference、检查Undeveloped Goal、检查Unjustified Assumption、检查Unexecuted Justification，以及统计Safety Case Status与Progress。</p>
+<p>Aircraft Collision Avoidance System案例说明，System Model中的Use Case、Requirement、Structure、Behavior和Parameter可以直接进入STPA；STPA中的Loss、Hazard、CA、UCA、LS、CF和Mitigation又进一步进入GSN。</p>
+<p>因此最终形成一条连续的Safety Information Chain。</p>
+<p>未来工作主要包括利用已有Traceability实现真正的Multi-layer Change Impact、自动检测System Design/Safety Analysis/Safety Assurance之间的不一致、进一步集成Domain-specific Standard与其他Safety Analysis Method、减少对Tool-specific API的依赖，以及验证Automation本身在Safety-critical Development中的可信性。</p>
+<h2 id="论文评价"><a href="#论文评价" class="headerlink" title="论文评价"></a>论文评价</h2><ul>
+<li><strong>推测的软件工具链：</strong> 这篇论文的工具链实际上披露得相当清楚。核心MBSE平台为Cameo Systems Modeler，系统设计使用SysML；STPA通过作者此前开发的SysML Profile集成；GSN参考RAAML并进一步定义Application-specific Stereotypes；Safety Case自动生成依赖Cameo API和Scripting，对模型元素执行Search/Create/Connect；Safety Case Verification可以使用OCL或MBSE Tool Script；结果以Diagram、Matrix、Table和Relationship Map等不同Model View呈现。论文没有公开完整代码，因此具体脚本语言和工程包结构无法从文中确认，但整体实现路线已经很明确：<code>SysML Meta-model/Profile + Model Traceability + Cameo API/Scripting + Rule-based Validation</code>。</li>
+<li><strong>收录原因：</strong> 这篇文章的创新不在于单独提出MBSE、STPA或GSN，而在于把三类已经成熟但长期相互割裂的方法组织成真正的端到端Model-based Engineering Chain。相比“把STPA结果导出成GSN图”，本文进一步把Assumption、Justification、Validation Rule、Progress Statistics和Change Impact纳入同一模型空间，回答了Safety Analysis如何转化为可维护Safety Assurance的问题。对于Software and Systems Modeling而言，这种工作的重点正是Meta-model Integration、Traceability、Automation和Model Maintenance，因此与期刊主题高度契合。</li>
+<li><strong>值得借鉴：</strong> 最值得借鉴的是Figure 3所体现的信息流设计。System Requirement、Structure、Behavior和Parameter并不是Safety Analysis之外的背景材料，而是直接进入STPA；STPA Artifact也不是Safety Case之外的附件，而是GSN Goal与Context直接引用的Model Element。第二个值得借鉴的点是六层Safety Case结构：<code>Loss → Hazard → CA → UCA → LS → Mitigation</code>几乎就是把STPA Analysis Logic原样转换为Assurance Argument Logic，使分析和保证之间具有天然Traceability。第三个值得借鉴的是作者没有把Automation局限在“一键生成Safety Case”，而是继续设计Missing Reference、Undeveloped Goal、Unjustified Assumption、Unexecuted Justification等Check，并用Statistics表示安全工作进度。这种做法尤其适合大型模型项目。最后，作者对Automation风险的讨论也很成熟：自动化提高效率，但自动化本身不能成为安全可信性的来源。</li>
+<li><strong>可能不足：</strong> Framework当前仍然属于Proof-of-concept。案例是简化的Aircraft Collision Avoidance System，没有覆盖一个真实工业项目中完整的Requirement Baseline、数千个Model Elements以及Certification Evidence，因此Scalability更多是逻辑论证而不是大规模实证。Safety Case Pattern主要围绕STPA建立，虽然作者讨论了FMEA、FTA、Scenario-based Analysis和Formal Methods的扩展可能，但还没有真正构建Multi-method Assurance Argument。Assumption和Justification Template具有很强价值，但其充分性仍依赖专家制定，自动检查主要验证“结构是否完整”，无法判断Argument内容是否真实正确。Implementation依赖Cameo Tool-specific API，Portable Toolchain尚未实现。Change Impact是全文非常重要的潜在价值，但当前主要停留在Discussion和作者前期工作的延伸设想中，并未完整展示<code>Design Change → STPA Update → GSN Update</code>的全流程实验。更重要的是，如果用于真正Safety-critical Certification，生成算法、Validation Script和Tool自身可能需要Qualification，这会引入新的Assurance Burden。</li>
+<li><strong>总体评价：</strong> 这篇文章非常值得作为“Safety-driven Systems Engineering”方法论文阅读。它的价值不在于提出一种新的Hazard Analysis Algorithm，而是给出了一个清晰的三层职责划分：MBSE负责描述系统是什么以及如何工作，STPA负责发现系统为什么可能不安全，GSN负责说明为什么可以相信这些安全分析和Mitigation是充分的。三层之间通过Model Traceability连接后，才真正形成可生成、可检查、可维护、可演化的Safety Engineering Asset。对于任何希望把系统建模、安全分析和安全保证统一到一个模型化工作流中的研究，这篇论文都提供了非常直接的参考架构。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2026/09/28/052/">https://ruizhe-yang.github.io/2026/09/28/052/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MBSE/">MBSE</a><a class="post-meta__tags" href="/tags/SysML/">SysML</a><a class="post-meta__tags" href="/tags/STPA/">STPA</a><a class="post-meta__tags" href="/tags/GSN/">GSN</a><a class="post-meta__tags" href="/tags/Safety-Assurance/">Safety Assurance</a></div><div class="post_share"><div class="social-share" data-image="/pictures/2026092801.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/08/27/051/" title="笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library"><img class="cover" src="/pictures/2026082701.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2024/08/29/008/" title="小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)"><img class="cover" src="/pictures/24083002.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-29</div><div class="title">小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</div></div></a></div><div><a href="/2024/08/29/007/" title="小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering"><img class="cover" src="/pictures/24082901.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-29</div><div class="title">小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</div></div></a></div><div><a href="/2024/08/30/009/" title="小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components"><img class="cover" src="/pictures/24083004.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-30</div><div class="title">小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</div></div></a></div><div><a href="/2024/08/31/011/" title="小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability"><img class="cover" src="/pictures/24083101.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-31</div><div class="title">小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</div></div></a></div><div><a href="/2024/08/31/010/" title="小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML"><img class="cover" src="/pictures/24083102.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-31</div><div class="title">小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</div></div></a></div><div><a href="/2025/05/10/031/" title="笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission"><img class="cover" src="/pictures/2025051001.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-10</div><div class="title">笔记：Investigating the Flexibility of the MBSE Approach to the Biomass Mission</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/pictures/site-avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">52</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">112</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">65</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://space.bilibili.com/473823163" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-number">1.</span> <span class="toc-text">1 Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Background"><span class="toc-number">2.</span> <span class="toc-text">2 Background</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Model-based-system-design"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Model-based system design</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Model-based-safety-analysis"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 Model-based safety analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Model-based-safety-assurance"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Model-based safety assurance</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Related-work"><span class="toc-number">3.</span> <span class="toc-text">3 Related work</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Assurance-framework"><span class="toc-number">4.</span> <span class="toc-text">4 Assurance framework</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Framework-overview"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 Framework overview</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-System-design"><span class="toc-number">4.1.1.</span> <span class="toc-text">4.1.1 System design</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-Safety-analysis"><span class="toc-number">4.1.2.</span> <span class="toc-text">4.1.2 Safety analysis</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-Safety-assurance"><span class="toc-number">4.1.3.</span> <span class="toc-text">4.1.3 Safety assurance</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Framework-implementation"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 Framework implementation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-Modeling-concepts"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1 Modeling concepts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-Safety-case-pattern"><span class="toc-number">4.2.2.</span> <span class="toc-text">4.2.2 Safety case pattern</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-Safety-case-generation"><span class="toc-number">4.2.3.</span> <span class="toc-text">4.2.3 Safety case generation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-4-Safety-case-assessment"><span class="toc-number">4.2.4.</span> <span class="toc-text">4.2.4 Safety case assessment</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Framework-demonstration"><span class="toc-number">5.</span> <span class="toc-text">5 Framework demonstration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-System-design"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 System design</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Safety-analysis"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 Safety analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-Safety-assurance"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 Safety assurance</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-1-Safety-case-generation"><span class="toc-number">5.3.1.</span> <span class="toc-text">5.3.1 Safety case generation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-2-Safety-case-assessment"><span class="toc-number">5.3.2.</span> <span class="toc-text">5.3.2 Safety case assessment</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Discussion"><span class="toc-number">6.</span> <span class="toc-text">6 Discussion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Conclusion"><span class="toc-number">7.</span> <span class="toc-text">7 Conclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E8%AF%84%E4%BB%B7"><span class="toc-number">8.</span> <span class="toc-text">论文评价</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/09/28/052/" title="笔记：A system-theoretic assurance framework for safety-driven systems engineering"><img src="/pictures/2026092801.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A system-theoretic assurance framework for safety-driven systems engineering"/></a><div class="content"><a class="title" href="/2026/09/28/052/" title="笔记：A system-theoretic assurance framework for safety-driven systems engineering">笔记：A system-theoretic assurance framework for safety-driven systems engineering</a><time datetime="2026-09-28T01:53:00.000Z" title="Created 2026-09-28 09:53:00">2026-09-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/27/051/" title="笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library"><img src="/pictures/2026082701.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library"/></a><div class="content"><a class="title" href="/2026/08/27/051/" title="笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library">笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library</a><time datetime="2026-08-27T11:15:00.000Z" title="Created 2026-08-27 19:15:00">2026-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/21/050/" title="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis"><img src="/pictures/2026082101.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis"/></a><div class="content"><a class="title" href="/2026/08/21/050/" title="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis">笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis</a><time datetime="2026-08-21T09:33:00.000Z" title="Created 2026-08-21 17:33:00">2026-08-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/19/049/" title="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment"><img src="/pictures/2026081917.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment"/></a><div class="content"><a class="title" href="/2026/08/19/049/" title="笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment">笔记：A coupled failure mode and effects analysis method for hardware-software failure interactions in embedded systems of intelligent equipment</a><time datetime="2026-08-19T04:36:00.000Z" title="Created 2026-08-19 12:36:00">2026-08-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/19/048/" title="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks"><img src="/pictures/2026081910.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks"/></a><div class="content"><a class="title" href="/2026/08/19/048/" title="笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks">笔记：A modeling and simulation framework for the study and analysis of cascading failures in satellite networks</a><time datetime="2026-08-19T04:10:00.000Z" title="Created 2026-08-19 12:10:00">2026-08-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: 'fca73abc2dcdd12d4ab3f38d480ca06c',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
