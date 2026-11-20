@@ -1,0 +1,443 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记：The future of risk assessment | Ruizhe</title><meta name="author" content="Ruizhe Yang,ruizheyang@mail.dlut.edu.cn"><meta name="copyright" content="Ruizhe Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="The future of risk assessment 作者背景：本文由 Enrico Zio 独立撰写。论文发表时，作者同时隶属于法国巴黎萨克雷大学 CentraleSupélec 工业工程实验室、法国电力集团（EDF）“系统科学与能源挑战”讲席，以及意大利米兰理工大学（Politecnico di Milano）能源系。文章围绕可靠性工程、工业风险评估、随机仿真、动态安全评价和信息物理系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：The future of risk assessment">
+<meta property="og:url" content="https://ruizhe-yang.github.io/2026/11/20/054/">
+<meta property="og:site_name" content="Ruizhe">
+<meta property="og:description" content="The future of risk assessment 作者背景：本文由 Enrico Zio 独立撰写。论文发表时，作者同时隶属于法国巴黎萨克雷大学 CentraleSupélec 工业工程实验室、法国电力集团（EDF）“系统科学与能源挑战”讲席，以及意大利米兰理工大学（Politecnico di Milano）能源系。文章围绕可靠性工程、工业风险评估、随机仿真、动态安全评价和信息物理系统">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ruizhe-yang.github.io/pictures/2026112021.png">
+<meta property="article:published_time" content="2026-11-20T09:16:00.000Z">
+<meta property="article:modified_time" content="2026-11-20T09:16:00.000Z">
+<meta property="article:author" content="Ruizhe Yang">
+<meta property="article:tag" content="Simulation">
+<meta property="article:tag" content="Dynamic Risk Assessment">
+<meta property="article:tag" content="Risk Assessment">
+<meta property="article:tag" content="Business Continuity">
+<meta property="article:tag" content="Resilience">
+<meta property="article:tag" content="Cyber-Physical Systems">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruizhe-yang.github.io/pictures/2026112021.png"><link rel="shortcut icon" href="/pictures/site-favicon.png"><link rel="canonical" href="https://ruizhe-yang.github.io/2026/11/20/054/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记：The future of risk assessment',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-11-20 17:16:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/pictures/site-avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">119</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">66</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/pictures/2026112021.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ruizhe"><img class="site-icon" src="/pictures/site-logo.jpg"/><span class="site-name">Ruizhe</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa-solid fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa-solid fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa-solid fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-heart"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">笔记：The future of risk assessment</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-11-20T09:16:00.000Z" title="Created 2026-11-20 17:16:00">2026-11-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-11-20T09:16:00.000Z" title="Updated 2026-11-20 17:16:00">2026-11-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/">Academic Papers</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/">Journal</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/RESS/">RESS</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Academic-Papers/Journal/RESS/2018/">2018</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">19k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>57mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="笔记：The future of risk assessment"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.ress.2018.04.020">The future of risk assessment</a></p>
+<p><em>作者背景：本文由 Enrico Zio 独立撰写。论文发表时，作者同时隶属于法国巴黎萨克雷大学 CentraleSupélec 工业工程实验室、法国电力集团（EDF）“系统科学与能源挑战”讲席，以及意大利米兰理工大学（Politecnico di Milano）能源系。文章围绕可靠性工程、工业风险评估、随机仿真、动态安全评价和信息物理系统展开，结合作者及其合作团队在核能、工业系统和关键基础设施领域的相关研究，对风险评估的发展方向提出思考。</em></p>
+<p><code>Abstraction</code></p>
+<blockquote>
+<p>Risk assessment must evolve for addressing the existing and future challenges, and considering the new systems and innovations that have already arrived in our lives and that are coming ahead. In this paper, I swing on the rapid changes and innovations that the World that we live in is experiencing, and analyze them with respect to the challenges that these pose to the field of risk assessment. Digitalization brings opportunities but with it comes also the complexity of cyber-phyiscal systems. Climate change and extreme natural events are increasingly threatening our infrastructures; terrorist and malevolent threats are posing severe concerns for the security of our systems and lives. These sources of hazard are extremely uncertain and, thus, difficult to describe and model quantitatively.</p>
+<p>Some research and development directions that are emerging are presented and discussed, also considering the ever increasing computational capabilities and data availability. These include the use of simulation for accident scenario identification and exploration, the extension of risk assessment into the framework of resilience and business continuity, the reliance on data for dynamic and condition monitoring-based risk assessment, the safety and security assessment of cyber-physical systems.</p>
+<p>The paper is not a research work and not exactly a review or a state of the art work, but rather it offers a lookout on risk assessment, open to consideration and discussion, as it cannot pretend to give an absolute point of view nor to be complete in the issues addressed (and the related literature referenced to).</p>
+</blockquote>
+<p>摘要翻译：风险评估必须不断演进，才能应对当前和未来的挑战，并考虑那些已经进入我们生活或即将出现的新系统与技术创新。本文着眼于我们所处世界正在经历的快速变化和创新，分析它们对风险评估领域提出的挑战。数字化带来了新的机遇，但同时也带来了信息物理系统的复杂性。气候变化和极端自然事件正日益威胁基础设施；恐怖主义及其他恶意威胁也使系统与生命安全面临严重问题。这些危险来源具有极大的不确定性，因此很难进行定量描述和建模。</p>
+<p>本文结合不断增强的计算能力以及日益丰富的数据资源，介绍并讨论若干正在形成的研究与发展方向。其中包括：利用仿真识别和探索事故场景；将风险评估扩展到韧性与业务连续性的框架中；依靠数据开展动态风险评估和基于状态监测的风险评估；以及开展信息物理系统的安全性与安保性评估。</p>
+<p>本文不是一项具体的研究工作，也不完全是一篇综述或研究现状报告，而是对风险评估未来发展的一种展望，旨在为进一步思考和讨论提供开放的视角，并不声称具有绝对正确的观点，也不试图穷尽所有问题及相关文献。</p>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>安全意味着自由，即免于承受无法接受的伤害的自由，因此安全是一项人权。在工业系统的设计与运行过程中，风险评估长期以来一直是保障这种权利的主导范式。其应用领域包括化工过程工业、核工业、交通运输和航空航天等。</p>
+<p>风险评估已经是一门成熟的学科。结构化开展风险评估，能够引导分析人员识别可能存在的危险与威胁，分析其原因和后果，并通常以定量方式、在适当表达不确定性的基础上描述风险。在评估过程中，分析人员作出假设和简化，收集并分析数据，建立和使用模型来表示所研究的现象。例如，某次地震导致的部件失效模式、火灾对结构产生的热流、事故中操作人员的响应，都是依赖现有知识、试图模拟真实事故演化过程的概念模型所给出的结果。系统风险评估可能需要考虑大量由多个组件失效构成的情景，由此深入理解系统失效模式，增强风险意识和安全关注，通常也能够改善系统整体安全性。</p>
+<p>我们生活的世界正从许多方面迅速变化。数字化提供了互联、监测和态势认知的新机会，也改变着人们交流和社会行为的方式。人口流动和社会压力正改变我们的生活与运行环境。技术知识与技术本身的持续进步改善了生产过程、产品、服务和环境，也不断改变商业以及工作就业的形态。随着数字世界、物理世界与人的世界日益融合，工业正在经历深刻的转型，并广泛影响日常生活。第四次工业革命、物联网、大数据和工业互联网，正在改变我们设计、制造和供应产品与服务的方式，也改变我们的出行和生活方式。由人和物组成的复杂网络正在形成，网络中的对象能够无缝连接和通信。这种变化有望使生产系统与服务更加高效、迅速，并使连接全球经济的复杂供应链和分销网络更加灵活、具有韧性。</p>
+<p>在快速变化的环境中，组件和系统的可靠性仍然是工业的基本属性，而安全性与安保性也因保护人们免受伤害的要求而越来越受到关注。正在出现的创新具有提高福祉和创造收益的巨大潜力，但也会产生新的失效机理、危险和风险，其中一部分来自系统内部及系统之间新的、尚不明确的功能依赖与结构依赖。另一方面，知识、方法和技术的进步，信息共享、数据可得性和计算能力的提高，以及这些进步所带来的新认识，又为风险分析与评估提供了新的发展机遇。<strong>风险评估正在发生演进，甚至可能经历一场以新方法和新途径为标志的“革命”。</strong></p>
+<p>本文基于上述背景，指出若干正在塑造风险评估发展道路的方向。讨论建立在以下认识之上：</p>
+<ul>
+<li>用于分析和描述危险、构建模型及计算风险的知识、信息和数据（Knowledge, Information and Data，KID）已经显著增长，而且仍在持续增加。</li>
+<li>现有建模能力和计算能力已经大幅提高，使过去不可行的分析方法如今成为可能。</li>
+<li>当前系统越来越多地由硬件、人员和数字技术等异质要素构成，并以高度互联的结构组织起来。这种复杂性的提高可能导致难以预见或预测的行为，其驱动因素包括意外事件及由此产生的未知系统响应。</li>
+<li>为系统、有效地管理风险，必须共同考虑潜在事故场景的全部阶段，包括预防、缓解、应急危机管理和恢复。因此，需要把风险评估扩展到业务连续性（侧重生产可靠性与可用性）和韧性（也包括安全性）的综合框架中。</li>
+<li>风险会随时间发生显著变化，已安装的预防、保护和缓解措施的状态及有效性也可能随时间变化。</li>
+<li>需要为信息物理系统（Cyber-Physical Systems，CPSs）的安全性与安保性评估建立坚实的框架。</li>
+</ul>
+<p>未来似乎已经来到，而处理相关风险的方法又有其历史根源。以下各节将围绕事故场景识别与探索的仿真方法、韧性和业务连续性、动态及基于状态监测的风险评估，以及信息物理系统的安全与安保评估，讨论风险评估的发展方向与挑战。</p>
+<h2 id="2-Risk-assessment"><a href="#2-Risk-assessment" class="headerlink" title="2. Risk assessment"></a>2. Risk assessment</h2><p>工业在技术和商业管理方面正经历迅速变化。竞争和市场自由化显著改善了产品与服务的质量，但与此同时，过程和系统的运行复杂性也提高了：能源等级提高，压力、温度和流量增大，储存容量减少，产业与技术之间的依赖关系不断增强，尤其是通过数字化和信息共享形成的依赖。因此，危险发生了变化，可能造成重大人员伤亡和经济损失的大型事故风险也随之增加。这引发了公众对于安全以及防范工业灾害和自然灾害的日益关注，并推动安全监管和安全程序审查更加严格。</p>
+<p>在这一不断演化的环境中，风险评估仍然是系统分析工业活动相关风险的基础技术框架。其目标是恰当理解涉及的问题，从而能够作出有根据、有信心的风险知情决策，保护人们免受相关风险伤害。</p>
+<p>风险评估的基本原则在美国国家科学院的《红皮书》（Red Book）中得到体现。该书区分了风险评估和决策两种活动：风险评估是一项科学活动，受现有知识及风险本身固有不确定性的限制；基于风险作出决策则是一项政策活动，风险评估的结果只是其中一种输入，绝不应成为唯一的决策依据[132]。作为数值量的风险，可用于选择风险预防和缓解措施、确定不同风险来源相关措施的优先级、监管与接受风险，以及通过保险转移风险。因此，风险评估应被视为支持安全相关理性决策的安全分析工具。</p>
+<p>过去约40年间，风险评估科学一直致力于帮助人们理解和控制事故风险，使危险工业活动能够在系统性理解的基础上得到合理管理。评估对象通常是极端且非常罕见的事故。正因为这些事件发生概率很低，相关的“统计”信息通常极为有限。于是，挑战就在于汇集一切能够获得的知识，以描述那些罕见但可能造成灾难的事故事件。这些知识常常来自专家判断，并由间接物理观测（如测量管道壁厚）及模型预测（如预测涡轮裂纹扩展）提供支持。<strong>风险评估的基本思想是通过系统化建模，把部件和基本事件层面的详细信息与知识组织起来，以评估系统层面的事故风险。</strong> 由于人们对这些事件及系统响应的知识有限，评估结果不可避免地包含不确定性。描述这些不确定性的常用框架是概率论，尤其是主观主义或贝叶斯概率理论，它能够把专家意见与统计数据结合起来，从而给出定量风险度量[91,92]。这一领域常被称为概率风险评估（PRA），概率安全评估（PSA）和定量风险评估（QRA）等称谓也被广泛使用。</p>
+<p>概率分析已经为风险定量化提供了35年以上的基础，最早在大型技术系统——尤其是核电站——中的应用可以追溯到20世纪70年代初[138,161,162]。直到今天，相关基本原理并未发生重大变化。然而，当面对发生可能性极低、后果却极其严重的工业事故时，单纯基于概率的方法会受到挑战。由于可用知识非常有限，研究人员已经提出多种替代框架，用于风险评估中的不确定性表示和处理[2,19,58,89]。</p>
+<p>从一般意义上说，风险概念用于处理某个事件或情形可能发生，并对某些主体造成不希望出现的后果这一问题。后果经常相对于计划值、目标值等参考值加以衡量，通常重点考虑负面后果。相应地，国际风险治理理事会（IRGC）将风险定义为某个事件或活动相对于人类所珍视之事物所产生的不确定后果，而且通常是负面后果[81]。风险分析学会（SRA）关于风险分析基础问题的专业组术语表中也可以找到类似定义。当人们讨论某项具体风险时，通常会界定相应的场景，描述造成风险的危险条件和对有关主体的不利后果。</p>
+<p>为便于形式化分析和定量计算，需要采用风险的形式化表征。其中一种常见描述是[90]：</p>
+<p>[<br>\mathrm{Risk}=\{s_i,f_i,c_i\},\quad i=1,\ldots,N.\tag{1}<br>]</p>
+<p>其中，(s_i) 表示(N)个事故场景中第(i)个场景的事件序列；(f_i) 表示该事件序列的发生频率；(c_i) 表示该场景一旦发生所导致的后果。按照这一描述开展风险评估，需要有方法识别可能发生的完整事故场景集合，并准确估计各场景的发生频率和后果。但事故场景的完整性无法保证，而频率和后果估计的准确性又必须在有限知识和近似建模条件下进行评价。因此，作者引入第二层风险描述，用来考虑风险评估本身的不确定性[90]：</p>
+<p>[<br>\mathrm{Risk}=\{s_i,p_i(f_i,c_i)\},\quad i=1,\ldots,N+1.\tag{2}<br>]</p>
+<p>其中，(p_i(\cdot,\cdot)) 是联合概率密度函数，用于描述场景(s_i)的发生频率(f_i)及其后果(c_i)所具有的不确定性。额外的第(N+1)个场景用于表示事故场景集合的不完整性，即在分析时尚未知晓而未纳入评估的场景，这就是所谓的“剩余风险”（Residual Risk）。</p>
+<p>鉴于知识在风险评估中处于核心地位，还可以把知识明确包含在风险定义中[17]：</p>
+<p>[<br>\mathrm{Risk}=(A,C,Q;K).\tag{3}<br>]</p>
+<p>其中，(A)表示可能发生的事故场景集合，(C)表示后果集合，(Q)表示用于量化相应不确定性的度量，(K)则表示风险评估所依据的知识体系，即识别(A)以及定量描述(C)和(Q)所依据的知识。该定义与[10]中在建模者全部知识和信念条件下构建世界模型的观点一致。需要注意，式（3）并没有把不确定性的表示限制在经典概率框架内，也可以采用其他表示方法[18,22,57,70,150]。</p>
+<p><strong>风险评估的结果取决于评估时所掌握的知识(K)，以及据此作出的建模假设和参数赋值；风险不是独立于知识背景而存在的一个绝对数字。</strong> 这一表述明确突出了系统引入风险评估模型的背景知识所发挥的作用。风险评估方法应被视为在系统、严格、透明的框架中整合知识的手段。简单地说，风险评估就是生成、表示和展示有关风险问题及其未来发生情况的知识，以支持相关决策。为此，需要以现有知识建立模型，表达和传播不确定性，并用概率或其他适当指标描述风险。这种风险描述天然以知识(K)为条件。</p>
+<p>围绕风险基本概念及风险评估基础问题的近期讨论[20,21,23,24,53]，进一步强调风险评估结果受被分析系统或过程的现有知识约束[23,25,230]。承认这一点，也就意味着必须接受由系统和过程特性、行为中的未知部分所导致的剩余风险不可避免地存在。</p>
+<p>因此，认识用于支持风险评估结果的知识本身并不完整也同样重要。作者引用美国前国防部长唐纳德·拉姆斯菲尔德于2002年2月12日在一次新闻发布会中的表述[167]：</p>
+<blockquote>
+<p>“存在已知的已知，即我们知道自己知道的事情。我们也知道存在已知的未知，即我们知道有些事情自己并不知道。但还有未知的未知，即那些我们不知道自己不知道的事情。”</p>
+</blockquote>
+<p>相应地，可按照风险评估时掌握的知识，将事故事件和场景分为四类[71]：</p>
+<ol>
+<li>Unknown-unknown（未知的未知）；</li>
+<li>Unknown-known（未知的已知）；</li>
+<li>Known-unknown（已知的未知）；</li>
+<li>Known-known（已知的已知）。</li>
+</ol>
+<p>第一类是风险评估时任何人都不知道的事件或场景；第二类是评估人员不知道、但其他人知道的事件或场景；第三类是背景知识薄弱，但已有迹象或合理理由相信将来可能出现某种新的、尚不清楚的事件或场景；第四类是评估人员已经知道、并且存在相关证据的事件或场景。</p>
+<p>根据Flage和Aven[71]的观点，第一、第二和第四类中那些发生概率可以忽略的事件或场景，可在[180]所采用的意义上被称为“黑天鹅”；第三类则具有新兴风险的特点，即全新的风险，或者在新的、不熟悉的条件下显现出来的既有风险。显然，“新的”和“已知的”均取决于可用的背景知识。</p>
+<p>作者以2016年9月28日南澳大利亚电网大停电为例。当时严重风暴引发级联故障，大约170万人在3小时内失去电力供应，电力完全恢复则需要数日。澳大利亚能源市场运营机构（AEMO）的初步报告曾将强风暴视为“不可信事件”，即一种未知的已知，或者被赋予可忽略概率的已知的已知。但后续分析表明，该电网的脆弱性比预期更高，许多与风和雷电有关的危险被低估了。这实际上体现了现有知识被错误使用或误解的问题。</p>
+<p>然而，不确定性的概念和解释仍然困难，并存在争议。可以认为，在风险评估中，所有事物在某种程度上都是未知的，因此上述四类划分可能受到质疑。特别是“未知的未知”可以在政治科学的论辩中使用，但在形式化、科学的风险知情决策中未必总是一个可接受或容易辩护的概念，有时它甚至可能被用于事后为某个决定辩护。另一方面，正式的决策分析承认，决策总是在当时已有知识的条件下作出的。某项决策可能因为符合既定理论框架和当时的知识而被认为“正确”，但事后结果仍可能证明它“错误”，因为决策总存在产生不利结果的可能性，或者知识体系本身并不足以支持作出实际意义上的正确决定。基于开发者现有信息与知识构建的任何风险模型也面临同样的问题。因此，在风险评估和风险管理中，必须考虑知识与信息的充分程度[11]。</p>
+<p>综上，风险评估可以理解为一种系统化、结构化的努力：组织与特定风险管理决策有关的事件、过程和场景的现有知识。为了支持决策，风险评估必须提供可追溯的信息来论证决策；评估结果也必须以决策者能够正确理解并理解其知识相关不确定性的方式进行交流。风险评估通过组织系统知识，理解系统如何失效、并对失效模式进行排序，从而支持良好决策[71]。</p>
+<p>风险评估结果及据此作出的管理决策是否有价值，取决于评估框架中方法与途径的质量，以及其中所包含知识(K)的强度。对于前者已经形成了质量保证程序；对于后者，如何在风险评估与管理中显式处理知识仍然是一个开放的研究问题。应当如何描述和评价这些知识？又应当如何在风险管理决策中体现并考虑它们？这些问题的答案决定了风险评估是否有效。如果风险评估的结果将被用于决策，就必须能够说明使用的技术适当、所依据的知识足够支持相应决策[155]。风险评估的质量审查十分必要，因为反对某项决策时，人们往往会质疑支撑该决策的风险评估是否有效[11]。</p>
+<h2 id="3-Simulation-for-risk-assessment"><a href="#3-Simulation-for-risk-assessment" class="headerlink" title="3. Simulation for risk assessment"></a>3. Simulation for risk assessment</h2><p>总体而言，事故和事件可以被视为相关系统行为的极端状态[5]。因此，识别和描述危险事故与事件场景，是风险评估中知识挖掘的一项基础任务。但在实践中，这一任务绝非简单。由于系统和过程复杂，必须考虑数量庞大、按组合方式增长的场景、事件及条件，而其中只有极少数罕见组合会导致关键的不安全状态。对这些组合逐一开展实物试验，在经济上无法承受，在物理上也常常不可行。</p>
+<p>正因如此，仿真长期以来都被主张用作探索和理解系统行为、获取知识的方法[171,175]，并从20世纪70至80年代起就被用于安全评价。不过，近年来建模技术的持续进步——包括运行速度较快、基于人工智能的代理模型或元模型——以及日益廉价而强大的计算资源（包括并行计算和云计算），才真正使利用仿真探索系统行为和丰富风险评估知识达到前所未有的水平。</p>
+<p>在基于仿真的事故场景探索中，分析人员为系统设计和运行参数设置不同初始配置，依次执行模拟，并计算对应系统状态。将得到的系统状态与特定安全条件或临界阈值进行比较，可以识别哪些输入配置会使系统进入关键状态。这些状态构成所谓的“关键区域”（Critical Regions，CRs）或“损伤域”（Damage Domains，DDs）[130]。有些CR可以根据分析人员的先验知识和预期识别；另一些则需要通过仿真来“发现”，即分析人员事先并不知道存在这些危险配置，只有经过系统探索才能识别。</p>
+<p>与此同时，仿真还能估计事故场景的发生概率，或用于式（2）和式（3）中描述风险的其他不确定性度量。为此，随机离散事件仿真中的Monte Carlo（MC）方法通常被认为是“黄金标准”[88,106,122,166,228]。实践中，MC方法生成大量系统响应的样本、试验或运行历程，再统计有多少历程到达所关注的状态，即终止于CR或DD的历程。</p>
+<p>例如，要估计给定时刻(t)的系统可靠性，即系统在(t)以前不失效的概率，可以模拟大量系统寿命历程，记录每次运行中的失效时间（Time to Failure，TTF），然后将TTF大于(t)的仿真次数占总次数的比例作为可靠性估计。同样，某个CR可以由系统安全参数的特定阈值（如温度、压力、热流上限等）定义。通过对系统寿命历程进行采样，并统计有多少次运行进入该CR，就能估计相关事故事件的发生概率[163]。</p>
+<p><strong>因此，风险评估实践中可以利用仿真模型解决两个关键研究问题：</strong></p>
+<ul>
+<li>识别系统中的危险条件，即式（3）中的事件—后果组合((A,C;K))，这些组合对应系统的关键状态，也就是识别系统CR。</li>
+<li>估计罕见关键事故场景的发生概率，即式（3）中与((Q;K))有关的问题。</li>
+</ul>
+<p>虽然利用仿真处理上述两个问题看起来直观而简单，实际操作却具有很大挑战。这是因为系统行为模型通常具有以下特点：</p>
+<ul>
+<li>高维性：输入和/或输出变量数量很大。</li>
+<li>黑箱性：不存在可直接表达的输入—输出关系；模型可能封装在计算机程序中，也可能隐藏在基于数据和AI的经验代理模型或元模型中。</li>
+<li>动态性：系统状态随时间变化。</li>
+<li>计算负担高：上述特征和模型数值求解方法使得即使单次仿真也可能十分耗时。</li>
+</ul>
+<p>输入维数较高意味着，为识别CR或估计进入CR的概率而需要考虑的系统条件与场景数量，会随着输入空间维数呈指数增长[14,190,229]。同时，高维空间中的仿真结果难以可视化，也使事后场景分析和风险理解变得困难，必须发展专用的结果表示工具[56,113,118,121]。</p>
+<p>通常具有非线性性质的黑箱模型，使分析人员无法事先直接推断哪些输入配置会导致系统进入CR。模型可能本身就是经验性的黑箱，也可能虽然基于物理原理却复杂到无法解析其输入—输出关系。此时，唯一可行的方式往往是执行仿真并对其结果进行后处理。</p>
+<p>对于动态系统，复杂性还增加了时间维度：系统随时间演化，运行过程中可能在不同时刻发生事件；这些事件既可能是随机的部件故障，也可能是确定性的控制动作，二者都会改变系统运行状态[4,64,114,115,119,120,174,229]。</p>
+<p>尽管计算能力持续提升，计算成本在许多风险评估应用中仍是主要问题。有时仅仅模拟一条系统寿命历程就需要大量计算，因此无法运行足够多的输入配置以挖掘系统CR相关知识。对于高可靠系统，这个问题更加严重，因为极低失效概率对应的CR只占巨大输入空间中的很小一部分，因而尤其难以找到[34,165]。</p>
+<p>目前处理上述研究问题与挑战主要采用两种策略：</p>
+<ul>
+<li>利用并行计算、云计算等不断扩大的计算资源，模拟大量系统寿命历程。</li>
+<li>采用自适应采样仿真，以更加智能的方式引导模拟过程，使其倾向于访问所关注的系统状态（例如属于CR的状态）。这要求仿真方法能够在运行过程中自动判断哪些输入配置最值得进一步探索。</li>
+</ul>
+<p>对于第一个研究问题，即识别危险关键状态，需要在以下方面取得进展：</p>
+<ul>
+<li>设计和实现新的自适应仿真框架，用于发现一组已知场景可能造成的意外后果[183]。需要能够把仿真引导到后果最不确定的场景上，也就是最需要补充知识(K)的场景。</li>
+<li>设计和实现用于识别CR的自适应仿真框架[42,43,49,61,102,131,185]。借助建模、人工智能与机器学习的进展，可以结合特征选择和灵敏度分析筛选重要输入、利用代理模型以低成本近似计算量较大的原始模型、采用高效随机模型探索系统状态空间、使用无监督分类方法（聚类），并通过高维可视化方法（例如Parallel Coordinates Plot）提取和表示感兴趣的关键区域与安全区域。</li>
+</ul>
+<p>对于第二个研究问题，即估计罕见关键场景的发生概率，需要面向混合模型建立高效罕见事件仿真算法。所谓混合模型，是指系统变量按物理定律演化，但相关演化定律又可能因离散的、随机发生的事件而改变[184,191,193]。</p>
+<p>混合模型中的罕见事件仿真已经成为许多应用的基本问题。例如，使用验证技术评价自动驾驶汽车系统的安全性，需要确保车辆在动态环境中规划出的运动轨迹安全[109]。交通情景中的测量、扰动和各交通参与者的决策均存在不确定性，因此每个道路参与者都可能拥有不同初始状态、扰动轨迹和行为预测。给定时间范围内，一段交通情景可能达到无限多种状态。由于无法模拟全部交通参与者的可能行为，必须发展高效的混合模型验证与仿真技术，针对可能导致事故的罕见事件进行探索[37,187]。依据自动驾驶汽车及其周围参与者的可达状态，可以进一步估计碰撞概率[7]。</p>
+<p>仿真同样被积极用于关键基础设施和系统之系统（Systems of Systems）的危险分析、安全性与韧性评价[6,230]。关键基础设施的脆弱性以及系统之系统在安全关键应用中的作用日益受到关注，因此需要方法来分析其危险，并验证安全与韧性属性。一种可行途径是针对各系统组件面对不同扰动和失效时可能发生的响应，在空间与时间维度对其进行采样，模拟由此产生的各种场景。这样既可以观察组件之间的相互作用，也可以观察它们共同作用所产生的系统涌现行为。</p>
+<p>分析此类系统的困难还在于系统边界并不总是明确的，系统所包含的组件集合也可能随时间变化。这既可能发生在正常运行中，例如新车辆进入交通场景、新飞机进入某个受控空域，也可能是系统自身演进的结果，例如施工使交通车道中断，或军事单位获得新的防空系统。在这种边界不固定、结构不断变化的环境中，传统分析方法未必能够判断某个组件失效是否会危及整个系统。<strong>仿真则为研究多个组件以复杂且持续变化的方式相互作用所形成的系统提供了途径。</strong></p>
+<h2 id="4-Extended-risk-assessment-business-continuity-and-resilience"><a href="#4-Extended-risk-assessment-business-continuity-and-resilience" class="headerlink" title="4. Extended risk assessment: business continuity and resilience"></a>4. Extended risk assessment: business continuity and resilience</h2><p>如引言所述，系统越来越多地暴露于破坏性事件的危险之下[230]，例如意外系统故障[74]、气候变化和自然灾害[127,203,204]、恐怖袭击[160]等。风险评估用于向风险管理提供信息，说明如何防范这些破坏性事件可能造成的损失[26,206,230]。按照式（3）的风险描述，传统评估重点关注事故场景、它们可能产生的后果、发生可能性以及其中的不确定性[30]，而事故发生后的恢复过程通常不在考虑范围内。</p>
+<p>然而，引发破坏性事件的危险来源往往具有高度不确定性，难以定量描述和建模；同时，系统之间高度互联，使扰动的影响可能超越某个单独系统的边界。因此，必须扩展评估框架，以实现综合风险管理和现有资源的协调使用。<strong>新的框架应超越传统风险评估通常关注的预防问题，并考虑以下两点：</strong></p>
+<ul>
+<li>破坏性事件造成的潜在损失，还取决于事故发生后的恢复过程。</li>
+<li>数字化正在创造新系统和新服务，随之出现了新的损失形式。例如，按照IBM Global Services在2008年的一项调查，IT企业若无法有效恢复计划外应用中断，估计平均每小时会损失280万美元的收入。另有报告指出，对于数据中心运营企业，平均每分钟停机成本已超过5000美元。因此，传统风险评估和管理需要扩展，将恢复过程纳入分析。</li>
+</ul>
+<p>相关工作已经在社会技术系统和职业风险领域展开。例如，[145]提供了一种整合原因、影响和补救措施的工作模型，[146]讨论了该模型内部及由模型引入的不确定性，[233]则提供了复杂社会技术系统建模的例子。</p>
+<p>为进一步讨论这种扩展的必要性与挑战，下文从系统可靠性、可用性和安全性的联系出发，讨论业务连续性与韧性这两个相关概念和范式。</p>
+<h3 id="4-1-Business-continuity"><a href="#4-1-Business-continuity" class="headerlink" title="4.1. Business continuity"></a>4.1. Business continuity</h3><p>业务连续性（Business Continuity，BC）被定义为“组织在破坏性事件发生后，仍能够以可接受水平持续交付产品或服务的能力”[80]。它度量的是组织受到破坏性事件影响后仍保持运行状态，或者迅速恢复运行状态的能力。业务连续性管理（Business Continuity Management，BCM）是一种管理框架，目标是确保破坏性事件不会造成未预期、不希望发生的生产或服务中断。从这一角度看，BCM把事故后的恢复过程与风险评估中的预防视角连接起来[50]。</p>
+<p>国际标准化组织将BCM定义为一种整体性管理过程：识别组织面临的潜在威胁及其一旦发生可能对业务造成的影响，并由此提供框架，以建立组织韧性和有效响应能力，保护主要利益相关方的利益、声誉、品牌以及创造价值的活动[80]。从这一定义可以清楚看出，BCM既涉及可靠性和可用性，也与安全性视角下的韧性概念有关。</p>
+<p>BCM是一种旨在减少技术和运行风险、避免扰动和中断妨碍恢复过程的综合管理策略，过去几十年来受到越来越多关注[77]。相关研究包括：考虑内外部信息安全威胁的BCM规划方法[50]；BCM对组织的必要性及价值[232]；波音公司运用BCM规划实现灾害准备的实践[234]；支持BCM规划的综合框架[235]；BCM发展历程及推动其发展的关键事件[77]。与传统风险管理方法的比较表明，BCM不仅关注危机前的系统防护，也关注危机中及危机后的恢复过程[176]。</p>
+<p>其他研究建立了BCM成熟度模型并用于阿联酋银行业案例[236]，利用系统可靠性模型规划BCM[63]，把BCM与灾后恢复计划结合，帮助系统有效恢复运行[169]，研究安全相关供电系统的业务连续性[147]，发展用于BCM的增强型风险评估框架[188]，以及提出BCM策略规划的模糊成本—效益分析方法[154]。</p>
+<p>作为整体化的综合风险管理策略，BCM具有很大潜力，但由于系统和风险问题复杂，现有大多数BCM策略仍主要基于定性方法，这限制了有效的实际应用。直接开展BC定量建模与分析的研究仍较少。Boehmer等人[35]利用过程代数与模态逻辑描述BC过程中的系统行为，类似模型被用于信用卡企业的业务连续性[38]。研究[15]建立多层模型描述贷款发起业务的连续性，[32]结合Cox模型与贝叶斯网络，[178]通过仿真研究流行性疾病暴发时企业的业务连续性，以运行率和工厂利用率表示BC。这些模型描述了危机后的系统行为，但没有给出明确、通用的业务度量，从而妨碍BC的定量分析并限制实际应用。</p>
+<p>为促进BCM的工程应用，Zeng和Zio[219]开发了一套定量综合建模框架，定义四种衡量破坏性事件潜在损失的指标，并通过仿真方法计算这些BC指标。论文以石油储罐区的业务连续性评价展示该框架。</p>
+<p>该BC概念模型使用业务过程绩效指标PPIB（Process Performance Indicator—Business）描述系统实现其目标的程度。例如，炼油厂可以用每日产量表示PPIB；制造工厂可以使用每天生产的产品数量。PPIB由系统运行状态决定：正常运行时保持标称值，运行受扰时下降至较低水平。实际组织可能遭受不同类型的破坏性事件，包括：</p>
+<ul>
+<li>技术性扰动：由组件或系统失效引起。</li>
+<li>自然性扰动：由洪水、地震、雷电等自然灾害引起。</li>
+<li>社会性扰动：由恐怖袭击、罢工、供应链中断等社会事件引起。</li>
+</ul>
+<p>一旦发生一种或多种扰动，系统正常运行被打断，PPIB下降，相关利益方因业务中断而遭受损失。为了减轻损失，可以采取多种业务连续性措施，这些措施通常分为四类：</p>
+<ul>
+<li>保护措施（Protection Measures）：抵御破坏性事件，防止系统受损。如果保护成功，业务过程不会中断。</li>
+<li>缓解措施（Mitigation Measures）：当保护措施失效、扰动已造成初始损伤时介入，目标是在事件发展初期限制其演化，降低损失。</li>
+<li>应急措施（Emergency Measures）：当缓解措施未能控制损伤时启用，通常需要较多人为干预。</li>
+<li>恢复措施（Recovery Measures）：在事件发生后恢复系统正常运行。</li>
+</ul>
+<p>例如，雷击是油气系统的一种严重威胁[51]。油气储罐区通常安装防雷杆作为保护措施[136]。如果防雷失效，储油罐可能起火[135]。随后自动灭火系统等缓解措施启动，以防火势蔓延到其他储罐并造成多米诺效应[135]。如果缓解措施仍无法阻止事故传播，就需要消防队等应急措施[199]。最后对受影响的储罐进行维修和恢复，重建生产运行，减少业务中断损失。</p>
+<p>图1展示破坏性事件作用下业务过程演变的概念模型[219]。业务过程被划分为保护、缓解、应急和恢复四个阶段，每个阶段对应一种业务连续性措施。实际业务过程的PPIB可能因为不同破坏性事件偏离标称值，而事件造成的业务中断严重程度和持续时间可通过不同阶段的BC措施进行控制。保护措施影响系统对扰动的抵抗能力；缓解与应急措施决定系统在损伤后性能下降的程度；恢复措施则影响系统返回正常运行状态的速度。</p>
+<p><img src="/pictures/2026112021.png" alt="Figure 1：业务连续性过程概念模型"></p>
+<p><em>原文 Fig. 1：A conceptual model for the business continuity process [219].</em></p>
+<p><strong>图1所示业务过程涉及不同性质的阶段，因此需要集成不同模型来描述各阶段的特点。</strong>图2给出一种综合建模框架[219]。保护、缓解和应急阶段决定破坏性事件的后果，可采用事件树（Event Tree，ET）描述[223]。事件树中中间事件的概率对应所部署BC措施的可靠性或不确定性；其中保护和缓解阶段的结果分别由对应措施的可靠性决定，而这些概率可以通过故障树（Fault Tree，FT）求得[223]。</p>
+<p>应急阶段则涉及应急响应队伍执行的一系列活动，需要能够描述活动次序和动态过程的模型，如事件序列图（Event Sequence Diagram）[222]。恢复阶段同样包含维护动作的动态演化，可以通过系统状态之间的转移过程进行描述，例如半马尔可夫模型[52]。</p>
+<p><img src="/pictures/2026112022.png" alt="Figure 2：业务连续性评价综合模型"></p>
+<p><em>原文 Fig. 2：An integrated model for business continuity assessment [219].</em></p>
+<h3 id="4-2-Resilience"><a href="#4-2-Resilience" class="headerlink" title="4.2. Resilience"></a>4.2. Resilience</h3><p>韧性（Resilience）是与业务连续性紧密相关的概念。这里主要从事故的角度讨论韧性，强调它与安全性的关系，而不只是生产可靠性、可用性或系统和关键基础设施的其他功能属性。</p>
+<p>如前所述，基于风险的方法一直用于评估危险并减轻其影响。通过确定各组件对系统总体风险的贡献，风险评估结果能够帮助人们确定系统改进的优先顺序，以减少风险。但快速技术演进，以及新兴危险在性质和影响范围上前所未有的不确定性，使得识别全部潜在危险、准确估计发生概率及后果程度变得越来越困难。因此，决策者未必能够完全信赖这些估计结果来选择风险降低措施。对于当今构成关键基础设施的复杂互联系统，这个问题尤其突出。为此，需要扩展风险评估和风险管理框架，在特定成本与时间约束以及高度不确定性条件下，使系统能够面对广泛危险保持韧性。</p>
+<p><strong>与传统风险概念不同，韧性不仅关注事故或破坏性事件发生的可能性及后果，还关注系统事先准备以及事件发生后迅速恢复的能力，不论事件是否已知。</strong> 因而，韧性管理需要确保系统能够为潜在事故和扰动作出计划与准备，并在事件发生时吸收冲击、恢复运行和适应变化。</p>
+<p>近年来一些灾难性事故留下的教训，推动了韧性概念的应用，强调系统和关键基础设施抵抗扰动、适应变化并迅速恢复的能力[129,141,153]。2005年世界减灾大会的成果表明，韧性开始进入灾害研究与治理话语，并推动了新的灾害响应文化[48]。因此，今天的系统不仅需要可靠，还必须能够从扰动中恢复[224,230]。政府政策也逐步鼓励相关措施，使资产在破坏性事件发生后仍能保持一定水平的运行，或迅速恢复完整功能[129]。韧性由此成为应通过设计、运行和管理共同保障的系统及关键基础设施基本属性。</p>
+<p>韧性的定义会因学科和应用领域而有所不同[75,133,144]。例如，有定义将其表述为“系统降低冲击发生机会、在冲击出现时吸收冲击、并在其后迅速恢复正常性能的能力”[39]；美国国土安全部2009年的定义强调“资产、系统或网络在恐怖袭击或其他事件期间保持功能或者在事后恢复功能的能力”；另一种定义强调“系统在可接受的退化程度、时间、综合成本和风险约束下抵御重大扰动并恢复的能力”[73]。</p>
+<p>从这些定义可以看到，韧性可以由四个属性来刻画：鲁棒性（Robustness）、冗余性（Redundancy）、资源调动能力（Resourcefulness）和快速性（Rapidity）；同时又涉及技术、组织、社会和经济四个相互关联的维度。韧性可以被视为风险工程的一种新范式，它主动整合事故前的预期（思考可能发生什么）和监测（知道应该关注什么），事故中的响应（知道应该做什么并具备执行能力）和学习（知道发生了什么），缓解阶段的吸收（减弱不利影响），以及恢复阶段的适应（有意识地调整以克服扰动）和复原（返回正常状态）。</p>
+<p>研究人员已经提出多种分析与量化韧性的模型、方法和框架[45,69,82,117,198]，应用领域包括地震工程和结构系统[47,48,59]、生态系统[78]、经济与金融系统[9,29,168,177]、服务系统[164,186]、电信系统[142]、城市基础设施[84,13]以及灾害规避和恢复[36,181,231]。</p>
+<p>尽管韧性可以通过多种系统特征和属性加以描述，恢复仍然是提高韧性策略中的关键环节。系统恢复及其在基础设施韧性中的作用已经引起广泛关注。一些研究建立了不同基础设施的灾后恢复模型，用于估计期望恢复时间[68,173]；另一些研究比较不同恢复策略的效果[41,44]。也有工作研究灾后恢复策略的规划与优化，以便及时、高效地恢复系统服务。</p>
+<p>例如，Kozin和Zhou[103]在同时考虑多种系统时，利用马尔可夫过程描述基础设施系统恢复过程，并采用动态规划估计各系统在每个时间步所需的修复资源，以最大化系统运行带来的预期经济回报。研究[237]使用神经网络降低电话系统在地震后丧失功能的可能性；[40]采用混合整数规划选取对业务运行最有利的恢复子计划；[46]研究了由不同企业运营的多种基础设施同时受损时的恢复问题。</p>
+<p>在[108]中，研究者考虑了一组相互依赖网络，为全面恢复网络服务而选择临时连接（例如分流线路）的位置，并提出混合整数优化模型以最小化应急临时恢复的运营成本。研究[201]采用遗传算法优化地震后的电力恢复，目标是使每位用户停电的平均持续时间最短。研究[123]提出整数规划模型，针对以节点对之间的连通性为主要性能指标的网络开展恢复。上述研究采用不同建模方法，分别关注损坏组件的维修顺序、修复资源的分配位置及方式等恢复策略问题。</p>
+<p>更一般地说，仅靠经典的系统分解与逻辑分析方法，无法完成复杂系统和关键基础设施的韧性分析。同时，对复杂系统中各元素的失效行为、元素之间的连接和交互，仍存在很大的不确定性[226]。<strong>因此，需要建立能够在不确定条件下，从拓扑与功能、静态与动态等不同视角研究系统复杂性的综合框架</strong>[105,143,158]，其组成方法包括：</p>
+<ul>
+<li>结构或拓扑方法：基于系统分析、图论、统计物理等，描述复杂系统的连通性，分析其对系统功能、故障级联传播及恢复（韧性）的影响，并识别因处于网络连通核心位置而需要加强控制的关键元素[65,108,137,152,227]。</li>
+<li>逻辑方法：基于系统分析、层级逻辑树、博弈论等，描述随机事件和恶意攻击下系统正常运行及失效的逻辑，识别使系统丧失功能的硬件、软件和人员失效组合[12,31,221]。</li>
+<li>现象学或功能方法：基于传递函数、状态动态模型、投入产出模型、控制理论、基于智能体的建模等，描述硬件、软件、人员及环境之间相互关联的动态运行过程，从而表现系统整体运行的涌现行为[189]。</li>
+<li>流动过程方法：基于对系统内部过程的详细机理模型及相应计算程序，描述系统运行、监测和控制的物理规律[170]。</li>
+</ul>
+<p>整合上述方法有望同时捕捉复杂系统的不同重要方面[55]。例如，在电网领域，研究人员比较过结构/拓扑模型与实际潮流模型。一些工作对复杂网络理论模型和潮流模型进行定性比较，辨别它们的相似性、差异性以及各自的优缺点[27]。Cupac等人[54]通过大量比较仿真发现，以网络为中心的模型在统计总体性质上与更加真实的最优潮流模型一致。Matisziw等人[123]通过与物理潮流模型比较，支持使用图论技术评估电网脆弱性的适当性。</p>
+<p>研究[66]进一步讨论，在有限投资预算下，如何寻找最有利的线路容量配置，使输电网络抵抗级联故障的能力得到提高。该问题被表述为组合式多目标优化问题，并采用进化算法求解。研究同时使用复杂网络模型和计算成本更高、物理细节更充分的潮流模型，模拟级联故障并量化韧性，在法国400 kV输电网络案例上进行测试和比较。结果表明，两种模型得到的最优解在Pareto前沿的相变特征和线路容量配置模式上具有一致性。</p>
+<h2 id="5-Dynamic-risk-assessment-and-condition-monitoring-based-risk-assessment"><a href="#5-Dynamic-risk-assessment-and-condition-monitoring-based-risk-assessment" class="headerlink" title="5. Dynamic risk assessment and condition monitoring-based risk assessment"></a>5. Dynamic risk assessment and condition monitoring-based risk assessment</h2><p>风险评估必须考虑组件和系统在运行、老化、失效、修复及更换过程中随时间发生的变化[192]。为此，应不断更新评估，以反映组件、系统及其当前总体安全状态。这一思想形成了所谓“活态概率风险评估”（Living PRA，LPRA）。LPRA是针对某个具体系统或工厂的PRA，可以根据需要在其寿命周期内进行更新或修改，以反映系统状态变化[86]。这些变化可能属于物理变化（如工厂改造）、运行变化（如操作程序改进）、组织变化，也可能是由于新的运行经验、现场数据等使知识发生变化。更新后的LPRA应反映当前设计和运行状态，并通过文档化方式，使模型的每个方面都能直接关联到系统现有信息、文档或分析人员的假设[112]。</p>
+<p><strong>在LPRA基础上，动态风险评估（Dynamic Risk Assessment，DRA）被定义为：随着时间推移获得有关组件状态的新知识，持续更新对正在退化的系统所面临风险的估计</strong>[95,202]。DRA能够描述系统风险曲线随时间发生的变化[76,94,192]。</p>
+<p>早期DRA尝试[125,126]使用从类似系统收集的险肇事件（Near Miss）和事故数据，通过贝叶斯定理动态更新事故发生概率。研究[87]采用类似方法，以贝叶斯定理更新概率，并以事件树（ET）分析后果。[159]使用事件树描述氨储存设施的事故序列，并采用贝叶斯定理实现DRA。[148]则依据大型险肇数据库，结合事件树和贝叶斯更新化工过程工业的风险。研究[99]建立分层贝叶斯模型，分析海上井喷险肇数据；[205]采用类似模型动态评估海上钻井平台风险。</p>
+<p>研究[96]把贝叶斯定理与蝴蝶结模型（Bow-Tie，BT）结合，在运行过程中持续修正BT中基本事件和安全屏障的失效概率，再利用更新后的BT估计当前风险曲线。BT还被用于金属粉尘事故的DRA[149]，类似方法在[1]中用于实时更新海上钻井作业风险。[97]提出基于贝叶斯网络（BN）的DRA，随着新的事故数据出现而更新BN基本事件概率；[98]比较了BT与BN方法，并给出了将BT映射到BN的程序。研究[110]结合BT和BN分析海底油气管道泄漏风险；[215]则使用BN开展天然气站的DRA。</p>
+<p>然而，上述多数DRA方法仅依赖统计数据，即从类似系统收集的事故或险肇事件计数来更新风险指标。这类数据在某些文献中也被称为事故序列前兆（Accident Sequence Precursor，ASP）数据[126,238,239]。只使用统计数据的缺点在于，必须等事故或险肇事件实际发生后才能更新风险指标；而且这些数据来自类似系统，描述的是系统群体的统计特征，无法充分体现目标系统个体的具体状态。</p>
+<p>状态监测数据可能提供其他有助于估计风险指标的信息。在实际工程中，事故初始事件和安全屏障失效通常与退化机理有关，例如磨损[218]、腐蚀[217]、疲劳[83]、裂纹增长[28]和氧化[52]。这些退化过程可以实时监测，并可通过监测变量的特定阈值预测或提前识别失效。状态监测数据直接反映目标系统及其安全屏障自身的退化过程，使人们有可能在实际故障出现以前更新可靠性指标。因此，在DRA中引入状态监测数据，可以有益地补充传统统计数据，形成基于状态监测的风险评估（Condition Monitoring-Based Risk Assessment，CMBRA）。</p>
+<p>在这一方向上，已有一些初步研究。研究[211]采用Kalman Filtering，从状态监测数据中估计真实退化状态，并根据与退化状态有关的损失函数执行DRA/CMBRA。同一团队还采用Particle Filtering（PF）[212]和Principal Component Analysis（PCA）[210]等不同状态监测技术开展类似工作。为了处理非线性和非高斯特征，[207]建立基于Self-organizing Map的CMBRA方法。Wang等人[194]提出Remaining Time概念，并将其用于包含多个状态监测变量的CMBRA。[101]通过监测非能动余热排出系统的敏感变量开展CMBRA，但没有考虑监测数据中可能存在的噪声。</p>
+<p>这些方法仍存在局限：它们通常只使用状态监测数据，而不同时使用统计失效数据；此外，多数方法在计算风险指标时没有纳入事件树、蝴蝶结或贝叶斯网络等后果分析模型，而是直接根据监测到的退化变量及其对性能的影响评估风险。</p>
+<p>研究[220]提出一种同时利用统计数据和状态监测数据的DRA方法，并通过事件树开展后果分析。其第一步是利用两类数据在线更新安全屏障可靠性。为此，研究者构建分层贝叶斯可靠性模型，并据此发展可靠性的在线评估算法。这里的统计数据是类似系统运行期间事故后果的计数数据，提供“群体”层面的信息；状态监测数据则来自目标系统自身退化过程的在线观测，反映特定系统的个体特征。</p>
+<h2 id="6-Safety-and-security-of-cyber-physical-systems"><a href="#6-Safety-and-security-of-cyber-physical-systems" class="headerlink" title="6. Safety and security of cyber-physical systems"></a>6. Safety and security of cyber-physical systems</h2><p>随着工业数字化大规模发展，信息物理系统（CPS）已广泛用于航空航天、汽车、能源、化工、材料、民用交通、农业和医疗等技术领域。CPS的特点是计算单元与物理要素之间紧密结合并相互协调。通过把计算资源集成到物理过程中，CPS为原本独立运行的物理系统增加了新能力，例如在正常运行和事故情况下进行实时监控、动态控制以及决策支持。为了获得自适应能力、自主“决策”能力以及处理不确定运行场景的能力，CPS通常依赖软件密集、基于模型的控制系统。</p>
+<p>与传统系统设计框架相比，基于模型的开发显然能够更快速、更灵活地定义、分析和集成某一设计的不同方面。然而，这种更强的能力与灵活性，以及模型化开发环境本身的动态特点，也使传统设计验证与确认（Verification and Validation，V&amp;V）面临挑战。因此，还必须有相应方法和工具，支持证明在模型化环境中开发的控制系统符合安全相关要求和适用认证标准[72]。</p>
+<p>在CPS中，信息过程和物理过程相互依赖，并通过反馈控制回路交互。例如，嵌入式信息控制器监测和控制系统物理变量，而物理过程又通过有线或无线网络影响监测系统和计算单元[8,100,107]。这种自适应能力是CPS在能源、交通、医疗等应用中越来越普及的原因之一[33,93,107]。</p>
+<p>在CPS应用中，可以使用传感器测量值监控系统在不同运行条件下的行为，包括危险和恶意条件。CPS的功能和完整性既可能受到与安全性（Safety）有关的危险事件破坏，也可能受到与安保性（Security）有关的恶意威胁破坏[104,151,213]。二者来源并不相同：前者通常来自随机退化及意外条件，后者则来自外部恶意活动，通常更难获取信息，也更难预测[16,104]。其性质和作用机理不同，因此用于识别它们的评估方法也应有所区别。</p>
+<p><strong>CPS风险分析必须同时考虑Safety与Security：偶发故障可能使物理过程进入不安全状态，恶意攻击则可能同时损害信息域和物理域，并产生不可接受的后果。</strong></p>
+<p>硬件与软件故障都可能破坏CPS的完整性和功能[134]。运行过程中，传感器和执行器等嵌入式硬件可能因老化、退化及过程和运行条件发生失效。这些失效会改变组件工作及相互作用方式，形成多种失效模式[195]。例如，传感器可能发生偏置（Bias）、漂移（Drift）或冻结（Freezing）等退化失效[195]；执行器可能卡死，使物理过程意外脱离信息控制单元[216,225]。</p>
+<p>组件故障可能导致两类错误运行：第一类是按需失效（Failure on Demand），例如在需要保护动作时未能触发保护或正确执行控制策略；第二类是功能异常（Malfunction），例如保护误触发、意外停机或控制动作执行错误。硬件和软件中的按需失效与功能异常，已成为风险研究群体日益关注的问题[3,124]。</p>
+<p>CPS可通过执行器控制决策的自适应性来提高对故障的韧性，相关智能控制系统需要正确利用传感器测量值[116]。例如，在CPS中常见的比例—积分—微分（PID）控制器，通过反馈调节执行器动作以响应物理参数变化。但PID控制器也可能存在软件故障或错误，这些问题源自不充分的规格说明、不完整的测试范围或算法与逻辑缺陷，而且可能一直潜伏，直到运行环境发生某种变化才被触发[3,85]。在这样的情况下，控制规则是否能够适应变化的物理条件，是保障CPS运行韧性和鲁棒性的基本要求。</p>
+<p>CPS对数字化和远程控制系统的依赖，也提高了控制器、数据库、网络以及人机接口受到网络攻击的风险，进而可能使系统丧失完整性或功能。恶意活动包括拒绝服务（Denial of Service，DoS）攻击[156,208,214]、虚假数据注入（False Data Injection，FDI）攻击（例如修改数据包或数据）[111,128,179]、网络扫描与嗅探[156,182]、通过恶意软件传播实施完整性攻击[139,140]以及非法指令执行[172]。攻击者可以通过本地或远程方式从信息域发起攻击，其结果可能与组件故障相似，但也可能切断信息系统与物理系统之间的联系，使物理过程失去控制并演化为严重后果。</p>
+<p>网络攻击还可能引发严重的安保与隐私问题[200]。例如，在恶意软件传播期间，系统的安保属性可能被破坏，进而同时危及系统Safety和Security。为了为最佳保护措施和韧性管理提供依据，需要识别对系统响应影响最大的网络威胁；预防和缓解恶意攻击有助于保障CPS完整性与功能[67,79,196,209]。</p>
+<p>从CPS综合Safety和Security的角度来看，区分网络攻击与普通组件故障，对于评价系统完整性受到的影响以及制定适当的保护和缓解措施十分重要。要提高CPS韧性，必须整合网络安全、人机交互和复杂网络方面的知识，以整体方式处理可能发生的失效和威胁。因此，相关综合评估框架仍有待建立。</p>
+<h2 id="7-Conclusions"><a href="#7-Conclusions" class="headerlink" title="7. Conclusions"></a>7. Conclusions</h2><p>风险评估是一门成熟的学科，广泛用于安全系统的设计与运行。它在现有知识的基础上，对所关注系统开展结构化分析，以定性和定量方式描述风险。定量分析经常受到批评，原因包括某些概率难以确定（例如人为错误或软件失效的发生概率），支撑模型的假设难以核验，以及相关现象本身具有固有不确定性。</p>
+<p>然而，定量度量对于结合证据性知识与主观信念、作出理性有效的决策仍然是不可缺少的。如果能够提供定量且经过同行评审的信息，决策就有可能更加可靠。为此，风险评估需要给出确定性的结果（例如某事故场景必然发生），或者给出已量化不确定性的结果（例如事故有一定概率发生），使不同风险能够被比较，并用于确定优先级和分配资源。</p>
+<p>通过定量表征不确定性并识别主要风险贡献因素，风险评估增进人们对风险的理解，为监管和管理提供有用信息。在这一过程中，定量指标必须说明我们在何种程度上了解某一事件，以及对相关评估结果具有何种程度的信心。就此而言，这些指标是支持决策的一种论证工具。风险分析人员有责任透明地说明定量指标的计算过程。因此，风险评估所提供的应是一套能够接受审查的论证，而不是对客观真理的形式化证明。论证建立在现有知识及为开展评估而采用的相关建模假设之上。</p>
+<p><strong>风险评估结果应当是一种可供审查、明确揭示其知识依据和不确定性的决策论证，而不应被理解为不受假设限制的客观真理。</strong></p>
+<p>从这一角度看，建模和计算能力以及数据可得性的提高，为知识挖掘和风险评估模型的改进创造了巨大机会。本文讨论了一些研究与发展方向，特别是如何利用仿真识别和探索事故场景，以及如何依赖数据开展基于状态监测的动态风险评估。</p>
+<p>对于仿真而言，人们长期以来一直将其视为风险评估未来发展的重要基础，但直到如今，建模与计算能力的进步才使其在更广泛的实践中真正可行。要充分发挥仿真的优势，仍必须建立对运行迅速、基于人工智能的代理模型和元模型的信任，确保它们在系统行为探索和风险评估中的应用受到适当控制，并充分处理有关近似造成的误差与不确定性。</p>
+<p>对于基于状态监测的动态风险评估，越来越多的传感器监测数据正在开辟新的可能，使风险评估能够更准确地反映组件和系统的实际状态。但是，要在工业实践中真正获得效益，还需要可靠地开发和实施将状态数据驱动预测模型与风险评估模型结合的框架。</p>
+<p>世界正在经历的变化与创新，包括数字化、信息物理系统复杂性的增加、气候变化、极端自然事件以及恐怖主义和恶意威胁，都在挑战现有风险定量描述与建模方法。因此，本文还讨论了如何把风险评估扩展至韧性和业务连续性，以及如何开展CPS的Safety与Security综合评估。</p>
+<p>韧性和业务连续性确实提供了超越传统风险范式的综合性框架，使人们能够更有效地应对新兴危险在性质与影响范围上的不确定性，以及这些危险对当今复杂互联系统的影响。相关概念、定义、模型和技术不断出现，为解决这一困难问题提供了多种认识。但仍需要继续推进，特别是在设计、规范和运行层面如何管理韧性和业务连续性，如何设置韧性目标，如何在纵深防御的安全框架中对韧性进行规范，以及如何在运行中保持适当的韧性裕量。</p>
+<p>CPS的Safety与Security问题尤为重要，因为这类系统几乎存在于所有尺度和技术领域，包括航空航天、汽车、能源、化工、材料、民用交通、农业和医疗。具体应用包括微纳尺度的信息—物理材料、受控组件、协同医疗设备与系统、下一代电网、未来国防系统、新型汽车与智能公路、柔性机器人制造、下一代飞行器及空域管理等。</p>
+<p>CPS把计算和通信能力与对物理世界实体的监测、控制连接起来，在信息空间和物理空间之间搭建桥梁。因此，CPS可以被视为一种系统之系统，其中计算组件、物理组件、底层过程及其治理策略紧密耦合。系统的信息部分需要满足Security要求，物理部分需要满足Safety要求，而两者结合形成的整体同时需要Security、Safety和功能可信赖性。</p>
+<p>在CPS中，组件在各个尺度上通过网络连接，每个物理组件都可能具有信息处理能力，计算活动深度嵌入物理组件。CPS行为是计算（逻辑）动作与物理动作的完整融合，整体系统还具有适应不确定环境的良好能力。虽然新技术无疑会改善生活，但不能低估这些技术带来的风险，也不能忽视随之产生的额外要求。高度集成的CPS使物理组件和物理系统可能从信息空间受到恶意访问，因此产生新的风险。</p>
+<p>信息空间与物理空间融合、通用软件和硬件的使用、接口与协议的采用以及互联网接入，都必须在风险评估中予以考虑。如果恶意主体能够接管受控物理环境，后果可能十分严重。除了对物理组件的直接干扰、攻击和破坏，攻击者还可以针对控制其运行的信息流实施攻击，窃听或篡改传感器信息、存储信息和控制信息，甚至改变控制算法逻辑。这些行为可能造成系统运行延迟、拒绝服务（DoS）或停机。例如，电网等关键基础设施的短时中断就可能造成难以估量的损失和影响；医疗CPS运行中断甚至可能致命。</p>
+<p>因此，除了功能和效率，还必须评估并证明CPS具备可信赖性、安全性和安保性。为了使CPS具有韧性，需要综合网络安全、人机交互和复杂网络知识，以整体方式应对各种失效与威胁。目标是设计能够安全运行，并在自然灾害、人为错误和蓄意网络攻击作用下仍保持关键功能的CPS。为此，需要将仿真与仿真模拟（Emulation）结合的框架：前者再现物理组件与物理过程，后者再现联网工业控制系统中信息组件与信息过程，例如SCADA服务器和企业网络。由于恶意攻击和网络威胁会持续变化，以突破已安装的防护措施，相关框架也必须具有足够的灵活性和适应性以便修改。</p>
+<p>此外，还有一些与全文讨论相互交织的新兴主题值得关注，因为它们很可能在未来风险评估乃至更广泛的安全工作中发挥越来越重要的作用。</p>
+<p>第一个主题是，人们越来越认识到，在运行情境中需要一种具体、实用的方法来考虑安全警觉意识（Safety Mindfulness）[197]。如果操作人员知道系统运行时可能出现的威胁，就可以识别并提前预判这些威胁。难点在于如何管理大量可用于这一目的的风险信息，其中还包括来自本地环境之外的信息，例如行业其他单位的经验。</p>
+<p>有些重要信息需要很长时间才能传达给操作人员；有些新的风险可能只有少数相关主体已经识别，而正式的信息传递流程尚未建立，致使真正需要这些信息的操作人员无法及时获得。事故可能在现有流程完成风险信息的识别、分析、处理和向相关操作人员传播之前就已经发生。从根本上说，安全警觉意识意味着主动采取行动，并以完成当前情境任务所需的最新、最可靠信息为基础。它依赖于在特定时间和空间范围内准确感知相关环境中的风险要素，正确理解其含义，并恰当地推断它们近期可能的状态，以指导安全行动[62]。Mindfulness虽然已经成为安全领域的一个常见概念，但实施起来仍然困难，而且迄今没有一种被广泛接受的组织警觉意识度量[157]。仍需要提出如何把这种能力具体融入组织和过程的工程方法。</p>
+<p>沿着风险情景从正常运行及风险识别、预判逐步转向应急情境，近年来工业事故的教训还表明，不能只关注为保护系统而设计的预防措施，或为缓解事故而制定的危机管理计划，还应关注系统在极端情形下的适应能力。这些情形可能远远超出基于概率风险评估和灾害场景全面分析而制定的安全标准所覆盖的范围。</p>
+<p>当危机发生时，常规资源可能不足，但社会对于系统响应仍有很高期望。这要求一种“应急情境下的工程思维”（Engineering Thinking in Emergency Situations）。这一新概念强调组织内部的适应能力与韧性，例如迅速建立临时组织结构、快速由正常工作状态切换到创新应对模式，并把社会维度纳入工程活动。未来风险和韧性评估也需要评估并证明，组织能否在紧急情况下即时设计和执行有效工程策略，以及在超设计基准事故——即突破既有保护和危机管理计划的事故——发生后是否仍具备韧性。</p>
+<p>最后一个值得提及的主题是社会压力及其相关行为影响。随着“智能”技术世界的发展，这些因素可能越来越多地影响社会技术系统的需求—响应行为。今后的风险与韧性评估，需要更加重视社交媒体传播与技术系统运行之间的交织关系。例如，关于危险、风险和机会的警报可能发挥积极作用，虚假新闻则可能产生消极影响；这些信息会改变正常运行及应急条件下群体性的需求行为，进而影响技术系统运行，并对其响应能力提出挑战。把这些因素纳入风险与韧性评估及管理框架将越来越必要，也需要不同学科与专业能力之间的有效融合。</p>
+<p><strong>未来风险评估不仅需要建模和数据分析方面的能力，还需要综合网络安全、人因、组织管理和社会科学知识，才能应对不断变化的技术系统与风险环境。</strong></p>
+<p>总之，本文所讨论的方向，只是风险评估已经并将继续演进的一些重要方面，目的是应对当前和未来挑战，并考虑不断出现的新系统与创新。所有这些方向都围绕风险评估的知识基础，以及如何通过建模以结构化、有意义的方式组织知识展开。这要求发展新的方法与途径，也要求培养更多能力，例如仿真、数据分析及社会科学方面的能力。这很可能改变风险评估框架，也会影响培养未来风险专业人员的相关教育课程。在这一背景下，风险分析学会（SRA）风险分析基础问题专业组及其专业组委员会已组织风险分析专家，承担制定本领域核心学科主题清单的任务。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io">Ruizhe Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://ruizhe-yang.github.io/2026/11/20/054/">https://ruizhe-yang.github.io/2026/11/20/054/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Simulation/">Simulation</a><a class="post-meta__tags" href="/tags/Dynamic-Risk-Assessment/">Dynamic Risk Assessment</a><a class="post-meta__tags" href="/tags/Risk-Assessment/">Risk Assessment</a><a class="post-meta__tags" href="/tags/Business-Continuity/">Business Continuity</a><a class="post-meta__tags" href="/tags/Resilience/">Resilience</a><a class="post-meta__tags" href="/tags/Cyber-Physical-Systems/">Cyber-Physical Systems</a></div><div class="post_share"><div class="social-share" data-image="/pictures/2026112021.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/11/20/053/" title="笔记：Risk assessment for modern industry"><img class="cover" src="/pictures/2026112001.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">笔记：Risk assessment for modern industry</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2026/11/20/053/" title="笔记：Risk assessment for modern industry"><img class="cover" src="/pictures/2026112001.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-11-20</div><div class="title">笔记：Risk assessment for modern industry</div></div></a></div><div><a href="/2024/08/29/008/" title="小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)"><img class="cover" src="/pictures/24083002.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-29</div><div class="title">小记：Understanding the Affordability Benefits of Utilizing Additive Manufacturing (AM) for Legacy Liquid Rocket Engine Components and its Quantification Using Model-Based Systems Engineering (MBSE)</div></div></a></div><div><a href="/2024/08/29/007/" title="小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering"><img class="cover" src="/pictures/24082901.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-29</div><div class="title">小记：Small Statellites Launcher Design Efficiency Improvement through the Application of Multidisciplinary Modeling and Simulation-based Systems Engineering</div></div></a></div><div><a href="/2024/08/30/009/" title="小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components"><img class="cover" src="/pictures/24083004.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-30</div><div class="title">小记：MBSE Utilization for Additive Manufactured Rocket Propulsion Components</div></div></a></div><div><a href="/2024/08/31/011/" title="小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability"><img class="cover" src="/pictures/24083101.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-31</div><div class="title">小记：Modeling Behavior Elements for the RS-25 Engine using SysML for Improved Affordability</div></div></a></div><div><a href="/2024/08/31/010/" title="小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML"><img class="cover" src="/pictures/24083102.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-31</div><div class="title">小记：Model Based Failure Mode, Effects and Criticality Analysis (MBFMECA) for the RS25 Engine using SysML</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/pictures/site-avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruizhe Yang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">119</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">66</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruizhe-Yang" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #0b75b7;"></i></a><a class="social-icon" href="mailto:ruizheyang@mail.dlut.edu.cn" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #0b75b7;"></i></a><a class="social-icon" href="https://space.bilibili.com/473823163" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili" style="color: #0b75b7;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-number">1.</span> <span class="toc-text">1. Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Risk-assessment"><span class="toc-number">2.</span> <span class="toc-text">2. Risk assessment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Simulation-for-risk-assessment"><span class="toc-number">3.</span> <span class="toc-text">3. Simulation for risk assessment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Extended-risk-assessment-business-continuity-and-resilience"><span class="toc-number">4.</span> <span class="toc-text">4. Extended risk assessment: business continuity and resilience</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Business-continuity"><span class="toc-number">4.1.</span> <span class="toc-text">4.1. Business continuity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Resilience"><span class="toc-number">4.2.</span> <span class="toc-text">4.2. Resilience</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Dynamic-risk-assessment-and-condition-monitoring-based-risk-assessment"><span class="toc-number">5.</span> <span class="toc-text">5. Dynamic risk assessment and condition monitoring-based risk assessment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Safety-and-security-of-cyber-physical-systems"><span class="toc-number">6.</span> <span class="toc-text">6. Safety and security of cyber-physical systems</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Conclusions"><span class="toc-number">7.</span> <span class="toc-text">7. Conclusions</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/11/20/054/" title="笔记：The future of risk assessment"><img src="/pictures/2026112021.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：The future of risk assessment"/></a><div class="content"><a class="title" href="/2026/11/20/054/" title="笔记：The future of risk assessment">笔记：The future of risk assessment</a><time datetime="2026-11-20T09:16:00.000Z" title="Created 2026-11-20 17:16:00">2026-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/11/20/053/" title="笔记：Risk assessment for modern industry"><img src="/pictures/2026112001.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Risk assessment for modern industry"/></a><div class="content"><a class="title" href="/2026/11/20/053/" title="笔记：Risk assessment for modern industry">笔记：Risk assessment for modern industry</a><time datetime="2026-11-20T08:24:00.000Z" title="Created 2026-11-20 16:24:00">2026-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/28/052/" title="笔记：A system-theoretic assurance framework for safety-driven systems engineering"><img src="/pictures/2026092801.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：A system-theoretic assurance framework for safety-driven systems engineering"/></a><div class="content"><a class="title" href="/2026/09/28/052/" title="笔记：A system-theoretic assurance framework for safety-driven systems engineering">笔记：A system-theoretic assurance framework for safety-driven systems engineering</a><time datetime="2026-09-28T01:53:00.000Z" title="Created 2026-09-28 09:53:00">2026-09-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/27/051/" title="笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library"><img src="/pictures/2026082701.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library"/></a><div class="content"><a class="title" href="/2026/08/27/051/" title="笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library">笔记：Multiphysics Acausal Modeling and Simulation of Satellites Using Modelica Library</a><time datetime="2026-08-27T11:15:00.000Z" title="Created 2026-08-27 19:15:00">2026-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/21/050/" title="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis"><img src="/pictures/2026082101.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis"/></a><div class="content"><a class="title" href="/2026/08/21/050/" title="笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis">笔记：Incorporating time dependence into a fault signature matrix to support root cause identification and fault propagation analysis</a><time datetime="2026-08-21T09:33:00.000Z" title="Created 2026-08-21 17:33:00">2026-08-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Ruizhe Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lilgNQ7i9YpUnkcI',
+      clientSecret: '497237bac4d4d36127c25b8f8a0cae080ed38995',
+      repo: 'Ruizhe-Yang.github.io',
+      owner: 'Ruizhe-Yang',
+      admin: ['Ruizhe-Yang'],
+      id: '71930af7b2f2bb2836ce9788327905ce',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
